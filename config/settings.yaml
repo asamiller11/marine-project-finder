@@ -70,6 +70,12 @@ timing:
   # Mark "likely too late" when the decision date is this close or already past.
   too_late_days: 7
 
+update:
+  # When a source is blocked or fails during "Refresh everything and publish":
+  #   false = publish the sources that worked, then warn (log and macOS notification)
+  #   true  = stop without publishing anything
+  stop_on_blocked_source: false
+
 review:
   # Every scored item goes into review/review.csv. In the "publish" column:
   #   yes   = you checked it: shown with a "Reviewed by a person" badge

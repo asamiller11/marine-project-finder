@@ -264,6 +264,39 @@ def cmd_check_access(args, settings):
         sys.exit(1)
 
 
+def cmd_update(args, settings):
+    from mpf.update import UpdateError, run_update
+    try:
+        code = run_update(settings, upload=not args.no_upload)
+    except UpdateError as e:
+        print(f"\nUPDATE STOPPED: {e}")
+        sys.exit(1)
+    sys.exit(code)
+
+
+def cmd_auto(args, settings):
+    from mpf import autoupdate
+    action = args.cmd
+    if action == "auto-check":
+        print(autoupdate.auto_check(settings))
+    elif action == "auto-install":
+        print(autoupdate.install(settings))
+    elif action == "auto-uninstall":
+        print(autoupdate.uninstall())
+    elif action == "auto-status":
+        print(autoupdate.status(settings))
+    elif action == "auto-pause":
+        print(autoupdate.pause(settings))
+    elif action == "auto-resume":
+        print(autoupdate.resume(settings))
+    elif action == "auto-show-plist":
+        print(autoupdate.plist_text(settings))
+    elif action == "auto-kick-dry":
+        print(autoupdate.kick(settings, upload=False))
+    elif action == "auto-kick-upload":
+        print(autoupdate.kick(settings, upload=True))
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="python -m mpf", description="Marine Project Finder")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -287,12 +320,23 @@ def main(argv=None):
     sub.add_parser("approved-count", help="print how many items are marked yes")
     sub.add_parser("zip-site", help="zip site/ for Netlify Drop")
     sub.add_parser("check-access", help="check the sources still allow us (no cache)")
+    s = sub.add_parser("update", help="fetch, score, review file, publish, upload, check the live site")
+    s.add_argument("--no-upload", action="store_true", help="do everything except the upload")
+    for name, text in [("auto-check", "LaunchAgent check: update if 14+ days have passed"),
+                       ("auto-install", "install the LaunchAgent"), ("auto-uninstall", "remove the LaunchAgent"),
+                       ("auto-status", "show automatic update status"), ("auto-pause", "pause automatic updates"),
+                       ("auto-resume", "resume automatic updates"), ("auto-show-plist", "print the LaunchAgent file"),
+                       ("auto-kick-dry", "start the agent now under launchd: forced, no upload"),
+                       ("auto-kick-upload", "start the agent now under launchd: forced, with upload")]:
+        sub.add_parser(name, help=text)
     args = p.parse_args(argv)
     settings = load_settings()
     {"ingest": cmd_ingest, "score": cmd_score, "show": cmd_show, "label-template": cmd_label_template,
      "eval": cmd_eval, "llm": cmd_llm, "review": cmd_review, "publish": cmd_publish,
      "approved-count": cmd_approved_count, "zip-site": cmd_zip_site,
-     "check-access": cmd_check_access}[args.cmd](args, settings)
+     "check-access": cmd_check_access, "update": cmd_update,
+     **{n: cmd_auto for n in ("auto-check", "auto-install", "auto-uninstall", "auto-status", "auto-pause",
+                              "auto-resume", "auto-show-plist", "auto-kick-dry", "auto-kick-upload")}}[args.cmd](args, settings)
 
 
 if __name__ == "__main__":

@@ -24,6 +24,32 @@ static website are built. The monthly digest is not built yet.
 GitHub Actions (`.github/workflows/refresh.yml`) refreshes and publishes to GitHub Pages
 on the 1st and 15th of each month. One-time setup: `docs/github_setup.md`.
 
+## How to update
+
+The site is built on this Mac and GitHub only publishes it (fallback mode, `CI_FETCH=false` on the
+repository), because marine.gov.scot refuses requests from GitHub's servers but accepts this Mac.
+
+- **One button:** open `start.py`, press Run, choose **Refresh everything and publish**. It checks the
+  internet connection, fetches every live source (politely, cached), scores, updates
+  `review/review.csv` (your yes/no choices are kept), builds `site/`, uploads it to GitHub, waits for
+  GitHub to publish, and checks the live site. It takes 15 to 30 minutes, mostly crawl delays.
+  The same command: `./.venv/bin/python -m mpf update` (add `--no-upload` for a dry run).
+- **In Claude Code:** type `/update-site`; it runs the same update and reports the counts per country
+  and tier, any blocked or failed source, and whether the site is live.
+- **Automatically:** a LaunchAgent for your user (no sudo) checks at login and every hour (including
+  right after the Mac wakes). If 14 or more days have passed since the last successful update and you
+  are online, it runs the update in the background at low priority, keeping the Mac awake only until
+  it finishes. Failures go to `data/logs/auto_update.log` and appear as a macOS notification. Two
+  updates never run at once.
+  - Install: `./.venv/bin/python -m mpf auto-install`
+  - Pause or resume: `start.py` menu, or `python -m mpf auto-pause` / `auto-resume`
+  - Status: `python -m mpf auto-status`
+  - **Remove completely:** `./.venv/bin/python -m mpf auto-uninstall` (unloads it and deletes
+    `~/Library/LaunchAgents/com.marineprojectfinder.autoupdate.plist`). Optionally also delete
+    `data/logs/`, `data/last_update.json` and `data/auto_update_paused`.
+- If a source is blocked, the others are still published and you get a warning. To stop without
+  publishing instead, set `update.stop_on_blocked_source: true` in `config/settings.yaml`.
+
 ## Known limitations (read these first)
 
 - **Public notices often appear after design is done**, so some leads will be late.
