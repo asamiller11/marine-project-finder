@@ -7,7 +7,8 @@
 #   (not set)  GitHub fetches and scores the notices itself, then publishes.
 #   false      Fallback: you fetch on your own computer and push site/; GitHub only publishes it.
 #
-# Only items marked publish=yes in review/review.csv are ever published.
+# Every scored item is published, grouped into tiers. Rows set to "no" in
+# review/review.csv are hidden; rows set to "yes" get a "Reviewed by a person" badge.
 
 name: Refresh and publish
 
@@ -36,8 +37,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      approved: ${{ steps.count.outputs.approved }}
     steps:
       - uses: actions/checkout@v4
 
@@ -67,7 +66,7 @@ jobs:
       - name: Fetch and score (robots.txt checks, 5 second IAAC delay, cached)
         if: vars.CI_FETCH != 'false'
         run: |
-          python -m mpf ingest --source iaac --source nl_ea
+          python -m mpf ingest --live
           python -m mpf score
 
       - name: Optional LLM summaries (only if USE_LLM is true and the secret is set)
@@ -78,7 +77,7 @@ jobs:
           pip install anthropic
           python -m mpf llm --limit 30
 
-      - name: Build review file and site from approved items
+      - name: Build review file and site
         if: vars.CI_FETCH != 'false'
         run: |
           python -m mpf review
@@ -91,19 +90,13 @@ jobs:
           name: review-file
           path: review/review.csv
 
-      - name: Count approved items
-        id: count
-        run: echo "approved=$(python -m mpf approved-count)" >> "$GITHUB_OUTPUT"
-
       - name: Package the site
-        if: steps.count.outputs.approved != '0'
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
   deploy:
     needs: build
-    if: needs.build.outputs.approved != '0'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

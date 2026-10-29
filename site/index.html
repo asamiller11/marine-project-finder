@@ -4,15 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Marine Project Finder: Canada</title>
-<meta name="description" content="Public permit and environmental assessment notices for Canadian marine construction projects likely to need habitat work">
+<title>Marine Project Finder</title>
+<meta name="description" content="Public permit and environmental assessment notices for marine construction projects likely to need habitat work">
 <style>
 :root{--bg:#f4f8fa;--card:#ffffff;--text:#13293a;--muted:#4f6676;--line:#d3e0e8;--accent:#0b6b85;
---accent-soft:#e2f1f5;--high:#0f6b4f;--high-bg:#dcf3ea;--med:#7a5300;--med-bg:#fbefd5;--low:#4b5a66;
---low-bg:#e8edf1;--late:#9a3412;--late-bg:#fdebe2;--open:#0b6b85;--draft:#fff4c2;color-scheme:light dark}
+--accent-soft:#e2f1f5;--strong:#0f6b4f;--strong-bg:#dcf3ea;--possible:#7a5300;--possible-bg:#fbefd5;
+--weak:#4b5a66;--weak-bg:#e8edf1;--late:#9a3412;--late-bg:#fdebe2;--rev:#0f6b4f;--rev-bg:#dcf3ea;
+--soon:#5b4a8a;--soon-bg:#ece8f6;color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--bg:#0c1a22;--card:#12252f;--text:#e2edf3;--muted:#9fb4c2;
---line:#24404e;--accent:#6cc7da;--accent-soft:#163846;--high:#7fdcb7;--high-bg:#143a2f;--med:#f2c46b;
---med-bg:#3a2e12;--low:#c2ced6;--low-bg:#25343d;--late:#f6a982;--late-bg:#3d2116;--open:#6cc7da;--draft:#3a3412}}
+--line:#24404e;--accent:#6cc7da;--accent-soft:#163846;--strong:#7fdcb7;--strong-bg:#143a2f;--possible:#f2c46b;
+--possible-bg:#3a2e12;--weak:#c2ced6;--weak-bg:#25343d;--late:#f6a982;--late-bg:#3d2116;--rev:#7fdcb7;
+--rev-bg:#143a2f;--soon:#c6b8f0;--soon-bg:#2a2440}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",
 Roboto,"Helvetica Neue",Arial,sans-serif}
@@ -24,8 +26,21 @@ header.site p{margin:6px 0 0;color:var(--muted)}
 nav.top{margin-top:10px;font-size:.95rem}
 nav.top a{margin-right:16px}
 .updated{font-size:.9rem}
-.draft{background:var(--draft);border:1px solid var(--line);padding:10px 14px;border-radius:8px;margin:16px 0 0}
-.summary-line{margin:18px 0 8px;font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:16px 0 4px}
+.panel h2{margin:0 0 6px;font-size:1.05rem}
+.panel ul{margin:6px 0;padding-left:18px}
+.panel p{margin:6px 0}
+details.coverage summary{cursor:pointer;font-weight:600}
+table.cov{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:8px}
+table.cov th,table.cov td{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+table.cov th{color:var(--muted);font-weight:600}
+table.cov tr.region td:first-child{padding-left:22px;color:var(--muted)}
+.cov-wrap{overflow-x:auto}
+.pill{font-size:.78rem;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.pill.covered{color:var(--strong);background:var(--strong-bg)}
+.pill.partial{color:var(--possible);background:var(--possible-bg)}
+.pill.coming_soon{color:var(--soon);background:var(--soon-bg)}
+.summary-line{margin:14px 0 8px;font-weight:600}
 section.soon{background:var(--accent-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
 section.soon h2{margin:0 0 6px;font-size:1.05rem}
 section.soon ul{margin:0;padding-left:18px}
@@ -35,119 +50,839 @@ section.soon li{margin:4px 0}
 .filters select,.filters input[type=search]{font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;
 background:var(--card);color:var(--text);min-width:0}
 .filters .check{flex-direction:row;align-items:center;gap:8px;font-size:.95rem;color:var(--text);padding-bottom:8px}
-.cards{display:grid;gap:14px;margin:8px 0 24px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px 20px;margin:4px 0 12px}
+.toggles label{display:flex;align-items:center;gap:8px}
+section.country>h2{font-size:1.35rem;margin:26px 0 2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section.country>p.country-note{margin:0 0 4px;color:var(--muted);font-size:.95rem}
+section.tier h3{font-size:1.12rem;margin:18px 0 2px}
+section.tier p.tier-desc{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.cards{display:grid;gap:14px;margin:8px 0 12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.card h3{margin:0 0 4px;font-size:1.1rem;line-height:1.35}
-.card h3 a{text-decoration:none}
-.card h3 a:hover{text-decoration:underline}
+.card h4{margin:0 0 4px;font-size:1.1rem;line-height:1.35}
+.card h4 a{text-decoration:none}
+.card h4 a:hover{text-decoration:underline}
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
 .badge{font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
-.conf-high{color:var(--high);background:var(--high-bg)}
-.conf-medium{color:var(--med);background:var(--med-bg)}
-.conf-low{color:var(--low);background:var(--low-bg)}
+.t-strong{color:var(--strong);background:var(--strong-bg)}
+.t-possible{color:var(--possible);background:var(--possible-bg)}
+.t-weak{color:var(--weak);background:var(--weak-bg)}
+.t-watch{color:var(--soon);background:var(--soon-bg)}
+.score{color:var(--muted);border:1px solid var(--line)}
 .late{color:var(--late);background:var(--late-bg)}
-.st-open{color:var(--open);background:var(--accent-soft)}
-.st-other{color:var(--low);background:var(--low-bg)}
-.rev-yes{color:var(--high);background:var(--high-bg)}
-.rev-no{color:var(--late);background:var(--late-bg)}
+.st-open{color:var(--accent);background:var(--accent-soft)}
+.st-other{color:var(--weak);background:var(--weak-bg)}
+.rev{color:var(--rev);background:var(--rev-bg)}
+.auto{color:var(--muted);border:1px dashed var(--line)}
+.lang{color:var(--soon);background:var(--soon-bg)}
 dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:3px 12px;margin:0 0 10px;font-size:.95rem}
 dl.facts dt{color:var(--muted)}
 dl.facts dd{margin:0}
 .countdown{font-weight:600}
 .card p.summary{margin:8px 0}
+.note{color:var(--muted);font-size:.88rem}
 ul.quotes{margin:8px 0;padding:0;list-style:none}
 ul.quotes li{border-left:3px solid var(--line);padding:2px 0 2px 10px;margin:6px 0;color:var(--muted);font-size:.95rem}
 p.source{margin:10px 0 0;font-size:.92rem}
+p.attr{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
 .empty{padding:24px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px}
-footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:.9rem;margin-top:20px}
 main.about h2{margin-top:28px;font-size:1.2rem}
 main.about{padding-bottom:20px}
+[hidden]{display:none!important}
 @media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
 </style>
 </head>
 <body data-soon="30">
 <header class="site"><div class="wrap">
-<h1>Marine Project Finder: Canada</h1>
-<p>Public permit and environmental assessment notices for Canadian marine construction projects likely to need habitat work</p>
-<p class="updated">Last updated: October 28, 2026</p>
+<h1>Marine Project Finder</h1>
+<p>Public permit and environmental assessment notices for marine construction projects likely to need habitat work</p>
+<p class="updated">Last updated: October 29, 2026</p>
 <nav class="top"><a href="index.html">Projects</a><a href="about.html">About</a></nav>
-
 </div></header>
 <main class="wrap">
-<p class="summary-line" id="summary-line">3 projects shown. 1 with comment periods open now.</p>
+<section class="panel" aria-labelledby="explain-h">
+<h2 id="explain-h">How to read this list</h2>
+<p>Every notice is scored automatically from the words and sizes in it, then placed in a tier:</p>
+<ul>
+<li><strong>Strong match:</strong> Score 60 or more. Several signals of habitat work, such as offsetting, new habitat, or large in-water works.</li>
+<li><strong>Possible:</strong> Score 35 to 59. Some signals. Worth a look.</li>
+<li><strong>Weak:</strong> Score 20 to 34. Few signals. Often routine maintenance. Hidden unless you tick "Show weaker matches".</li>
+</ul>
+<p>Notices scoring under 20, quarries and pits, and withdrawn projects are not listed.</p>
+<p>A flag means a notice may involve marine habitat work. It is not a statement that mitigation or
+compensation is required. Items marked "Reviewed by a person" have been checked; the rest are automatic.
+Always read the official notice.</p>
+</section>
+<details class="panel coverage" id="coverage">
+<summary>Coverage: 0 covered, 4 partial, 15 coming soon (mostly Canada for now)</summary>
+<p>For now the site is mostly Canada: 23 of the 30 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</p>
+<div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td><strong>Canada</strong></td><td><span class="pill partial">Partial</span></td><td>Federal assessments across Canada, plus the Newfoundland and Labrador provincial registry. Sources: Canadian Impact Assessment Registry, Newfoundland and Labrador environmental assessment.</td></tr>
+<tr class="region"><td>Newfoundland and Labrador</td><td><span class="pill covered">Covered</span></td><td>Sources: Newfoundland and Labrador environmental assessment, Canadian Impact Assessment Registry.</td></tr>
+<tr class="region"><td>British Columbia</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only. The BC government&#x27;s copyright policy forbids reproducing its websites&#x27; content without written permission, so the BC Environmental Assessment Office is not read.</td></tr>
+<tr class="region"><td>Quebec</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only. Quebec&#x27;s copyright terms forbid reproducing government content without prior authorization, so its registry is not read.</td></tr>
+<tr class="region"><td>Nova Scotia</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only. The provincial list holds few marine projects.</td></tr>
+<tr class="region"><td>New Brunswick</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Prince Edward Island</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Ontario</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Manitoba</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Nunavut</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Northwest Territories</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Yukon</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr><td><strong>United States</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>Not approved yet. The Army Corps of Engineers site blocks automated access.</td></tr>
+<tr class="region"><td>New York</td><td><span class="pill coming_soon">Coming soon</span></td><td>The Environmental Notice Bulletin is disallowed by robots.txt.</td></tr>
+<tr class="region"><td>Florida</td><td><span class="pill coming_soon">Coming soon</span></td><td>Permit data sits in JavaScript map applications.</td></tr>
+<tr class="region"><td>California</td><td><span class="pill coming_soon">Coming soon</span></td><td>CEQAnet was checked and is workable, but not approved yet.</td></tr>
+<tr class="region"><td>Massachusetts</td><td><span class="pill coming_soon">Coming soon</span></td><td>The MEPA Environmental Monitor is a JavaScript application.</td></tr>
+<tr class="region"><td>Texas</td><td><span class="pill coming_soon">Coming soon</span></td><td>Public notices are mostly boundary surveys and leases.</td></tr>
+<tr><td><strong>Norway</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>regjeringen.no blocks automated access (its robots.txt answers HTTP 403), and NVE&#x27;s case list needs JavaScript.</td></tr>
+<tr><td><strong>Denmark</strong></td><td><span class="pill partial">Partial</span></td><td>National consultation portal only, filtered with Danish marine keywords (less tested). Sources: Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds). Source read; no marine project hearings found in this run.</td></tr>
+<tr><td><strong>France</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No usable source yet. The offshore wind site&#x27;s legal notice forbids copying or publishing its content without written permission; the national impact-assessment dataset and the compensation-measures files are disallowed by robots.txt. A permission request has been drafted.</td></tr>
+<tr><td><strong>Netherlands</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>Official publications search and API are disallowed by robots.txt, and Platform Participatie&#x27;s project list needs JavaScript.</td></tr>
+<tr><td><strong>Spain</strong></td><td><span class="pill partial">Partial</span></td><td>National gazette (BOE) only: impact-assessment resolutions and port or public-information notices (Spanish, less tested). Regional bulletins are not read. Sources: Boletín Oficial del Estado (BOE) open data.</td></tr>
+<tr><td><strong>United Kingdom</strong></td><td><span class="pill partial">Partial</span></td><td>Scotland only. Sources: marine.gov.scot marine licence documentation.</td></tr>
+<tr class="region"><td>Scotland</td><td><span class="pill covered">Covered</span></td><td>Sources: marine.gov.scot marine licence documentation.</td></tr>
+<tr class="region"><td>England</td><td><span class="pill coming_soon">Coming soon</span></td><td>The MMO public register is a JavaScript application.</td></tr>
+<tr class="region"><td>Wales</td><td><span class="pill coming_soon">Coming soon</span></td><td>The marine licence register listing was not found in the check.</td></tr>
+<tr><td><strong>Ireland</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>MARA&#x27;s legal notice forbids republishing its content, and data.gov.ie&#x27;s API is disallowed by robots.txt.</td></tr>
+<tr><td><strong>Germany</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>UVP-Portal answered HTTP 429 (too many requests) on the first request, so it was treated as blocked.</td></tr>
+<tr><td><strong>Belgium</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No readable public registry found.</td></tr>
+<tr><td><strong>Portugal</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>participa.gov.pt is a JavaScript application with no documented feed.</td></tr>
+<tr><td><strong>Italy</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>The national assessment portal said its service was temporarily disabled.</td></tr>
+<tr><td><strong>Sweden</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No national registry found; notices are spread over 21 county boards.</td></tr>
+<tr><td><strong>Finland</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>lausuntopalvelu.fi blocks automated access (its robots.txt answers HTTP 403).</td></tr>
+<tr><td><strong>Poland</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No project registry found.</td></tr>
+<tr><td><strong>Greece</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>robots.txt disallows the registry&#x27;s project pages.</td></tr>
+<tr><td><strong>Australia</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>The EPBC portal&#x27;s comment list needs JavaScript.</td></tr>
+<tr><td><strong>New Zealand</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>EPA New Zealand&#x27;s robots.txt disallows automated access.</td></tr>
+</tbody></table></div>
+<p>Less tested languages: French, Danish, Spanish, Norwegian, Dutch. The keyword rules for these languages have fewer tests, so listings in them are lower confidence and are marked on each card.</p>
+</details>
+<p class="summary-line" id="summary-line">7 projects shown. 7 comment deadlines in the next 30 days.</p>
 <section class="soon" aria-labelledby="soon-h">
 <h2 id="soon-h">Comment deadlines closing soon (next 30 days)</h2>
 <ul id="soon-list"></ul>
 <p id="soon-none">No comment deadlines in the next 30 days.</p>
-<noscript><p>Turn on JavaScript to see live countdowns, filters and search.</p></noscript>
+<noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>
 </section>
 <form class="filters" onsubmit="return false" aria-label="Filter projects">
-<label>Province<select id="f-province"><option value="">All provinces</option></select></label>
+<label>Country<select id="f-country"><option value="">All countries</option><option value="CA" data-region-label="Province or territory">Canada</option><option value="ES" data-region-label="">Spain</option><option value="GB" data-region-label="">United Kingdom</option><option value="US" disabled>United States (coming soon)</option><option value="NO" disabled>Norway (coming soon)</option><option value="DK" disabled>Denmark (coming soon)</option><option value="FR" disabled>France (coming soon)</option><option value="NL" disabled>Netherlands (coming soon)</option><option value="IE" disabled>Ireland (coming soon)</option><option value="DE" disabled>Germany (coming soon)</option><option value="BE" disabled>Belgium (coming soon)</option><option value="PT" disabled>Portugal (coming soon)</option><option value="IT" disabled>Italy (coming soon)</option><option value="SE" disabled>Sweden (coming soon)</option><option value="FI" disabled>Finland (coming soon)</option><option value="PL" disabled>Poland (coming soon)</option><option value="GR" disabled>Greece (coming soon)</option><option value="AU" disabled>Australia (coming soon)</option><option value="NZ" disabled>New Zealand (coming soon)</option></select></label>
+<label id="f-region-label" hidden><span id="f-region-text">Province or state</span><select id="f-region"><option value="">All</option></select></label>
 <label>Project type<select id="f-type"><option value="">All types</option></select></label>
 <label>Stage<select id="f-stage"><option value="">All stages</option>
 <option value="open">Comment period open</option><option value="closed">Comment period closed</option>
 <option value="assessment">Under assessment</option><option value="decided">Decision made</option>
-<option value="unknown">Stage unknown</option></select></label>
+<option value="withdrawn">Withdrawn or rejected</option><option value="unknown">Stage unknown</option></select></label>
 <label>Search<input type="search" id="f-search" placeholder="Name, place, proponent"></label>
 <label class="check"><input type="checkbox" id="f-open"> Comment period open only</label>
 </form>
+<div class="toggles">
+<label><input type="checkbox" id="t-weak"> Show weaker matches</label>
+</div>
 <p class="empty" id="no-match" hidden>No projects match these filters.</p>
+<section class="country" data-country="CA" aria-label="Canada">
+<h2>Canada <span class="pill partial">Partial</span></h2>
+<p class="country-note">Federal assessments across Canada, plus the Newfoundland and Labrador provincial registry.</p>
+<section class="tier" data-country="CA" data-tier="strong">
+<h3>Strong match <span class="count">(2)</span></h3>
+<p class="tier-desc">Score 60 or more. Several signals of habitat work, such as offsetting, new habitat, or large in-water works.</p>
 <div class="cards">
-<article class="card" id="p-iaac-90841" data-province="Nova Scotia"
- data-types="Breakwater, jetty or groyne|Dredging" data-stage="open" data-deadline="2026-11-15"
- data-score="38" data-search="department of national defence canadian patrol submarine project at cfb halifax – phase 2, construction and infrastructure department of national defence nova scotia cfb halifax wrights cove project by department of national defence in cfb halifax wrights cove, nova scotia. the notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2. breakwater, jetty or groyne dredging">
-<h3><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA" rel="noopener">Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure</a></h3>
-<div class="badges"><span class="badge conf-medium">Medium confidence</span>
-<span class="badge stage-badge st-open">Comment period open</span>
-<span class="badge late" hidden>Likely too late</span></div>
-<dl class="facts">
-<dt>Proponent</dt><dd>Department of National Defence</dd>
-<dt>Location</dt><dd>Nova Scotia. Water body: CFB Halifax Wrights Cove</dd>
-<dt>Project type</dt><dd>Breakwater, jetty or groyne, Dredging</dd>
-<dt>Stage</dt><dd>public comment open until 2026-11-15</dd>
-<dt>Comment deadline</dt><dd><span class="countdown">2026-11-15</span></dd>
-</dl>
-<p class="summary">Project by Department of National Defence in CFB Halifax Wrights Cove, Nova Scotia. The notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2.</p>
-<ul class="quotes"><li>&ldquo;The approximate size of the construction area is 90,000 m 2 .&rdquo;</li><li>&ldquo;...roadways, underground and above ground utilities, and jetty infrastructure to support the following functions: Submarine berthing and jetty operations (jetty, jetty cranes...&rdquo;</li><li>&ldquo;Parkade The construction activities will also involve dredging, vegetation clearing, excavation, demolition, marine works, and the movement of construction equipment and materials.&rdquo;</li></ul>
-<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
-</article>
-<article class="card" id="p-nl_ea-2434" data-province="Newfoundland and Labrador"
+<article class="card" id="p-nl_ea-2434" data-tier="strong" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
  data-types="Wharf, pier or large dock|Breakwater, jetty or groyne|Dredging|Infill, reclamation or causeway" data-stage="closed" data-deadline="2026-10-20"
- data-score="96" data-search="port aux basques navigation improvement project marine atlantic inc. newfoundland and labrador port aux basques harbour project by marine atlantic inc. in port aux basques harbour, newfoundland and labrador. the notice mentions breakwater or jetty, dredging, infill or causeway and wharf or dock work and about 418,000 m3 of material. wharf, pier or large dock breakwater, jetty or groyne dredging infill, reclamation or causeway">
-<h3><a href="https://www.gov.nl.ca/eccc/projects/project-2434/" rel="noopener">Port aux Basques Navigation Improvement Project</a></h3>
-<div class="badges"><span class="badge conf-high">High confidence</span>
+ data-score="96" data-search="port aux basques navigation improvement project marine atlantic inc. newfoundland and labrador canada port aux basques harbour project by marine atlantic inc. in port aux basques harbour, newfoundland and labrador. the notice mentions breakwater or jetty, dredging, infill or causeway and wharf or dock work and about 418,000 m3 of material. wharf, pier or large dock breakwater, jetty or groyne dredging infill, reclamation or causeway">
+<h4><a href="https://www.gov.nl.ca/eccc/projects/project-2434/" rel="noopener">Port aux Basques Navigation Improvement Project</a></h4>
+<div class="badges"><span class="badge tier-badge t-strong">Strong match</span>
+<span class="badge score" title="score 96">Score 96/100</span>
 <span class="badge stage-badge st-other">Comment period closed</span>
-<span class="badge late">Likely too late</span></div>
+<span class="badge late">Likely too late</span><span class="badge rev">Reviewed by a person</span></div>
 <dl class="facts">
 <dt>Proponent</dt><dd>Marine Atlantic Inc.</dd>
-<dt>Location</dt><dd>Newfoundland and Labrador. Water body: Port aux Basques Harbour</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: Port aux Basques Harbour</dd>
 <dt>Project type</dt><dd>Wharf, pier or large dock, Breakwater, jetty or groyne, Dredging, Infill, reclamation or causeway</dd>
 <dt>Stage</dt><dd>comment closed 2026-10-20, decision pending</dd>
 <dt>Comment deadline</dt><dd><span class="countdown">2026-10-20 (closed)</span></dd>
 </dl>
 <p class="summary">Project by Marine Atlantic Inc. in Port aux Basques Harbour, Newfoundland and Labrador. The notice mentions breakwater or jetty, dredging, infill or causeway and wharf or dock work and about 418,000 m3 of material.</p>
-<ul class="quotes"><li>&ldquo;Carefully placed structures can provide shelter, hiding areas, and feeding opportunities for fish and other marine species, helping offset habitat affected by construction.&rdquo;</li><li>&ldquo;...to repair and upgrade the existing Pikes Island Breakwater and to create an infill area at Pikes Island, which may support the development of new fish habitat in the outer harbour&rdquo;</li><li>&ldquo;Fish and fish habitat: The harbour supports fish, shellfish, and other marine species, with rocky shoreline and seabed habitats.&rdquo;</li></ul>
+<ul class="quotes"><li>&ldquo;Dredged rock would be reused to repair and upgrade the existing Pikes Island Breakwater and to create an infill area at Pikes Island, which may support the development of new fish habitat in the outer harbour.&rdquo;</li><li>&ldquo;Fish habitat enhancement: Some rock will be used to create fish habitat.&rdquo;</li><li>&ldquo;Most is expected to be reused within the project area, including for land creation at Pikes Island and potential fish habitat enhancement.&rdquo;</li></ul>
 <p class="source"><a href="https://www.gov.nl.ca/eccc/projects/project-2434/" rel="noopener">Official notice</a> (Newfoundland and Labrador environmental assessment)</p>
+<p class="source">Also listed: <a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90808?culture=en-CA" rel="noopener">Canadian Impact Assessment Registry</a>, comment deadline 2026-10-28</p>
+<p class="attr">Source: Government of Newfoundland and Labrador, Department of Environment and Climate Change.</p>
 </article>
-<article class="card" id="p-nl_ea-2379" data-province="Newfoundland and Labrador"
+<article class="card" id="p-nl_ea-2379" data-tier="strong" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
  data-types="Port or marine terminal|Wharf, pier or large dock|Shoreline protection, seawall or bulkhead|Marina or small craft harbour|Infill, reclamation or causeway" data-stage="decided" data-deadline="2026-01-16"
- data-score="65" data-search="point rousse port expansion point rousse marine terminal ltd. newfoundland and labrador green bay project by point rousse marine terminal ltd. in green bay, newfoundland and labrador. the notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2. port or marine terminal wharf, pier or large dock shoreline protection, seawall or bulkhead marina or small craft harbour infill, reclamation or causeway">
-<h3><a href="https://www.gov.nl.ca/eccc/projects/project-2379/" rel="noopener">Point Rousse Port Expansion</a></h3>
-<div class="badges"><span class="badge conf-high">High confidence</span>
+ data-score="65" data-search="point rousse port expansion point rousse marine terminal ltd. newfoundland and labrador canada green bay project by point rousse marine terminal ltd. in green bay, newfoundland and labrador. the notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2. port or marine terminal wharf, pier or large dock shoreline protection, seawall or bulkhead marina or small craft harbour infill, reclamation or causeway">
+<h4><a href="https://www.gov.nl.ca/eccc/projects/project-2379/" rel="noopener">Point Rousse Port Expansion</a></h4>
+<div class="badges"><span class="badge tier-badge t-strong">Strong match</span>
+<span class="badge score" title="score 65">Score 65/100</span>
 <span class="badge stage-badge st-other">Decision made</span>
-<span class="badge late">Likely too late</span></div>
+<span class="badge late">Likely too late</span><span class="badge rev">Reviewed by a person</span></div>
 <dl class="facts">
 <dt>Proponent</dt><dd>Point Rousse Marine Terminal Ltd.</dd>
-<dt>Location</dt><dd>Newfoundland and Labrador. Water body: Green Bay</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: Green Bay</dd>
 <dt>Project type</dt><dd>Port or marine terminal, Wharf, pier or large dock, Shoreline protection, seawall or bulkhead, Marina or small craft harbour, Infill, reclamation or causeway</dd>
 <dt>Stage</dt><dd>decision made</dd>
 <dt>Comment deadline</dt><dd><span class="countdown">2026-01-16, decision made</span></dd>
 </dl>
 <p class="summary">Project by Point Rousse Marine Terminal Ltd. in Green Bay, Newfoundland and Labrador. The notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2.</p>
-<ul class="quotes"><li>&ldquo;...and Labrador NLDECCC Newfoundland and Labrador Department of Environment, Conservation and Climate Change NL ESA NL Endangered Species Act PRMT Point Rousse Terminal Ltd&rdquo;</li><li>&ldquo;...will be built, approximately 12 to 14 m wide, with a seabed footprint of approximately 30 m width and less than 100 m in length, each extending from the laydown area to a...&rdquo;</li><li>&ldquo;It outlines the Project’s potential environmental, social, and economic impacts, along with proposed mitigation measures to support environmentally responsible development.&rdquo;</li></ul>
+<ul class="quotes"><li>&ldquo;Construction and new infrastructure would include a port access road, storage/laydown areas, shoreline infilling, armourstone protection, two rock filled access causeways, a dock structure, and a barge.&rdquo;</li><li>&ldquo;The Project involves the construction, operation, and eventual closure of expanded marine terminal facilities to support primarily the export of construction aggregate and armourstone from Shoreline Aggregates Inc.’s (SAI’s) quarry operations.&rdquo;</li><li>&ldquo;It outlines the Project’s potential environmental, social, and economic impacts, along with proposed mitigation measures to support environmentally responsible development.&rdquo;</li></ul>
 <p class="source"><a href="https://www.gov.nl.ca/eccc/projects/project-2379/" rel="noopener">Official notice</a> (Newfoundland and Labrador environmental assessment)</p>
+
+<p class="attr">Source: Government of Newfoundland and Labrador, Department of Environment and Climate Change.</p>
 </article>
 </div>
+</section>
+<section class="tier" data-country="CA" data-tier="possible">
+<h3>Possible <span class="count">(5)</span></h3>
+<p class="tier-desc">Score 35 to 59. Some signals. Worth a look.</p>
+<div class="cards">
+<article class="card" id="p-iaac-90841" data-tier="possible" data-country="CA"
+ data-country-name="Canada" data-region="Nova Scotia"
+ data-types="Breakwater, jetty or groyne|Dredging" data-stage="open" data-deadline="2026-11-15"
+ data-score="38" data-search="department of national defence canadian patrol submarine project at cfb halifax – phase 2, construction and infrastructure department of national defence nova scotia canada cfb halifax wrights cove project by department of national defence in cfb halifax wrights cove, nova scotia. the notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2. breakwater, jetty or groyne dredging">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA" rel="noopener">Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure</a></h4>
+<div class="badges"><span class="badge tier-badge t-possible">Possible</span>
+<span class="badge score" title="score 38">Score 38/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge rev">Reviewed by a person</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Department of National Defence</dd>
+<dt>Location</dt><dd>Nova Scotia, Canada. Water body: CFB Halifax Wrights Cove</dd>
+<dt>Project type</dt><dd>Breakwater, jetty or groyne, Dredging</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-15</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-15</span></dd>
+</dl>
+<p class="summary">Project by Department of National Defence in CFB Halifax Wrights Cove, Nova Scotia. The notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2.</p>
+<ul class="quotes"><li>&ldquo;Parkade The construction activities will also involve dredging, vegetation clearing, excavation, demolition, marine works, and the movement of construction equipment and materials.&rdquo;</li><li>&ldquo;The approximate size of the construction area is 90,000 m 2 .&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90780" data-tier="possible" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Wharf, pier or large dock|Breakwater, jetty or groyne" data-stage="decided" data-deadline=""
+ data-score="44" data-search="breakwater rehabilitation at fortune sch, nl fisheries and oceans canada - small craft harbours (dfo-sch) newfoundland and labrador canada unknown project by fisheries and oceans canada - small craft harbours (dfo-sch) in newfoundland and labrador. the notice mentions breakwater or jetty and wharf or dock work and an area of about 265 m2. wharf, pier or large dock breakwater, jetty or groyne">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90780?culture=en-CA" rel="noopener">Breakwater Rehabilitation at Fortune SCH, NL</a></h4>
+<div class="badges"><span class="badge tier-badge t-possible">Possible</span>
+<span class="badge score" title="score 44">Score 44/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: unknown</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Breakwater, jetty or groyne</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">decision made</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions breakwater or jetty and wharf or dock work and an area of about 265 m2.</p>
+<ul class="quotes"><li>&ldquo;All work to be conducted in accordance with the Species at Risk Act , which outlines that no protected species, their residence and critical habitat be moved or obstructed during the construction or operation phase of the project.&rdquo;</li><li>&ldquo;Species listed under the Species at Risk Act shall not be approached throughout the construction or operation phase of the project.&rdquo;</li><li>&ldquo;The proposed work intends to remove these SSP containment cells from the breakwater and replace them with rock materials in order to maintain the breakwater&#x27;s structural integrity.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90780?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-nl_ea-2410" data-tier="possible" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Breakwater, jetty or groyne|Marina or small craft harbour|Outfall or intake in the water" data-stage="decided" data-deadline="2026-06-26"
+ data-score="41" data-search="petty harbour breakwater fisheries and oceans canada, small craft harbours newfoundland and labrador canada petty harbour project by fisheries and oceans canada, small craft harbours in petty harbour, newfoundland and labrador. the notice mentions breakwater or jetty and small craft harbour work and a length of about 230 m. breakwater, jetty or groyne marina or small craft harbour outfall or intake in the water">
+<h4><a href="https://www.gov.nl.ca/eccc/projects/project-2410/" rel="noopener">Petty Harbour Breakwater</a></h4>
+<div class="badges"><span class="badge tier-badge t-possible">Possible</span>
+<span class="badge score" title="score 41">Score 41/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada, Small Craft Harbours</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: Petty Harbour</dd>
+<dt>Project type</dt><dd>Breakwater, jetty or groyne, Marina or small craft harbour, Outfall or intake in the water</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-06-26, decision made</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada, Small Craft Harbours in Petty Harbour, Newfoundland and Labrador. The notice mentions breakwater or jetty and small craft harbour work and a length of about 230 m.</p>
+<ul class="quotes"><li>&ldquo;A 230-metre extension to the town’s effluent pipeline is also proposed, with the sewer outfall relocated to the seaward side of the proposed breakwater.&rdquo;</li><li>&ldquo;The proponent is proposing to construct a 120-metre rubble mound breakwater on the east side of the small craft harbour marina in the town of Petty Harbour-Maddox Cove.&rdquo;</li><li>&ldquo;Access to the site during construction would be from the southern shore of Petty Harbour.&rdquo;</li></ul>
+<p class="source"><a href="https://www.gov.nl.ca/eccc/projects/project-2410/" rel="noopener">Official notice</a> (Newfoundland and Labrador environmental assessment)</p>
+
+<p class="attr">Source: Government of Newfoundland and Labrador, Department of Environment and Climate Change.</p>
+</article>
+<article class="card" id="p-iaac-90797" data-tier="possible" data-country="CA"
+ data-country-name="Canada" data-region="British Columbia"
+ data-types="Wharf, pier or large dock|Dredging" data-stage="assessment" data-deadline=""
+ data-score="39" data-search="suncor dredging - west dock berth suncor energy products partnership british columbia canada burrard inlet project by suncor energy products partnership in burrard inlet, british columbia. the notice mentions dredging and wharf or dock work and about 700 m3 of material and an area of about 1,500 m2. wharf, pier or large dock dredging">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90797?culture=en-CA" rel="noopener">Suncor Dredging - West Dock Berth</a></h4>
+<div class="badges"><span class="badge tier-badge t-possible">Possible</span>
+<span class="badge score" title="score 39">Score 39/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Suncor Energy Products Partnership</dd>
+<dt>Location</dt><dd>British Columbia, Canada. Water body: Burrard Inlet</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Dredging</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Suncor Energy Products Partnership in Burrard Inlet, British Columbia. The notice mentions dredging and wharf or dock work and about 700 m3 of material and an area of about 1,500 m2.</p>
+<ul class="quotes"><li>&ldquo;Environmental management measures will be implemented to address potential effects associated with sediment disturbance, turbidity, fish and fish habitat, underwater noise, and marine vessel operations.&rdquo;</li><li>&ldquo;The proposed dredge footprint is approximately 1,500 m², with an estimated neat dredge volume of approximately 700 m³.&rdquo;</li><li>&ldquo;The project is proposed to occur between November and December 2026, with dredging activities anticipated to take approximately one to two weeks.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90797?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90831" data-tier="possible" data-country="CA"
+ data-country-name="Canada" data-region="Nova Scotia"
+ data-types="Breakwater, jetty or groyne|Marina or small craft harbour" data-stage="assessment" data-deadline=""
+ data-score="37" data-search="breakwater reconstruction at port morien fisheries and oceans canada - small craft harbour, cape breton county, nova scotia fisheries and oceans canada – small craft harbours nova scotia canada morien small craft harbour project by fisheries and oceans canada – small craft harbours in morien small craft harbour, nova scotia. the notice mentions breakwater or jetty and small craft harbour work and an area of about 440 m2. breakwater, jetty or groyne marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90831?culture=en-CA" rel="noopener">Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia</a></h4>
+<div class="badges"><span class="badge tier-badge t-possible">Possible</span>
+<span class="badge score" title="score 37">Score 37/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada – Small Craft Harbours</dd>
+<dt>Location</dt><dd>Nova Scotia, Canada. Water body: Morien Small Craft Harbour</dd>
+<dt>Project type</dt><dd>Breakwater, jetty or groyne, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada – Small Craft Harbours in Morien Small Craft Harbour, Nova Scotia. The notice mentions breakwater or jetty and small craft harbour work and an area of about 440 m2.</p>
+<ul class="quotes"><li>&ldquo;The proposed reconstructed breakwater will be orientated in the same ell configuration with the stem measuring approximately 185 m long and a 73 m-long ell section offset from the stem by approximately 50 degrees to the west.&rdquo;</li><li>&ldquo;Construction will commence at the shoreline interface and proceed incrementally seaward, with successive placement of core, filter, and armour stone.&rdquo;</li><li>&ldquo;Filter stone will be extended seaward at the base of the breakwater to form a shelf or ‘bump out&#x27; to provide scour protection.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90831?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+</div>
+</section>
+<section class="tier" data-country="CA" data-tier="weak">
+<h3>Weak <span class="count">(16)</span></h3>
+<p class="tier-desc">Score 20 to 34. Few signals. Often routine maintenance.</p>
+<div class="cards">
+<article class="card" id="p-iaac-90835" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Ontario"
+ data-types="Wharf, pier or large dock|Shoreline protection, seawall or bulkhead|Outfall or intake in the water" data-stage="open" data-deadline="2026-11-14"
+ data-score="29" data-search="generating station 2 intake structure replacement portage power ontario canada bronson channel project by portage power in bronson channel, ontario. the notice mentions shoreline protection and wharf or dock work. wharf, pier or large dock shoreline protection, seawall or bulkhead outfall or intake in the water">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90835?culture=en-CA" rel="noopener">Generating Station 2 Intake Structure Replacement</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 29">Score 29/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Portage Power</dd>
+<dt>Location</dt><dd>Ontario, Canada. Water body: Bronson Channel</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Shoreline protection, seawall or bulkhead, Outfall or intake in the water</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-14</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-14</span></dd>
+</dl>
+<p class="summary">Project by Portage Power in Bronson Channel, Ontario. The notice mentions shoreline protection and wharf or dock work.</p>
+<ul class="quotes"><li>&ldquo;The proposed GS2 intake structure replacement project will take place on leased NCC lands and affect leased NCC structures.&rdquo;</li><li>&ldquo;The work will be conducted within the Bronson Channel, downstream of the bulkhead, and around the intake deck area.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90835?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90307" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Quebec"
+ data-types="Wharf, pier or large dock|Marina or small craft harbour" data-stage="open" data-deadline="2026-11-01"
+ data-score="26" data-search="raising of the coop wharf- l&#x27;étang-du-nord harbour – magdalen islands small craft harbours - fisheries and oceans canada quebec canada coop wharf- l&#x27;étang-du-nord harbour project by small craft harbours - fisheries and oceans canada in coop wharf- l&#x27;étang-du-nord harbour, quebec. the notice mentions small craft harbour and wharf or dock work. wharf, pier or large dock marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90307?culture=en-CA" rel="noopener">Raising of the COOP Wharf- L&#x27;Étang-du-Nord Harbour – Magdalen Islands</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 26">Score 26/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Small Craft Harbours - Fisheries and Oceans Canada</dd>
+<dt>Location</dt><dd>Quebec, Canada. Water body: COOP Wharf- L&#x27;Étang-du-Nord Harbour</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-01</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-01</span></dd>
+</dl>
+<p class="summary">Project by Small Craft Harbours - Fisheries and Oceans Canada in COOP Wharf- L&#x27;Étang-du-Nord Harbour, Quebec. The notice mentions small craft harbour and wharf or dock work.</p>
+<ul class="quotes"><li>&ldquo;The project involves partial demolition of the existing structure and the construction of a new wharf at an elevation better suited to vessel dimensions, to temporary increases in water levels associated with storm surges, and to the long-term rise in ocean levels attributable to climate change.&rdquo;</li><li>&ldquo;A reconstruction and raising project is therefore required to restore the full functionality of the Cooperative wharf.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90307?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90857" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Wharf, pier or large dock|Marina or small craft harbour" data-stage="open" data-deadline="2026-11-27"
+ data-score="24" data-search="floating dock relocation at belleoram sch, nl fisheries and oceans canada - small craft harbours (dfo-sch) newfoundland and labrador canada unknown project by fisheries and oceans canada - small craft harbours (dfo-sch) in newfoundland and labrador. the notice mentions small craft harbour and wharf or dock work. wharf, pier or large dock marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90857?culture=en-CA" rel="noopener">Floating Dock Relocation at Belleoram SCH, NL</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 24">Score 24/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: unknown</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-27</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-27</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions small craft harbour and wharf or dock work.</p>
+<ul class="quotes"><li>&ldquo;After the headblock and scour protection are installed, the floating dock will be detached from its existing location and floated into place.&rdquo;</li><li>&ldquo;The new location will require the installation of a new timber headblock for accessibility and the installation of new scour rock protection to prolong the serviceability of the floating dock.&rdquo;</li><li>&ldquo;A gangway will be installed between the new headblock and the floating dock, and two anchor blocks will secure the terminal end of the floating dock in place.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90857?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90856" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="British Columbia"
+ data-types="Breakwater, jetty or groyne|Marina or small craft harbour" data-stage="open" data-deadline="2026-11-14"
+ data-score="23" data-search="canadian patrol submarine project – phase 1: deconstruction of existing d-jetty and associated infrastructure at cfb esquimalt department of national defence british columbia canada unknown project by department of national defence in british columbia. the notice mentions breakwater or jetty and small craft harbour work. breakwater, jetty or groyne marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90856?culture=en-CA" rel="noopener">Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 23">Score 23/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Department of National Defence</dd>
+<dt>Location</dt><dd>British Columbia, Canada. Water body: unknown</dd>
+<dt>Project type</dt><dd>Breakwater, jetty or groyne, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-14</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-14</span></dd>
+</dl>
+<p class="summary">Project by Department of National Defence in British Columbia. The notice mentions breakwater or jetty and small craft harbour work.</p>
+<ul class="quotes"><li>&ldquo;A new boat ramp will also be constructed to the north of F-Jetty to replace the existing boat ramp at Yew Point, which will become inaccessible following D-Jetty demolition.&rdquo;</li><li>&ldquo;This includes existing buildings, utilities, the jetty, structures, upland fill materials and associated site features, together with any ancillary works required to prepare the site for future submarine support infrastructure.&rdquo;</li><li>&ldquo;Phase 1 of CPSP will include the demolition and removal of existing infrastructure at D-Jetty.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90856?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90830" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="British Columbia"
+ data-types="Port or marine terminal|Dredging" data-stage="open" data-deadline="2026-11-15"
+ data-score="23" data-search="heidelberg materials barclay point barge offloading facility heidelberg materials british columbia canada victoria upper harbour project by heidelberg materials in victoria upper harbour, british columbia. the notice mentions dredging and port or terminal work. port or marine terminal dredging">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90830?culture=en-CA" rel="noopener">Heidelberg Materials Barclay Point Barge Offloading Facility</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 23">Score 23/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Heidelberg Materials</dd>
+<dt>Location</dt><dd>British Columbia, Canada. Water body: Victoria Upper Harbour</dd>
+<dt>Project type</dt><dd>Port or marine terminal, Dredging</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-15</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-15</span></dd>
+</dl>
+<p class="summary">Project by Heidelberg Materials in Victoria Upper Harbour, British Columbia. The notice mentions dredging and port or terminal work.</p>
+<ul class="quotes"><li>&ldquo;The Project will involve dredging of the berth, as well as installation of a steel conveyor head frame supported by 4 steel pilings with a material conveyor extending to the shore above the high tide line.&rdquo;</li><li>&ldquo;This includes installation of approximately five steel berthing dolphins perpendicular to the shoreline spanned by wooden boomsticks.&rdquo;</li><li>&ldquo;Transport Canada (TC) is reviewing the project for approval under the Canadian Navigable Waters Act (CNWA) and the Public Ports and Public Port Facilities Regulations (PPPPFR), as the proposed project falls within lands administered by Transport Canada.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90830?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90822" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Quebec"
+ data-types="Shoreline protection, seawall or bulkhead|Outfall or intake in the water" data-stage="open" data-deadline="2026-11-05"
+ data-score="23" data-search="stormwater outfall rehabilitation and coastal protection project, pessamit mamuitun tribal council quebec canada st. lawrence river project by mamuitun tribal council in st. lawrence river, quebec. the notice mentions shoreline protection work and an area of about 1,080 m2. shoreline protection, seawall or bulkhead outfall or intake in the water">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90822?culture=en-CA" rel="noopener">Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 23">Score 23/100</span>
+<span class="badge stage-badge st-open">Comment period open</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Mamuitun Tribal Council</dd>
+<dt>Location</dt><dd>Quebec, Canada. Water body: St. Lawrence River</dd>
+<dt>Project type</dt><dd>Shoreline protection, seawall or bulkhead, Outfall or intake in the water</dd>
+<dt>Stage</dt><dd>public comment open until 2026-11-05</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-11-05</span></dd>
+</dl>
+<p class="summary">Project by Mamuitun Tribal Council in St. Lawrence River, Quebec. The notice mentions shoreline protection work and an area of about 1,080 m2.</p>
+<ul class="quotes"><li>&ldquo;The project involves stabilizing and upgrading a major stormwater outfall located along the shoreline of the St. Lawrence River in the community of Pessamit.&rdquo;</li><li>&ldquo;The overall project footprint is estimated at 1,080 m².&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90822?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90805" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Wharf, pier or large dock|Dredging|Marina or small craft harbour" data-stage="closed" data-deadline="2026-10-28"
+ data-score="32" data-search="reconstruction of marginal wharf and launchway at blue beach sch, nl fisheries and oceans canada - small craft harbours (dfo-sch) newfoundland and labrador canada unknown project by fisheries and oceans canada - small craft harbours (dfo-sch) in newfoundland and labrador. the notice mentions dredging, small craft harbour and wharf or dock work and about 1,500 m3 of material and an area of about 4,511 m2. wharf, pier or large dock dredging marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90805?culture=en-CA" rel="noopener">Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 32">Score 32/100</span>
+<span class="badge stage-badge st-other">Comment period closed</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: unknown</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Dredging, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>comment closed 2026-10-28, decision pending</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-10-28 (closed)</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging, small craft harbour and wharf or dock work and about 1,500 m3 of material and an area of about 4,511 m2.</p>
+<ul class="quotes"><li>&ldquo;In addition to the aforementioned work, the proposed project will include dredging the harbour basin.&rdquo;</li><li>&ldquo;The proposed dredge area is approximately 4,511 square meters and is located in the northwestern corner of the basin, nearest the new marginal wharf.&rdquo;</li><li>&ldquo;This dredge work will result in the removal of approximately 1,500 cubic meters of dredge material.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90805?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90698" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Ontario"
+ data-types="Breakwater, jetty or groyne|Shoreline protection, seawall or bulkhead|Marina or small craft harbour" data-stage="decided" data-deadline=""
+ data-score="32" data-search="shoreline protection - whitby, ontario fisheries and oceans canada, small craft harbours, ontario &amp; prairie region ontario canada whitby harbour project by fisheries and oceans canada, small craft harbours, ontario &amp; prairie region in whitby harbour, ontario. the notice mentions breakwater or jetty, small craft harbour and shoreline protection work. breakwater, jetty or groyne shoreline protection, seawall or bulkhead marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90698?culture=en-CA" rel="noopener">Shoreline Protection - Whitby, Ontario</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 32">Score 32/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada, Small Craft Harbours, Ontario &amp; Prairie Region</dd>
+<dt>Location</dt><dd>Ontario, Canada. Water body: Whitby Harbour</dd>
+<dt>Project type</dt><dd>Breakwater, jetty or groyne, Shoreline protection, seawall or bulkhead, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">decision made</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada, Small Craft Harbours, Ontario &amp; Prairie Region in Whitby Harbour, Ontario. The notice mentions breakwater or jetty, small craft harbour and shoreline protection work.</p>
+<ul class="quotes"><li>&ldquo;Clean rip rap stone will be used to repair and extend existing shoreline protection at two locations: the west (marina) side of the Yacht Club breakwater (#301) and the north side of the sawtooth breakwater (#602).&rdquo;</li><li>&ldquo;A timber frame superstructure adjacent to the Yacht Club breakwater will be removed prior to the rock placement.&rdquo;</li><li>&ldquo;The rip rap will be placed to match the existing shoreline alignment along the breakwater structures.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90698?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-nl_ea-2357" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Breakwater, jetty or groyne" data-stage="decided" data-deadline="2025-07-04"
+ data-score="28" data-search="chapel’s cove breakwater town of harbour main-chapel’s cove-lakeview newfoundland and labrador canada chapel’s cove project by town of harbour main-chapel’s cove-lakeview in chapel’s cove, newfoundland and labrador. the notice mentions breakwater or jetty work and a length of about 115 m. breakwater, jetty or groyne">
+<h4><a href="https://www.gov.nl.ca/eccc/projects/project-2357/" rel="noopener">Chapel’s Cove Breakwater</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 28">Score 28/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Town of Harbour Main-Chapel’s Cove-Lakeview</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: Chapel’s Cove</dd>
+<dt>Project type</dt><dd>Breakwater, jetty or groyne</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2025-07-04, decision made</span></dd>
+</dl>
+<p class="summary">Project by Town of Harbour Main-Chapel’s Cove-Lakeview in Chapel’s Cove, Newfoundland and Labrador. The notice mentions breakwater or jetty work and a length of about 115 m.</p>
+<ul class="quotes"><li>&ldquo;The proponent is proposing to construct a 115-metre breakwater on the western shoreline of Chapel’s Cove.&rdquo;</li><li>&ldquo;The breakwater would protect adjacent roads and residential properties from wave action during storm surge events, mitigating coastal erosion, flooding and damage to the coastline.&rdquo;</li></ul>
+<p class="source"><a href="https://www.gov.nl.ca/eccc/projects/project-2357/" rel="noopener">Official notice</a> (Newfoundland and Labrador environmental assessment)</p>
+
+<p class="attr">Source: Government of Newfoundland and Labrador, Department of Environment and Climate Change.</p>
+</article>
+<article class="card" id="p-iaac-90783" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Wharf, pier or large dock|Dredging" data-stage="assessment" data-deadline=""
+ data-score="27" data-search="wharf reconstruction at carmanville sch, nl fisheries and oceans canada - small craft harbours (dfo-sch) newfoundland and labrador canada unknown project by fisheries and oceans canada - small craft harbours (dfo-sch) in newfoundland and labrador. the notice mentions dredging and wharf or dock work and about 800 m3 of material. wharf, pier or large dock dredging">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90783?culture=en-CA" rel="noopener">Wharf Reconstruction at Carmanville SCH, NL</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 27">Score 27/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: unknown</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Dredging</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging and wharf or dock work and about 800 m3 of material.</p>
+<ul class="quotes"><li>&ldquo;During the dredging process the floating dock system located on the southern side of the wharf will be repositioned temporarily until dredging work is completed.&rdquo;</li><li>&ldquo;A new rock mattress and scour protection will be installed on the south facing side of the new portion of the wharf.&rdquo;</li><li>&ldquo;In addition, the area south of the wharf will be dredged to increase the depth in the berthage area.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90783?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90784" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Wharf, pier or large dock|Dredging" data-stage="assessment" data-deadline=""
+ data-score="27" data-search="wharf reconstruction at harbour breton sch, nl fisheries and oceans canada - small craft harbours (dfo-sch) newfoundland and labrador canada unknown project by fisheries and oceans canada - small craft harbours (dfo-sch) in newfoundland and labrador. the notice mentions dredging and wharf or dock work. wharf, pier or large dock dredging">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90784?culture=en-CA" rel="noopener">Wharf Reconstruction at Harbour Breton SCH, NL</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 27">Score 27/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: unknown</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Dredging</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging and wharf or dock work.</p>
+<ul class="quotes"><li>&ldquo;A new rock mattress, including scour protection, will be installed around the new wharf.&rdquo;</li><li>&ldquo;Excavation/dredging will take place in order to achieve a solid foundation for the new timber crib wharf.&rdquo;</li><li>&ldquo;This will be a like-for-like replacement, with the new wharf being constructed with similar dimensions of the existing wharf and constructed within the approximate footprint of the existing wharf.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90784?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-iaac-90782" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Wharf, pier or large dock|Dredging" data-stage="assessment" data-deadline=""
+ data-score="27" data-search="wharf reconstruction at mary&#x27;s harbour sch, nl fisheries and oceans canada - small craft harbours (dfo-sch) newfoundland and labrador canada mary&#x27;s harbour project by fisheries and oceans canada - small craft harbours (dfo-sch) in mary&#x27;s harbour, newfoundland and labrador. the notice mentions dredging and wharf or dock work. wharf, pier or large dock dredging">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90782?culture=en-CA" rel="noopener">Wharf Reconstruction at Mary&#x27;s Harbour SCH, NL</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 27">Score 27/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: Mary&#x27;s Harbour</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Dredging</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Mary&#x27;s Harbour, Newfoundland and Labrador. The notice mentions dredging and wharf or dock work.</p>
+<ul class="quotes"><li>&ldquo;A new rock mattress and scour protection will be installed around the east-west finger pier wharf.&rdquo;</li><li>&ldquo;The new wharf structures will be a like-for-like replacement, with the new structures being constructed in the exact footprint of the existing wharf.&rdquo;</li><li>&ldquo;The new east-west finger pier wharf will be constructed of new treated timber crib wharf structures, complete with a reinforced concrete deck.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90782?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-nl_ea-2393" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Port or marine terminal|Wharf, pier or large dock|Dredging" data-stage="decided" data-deadline="2026-04-10"
+ data-score="26" data-search="st. john’s dockyard upgrades st. john’s dockyard limited newfoundland and labrador canada st. john’s harbour project by st. john’s dockyard limited in st. john’s harbour, newfoundland and labrador. the notice mentions dredging, port or terminal and wharf or dock work. port or marine terminal wharf, pier or large dock dredging">
+<h4><a href="https://www.gov.nl.ca/eccc/projects/project-2393/" rel="noopener">St. John’s Dockyard Upgrades</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 26">Score 26/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>St. John’s Dockyard Limited</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: St. John’s Harbour</dd>
+<dt>Project type</dt><dd>Port or marine terminal, Wharf, pier or large dock, Dredging</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-04-10, decision made</span></dd>
+</dl>
+<p class="summary">Project by St. John’s Dockyard Limited in St. John’s Harbour, Newfoundland and Labrador. The notice mentions dredging, port or terminal and wharf or dock work.</p>
+<ul class="quotes"><li>&ldquo;Project activities would include the demolition of existing piers and replacement with a steel-pile reinforced concrete deck, dredging in St. John’s Harbour, and the construction of a new, larger capacity marine lift and additional berths.&rdquo;</li><li>&ldquo;The proponent is proposing upgrades to the existing marine vessel repair and maintenance facility located at St. John’s Harbour.&rdquo;</li><li>&ldquo;The existing smaller marine lift and berthing area will remain in place to complement the larger marine lift and berthing area.&rdquo;</li></ul>
+<p class="source"><a href="https://www.gov.nl.ca/eccc/projects/project-2393/" rel="noopener">Official notice</a> (Newfoundland and Labrador environmental assessment)</p>
+
+<p class="attr">Source: Government of Newfoundland and Labrador, Department of Environment and Climate Change.</p>
+</article>
+<article class="card" id="p-iaac-90777" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Prince Edward Island"
+ data-types="Wharf, pier or large dock|Marina or small craft harbour" data-stage="assessment" data-deadline=""
+ data-score="26" data-search="wharf reconstruction at the red head small craft harbour, kings county, prince edward island fisheries and oceans canada – small craft harbours prince edward island canada head small craft harbour project by fisheries and oceans canada – small craft harbours in head small craft harbour, prince edward island. the notice mentions small craft harbour and wharf or dock work and a length of about 144 m. wharf, pier or large dock marina or small craft harbour">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90777?culture=en-CA" rel="noopener">Wharf Reconstruction at the Red Head Small Craft Harbour, Kings County, Prince Edward Island</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 26">Score 26/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Fisheries and Oceans Canada – Small Craft Harbours</dd>
+<dt>Location</dt><dd>Prince Edward Island, Canada. Water body: Head Small Craft Harbour</dd>
+<dt>Project type</dt><dd>Wharf, pier or large dock, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Fisheries and Oceans Canada – Small Craft Harbours in Head Small Craft Harbour, Prince Edward Island. The notice mentions small craft harbour and wharf or dock work and a length of about 144 m.</p>
+<ul class="quotes"><li>&ldquo;The proposed works will involve the replacement and upgrading of the existing harbour infrastructure while maintaining the existing wharf alignment and overall footprint.&rdquo;</li><li>&ldquo;Construction of the new marginal wharves will be completed in three phases.&rdquo;</li><li>&ldquo;The project also includes the installation of two new floating wharf piers extending approximately 67m into the harbour basin.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90777?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+<article class="card" id="p-nl_ea-2429" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Newfoundland and Labrador"
+ data-types="Port or marine terminal" data-stage="decided" data-deadline="2026-09-11"
+ data-score="20" data-search="crémaillère harbour marine port development resubmission great northern port development newfoundland and labrador canada crémaillère harbour project by great northern port development in crémaillère harbour, newfoundland and labrador. the notice mentions port or terminal work. port or marine terminal">
+<h4><a href="https://www.gov.nl.ca/eccc/projects/project-2429/" rel="noopener">Crémaillère Harbour Marine Port Development Resubmission</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 20">Score 20/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Great Northern Port Development</dd>
+<dt>Location</dt><dd>Newfoundland and Labrador, Canada. Water body: Crémaillère Harbour</dd>
+<dt>Project type</dt><dd>Port or marine terminal</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">2026-09-11, decision made</span></dd>
+</dl>
+<p class="summary">Project by Great Northern Port Development in Crémaillère Harbour, Newfoundland and Labrador. The notice mentions port or terminal work.</p>
+<ul class="quotes"><li>&ldquo;The proponent has submitted a proposal to develop an industrial subdivision and marine port at Crémaillère Harbour, approximately 4.1 kilometres south of the town of St. Anthony on the Great Northern Peninsula.&rdquo;</li><li>&ldquo;The project consists of an industrial subdivision and deepwater marine port and services base.&rdquo;</li></ul>
+<p class="source"><a href="https://www.gov.nl.ca/eccc/projects/project-2429/" rel="noopener">Official notice</a> (Newfoundland and Labrador environmental assessment)</p>
+
+<p class="attr">Source: Government of Newfoundland and Labrador, Department of Environment and Climate Change.</p>
+</article>
+<article class="card" id="p-iaac-90792" data-tier="weak" data-country="CA"
+ data-country-name="Canada" data-region="Ontario"
+ data-types="" data-stage="assessment" data-deadline=""
+ data-score="20" data-search="grassy narrows first nation mercury care home paapiiwaaniimaan healing trail - additional federal authority grassy narrows first nation ontario canada english river project by grassy narrows first nation in english river, ontario. the notice mentions an area of about 7,100 m2. ">
+<h4><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90792?culture=en-CA" rel="noopener">Grassy Narrows First Nation Mercury Care Home Paapiiwaaniimaan Healing Trail - Additional Federal Authority</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 20">Score 20/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>Grassy Narrows First Nation</dd>
+<dt>Location</dt><dd>Ontario, Canada. Water body: English River</dd>
+<dt>Project type</dt><dd>unknown</dd>
+<dt>Stage</dt><dd>under assessment</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project by Grassy Narrows First Nation in English River, Ontario. The notice mentions an area of about 7,100 m2.</p>
+<ul class="quotes"><li>&ldquo;The project includes the construction of a 400m trail, including benches, landscaped gardens, pavilion and a washroom and sweat lodge.&rdquo;</li><li>&ldquo;The proposed project occurs on partially cleared land and will include additionally clearing and grubbing (1660m2), grading and minor excavation (~7100m2.&rdquo;</li><li>&ldquo;The project is located ~15m from Grassy Narrows Lake and does not include works in water however, drainage and erosion control measures will be implemented along the shoreline.&rdquo;</li></ul>
+<p class="source"><a href="https://iaac-aeic.gc.ca/050/evaluations/proj/90792?culture=en-CA" rel="noopener">Official notice</a> (Canadian Impact Assessment Registry)</p>
+
+<p class="attr">Source: Impact Assessment Agency of Canada, Canadian Impact Assessment Registry.</p>
+</article>
+</div>
+</section>
+</section>
+<section class="country" data-country="ES" aria-label="Spain">
+<h2>Spain <span class="pill partial">Partial</span></h2>
+<p class="country-note">National gazette (BOE) only: impact-assessment resolutions and port or public-information notices (Spanish, less tested). Regional bulletins are not read.</p>
+<section class="tier" data-country="ES" data-tier="weak">
+<h3>Weak <span class="count">(2)</span></h3>
+<p class="tier-desc">Score 20 to 34. Few signals. Often routine maintenance.</p>
+<div class="cards">
+<article class="card" id="p-es_boe-BOE-B-2026-34477" data-tier="weak" data-country="ES"
+ data-country-name="Spain" data-region="unknown"
+ data-types="Port or marine terminal|Wharf, pier or large dock" data-stage="assessment" data-deadline=""
+ data-score="23" data-search="anuncio de la autoridad portuaria de bilbao por el que se somete a información pública la solicitud de modificación de la concesión titularidad de &quot;e. erhardt y cía, s.a.&quot; en la zona de la ampliación del puerto de bilbao, en el término municipal de santurtzi. unknown unknown spain unknown project in an unknown location. the notice mentions port or terminal and wharf or dock work. port or marine terminal wharf, pier or large dock">
+<h4><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-34477" rel="noopener">Anuncio de la Autoridad Portuaria de Bilbao por el que se somete a información pública la solicitud de modificación de la concesión titularidad de &quot;E. Erhardt y Cía, S.A.&quot; en la Zona de la Ampliación del Puerto de Bilbao, en el término municipal de Santurtzi.</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 23">Score 23/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span><span class="badge lang">Less tested language (es)</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Spain. Water body: unknown</dd>
+<dt>Project type</dt><dd>Port or marine terminal, Wharf, pier or large dock</dd>
+<dt>Stage</dt><dd>public information period (dates in the notice)</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project in an unknown location. The notice mentions port or terminal and wharf or dock work. <span class="note">(English summary built from keywords found in the Spanish text. Not a translation.)</span></p>
+
+<p class="source"><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-34477" rel="noopener">Official notice</a> (Boletín Oficial del Estado (BOE) open data)</p>
+
+<p class="attr">Source: Agencia Estatal Boletín Oficial del Estado (www.boe.es).</p>
+</article>
+<article class="card" id="p-es_boe-BOE-B-2026-35366" data-tier="weak" data-country="ES"
+ data-country-name="Spain" data-region="unknown"
+ data-types="Port or marine terminal" data-stage="assessment" data-deadline=""
+ data-score="20" data-search="anuncio de la autoridad portuaria de valencia por el que se inicia trámite de competencia de proyectos en relación con la solicitud presentada por valencia terminal pasajeros, s.l. unknown unknown spain unknown project in an unknown location. the notice mentions port or terminal work. port or marine terminal">
+<h4><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-35366" rel="noopener">Anuncio de la Autoridad Portuaria de Valencia por el que se inicia trámite de competencia de proyectos en relación con la solicitud presentada por Valencia Terminal Pasajeros, S.L.</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 20">Score 20/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span><span class="badge lang">Less tested language (es)</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Spain. Water body: unknown</dd>
+<dt>Project type</dt><dd>Port or marine terminal</dd>
+<dt>Stage</dt><dd>registered</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project in an unknown location. The notice mentions port or terminal work. <span class="note">(English summary built from keywords found in the Spanish text. Not a translation.)</span></p>
+
+<p class="source"><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-35366" rel="noopener">Official notice</a> (Boletín Oficial del Estado (BOE) open data)</p>
+
+<p class="attr">Source: Agencia Estatal Boletín Oficial del Estado (www.boe.es).</p>
+</article>
+</div>
+</section>
+</section>
+<section class="country" data-country="GB" aria-label="United Kingdom">
+<h2>United Kingdom <span class="pill partial">Partial</span></h2>
+<p class="country-note">Scotland only.</p>
+<section class="tier" data-country="GB" data-tier="weak">
+<h3>Weak <span class="count">(5)</span></h3>
+<p class="tier-desc">Score 20 to 34. Few signals. Often routine maintenance.</p>
+<div class="cards">
+<article class="card" id="p-scot_marine-00012484" data-tier="weak" data-country="GB"
+ data-country-name="United Kingdom" data-region="Scotland"
+ data-types="" data-stage="decided" data-deadline=""
+ data-score="30" data-search="seagrass planting - se of isle of berneray, sound of harris, western isles unknown scotland united kingdom unknown project in scotland. ">
+<h4><a href="https://marine.gov.scot/?q=node/28251" rel="noopener">Seagrass Planting - SE of Isle of Berneray, Sound of Harris, Western Isles</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 30">Score 30/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Scotland, United Kingdom. Water body: unknown</dd>
+<dt>Project type</dt><dd>unknown</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">decision made</span></dd>
+</dl>
+<p class="summary">Project in Scotland.</p>
+
+<p class="source"><a href="https://marine.gov.scot/?q=node/28251" rel="noopener">Official notice</a> (marine.gov.scot marine licence documentation) © Crown Copyright</p>
+
+<p class="attr">Source: Scottish Government, marine.gov.scot. © Crown Copyright.</p>
+</article>
+<article class="card" id="p-scot_marine-00011153---00011950" data-tier="weak" data-country="GB"
+ data-country-name="United Kingdom" data-region="Scotland"
+ data-types="Port or marine terminal|Infill, reclamation or causeway" data-stage="decided" data-deadline=""
+ data-score="23" data-search="construction of ferry terminal and land reclamation - corran narrows, loch linnhe unknown scotland united kingdom unknown project in scotland. the notice mentions infill or causeway and port or terminal work. port or marine terminal infill, reclamation or causeway">
+<h4><a href="https://marine.gov.scot/?q=node/28218" rel="noopener">Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 23">Score 23/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Scotland, United Kingdom. Water body: unknown</dd>
+<dt>Project type</dt><dd>Port or marine terminal, Infill, reclamation or causeway</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">decision made</span></dd>
+</dl>
+<p class="summary">Project in Scotland. The notice mentions infill or causeway and port or terminal work.</p>
+
+<p class="source"><a href="https://marine.gov.scot/?q=node/28218" rel="noopener">Official notice</a> (marine.gov.scot marine licence documentation) © Crown Copyright</p>
+
+<p class="attr">Source: Scottish Government, marine.gov.scot. © Crown Copyright.</p>
+</article>
+<article class="card" id="p-scot_marine-00011654" data-tier="weak" data-country="GB"
+ data-country-name="United Kingdom" data-region="Scotland"
+ data-types="Dredging|Marina or small craft harbour" data-stage="decided" data-deadline=""
+ data-score="21" data-search="capital dredging &amp; sea disposal - peterhead bay marina and port henry unknown scotland united kingdom peterhead bay project in peterhead bay, scotland. the notice mentions dredging and small craft harbour work. dredging marina or small craft harbour">
+<h4><a href="https://marine.gov.scot/?q=node/28245" rel="noopener">Capital Dredging &amp; Sea Disposal - Peterhead Bay Marina and Port Henry</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 21">Score 21/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Scotland, United Kingdom. Water body: Peterhead Bay</dd>
+<dt>Project type</dt><dd>Dredging, Marina or small craft harbour</dd>
+<dt>Stage</dt><dd>decision made</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">decision made</span></dd>
+</dl>
+<p class="summary">Project in Peterhead Bay, Scotland. The notice mentions dredging and small craft harbour work.</p>
+
+<p class="source"><a href="https://marine.gov.scot/?q=node/28245" rel="noopener">Official notice</a> (marine.gov.scot marine licence documentation) © Crown Copyright</p>
+
+<p class="attr">Source: Scottish Government, marine.gov.scot. © Crown Copyright.</p>
+</article>
+<article class="card" id="p-scot_marine-00012343" data-tier="weak" data-country="GB"
+ data-country-name="United Kingdom" data-region="Scotland"
+ data-types="Offshore wind" data-stage="assessment" data-deadline=""
+ data-score="20" data-search="morven north offshore wind array – 61km off aberdeenshire coast unknown scotland united kingdom unknown project in scotland. the notice mentions offshore wind work. offshore wind">
+<h4><a href="https://marine.gov.scot/?q=node/28273" rel="noopener">Morven North Offshore Wind Array – 61km off Aberdeenshire Coast</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 20">Score 20/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Scotland, United Kingdom. Water body: unknown</dd>
+<dt>Project type</dt><dd>Offshore wind</dd>
+<dt>Stage</dt><dd>in progress (consultation stage)</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project in Scotland. The notice mentions offshore wind work.</p>
+
+<p class="source"><a href="https://marine.gov.scot/?q=node/28273" rel="noopener">Official notice</a> (marine.gov.scot marine licence documentation) © Crown Copyright</p>
+
+<p class="attr">Source: Scottish Government, marine.gov.scot. © Crown Copyright.</p>
+</article>
+<article class="card" id="p-scot_marine-00012345" data-tier="weak" data-country="GB"
+ data-country-name="United Kingdom" data-region="Scotland"
+ data-types="Offshore wind" data-stage="assessment" data-deadline=""
+ data-score="20" data-search="morven south offshore wind array – 86km off aberdeenshire coast unknown scotland united kingdom unknown project in scotland. the notice mentions offshore wind work. offshore wind">
+<h4><a href="https://marine.gov.scot/?q=node/28278" rel="noopener">Morven South Offshore Wind Array – 86km off Aberdeenshire Coast</a></h4>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 20">Score 20/100</span>
+<span class="badge stage-badge st-other">Under assessment</span>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Scotland, United Kingdom. Water body: unknown</dd>
+<dt>Project type</dt><dd>Offshore wind</dd>
+<dt>Stage</dt><dd>in progress (consultation stage)</dd>
+<dt>Comment deadline</dt><dd><span class="countdown">unknown</span></dd>
+</dl>
+<p class="summary">Project in Scotland. The notice mentions offshore wind work.</p>
+
+<p class="source"><a href="https://marine.gov.scot/?q=node/28278" rel="noopener">Official notice</a> (marine.gov.scot marine licence documentation) © Crown Copyright</p>
+
+<p class="attr">Source: Scottish Government, marine.gov.scot. © Crown Copyright.</p>
+</article>
+</div>
+</section>
+</section>
 </main>
 <footer><div class="wrap"><p>Prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div></footer>
 <script>
@@ -158,14 +893,16 @@ main.about{padding-bottom:20px}
   function daysLeft(iso){ if(!iso) return null; var p = iso.split('-');
     var d = new Date(+p[0], +p[1]-1, +p[2]); return Math.round((d - today)/86400000); }
   var STAGE = {open:'Comment period open', closed:'Comment period closed', decided:'Decision made',
-               assessment:'Under assessment', unknown:'Stage unknown'};
+               assessment:'Under assessment', withdrawn:'Withdrawn or rejected', unknown:'Stage unknown',
+               watch:'Project watch'};
   cards.forEach(function(c){
     var dl = c.getAttribute('data-deadline'), n = daysLeft(dl), kind = c.getAttribute('data-stage');
-    if (kind !== 'decided' && n !== null) { kind = n >= 0 ? 'open' : 'closed'; }
+    if (kind !== 'decided' && kind !== 'withdrawn' && kind !== 'watch' && n !== null) { kind = n >= 0 ? 'open' : 'closed'; }
     c.setAttribute('data-stage-now', kind); c._days = n;
     var cd = c.querySelector('.countdown');
     if (cd) {
-      if (kind === 'decided') cd.textContent = (dl ? dl + ', ' : '') + 'decision made';
+      if (kind === 'watch') { /* project watch: keep "not applicable" */ }
+      else if (kind === 'decided') cd.textContent = (dl ? dl + ', ' : '') + 'decision made';
       else if (n === null) cd.textContent = 'unknown';
       else if (n > 1) cd.textContent = dl + ' (' + n + ' days left)';
       else if (n === 1) cd.textContent = dl + ' (1 day left)';
@@ -176,50 +913,88 @@ main.about{padding-bottom:20px}
     var st = c.querySelector('.stage-badge');
     if (st) { st.textContent = STAGE[kind]; st.className = 'badge stage-badge ' + (kind === 'open' ? 'st-open' : 'st-other'); }
   });
-  // Open comment periods first, then by score.
-  var list = document.querySelector('.cards');
-  cards.sort(function(a,b){
-    var ao = a.getAttribute('data-stage-now') === 'open' ? 0 : 1, bo = b.getAttribute('data-stage-now') === 'open' ? 0 : 1;
-    return ao - bo || (+b.getAttribute('data-score')) - (+a.getAttribute('data-score'));
+  // In each tier: open comment periods first, then by score.
+  Array.prototype.forEach.call(document.querySelectorAll('section.tier .cards'), function(list){
+    var cs = Array.prototype.slice.call(list.querySelectorAll('.card'));
+    cs.sort(function(a,b){
+      var ao = a.getAttribute('data-stage-now') === 'open' ? 0 : 1, bo = b.getAttribute('data-stage-now') === 'open' ? 0 : 1;
+      return ao - bo || (+b.getAttribute('data-score')) - (+a.getAttribute('data-score'));
+    });
+    cs.forEach(function(c){ list.appendChild(c); });
   });
-  cards.forEach(function(c){ list.appendChild(c); });
-  // Closing soon.
-  var soon = cards.filter(function(c){ return c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days <= SOON; })
-                  .sort(function(a,b){ return a._days - b._days; });
-  var ul = document.getElementById('soon-list'), none = document.getElementById('soon-none');
-  soon.forEach(function(c){
-    var li = document.createElement('li'), a = document.createElement('a');
-    a.href = '#' + c.id; a.textContent = c.querySelector('h3').textContent;
-    li.appendChild(a); li.appendChild(document.createTextNode(': ' + c.getAttribute('data-deadline') + ' (' +
-      (c._days === 0 ? 'closes today' : c._days === 1 ? '1 day left' : c._days + ' days left') + ')'));
-    ul.appendChild(li);
-  });
-  if (none) none.hidden = soon.length > 0;
-  // Filters.
-  function fill(id, values){ var s = document.getElementById(id); if (!s) return;
-    values.sort().forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; s.appendChild(o); }); }
-  var provs = {}, types = {};
-  cards.forEach(function(c){ provs[c.getAttribute('data-province')] = 1;
-    (c.getAttribute('data-types') || '').split('|').forEach(function(t){ if (t) types[t] = 1; }); });
-  fill('f-province', Object.keys(provs)); fill('f-type', Object.keys(types));
-  var fp = document.getElementById('f-province'), ft = document.getElementById('f-type'), fs = document.getElementById('f-stage'),
-      fo = document.getElementById('f-open'), fq = document.getElementById('f-search'), line = document.getElementById('summary-line'),
-      empty = document.getElementById('no-match');
+  var fc = document.getElementById('f-country'), fr = document.getElementById('f-region'), frl = document.getElementById('f-region-label'),
+      frt = document.getElementById('f-region-text'), ft = document.getElementById('f-type'), fs = document.getElementById('f-stage'),
+      fo = document.getElementById('f-open'), fq = document.getElementById('f-search'), fw = document.getElementById('t-weak'),
+      line = document.getElementById('summary-line'), empty = document.getElementById('no-match'),
+      ul = document.getElementById('soon-list'), none = document.getElementById('soon-none');
+  var types = {};
+  cards.forEach(function(c){ (c.getAttribute('data-types') || '').split('|').forEach(function(t){ if (t) types[t] = 1; }); });
+  Object.keys(types).sort().forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; ft.appendChild(o); });
+  // The province or state filter only appears for countries that have regions (Canada, United States).
+  function fillRegions(){
+    var opt = fc.options[fc.selectedIndex], label = opt ? opt.getAttribute('data-region-label') : '';
+    while (fr.options.length > 1) fr.remove(1);
+    fr.value = '';
+    if (!fc.value || !label) { frl.hidden = true; return; }
+    frt.textContent = label; frl.hidden = false;
+    var regs = {};
+    cards.forEach(function(c){ if (c.getAttribute('data-country') === fc.value) regs[c.getAttribute('data-region')] = 1; });
+    Object.keys(regs).sort().forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; fr.appendChild(o); });
+  }
+  var params = location.search;
+  if ((params.match(/[?&]show=([^&]*)/) || [])[1] && params.indexOf('weak') >= 0) fw.checked = true;
+  var pc = (params.match(/[?&]country=([A-Za-z]{2})/) || [])[1];
+  if (pc) { fc.value = pc.toUpperCase(); }
+  fillRegions();
+  function tierShown(t){ return t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && fw.checked); }
+  function placeOk(c){ return (!fc.value || c.getAttribute('data-country') === fc.value) &&
+                              (!fr.value || c.getAttribute('data-region') === fr.value); }
   function apply(){
-    var q = (fq.value || '').toLowerCase().trim(), shown = 0, open = 0;
+    var q = (fq.value || '').toLowerCase().trim(), shown = 0, counts = {};
     cards.forEach(function(c){
-      var k = c.getAttribute('data-stage-now');
-      var ok = (!fp.value || c.getAttribute('data-province') === fp.value) &&
+      var k = c.getAttribute('data-stage-now'), t = c.getAttribute('data-tier');
+      var ok = tierShown(t) && placeOk(c) &&
                (!ft.value || ('|' + c.getAttribute('data-types') + '|').indexOf('|' + ft.value + '|') >= 0) &&
                (!fs.value || k === fs.value) && (!fo.checked || k === 'open') &&
                (!q || c.getAttribute('data-search').indexOf(q) >= 0);
-      c.hidden = !ok; if (ok) { shown++; if (k === 'open') open++; }
+      c.hidden = !ok;
+      if (ok) { shown++; var key = c.getAttribute('data-country') + '|' + t; counts[key] = (counts[key] || 0) + 1;
+                counts[c.getAttribute('data-country')] = (counts[c.getAttribute('data-country')] || 0) + 1; }
     });
-    line.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown. ' + open +
-      (open === 1 ? ' has a' : ' have a') + ' comment period open now.';
-    if (empty) empty.hidden = shown > 0 || cards.length === 0;
+    Array.prototype.forEach.call(document.querySelectorAll('section.tier'), function(s){
+      var key = s.getAttribute('data-country') + '|' + s.getAttribute('data-tier'), n = counts[key] || 0;
+      s.hidden = n === 0;
+      var cnt = s.querySelector('.count'); if (cnt) cnt.textContent = '(' + n + ')';
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('section.country'), function(s){
+      s.hidden = !(counts[s.getAttribute('data-country')] > 0);
+    });
+    if (empty) empty.hidden = shown > 0;
+    // Closing soon: every published tier (Strong, Possible, Weak) in the chosen country or region.
+    while (ul.firstChild) ul.removeChild(ul.firstChild);
+    var soon = cards.filter(function(c){ return placeOk(c) && c.getAttribute('data-tier') !== 'watch' &&
+      c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days <= SOON; })
+      .sort(function(a,b){ return a._days - b._days; });
+    soon.forEach(function(c){
+      var li = document.createElement('li'), a = document.createElement('a');
+      a.href = '#' + c.id; a.textContent = c.querySelector('h4').textContent;
+      // A Weak item is hidden until the toggle is on, so clicking it turns the toggle on.
+      if (c.getAttribute('data-tier') === 'weak') a.addEventListener('click', function(){
+        if (!fw.checked) { fw.checked = true; apply(); } });
+      li.appendChild(a); li.appendChild(document.createTextNode(': ' + c.getAttribute('data-deadline') + ' (' +
+        (c._days === 0 ? 'closes today' : c._days === 1 ? '1 day left' : c._days + ' days left') + '), ' +
+        c.querySelector('.tier-badge').textContent + ', ' + c.getAttribute('data-country-name')));
+      ul.appendChild(li);
+    });
+    if (none) none.hidden = soon.length > 0;
+    line.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown. ' + soon.length +
+      (soon.length === 1 ? ' comment deadline' : ' comment deadlines') + ' in the next ' + SOON + ' days.';
   }
-  [fp, ft, fs, fo].forEach(function(el){ el.addEventListener('change', apply); });
+  // A link ending in #coverage opens the Coverage panel.
+  var cov = document.getElementById('coverage');
+  if (cov && location.hash === '#coverage') { cov.open = true; }
+  fc.addEventListener('change', function(){ fillRegions(); apply(); });
+  [fr, ft, fs, fo, fw].forEach(function(el){ el.addEventListener('change', apply); });
   fq.addEventListener('input', apply);
   apply();
 })();

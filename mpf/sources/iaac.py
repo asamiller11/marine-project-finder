@@ -120,6 +120,7 @@ def parse_project_page(html: str) -> dict:
         "assessment_type": facts.get("Assessment type", UNKNOWN) or UNKNOWN,
         "province": province,
         "location": location or UNKNOWN,
+        "reference": facts.get("Reference number", ""),
     }
 
 
@@ -191,5 +192,7 @@ class IAACSource(Source):
             decision_date=None, status_raw=p["status"], full_text=text,
             raw_path=str(self.client.cached_path(url) or ""),
             extra={"assessment_type": p["assessment_type"], "authorities": p["authorities"],
-                   "open_comment": bool(open_info), "notices": notices, "location": p["location"]},
+                   "open_comment": bool(open_info), "notices": notices, "location": p["location"],
+                   # The page loaded and shows this project's reference number.
+                   "link_ok": p["reference"] == ref},
         )

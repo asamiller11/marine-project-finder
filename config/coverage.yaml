@@ -1,0 +1,103 @@
+# Which countries and regions the site covers, and from which sources.
+#
+# status (for a country or a region):
+#   covered      a source for this place is read automatically
+#   partial      only some sources are read (they are named)
+#   coming_soon  no source yet. The site shows no items and no placeholders for it.
+#                The note says why (blocked, terms, JavaScript-only, not approved yet).
+#
+# To add a place: write a source reader (mpf/sources/), add it under `sources:` below,
+# then set the country or region status and list the source.
+# Country codes must be quoted ("NO" unquoted is read as false).
+
+sources:
+  iaac:
+    name: "Canadian Impact Assessment Registry"
+    url: "https://iaac-aeic.gc.ca/050/evaluations"
+    languages: [en, fr]
+    agency: "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry"
+  nl_ea:
+    name: "Newfoundland and Labrador environmental assessment"
+    url: "https://www.gov.nl.ca/eccc/env-assessment/projects-list/"
+    languages: [en]
+    agency: "Government of Newfoundland and Labrador, Department of Environment and Climate Change"
+  dk_hoering:
+    name: "Høringsportalen, Denmark's national consultation portal (Atom feeds)"
+    url: "https://hoeringsportalen.dk/"
+    languages: [da]
+    agency: "Høringsportalen (Danish national consultation portal)"
+  scot_marine:
+    name: "marine.gov.scot marine licence documentation"
+    url: "https://marine.gov.scot/data/marine-licence-documentation"
+    languages: [en]
+    agency: "Scottish Government, marine.gov.scot"
+    # No site-wide licence was found for marine.gov.scot, so: short facts and a link only, no quotes.
+    quotes: false
+    attribution: "© Crown Copyright"
+  es_boe:
+    name: "Boletín Oficial del Estado (BOE) open data"
+    url: "https://www.boe.es/datosabiertos/"
+    languages: [es]
+    agency: "Agencia Estatal Boletín Oficial del Estado (www.boe.es)"
+
+# Languages with fewer keyword tests. Items in these languages are marked as less tested.
+less_tested_languages: [fr, da, es, "no", nl]
+
+countries:
+  - code: "CA"
+    name: Canada
+    region_label: "Province or territory"
+    status: partial
+    sources: [iaac, nl_ea]
+    note: "Federal assessments across Canada, plus the Newfoundland and Labrador provincial registry."
+    regions:
+      - {name: "Newfoundland and Labrador", status: covered, sources: [nl_ea, iaac]}
+      - {name: "British Columbia", status: partial, sources: [iaac], note: "Federal registry only. The BC government's copyright policy forbids reproducing its websites' content without written permission, so the BC Environmental Assessment Office is not read."}
+      - {name: "Quebec", status: partial, sources: [iaac], note: "Federal registry only. Quebec's copyright terms forbid reproducing government content without prior authorization, so its registry is not read."}
+      - {name: "Nova Scotia", status: partial, sources: [iaac], note: "Federal registry only. The provincial list holds few marine projects."}
+      - {name: "New Brunswick", status: partial, sources: [iaac], note: "Federal registry only."}
+      - {name: "Prince Edward Island", status: partial, sources: [iaac], note: "Federal registry only."}
+      - {name: "Ontario", status: partial, sources: [iaac], note: "Federal registry only."}
+      - {name: "Manitoba", status: partial, sources: [iaac], note: "Federal registry only."}
+      - {name: "Nunavut", status: partial, sources: [iaac], note: "Federal registry only."}
+      - {name: "Northwest Territories", status: partial, sources: [iaac], note: "Federal registry only."}
+      - {name: "Yukon", status: partial, sources: [iaac], note: "Federal registry only."}
+
+  - code: "US"
+    name: "United States"
+    region_label: "State"
+    status: coming_soon
+    sources: []
+    note: "Not approved yet. The Army Corps of Engineers site blocks automated access."
+    regions:
+      - {name: "New York", status: coming_soon, note: "The Environmental Notice Bulletin is disallowed by robots.txt."}
+      - {name: "Florida", status: coming_soon, note: "Permit data sits in JavaScript map applications."}
+      - {name: "California", status: coming_soon, note: "CEQAnet was checked and is workable, but not approved yet."}
+      - {name: "Massachusetts", status: coming_soon, note: "The MEPA Environmental Monitor is a JavaScript application."}
+      - {name: "Texas", status: coming_soon, note: "Public notices are mostly boundary surveys and leases."}
+
+  - {code: "NO", name: Norway, status: coming_soon, sources: [], note: "regjeringen.no blocks automated access (its robots.txt answers HTTP 403), and NVE's case list needs JavaScript."}
+  - {code: "DK", name: Denmark, status: partial, sources: [dk_hoering], note: "National consultation portal only, filtered with Danish marine keywords (less tested).", empty_note: "Source read; no marine project hearings found in this run."}
+  - {code: "FR", name: France, status: coming_soon, sources: [], note: "No usable source yet. The offshore wind site's legal notice forbids copying or publishing its content without written permission; the national impact-assessment dataset and the compensation-measures files are disallowed by robots.txt. A permission request has been drafted."}
+  - {code: "NL", name: Netherlands, status: coming_soon, sources: [], note: "Official publications search and API are disallowed by robots.txt, and Platform Participatie's project list needs JavaScript."}
+  - {code: "ES", name: Spain, status: partial, sources: [es_boe], note: "National gazette (BOE) only: impact-assessment resolutions and port or public-information notices (Spanish, less tested). Regional bulletins are not read."}
+  - code: "GB"
+    name: "United Kingdom"
+    status: partial
+    sources: [scot_marine]
+    note: "Scotland only."
+    regions:
+      - {name: "Scotland", status: covered, sources: [scot_marine]}
+      - {name: "England", status: coming_soon, note: "The MMO public register is a JavaScript application."}
+      - {name: "Wales", status: coming_soon, note: "The marine licence register listing was not found in the check."}
+  - {code: "IE", name: Ireland, status: coming_soon, sources: [], note: "MARA's legal notice forbids republishing its content, and data.gov.ie's API is disallowed by robots.txt."}
+  - {code: "DE", name: Germany, status: coming_soon, sources: [], note: "UVP-Portal answered HTTP 429 (too many requests) on the first request, so it was treated as blocked."}
+  - {code: "BE", name: Belgium, status: coming_soon, sources: [], note: "No readable public registry found."}
+  - {code: "PT", name: Portugal, status: coming_soon, sources: [], note: "participa.gov.pt is a JavaScript application with no documented feed."}
+  - {code: "IT", name: Italy, status: coming_soon, sources: [], note: "The national assessment portal said its service was temporarily disabled."}
+  - {code: "SE", name: Sweden, status: coming_soon, sources: [], note: "No national registry found; notices are spread over 21 county boards."}
+  - {code: "FI", name: Finland, status: coming_soon, sources: [], note: "lausuntopalvelu.fi blocks automated access (its robots.txt answers HTTP 403)."}
+  - {code: "PL", name: Poland, status: coming_soon, sources: [], note: "No project registry found."}
+  - {code: "GR", name: Greece, status: coming_soon, sources: [], note: "robots.txt disallows the registry's project pages."}
+  - {code: "AU", name: Australia, status: coming_soon, sources: [], note: "The EPBC portal's comment list needs JavaScript."}
+  - {code: "NZ", name: "New Zealand", status: coming_soon, sources: [], note: "EPA New Zealand's robots.txt disallows automated access."}

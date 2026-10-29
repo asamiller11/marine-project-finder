@@ -9,15 +9,15 @@ nature-inclusive design, or eco-engineered structures.
 It never claims mitigation will be required. Every flag shows the exact sentences that
 triggered it, so a person can judge. Most projects score low, and that is expected.
 
-Status: ingest, scoring, a review step and a static website are built. The monthly
-digest is not built yet.
+Status: ingest from five live sources in four countries (mostly Canada for now), scoring in five languages, a review step and a
+static website are built. The monthly digest is not built yet.
 
 ## Website and publishing (short version)
 
 ```bash
-./.venv/bin/python -m mpf review     # writes review/review.csv and a draft preview
-# mark rows publish=yes in review/review.csv (see docs/how_to_publish.md)
-./.venv/bin/python -m mpf publish    # builds site/ from approved rows only
+./.venv/bin/python -m mpf review     # writes review/review.csv (every scored item)
+# optional: mark rows yes (checked) or no (hide) (see docs/how_to_publish.md)
+./.venv/bin/python -m mpf publish    # builds site/ with every item, grouped into tiers
 ./.venv/bin/python -m mpf zip-site   # optional: site.zip for Netlify Drop
 ```
 
@@ -40,17 +40,28 @@ on the 1st and 15th of each month. One-time setup: `docs/github_setup.md`.
 
 ## Sources
 
-| Source | What we read | Access check |
-|---|---|---|
-| Canadian Impact Assessment Registry (`iaac`) | Open comment periods page, project sitemap, project pages | robots.txt allows it; 5 second crawl delay honoured |
-| Newfoundland and Labrador EA (`nl_ea`) | Project list, project pages, "Summary of Registration" PDF | robots.txt allows it |
-| DFO Fisheries Act Registry CSV (`dfo_far`) | One open-data CSV, **scorer test set only** (data ends June 2023) | Open Government Licence - Canada |
-| Drop folder (`drop_folder`) | Files you save by hand into `drop/` | Local files only |
+Countries, regions, statuses and sources are listed in `config/coverage.yaml`, which also
+drives the Coverage panel on the site.
 
-Not used: DFO PATH live service (its robots.txt disallows `/arcgis/`; not used
-until DFO confirms scripts may use it), Common Project Search (results
-load from disallowed paths), US Army Corps of Engineers (returns HTTP 403 to scripts).
-Quebec can be added by hand through the drop folder.
+| Source | Place | What we read | Access check |
+|---|---|---|---|
+| `iaac` | Canada (federal) | Open comment list, sitemap, project pages | robots.txt allows it; 5 s crawl delay |
+| `nl_ea` | Newfoundland and Labrador | Project list, project pages, summary PDF | robots.txt allows it |
+| `dk_hoering` | Denmark | Høringsportalen Atom feeds (all hearings and marine authorities) | Feeds offered for free use ("Brug dem frit") |
+| `scot_marine` | Scotland | Licence documentation listings and document pages | robots.txt allows it; 10 s crawl delay |
+| `es_boe` | Spain | BOE daily summary API, item HTML pages (Sections III and V-B) | Reuse allowed with source citation; the XML path is disallowed and never used |
+| `dfo_far` | Canada | DFO Fisheries Act Registry CSV, **scorer test set only** | Open Government Licence - Canada |
+| `drop_folder` | Any | Files you save by hand into `drop/` | Local files only |
+
+Readers exist but are switched off because the sites' terms forbid reproduction without written
+permission: `bc_eao` (BC Environmental Assessment Office) and `fr_eolien` (eoliennesenmer.fr).
+
+Checked and not used (reasons are shown in the Coverage panel): Quebec's registry and Ireland's
+MARA (their terms forbid reproduction), Norway's NVE and the Netherlands' Platform Participatie
+(lists need JavaScript), regjeringen.no, Finland's consultation service, New Zealand's EPA and
+the US Army Corps of Engineers (block automated access), French and Dutch official datasets and
+the New York bulletin (disallowed by robots.txt), and others listed in the panel.
+
 
 ## How the tool behaves on the web
 
@@ -78,7 +89,7 @@ Every command below is run from the project folder as `./.venv/bin/python -m mpf
 ## Run
 
 ```bash
-./.venv/bin/python -m mpf ingest                 # all enabled sources (first run takes about 20 minutes)
+./.venv/bin/python -m mpf ingest --live          # all live sources (first run takes about 30 minutes)
 ./.venv/bin/python -m mpf ingest --source nl_ea  # just one source
 ./.venv/bin/python -m mpf score                  # score everything
 ./.venv/bin/python -m mpf show --min-score 40    # flagged items with evidence
@@ -124,22 +135,25 @@ All keywords (English and French), points, size thresholds and the flag threshol
 `config/scoring.yaml`, with comments. After editing, run `score` again (no re-download
 needed), then `eval` to see the effect on precision and recall.
 
-## Adding a new source later (Norway, Denmark, France)
+## Adding a new source (another country or region)
 
 1. Copy `mpf/sources/nl_ea.py` as a starting point and write a class with `name`,
    `country` and a `fetch()` that yields `Item`s (see `mpf/sources/base.py`).
 2. Register it in `mpf/sources/__init__.py` and add a block under `sources:` in
    `config/settings.yaml`.
-3. Add Norwegian, Danish or French keywords to `config/scoring.yaml`.
+3. If the language is new, add its keywords under `language_patterns` in `config/scoring.yaml`,
+   with a sample sentence for each rule in `tests/test_languages.py`.
 4. Add a small made-up page to `tests/samples/` that copies the real site's HTML
    structure (not its content) and add a parser test. Real third-party pages are never
    committed.
+5. Add the source to `config/coverage.yaml` and set the place's status, with a note.
 
 ## Project layout
 
 ```
 config/settings.yaml   sources, politeness, timing, LLM settings
-config/scoring.yaml    keywords, points, size thresholds
+config/scoring.yaml    keywords (five languages), points, size thresholds
+config/coverage.yaml   countries, regions, statuses, sources
 mpf/http.py            polite client: robots.txt, delays, cache, stop on block
 mpf/sources/           one file per source, plus the drop folder
 mpf/extract.py         sizes, coordinates, water body, keyword hits
@@ -147,11 +161,21 @@ mpf/score.py           the 0 to 100 score and its reasons
 mpf/timing.py          stage, days to deadline, "likely too late"
 mpf/llm.py             optional summaries with quote checking
 mpf/evaluate.py        precision and recall
-mpf/review.py          review/review.csv: nothing is published without your yes
+mpf/review.py          review/review.csv: mark yes (checked) or no (hide)
+mpf/tiers.py           tiers (Strong, Possible, Weak, Probably not relevant) and duplicate merging
+mpf/coverage.py        countries, regions and coverage statuses (config/coverage.yaml)
 mpf/site.py            builds the static website in site/
-review/review.csv      your publish decisions (committed, so GitHub can publish)
-site/                  the built website (approved items only)
+review/review.csv      your yes/no decisions (committed, so GitHub uses them)
+site/                  the built website (Strong, Possible and Weak tiers, plus project watch)
 tests/                 unit tests with made-up sample pages
 docs/                  how to publish, one-time GitHub setup
 .github/workflows/     scheduled refresh and publish; source access check
 ```
+
+## Notices in other languages
+
+Quotes stay in the original language. Without an API key there is no translation: the English
+summary for a non-English notice is built only from the keywords and sizes found in it and is
+labelled as such, or the listing says "Not translated". Keyword rules for French, Danish, Spanish,
+Norwegian and Dutch are in `config/scoring.yaml` under `language_patterns`, and every rule has a
+test in `tests/test_languages.py`.

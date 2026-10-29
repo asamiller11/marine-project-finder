@@ -75,13 +75,16 @@ project_types:
       - '\bbulkhead'
       # Not plain "armour stone": quarries that produce it are not marine works.
       - '\brevetment|\briprap|\brip rap|\barmou?r ?stone (protection|placement|revetment)'
-      - '\bshoreline protection|\bshore protection|\berosion protection'
-      - '\benrochement|\bmur de soutènement|\bprotection (des berges|du littoral|côtière)'
+      - '\bshoreline protection|\bshore protection|\berosion protection|\bcoastal (protection|defen[cs]e|engineering)'
+      - '\b(river|stream)?bank (protection|stabili[sz]ation)|\bprotect(ing)? the (river|stream)?bank|\bshoreline stabili[sz]ation|\bstabili[sz]ing .{0,40}shoreline'
+      - '\benrochement|\bperré\b|\bmur de soutènement|\bprotection (des berges|du littoral|côtière|contre l.érosion)'
+      - '\bstabilisation (des berges|de la berge|de la rive|du littoral|du talus)|\brecharge(ment)? de plage'
   marina_small_craft:
     points: 15
     label: "Marina or small craft harbour"
     patterns:
-      - '\bmarina\b'
+      # Not Spanish uses: "Ley de Puertos ... y de la Marina Mercante", "reserva marina", "fauna marina".
+      - '(?<!fauna )(?<!flora )(?<!reserva )(?<!zona )(?<!costa )(?<!vida )(?<!eólica )(?<!de la )\bmarinas?\b(?!\s+(mercante|española|de|del)\b)'
       - '\bsmall craft harbou?r'
       - '\bboat (launch|ramp)'
       - '\bport de plaisance|\bhavre de pêche|\bport pour petits bateaux'
@@ -101,6 +104,16 @@ project_types:
       - '\bwind turbine foundations?\b.{0,40}\b(seabed|offshore)'
       - '\bexport cable|\binter-array cable|\bsubsea cable|\bsubmarine cable'
       - '\béolien(ne)?s? en mer|\béolien(ne)?s? extracôti'
+  outfall_intake:
+    points: 8
+    label: "Outfall or intake in the water"
+    # Only when the project WORKS on the outfall or intake. A sentence that merely mentions
+    # existing outfalls ("affected by drainage and wastewater outfalls") must not count.
+    patterns:
+      - '\b(new|replac\w*|rehabilitat\w*|upgrad\w*|construct\w*|install\w*|extend\w*|extension of|relocat\w*|repair\w*|rebuild\w*|stabili[sz]\w*)\b[^.;]{0,40}\b(outfall|water intake|intake structure|diffuser)'
+      - '\b(outfall|water intake|intake structure|diffuser)s?\b[^.;]{0,30}\b(rehabilitation|replacement|extension|upgrade|construction|reconstruction|repair|relocat\w*|replaced|extended|installed)'
+      - '\b(réfection|remplacement|prolongement|construction|réhabilitation|relocalisation|installation|stabilisation|nouvel(le)?)\b[^.;]{0,40}\b(émissaire|prise d.eau|exutoire)'
+      - '\b(émissaire|prise d.eau|exutoire)s?\b[^.;]{0,30}\b(sera|seront)\s+(remplacé|prolongé|déplacé|reconstruit|réhabilité)'
   piles:
     points: 8
     label: "Piles or pile-supported structure"
@@ -137,6 +150,7 @@ habitat_clues:
       - '\bhabitat (enhancement|creation|restoration|compensation)'
       - '\bnature[- ]inclusive|\beco-?engineer|\bliving shoreline|\becological (design|engineering)'
       - '\breef (balls?|units?)|\bartificial reef'
+      - '\b(seagrass|eelgrass|oyster|saltmarsh|salt marsh|kelp|seaweed) (planting|restoration|reef|bed restoration)|\brestoration of (seagrass|eelgrass|oyster|saltmarsh|salt marsh)'
       - '\b(création|aménagement|amélioration) d.habitats?|\bhabitat du poisson.{0,40}(créé|aménagé)|\brécif artificiel'
   eelgrass:
     points: 15
@@ -199,3 +213,115 @@ small_project:
   # If the largest length found is below this and nothing else is large, apply the penalty.
   max_length_m: 30
   penalty: 10
+
+# ---------------------------------------------------------------------------
+# Rules in other languages (Danish, Norwegian, Dutch, Spanish). Generated into the groups
+# above at load time by mpf/score.py. Every pattern here has a test in tests/test_languages.py.
+language_patterns:
+  marine_context:
+    da: '\bhavn|\bkyst|\bfjord|\bhavet\b|\bhavbund|\bsøterritori|\bvadehav'
+    "no": '\bhavn|\bkyst|\bfjord|\bsjø(en|bunn|bunnen|område|areal|arealer)?\b|\bfarlei'
+    nl: '\bhaven|\bkust|\bzee\b|\bwaddenzee|\bzeehaven|\bvaargeul|\bnoordzee'
+    es: '\bpuerto\b|\bportuari|\bcosta\b|\blitoral\b|\bmarin[oa]\b|\bbahía\b|\bdársena'
+  project_types:
+    port_terminal:
+      da: '\bhavneudvidelse|\bny havn\b|\bhavneterminal|\bcontainerterminal'
+      "no": '\bhavneutbygging|\bny havn\b|\bhavneterminal|\bcontainerterminal'
+      nl: '\bhavenuitbreiding|\bnieuwe haven\b|\bhaventerminal|\bcontainerterminal'
+      es: '\bampliación del puerto|\bnuevo puerto|\bterminal portuaria|\bterminal de contenedores'
+    wharf_dock:
+      da: '\bkaj(en|er|anlæg|anlægget)?\b|\banløbsbro|\bbådebro'
+      "no": '\bkai(a|en|er|anlegg)?\b|\bbrygge(n|r)?\b'
+      nl: '\bkade(muur|n)?\b|\bsteiger(s)?\b|\baanlegsteiger'
+      es: '\bmuelle(s)?\b|\batraque|\bpantalán'
+    breakwater_jetty:
+      da: '\bmole(n|r)?\b|\bbølgebryder'
+      "no": '\bmolo(en)?\b|\bbølgebryter'
+      nl: '\bgolfbreker|\bhavendam'
+      es: '\bdique de abrigo|\brompeolas|\bespigón'
+    dredging:
+      da: '\bopmudring|\buddybning|\bklapning'
+      "no": '\bmudring|\butdyping'
+      nl: '\bbaggeren|\bbaggerwerk|\bverdieping van de vaargeul'
+      es: '\bdragado'
+    shoreline_protection:
+      da: '\bkystbeskyttelse|\bkystsikring|\bhøfde(r)?\b|\bsandfodring'
+      "no": '\berosjonssikring|\bstrandsikring|\bplastring'
+      nl: '\boeverbescherming|\bkustversterking|\bzandsuppletie|\bdijkversterking'
+      es: '\bprotección costera|\bdefensa de costa|\bregeneración de (la )?playa|\baportación de arena'
+    marina_small_craft:
+      da: '\blystbådehavn|\bfiskerihavn'
+      "no": '\bsmåbåthavn|\bgjestehavn|\bfiskerihavn'
+      nl: '\bjachthaven|\bvissershaven'
+      es: '\bpuerto deportivo|\bdársena deportiva|\bpuerto pesquero'
+    infill_causeway:
+      da: '\bopfyldning|\blandvinding|\binddæmning'
+      "no": '\butfylling (i|av) sjø'
+      nl: '\blandaanwinning|\bopspuiten'
+      es: '\bganancia de terrenos al mar|\brelleno (portuario|en el mar)'
+    offshore_wind:
+      da: '\bhavvind|\bhavmøllepark|\bhavvindmøllepark'
+      "no": '\bhavvind'
+      nl: '\bwindpark op zee|\bwind op zee|\bwindenergie op zee'
+      es: '\beólica marina|\bparque eólico marino|\beólica offshore'
+    piles:
+      da: '\bnedramning|\bspunsvæg|\bpæle\b'
+      "no": '\bpeling\b|\bpeler\b'
+      nl: '\bheipalen|\bdamwand'
+      es: '\bpilotes\b|\bpilotaje|\btablestacas'
+    outfall_intake:
+      da: '\b(ny|nyt|etablering af|udskiftning af|forlængelse af)\b[^.;]{0,30}\b(udløbsledning|udledningsledning|vandindtag)'
+      "no": '\b(ny|nytt|etablering av|utskifting av|forlengelse av)\b[^.;]{0,30}\b(utslippsledning|sjøvannsinntak)'
+      nl: '\b(nieuwe|aanleg van|vervanging van|verlenging van)\b[^.;]{0,30}\b(lozingsleiding|uitlaatwerk|inlaatwerk)'
+      es: '\b(nuevo|nueva|construcción de|sustitución de|prolongación de)\b[^.;]{0,30}\b(emisario|toma de agua)'
+  habitat_clues:
+    offsetting:
+      da: '\bkompenserende foranstaltninger|\berstatningsnatur|\bnaturkompensation'
+      "no": '\bkompenserende tiltak|\bkompensasjonstiltak'
+      nl: '\bnatuurcompensatie|\bcompenserende maatregelen|\bcompensatie van natuur'
+      es: '\bmedidas compensatorias|\bcompensación ambiental'
+    habitat_creation:
+      da: '\bnaturgenopretning|\bstenrev|\bnyt? habitat'
+      "no": '\bkunstig rev|\brestaurering av natur|\bnye habitater'
+      nl: '\bnatuurvriendelijke oever|\bnatuurinclusief|\bkunstmatig rif|\bnieuwe natuur'
+      es: '\barrecife artificial|\brestauración de hábitats|\bcreación de hábitats'
+    eelgrass:
+      da: '\bålegræs'
+      "no": '\bålegras|\btareskog'
+      nl: '\bzeegras'
+      es: '\bposidonia|\bpraderas marinas|\bfanerógamas marinas|\bcymodocea'
+    fish_habitat:
+      da: '\bgydeområde|\blevested(er)? for fisk|\bfiskeyngel'
+      "no": '\bgyteområde|\bleveområde for fisk'
+      nl: '\bpaaigebied|\bleefgebied voor vis|\bvismigratie'
+      es: '\bhábitat de (los )?peces|\bzona de desove'
+    shellfish_oyster:
+      da: '\bmuslingebanke|\bøsters|\bblåmusling'
+      "no": '\bskjellforekomst|\bøsters|\bblåskjell'
+      nl: '\bmosselbank|\boesterbank|\bschelpdier'
+      es: '\bbancos? de moluscos|\bostras?\b|\bmejillón|\bmarisqueo'
+    intertidal_marsh:
+      da: '\bvadehavet|\btidevandszone|\bstrandeng'
+      "no": '\bfjæresone|\btidevannssone|\bstrandeng'
+      nl: '\bwadden\b|\bkwelder|\bslikken\b|\bgetijdengebied'
+      es: '\bzona intermareal|\bmarisma|\bhumedal costero'
+    species_at_risk:
+      da: '\bbilag IV|\bhabitatdirektiv|\bNatura 2000'
+      "no": '\brødlist|\btruede arter'
+      nl: '\bbeschermde soorten|\bNatura 2000'
+      es: '\bRed Natura 2000|\bespecies protegidas|\bZEPA\b'
+    marine_footprint:
+      da: '\bhavbund(en)?\b'
+      "no": '\bsjøbunn(en)?\b'
+      nl: '\bzeebodem'
+      es: '\bfondo marino|\blecho marino'
+    scour_protection:
+      da: '\berosionsbeskyttelse|\bkabelbeskyttelse'
+      "no": '\berosjonsbeskyttelse|\bsteinfylling'
+      nl: '\bbodembescherming|\bkabelbescherming|\bstortsteen'
+      es: '\bprotección (anti)?socavación|\bprotección del cable'
+    mitigation_general:
+      da: '\bafværgeforanstaltninger'
+      "no": '\bavbøtende tiltak'
+      nl: '\bmitigerende maatregelen'
+      es: '\bmedidas correctoras|\bmedidas preventivas y correctoras'

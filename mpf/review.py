@@ -1,30 +1,40 @@
-"""The review step: nothing is published until you approve it in review/review.csv.
+"""The review file, review/review.csv. Every scored item is published automatically;
+this file lets you mark items you have checked.
 
-`python -m mpf review` writes or refreshes the review file. Your earlier decisions
-(publish, confidence, summary) are kept; scores, stages and deadlines are refreshed.
+The "publish" column:
+  yes    shown with a "Reviewed by a person" badge
+  no     hidden everywhere
+  blank  shown with an "Automatic, not yet reviewed" badge
+
+`python -m mpf review` writes or refreshes the file. Your publish choices and edited
+summaries are kept; scores, tiers, stages and deadlines are refreshed.
 """
 from __future__ import annotations
 
 import csv
 import json
+import re
 import sqlite3
 from pathlib import Path
 
 from mpf.extract import largest_sizes
 from mpf.models import UNKNOWN
+from mpf.tiers import TIER_LABELS, tier_for
 
-# The first five columns are the ones you edit or need; the rest help you decide.
-COLUMNS = ["id", "title", "score", "confidence", "publish", "summary",
+COLUMNS = ["id", "title", "country", "score", "tier", "publish", "summary", "auto_summary",
            "stage", "comment_deadline", "province", "url"]
+
+# Earlier versions pre-filled "summary" with the automatic text, which always starts like this.
+# Such text is not yours, so it is treated as blank (the site then uses the current automatic text).
+_AUTO_TEXT = re.compile(r"^(Project (by .+? )?in .+?|Notice( from .+?)?( about .+?)?)\.( The (notice|page) mentions .+\.)?$")
+
+
+def own_summary(row: dict | None) -> str:
+    """The summary YOU wrote in the review file, or '' if the column is blank or automatic."""
+    s = ((row or {}).get("summary") or "").strip()
+    return "" if not s or _AUTO_TEXT.match(s) else s
 YES = {"yes", "y", "1", "true", "x"}
-
-
-def confidence_for(score: int, conf: dict) -> str:
-    if score >= conf.get("confidence_high", 60):
-        return "High"
-    if score >= conf.get("confidence_medium", 35):
-        return "Medium"
-    return "Low"
+NO = {"no", "n", "0", "false"}
 
 
 def _join(words: list[str]) -> str:
@@ -40,16 +50,37 @@ _TYPE_WORDS = {
 }
 
 
-def auto_summary(row: dict) -> str:
+# Titles of notices that are not construction projects: laws, regulations, funding schemes, guidance.
+_NOT_A_PROJECT = re.compile(
+    # Whole words (English, Spanish, French)
+    r"\b(regulations?|act|bill|by-?law|policy|strategy|guidance|guidelines|funding|grants?|"
+    r"convenio|ley|real decreto|reglamento|subvenci\w*|ayudas|licencia para la prestación|"
+    r"décret|arrêté|loi|subvention|appel à projets)\b"
+    # Danish, Norwegian and Dutch words also inside compounds ("Miljøskadebekendtgørelse",
+    # "kystbeskyttelsesloven"), so no word boundary in front.
+    r"|bekendtgørelse|lovforslag|vejledning|pulje|tilskud|forskrift|veileder|regeling|subsidie|besluit"
+    r"|loven\b|\blov om\b|\bwet\b", re.IGNORECASE)
+
+
+def is_construction_project(row: dict) -> bool:
+    return not _NOT_A_PROJECT.search(row.get("title") or "")
+
+
+def auto_summary(row: dict, noun: str = "notice") -> str:
     """A factual starting summary built only from what the tool extracted.
-    It says what the notice MENTIONS, never what will happen. Edit it in the review file."""
+    It says what the notice MENTIONS, never what will happen. Edit it in the review file.
+    Laws, regulations and funding schemes start with "Notice from", not "Project by"."""
     facts = json.loads(row.get("facts") or "{}")
     who = row.get("proponent") or UNKNOWN
     where_parts = [p for p in (row.get("water_body"), row.get("province")) if p and p != UNKNOWN]
     where = ", ".join(where_parts) if where_parts else "an unknown location"
-    first = f"Project by {who} in {where}." if who != UNKNOWN else f"Project in {where}."
+    if not is_construction_project(row):
+        place = f" about {where}" if where_parts else ""
+        first = f"Notice from {who}{place}." if who != UNKNOWN else f"Notice{place or ' from an unknown authority'}."
+    else:
+        first = f"Project by {who} in {where}." if who != UNKNOWN else f"Project in {where}."
     types = [_TYPE_WORDS[t] for t in facts.get("types", []) if t in _TYPE_WORDS]
-    second = f" The notice mentions {_join(types)} work" if types else ""
+    second = f" The {noun} mentions {_join(types)} work" if types else ""
     big = largest_sizes(facts.get("sizes", []))
     size_bits = []
     if "volume_m3" in big:
@@ -63,56 +94,75 @@ def auto_summary(row: dict) -> str:
     elif second:
         second += "."
     elif size_bits:
-        second = f" The notice mentions {_join(size_bits)}."
+        second = f" The {noun} mentions {_join(size_bits)}."
     return first + second
 
 
 def read_review(path: Path) -> dict[str, dict]:
+    """Rows by id. Files from before tiers existed used "no" as the default for every
+    row, so in those files "no" means "not reviewed" and is read as blank."""
     if not path.exists():
         return {}
     with open(path, encoding="utf-8-sig", newline="") as f:
-        return {row["id"]: row for row in csv.DictReader(f) if row.get("id")}
+        reader = csv.DictReader(f)
+        old_format = "tier" not in (reader.fieldnames or [])
+        rows = {}
+        for row in reader:
+            if not row.get("id"):
+                continue
+            if old_format and (row.get("publish") or "").strip().lower() in NO:
+                row["publish"] = ""
+            rows[row["id"]] = row
+        return rows
+
+
+def decision(row: dict | None) -> str:
+    """'yes', 'no' or '' (not reviewed)."""
+    value = ((row or {}).get("publish") or "").strip().lower()
+    return "yes" if value in YES else "no" if value in NO else ""
 
 
 def approved_ids(path: Path) -> list[str]:
-    return [i for i, row in read_review(path).items() if (row.get("publish") or "").strip().lower() in YES]
+    return [i for i, row in read_review(path).items() if decision(row) == "yes"]
 
 
-def write_review(conn: sqlite3.Connection, path: Path, conf: dict) -> dict:
-    """Write the review file. Returns counts for the summary message."""
+def write_review(conn: sqlite3.Connection, path: Path, tier_conf: dict, enabled: set | None = None) -> dict:
+    """Write the review file with every scored item from the sources that are switched on."""
     old = read_review(path)
-    min_score = conf.get("min_score", 20)
-    rows = conn.execute(
-        "SELECT * FROM items WHERE is_test_set=0 AND score IS NOT NULL "
-        "AND stage NOT LIKE 'withdrawn%' ORDER BY score DESC").fetchall()
-    out, new = [], 0
-    seen = set()
+    rows = conn.execute("SELECT * FROM items WHERE is_test_set=0 AND score IS NOT NULL "
+                        "ORDER BY score DESC").fetchall()
+    if enabled is not None:
+        rows = [r for r in rows if r["source"] in enabled]
+    out, new, seen = [], 0, set()
     for r in rows:
         r = dict(r)
-        if r["score"] < min_score and r["key"] not in old:
-            continue
         seen.add(r["key"])
         prev = old.get(r["key"], {})
         if not prev:
             new += 1
-        suggested = r["llm_confidence"].capitalize() if r.get("llm_confidence") in ("high", "medium", "low") \
-            else confidence_for(r["score"], conf)
+        tier, _ = tier_for(r, tier_conf)
+        if json.loads(r.get("extra") or "{}").get("watch"):
+            tier = "watch"
         out.append({
-            "id": r["key"], "title": r["title"], "score": r["score"],
-            "confidence": prev.get("confidence") or suggested,
-            "publish": prev.get("publish") or "no",
-            "summary": prev.get("summary") or r.get("summary_en") or auto_summary(r),
+            "id": r["key"], "title": r["title"], "country": r.get("country") or UNKNOWN,
+            "score": r["score"], "tier": TIER_LABELS[tier],
+            "publish": decision(prev),
+            "summary": own_summary(prev),
+            "auto_summary": r.get("summary_en") or auto_summary(r, "page" if json.loads(r.get("extra") or "{}").get("watch") else "notice"),
             "stage": r["stage"], "comment_deadline": r["comment_deadline"] or UNKNOWN,
             "province": r["province"], "url": r["url"],
         })
-    # Keep rows you already reviewed even if the item disappeared from this run.
+    # Keep rows you already decided on, even if the item is not in this run's data.
     for key, prev in old.items():
-        if key not in seen:
-            out.append({c: prev.get(c, "") for c in COLUMNS})
+        if key not in seen and decision(prev):
+            row = {c: prev.get(c, "") for c in COLUMNS}
+            row["publish"] = decision(prev)
+            out.append(row)
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=COLUMNS)
         w.writeheader()
         w.writerows(out)
-    approved = sum(1 for r in out if str(r["publish"]).strip().lower() in YES)
-    return {"rows": len(out), "new": new, "approved": approved}
+    return {"rows": len(out), "new": new,
+            "yes": sum(1 for r in out if r["publish"] == "yes"),
+            "no": sum(1 for r in out if r["publish"] == "no")}

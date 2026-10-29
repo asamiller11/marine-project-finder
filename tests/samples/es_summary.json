@@ -1,0 +1,9 @@
+{"status": {"code": "200"}, "data": {"sumario": {"diario": [{"seccion": [
+ {"codigo": "3", "nombre": "III. Otras disposiciones", "departamento": [{"nombre": "MINISTERIO PARA LA TRANSICIÓN ECOLÓGICA", "epigrafe": [{"nombre": "Evaluación ambiental", "item": [
+   {"identificador": "BOE-A-2099-0001", "titulo": "Resolución por la que se formula declaración de impacto ambiental del proyecto de ampliación del puerto de Ejemplo.", "url_html": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2099-0001"},
+   {"identificador": "BOE-A-2099-0002", "titulo": "Resolución por la que se formula declaración de impacto ambiental del proyecto de autovía interior.", "url_html": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2099-0002"}]}]}]},
+ {"codigo": "5B", "nombre": "V. Anuncios. - B. Otros anuncios oficiales", "departamento": [{"nombre": "MINISTERIO DE TRANSPORTES", "epigrafe": [{"nombre": "Autoridades Portuarias", "item":
+   {"identificador": "BOE-B-2099-0003", "titulo": "Anuncio de la Autoridad Portuaria de Ejemplo por el que se somete a información pública el proyecto de nuevo muelle.", "url_html": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2099-0003"}}]}]},
+ {"codigo": "2A", "nombre": "II. Autoridades y personal. - A. Nombramientos", "departamento": [{"nombre": "MINISTERIO DE TRANSPORTES", "item": [
+   {"identificador": "BOE-A-2099-0004", "titulo": "Resolución de nombramiento en la Autoridad Portuaria de Ejemplo, puerto.", "url_html": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2099-0004"}]}]}
+]}]}}}

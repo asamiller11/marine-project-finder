@@ -43,7 +43,7 @@ _UNITS = [
 
 # A length followed by these words is a distance, depth or height, not the project size.
 _NOT_A_SIZE = re.compile(
-    r"^\W{0,3}(?:\w+\W+){0,2}?(north|south|east|west|northeast|northwest|southeast|southwest|from|away|"
+    r"^\W{0,3}(?:\w+\W+){0,2}?(north|south|east|west|northeast|northwest|southeast|southwest|from|away|off|"
     r"offshore|upstream|downstream|deep|depth|wide|width|high|height|above|below|tall|nord|sud|est|ouest|"
     r"de profondeur|profond|de large|de haut)\b",
     re.IGNORECASE,

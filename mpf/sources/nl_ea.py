@@ -178,7 +178,8 @@ class NLEASource(Source):
         p = parse_project_page(page_html)
         # The NL site's links are irregular (project-2434, projects-2437, project_2364, project-2383-2).
         # We use the link exactly as NL publishes it, and check the page is the right project.
-        if not re.search(r"Registration Number:\s*" + re.escape(row["reg"]) + r"\b", page_html):
+        link_ok = bool(re.search(r"Registration Number:\s*" + re.escape(row["reg"]) + r"\b", page_html))
+        if not link_ok:
             self.log.append(f"WARNING: page for {row['reg']} does not show that registration number: {row['url']}")
         pdf_txt = ""
         if p["summary_pdf"] and self.conf.get("fetch_summary_pdf", True):
@@ -207,5 +208,5 @@ class NLEASource(Source):
             decision_date=decision_date, status_raw=row["status"], full_text=text,
             raw_path=str(self.client.cached_path(row["url"]) or ""),
             extra={"events": p["events"], "summary_pdf": p["summary_pdf"],
-                   "decision_made": p["decision_made"], "used_pdf_text": bool(pdf_txt)},
+                   "decision_made": p["decision_made"], "used_pdf_text": bool(pdf_txt), "link_ok": link_ok},
         )

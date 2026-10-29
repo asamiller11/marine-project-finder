@@ -39,6 +39,28 @@ sources:
     # Scorer test set only. All rows are issued authorizations from 2019-08 to 2023-06.
     enabled: true
     csv_url: "https://api-proxy.edh-cde.dfo-mpo.gc.ca/catalogue/records/2c09d2fd-9a8e-4d8c-b5af-95747e36eaac/attachments/fa-registry-dataset-ensemble-de-donnees-du-registre-de-lp_2023-06-21.csv"
+  bc_eao:
+    # OFF: the BC government copyright policy forbids reproducing its websites' content
+    # "without the prior written permission of the Province of British Columbia".
+    enabled: false
+    # Keep projects that are still active, or had a comment period in the last N days.
+    lookback_days: 730
+  dk_hoering:
+    enabled: true
+    # Uses the default feed list in mpf/sources/dk_hoering.py (all hearings plus marine authorities).
+  scot_marine:
+    enabled: true
+    # Each project page costs one request at a 10 second crawl delay.
+    max_projects: 30
+  es_boe:
+    enabled: true
+    lookback_days: 21
+    max_items: 60
+  fr_eolien:
+    # OFF: eoliennesenmer.fr's legal notice forbids copying or publishing its content
+    # "sans autorisation préalable et écrite du Cerema".
+    enabled: false
+    max_projects: 30
   drop_folder:
     enabled: true
 
@@ -49,22 +71,50 @@ timing:
   too_late_days: 7
 
 review:
-  # Items at or above this score go into review/review.csv for you to approve.
-  min_score: 20
+  # Every scored item goes into review/review.csv. In the "publish" column:
+  #   yes   = you checked it: shown with a "Reviewed by a person" badge
+  #   no    = hidden everywhere
+  #   blank = shown automatically with an "Automatic, not yet reviewed" badge
   file: review/review.csv
-  # Confidence label suggested in the review file (you can change it there).
-  confidence_high: 60     # score at or above = High
-  confidence_medium: 35   # score at or above = Medium, below = Low
+
+tiers:
+  # Score thresholds. Below weak_min = "Probably not relevant".
+  strong_min: 60
+  possible_min: 35
+  weak_min: 20
+  # Titles matching these always go to "Probably not relevant" (quarries, pits, etc.).
+  not_relevant_title_patterns:
+    - '\bquarr(y|ies)\b'
+    - '\b(gravel|sand|borrow) pit\b'
+    - '\bpeat\b'
+    - '\baggregate\b'
+
+duplicates:
+  # The same project listed by two sources is shown once. Keep the first source in this list.
+  prefer: [nl_ea, iaac, drop]
+  # How alike two titles must be (0 to 1) to count as the same project.
+  min_title_similarity: 0.8
 
 site:
-  title: "Marine Project Finder: Canada"
-  description: "Public permit and environmental assessment notices for Canadian marine construction projects likely to need habitat work"
+  title: "Marine Project Finder"
+  description: "Public permit and environmental assessment notices for marine construction projects likely to need habitat work"
   contact_name: "Asa Miller"
   contact_email: "asamiller11@gmail.com"
   update_frequency: "every 2 weeks"
   closing_soon_days: 30
-  max_quote_chars: 180
+  # Quotes are whole sentences copied exactly from the notice, never cut. Longer sentences are skipped.
+  max_quote_chars: 300
   max_quotes: 3
+  # A quote must be about the project itself: it needs at least one of these words.
+  quote_project_words: ['project', 'proposed', 'proposes', 'proponent', 'will', 'would', 'works?', 'construction',
+                        'construct', 'planned', 'includes?', 'install', 'build', 'undertaking', 'development',
+                        'projet', 'proposé', 'promoteur', 'travaux', 'sera', 'seront', 'prévoit', 'aménagement',
+                        'projekt', 'anlæg', 'etablering', 'vil blive', 'udvidelse', 'prosjekt', 'tiltak', 'vil bli', 'utbygging', 'aanleg', 'wordt', 'uitbreiding', 'proyecto', 'obras', 'construcción', 'ampliación', 'consiste', 'se pretende', 'parc', 'éoliennes', 'éolien']
+  # Sentences with these habitat words are preferred (they count three times).
+  quote_habitat_words: ['fish habitat', 'offset', 'compensat', 'eelgrass', 'seagrass', 'shellfish', 'intertidal',
+                        'salt marsh', 'new habitat', 'habitat creation', 'habitat enhancement', 'species at risk',
+                        'habitat du poisson', 'compensation', 'zostère', 'mollusques', 'zone intertidale', 'herbier',
+                        'ålegræs', 'ålegras', 'zeegras', 'posidonia', 'praderas', 'muslingebanke', 'mosselbank', 'bancos de moluscos', 'vadehav', 'wadden', 'zona intermareal', 'marisma', 'kompenserende', 'natuurcompensatie', 'medidas compensatorias', 'stenrev', 'arrecife artificial', 'Natura 2000', 'biodiversité', 'habitats marins']
   sources:
     - name: "Canadian Impact Assessment Registry"
       url: "https://iaac-aeic.gc.ca/050/evaluations"

@@ -40,6 +40,13 @@ def parse_date(text: str | None) -> str | None:
     m = re.search(r"(?<!\d)(\d{4})-(\d{2})-(\d{2})(?!\d)", t)
     if m:
         return m.group(0)
+    # European day-month-year: "20-12-2026" (Denmark), "16/10/2026" (Scotland).
+    m = re.search(r"(?<!\d)(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?!\d)", t)
+    if m and 1 <= int(m.group(2)) <= 12 and 1 <= int(m.group(1)) <= 31:
+        try:
+            return date(int(m.group(3)), int(m.group(2)), int(m.group(1))).isoformat()
+        except ValueError:
+            return None
     # "November 9 2026" or "9 November 2026" (also short month names like "Nov.")
     for pat, order in ((r"\b([A-Za-z]{3,9})\.? (\d{1,2}) (\d{4})\b", "mdy"),
                        (r"\b(\d{1,2}) ([A-Za-z]{3,9})\.? (\d{4})\b", "dmy")):

@@ -1,0 +1,4 @@
+[{"searchResults": [
+ {"_id": "aaa111", "name": "Example Harbour Terminal Expansion", "description": "The proponent proposes to expand a marine terminal in Example Inlet with a new 300 m berth and dredging of 200,000 m3. The project includes fish habitat offsetting.", "location": "Example Inlet, near Testville", "type": "Transportation", "region": "Lower Mainland", "status": "Active", "currentPhaseName": {"name": "Application Development and Review"}, "proponent": {"name": "Example Port Ltd."}, "centroid": ["-123.1", "49.2"], "dateAdded": "2025-01-10T00:00:00.000Z"},
+ {"_id": "bbb222", "name": "Old Example Mine", "description": "An open-pit mine that has operated for decades.", "location": "Inland", "type": "Mines", "status": "Complete", "currentPhaseName": {"name": "Post Decision - Operation"}, "proponent": {"name": "Example Mining"}, "centroid": []}
+]}]

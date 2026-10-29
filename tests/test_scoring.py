@@ -134,3 +134,84 @@ def test_llm_quotes_are_verified():
     r = check_result({"summary_en": "Made-up claim.", "confidence": "high",
                       "evidence_quotes": ["not in the text at all"]}, source)
     assert r["summary_en"] is None and r["confidence"] == "unverified"
+
+
+def test_coastal_protection_and_outfall_are_recognised(rules):
+    # Paraphrased from a real IAAC notice that the old rules scored 8.
+    text = ("Stormwater Outfall Rehabilitation and Coastal Protection Project. The project stabilizes a major "
+            "stormwater outfall along the shoreline of the St. Lawrence River, affected by coastal erosion. "
+            "The aim is to protect the riverbank through durable coastal engineering measures. "
+            "The overall project footprint is estimated at 1,080 m².")
+    s = score_text(text, rules)
+    assert {"shoreline_protection", "outfall_intake"} <= set(s["facts"]["types"])
+    assert s["score"] >= 20
+
+
+def test_french_coastal_protection_terms(rules):
+    text = ("Travaux de stabilisation des berges et de protection contre l'érosion sur le littoral de la baie, "
+            "avec un perré de 150 mètres et la réfection de l'émissaire pluvial.")
+    s = score_text(text, rules)
+    assert {"shoreline_protection", "outfall_intake"} <= set(s["facts"]["types"])
+    assert s["score"] >= 20
+
+
+def test_land_side_port_paving_stays_low(rules):
+    # Paraphrased from a real notice: port terminal expansion with only grading, paving and drainage on land.
+    text = ("Terminal Expansion. The Port is planning the expansion of a terminal. Work includes regrading an "
+            "embankment, redevelopment of a drainage ditch, and grading and paving of a new storage area for "
+            "general cargo and dry bulk materials.")
+    assert score_text(text, rules)["score"] < 20
+
+
+def test_existing_outfalls_mentioned_in_background_do_not_count(rules):
+    # The sentence that wrongly tagged a real harbour project as outfall work.
+    background = ("The sheltered inner harbour can be affected by land-based and harbour activities, "
+                  "including drainage and wastewater outfalls.")
+    assert "outfall_intake" not in score_text(background, rules)["facts"]["types"]
+    for work in ("The sewer outfall will be relocated to the seaward side of the breakwater.",
+                 "The project involves stabilizing and upgrading a major stormwater outfall.",
+                 "Intake Structure Replacement at the generating station.",
+                 "Réfection de l'émissaire pluvial dans la baie."):
+        assert "outfall_intake" in score_text(work, rules)["facts"]["types"], work
+
+
+def test_redirect_to_a_disallowed_path_is_blocked(tmp_path, monkeypatch):
+    """A link that redirects into a path robots.txt disallows must be refused, not followed."""
+    import pytest
+    from mpf.http import Blocked, PoliteClient
+
+    class FakeResp:
+        def __init__(self, url, final, body=b"ok", status=200):
+            self.url, self.status_code, self.headers, self._body = final, status, {}, body
+        def iter_content(self, n):
+            yield self._body
+        def close(self):
+            pass
+
+    robots = {"https://a.example/robots.txt": b"User-agent: *\nDisallow:\n",
+              "https://files.example/robots.txt": b"User-agent: *\nDisallow: /resources\n"}
+
+    def fake_get(url, **kw):
+        if url in robots:
+            return FakeResp(url, url, robots[url])
+        if url == "https://a.example/r/123":
+            return FakeResp(url, "https://files.example/resources/data.gpkg")
+        return FakeResp(url, url)
+
+    client = PoliteClient({"http": {"user_agent": "MarineProjectFinder/0.1 (test)", "default_delay_seconds": 0,
+                                    "never_fetch": []}}, tmp_path)
+    monkeypatch.setattr(client.session, "get", fake_get)
+    with pytest.raises(Blocked, match="robots.txt disallows"):
+        client.get("https://a.example/r/123")
+    assert client.get("https://a.example/page") == b"ok"
+
+
+def test_distance_offshore_is_not_a_size():
+    # Real title: "Morven North Offshore Wind Array - 61km off Aberdeenshire Coast"
+    assert extract_sizes("Morven North Offshore Wind Array – 61km off Aberdeenshire Coast") == []
+
+
+def test_habitat_restoration_licences_count_as_habitat_creation(rules):
+    s = score_text("Marine Licence - Seagrass Planting - SE of Isle of Berneray, Sound of Harris, Western Isles", rules)
+    assert {"habitat_creation", "eelgrass"} <= set(s["facts"]["habitat_clues"])
+    assert s["score"] >= 20

@@ -35,7 +35,14 @@ def _open(settings):
 def cmd_ingest(args, settings):
     conn = _open(settings)
     client = PoliteClient(settings, data_dir(settings) / "cache")
-    wanted = args.source or [n for n, c in settings["sources"].items() if c.get("enabled")]
+    from mpf.sources import LIVE_SOURCES
+    if args.source:
+        wanted = args.source
+    elif args.live:
+        wanted = [n for n in LIVE_SOURCES if settings["sources"].get(n, {}).get("enabled")]
+    else:
+        wanted = [n for n, c in settings["sources"].items() if c.get("enabled")]
+    problems = []
     for name in wanted:
         conf = settings["sources"].get(name, {})
         if name == "drop_folder":
@@ -58,11 +65,19 @@ def cmd_ingest(args, settings):
             # Usually the internet connection dropped. Pages already saved stay in the
             # cache, so running ingest again only fetches what is missing.
             print(f"   Network problem, stopped this source early: {type(e).__name__}. Run ingest again later.")
+            problems.append(name)
+        except Exception as e:      # a broken source must never stop the others
+            print(f"   ERROR in this source, skipped: {type(e).__name__}: {str(e)[:200]}")
+            problems.append(name)
         conn.commit()
         for line in source.log:
             print("   " + line)
+            if line.startswith("STOPPED"):
+                problems.append(name)
         print(f"   {total} items ({new} new)")
     print(f"Network requests this run: {client.network_requests} (everything else came from the cache)")
+    if problems:
+        print(f"Sources that stopped early or failed: {', '.join(sorted(set(problems)))}. The others ran normally.")
 
 
 def cmd_score(args, settings):
@@ -168,31 +183,32 @@ def _review_path(settings):
 
 
 def cmd_review(args, settings):
-    """Write review/review.csv and a draft preview of every candidate."""
-    from mpf import review, site
+    """Write review/review.csv with every scored item. Mark yes (checked) or no (hide)."""
+    from mpf import review
     conn = _open(settings)
-    counts = review.write_review(conn, _review_path(settings), settings.get("review", {}))
-    rows = review.read_review(_review_path(settings))
-    records = site.build_records(conn, rows, list(rows), settings, today())
-    draft_dir = ROOT / "review" / "draft"
-    site.write_site(draft_dir, records, settings.get("site", {}), today(), draft=True)
+    from mpf.site import enabled_sources
+    counts = review.write_review(conn, _review_path(settings), settings.get("tiers", {}), enabled_sources(settings))
     print(f"Review file: {_review_path(settings)} ({counts['rows']} items, {counts['new']} new, "
-          f"{counts['approved']} approved)")
-    print(f"Draft preview (not public): {draft_dir / 'index.html'}")
+          f"{counts['yes']} marked yes, {counts['no']} marked no)")
 
 
 def cmd_publish(args, settings):
-    """Build site/ from the items marked publish=yes in the review file."""
+    """Build site/ from the Strong match, Possible and Weak tiers."""
+    from collections import Counter
+
     from mpf import review, site
+    from mpf.tiers import TIER_LABELS
     conn = _open(settings)
     rows = review.read_review(_review_path(settings))
-    ids = review.approved_ids(_review_path(settings))
     out = ROOT / "site"
-    records = site.build_records(conn, rows, ids, settings, today(), previous=site.load_previous(out))
-    site.write_site(out, records, settings.get("site", {}), today())
-    print(f"Published {len(records)} approved items to {out / 'index.html'}")
-    if len(records) < len(ids):
-        print(f"Note: {len(ids) - len(records)} approved ids were not found in the database or the last site.")
+    records, skipped = site.build_public_records(conn, rows, settings, today(), previous=site.load_previous(out))
+    site.write_site(out, records, settings, today())
+    tiers = Counter(r["tier"] for r in records)
+    print(f"Published {len(records)} items to {out / 'index.html'}: " +
+          ", ".join(f"{TIER_LABELS[t]} {tiers.get(t, 0)}" for t in site.PUBLISHED_TIERS))
+    print(f"Reviewed by a person: {sum(r['reviewed'] for r in records)}. Not published: "
+          f"{skipped['not_relevant']} probably not relevant (review file only), {skipped['hidden_by_you']} marked no, "
+          f"{skipped['bad_link']} bad links, {skipped['merged_duplicates']} duplicates merged.")
 
 
 def cmd_approved_count(args, settings):
@@ -216,29 +232,35 @@ def cmd_zip_site(args, settings):
 
 
 def cmd_check_access(args, settings):
-    """Check that our sources still allow us, without the cache. Exits with an error if blocked."""
+    """Check each live source still allows us, without the cache. One blocked source does not
+    stop the others; the command only fails if every source is unreachable."""
     import tempfile
     from pathlib import Path as _P
 
     from mpf.http import Blocked
-    from mpf.sources.iaac import COMMENT_URL
-    from mpf.sources.nl_ea import LIST_URL
-    checks = [("IAAC open comment list", COMMENT_URL), ("NL project list", LIST_URL)]
-    problems = 0
+    from mpf.sources import CHECK_URLS, LIVE_SOURCES
+    ok, problems = [], []
     with tempfile.TemporaryDirectory() as tmp:
         client = PoliteClient(settings, _P(tmp))
-        for name, url in checks:
+        for name in LIVE_SOURCES:
+            if not settings["sources"].get(name, {}).get("enabled"):
+                continue
+            url = CHECK_URLS[name].replace("{date}", today().strftime("%Y%m%d"))
+            headers = {"Accept": "application/json"} if name == "es_boe" else None
             try:
-                body = client.get(url)
+                body = client.get(url, headers=headers)
+                ok.append(name)
                 print(f"OK      {name}: {len(body):,} bytes, robots.txt allows it")
             except Blocked as e:
-                problems += 1
+                problems.append(name)
                 print(f"BLOCKED {name}: {e}")
             except requests.RequestException as e:
-                problems += 1
-                print(f"FAILED  {name}: {e}")
+                problems.append(name)
+                print(f"FAILED  {name}: {str(e)[:160]}")
     if problems:
-        print("At least one source is not reachable. Not fetching. Do not work around this.")
+        print(f"Not reachable: {', '.join(problems)}. Those sources will stop safely; nothing is worked around.")
+    if not ok:
+        print("No source is reachable. Stopping.")
         sys.exit(1)
 
 
@@ -247,6 +269,7 @@ def main(argv=None):
     sub = p.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("ingest", help="fetch sources")
     s.add_argument("--source", action="append", help="only this source (repeatable)")
+    s.add_argument("--live", action="store_true", help="all enabled live web sources (used by the scheduled run)")
     sub.add_parser("score", help="score all items")
     s = sub.add_parser("show", help="print top items with evidence")
     s.add_argument("--min-score", type=int, default=40)
@@ -259,9 +282,9 @@ def main(argv=None):
     s = sub.add_parser("llm", help="optional LLM summaries")
     s.add_argument("--limit", type=int, default=10)
     s.add_argument("--min-score", type=int)
-    sub.add_parser("review", help="write review/review.csv and a draft preview")
-    sub.add_parser("publish", help="build site/ from approved items")
-    sub.add_parser("approved-count", help="print how many items are approved")
+    sub.add_parser("review", help="write review/review.csv (every scored item)")
+    sub.add_parser("publish", help="build site/ with every item, in tiers")
+    sub.add_parser("approved-count", help="print how many items are marked yes")
     sub.add_parser("zip-site", help="zip site/ for Netlify Drop")
     sub.add_parser("check-access", help="check the sources still allow us (no cache)")
     args = p.parse_args(argv)

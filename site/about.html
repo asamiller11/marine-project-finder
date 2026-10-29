@@ -4,15 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>About: Marine Project Finder: Canada</title>
-<meta name="description" content="Public permit and environmental assessment notices for Canadian marine construction projects likely to need habitat work">
+<title>About: Marine Project Finder</title>
+<meta name="description" content="Public permit and environmental assessment notices for marine construction projects likely to need habitat work">
 <style>
 :root{--bg:#f4f8fa;--card:#ffffff;--text:#13293a;--muted:#4f6676;--line:#d3e0e8;--accent:#0b6b85;
---accent-soft:#e2f1f5;--high:#0f6b4f;--high-bg:#dcf3ea;--med:#7a5300;--med-bg:#fbefd5;--low:#4b5a66;
---low-bg:#e8edf1;--late:#9a3412;--late-bg:#fdebe2;--open:#0b6b85;--draft:#fff4c2;color-scheme:light dark}
+--accent-soft:#e2f1f5;--strong:#0f6b4f;--strong-bg:#dcf3ea;--possible:#7a5300;--possible-bg:#fbefd5;
+--weak:#4b5a66;--weak-bg:#e8edf1;--late:#9a3412;--late-bg:#fdebe2;--rev:#0f6b4f;--rev-bg:#dcf3ea;
+--soon:#5b4a8a;--soon-bg:#ece8f6;color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--bg:#0c1a22;--card:#12252f;--text:#e2edf3;--muted:#9fb4c2;
---line:#24404e;--accent:#6cc7da;--accent-soft:#163846;--high:#7fdcb7;--high-bg:#143a2f;--med:#f2c46b;
---med-bg:#3a2e12;--low:#c2ced6;--low-bg:#25343d;--late:#f6a982;--late-bg:#3d2116;--open:#6cc7da;--draft:#3a3412}}
+--line:#24404e;--accent:#6cc7da;--accent-soft:#163846;--strong:#7fdcb7;--strong-bg:#143a2f;--possible:#f2c46b;
+--possible-bg:#3a2e12;--weak:#c2ced6;--weak-bg:#25343d;--late:#f6a982;--late-bg:#3d2116;--rev:#7fdcb7;
+--rev-bg:#143a2f;--soon:#c6b8f0;--soon-bg:#2a2440}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",
 Roboto,"Helvetica Neue",Arial,sans-serif}
@@ -24,8 +26,21 @@ header.site p{margin:6px 0 0;color:var(--muted)}
 nav.top{margin-top:10px;font-size:.95rem}
 nav.top a{margin-right:16px}
 .updated{font-size:.9rem}
-.draft{background:var(--draft);border:1px solid var(--line);padding:10px 14px;border-radius:8px;margin:16px 0 0}
-.summary-line{margin:18px 0 8px;font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:16px 0 4px}
+.panel h2{margin:0 0 6px;font-size:1.05rem}
+.panel ul{margin:6px 0;padding-left:18px}
+.panel p{margin:6px 0}
+details.coverage summary{cursor:pointer;font-weight:600}
+table.cov{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:8px}
+table.cov th,table.cov td{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+table.cov th{color:var(--muted);font-weight:600}
+table.cov tr.region td:first-child{padding-left:22px;color:var(--muted)}
+.cov-wrap{overflow-x:auto}
+.pill{font-size:.78rem;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.pill.covered{color:var(--strong);background:var(--strong-bg)}
+.pill.partial{color:var(--possible);background:var(--possible-bg)}
+.pill.coming_soon{color:var(--soon);background:var(--soon-bg)}
+.summary-line{margin:14px 0 8px;font-weight:600}
 section.soon{background:var(--accent-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
 section.soon h2{margin:0 0 6px;font-size:1.05rem}
 section.soon ul{margin:0;padding-left:18px}
@@ -35,78 +50,158 @@ section.soon li{margin:4px 0}
 .filters select,.filters input[type=search]{font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;
 background:var(--card);color:var(--text);min-width:0}
 .filters .check{flex-direction:row;align-items:center;gap:8px;font-size:.95rem;color:var(--text);padding-bottom:8px}
-.cards{display:grid;gap:14px;margin:8px 0 24px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px 20px;margin:4px 0 12px}
+.toggles label{display:flex;align-items:center;gap:8px}
+section.country>h2{font-size:1.35rem;margin:26px 0 2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section.country>p.country-note{margin:0 0 4px;color:var(--muted);font-size:.95rem}
+section.tier h3{font-size:1.12rem;margin:18px 0 2px}
+section.tier p.tier-desc{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.cards{display:grid;gap:14px;margin:8px 0 12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.card h3{margin:0 0 4px;font-size:1.1rem;line-height:1.35}
-.card h3 a{text-decoration:none}
-.card h3 a:hover{text-decoration:underline}
+.card h4{margin:0 0 4px;font-size:1.1rem;line-height:1.35}
+.card h4 a{text-decoration:none}
+.card h4 a:hover{text-decoration:underline}
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
 .badge{font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
-.conf-high{color:var(--high);background:var(--high-bg)}
-.conf-medium{color:var(--med);background:var(--med-bg)}
-.conf-low{color:var(--low);background:var(--low-bg)}
+.t-strong{color:var(--strong);background:var(--strong-bg)}
+.t-possible{color:var(--possible);background:var(--possible-bg)}
+.t-weak{color:var(--weak);background:var(--weak-bg)}
+.t-watch{color:var(--soon);background:var(--soon-bg)}
+.score{color:var(--muted);border:1px solid var(--line)}
 .late{color:var(--late);background:var(--late-bg)}
-.st-open{color:var(--open);background:var(--accent-soft)}
-.st-other{color:var(--low);background:var(--low-bg)}
-.rev-yes{color:var(--high);background:var(--high-bg)}
-.rev-no{color:var(--late);background:var(--late-bg)}
+.st-open{color:var(--accent);background:var(--accent-soft)}
+.st-other{color:var(--weak);background:var(--weak-bg)}
+.rev{color:var(--rev);background:var(--rev-bg)}
+.auto{color:var(--muted);border:1px dashed var(--line)}
+.lang{color:var(--soon);background:var(--soon-bg)}
 dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:3px 12px;margin:0 0 10px;font-size:.95rem}
 dl.facts dt{color:var(--muted)}
 dl.facts dd{margin:0}
 .countdown{font-weight:600}
 .card p.summary{margin:8px 0}
+.note{color:var(--muted);font-size:.88rem}
 ul.quotes{margin:8px 0;padding:0;list-style:none}
 ul.quotes li{border-left:3px solid var(--line);padding:2px 0 2px 10px;margin:6px 0;color:var(--muted);font-size:.95rem}
 p.source{margin:10px 0 0;font-size:.92rem}
+p.attr{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
 .empty{padding:24px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px}
-footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:.9rem;margin-top:20px}
 main.about h2{margin-top:28px;font-size:1.2rem}
 main.about{padding-bottom:20px}
+[hidden]{display:none!important}
 @media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
 </style>
 </head>
 <body>
 <header class="site"><div class="wrap">
 <h1>About this prototype</h1>
-<p>Public permit and environmental assessment notices for Canadian marine construction projects likely to need habitat work</p>
-<p class="updated">Last updated: October 28, 2026</p>
+<p>Public permit and environmental assessment notices for marine construction projects likely to need habitat work</p>
+<p class="updated">Last updated: October 29, 2026</p>
 <nav class="top"><a href="index.html">Projects</a><a href="about.html">About</a></nav>
 </div></header>
 <main class="wrap about">
 <h2>What it does</h2>
-<p>The tool reads public environmental assessment and permit notices for marine construction projects in
-Canada, such as ports, wharves, breakwaters, dredging and shoreline works. It flags projects that may need
-marine habitat work, for example avoidance and reduction measures, habitat enhancement, fish habitat
-offsetting, or nature-inclusive design. Each listing links to the official notice.</p>
+<p>The tool reads public environmental assessment and permit notices for marine construction projects,
+such as ports, wharves, breakwaters, dredging and shoreline works. It flags projects that may need marine
+habitat work, for example avoidance and reduction measures, habitat enhancement, fish habitat offsetting, or
+nature-inclusive design. Each listing links to the official notice.</p>
 
-<h2>What the score and confidence mean</h2>
+<h2>What the score and tiers mean</h2>
 <p>Each notice gets a score from 0 to 100 from simple, visible rules: the type of marine work, words about
-fish habitat, offsetting, eelgrass, shellfish or species at risk, and the size of the work. The confidence
-label (High, Medium or Low) sums this up and is checked by a person. A high score means the notice is worth
-a closer look. It does not mean that mitigation or compensation is required. Only the regulator decides that.</p>
-<p>The short quotes on each listing are the exact sentences from the notice that led to the flag, so you can
-judge for yourself.</p>
+fish habitat, offsetting, eelgrass, shellfish or species at risk, and the size of the work. The score places
+each notice in a tier:</p>
+<ul><li><strong>Strong match:</strong> Score 60 or more. Several signals of habitat work, such as offsetting, new habitat, or large in-water works.</li><li><strong>Possible:</strong> Score 35 to 59. Some signals. Worth a look.</li><li><strong>Weak:</strong> Score 20 to 34. Few signals. Often routine maintenance.</li></ul>
+<p>Notices scoring under 20, quarries and pits, and withdrawn projects are not
+listed at all. Only Strong and Possible matches are shown at first; Weak matches can be switched on with
+the "Show weaker matches" toggle. A high score means the notice is worth a closer look. It does not mean
+that mitigation or compensation is required. Only the regulator decides that.</p>
+<p>The short quotes on each listing are complete sentences copied exactly from the notice, chosen because
+they describe the project and its habitat signals, so you can judge for yourself.</p>
 
-<h2>How items are reviewed</h2>
-<p>A person reads every candidate before it appears here. Items that are not reviewed and approved stay off
-this site. Summaries are kept short and factual, and facts that a notice does not give are shown as
-"unknown".</p>
+<h2>Automatic listings and review</h2>
+<p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has
+checked a listing against the official notice, it is marked "Reviewed by a person". Listings found to be
+wrong or irrelevant on review are removed. Summaries are kept short and factual, and facts that a notice
+does not give are shown as "unknown".</p>
+<p>When the same project appears in two registries, it is listed once, with a link to the other listing.
+Listings whose official page cannot be found are left out.</p>
+
+<h2>Notices in other languages</h2>
+<p>Quotes always stay in the notice's original language. There is no automatic translation. For notices
+not in English, the English summary is built only from the keywords and sizes the tool found in the text,
+and is labelled "built from keywords, not a translation". When too little was found, the listing says
+"Not translated" and shows the original-language quotes instead. The keyword rules for French, Danish,
+Spanish, Norwegian and Dutch have fewer tests than the English rules, so those listings are lower confidence
+and carry a "Less tested language" badge.</p>
+
+<h2>Project watch</h2>
+<p>Some sources list projects rather than notices. When such a source is used, its items appear in a
+separate "Project watch (not a notice feed)" section, with no comment deadline, no countdown, and never in
+the closing-soon list. No project watch source is in use at the moment.</p>
+
+<h2>Coverage</h2>
+<p><strong>For now the site is mostly Canada: 23 of the 30 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
+<p>"Covered" means a source for that place is read automatically. "Partial" means only some sources are
+read, and they are named. "Coming soon" means no source is read yet, and no listings are shown for it.</p>
+<div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td><strong>Canada</strong></td><td><span class="pill partial">Partial</span></td><td>Federal assessments across Canada, plus the Newfoundland and Labrador provincial registry. Sources: Canadian Impact Assessment Registry, Newfoundland and Labrador environmental assessment.</td></tr>
+<tr class="region"><td>Newfoundland and Labrador</td><td><span class="pill covered">Covered</span></td><td>Sources: Newfoundland and Labrador environmental assessment, Canadian Impact Assessment Registry.</td></tr>
+<tr class="region"><td>British Columbia</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only. The BC government&#x27;s copyright policy forbids reproducing its websites&#x27; content without written permission, so the BC Environmental Assessment Office is not read.</td></tr>
+<tr class="region"><td>Quebec</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only. Quebec&#x27;s copyright terms forbid reproducing government content without prior authorization, so its registry is not read.</td></tr>
+<tr class="region"><td>Nova Scotia</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only. The provincial list holds few marine projects.</td></tr>
+<tr class="region"><td>New Brunswick</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Prince Edward Island</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Ontario</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Manitoba</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Nunavut</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Northwest Territories</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr class="region"><td>Yukon</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
+<tr><td><strong>United States</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>Not approved yet. The Army Corps of Engineers site blocks automated access.</td></tr>
+<tr class="region"><td>New York</td><td><span class="pill coming_soon">Coming soon</span></td><td>The Environmental Notice Bulletin is disallowed by robots.txt.</td></tr>
+<tr class="region"><td>Florida</td><td><span class="pill coming_soon">Coming soon</span></td><td>Permit data sits in JavaScript map applications.</td></tr>
+<tr class="region"><td>California</td><td><span class="pill coming_soon">Coming soon</span></td><td>CEQAnet was checked and is workable, but not approved yet.</td></tr>
+<tr class="region"><td>Massachusetts</td><td><span class="pill coming_soon">Coming soon</span></td><td>The MEPA Environmental Monitor is a JavaScript application.</td></tr>
+<tr class="region"><td>Texas</td><td><span class="pill coming_soon">Coming soon</span></td><td>Public notices are mostly boundary surveys and leases.</td></tr>
+<tr><td><strong>Norway</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>regjeringen.no blocks automated access (its robots.txt answers HTTP 403), and NVE&#x27;s case list needs JavaScript.</td></tr>
+<tr><td><strong>Denmark</strong></td><td><span class="pill partial">Partial</span></td><td>National consultation portal only, filtered with Danish marine keywords (less tested). Sources: Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds). Source read; no marine project hearings found in this run.</td></tr>
+<tr><td><strong>France</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No usable source yet. The offshore wind site&#x27;s legal notice forbids copying or publishing its content without written permission; the national impact-assessment dataset and the compensation-measures files are disallowed by robots.txt. A permission request has been drafted.</td></tr>
+<tr><td><strong>Netherlands</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>Official publications search and API are disallowed by robots.txt, and Platform Participatie&#x27;s project list needs JavaScript.</td></tr>
+<tr><td><strong>Spain</strong></td><td><span class="pill partial">Partial</span></td><td>National gazette (BOE) only: impact-assessment resolutions and port or public-information notices (Spanish, less tested). Regional bulletins are not read. Sources: Boletín Oficial del Estado (BOE) open data.</td></tr>
+<tr><td><strong>United Kingdom</strong></td><td><span class="pill partial">Partial</span></td><td>Scotland only. Sources: marine.gov.scot marine licence documentation.</td></tr>
+<tr class="region"><td>Scotland</td><td><span class="pill covered">Covered</span></td><td>Sources: marine.gov.scot marine licence documentation.</td></tr>
+<tr class="region"><td>England</td><td><span class="pill coming_soon">Coming soon</span></td><td>The MMO public register is a JavaScript application.</td></tr>
+<tr class="region"><td>Wales</td><td><span class="pill coming_soon">Coming soon</span></td><td>The marine licence register listing was not found in the check.</td></tr>
+<tr><td><strong>Ireland</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>MARA&#x27;s legal notice forbids republishing its content, and data.gov.ie&#x27;s API is disallowed by robots.txt.</td></tr>
+<tr><td><strong>Germany</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>UVP-Portal answered HTTP 429 (too many requests) on the first request, so it was treated as blocked.</td></tr>
+<tr><td><strong>Belgium</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No readable public registry found.</td></tr>
+<tr><td><strong>Portugal</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>participa.gov.pt is a JavaScript application with no documented feed.</td></tr>
+<tr><td><strong>Italy</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>The national assessment portal said its service was temporarily disabled.</td></tr>
+<tr><td><strong>Sweden</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No national registry found; notices are spread over 21 county boards.</td></tr>
+<tr><td><strong>Finland</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>lausuntopalvelu.fi blocks automated access (its robots.txt answers HTTP 403).</td></tr>
+<tr><td><strong>Poland</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>No project registry found.</td></tr>
+<tr><td><strong>Greece</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>robots.txt disallows the registry&#x27;s project pages.</td></tr>
+<tr><td><strong>Australia</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>The EPBC portal&#x27;s comment list needs JavaScript.</td></tr>
+<tr><td><strong>New Zealand</strong></td><td><span class="pill coming_soon">Coming soon</span></td><td>EPA New Zealand&#x27;s robots.txt disallows automated access.</td></tr>
+</tbody></table></div>
+<p>Less tested languages: French, Danish, Spanish, Norwegian, Dutch. The keyword rules for these languages have fewer tests, so listings in them are lower confidence and are marked on each card.</p>
 
 <h2>Public sources used</h2>
-<ul><li><a href="https://iaac-aeic.gc.ca/050/evaluations" rel="noopener">Canadian Impact Assessment Registry</a></li><li><a href="https://www.gov.nl.ca/eccc/env-assessment/projects-list/" rel="noopener">Newfoundland and Labrador environmental assessment</a></li></ul>
-<p>More provinces and countries may be added later.</p>
+<ul><li><a href="https://iaac-aeic.gc.ca/050/evaluations" rel="noopener">Canadian Impact Assessment Registry</a></li><li><a href="https://www.gov.nl.ca/eccc/env-assessment/projects-list/" rel="noopener">Newfoundland and Labrador environmental assessment</a></li><li><a href="https://hoeringsportalen.dk/" rel="noopener">Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds)</a></li><li><a href="https://marine.gov.scot/data/marine-licence-documentation" rel="noopener">marine.gov.scot marine licence documentation</a></li><li><a href="https://www.boe.es/datosabiertos/" rel="noopener">Boletín Oficial del Estado (BOE) open data</a></li></ul>
 
 <h2>How often it updates</h2>
-<p>The list is refreshed every 2 weeks. Comment countdowns are calculated in your browser, so they stay current
-between updates.</p>
+<p>The list is refreshed every 2 weeks, and new notices appear on their own. Comment countdowns are calculated
+in your browser, so they stay current between updates.</p>
 
 <h2>Known limits</h2>
 <ul>
 <li>Public notices often appear after a project's design is done, so some listings will be too late to
 influence the design.</li>
+<li>Automatic listings have not been checked by a person and can be wrong.</li>
 <li>Some size readings can be wrong, for example when a notice also mentions a road or pipeline length.</li>
-<li>Not every province is covered yet.</li>
-<li>Notices in French are quoted in French.</li>
+<li>Many countries and regions are not covered yet; see the coverage table above.</li>
+<li>Notices are quoted in their original language. Keyword rules in languages other than English have
+fewer tests, so those listings are lower confidence.</li>
 </ul>
 </main>
 <footer><div class="wrap"><p>Prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div></footer>

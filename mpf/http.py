@@ -165,7 +165,7 @@ class PoliteClient:
 
     # -- fetching ------------------------------------------------------------
     def _get_raw(self, url: str, max_age_hours: float | None, check_robots: bool = True,
-                 max_bytes: int | None = None) -> tuple[int, bytes]:
+                 max_bytes: int | None = None, headers: dict | None = None) -> tuple[int, bytes]:
         self._check_never_fetch(url)
         body_path, meta_path = self._cache_paths(url)
         if body_path.exists() and meta_path.exists():
@@ -187,8 +187,18 @@ class PoliteClient:
                 delay = max(delay, robots.crawl_delay)
         self._wait(host, delay)
 
-        resp = self.session.get(url, timeout=self.timeout, stream=True)
+        resp = self.session.get(url, timeout=self.timeout, stream=True, headers=headers)
         self.network_requests += 1
+        # A redirect must not lead somewhere we may not go: check the final address too.
+        if check_robots and resp.url != url:
+            resp.close()
+            self._check_never_fetch(resp.url)
+            fp = urlparse(resp.url)
+            final_path = fp.path + ("?" + fp.query if fp.query else "")
+            if not self._robots_for(resp.url).allowed(final_path or "/"):
+                raise Blocked(f"{url} redirects to {resp.url}, which robots.txt disallows")
+            resp = self.session.get(url, timeout=self.timeout, stream=True, headers=headers)
+            self.network_requests += 1
         chunks, size = [], 0
         for chunk in resp.iter_content(64 * 1024):
             chunks.append(chunk)
@@ -208,11 +218,14 @@ class PoliteClient:
         meta_path.write_text(json.dumps(meta, indent=1))
         return resp.status_code, body
 
-    def get(self, url: str, list_page: bool = False, max_bytes: int | None = None) -> bytes:
+    def get(self, url: str, list_page: bool = False, max_bytes: int | None = None,
+            headers: dict | None = None) -> bytes:
         """Fetch a URL (or return the cached copy). Raises Blocked or requests errors.
         list_page=True lets the cache expire, so we see new items on index pages."""
         max_age = self.list_max_age if list_page else None
-        status, body = self._get_raw(url, max_age, max_bytes=max_bytes)
+        # headers: only content negotiation an API documents (for example BOE's Accept header).
+        # Never used to change who we say we are.
+        status, body = self._get_raw(url, max_age, max_bytes=max_bytes, headers=headers)
         if status != 200:
             raise requests.HTTPError(f"HTTP {status} for {url}")
         return body

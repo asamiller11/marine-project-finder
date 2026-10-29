@@ -17,9 +17,16 @@ def load_settings(path: Path | None = None) -> dict:
 
 
 def load_scoring(path: Path | None = None) -> dict:
+    """Scoring rules, with the per-language patterns merged into their groups."""
     path = path or ROOT / "config" / "scoring.yaml"
     with open(path, encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        rules = yaml.safe_load(f)
+    extra = rules.get("language_patterns") or {}
+    rules["marine_context"] = list(rules["marine_context"]) + list((extra.get("marine_context") or {}).values())
+    for group in ("project_types", "habitat_clues"):
+        for name, per_lang in (extra.get(group) or {}).items():
+            rules[group][name]["patterns"] = list(rules[group][name]["patterns"]) + list(per_lang.values())
+    return rules
 
 
 def data_dir(settings: dict) -> Path:
