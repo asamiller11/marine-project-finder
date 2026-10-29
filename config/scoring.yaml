@@ -1,0 +1,201 @@
+# Scoring rules for "likely needs marine habitat work" (0 to 100).
+#
+# How the score is built (see mpf/score.py):
+#   1. Project type points: the best matching marine project type.
+#   2. Habitat clue points: each clue group counts once, added up, capped.
+#   3. Size points: from lengths, areas, dredge volumes, MW, slips.
+#   4. Small-project penalty, and a cap when nothing marine is mentioned.
+#
+# Patterns are regular expressions, matched ignoring upper/lower case.
+# Keep English and French together in the same list.
+# Use single quotes so backslashes are kept as written.
+
+flag_threshold: 40          # items at or above this score count as "flagged"
+
+caps:
+  habitat_points_max: 55
+  size_points_max: 20
+  # If the text never mentions a marine setting, the score cannot go above this.
+  no_marine_context_max: 15
+
+# Words that show the work is in or next to the sea or an estuary.
+marine_context:
+  - '\bmarine\b'
+  - '\b(sea|ocean|oceanic)\b'
+  - '\bharbou?r'
+  - '\bestuar'
+  - '\bintertidal|\bsubtidal|\btidal\b'
+  - '\bcoast(al)?\b|\bshoreline\b|\bnearshore\b|\bforeshore\b'
+  - '\b(bay|gulf|strait|sound|inlet|cove|fjord|fiord)\b'
+  - '\bwharf|\bwharves\b|\bjetty|\bbreakwater'
+  - '\bmarin(e|s)?\b|\bmer\b|\bocéan'
+  - '\bhavre\b|\bportuaire|\bquai'
+  - '\bestuaire|\blittoral|\bcôti(er|ère)|\bbaie\b|\bgolfe\b|\bfleuve\b'
+
+project_types:
+  port_terminal:
+    points: 20
+    label: "Port or marine terminal"
+    patterns:
+      # Not "port authority": that is usually the proponent's name, not the project.
+      - '\bport (expansion|development|terminal|facility|facilities|extension)'
+      - '\bmarine terminal|\bcontainer terminal|\bferry terminal|\bLNG (export )?terminal'
+      # Not plain "berthing": small craft harbours use it for boat floats.
+      - '\b(new|additional|deep[- ]water|deep[- ]sea) berths?\b|\bberth (expansion|extension|construction)'
+      - '\binstallations? portuaires?|\bterminal maritime|\bagrandissement du port|\bport de\b'
+  wharf_dock:
+    points: 15
+    label: "Wharf, pier or large dock"
+    patterns:
+      - '\bwharf|\bwharves\b'
+      - '\bpier\b|\bpiers\b'
+      - '\bdock(s|ing)?\b'
+      - '\bquai(s)?\b'
+      - '\bappontement|\bponton'
+  breakwater_jetty:
+    points: 20
+    label: "Breakwater, jetty or groyne"
+    patterns:
+      - '\bbreakwater'
+      - '\bjett(y|ies)\b'
+      - '\bgroyne|\bgroin\b'
+      - '\bbrise-lames?|\bjetée'
+  dredging:
+    points: 18
+    label: "Dredging"
+    patterns:
+      - '\bdredg'
+      - '\bdragage|\bdraguer'
+      - '\bnavigation channel|\bapproach channel|\bturning basin'
+  shoreline_protection:
+    points: 12
+    label: "Shoreline protection, seawall or bulkhead"
+    patterns:
+      - '\bseawall|\bsea wall'
+      - '\bbulkhead'
+      # Not plain "armour stone": quarries that produce it are not marine works.
+      - '\brevetment|\briprap|\brip rap|\barmou?r ?stone (protection|placement|revetment)'
+      - '\bshoreline protection|\bshore protection|\berosion protection'
+      - '\benrochement|\bmur de soutènement|\bprotection (des berges|du littoral|côtière)'
+  marina_small_craft:
+    points: 15
+    label: "Marina or small craft harbour"
+    patterns:
+      - '\bmarina\b'
+      - '\bsmall craft harbou?r'
+      - '\bboat (launch|ramp)'
+      - '\bport de plaisance|\bhavre de pêche|\bport pour petits bateaux'
+  infill_causeway:
+    points: 15
+    label: "Infill, reclamation or causeway"
+    patterns:
+      - '\binfill\b|\bin-fill\b'
+      - '\bland reclamation|\breclaim(ed|ing)? land'
+      - '\bcauseway'
+      - '\bremblai|\bremblayage|\bchaussée'
+  offshore_wind:
+    points: 20
+    label: "Offshore wind"
+    patterns:
+      - '\boffshore wind'
+      - '\bwind turbine foundations?\b.{0,40}\b(seabed|offshore)'
+      - '\bexport cable|\binter-array cable|\bsubsea cable|\bsubmarine cable'
+      - '\béolien(ne)?s? en mer|\béolien(ne)?s? extracôti'
+  piles:
+    points: 8
+    label: "Piles or pile-supported structure"
+    patterns:
+      - '\bpile (driving|installation|replacement)|\bpiles\b|\bpiling\b'
+      - '\bpieux\b|\bbattage de pieux'
+
+# Habitat clues. Each group adds its points once, with the matching sentence as evidence.
+habitat_clues:
+  offsetting:
+    points: 25
+    label: "Habitat offsetting or compensation mentioned"
+    patterns:
+      - '\boffset(ting)? (plan|measures?|habitat)|\bhabitat offset|\bfish habitat offset'
+      - '\bcompensat(ion|ory) (habitat|measures?|plan|for)'
+      - '\bcompensation (de l.habitat|du poisson)|\bplan de compensation|\bmesures? (de )?compensatoires?'
+  fisheries_act:
+    points: 20
+    label: "Fisheries Act authorization"
+    patterns:
+      - '\bFisheries Act (authori[sz]ation|paragraph|section 35)|\bparagraph 35\(2\)\(b\)|\bsection 35\(2\)'
+      - '\bautorisation (en vertu de la|de la) Loi sur les pêches|\bLoi sur les pêches'
+  hadd:
+    points: 20
+    label: "Harmful alteration, disruption or destruction of fish habitat"
+    patterns:
+      - '\bHADD\b|\bharmful alteration|\bdeath of fish|\bdestruction of fish habitat'
+      - '\bdétérioration, (la )?destruction ou (la )?perturbation|\bperturbation de l.habitat'
+  habitat_creation:
+    points: 15
+    label: "New habitat, enhancement or nature-inclusive design"
+    patterns:
+      - '\b(new|create|creating|creation of|development of new) (fish |marine )?habitat'
+      - '\bhabitat (enhancement|creation|restoration|compensation)'
+      - '\bnature[- ]inclusive|\beco-?engineer|\bliving shoreline|\becological (design|engineering)'
+      - '\breef (balls?|units?)|\bartificial reef'
+      - '\b(création|aménagement|amélioration) d.habitats?|\bhabitat du poisson.{0,40}(créé|aménagé)|\brécif artificiel'
+  eelgrass:
+    points: 15
+    label: "Eelgrass or seagrass"
+    patterns:
+      - '\beelgrass|\bseagrass|\bzostera\b|\bsubmerged aquatic vegetation|\bSAV\b'
+      - '\bzostère|\bherbiers?\b'
+  fish_habitat:
+    points: 10
+    label: "Fish habitat"
+    patterns:
+      - '\bfish habitat'
+      - '\bhabitats? du poisson|\bhabitat du poisson'
+  shellfish_oyster:
+    points: 8
+    label: "Shellfish, oyster or mussel beds"
+    patterns:
+      - '\bshellfish|\boyster|\bmussel bed|\bclam bed|\bscallop'
+      - '\bmollusques|\bhuîtr|\bmoules?\b|\bpétoncle'
+  intertidal_marsh:
+    points: 8
+    label: "Intertidal zone, salt marsh or tidal wetland"
+    patterns:
+      - '\bintertidal|\bsalt ?marsh|\btidal (marsh|wetland|flat)|\bmudflat'
+      - '\bzone intertidale|\bmarais salé|\bestran|\bbatture'
+  species_at_risk:
+    points: 8
+    label: "Species at risk"
+    patterns:
+      - '\bspecies at risk|\bSARA\b|\bendangered|\bthreatened species|\bcritical habitat'
+      - '\bespèces? en péril|\bLEP\b|\bhabitat essentiel|\bmenacée'
+  marine_footprint:
+    points: 8
+    label: "Work below high water or footprint on the seabed"
+    patterns:
+      - '\bbelow (the )?(high water|HHWLT|high-water)|\bseabed|\bsea floor|\bseafloor|\bmarine footprint|\bsubtidal'
+      - '\bfond marin|\bsous la ligne des hautes eaux|\blit du fleuve'
+  scour_protection:
+    points: 6
+    label: "Scour or cable protection"
+    patterns:
+      - '\bscour protection|\bcable protection|\brock (placement|berm|dump)'
+      - '\bprotection (contre l.affouillement|des câbles)'
+  mitigation_general:
+    points: 3
+    label: "General mitigation language (weak signal)"
+    patterns:
+      - '\bavoid and minimi[sz]e|\bmitigation measures'
+      - '\bmesures d.atténuation'
+
+# Size clues. Units are converted to metres, square metres, cubic metres, MW.
+size_points:
+  length_m:      [[50, 8], [200, 15]]          # [threshold, points]: highest met wins
+  area_m2:       [[1000, 8], [10000, 15]]
+  volume_m3:     [[5000, 8], [50000, 15]]
+  power_mw:      [[20, 8], [200, 15]]
+  slips:         [[50, 6], [150, 12]]
+
+small_project:
+  # If the largest length found is below this and nothing else is large, apply the penalty.
+  max_length_m: 30
+  penalty: 10

@@ -1,0 +1,81 @@
+# General settings for Marine Project Finder.
+# Paths are relative to the project folder.
+
+http:
+  # Every request says who we are. Change the contact if you hand this to someone else.
+  user_agent: "MarineProjectFinder/0.1 (research prototype; +https://github.com/asamiller11/marine-project-finder)"
+  # Wait this long between requests to one host when robots.txt sets no crawl delay.
+  default_delay_seconds: 3
+  # List pages (which change) are re-fetched at most this often.
+  # Detail pages (one project) are fetched once and never again.
+  list_page_max_age_hours: 20
+  timeout_seconds: 60
+  # We never request URLs that match these patterns, whatever robots.txt says.
+  # DFO PATH (/arcgis/) stays off until DFO confirms scripts may use it.
+  never_fetch:
+    - "egisp.dfo-mpo.gc.ca"
+    - "/arcgis/"
+    - "donneesquebec.ca/recherche/api/"
+    - "usace.army.mil"
+
+data_dir: data          # cache, database and raw files live here (not in git)
+drop_dir: drop          # put hand-saved PDF, HTML or text files here
+labels_file: labels/labels.csv
+
+sources:
+  iaac:
+    enabled: true
+    # Besides the open comment list, also read the newest N project pages from the
+    # registry sitemap, so we see recent projects whose comment period has closed.
+    recent_projects: 150
+  nl_ea:
+    enabled: true
+    # Only read projects registered in the last N days.
+    lookback_days: 540
+    # Also read the short "Summary of Registration" PDF when there is one.
+    fetch_summary_pdf: true
+    max_pdf_mb: 5
+  dfo_far:
+    # Scorer test set only. All rows are issued authorizations from 2019-08 to 2023-06.
+    enabled: true
+    csv_url: "https://api-proxy.edh-cde.dfo-mpo.gc.ca/catalogue/records/2c09d2fd-9a8e-4d8c-b5af-95747e36eaac/attachments/fa-registry-dataset-ensemble-de-donnees-du-registre-de-lp_2023-06-21.csv"
+  drop_folder:
+    enabled: true
+
+timing:
+  # "Comment period closing soon" means the deadline is this many days away or fewer.
+  closing_soon_days: 14
+  # Mark "likely too late" when the decision date is this close or already past.
+  too_late_days: 7
+
+review:
+  # Items at or above this score go into review/review.csv for you to approve.
+  min_score: 20
+  file: review/review.csv
+  # Confidence label suggested in the review file (you can change it there).
+  confidence_high: 60     # score at or above = High
+  confidence_medium: 35   # score at or above = Medium, below = Low
+
+site:
+  title: "Marine Project Finder: Canada"
+  description: "Public permit and environmental assessment notices for Canadian marine construction projects likely to need habitat work"
+  contact_name: "Asa Miller"
+  contact_email: "asamiller11@gmail.com"
+  update_frequency: "every 2 weeks"
+  closing_soon_days: 30
+  max_quote_chars: 180
+  max_quotes: 3
+  sources:
+    - name: "Canadian Impact Assessment Registry"
+      url: "https://iaac-aeic.gc.ca/050/evaluations"
+      key: iaac
+    - name: "Newfoundland and Labrador environmental assessment"
+      url: "https://www.gov.nl.ca/eccc/env-assessment/projects-list/"
+      key: nl_ea
+
+llm:
+  # Optional. Needs ANTHROPIC_API_KEY in your environment. The rule score stays primary.
+  enabled: false
+  model: "claude-opus-5-5"
+  # Only summarize items at or above this rule score, to keep cost down.
+  min_score: 40

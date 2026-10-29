@@ -1,0 +1,114 @@
+# Refreshes the data and publishes the website to GitHub Pages.
+#
+# Runs on the 1st and 15th of each month (about every 2 weeks), when you start it by hand
+# (Actions tab > "Refresh and publish" > Run workflow), and when you push a new review file.
+#
+# Two modes, set by the repository variable CI_FETCH:
+#   (not set)  GitHub fetches and scores the notices itself, then publishes.
+#   false      Fallback: you fetch on your own computer and push site/; GitHub only publishes it.
+#
+# Only items marked publish=yes in review/review.csv are ever published.
+
+name: Refresh and publish
+
+on:
+  schedule:
+    - cron: "23 10 1,15 * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "review/review.csv"
+      - "site/**"
+      - "config/**"
+      - "mpf/**"
+      - ".github/workflows/refresh.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      approved: ${{ steps.count.outputs.approved }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: Restore pages fetched in earlier runs
+        if: vars.CI_FETCH != 'false'
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: mpf-data-${{ github.run_id }}
+          restore-keys: mpf-data-
+
+      - name: Check the sources still allow automated access (stops here if blocked)
+        if: vars.CI_FETCH != 'false'
+        run: python -m mpf check-access
+
+      - name: Fetch and score (robots.txt checks, 5 second IAAC delay, cached)
+        if: vars.CI_FETCH != 'false'
+        run: |
+          python -m mpf ingest --source iaac --source nl_ea
+          python -m mpf score
+
+      - name: Optional LLM summaries (only if USE_LLM is true and the secret is set)
+        if: vars.CI_FETCH != 'false' && vars.USE_LLM == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          pip install anthropic
+          python -m mpf llm --limit 30
+
+      - name: Build review file and site from approved items
+        if: vars.CI_FETCH != 'false'
+        run: |
+          python -m mpf review
+          python -m mpf publish
+
+      - name: Upload the review file (download it from this run's Summary page)
+        if: vars.CI_FETCH != 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-file
+          path: review/review.csv
+
+      - name: Count approved items
+        id: count
+        run: echo "approved=$(python -m mpf approved-count)" >> "$GITHUB_OUTPUT"
+
+      - name: Package the site
+        if: steps.count.outputs.approved != '0'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.approved != '0'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

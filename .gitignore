@@ -1,0 +1,35 @@
+# Never put these in the public repository.
+
+# Python setup and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Raw pages fetched from third-party sites, the database, logs
+data/
+data_ingest_log.txt
+
+# Your hand labels and labelling sheets
+labels/
+
+# Draft preview of unreviewed items
+review/draft/
+
+# Files you saved by hand
+drop/*
+!drop/README.txt
+
+# Private notes and drafts (for example the DFO email)
+private/
+
+# Secrets (keys belong in GitHub repository secrets, never in files)
+.env
+*.env
+*.key
+secrets*
+
+# Build outputs
+site.zip
+*.zip
+.DS_Store

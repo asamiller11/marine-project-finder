@@ -1,0 +1,23 @@
+# One-off check: can GitHub's servers reach our sources, and does robots.txt allow us?
+# Start it by hand: Actions tab > "Check source access" > Run workflow.
+# It makes two requests (plus robots.txt), with the same User-Agent and delays as the tool.
+
+name: Check source access
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m mpf check-access

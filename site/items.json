@@ -1,0 +1,88 @@
+[
+ {
+  "id": "iaac:90841",
+  "title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Department of National Defence",
+  "province": "Nova Scotia",
+  "water_body": "CFB Halifax Wrights Cove",
+  "types": [
+   "Breakwater, jetty or groyne",
+   "Dredging"
+  ],
+  "stage": "public comment open until 2026-11-15",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-15",
+  "decision_date": null,
+  "score": 38,
+  "confidence": "Medium",
+  "summary": "Project by Department of National Defence in CFB Halifax Wrights Cove, Nova Scotia. The notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2.",
+  "quotes": [
+   "The approximate size of the construction area is 90,000 m 2 .",
+   "...roadways, underground and above ground utilities, and jetty infrastructure to support the following functions: Submarine berthing and jetty operations (jetty, jetty cranes...",
+   "Parkade The construction activities will also involve dredging, vegetation clearing, excavation, demolition, marine works, and the movement of construction equipment and materials."
+  ],
+  "too_late": false
+ },
+ {
+  "id": "nl_ea:2434",
+  "title": "Port aux Basques Navigation Improvement Project",
+  "url": "https://www.gov.nl.ca/eccc/projects/project-2434/",
+  "source": "nl_ea",
+  "source_name": "Newfoundland and Labrador environmental assessment",
+  "proponent": "Marine Atlantic Inc.",
+  "province": "Newfoundland and Labrador",
+  "water_body": "Port aux Basques Harbour",
+  "types": [
+   "Wharf, pier or large dock",
+   "Breakwater, jetty or groyne",
+   "Dredging",
+   "Infill, reclamation or causeway"
+  ],
+  "stage": "comment closed 2026-10-20, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-10-20",
+  "decision_date": "2026-10-30",
+  "score": 96,
+  "confidence": "High",
+  "summary": "Project by Marine Atlantic Inc. in Port aux Basques Harbour, Newfoundland and Labrador. The notice mentions breakwater or jetty, dredging, infill or causeway and wharf or dock work and about 418,000 m3 of material.",
+  "quotes": [
+   "Carefully placed structures can provide shelter, hiding areas, and feeding opportunities for fish and other marine species, helping offset habitat affected by construction.",
+   "...to repair and upgrade the existing Pikes Island Breakwater and to create an infill area at Pikes Island, which may support the development of new fish habitat in the outer harbour",
+   "Fish and fish habitat: The harbour supports fish, shellfish, and other marine species, with rocky shoreline and seabed habitats."
+  ],
+  "too_late": true
+ },
+ {
+  "id": "nl_ea:2379",
+  "title": "Point Rousse Port Expansion",
+  "url": "https://www.gov.nl.ca/eccc/projects/project-2379/",
+  "source": "nl_ea",
+  "source_name": "Newfoundland and Labrador environmental assessment",
+  "proponent": "Point Rousse Marine Terminal Ltd.",
+  "province": "Newfoundland and Labrador",
+  "water_body": "Green Bay",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Shoreline protection, seawall or bulkhead",
+   "Marina or small craft harbour",
+   "Infill, reclamation or causeway"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": "2026-01-16",
+  "decision_date": "2026-01-21",
+  "score": 65,
+  "confidence": "High",
+  "summary": "Project by Point Rousse Marine Terminal Ltd. in Green Bay, Newfoundland and Labrador. The notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2.",
+  "quotes": [
+   "...and Labrador NLDECCC Newfoundland and Labrador Department of Environment, Conservation and Climate Change NL ESA NL Endangered Species Act PRMT Point Rousse Terminal Ltd",
+   "...will be built, approximately 12 to 14 m wide, with a seabed footprint of approximately 30 m width and less than 100 m in length, each extending from the laydown area to a...",
+   "It outlines the Project’s potential environmental, social, and economic impacts, along with proposed mitigation measures to support environmentally responsible development."
+  ],
+  "too_late": true
+ }
+]
