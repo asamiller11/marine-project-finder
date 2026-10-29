@@ -134,5 +134,6 @@ def test_plist_pins_absolute_tools_and_gh_login(tmp_path):
     env = plist["EnvironmentVariables"]
     assert env["MPF_GIT"] == "/usr/bin/git" and env["MPF_GH"] == "/usr/local/bin/gh"
     assert env["PATH"].startswith("/usr/local/bin:/usr/bin:/bin")
-    assert plist["ProgramArguments"][0].endswith("/.venv/bin/python")
+    assert plist["ProgramArguments"][0] == str(autoupdate.VENV_PYTHON)
+    assert str(autoupdate.VENV_PYTHON).endswith("/.venv/bin/python")
     assert update.GIT.startswith("/") and update.GH.startswith("/")

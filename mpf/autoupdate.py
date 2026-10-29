@@ -27,6 +27,8 @@ from mpf.config import ROOT, data_dir
 from mpf.update import is_online, read_state
 
 LABEL = "com.marineprojectfinder.autoupdate"
+# Always the project's own Python (the venv with its packages), named by absolute path.
+VENV_PYTHON = ROOT / ".venv" / "bin" / "python"
 PLIST = Path.home() / "Library" / "LaunchAgents" / f"{LABEL}.plist"
 DAYS_BETWEEN_UPDATES = 14
 CHECK_EVERY_SECONDS = 3600
@@ -70,7 +72,7 @@ def notify(title: str, message: str) -> None:
 def update_command(upload: bool = True) -> list[str]:
     """The update, at low priority, keeping the Mac awake only while it runs."""
     cmd = ["/usr/bin/caffeinate", "-i", "/usr/bin/nice", "-n", "10",
-           sys.executable, "-W", "ignore", "-m", "mpf", "update"]
+           str(VENV_PYTHON), "-W", "ignore", "-m", "mpf", "update"]
     return cmd if upload else cmd + ["--no-upload"]
 
 
@@ -155,7 +157,7 @@ def plist_text(settings: dict) -> str:
   <key>Label</key><string>{LABEL}</string>
   <key>ProgramArguments</key>
   <array>
-    <string>{sys.executable}</string>
+    <string>{VENV_PYTHON}</string>
     <string>-W</string><string>ignore</string>
     <string>-m</string><string>mpf</string><string>auto-check</string>
   </array>
