@@ -112,6 +112,8 @@ class PoliteClient:
         self.list_max_age = float(http.get("list_page_max_age_hours", 20))
         self.timeout = float(http.get("timeout_seconds", 60))
         self.never_fetch = http.get("never_fetch", [])
+        # Minimum seconds between requests for hosts that publish a rate limit outside robots.txt.
+        self.host_delays = {h: float(d) for h, d in (http.get("host_delays") or {}).items()}
         self.cache_dir = cache_dir
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.session = requests.Session()
@@ -186,7 +188,7 @@ class PoliteClient:
                 return meta["status"], body_path.read_bytes()
 
         host = urlparse(url).netloc
-        delay = self.default_delay
+        delay = max(self.default_delay, self.host_delays.get(host, 0))
         if check_robots:
             robots = self._robots_for(url)
             p = urlparse(url)

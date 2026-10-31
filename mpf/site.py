@@ -27,6 +27,7 @@ from pathlib import Path
 
 from mpf.comments import NOT_PUBLISHED, comment_info
 from mpf.history import CHANGE_LABELS
+from mpf.news import GDELT_URL
 from mpf.coverage import STATUS_LABELS, load_coverage, source_names
 from mpf.models import UNKNOWN
 from mpf.review import auto_summary, decision, own_summary
@@ -438,6 +439,9 @@ ol.timeline{list-style:none;padding:0;margin:6px 0;border-left:2px solid var(--l
 ol.timeline li{padding:3px 0 3px 12px}
 ol.timeline time{font-weight:600;margin-right:8px;font-variant-numeric:tabular-nums}
 ol.timeline li.official time{color:var(--accent)}
+ul.news{padding-left:18px;margin:6px 0}
+ul.news li{margin:4px 0}
+details.news summary,details.more summary{cursor:pointer;font-weight:600}
 .gone{background:var(--late-bg);color:var(--late);padding:10px 14px;border-radius:10px;margin-top:16px}
 @media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
 """
@@ -899,7 +903,7 @@ def _countries_in_order(records: list[dict], coverage: dict) -> list[dict]:
 
 
 def render_index(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None,
-                 history_dates: list[str] | None = None) -> str:
+                 history_dates: list[str] | None = None, news_html: str = "") -> str:
     coverage = coverage if coverage is not None else load_coverage()
     title = site.get("title", "MitiMark")
     desc = site.get("description", "")
@@ -1017,6 +1021,7 @@ Always read the official notice.</p>
 <a href="projects.csv">All listed projects (CSV)</a>
 </div>
 <p class="empty" id="no-match" hidden>No projects match these filters.</p>
+{news_html}
 <div id="view" hidden></div>
 <div id="server-list">
 {body}
@@ -1095,6 +1100,50 @@ def _timeline_html(rec: dict) -> str:
     return '<ol class="timeline">' + "".join(items) + "</ol>"
 
 
+def _news_source(n: dict) -> str:
+    via = (f' (via <a href="{GDELT_URL}" rel="noopener">{escape(n["via"])}</a>)' if n.get("via") else "")
+    return f"Source: {escape(n['source_name'])}{via}"
+
+
+def _news_li(n: dict) -> str:
+    return (f'<li><a href="{escape(n["url"])}" rel="noopener nofollow">{escape(n["title"])}</a> '
+            f'<span class="note">{escape(n.get("date") or "date unknown")}. {_news_source(n)}.</span></li>')
+
+
+def news_section(items: list[dict], shown: int) -> str:
+    """Collapsed list of unmatched news items. Matched items appear on their project's page instead."""
+    loose = [n for n in items if not n.get("matches")]
+    if not loose:
+        return ""
+    first, rest = loose[:shown], loose[shown:]
+    more = (f'<details class="more"><summary>Show all {len(loose)}</summary><ul class="news">'
+            + "".join(_news_li(n) for n in rest) + "</ul></details>") if rest else ""
+    return (f'<details class="panel news" id="news"><summary>News signal, unverified ({len(loose)})</summary>\n'
+            f'<p class="note">Headlines from news feeds that mention marine construction. They are not official '
+            f'notices, have not been checked, and are never ranked as Strong match or Possible. Only the headline, '
+            f'source, date and link are shown. A headline that matches an official notice appears on that '
+            f'project\'s page as "Also in the news".</p>\n<ul class="news">'
+            + "".join(_news_li(n) for n in first) + f"</ul>\n{more}</details>")
+
+
+def attach_news(records: list[dict], items: list[dict]) -> None:
+    by_id = {r["id"]: r for r in records}
+    for r in records:
+        r["in_the_news"] = []
+    for n in items:
+        for rid in n.get("matches") or []:
+            if rid in by_id:
+                by_id[rid]["in_the_news"].append({k: n.get(k) for k in ("title", "url", "source_name", "date", "via")})
+
+
+def _in_the_news_html(rec: dict) -> str:
+    news = rec.get("in_the_news") or []
+    if not news:
+        return ""
+    return ('<h2>Also in the news</h2>\n<p class="note">News headlines that name this project. Unverified; the '
+            'official notice is the record.</p>\n<ul class="news">' + "".join(_news_li(n) for n in news) + "</ul>")
+
+
 def render_project_page(rec: dict, site: dict, updated: date, country_name: str, less_tested: list) -> str:
     title = site.get("title", "MitiMark")
     types = rec["types"] or []
@@ -1140,6 +1189,7 @@ people who commented are not copied here. To comment, use the official notice.</
 {f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
 <h2>Public comments</h2>
 {comments}
+{_in_the_news_html(rec)}
 <h2>Timeline</h2>
 {_timeline_html(rec)}
 <p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
@@ -1270,7 +1320,8 @@ fewer tests, so those listings are lower confidence.</li>
 
 
 def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date,
-               coverage: dict | None = None) -> None:
+               coverage: dict | None = None, news_items: list[dict] | None = None) -> None:
+    """news_items: only passed when news.show_on_site is on (see mpf/news.py)."""
     from mpf import history as hist
     coverage = coverage if coverage is not None else load_coverage()
     site_conf, tiers = settings.get("site", {}), settings.get("tiers", {})
@@ -1280,8 +1331,12 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
     hist.annotate(records, h)
     names = {c["code"]: c["name"] for c in coverage.get("countries", [])}
     less_tested = coverage.get("less_tested_languages", [])
-    (out_dir / "index.html").write_text(render_index(records, site_conf, tiers, updated, coverage, h["snapshots"]),
-                                        encoding="utf-8")
+    news_html = ""
+    if news_items is not None:
+        attach_news(records, news_items)
+        news_html = news_section(news_items, int((settings.get("news") or {}).get("default_shown", 15)))
+    (out_dir / "index.html").write_text(render_index(records, site_conf, tiers, updated, coverage, h["snapshots"],
+                                                     news_html), encoding="utf-8")
     (out_dir / "about.html").write_text(render_about(site_conf, tiers, updated, coverage, records), encoding="utf-8")
     # One page per project, at a stable address (p/<source>-<id>.html). Pages of projects no longer
     # listed are removed, so the folder only holds what the list shows.

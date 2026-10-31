@@ -105,6 +105,9 @@ ol.timeline{list-style:none;padding:0;margin:6px 0;border-left:2px solid var(--l
 ol.timeline li{padding:3px 0 3px 12px}
 ol.timeline time{font-weight:600;margin-right:8px;font-variant-numeric:tabular-nums}
 ol.timeline li.official time{color:var(--accent)}
+ul.news{padding-left:18px;margin:6px 0}
+ul.news li{margin:4px 0}
+details.news summary,details.more summary{cursor:pointer;font-weight:600}
 .gone{background:var(--late-bg);color:var(--late);padding:10px 14px;border-radius:10px;margin-top:16px}
 @media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
 </style>
@@ -214,6 +217,7 @@ Always read the official notice.</p>
 <a href="projects.csv">All listed projects (CSV)</a>
 </div>
 <p class="empty" id="no-match" hidden>No projects match these filters.</p>
+
 <div id="view" hidden></div>
 <div id="server-list">
 <section class="country" data-country="CA" aria-label="Canada">

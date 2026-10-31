@@ -75,6 +75,13 @@ def cmd_ingest(args, settings):
             if line.startswith("STOPPED"):
                 problems.append(name)
         print(f"   {total} items ({new} new)")
+    news_conf = settings.get("news") or {}
+    if args.live and not args.source and news_conf.get("enabled"):
+        # News feeds are early-warning extras: a blocked feed is reported but is not a source problem.
+        from mpf import news
+        print("== news feeds (headline, source, date and link only)")
+        for line in news.ingest(conn, client, news_conf):
+            print("   " + line)
     print(f"Network requests this run: {client.network_requests} (everything else came from the cache)")
     if problems:
         print(f"Sources that stopped early or failed: {', '.join(sorted(set(problems)))}. The others ran normally.")
@@ -202,13 +209,38 @@ def cmd_publish(args, settings):
     rows = review.read_review(_review_path(settings))
     out = ROOT / "site"
     records, skipped = site.build_public_records(conn, rows, settings, today(), previous=site.load_previous(out))
-    site.write_site(out, records, settings, today())
+    news_items = None
+    if (settings.get("news") or {}).get("show_on_site"):
+        from mpf import news
+        from mpf.config import load_scoring
+        news_items = news.build_news(conn, records, load_scoring(), settings["news"].get("max_age_days", 60),
+                                     today().isoformat())
+    site.write_site(out, records, settings, today(), news_items=news_items)
     tiers = Counter(r["tier"] for r in records)
     print(f"Published {len(records)} items to {out / 'index.html'}: " +
           ", ".join(f"{TIER_LABELS[t]} {tiers.get(t, 0)}" for t in site.PUBLISHED_TIERS))
     print(f"Reviewed by a person: {sum(r['reviewed'] for r in records)}. Not published: "
           f"{skipped['not_relevant']} probably not relevant (review file only), {skipped['hidden_by_you']} marked no, "
           f"{skipped['bad_link']} bad links, {skipped['merged_duplicates']} duplicates merged.")
+
+
+def cmd_news(args, settings):
+    """Fetch the news feeds (unless --no-fetch) and print the marine news items found, newest first."""
+    from mpf import news, review, site
+    from mpf.config import load_scoring
+    conn = _open(settings)
+    conf = settings.get("news") or {}
+    if not args.no_fetch:
+        client = PoliteClient(settings, data_dir(settings) / "cache")
+        for line in news.ingest(conn, client, conf):
+            print(line)
+    records, _ = site.build_public_records(conn, review.read_review(_review_path(settings)), settings, today())
+    items = news.build_news(conn, records, load_scoring(), conf.get("max_age_days", 60), today().isoformat())
+    titles = {r["id"]: r["title"] for r in records}
+    print(f"\n{len(items)} marine news items after removing duplicates:")
+    for it in items[: args.limit]:
+        match = f"  MATCHES: {titles[it['matches'][0]]}" if it["matches"] else ""
+        print(f"- {it['date']}  score {it['score']:>2}  {it['title']}\n    {it['source_name']}  {it['url']}{match}")
 
 
 def cmd_approved_count(args, settings):
@@ -318,6 +350,9 @@ def main(argv=None):
     sub.add_parser("review", help="write review/review.csv (every scored item)")
     sub.add_parser("publish", help="build site/ with every item, in tiers")
     sub.add_parser("approved-count", help="print how many items are marked yes")
+    s = sub.add_parser("news", help="fetch news feeds and list marine news items (unverified)")
+    s.add_argument("--no-fetch", action="store_true", help="use what is already stored")
+    s.add_argument("--limit", type=int, default=40)
     sub.add_parser("zip-site", help="zip site/ for Netlify Drop")
     sub.add_parser("check-access", help="check the sources still allow us (no cache)")
     s = sub.add_parser("update", help="fetch, score, review file, publish, upload, check the live site")
@@ -333,7 +368,7 @@ def main(argv=None):
     settings = load_settings()
     {"ingest": cmd_ingest, "score": cmd_score, "show": cmd_show, "label-template": cmd_label_template,
      "eval": cmd_eval, "llm": cmd_llm, "review": cmd_review, "publish": cmd_publish,
-     "approved-count": cmd_approved_count, "zip-site": cmd_zip_site,
+     "approved-count": cmd_approved_count, "news": cmd_news, "zip-site": cmd_zip_site,
      "check-access": cmd_check_access, "update": cmd_update,
      **{n: cmd_auto for n in ("auto-check", "auto-install", "auto-uninstall", "auto-status", "auto-pause",
                               "auto-resume", "auto-show-plist", "auto-kick-dry", "auto-kick-upload")}}[args.cmd](args, settings)

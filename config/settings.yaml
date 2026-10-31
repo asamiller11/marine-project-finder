@@ -6,6 +6,9 @@ http:
   user_agent: "MarineProjectFinder/0.1 (research prototype; +https://github.com/asamiller11/marine-project-finder)"
   # Wait this long between requests to one host when robots.txt sets no crawl delay.
   default_delay_seconds: 3
+  # Hosts that state a rate limit elsewhere (GDELT: "one every 5 seconds").
+  host_delays:
+    api.gdeltproject.org: 6
   # List pages (which change) are re-fetched at most this often.
   # Detail pages (one project) are fetched once and never again.
   list_page_max_age_hours: 20
@@ -137,3 +140,37 @@ llm:
   model: "claude-opus-5-5"
   # Only summarize items at or above this rule score, to keep cost down.
   min_score: 40
+
+# News signals (early warning, unverified). Only headline, source name, date and link are stored.
+# Each feed was checked first: robots.txt allows it and its terms allow this use (see mpf/news.py).
+news:
+  enabled: true            # read the feeds during ingest
+  show_on_site: false      # the "News signal, unverified" section stays off until approved
+  default_shown: 15        # how many news items show before "Show all"
+  max_age_days: 60
+  feeds:
+    - name: gdelt_ca
+      type: gdelt
+      query: '(breakwater OR wharf OR dredging OR seawall OR "marine terminal" OR "port expansion" OR "small craft harbour") sourcecountry:CA sourcelang:english'
+    - name: gdelt_uk
+      type: gdelt
+      query: '(breakwater OR harbour OR dredging OR "sea wall" OR "marine licence" OR "offshore wind farm" OR "port expansion") sourcecountry:UK sourcelang:english'
+    - name: gdelt_es
+      type: gdelt
+      query: '(espigón OR dragado OR "dique de abrigo" OR "ampliación del puerto" OR "eólica marina") sourcecountry:SP sourcelang:spanish'
+    - name: gdelt_dk
+      type: gdelt
+      query: '(havneudvidelse OR uddybning OR mole OR kystbeskyttelse OR "havvindmøllepark") sourcecountry:DA sourcelang:danish'
+    - name: canada_dfo
+      type: atom
+      source_name: "Fisheries and Oceans Canada news (Canada.ca)"
+      url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=fisheriesoceans&sort=publishedDate&orderBy=desc&pick=50&format=atom"
+    - name: canada_iaac
+      type: atom
+      source_name: "Impact Assessment Agency of Canada news (Canada.ca)"
+      url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=impactassessmentagency&sort=publishedDate&orderBy=desc&pick=50&format=atom"
+    - name: govuk_mmo
+      type: atom
+      source_name: "Marine Management Organisation news (GOV.UK)"
+      url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=marine-management-organisation"
+
