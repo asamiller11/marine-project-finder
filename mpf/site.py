@@ -383,7 +383,8 @@ nav.top a:hover{color:var(--text);border-bottom-color:var(--line)}
 .overview .side{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);align-items:start}
 .overview .side>.explain{grid-column:2;grid-row:1 / span 3}
 .overview .side>:not(.explain){grid-column:1}
-.summary-line{margin:0 0 10px;font-weight:600;color:var(--muted);font-size:.92rem}
+.summary-line{margin:0;font-weight:600;color:var(--muted);font-size:.92rem}
+.soon-note{margin:0 0 10px}
 section.explain{margin:0}
 section.explain ul{list-style:none;padding:0;display:grid;gap:4px}
 section.explain li{padding-left:20px;position:relative;font-size:.93rem}
@@ -698,8 +699,8 @@ JS = r"""
       ul.appendChild(li);
     });
     if (none) none.hidden = soon.length > 0;
-    line.textContent = shown.length + (shown.length === 1 ? ' project' : ' projects') + ' shown. ' + soon.length +
-      (soon.length === 1 ? ' comment deadline' : ' comment deadlines') + ' in the next ' + SOON + ' days.';
+    line.textContent = soon.length + (soon.length === 1 ? ' comment deadline' : ' comment deadlines') +
+      ' in the next ' + SOON + ' days.';
   }
   // CSV of the projects shown right now, in the order shown.
   var DATA = JSON.parse($('csv-data').textContent);
@@ -984,7 +985,6 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     soon_days = int(site.get("closing_soon_days", 30))
     td = tier_descriptions(tiers)
     less_tested = coverage.get("less_tested_languages", [])
-    default = [r for r in records if r["tier"] in ("strong", "possible")]
     n_soon = sum(1 for r in records if r["stage_kind"] == "open" and r.get("comment_deadline")
                  and 0 <= (date.fromisoformat(r["comment_deadline"]) - updated).days <= soon_days)
     countries = _countries_in_order(records, coverage)
@@ -1041,7 +1041,8 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
 <div class="overview">
 <section class="panel soon" aria-labelledby="soon-h">
 <h2 id="soon-h">Comment deadlines closing soon (next {soon_days} days)</h2>
-<p class="summary-line" id="summary-line">{len(default)} projects shown. {n_soon} comment deadlines in the next {soon_days} days.</p>
+<p class="summary-line" id="summary-line">{n_soon} comment deadlines in the next {soon_days} days.</p>
+<p class="note soon-note">Includes Weak matches.</p>
 <ul id="soon-list"></ul>
 <p id="soon-none">No comment deadlines in the next {soon_days} days.</p>
 <noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>

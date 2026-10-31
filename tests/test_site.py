@@ -68,7 +68,7 @@ def test_three_tiers_published_and_not_relevant_left_out(tmp_path):
     assert "are not listed" in html
     assert "Score 75/100" in html
     assert "It is not a statement that mitigation or\ncompensation is required" in html
-    assert "2 projects shown. 0 comment deadlines in the next 30 days." in html   # Weak hidden by default
+    assert "0 comment deadlines in the next 30 days.</p>" in html and "Includes Weak matches." in html
     site.write_site(tmp_path, records, SETTINGS, TODAY)
     data = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
     assert {r["tier"] for r in data} == {"strong", "possible", "weak"}
