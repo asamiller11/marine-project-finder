@@ -229,6 +229,12 @@
 "tier": "possible",
 "title": "Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia"
 },
+"iaac:90862": {
+"comment_deadline": "2026-11-30",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Fort Alexander First Nation, Sagkeeng, Shoreline Stabilization Phase III, Part B"
+},
 "iaac:90835": {
 "comment_deadline": "2026-11-14",
 "stage_kind": "open",
@@ -368,5 +374,13 @@
 "title": "Morven South Offshore Wind Array – 86km off Aberdeenshire Coast"
 }
 },
-"events": {}
+"events": {
+"iaac:90862": [
+{
+"date": "2026-10-31",
+"type": "new",
+"text": "First listed"
+}
+]
+}
 }

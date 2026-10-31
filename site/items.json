@@ -368,6 +368,64 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "iaac:90862",
+  "title": "Fort Alexander First Nation, Sagkeeng, Shoreline Stabilization Phase III, Part B",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90862?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Fort Alexander First Nation, Sagkeeng",
+  "country": "CA",
+  "province": "Manitoba",
+  "language": "en",
+  "water_body": "Traverse Bay",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "public comment open until 2026-11-30",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-30",
+  "decision_date": null,
+  "score": 33,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 33",
+  "reviewed": false,
+  "summary": "Project by Fort Alexander First Nation, Sagkeeng in Traverse Bay, Manitoba. The notice mentions shoreline protection work and a length of about 4,000 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "The design is consistent with that of approximately 4 km of works along the Traverse Bay shoreline, within the reserve, that were completed in several contracts between 2010 and 2025.",
+   "Once the highway embankment is re-established, the remaining shoreline stabilization and erosion protection works will be completed under frozen conditions (December 2026 to March 2027).",
+   "Slope stabilization and installation of an engineered riprap erosion control blanket along approximately 145 m of the Lake Winnipeg shoreline at the mouth of the Winnipeg River (Traverse Bay) in the Sagkeeng First Nation Fort Alexander Reserve."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90862.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-30",
+   "days_left": 30,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [
+   {
+    "date": "2026-10-31",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-10-31"
+ },
+ {
   "id": "iaac:90835",
   "title": "Generating Station 2 Intake Structure Replacement",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90835?culture=en-CA",
