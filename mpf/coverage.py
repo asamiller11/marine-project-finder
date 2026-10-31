@@ -1,6 +1,7 @@
 """Coverage config (config/coverage.yaml): countries, regions, statuses and sources."""
 from __future__ import annotations
 
+import copy
 from pathlib import Path
 
 import yaml
@@ -10,14 +11,22 @@ from mpf.config import ROOT
 STATUS_LABELS = {"covered": "Covered", "partial": "Partial", "coming_soon": "Coming soon"}
 
 
+_CACHE: dict = {}
+
+
 def load_coverage(path: Path | None = None) -> dict:
-    path = path or ROOT / "config" / "coverage.yaml"
-    with open(path, encoding="utf-8") as f:
-        cov = yaml.safe_load(f)
-    problems = check_coverage(cov)
-    if problems:
-        raise ValueError("config/coverage.yaml: " + "; ".join(problems))
-    return cov
+    """Read and check the file once; read it again only when it changes (the site build asks often)."""
+    path = Path(path or ROOT / "config" / "coverage.yaml")
+    key = (str(path), path.stat().st_mtime_ns)
+    if key not in _CACHE:
+        with open(path, encoding="utf-8") as f:
+            cov = yaml.safe_load(f)
+        problems = check_coverage(cov)
+        if problems:
+            raise ValueError("config/coverage.yaml: " + "; ".join(problems))
+        _CACHE.clear()
+        _CACHE[key] = cov
+    return copy.deepcopy(_CACHE[key])
 
 
 def check_coverage(cov: dict) -> list[str]:
