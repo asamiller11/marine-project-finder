@@ -152,8 +152,8 @@ def test_france_stage_only_from_clear_wording():
 
 
 def test_watch_deadline_text_is_not_overwritten_by_the_script():
-    js = site.JS
-    assert "if (kind === 'watch')" in js and js.index("if (kind === 'watch')") < js.index("cd.textContent = 'unknown'")
+    js = site.JS_COMMON
+    assert "if (kind === 'watch')" in js and js.index("if (kind === 'watch')") < js.index("cd.textContent = 'Not published'")
 
 
 def test_source_names_come_from_coverage_config():

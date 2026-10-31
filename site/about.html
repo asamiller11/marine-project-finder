@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>About: Marine Project Finder</title>
+<title>About: MitiMark</title>
 <meta name="description" content="Public permit and environmental assessment notices for marine construction projects likely to need habitat work">
 <style>
 :root{--bg:#f4f8fa;--card:#ffffff;--text:#13293a;--muted:#4f6676;--line:#d3e0e8;--accent:#0b6b85;
@@ -89,14 +89,31 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);f
 main.about h2{margin-top:28px;font-size:1.2rem}
 main.about{padding-bottom:20px}
 [hidden]{display:none!important}
+.badge.chg{color:var(--soon);background:var(--soon-bg)}
+.views{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 4px;font-weight:600}
+.toggles button,.watch-btn{font:inherit;font-size:.88rem;padding:3px 10px;border-radius:8px;border:1px solid var(--line);
+background:var(--accent-soft);color:var(--accent);cursor:pointer}
+.watch-btn[aria-pressed="true"]{background:var(--strong-bg);color:var(--strong)}
+.toggles{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+section.group>h2{margin:26px 0 8px;font-size:1.3rem}
+.crumb{margin:0;font-weight:600}
+article.project h1{margin:4px 0 6px;font-size:1.5rem;line-height:1.3}
+article.project h2{font-size:1.1rem;margin:22px 0 6px}
+article.project{margin-top:18px}
+.note{color:var(--muted);font-size:.9rem}
+ol.timeline{list-style:none;padding:0;margin:6px 0;border-left:2px solid var(--line)}
+ol.timeline li{padding:3px 0 3px 12px}
+ol.timeline time{font-weight:600;margin-right:8px;font-variant-numeric:tabular-nums}
+ol.timeline li.official time{color:var(--accent)}
+.gone{background:var(--late-bg);color:var(--late);padding:10px 14px;border-radius:10px;margin-top:16px}
 @media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
 </style>
 </head>
 <body>
 <header class="site"><div class="wrap">
-<h1>About this prototype</h1>
+<h1>About MitiMark</h1>
 <p>Public permit and environmental assessment notices for marine construction projects likely to need habitat work</p>
-<p class="updated">Last updated: October 29, 2026</p>
+<p class="updated">Last updated: October 31, 2026</p>
 <nav class="top"><a href="index.html">Projects</a><a href="about.html">About</a></nav>
 </div></header>
 <main class="wrap about">
@@ -133,6 +150,24 @@ and is labelled "built from keywords, not a translation". When too little was fo
 "Not translated" and shows the original-language quotes instead. The keyword rules for French, Danish,
 Spanish, Norwegian and Dutch have fewer tests than the English rules, so those listings are lower confidence
 and carry a "Less tested language" badge.</p>
+
+<h2>Public comments</h2>
+<p>Each project shows when its public comment period opens and closes and how many days are left, but
+only when the official registry publishes those dates. When an opening date is taken from the date of the
+notice that invited comments, it is labelled "date of the notice". Where a registry publishes the number
+of comments received, the number is shown with the date it was read and a link to the registry's own
+comments page. Comment text, the names of people who commented and other personal details are never copied
+to this site. Anything a source does not publish is shown as "Not published".</p>
+<ul><li><strong>Canadian Impact Assessment Registry:</strong> The registry shows the number of comments received on some project pages (mostly larger assessments).</li><li><strong>Newfoundland and Labrador environmental assessment:</strong> The registry publishes the comment deadline but not the number of comments received.</li><li><strong>Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds):</strong> The portal&#x27;s feeds give the hearing deadline but not the number of responses.</li><li><strong>marine.gov.scot marine licence documentation:</strong> Representations are published as PDF documents, not as a count.</li><li><strong>Boletín Oficial del Estado (BOE) open data:</strong> BOE notices give the comment period in working days and publish no count.</li></ul>
+
+<h2>Changes between updates and project pages</h2>
+<p>Every project has its own page with a stable address. At each update the site keeps a short snapshot
+(deadline, stage and tier) and marks projects that are new, whose comment deadline changed, or that are now
+decided. Each project page shows a timeline of those changes next to the official comment dates.</p>
+
+<h2>Your watch list</h2>
+<p>"Add to watch list" saves a project in your own browser only. There are no accounts, and nothing about
+your watch list is sent anywhere. Clearing your browser data clears the list.</p>
 
 <h2>Project watch</h2>
 <p>Some sources list projects rather than notices. When such a source is used, its items appear in a
@@ -204,6 +239,6 @@ influence the design.</li>
 fewer tests, so those listings are lower confidence.</li>
 </ul>
 </main>
-<footer><div class="wrap"><p>Prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div></footer>
+<footer><div class="wrap"><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div></footer>
 </body>
 </html>

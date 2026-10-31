@@ -5,18 +5,26 @@ What we read (robots.txt allows these, with a 5 second crawl delay):
   and its end date. This is our early signal.
 - /050/evaluations/sitemaps/projects     : list of all project page URLs. We read the
   newest N (by reference number) to also catch recent projects whose comments closed.
-- /050/evaluations/proj/<id>             : one project. Clean label/value HTML.
+- /050/evaluations/proj/<id>             : one project. Clean label/value HTML. Also shows the
+  number of public comments received ("View comments  Total: N"); we keep only that number and
+  link to the registry's comments page. Comment text and names are never read.
+  Project pages are fetched once. The only exception: a project that is listed on the site and
+  whose page shows a comment total is re-read at most once per cache period, so its total stays
+  current. No other page is re-read.
 
 Text on project pages is in the language the proponent submitted (English or French).
 """
 from __future__ import annotations
 
+import json
 import re
+from pathlib import Path
 from typing import Iterator
 
 import requests
 from bs4 import BeautifulSoup
 
+from mpf.comments import parse_comment_count
 from mpf.extract import extract_coordinates, extract_water_body
 from mpf.http import Blocked
 from mpf.models import UNKNOWN, Item
@@ -67,6 +75,16 @@ def parse_comment_list(html: str) -> dict[str, dict]:
     for entry in out.values():
         entry["provinces"] = sorted(entry["provinces"])
     return out
+
+
+def listed_with_count(items_json: Path) -> set[str]:
+    """Reference numbers of IAAC projects on the published site whose page shows a comment total."""
+    try:
+        records = json.loads(items_json.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    return {r["id"].split(":", 1)[1] for r in records
+            if r.get("source") == "iaac" and (r.get("comments") or {}).get("count") is not None}
 
 
 def parse_sitemap_refs(xml_text: str) -> list[str]:
@@ -121,6 +139,7 @@ def parse_project_page(html: str) -> dict:
         "province": province,
         "location": location or UNKNOWN,
         "reference": facts.get("Reference number", ""),
+        "comment_count": parse_comment_count(html),
     }
 
 
@@ -153,11 +172,14 @@ class IAACSource(Source):
             newest = sorted({int(r) for r in parse_sitemap_refs(sitemap)}, reverse=True)[:n_recent]
             refs += [str(r) for r in newest if str(r) not in open_items]
 
-        # 3. Each project page (fetched once, then served from cache forever).
+        # 3. Each project page (fetched once, then served from cache forever), except listed
+        #    projects whose page shows a comment total: those are re-read so the total stays current.
+        from mpf.config import ROOT
+        refresh = listed_with_count(ROOT / "site" / "items.json")
         for ref in refs:
             url = project_url(ref)
             try:
-                html = self.client.get(url).decode("utf-8", "replace")
+                html = self.client.get(url, list_page=ref in refresh).decode("utf-8", "replace")
             except Blocked as e:
                 self.log.append(f"STOPPED: {e}")
                 return
@@ -194,5 +216,9 @@ class IAACSource(Source):
             extra={"assessment_type": p["assessment_type"], "authorities": p["authorities"],
                    "open_comment": bool(open_info), "notices": notices, "location": p["location"],
                    # The page loaded and shows this project's reference number.
-                   "link_ok": p["reference"] == ref},
+                   "link_ok": p["reference"] == ref,
+                   "comment_count": p["comment_count"],
+                   "comment_count_as_of": self.client.fetched_at(url) if p["comment_count"] is not None else None,
+                   "comments_url": f"{BASE}/050/evaluations/proj/{ref}/contributions?culture=en-CA"
+                   if p["comment_count"] is not None else None},
         )

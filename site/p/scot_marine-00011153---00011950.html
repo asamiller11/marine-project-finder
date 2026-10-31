@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe - MitiMark</title>
+<meta name="description" content="Project in Scotland. The notice mentions infill or causeway and port or terminal work.">
+<style>
+:root{--bg:#f4f8fa;--card:#ffffff;--text:#13293a;--muted:#4f6676;--line:#d3e0e8;--accent:#0b6b85;
+--accent-soft:#e2f1f5;--strong:#0f6b4f;--strong-bg:#dcf3ea;--possible:#7a5300;--possible-bg:#fbefd5;
+--weak:#4b5a66;--weak-bg:#e8edf1;--late:#9a3412;--late-bg:#fdebe2;--rev:#0f6b4f;--rev-bg:#dcf3ea;
+--soon:#5b4a8a;--soon-bg:#ece8f6;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1a22;--card:#12252f;--text:#e2edf3;--muted:#9fb4c2;
+--line:#24404e;--accent:#6cc7da;--accent-soft:#163846;--strong:#7fdcb7;--strong-bg:#143a2f;--possible:#f2c46b;
+--possible-bg:#3a2e12;--weak:#c2ced6;--weak-bg:#25343d;--late:#f6a982;--late-bg:#3d2116;--rev:#7fdcb7;
+--rev-bg:#143a2f;--soon:#c6b8f0;--soon-bg:#2a2440}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",
+Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.site{background:var(--card);border-bottom:1px solid var(--line);padding:20px 0 16px}
+header.site h1{margin:0;font-size:1.6rem;line-height:1.25}
+header.site p{margin:6px 0 0;color:var(--muted)}
+nav.top{margin-top:10px;font-size:.95rem}
+nav.top a{margin-right:16px}
+.updated{font-size:.9rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:16px 0 4px}
+.panel h2{margin:0 0 6px;font-size:1.05rem}
+.panel ul{margin:6px 0;padding-left:18px}
+.panel p{margin:6px 0}
+details.coverage summary{cursor:pointer;font-weight:600}
+table.cov{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:8px}
+table.cov th,table.cov td{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+table.cov th{color:var(--muted);font-weight:600}
+table.cov tr.region td:first-child{padding-left:22px;color:var(--muted)}
+.cov-wrap{overflow-x:auto}
+.pill{font-size:.78rem;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.pill.covered{color:var(--strong);background:var(--strong-bg)}
+.pill.partial{color:var(--possible);background:var(--possible-bg)}
+.pill.coming_soon{color:var(--soon);background:var(--soon-bg)}
+.summary-line{margin:14px 0 8px;font-weight:600}
+section.soon{background:var(--accent-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
+section.soon h2{margin:0 0 6px;font-size:1.05rem}
+section.soon ul{margin:0;padding-left:18px}
+section.soon li{margin:4px 0}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0;align-items:end}
+.filters label{display:flex;flex-direction:column;font-size:.85rem;color:var(--muted);gap:4px}
+.filters select,.filters input[type=search]{font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);color:var(--text);min-width:0}
+.filters .check{flex-direction:row;align-items:center;gap:8px;font-size:.95rem;color:var(--text);padding-bottom:8px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px 20px;margin:4px 0 12px}
+.toggles label{display:flex;align-items:center;gap:8px}
+section.country>h2{font-size:1.35rem;margin:26px 0 2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section.country>p.country-note{margin:0 0 4px;color:var(--muted);font-size:.95rem}
+section.tier h3{font-size:1.12rem;margin:18px 0 2px}
+section.tier p.tier-desc{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.cards{display:grid;gap:14px;margin:8px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h4{margin:0 0 4px;font-size:1.1rem;line-height:1.35}
+.card h4 a{text-decoration:none}
+.card h4 a:hover{text-decoration:underline}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.badge{font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.t-strong{color:var(--strong);background:var(--strong-bg)}
+.t-possible{color:var(--possible);background:var(--possible-bg)}
+.t-weak{color:var(--weak);background:var(--weak-bg)}
+.t-watch{color:var(--soon);background:var(--soon-bg)}
+.score{color:var(--muted);border:1px solid var(--line)}
+.late{color:var(--late);background:var(--late-bg)}
+.st-open{color:var(--accent);background:var(--accent-soft)}
+.st-other{color:var(--weak);background:var(--weak-bg)}
+.rev{color:var(--rev);background:var(--rev-bg)}
+.auto{color:var(--muted);border:1px dashed var(--line)}
+.lang{color:var(--soon);background:var(--soon-bg)}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:3px 12px;margin:0 0 10px;font-size:.95rem}
+dl.facts dt{color:var(--muted)}
+dl.facts dd{margin:0}
+.countdown{font-weight:600}
+.card p.summary{margin:8px 0}
+.note{color:var(--muted);font-size:.88rem}
+ul.quotes{margin:8px 0;padding:0;list-style:none}
+ul.quotes li{border-left:3px solid var(--line);padding:2px 0 2px 10px;margin:6px 0;color:var(--muted);font-size:.95rem}
+p.source{margin:10px 0 0;font-size:.92rem}
+p.attr{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
+.empty{padding:24px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px}
+footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:.9rem;margin-top:20px}
+main.about h2{margin-top:28px;font-size:1.2rem}
+main.about{padding-bottom:20px}
+[hidden]{display:none!important}
+.badge.chg{color:var(--soon);background:var(--soon-bg)}
+.views{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 4px;font-weight:600}
+.toggles button,.watch-btn{font:inherit;font-size:.88rem;padding:3px 10px;border-radius:8px;border:1px solid var(--line);
+background:var(--accent-soft);color:var(--accent);cursor:pointer}
+.watch-btn[aria-pressed="true"]{background:var(--strong-bg);color:var(--strong)}
+.toggles{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+section.group>h2{margin:26px 0 8px;font-size:1.3rem}
+.crumb{margin:0;font-weight:600}
+article.project h1{margin:4px 0 6px;font-size:1.5rem;line-height:1.3}
+article.project h2{font-size:1.1rem;margin:22px 0 6px}
+article.project{margin-top:18px}
+.note{color:var(--muted);font-size:.9rem}
+ol.timeline{list-style:none;padding:0;margin:6px 0;border-left:2px solid var(--line)}
+ol.timeline li{padding:3px 0 3px 12px}
+ol.timeline time{font-weight:600;margin-right:8px;font-variant-numeric:tabular-nums}
+ol.timeline li.official time{color:var(--accent)}
+.gone{background:var(--late-bg);color:var(--late);padding:10px 14px;border-radius:10px;margin-top:16px}
+@media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
+</style>
+</head>
+<body data-soon="30">
+<header class="site"><div class="wrap">
+<p class="crumb"><a href="../index.html">MitiMark</a></p>
+<p class="updated">Last updated: October 31, 2026</p>
+<nav class="top"><a href="../index.html">Projects</a><a href="../about.html">About</a></nav>
+</div></header>
+<main class="wrap">
+<article class="project card" data-id="scot_marine:00011153 / 00011950" data-stage="decided" data-deadline="">
+<h1>Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe</h1>
+<div class="badges"><span class="badge tier-badge t-weak">Weak</span>
+<span class="badge score" title="score 23">Score 23/100</span>
+<span class="badge stage-badge st-other">Decision made</span>
+<span class="badge late">Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<p><button type="button" class="watch-btn" data-id="scot_marine:00011153 / 00011950" aria-pressed="false" hidden>Add to watch list</button></p>
+<dl class="facts">
+<dt>Proponent</dt><dd>unknown</dd>
+<dt>Location</dt><dd>Scotland, United Kingdom. Water body: unknown</dd>
+<dt>Project type</dt><dd>Port or marine terminal, Infill, reclamation or causeway</dd>
+<dt>Stage</dt><dd>decision made</dd>
+</dl>
+<p class="summary">Project in Scotland. The notice mentions infill or causeway and port or terminal work.</p>
+
+<h2>Public comments</h2>
+<dl class="facts">
+<dt>Opens</dt><dd>Not published</dd>
+<dt>Closes</dt><dd><span class="countdown">decision made</span></dd>
+<dt>Comments received</dt><dd>Not published</dd>
+</dl>
+<p class="note">Representations are published as PDF documents, not as a count.</p>
+<p class="note">Only dates and counts the official registry publishes are shown. Comment text and the names of
+people who commented are not copied here. To comment, use the official notice.</p>
+<h2>Timeline</h2>
+<ol class="timeline"><li><time>2026-10-29</time> Listed on this site (first snapshot)</li></ol>
+<p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
+at each update.</p>
+<h2>Source</h2>
+<p class="source"><a href="https://marine.gov.scot/?q=node/28218" rel="noopener">Official notice</a> (marine.gov.scot marine licence documentation) © Crown Copyright</p>
+<p class="attr">Source: Scottish Government, marine.gov.scot. © Crown Copyright.</p>
+</article>
+</main>
+<footer><div class="wrap"><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div></footer>
+<script>
+var MPF = (function(){
+  var today = new Date(); today.setHours(0,0,0,0);
+  function daysLeft(iso){ if(!iso) return null; var p = iso.split('-');
+    var d = new Date(+p[0], +p[1]-1, +p[2]); return Math.round((d - today)/86400000); }
+  var STAGE = {open:'Comment period open', closed:'Comment period closed', decided:'Decision made',
+               assessment:'Under assessment', withdrawn:'Withdrawn or rejected', unknown:'Stage unknown',
+               watch:'Project watch'};
+  function countdown(el){
+    var dl = el.getAttribute('data-deadline'), n = daysLeft(dl), kind = el.getAttribute('data-stage');
+    if (kind !== 'decided' && kind !== 'withdrawn' && kind !== 'watch' && n !== null) { kind = n >= 0 ? 'open' : 'closed'; }
+    el.setAttribute('data-stage-now', kind); el._days = n;
+    var cd = el.querySelector('.countdown');
+    if (cd) {
+      if (kind === 'watch') { /* project watch: keep "not applicable" */ }
+      else if (kind === 'decided') cd.textContent = (dl ? dl + ', ' : '') + 'decision made';
+      else if (n === null) cd.textContent = 'Not published';
+      else if (n > 1) cd.textContent = dl + ' (' + n + ' days left)';
+      else if (n === 1) cd.textContent = dl + ' (1 day left)';
+      else if (n === 0) cd.textContent = dl + ' (closes today)';
+      else cd.textContent = dl + ' (closed)';
+    }
+    var late = el.querySelector('.late'); if (late) late.hidden = !(kind === 'decided' || kind === 'closed');
+    var st = el.querySelector('.stage-badge');
+    if (st) { st.textContent = STAGE[kind]; st.className = 'badge stage-badge ' + (kind === 'open' ? 'st-open' : 'st-other'); }
+  }
+  // The watch list lives only in this browser (localStorage). No account, nothing is sent anywhere.
+  var KEY = 'watchlist-v1';
+  function getWatch(){ try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+  function setWatch(ids){ try { localStorage.setItem(KEY, JSON.stringify(ids)); return true; } catch (e) { return false; } }
+  function storageOk(){ try { localStorage.setItem(KEY + '-test', '1'); localStorage.removeItem(KEY + '-test'); return true; }
+                        catch (e) { return false; } }
+  function paintButtons(){
+    var w = getWatch();
+    Array.prototype.forEach.call(document.querySelectorAll('.watch-btn'), function(b){
+      var on = w.indexOf(b.getAttribute('data-id')) >= 0;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.textContent = on ? 'On your watch list (remove)' : 'Add to watch list';
+    });
+  }
+  function initWatch(onChange){
+    if (!storageOk()) return;      // private windows or blocked storage: buttons stay hidden
+    Array.prototype.forEach.call(document.querySelectorAll('.watch-btn'), function(b){
+      b.hidden = false;
+      b.addEventListener('click', function(){
+        var w = getWatch(), id = b.getAttribute('data-id'), i = w.indexOf(id);
+        if (i >= 0) w.splice(i, 1); else w.push(id);
+        setWatch(w); paintButtons(); if (onChange) onChange();
+      });
+    });
+    paintButtons();
+  }
+  return {daysLeft: daysLeft, countdown: countdown, getWatch: getWatch, initWatch: initWatch, STAGE: STAGE};
+})();
+
+(function(){
+  var el = document.querySelector('.project'); if (el) MPF.countdown(el);
+  MPF.initWatch();
+})();
+</script>
+</body>
+</html>

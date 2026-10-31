@@ -1,5 +1,5 @@
 ---
-description: Refresh every source, rebuild and publish the Marine Project Finder site, then report
+description: Refresh every source, rebuild and publish the MitiMark site, then report
 ---
 Run the one-button update for this project and report the result.
 

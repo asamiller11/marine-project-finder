@@ -42,7 +42,21 @@
     "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90808?culture=en-CA",
     "comment_deadline": "2026-10-29"
    }
-  ]
+  ],
+  "page": "p/nl_ea-2434.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-10-20",
+   "days_left": -11,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "nl_ea:2379",
@@ -82,7 +96,21 @@
   "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/nl_ea-2379.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-01-16",
+   "days_left": -288,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90841",
@@ -118,7 +146,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90841.html",
+  "comments": {
+   "opens": "2026-10-16",
+   "opens_how": "notice date",
+   "closes": "2026-11-15",
+   "days_left": 15,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90780",
@@ -155,7 +197,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90780.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "nl_ea:2410",
@@ -193,7 +249,21 @@
   "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/nl_ea-2410.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-06-26",
+   "days_left": -127,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90797",
@@ -230,7 +300,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90797.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90831",
@@ -267,7 +351,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90831.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90835",
@@ -304,7 +402,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90835.html",
+  "comments": {
+   "opens": "2026-10-14",
+   "opens_how": "notice date",
+   "closes": "2026-11-14",
+   "days_left": 14,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90307",
@@ -340,7 +452,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90307.html",
+  "comments": {
+   "opens": "2026-09-22",
+   "opens_how": "notice date",
+   "closes": "2026-11-01",
+   "days_left": 1,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90857",
@@ -377,7 +503,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90857.html",
+  "comments": {
+   "opens": "2026-10-27",
+   "opens_how": "stated",
+   "closes": "2026-11-27",
+   "days_left": 27,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90856",
@@ -414,7 +554,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90856.html",
+  "comments": {
+   "opens": "2026-10-26",
+   "opens_how": "notice date",
+   "closes": "2026-11-14",
+   "days_left": 14,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90830",
@@ -451,7 +605,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90830.html",
+  "comments": {
+   "opens": "2026-10-16",
+   "opens_how": "notice date",
+   "closes": "2026-11-15",
+   "days_left": 15,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90822",
@@ -487,7 +655,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90822.html",
+  "comments": {
+   "opens": "2026-10-05",
+   "opens_how": "notice date",
+   "closes": "2026-11-05",
+   "days_left": 5,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90805",
@@ -525,7 +707,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90805.html",
+  "comments": {
+   "opens": "2026-09-28",
+   "opens_how": "stated",
+   "closes": "2026-10-28",
+   "days_left": -3,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90698",
@@ -563,7 +759,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90698.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "scot_marine:00012484",
@@ -593,7 +803,21 @@
   "agency": "Scottish Government, marine.gov.scot",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/scot_marine-00012484.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "nl_ea:2357",
@@ -628,7 +852,21 @@
   "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/nl_ea-2357.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2025-07-04",
+   "days_left": -484,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90783",
@@ -665,7 +903,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90783.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90784",
@@ -702,7 +954,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90784.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90782",
@@ -739,7 +1005,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90782.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "nl_ea:2393",
@@ -777,7 +1057,21 @@
   "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/nl_ea-2393.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-04-10",
+   "days_left": -204,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90777",
@@ -814,7 +1108,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90777.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "es_boe:BOE-B-2026-34477",
@@ -847,7 +1155,21 @@
   "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/es_boe-BOE-B-2026-34477.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "scot_marine:00011153 / 00011950",
@@ -880,7 +1202,21 @@
   "agency": "Scottish Government, marine.gov.scot",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/scot_marine-00011153---00011950.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "scot_marine:00011654",
@@ -913,7 +1249,21 @@
   "agency": "Scottish Government, marine.gov.scot",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/scot_marine-00011654.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "es_boe:BOE-B-2026-35366",
@@ -945,7 +1295,21 @@
   "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/es_boe-BOE-B-2026-35366.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "nl_ea:2429",
@@ -980,7 +1344,21 @@
   "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
   "issued_by": "",
   "too_late": true,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/nl_ea-2429.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-09-11",
+   "days_left": -50,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90792",
@@ -1014,7 +1392,21 @@
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/iaac-90792.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "scot_marine:00012343",
@@ -1046,7 +1438,21 @@
   "agency": "Scottish Government, marine.gov.scot",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/scot_marine-00012343.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "scot_marine:00012345",
@@ -1078,6 +1484,20 @@
   "agency": "Scottish Government, marine.gov.scot",
   "issued_by": "",
   "too_late": false,
-  "also_listed": []
+  "also_listed": [],
+  "page": "p/scot_marine-00012345.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
  }
 ]

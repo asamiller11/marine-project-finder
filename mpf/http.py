@@ -132,6 +132,16 @@ class PoliteClient:
         body, meta = self._cache_paths(url)
         return body if body.exists() and meta.exists() else None
 
+    def fetched_at(self, url: str) -> str | None:
+        """When the cached copy of url was fetched (YYYY-MM-DD), or None."""
+        body, meta = self._cache_paths(url)
+        if not meta.exists():
+            return None
+        try:
+            return json.loads(meta.read_text())["fetched_at"][:10]
+        except (OSError, ValueError, KeyError):
+            return None
+
     # -- rules -----------------------------------------------------------------
     def _check_never_fetch(self, url: str) -> None:
         for pattern in self.never_fetch:

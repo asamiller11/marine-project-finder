@@ -1,4 +1,7 @@
-# Marine Project Finder
+# MitiMark
+
+Formerly "Marine Project Finder". The repository, the web address and the tool's User-Agent keep the old
+name so links and site permissions keep working.
 
 A small research prototype that reads public project registries and flags marine
 construction projects (ports, wharves, breakwaters, dredging, shoreline works, small craft

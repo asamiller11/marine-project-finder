@@ -1,1 +1,1 @@
-"""Marine Project Finder: flags public marine construction projects likely to need habitat work."""
+"""MitiMark (formerly Marine Project Finder): flags public marine construction projects likely to need habitat work."""

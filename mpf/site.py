@@ -25,6 +25,8 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
+from mpf.comments import NOT_PUBLISHED, comment_info
+from mpf.history import CHANGE_LABELS
 from mpf.coverage import STATUS_LABELS, load_coverage, source_names
 from mpf.models import UNKNOWN
 from mpf.review import auto_summary, decision, own_summary
@@ -225,6 +227,11 @@ def english_summary(row: dict, review_row: dict | None, watch: bool = False) -> 
     return "", "not_translated"
 
 
+def page_slug(item_id: str) -> str:
+    """Stable file name for a project's own page: "iaac:90821" -> "iaac-90821"."""
+    return re.sub(r"[^A-Za-z0-9_-]", "-", item_id)
+
+
 def make_record(row: dict, review_row: dict, settings: dict, today: date,
                 patterns: list[str] | None = None) -> dict:
     site_conf = settings.get("site", {})
@@ -267,6 +274,8 @@ def make_record(row: dict, review_row: dict, settings: dict, today: date,
         "issued_by": row.get("proponent") if row.get("source") == "dk_hoering" and row.get("proponent") not in (None, "", UNKNOWN) else "",
         "too_late": kind in ("decided", "closed"),
         "also_listed": [],
+        "page": f"p/{page_slug(row['key'])}.html",
+        "comments": comment_info(row, _extra(row), today),
     }
 
 
@@ -318,6 +327,8 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
         if key not in records and key not in losers and decision(review_rows.get(key)) == "yes" \
                 and rec.get("tier") in PUBLISHED_TIERS:   # older or unpublished records are not reused
             rec = dict(rec)
+            rec.setdefault("page", f"p/{page_slug(key)}.html")
+            rec.setdefault("comments", comment_info(rec, {}, today))
             rec["stage_kind"] = stage_kind(rec, today) if rec.get("stage_kind") not in ("decided", "withdrawn") \
                 else rec["stage_kind"]
             records[key] = rec
@@ -411,51 +422,95 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);f
 main.about h2{margin-top:28px;font-size:1.2rem}
 main.about{padding-bottom:20px}
 [hidden]{display:none!important}
+.badge.chg{color:var(--soon);background:var(--soon-bg)}
+.views{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 4px;font-weight:600}
+.toggles button,.watch-btn{font:inherit;font-size:.88rem;padding:3px 10px;border-radius:8px;border:1px solid var(--line);
+background:var(--accent-soft);color:var(--accent);cursor:pointer}
+.watch-btn[aria-pressed="true"]{background:var(--strong-bg);color:var(--strong)}
+.toggles{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+section.group>h2{margin:26px 0 8px;font-size:1.3rem}
+.crumb{margin:0;font-weight:600}
+article.project h1{margin:4px 0 6px;font-size:1.5rem;line-height:1.3}
+article.project h2{font-size:1.1rem;margin:22px 0 6px}
+article.project{margin-top:18px}
+.note{color:var(--muted);font-size:.9rem}
+ol.timeline{list-style:none;padding:0;margin:6px 0;border-left:2px solid var(--line)}
+ol.timeline li{padding:3px 0 3px 12px}
+ol.timeline time{font-weight:600;margin-right:8px;font-variant-numeric:tabular-nums}
+ol.timeline li.official time{color:var(--accent)}
+.gone{background:var(--late-bg);color:var(--late);padding:10px 14px;border-radius:10px;margin-top:16px}
 @media (max-width:560px){header.site h1{font-size:1.3rem}dl.facts{grid-template-columns:1fr}dl.facts dt{margin-top:4px}}
 """
 
-JS = r"""
-(function(){
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+# Shared by the list and the project pages: countdowns and the watch list (stored only in this browser).
+JS_COMMON = r"""
+var MPF = (function(){
   var today = new Date(); today.setHours(0,0,0,0);
-  var SOON = parseInt(document.body.getAttribute('data-soon') || '30', 10);
   function daysLeft(iso){ if(!iso) return null; var p = iso.split('-');
     var d = new Date(+p[0], +p[1]-1, +p[2]); return Math.round((d - today)/86400000); }
   var STAGE = {open:'Comment period open', closed:'Comment period closed', decided:'Decision made',
                assessment:'Under assessment', withdrawn:'Withdrawn or rejected', unknown:'Stage unknown',
                watch:'Project watch'};
-  cards.forEach(function(c){
-    var dl = c.getAttribute('data-deadline'), n = daysLeft(dl), kind = c.getAttribute('data-stage');
+  function countdown(el){
+    var dl = el.getAttribute('data-deadline'), n = daysLeft(dl), kind = el.getAttribute('data-stage');
     if (kind !== 'decided' && kind !== 'withdrawn' && kind !== 'watch' && n !== null) { kind = n >= 0 ? 'open' : 'closed'; }
-    c.setAttribute('data-stage-now', kind); c._days = n;
-    var cd = c.querySelector('.countdown');
+    el.setAttribute('data-stage-now', kind); el._days = n;
+    var cd = el.querySelector('.countdown');
     if (cd) {
       if (kind === 'watch') { /* project watch: keep "not applicable" */ }
       else if (kind === 'decided') cd.textContent = (dl ? dl + ', ' : '') + 'decision made';
-      else if (n === null) cd.textContent = 'unknown';
+      else if (n === null) cd.textContent = 'Not published';
       else if (n > 1) cd.textContent = dl + ' (' + n + ' days left)';
       else if (n === 1) cd.textContent = dl + ' (1 day left)';
       else if (n === 0) cd.textContent = dl + ' (closes today)';
       else cd.textContent = dl + ' (closed)';
     }
-    var late = c.querySelector('.late'); if (late) late.hidden = !(kind === 'decided' || kind === 'closed');
-    var st = c.querySelector('.stage-badge');
+    var late = el.querySelector('.late'); if (late) late.hidden = !(kind === 'decided' || kind === 'closed');
+    var st = el.querySelector('.stage-badge');
     if (st) { st.textContent = STAGE[kind]; st.className = 'badge stage-badge ' + (kind === 'open' ? 'st-open' : 'st-other'); }
-  });
-  // In each tier: open comment periods first, then by score.
-  Array.prototype.forEach.call(document.querySelectorAll('section.tier .cards'), function(list){
-    var cs = Array.prototype.slice.call(list.querySelectorAll('.card'));
-    cs.sort(function(a,b){
-      var ao = a.getAttribute('data-stage-now') === 'open' ? 0 : 1, bo = b.getAttribute('data-stage-now') === 'open' ? 0 : 1;
-      return ao - bo || (+b.getAttribute('data-score')) - (+a.getAttribute('data-score'));
+  }
+  // The watch list lives only in this browser (localStorage). No account, nothing is sent anywhere.
+  var KEY = 'watchlist-v1';
+  function getWatch(){ try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+  function setWatch(ids){ try { localStorage.setItem(KEY, JSON.stringify(ids)); return true; } catch (e) { return false; } }
+  function storageOk(){ try { localStorage.setItem(KEY + '-test', '1'); localStorage.removeItem(KEY + '-test'); return true; }
+                        catch (e) { return false; } }
+  function paintButtons(){
+    var w = getWatch();
+    Array.prototype.forEach.call(document.querySelectorAll('.watch-btn'), function(b){
+      var on = w.indexOf(b.getAttribute('data-id')) >= 0;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.textContent = on ? 'On your watch list (remove)' : 'Add to watch list';
     });
-    cs.forEach(function(c){ list.appendChild(c); });
-  });
-  var fc = document.getElementById('f-country'), fr = document.getElementById('f-region'), frl = document.getElementById('f-region-label'),
-      frt = document.getElementById('f-region-text'), ft = document.getElementById('f-type'), fs = document.getElementById('f-stage'),
-      fo = document.getElementById('f-open'), fq = document.getElementById('f-search'), fw = document.getElementById('t-weak'),
-      line = document.getElementById('summary-line'), empty = document.getElementById('no-match'),
-      ul = document.getElementById('soon-list'), none = document.getElementById('soon-none');
+  }
+  function initWatch(onChange){
+    if (!storageOk()) return;      // private windows or blocked storage: buttons stay hidden
+    Array.prototype.forEach.call(document.querySelectorAll('.watch-btn'), function(b){
+      b.hidden = false;
+      b.addEventListener('click', function(){
+        var w = getWatch(), id = b.getAttribute('data-id'), i = w.indexOf(id);
+        if (i >= 0) w.splice(i, 1); else w.push(id);
+        setWatch(w); paintButtons(); if (onChange) onChange();
+      });
+    });
+    paintButtons();
+  }
+  return {daysLeft: daysLeft, countdown: countdown, getWatch: getWatch, initWatch: initWatch, STAGE: STAGE};
+})();
+"""
+
+JS = r"""
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#server-list .card'));
+  var SOON = parseInt(document.body.getAttribute('data-soon') || '30', 10);
+  cards.forEach(MPF.countdown);
+  var $ = function(id){ return document.getElementById(id); };
+  var fc = $('f-country'), fr = $('f-region'), frl = $('f-region-label'), frt = $('f-region-text'), ft = $('f-type'),
+      fs = $('f-stage'), fo = $('f-open'), fq = $('f-search'), fw = $('t-weak'), fsort = $('f-sort'), fgroup = $('f-group'),
+      line = $('summary-line'), empty = $('no-match'), ul = $('soon-list'), none = $('soon-none'),
+      view = $('view'), server = $('server-list'), holder = document.createElement('div');
+  holder.hidden = true; document.body.appendChild(holder);
+  Array.prototype.forEach.call(document.querySelectorAll('.js-only'), function(el){ el.hidden = false; });
   var types = {};
   cards.forEach(function(c){ (c.getAttribute('data-types') || '').split('|').forEach(function(t){ if (t) types[t] = 1; }); });
   Object.keys(types).sort().forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; ft.appendChild(o); });
@@ -470,62 +525,137 @@ JS = r"""
     cards.forEach(function(c){ if (c.getAttribute('data-country') === fc.value) regs[c.getAttribute('data-region')] = 1; });
     Object.keys(regs).sort().forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; fr.appendChild(o); });
   }
-  var params = location.search;
-  if ((params.match(/[?&]show=([^&]*)/) || [])[1] && params.indexOf('weak') >= 0) fw.checked = true;
-  var pc = (params.match(/[?&]country=([A-Za-z]{2})/) || [])[1];
-  if (pc) { fc.value = pc.toUpperCase(); }
+  function param(name){ return (location.search.match(new RegExp('[?&]' + name + '=([^&]*)')) || [])[1] || ''; }
+  if (param('show').indexOf('weak') >= 0) fw.checked = true;
+  if (/^[A-Za-z]{2}$/.test(param('country'))) fc.value = param('country').toUpperCase();
+  var views = document.querySelectorAll('input[name="view"]');
+  function currentView(){ for (var i = 0; i < views.length; i++) if (views[i].checked) return views[i].value; return 'all'; }
+  ['all', 'soon', 'changed', 'watch'].forEach(function(v){ if (param('view') === v) $('v-' + v).checked = true; });
+  if (param('sort') && fsort.querySelector('option[value="' + param('sort') + '"]')) fsort.value = param('sort');
+  if (param('group') && fgroup.querySelector('option[value="' + param('group') + '"]')) fgroup.value = param('group');
   fillRegions();
-  function tierShown(t){ return t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && fw.checked); }
+  var TIERS = ['strong', 'possible', 'weak', 'watch'];
+  var TIER_NAMES = JSON.parse($('tier-names').textContent);
+  var STAGE_ORDER = ['open', 'assessment', 'closed', 'decided', 'withdrawn', 'watch', 'unknown'];
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function placeOk(c){ return (!fc.value || c.getAttribute('data-country') === fc.value) &&
                               (!fr.value || c.getAttribute('data-region') === fr.value); }
+  function visible(c, v, watch){
+    var k = c.getAttribute('data-stage-now'), t = c.getAttribute('data-tier'), q = (fq.value || '').toLowerCase().trim();
+    // Closing soon, changed and watch list views show every published tier.
+    var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && fw.checked);
+    var viewOk = v === 'all' ||
+      (v === 'soon' && t !== 'watch' && k === 'open' && c._days !== null && c._days <= SOON) ||
+      (v === 'changed' && !!c.getAttribute('data-changes')) ||
+      (v === 'watch' && watch.indexOf(c.getAttribute('data-id')) >= 0);
+    return tierOk && viewOk && placeOk(c) &&
+      (!ft.value || ('|' + c.getAttribute('data-types') + '|').indexOf('|' + ft.value + '|') >= 0) &&
+      (!fs.value || k === fs.value) && (!fo.checked || k === 'open') &&
+      (!q || c.getAttribute('data-search').indexOf(q) >= 0);
+  }
+  function cmp(a, b){
+    var s = fsort.value, sa = +a.getAttribute('data-score'), sb = +b.getAttribute('data-score');
+    if (s === 'deadline') { var da = a._days === null ? 1e9 : (a._days < 0 ? 1e8 - a._days : a._days),
+                                db = b._days === null ? 1e9 : (b._days < 0 ? 1e8 - b._days : b._days);
+                            return da - db || sb - sa; }
+    if (s === 'score') return sb - sa;
+    if (s === 'newest') return (b.getAttribute('data-first') || '').localeCompare(a.getAttribute('data-first') || '') || sb - sa;
+    if (s === 'title') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+    var ao = a.getAttribute('data-stage-now') === 'open' ? 0 : 1, bo = b.getAttribute('data-stage-now') === 'open' ? 0 : 1;
+    return TIERS.indexOf(a.getAttribute('data-tier')) - TIERS.indexOf(b.getAttribute('data-tier')) || ao - bo || sb - sa;
+  }
+  function groupOf(c){
+    var g = fgroup.value;
+    if (g === 'country') return {key: ('000' + c.getAttribute('data-country-order')).slice(-3), name: c.getAttribute('data-country-name')};
+    if (g === 'type') { var t = (c.getAttribute('data-types') || '').split('|')[0];
+                        return {key: t ? '0' + t : '1', name: t || 'Project type unknown'}; }
+    if (g === 'stage') { var k = c.getAttribute('data-stage-now'); return {key: String(STAGE_ORDER.indexOf(k)), name: MPF.STAGE[k]}; }
+    if (g === 'month') { var d = c.getAttribute('data-deadline');
+                         if (!d || c.getAttribute('data-stage') === 'watch') return {key: '9999', name: 'No comment deadline published'};
+                         return {key: d.slice(0, 7), name: 'Comments close in ' + MONTHS[+d.slice(5, 7) - 1] + ' ' + d.slice(0, 4)}; }
+    return {key: '', name: ''};
+  }
+  function section(cls, title, n){
+    var s = document.createElement('section'); s.className = cls;
+    if (title) { var h = document.createElement(cls === 'group' ? 'h2' : 'h3'); h.textContent = title + ' ';
+      var span = document.createElement('span'); span.className = 'count'; span.textContent = '(' + n + ')'; h.appendChild(span); s.appendChild(h); }
+    var d = document.createElement('div'); d.className = 'cards'; s.appendChild(d); return s;
+  }
+  var shownOrder = [];
   function apply(){
-    var q = (fq.value || '').toLowerCase().trim(), shown = 0, counts = {};
-    cards.forEach(function(c){
-      var k = c.getAttribute('data-stage-now'), t = c.getAttribute('data-tier');
-      var ok = tierShown(t) && placeOk(c) &&
-               (!ft.value || ('|' + c.getAttribute('data-types') + '|').indexOf('|' + ft.value + '|') >= 0) &&
-               (!fs.value || k === fs.value) && (!fo.checked || k === 'open') &&
-               (!q || c.getAttribute('data-search').indexOf(q) >= 0);
-      c.hidden = !ok;
-      if (ok) { shown++; var key = c.getAttribute('data-country') + '|' + t; counts[key] = (counts[key] || 0) + 1;
-                counts[c.getAttribute('data-country')] = (counts[c.getAttribute('data-country')] || 0) + 1; }
+    var v = currentView(), watch = MPF.getWatch();
+    var shown = cards.filter(function(c){ return visible(c, v, watch); }).sort(cmp);
+    cards.forEach(function(c){ holder.appendChild(c); });
+    while (view.firstChild) view.removeChild(view.firstChild);
+    var groups = [], byKey = {};
+    shown.forEach(function(c){ var g = groupOf(c);
+      if (!byKey[g.key]) { byKey[g.key] = {key: g.key, name: g.name, cards: []}; groups.push(byKey[g.key]); }
+      byKey[g.key].cards.push(c); });
+    groups.sort(function(a, b){ return a.key < b.key ? -1 : a.key > b.key ? 1 : 0; });
+    shownOrder = [];
+    groups.forEach(function(g){
+      var gs = section('group', g.name, g.cards.length);
+      // Grouped by country with the default order: keep the tier headings inside each country.
+      if (fgroup.value === 'country' && fsort.value === 'default') {
+        gs.removeChild(gs.lastChild);
+        TIERS.forEach(function(t){
+          var cs = g.cards.filter(function(c){ return c.getAttribute('data-tier') === t; });
+          if (!cs.length) return;
+          var ts = section('tier', TIER_NAMES[t], cs.length);
+          cs.forEach(function(c){ ts.lastChild.appendChild(c); shownOrder.push(c); }); gs.appendChild(ts);
+        });
+      } else { g.cards.forEach(function(c){ gs.lastChild.appendChild(c); shownOrder.push(c); }); }
+      view.appendChild(gs);
     });
-    Array.prototype.forEach.call(document.querySelectorAll('section.tier'), function(s){
-      var key = s.getAttribute('data-country') + '|' + s.getAttribute('data-tier'), n = counts[key] || 0;
-      s.hidden = n === 0;
-      var cnt = s.querySelector('.count'); if (cnt) cnt.textContent = '(' + n + ')';
-    });
-    Array.prototype.forEach.call(document.querySelectorAll('section.country'), function(s){
-      s.hidden = !(counts[s.getAttribute('data-country')] > 0);
-    });
-    if (empty) empty.hidden = shown > 0;
-    // Closing soon: every published tier (Strong, Possible, Weak) in the chosen country or region.
+    server.hidden = true; view.hidden = false;
+    empty.hidden = shown.length > 0;
+    empty.textContent = v === 'watch' && !watch.length ? 'Your watch list is empty. Use "Add to watch list" on any project.'
+      : 'No projects match these filters.';
+    // Closing soon list at the top: every published tier in the chosen country or region.
     while (ul.firstChild) ul.removeChild(ul.firstChild);
     var soon = cards.filter(function(c){ return placeOk(c) && c.getAttribute('data-tier') !== 'watch' &&
       c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days <= SOON; })
       .sort(function(a,b){ return a._days - b._days; });
     soon.forEach(function(c){
       var li = document.createElement('li'), a = document.createElement('a');
-      a.href = '#' + c.id; a.textContent = c.querySelector('h4').textContent;
-      // A Weak item is hidden until the toggle is on, so clicking it turns the toggle on.
-      if (c.getAttribute('data-tier') === 'weak') a.addEventListener('click', function(){
-        if (!fw.checked) { fw.checked = true; apply(); } });
+      a.href = c.querySelector('h4 a').getAttribute('href'); a.textContent = c.querySelector('h4').textContent;
       li.appendChild(a); li.appendChild(document.createTextNode(': ' + c.getAttribute('data-deadline') + ' (' +
         (c._days === 0 ? 'closes today' : c._days === 1 ? '1 day left' : c._days + ' days left') + '), ' +
         c.querySelector('.tier-badge').textContent + ', ' + c.getAttribute('data-country-name')));
       ul.appendChild(li);
     });
     if (none) none.hidden = soon.length > 0;
-    line.textContent = shown + (shown === 1 ? ' project' : ' projects') + ' shown. ' + soon.length +
+    line.textContent = shown.length + (shown.length === 1 ? ' project' : ' projects') + ' shown. ' + soon.length +
       (soon.length === 1 ? ' comment deadline' : ' comment deadlines') + ' in the next ' + SOON + ' days.';
   }
+  // CSV of the projects shown right now, in the order shown.
+  var DATA = JSON.parse($('csv-data').textContent);
+  function csvCell(v){ v = v === null || v === undefined ? '' : String(v);
+    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+  $('csv-btn').addEventListener('click', function(){
+    var rows = [DATA.columns.map(csvCell).join(',')];
+    shownOrder.forEach(function(c){ var r = DATA.rows[c.getAttribute('data-id')]; if (r) rows.push(r.map(csvCell).join(',')); });
+    var blob = new Blob(['﻿' + rows.join('\r\n') + '\r\n'], {type: 'text/csv;charset=utf-8'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'projects.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  });
   // A link ending in #coverage opens the Coverage panel.
-  var cov = document.getElementById('coverage');
+  var cov = $('coverage');
   if (cov && location.hash === '#coverage') { cov.open = true; }
   fc.addEventListener('change', function(){ fillRegions(); apply(); });
-  [fr, ft, fs, fo, fw].forEach(function(el){ el.addEventListener('change', apply); });
+  [fr, ft, fs, fo, fw, fsort, fgroup].forEach(function(el){ el.addEventListener('change', apply); });
+  Array.prototype.forEach.call(views, function(el){ el.addEventListener('change', apply); });
   fq.addEventListener('input', apply);
+  MPF.initWatch(function(){ if (currentView() === 'watch') apply(); });
   apply();
+})();
+"""
+
+JS_PAGE = r"""
+(function(){
+  var el = document.querySelector('.project'); if (el) MPF.countdown(el);
+  MPF.initWatch();
 })();
 """
 
@@ -546,7 +676,7 @@ def _footer(site: dict) -> str:
     email = escape(site.get("contact_email", ""))
     return (
         '<footer><div class="wrap">'
-        "<p>Prototype. Flags show projects that may need marine habitat work. They do not state that "
+        f"<p>{escape(site.get('title', 'MitiMark'))} is a prototype. Flags show projects that may need marine habitat work. They do not state that "
         "mitigation is required. Always check the official notice. Compiled from public sources.</p>"
         f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p>'
         "</div></footer>")
@@ -616,56 +746,116 @@ def less_tested_note(coverage: dict) -> str:
             f"listings in them are lower confidence and are marked on each card.")
 
 
-def _card(rec: dict, country_name: str, less_tested: list) -> str:
-    types = rec["types"] or []
-    place = ", ".join(x for x in (rec["province"] if rec["province"] != UNKNOWN else "", country_name) if x) or UNKNOWN
-    location = f'{place}. Water body: {rec["water_body"]}'
-    search = " ".join([rec["title"], rec["proponent"], rec["province"], country_name, rec["water_body"],
-                       rec["summary"], " ".join(types)]).lower()
+def _place(rec: dict, country_name: str) -> str:
+    return ", ".join(x for x in (rec["province"] if rec["province"] != UNKNOWN else "", country_name) if x) or UNKNOWN
+
+
+def _deadline_text(rec: dict) -> tuple[str | None, str]:
+    """(deadline for the countdown, text shown before JavaScript updates it)."""
     deadline = rec.get("comment_deadline")
-    deadline_text = deadline if deadline else UNKNOWN
+    text = deadline if deadline else NOT_PUBLISHED
     if rec["stage_kind"] == "watch":
-        deadline, deadline_text = None, "not applicable (project watch, not a notice)"
-    elif rec["stage_kind"] == "decided":
-        deadline_text = (deadline + ", " if deadline else "") + "decision made"
+        return None, "not applicable (project watch, not a notice)"
+    if rec["stage_kind"] == "decided":
+        text = (deadline + ", " if deadline else "") + "decision made"
     elif rec["stage_kind"] == "closed" and deadline:
-        deadline_text = deadline + " (closed)"
-    quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
+        text = deadline + " (closed)"
+    return deadline, text
+
+
+def _badges(rec: dict, less_tested: list, changes: bool = True) -> str:
     review_badge = ('<span class="badge rev">Reviewed by a person</span>' if rec["reviewed"]
                     else '<span class="badge auto">Automatic, not yet reviewed</span>')
     lang_badge = ""
     if rec.get("language") in less_tested:
         lang_badge = f'<span class="badge lang">Less tested language ({escape(rec["language"])})</span>'
-    anchor = "p-" + re.sub(r"[^A-Za-z0-9_-]", "-", rec["id"])
-    link = escape(rec["url"]) if rec["url"] else "#"
+    chg = ""
+    if changes:
+        chg = "".join(f'<span class="badge chg">{escape(CHANGE_LABELS[c])}</span>' for c in rec.get("changes") or [])
+    return (f'<div class="badges"><span class="badge tier-badge t-{rec["tier"]}">{escape(rec["tier_label"])}</span>\n'
+            f'<span class="badge score" title="{escape(rec["tier_reason"])}">Score {int(rec["score"])}/100</span>\n'
+            f'<span class="badge stage-badge {"st-open" if rec["stage_kind"] == "open" else "st-other"}">'
+            f'{STAGE_LABELS[rec["stage_kind"]]}</span>\n'
+            f'<span class="badge late"{"" if rec["too_late"] else " hidden"}>Likely too late</span>'
+            f'{review_badge}{lang_badge}{chg}</div>')
+
+
+def _comment_count_text(rec: dict, prefix: str = "") -> str:
+    """'463 (as of 2026-10-12), view on the registry' or 'Not published'. Never comment text or names."""
+    c = rec.get("comments") or {}
+    if c.get("count") is None:
+        return NOT_PUBLISHED
+    link = (f', <a href="{escape(c["comments_url"])}" rel="noopener">official comments page</a>'
+            if c.get("comments_url") else "")
+    as_of = f' (as of {escape(c["count_as_of"])})' if c.get("count_as_of") else ""
+    return f'{int(c["count"])}{as_of}{link}'
+
+
+def _opens_text(rec: dict) -> str:
+    c = rec.get("comments") or {}
+    if not c.get("opens"):
+        return NOT_PUBLISHED
+    return escape(c["opens"]) + (" (date of the notice)" if c.get("opens_how") == "notice date" else "")
+
+
+def _source_lines(rec: dict, link: str) -> str:
     also = ""
     if rec.get("also_listed"):
         parts = []
         for a in rec["also_listed"]:
             d = f', comment deadline {escape(a["comment_deadline"])}' if a.get("comment_deadline") else ""
             parts.append(f'<a href="{escape(a["url"])}" rel="noopener">{escape(a["source_name"])}</a>{d}')
-        also = f'<p class="source">Also listed: {"; ".join(parts)}</p>'
-    return f"""<article class="card" id="{anchor}" data-tier="{rec['tier']}" data-country="{escape(rec.get('country') or UNKNOWN)}"
- data-country-name="{escape(country_name)}" data-region="{escape(rec['province'])}"
+        also = f'<p class="source">Also listed: {"; ".join(parts)}</p>\n'
+    official = "Official page" if rec["stage_kind"] == "watch" else "Official notice"
+    attribution = (" " + escape(rec["attribution"])) if rec.get("attribution") else ""
+    return (f'<p class="source"><a href="{link}" rel="noopener">{official}</a> ({escape(rec["source_name"])}){attribution}</p>\n'
+            f'{also}'
+            f'<p class="attr">Source: {escape(rec.get("agency") or rec["source_name"])}'
+            f'{(". Hearing by " + escape(rec["issued_by"])) if rec.get("issued_by") else ""}'
+            f'{(". " + escape(rec["attribution"])) if rec.get("attribution") else ""}.</p>')
+
+
+def _watch_button(rec: dict) -> str:
+    return (f'<button type="button" class="watch-btn" data-id="{escape(rec["id"])}" aria-pressed="false" hidden>'
+            f'Add to watch list</button>')
+
+
+def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 0) -> str:
+    types = rec["types"] or []
+    location = f'{_place(rec, country_name)}. Water body: {rec["water_body"]}'
+    search = " ".join([rec["title"], rec["proponent"], rec["province"], country_name, rec["water_body"],
+                       rec["summary"], " ".join(types)]).lower()
+    deadline, deadline_text = _deadline_text(rec)
+    quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
+    anchor = "p-" + page_slug(rec["id"])
+    link = escape(rec["url"]) if rec["url"] else "#"
+    page = escape(rec.get("page") or "")
+    comments = ""
+    if rec["stage_kind"] != "watch":
+        comments = (f'<dt>Comments open</dt><dd>{_opens_text(rec)}</dd>\n'
+                    f'<dt>Comments close</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>\n'
+                    f'<dt>Comments received</dt><dd>{_comment_count_text(rec)}</dd>')
+    else:
+        comments = f'<dt>Comment deadline</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
+    title_link = page or link
+    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-country="{escape(rec.get('country') or UNKNOWN)}"
+ data-country-name="{escape(country_name)}" data-country-order="{country_order}" data-region="{escape(rec['province'])}"
  data-types="{escape('|'.join(types))}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}"
- data-score="{int(rec['score'])}" data-search="{escape(search)}">
-<h4><a href="{link}" rel="noopener">{escape(rec['title'])}</a></h4>
-<div class="badges"><span class="badge tier-badge t-{rec['tier']}">{escape(rec['tier_label'])}</span>
-<span class="badge score" title="{escape(rec['tier_reason'])}">Score {int(rec['score'])}/100</span>
-<span class="badge stage-badge {'st-open' if rec['stage_kind'] == 'open' else 'st-other'}">{STAGE_LABELS[rec['stage_kind']]}</span>
-<span class="badge late"{'' if rec['too_late'] else ' hidden'}>Likely too late</span>{review_badge}{lang_badge}</div>
+ data-score="{int(rec['score'])}" data-first="{escape(rec.get('first_listed') or '')}"
+ data-changes="{escape('|'.join(rec.get('changes') or []))}" data-title="{escape(rec['title'].lower())}" data-search="{escape(search)}">
+<h4><a href="{title_link}">{escape(rec['title'])}</a></h4>
+{_badges(rec, less_tested)}
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(location)}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
 <dt>Stage</dt><dd>{escape(rec['stage'])}</dd>
-<dt>Comment deadline</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
+{comments}
 </dl>
 {_summary_html(rec)}
 {f'<ul class="quotes">{quotes}</ul>' if quotes else ''}
-<p class="source"><a href="{link}" rel="noopener">{'Official page' if rec['stage_kind'] == 'watch' else 'Official notice'}</a> ({escape(rec['source_name'])}){(' ' + escape(rec['attribution'])) if rec.get('attribution') else ''}</p>
-{also}
-<p class="attr">Source: {escape(rec.get('agency') or rec['source_name'])}{('. Hearing by ' + escape(rec['issued_by'])) if rec.get('issued_by') else ''}{('. ' + escape(rec['attribution'])) if rec.get('attribution') else ''}.</p>
+<p class="source">{f'<a href="{page}">Project page and timeline</a> &middot; ' if page else ''}{_watch_button(rec)}</p>
+{_source_lines(rec, link)}
 </article>"""
 
 
@@ -708,9 +898,10 @@ def _countries_in_order(records: list[dict], coverage: dict) -> list[dict]:
     return ordered
 
 
-def render_index(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None) -> str:
+def render_index(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None,
+                 history_dates: list[str] | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
-    title = site.get("title", "Marine Project Finder")
+    title = site.get("title", "MitiMark")
     desc = site.get("description", "")
     soon_days = int(site.get("closing_soon_days", 30))
     td = tier_descriptions(tiers)
@@ -723,7 +914,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     names.update({c["code"]: c["name"] for c in countries})
 
     country_sections = []
-    for c in countries:
+    for ci, c in enumerate(countries):
         recs_c = [r for r in records if (r.get("country") or UNKNOWN) == c["code"]]
         tier_parts = []
         for t in PUBLISHED_TIERS + ("watch",):
@@ -734,13 +925,17 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
                 f'<section class="tier" data-country="{escape(c["code"])}" data-tier="{t}">\n'
                 f'<h3>{TIER_LABELS[t]} <span class="count">({len(recs)})</span></h3>\n'
                 f'<p class="tier-desc">{escape(td[t])}</p>\n<div class="cards">\n'
-                + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested) for r in recs)
+                + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested, ci) for r in recs)
                 + "\n</div>\n</section>")
         note = f'<p class="country-note">{escape(c.get("note", ""))}</p>' if c.get("note") else ""
         country_sections.append(
             f'<section class="country" data-country="{escape(c["code"])}" aria-label="{escape(c["name"])}">\n'
             f'<h2>{escape(c["name"])} {_pill(c["status"])}</h2>\n{note}\n' + "\n".join(tier_parts) + "\n</section>")
     body = "\n".join(country_sections) if country_sections else '<p class="empty">No projects yet.</p>'
+    since = since_panel(records, history_dates or [])
+    csv_data = json.dumps({"columns": CSV_COLUMNS, "rows": {r["id"]: csv_row(r, names, site) for r in records}},
+                          ensure_ascii=False).replace("</", "<\\/")
+    tier_names = json.dumps({t: TIER_LABELS[t] for t in PUBLISHED_TIERS + ("watch",)})
 
     opts = ['<option value="">All countries</option>']
     with_data = {c["code"] for c in countries}
@@ -785,6 +980,7 @@ Always read the official notice.</p>
 </tbody></table></div>
 {f'<p>{escape(lt)}</p>' if lt else ''}
 </details>
+{since}
 <p class="summary-line" id="summary-line">{len(default)} projects shown. {n_soon} comment deadlines in the next {soon_days} days.</p>
 <section class="soon" aria-labelledby="soon-h">
 <h2 id="soon-h">Comment deadlines closing soon (next {soon_days} days)</h2>
@@ -792,7 +988,14 @@ Always read the official notice.</p>
 <p id="soon-none">No comment deadlines in the next {soon_days} days.</p>
 <noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>
 </section>
+<div class="views js-only" role="radiogroup" aria-label="Which projects" hidden>
+<label><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
+<label><input type="radio" name="view" id="v-soon" value="soon"> Closing soon</label>
+<label><input type="radio" name="view" id="v-changed" value="changed"> Changed since last update</label>
+<label><input type="radio" name="view" id="v-watch" value="watch"> My watch list</label>
+</div>
 <form class="filters" onsubmit="return false" aria-label="Filter projects">
+<label>Search<input type="search" id="f-search" placeholder="Name, place, proponent"></label>
 <label>Country<select id="f-country">{''.join(opts)}</select></label>
 <label id="f-region-label" hidden><span id="f-region-text">Province or state</span><select id="f-region"><option value="">All</option></select></label>
 <label>Project type<select id="f-type"><option value="">All types</option></select></label>
@@ -800,17 +1003,153 @@ Always read the official notice.</p>
 <option value="open">Comment period open</option><option value="closed">Comment period closed</option>
 <option value="assessment">Under assessment</option><option value="decided">Decision made</option>
 <option value="withdrawn">Withdrawn or rejected</option><option value="unknown">Stage unknown</option></select></label>
-<label>Search<input type="search" id="f-search" placeholder="Name, place, proponent"></label>
+<label class="js-only" hidden>Sort by<select id="f-sort"><option value="default">Tier, open comment periods first</option>
+<option value="deadline">Comment deadline, soonest first</option><option value="score">Score, highest first</option>
+<option value="newest">Newest listed first</option><option value="title">Name, A to Z</option></select></label>
+<label class="js-only" hidden>Group by<select id="f-group"><option value="country">Country</option>
+<option value="type">Project type</option><option value="stage">Stage</option>
+<option value="month">Deadline month</option><option value="none">No grouping</option></select></label>
 <label class="check"><input type="checkbox" id="f-open"> Comment period open only</label>
 </form>
 <div class="toggles">
 <label><input type="checkbox" id="t-weak"> Show weaker matches</label>
+<button type="button" id="csv-btn" class="js-only" hidden>Download shown projects (CSV)</button>
+<a href="projects.csv">All listed projects (CSV)</a>
 </div>
 <p class="empty" id="no-match" hidden>No projects match these filters.</p>
+<div id="view" hidden></div>
+<div id="server-list">
 {body}
+</div>
 </main>
 {_footer(site)}
-<script>{JS}</script>
+<script type="application/json" id="csv-data">{csv_data}</script>
+<script type="application/json" id="tier-names">{tier_names}</script>
+<script>{JS_COMMON}{JS}</script>
+</body>
+</html>
+"""
+
+
+CSV_COLUMNS = ["id", "title", "country", "region", "proponent", "project_types", "stage", "tier", "score",
+               "reviewed_by_a_person", "comments_open", "comments_close", "comments_received", "comments_received_as_of",
+               "changes_since_last_update", "first_listed", "project_page", "official_notice", "source"]
+
+
+def csv_row(rec: dict, names: dict, site_conf: dict) -> list:
+    """One CSV row: facts only (no quotes, no summaries). Missing comment data is "Not published"."""
+    c = rec.get("comments") or {}
+    base = site_conf.get("url", "")
+    return [rec["id"], rec["title"], names.get(rec.get("country"), rec.get("country")), rec["province"],
+            rec["proponent"], "; ".join(rec["types"] or []), STAGE_LABELS.get(rec["stage_kind"], rec["stage"]),
+            rec["tier_label"], int(rec["score"]), "yes" if rec["reviewed"] else "no",
+            c.get("opens") or NOT_PUBLISHED, c.get("closes") or NOT_PUBLISHED,
+            c["count"] if c.get("count") is not None else NOT_PUBLISHED, c.get("count_as_of") or "",
+            "; ".join(CHANGE_LABELS[x] for x in rec.get("changes") or []), rec.get("first_listed") or "",
+            base + rec["page"] if rec.get("page") else "", rec["url"],
+            rec.get("agency") or rec["source_name"]]
+
+
+def write_csv(path: Path, records: list[dict], names: dict, site_conf: dict) -> None:
+    import csv
+    with open(path, "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(CSV_COLUMNS)
+        for r in records:
+            w.writerow(csv_row(r, names, site_conf))
+
+
+def since_panel(records: list[dict], dates: list[str]) -> str:
+    """Counts of what changed since the previous update, with links to the "changed" view."""
+    if len(dates) < 2:
+        return ""
+    counts = {k: sum(1 for r in records if k in (r.get("changes") or [])) for k in CHANGE_LABELS}
+    parts = [f"{counts[k]} {CHANGE_LABELS[k].lower() if i else CHANGE_LABELS[k].split(' since')[0].lower()}"
+             for i, k in enumerate(CHANGE_LABELS)]
+    return (f'<section class="panel since" aria-labelledby="since-h"><h2 id="since-h">Since the last update '
+            f'({escape(dates[-2])})</h2>\n<p>{escape(", ".join(parts))}. '
+            f'<a href="?view=changed&amp;show=weak">Show the changed projects</a>.</p></section>')
+
+
+TIMELINE_TYPES = {"new": "Listed", "deadline": "Deadline", "decided": "Decision", "stage": "Stage", "tier": "Tier"}
+
+
+def _timeline_html(rec: dict) -> str:
+    evs = rec.get("timeline") or []
+    items = []
+    if rec.get("first_listed") and not any(e["type"] == "new" for e in evs):
+        items.append(f'<li><time>{escape(rec["first_listed"])}</time> Listed on this site (first snapshot)</li>')
+    for e in evs:
+        text = "First listed on this site" if e["type"] == "new" else e["text"]
+        items.append(f'<li><time>{escape(e["date"])}</time> {escape(text)}</li>')
+    c = rec.get("comments") or {}
+    if c.get("opens"):
+        items.append(f'<li class="official"><time>{escape(c["opens"])}</time> Comment period opens (official notice)</li>')
+    if c.get("closes"):
+        items.append(f'<li class="official"><time>{escape(c["closes"])}</time> Comment period closes (official notice)</li>')
+    if rec.get("decision_date"):
+        items.append(f'<li class="official"><time>{escape(rec["decision_date"])}</time> Decision date (official notice)</li>')
+    items.sort(key=lambda li: re.search(r"<time>([^<]+)", li).group(1))
+    if not items:
+        return "<p>No changes recorded yet.</p>"
+    return '<ol class="timeline">' + "".join(items) + "</ol>"
+
+
+def render_project_page(rec: dict, site: dict, updated: date, country_name: str, less_tested: list) -> str:
+    title = site.get("title", "MitiMark")
+    types = rec["types"] or []
+    deadline, deadline_text = _deadline_text(rec)
+    link = escape(rec["url"]) if rec["url"] else "#"
+    quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
+    c = rec.get("comments") or {}
+    if rec["stage_kind"] == "watch":
+        comments = "<p>Not applicable: this is a project page, not a notice.</p>"
+    else:
+        note = f'<p class="note">{escape(c["count_note"])}</p>' if c.get("count_note") else ""
+        comments = f"""<dl class="facts">
+<dt>Opens</dt><dd>{_opens_text(rec)}</dd>
+<dt>Closes</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
+<dt>Comments received</dt><dd>{_comment_count_text(rec)}</dd>
+</dl>
+{note}
+<p class="note">Only dates and counts the official registry publishes are shown. Comment text and the names of
+people who commented are not copied here. To comment, use the official notice.</p>"""
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+{_head(rec['title'] + ' - ' + title, rec.get('summary') or site.get('description', ''))}
+</head>
+<body data-soon="{int(site.get('closing_soon_days', 30))}">
+<header class="site"><div class="wrap">
+<p class="crumb"><a href="../index.html">{escape(title)}</a></p>
+<p class="updated">Last updated: {updated.strftime("%B %-d, %Y")}</p>
+<nav class="top"><a href="../index.html">Projects</a><a href="../about.html">About</a></nav>
+</div></header>
+<main class="wrap">
+<article class="project card" data-id="{escape(rec['id'])}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
+<h1>{escape(rec['title'])}</h1>
+{_badges(rec, less_tested)}
+<p>{_watch_button(rec)}</p>
+<dl class="facts">
+<dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
+<dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
+<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
+<dt>Stage</dt><dd>{escape(rec['stage'])}</dd>
+</dl>
+{_summary_html(rec)}
+{f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
+<h2>Public comments</h2>
+{comments}
+<h2>Timeline</h2>
+{_timeline_html(rec)}
+<p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
+at each update.</p>
+<h2>Source</h2>
+{_source_lines(rec, link)}
+</article>
+</main>
+{_footer(site)}
+<script>{JS_COMMON}{JS_PAGE}</script>
 </body>
 </html>
 """
@@ -821,20 +1160,23 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
     coverage = coverage if coverage is not None else load_coverage()
     records = records or []
     bn = balance_note(records)
-    title = "About: " + site.get("title", "Marine Project Finder")
+    title = "About: " + site.get("title", "MitiMark")
     td = tier_descriptions(tiers)
     sources = "".join(f'<li><a href="{escape(s["url"])}" rel="noopener">{escape(s["name"])}</a></li>'
                       for s in coverage.get("sources", {}).values())
     freq = escape(site.get("update_frequency", "every 2 weeks"))
     tier_list = "".join(f"<li><strong>{TIER_LABELS[t]}:</strong> {escape(td[t])}</li>" for t in PUBLISHED_TIERS)
     lt = less_tested_note(coverage)
+    from mpf.comments import COUNT_STATUS
+    comment_sources = "".join(f'<li><strong>{escape(s.get("name", key))}:</strong> {escape(COUNT_STATUS[key].replace(" This project page shows none.", ""))}</li>'
+                              for key, s in coverage.get("sources", {}).items() if key in COUNT_STATUS)
     return f"""<!doctype html>
 <html lang="en">
 <head>
 {_head(title, site.get('description', ''))}
 </head>
 <body>
-{_header("About this prototype", site.get('description', ''), updated)}
+{_header("About " + site.get("title", "MitiMark"), site.get('description', ''), updated)}
 <main class="wrap about">
 <h2>What it does</h2>
 <p>The tool reads public environmental assessment and permit notices for marine construction projects,
@@ -869,6 +1211,24 @@ and is labelled "built from keywords, not a translation". When too little was fo
 "Not translated" and shows the original-language quotes instead. The keyword rules for French, Danish,
 Spanish, Norwegian and Dutch have fewer tests than the English rules, so those listings are lower confidence
 and carry a "Less tested language" badge.</p>
+
+<h2>Public comments</h2>
+<p>Each project shows when its public comment period opens and closes and how many days are left, but
+only when the official registry publishes those dates. When an opening date is taken from the date of the
+notice that invited comments, it is labelled "date of the notice". Where a registry publishes the number
+of comments received, the number is shown with the date it was read and a link to the registry's own
+comments page. Comment text, the names of people who commented and other personal details are never copied
+to this site. Anything a source does not publish is shown as "Not published".</p>
+<ul>{comment_sources}</ul>
+
+<h2>Changes between updates and project pages</h2>
+<p>Every project has its own page with a stable address. At each update the site keeps a short snapshot
+(deadline, stage and tier) and marks projects that are new, whose comment deadline changed, or that are now
+decided. Each project page shows a timeline of those changes next to the official comment dates.</p>
+
+<h2>Your watch list</h2>
+<p>"Add to watch list" saves a project in your own browser only. There are no accounts, and nothing about
+your watch list is sent anywhere. Clearing your browser data clears the list.</p>
 
 <h2>Project watch</h2>
 <p>Some sources list projects rather than notices. When such a source is used, its items appear in a
@@ -911,13 +1271,48 @@ fewer tests, so those listings are lower confidence.</li>
 
 def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date,
                coverage: dict | None = None) -> None:
+    from mpf import history as hist
     coverage = coverage if coverage is not None else load_coverage()
     site_conf, tiers = settings.get("site", {}), settings.get("tiers", {})
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "index.html").write_text(render_index(records, site_conf, tiers, updated, coverage), encoding="utf-8")
+    # Snapshot history: compare with the previous update, then add the timeline to each record.
+    h = hist.record_snapshot(hist.load(out_dir / "history.json"), records, updated.isoformat())
+    hist.annotate(records, h)
+    names = {c["code"]: c["name"] for c in coverage.get("countries", [])}
+    less_tested = coverage.get("less_tested_languages", [])
+    (out_dir / "index.html").write_text(render_index(records, site_conf, tiers, updated, coverage, h["snapshots"]),
+                                        encoding="utf-8")
     (out_dir / "about.html").write_text(render_about(site_conf, tiers, updated, coverage, records), encoding="utf-8")
+    # One page per project, at a stable address (p/<source>-<id>.html). Pages of projects no longer
+    # listed are removed, so the folder only holds what the list shows.
+    pages = out_dir / "p"
+    pages.mkdir(exist_ok=True)
+    keep = set()
+    for r in records:
+        path = out_dir / r["page"]
+        keep.add(path.name)
+        path.write_text(render_project_page(r, site_conf, updated, names.get(r.get("country"), r.get("country") or UNKNOWN),
+                                            less_tested), encoding="utf-8")
+    for old in pages.glob("*.html"):
+        if old.name not in keep:
+            mark_unlisted(old, updated)
+    write_csv(out_dir / "projects.csv", records, names, site_conf)
     (out_dir / "items.json").write_text(json.dumps(records, ensure_ascii=False, indent=1), encoding="utf-8")
+    hist.save(out_dir / "history.json", h)
     (out_dir / ".nojekyll").write_text("", encoding="utf-8")   # tells GitHub Pages to serve files as-is
+
+
+GONE_MARK = '<p class="gone">'
+
+
+def mark_unlisted(path: Path, updated: date) -> None:
+    """Keep a project page's address working after it leaves the list, with a clear note on top."""
+    html = path.read_text(encoding="utf-8")
+    if GONE_MARK in html:
+        return
+    note = (f'{GONE_MARK}This project is no longer listed on this site (as of {updated.isoformat()}). The details '
+            f'below are from the last time it was listed. Check the official notice for the current status.</p>')
+    path.write_text(html.replace('<main class="wrap">', '<main class="wrap">\n' + note, 1), encoding="utf-8")
 
 
 def load_previous(out_dir: Path) -> dict:

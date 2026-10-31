@@ -298,7 +298,7 @@ def cmd_auto(args, settings):
 
 
 def main(argv=None):
-    p = argparse.ArgumentParser(prog="python -m mpf", description="Marine Project Finder")
+    p = argparse.ArgumentParser(prog="python -m mpf", description="MitiMark")
     sub = p.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("ingest", help="fetch sources")
     s.add_argument("--source", action="append", help="only this source (repeatable)")
