@@ -141,26 +141,16 @@ llm:
   # Only summarize items at or above this rule score, to keep cost down.
   min_score: 40
 
-# News signals (early warning, unverified). Only headline, source name, date and link are stored.
+# News signals (early warning, unverified). OFF. Nothing here runs or appears on the site unless
+# BOTH switches below are turned on. Only headline, source name, date and link would be stored.
 # Each feed was checked first: robots.txt allows it and its terms allow this use (see mpf/news.py).
+# GDELT is not listed: it refused our requests (HTTP 429), and we do not contact it.
 news:
-  enabled: true            # read the feeds during ingest
-  show_on_site: false      # the "News signal, unverified" section stays off until approved
+  enabled: false           # true = read the feeds during ingest
+  show_on_site: false      # true (and enabled) = show the "News signal, unverified" section
   default_shown: 15        # how many news items show before "Show all"
   max_age_days: 60
   feeds:
-    - name: gdelt_ca
-      type: gdelt
-      query: '(breakwater OR wharf OR dredging OR seawall OR "marine terminal" OR "port expansion" OR "small craft harbour") sourcecountry:CA sourcelang:english'
-    - name: gdelt_uk
-      type: gdelt
-      query: '(breakwater OR harbour OR dredging OR "sea wall" OR "marine licence" OR "offshore wind farm" OR "port expansion") sourcecountry:UK sourcelang:english'
-    - name: gdelt_es
-      type: gdelt
-      query: '(espigón OR dragado OR "dique de abrigo" OR "ampliación del puerto" OR "eólica marina") sourcecountry:SP sourcelang:spanish'
-    - name: gdelt_dk
-      type: gdelt
-      query: '(havneudvidelse OR uddybning OR mole OR kystbeskyttelse OR "havvindmøllepark") sourcecountry:DA sourcelang:danish'
     - name: canada_dfo
       type: atom
       source_name: "Fisheries and Oceans Canada news (Canada.ca)"
@@ -173,4 +163,3 @@ news:
       type: atom
       source_name: "Marine Management Organisation news (GOV.UK)"
       url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=marine-management-organisation"
-

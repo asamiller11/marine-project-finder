@@ -76,7 +76,8 @@ def cmd_ingest(args, settings):
                 problems.append(name)
         print(f"   {total} items ({new} new)")
     news_conf = settings.get("news") or {}
-    if args.live and not args.source and news_conf.get("enabled"):
+    from mpf.news import news_on
+    if args.live and not args.source and news_on(news_conf):
         # News feeds are early-warning extras: a blocked feed is reported but is not a source problem.
         from mpf import news
         print("== news feeds (headline, source, date and link only)")
@@ -210,7 +211,8 @@ def cmd_publish(args, settings):
     out = ROOT / "site"
     records, skipped = site.build_public_records(conn, rows, settings, today(), previous=site.load_previous(out))
     news_items = None
-    if (settings.get("news") or {}).get("show_on_site"):
+    from mpf.news import news_on_site
+    if news_on_site(settings.get("news")):
         from mpf import news
         from mpf.config import load_scoring
         news_items = news.build_news(conn, records, load_scoring(), settings["news"].get("max_age_days", 60),
@@ -230,6 +232,9 @@ def cmd_news(args, settings):
     from mpf.config import load_scoring
     conn = _open(settings)
     conf = settings.get("news") or {}
+    if not news.news_on(conf):
+        print("News is switched off (news.enabled: false in config/settings.yaml). Nothing was read.")
+        return
     if not args.no_fetch:
         client = PoliteClient(settings, data_dir(settings) / "cache")
         for line in news.ingest(conn, client, conf):

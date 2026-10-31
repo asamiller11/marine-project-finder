@@ -30,6 +30,16 @@ from difflib import SequenceMatcher
 from urllib.parse import urlencode, urlparse
 
 from mpf.http import Blocked
+
+
+def news_on(conf: dict | None) -> bool:
+    """Feeds are read only when news.enabled is true."""
+    return bool((conf or {}).get("enabled"))
+
+
+def news_on_site(conf: dict | None) -> bool:
+    """The news section appears only when news.enabled AND news.show_on_site are both true."""
+    return news_on(conf) and bool((conf or {}).get("show_on_site"))
 from mpf.score import score_text
 from mpf.textutil import clean
 
@@ -93,7 +103,10 @@ def fetch_feed(client, feed: dict) -> list[dict]:
 
 
 def ingest(conn: sqlite3.Connection, client, conf: dict) -> list[str]:
-    """Read every news feed. One blocked feed stops only that feed (and the rest of its host)."""
+    """Read every news feed. One blocked feed stops only that feed (and the rest of its host).
+    Does nothing unless news.enabled is true."""
+    if not news_on(conf):
+        return ["News is switched off (news.enabled: false). No feed was read."]
     conn.executescript(SCHEMA)
     log, blocked_hosts = [], set()
     now = datetime.now().isoformat(timespec="seconds")

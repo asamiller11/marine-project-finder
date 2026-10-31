@@ -67,7 +67,7 @@ class _Client:
 def test_a_blocked_feed_stops_its_host_only():
     conn = db.connect(Path(":memory:"))
     client = _Client()
-    conf = {"feeds": [{"name": "g1", "type": "gdelt", "query": "a"}, {"name": "g2", "type": "gdelt", "query": "b"},
+    conf = {"enabled": True, "feeds": [{"name": "g1", "type": "gdelt", "query": "a"}, {"name": "g2", "type": "gdelt", "query": "b"},
                       {"name": "dfo", "type": "atom", "url": "https://api.io.canada.ca/x", "source_name": "DFO"}]}
     log = news.ingest(conn, client, conf)
     assert sum("gdeltproject" in c for c in client.calls) == 1        # never retried, second query skipped
@@ -85,3 +85,15 @@ def test_news_section_is_collapsed_capped_and_matched_items_go_to_the_project_pa
     site.attach_news(recs, items)
     assert recs[0]["in_the_news"][0]["title"] == "Wharf news 0"
     assert "Also in the news" in site._in_the_news_html(recs[0])
+
+
+def test_news_is_off_by_default_and_nothing_runs_or_shows():
+    from mpf.config import load_settings
+    conf = load_settings()["news"]
+    assert conf["enabled"] is False and conf["show_on_site"] is False
+    assert not news.news_on(conf) and not news.news_on_site(conf)
+    assert not news.news_on_site({"enabled": False, "show_on_site": True})     # both switches are needed
+    assert not any("gdelt" in f.get("type", "") or "gdelt" in f.get("url", "") for f in conf["feeds"])
+    client = _Client()
+    log = news.ingest(db.connect(Path(":memory:")), client, conf)
+    assert client.calls == [] and "switched off" in log[0]
