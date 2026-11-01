@@ -125,7 +125,10 @@ def test_unlisted_project_page_keeps_its_address_with_a_note(tmp_path):
 def test_csv_export_has_facts_but_no_quotes(tmp_path):
     _written(tmp_path)
     rows = list(csv.reader(open(tmp_path / "projects.csv", encoding="utf-8-sig")))
-    assert rows[0] == site.CSV_COLUMNS
+    # The fixed columns come first, then one column per buyer profile.
+    assert rows[0][:len(site.CSV_COLUMNS)] == site.CSV_COLUMNS
+    assert rows[0][len(site.CSV_COLUMNS):] == ["profile_hard_structure", "profile_living_shoreline", "profile_seagrass",
+                                               "profile_kelp", "profile_coral", "profile_banking"]
     row = dict(zip(rows[0], rows[1]))
     assert row["comments_close"] == "2026-11-20" and row["comments_received"] == "9"
     assert row["source"] and row["official_notice"] == "https://example.org/77"

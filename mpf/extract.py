@@ -134,12 +134,65 @@ def is_negated(text: str, start: int) -> bool:
     return bool(_NEGATION.search(text[max(0, start - 40):start]))
 
 
-def find_patterns(text: str, groups: dict) -> dict:
-    """For each rule group in the scoring config, the first non-negated match and its sentence."""
+_CLAUSE_END = re.compile(r"[.;:!?\n]")
+
+
+def clause_around(text: str, start: int, end: int) -> tuple[str, str]:
+    """(text of the clause before the match, text of the clause after it). Clauses end at . ; : ! ? or a new line."""
+    before = text[max(0, start - 300):start]
+    cut = max((m.end() for m in _CLAUSE_END.finditer(before)), default=0)
+    after = text[end:end + 300]
+    m = _CLAUSE_END.search(after)
+    return before[cut:], after[:m.start()] if m else after
+
+
+def sentence_around(text: str, start: int, end: int) -> str:
+    """The whole sentence holding the match (used by exclude_sentence and require_sentence rules)."""
+    left = max((m.end() for m in re.finditer(r"[.!?\n]", text[max(0, start - 600):start])), default=0)
+    left = max(0, start - 600) + left
+    m = re.search(r"[.!?\n]", text[end:end + 600])
+    return text[left:end + (m.end() if m else 600)]
+
+
+def strict_negation(conf: dict):
+    """A stricter negation test used only by buyer profiles (general scoring keeps is_negated).
+    A match does not count when, in the same clause, a negation word comes before it ("does not propose
+    ... the existing wharf") or a condition word comes before or after it ("if required", "where necessary")."""
+    before = re.compile("|".join(conf.get("negation_before", []) + conf.get("conditional_before", [])), re.IGNORECASE)
+    after_pats = conf.get("conditional_after", [])
+    after = re.compile("|".join(after_pats), re.IGNORECASE) if after_pats else None
+
+    def negated(text: str, start: int, end: int | None = None) -> bool:
+        if is_negated(text, start):
+            return True
+        b, a = clause_around(text, start, end if end is not None else start)
+        return bool(before.search(b)) or bool(after and after.search(a[:80]))
+    return negated
+
+
+def _match_counts(text: str, m: re.Match, rule: dict, negated) -> bool:
+    if negated is is_negated:
+        if is_negated(text, m.start()):
+            return False
+    elif negated(text, m.start(), m.end()):
+        return False
+    if rule.get("exclude_sentence") or rule.get("require_sentence"):
+        s = sentence_around(text, m.start(), m.end())
+        if rule.get("exclude_sentence") and re.search(rule["exclude_sentence"], s, re.IGNORECASE):
+            return False
+        if rule.get("require_sentence") and not re.search(rule["require_sentence"], s, re.IGNORECASE):
+            return False
+    return True
+
+
+def find_patterns(text: str, groups: dict, negated=is_negated) -> dict:
+    """For each rule group in the scoring config, the first non-negated match and its sentence.
+    Optional per-group keys (buyer profiles only): exclude_sentence (skip a match whose sentence matches)
+    and require_sentence (count a match only when its sentence also matches)."""
     hits = {}
     for name, rule in groups.items():
         for pat in rule["patterns"]:
-            m = next((m for m in re.finditer(pat, text, re.IGNORECASE) if not is_negated(text, m.start())), None)
+            m = next((m for m in re.finditer(pat, text, re.IGNORECASE) if _match_counts(text, m, rule, negated)), None)
             if m:
                 hits[name] = {"label": rule.get("label", name), "points": rule["points"],
                               "matched": m.group(0), "quote": snippet(text, m.start(), m.end())}

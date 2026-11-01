@@ -325,3 +325,215 @@ language_patterns:
       "no": '\bavbøtende tiltak'
       nl: '\bmitigerende maatregelen'
       es: '\bmedidas correctoras|\bmedidas preventivas y correctoras'
+
+# ---------------------------------------------------------------------------
+# BUYER PROFILES. "All habitat work" is the general score above, unchanged. Each profile below
+# re-weights the groups above (0 or left out = ignored) and adds its own keyword groups. Same tiers
+# and cut-offs as the general score (Strong 60+, Possible 35-59, Weak 20-34), same size table and caps.
+# A project is listed for a profile only if it matches at least one of the profile's "core" groups.
+# A project that the general score does not list joins a profile only at Possible (35) or above.
+# These are rule-based guesses. A flag never means mitigation is required.
+
+profile_rules:
+  # Stricter negation, used by profiles only. A keyword does not count when one of these comes
+  # earlier in the same clause ("does not propose ... the existing wharf")...
+  negation_before:
+    - '\b(does|do|did|will|would|shall|is|are|was|were) not\b|\b(doesn|don|won|isn|aren|wasn|weren)[’'']t\b|\bnot (propose|include|involve|require|affect)'
+    - '\bno (new|additional|in-water|marine)\b|\bwithout\b|\bneither\b'
+    - '\bne\b[^.;:]{0,30}\bpas\b|\bn[’'']y aura pas|\baucun'
+    - '\bikke\b|\bingen\b|\bniet\b|\bgeen\b|\bno se\b|\bsin\b'
+  # ...or a condition word comes before it ("if required, riprap..."), or right after it.
+  conditional_before:
+    - '\bif\b|\bunless\b|\bin the event\b|\b(where|as) (required|necessary|needed)\b|\bshould\b[^.;:]{0,30}\b(be )?(required|needed|necessary)'
+    - '\bsi\b|\ble cas échéant|\bau besoin'
+    - '\bhvis\b|\bdersom\b|\bindien\b|\ben caso de\b|\bsi fuera\b'
+  conditional_after:
+    - '\b(if|where|when|as) (it is |they are )?(required|necessary|needed|warranted)\b'
+    - '\bsi (nécessaire|requis|besoin)|\bau besoin\b|\ble cas échéant'
+    - '\bom nødvendigt|\bved behov\b|\bhvis nødvendig|\bindien nodig|\bzo nodig|\ben caso necesario|\bsi fuera necesario'
+  # A size read from a sentence about past or completed works is not counted ("approximately 4 km of
+  # works ... completed between 2010 and 2025"). The largest remaining size is used instead.
+  # A size written as a distance ("residences within 250 m of the site") is not the size of the works.
+  doubtful_size_before: '\bwithin\s*$|\bà moins de\s*$|\bdans un rayon de\s*$'
+  doubtful_size_sentence: '\b(completed|previously|already (built|constructed|completed)|(were|was|have been|has been) (built|constructed|completed|installed)|between (19|20)\d\d and (19|20)\d\d|since (19|20)\d\d|historic(al)?ly)\b|\bachevés?\b|\bdéjà (construit|réalisé)|\bréalisés? entre'
+
+  # Small routine repairs (hard-structure profile): repair wording, every size found below all three
+  # limits, and no clear habitat words -> kept at Weak (34). A notice with no size is not "small".
+  routine_repair:
+    max_length_m: 100
+    max_area_m2: 2000
+    max_volume_m3: 5000
+
+profile_groups:
+  bulkhead_marine:
+    kind: type
+    label: "Bulkhead (not at a dam, intake or river channel)"
+    # Generating stations and dams have "bulkheads" (gates) that are not shoreline structures.
+    exclude_sentence: '\b(dams?|generating station|power ?house|intake|spillway|sluice|penstock|lock|weir|river|channel|canal|barrage|centrale|écluse|déversoir|rivière)\b'
+    en: '\bbulkhead'
+  pier_marine:
+    kind: type
+    label: "Pier (not at a dam, intake or bridge)"
+    # Dams, intakes and bridges have "piers" that are not marine structures.
+    exclude_sentence: '\b(dams?|generating station|power ?house|intake|spillway|sluice|penstock|weir|bridges?|barrage|centrale|pont)\b'
+    en: '\bpier\b|\bpiers\b'
+  eco_units:
+    label: "Eco-engineered or habitat-forming structure"
+    en: '\beco-?concrete|\beco-?engineer|\bnature[- ]inclusive|\b(textured|habitat|ecological|bio-?enhancing) (panels?|units?|blocks?|armou?r|tiles?)|\breef (balls?|units?|modules?)|\bartificial reef|\btide ?pools?|\bliving (seawall|breakwater|dock)'
+    fr: '\bbéton écologique|\brécif artificiel|\bgénie écologique|\bconception écologique'
+    da: '\bstenrev|\bnaturinkluderende'
+    "no": '\bkunstig rev|\bnaturinkluderende'
+    nl: '\bnatuurinclusie\w*|\bnatuurvriendelijke oever|\bkunstmatig rif|\becologische (kade|dijk|oever)'
+    es: '\barrecife artificial|\bhormigón ecológico|\becoingenier'
+  armour_riprap:
+    label: "Rock armour, riprap or armour units"
+    en: '\briprap|\brip rap|\barmou?r ?(stone|rock|units?|layer)|\brock armou?r|\baccropodes?|\bcore-?locs?|\btetrapods?|\bxblocs?|\brock (revetment|berm)'
+    fr: '\benrochements?|\bcarapace|\bblocs? de protection'
+    da: '\bstenkastning|\bkastesten|\bstensætning'
+    "no": '\bplastring|\bsteinfylling|\bsteinsetting'
+    nl: '\bstortsteen|\bbreuksteen'
+    es: '\bescolleras?|\bbloques de hormigón|\bmanto de (protección|bloques)'
+  routine_repair:
+    label: "Repair or replacement wording"
+    en: '\b(repair|replace|replacement|rehabilitat|refurbish|maintenance|reconstruct|rebuild|resurfac|upgrade)\w*'
+    fr: '\b(réfection|réparation|remplacement|entretien|réhabilitation|reconstruction)'
+    da: '\b(renovering|istandsættelse|udskiftning|vedligehold|reparation)'
+    "no": '\b(rehabilitering|istandsetting|utskifting|vedlikehold|reparasjon)'
+    nl: '\b(herstel|vervanging|onderhoud|renovatie)'
+    es: '\b(reparación|sustitución|rehabilitación|mantenimiento|reconstrucción)'
+  living_shoreline:
+    label: "Living shoreline, oyster reef or marsh restoration"
+    en: '\bliving shorelines?|\bnature-based (solutions?|shoreline|coastal)|\b(oyster|shellfish) reefs?|\b(salt ?marsh|marsh|wetland) (restoration|creation|planting|enhancement)|\bsoft (shoreline|engineering)|\bcoir (logs?|rolls?)|\bbio-?engineering'
+    fr: '\bgénie végétal|\brécifs? d.huîtres|\brestauration (du|des|de) marais|\bsolutions? fondées? sur la nature'
+    da: '\bnaturbaserede? løsning|\bstrandeng\w*.{0,30}genopret'
+    "no": '\bnaturbaserte? løsning'
+    nl: '\bkwelderherstel|\bnatuurlijke oever|\boesterri[fj]|\bzachte (kust|oever)'
+    es: '\barrecifes? de ostras|\brestauración de marismas|\bsoluciones basadas en la naturaleza'
+  shellfish_works:
+    label: "Shellfish work (reef, relocation, restoration or seeding)"
+    # Shellfish counts as a core match only when the same sentence is about working on them, not when it
+    # describes existing habitat ("the harbour supports fish, shellfish and other species").
+    require_sentence: '\b(restor\w*|reefs?|relocat\w*|transplant\w*|plant\w*|seed\w*|enhanc\w*|creat\w*|cultch|spat|restaur\w*|réimplant\w*|ensemencement|genopret\w*|udsætning|utsetting|herstel\w*|restauración|siembra)\b'
+    en: '\bshellfish|\boysters?\b|\bmussels?\b|\bclams?\b|\bscallops?\b'
+    fr: '\bmollusques|\bhuîtr\w*|\bmoules\b|\bpétoncles?'
+    da: '\bmuslinge\w*|\bøsters'
+    "no": '\bskjell\w*|\bøsters'
+    nl: '\bmossel\w*|\boester\w*|\bschelpdier\w*'
+    es: '\bostras?\b|\bmejill\w*|\bmoluscos'
+  erosion_control:
+    label: "Erosion control works or shoreline stabilization"
+    # Not plain "erosion control measures": that usually means silt fences during construction.
+    en: '\berosion (control|protection) (blankets?|structures?|works|walls?|mats?)|\berosion protection\b(?! measures)|\b(shoreline|bank|slope|bluff) stabili[sz]ation|\bcoastal erosion|\bshoreline erosion'
+    fr: '\bprotection contre l.érosion|\bstabilisation (des berges|de la berge|du talus|de la rive|du littoral)|\bérosion (côtière|des berges)'
+    da: '\bkysterosion|\bkystsikring|\berosionssikring'
+    "no": '\berosjonssikring|\bkysterosjon'
+    nl: '\bkusterosie|\boevererosie|\boeverbescherming'
+    es: '\berosión costera|\bcontrol de (la )?erosión|\bestabilización de (la )?(costa|ribera|playa)'
+  seagrass_core:
+    label: "Seagrass or eelgrass"
+    # Narrower than the general eelgrass group, which also holds Norwegian "tareskog" (kelp forest)
+    # and French "herbier" (any plant bed).
+    en: '\beelgrass|\bseagrass|\bzostera\b|\bsurfgrass|\bphyllospadix|\bsubmerged aquatic vegetation'
+    fr: '\bzostères?\b|\bherbiers? (de zostères|marins|aquatiques)'
+    da: '\bålegræs'
+    "no": '\bålegras|\bsjøgress'
+    nl: '\bzeegras'
+    es: '\bposidonia|\bpraderas? (marinas|de fanerógamas)|\bfanerógamas marinas|\bcymodocea|\bzostera'
+  seagrass_work:
+    label: "Seagrass survey, planting or restoration"
+    en: '\b(eelgrass|seagrass|zostera)\b.{0,50}\b(transplant|restor|plant|survey|mapp|monitor|compensat|offset)|\b(transplant|restor|replant|plant)\w*\b.{0,40}\b(eelgrass|seagrass)'
+    fr: '\bzostère\w*.{0,50}\b(transplant|restaur|inventaire|compensation)'
+    da: '\bålegræs\w*.{0,50}(udplant|genopret|kortlæg|kompens)'
+    "no": '\bålegras\w*.{0,50}(utplant|restaur|kartlegg|kompens)'
+    nl: '\bzeegras\w*.{0,50}(aanplant|herstel|compensat)'
+    es: '\bposidonia.{0,50}(trasplant|restaur|cartograf|compensa)'
+  kelp_core:
+    label: "Kelp or seaweed"
+    # Whole words only: Danish "cykelprojekter" contains "kelp".
+    en: '\bkelps?\b|\bseaweeds?\b|\bmacroalga\w*|\bnereocystis|\bmacrocystis|\blaminaria|\brockweed|\bascophyllum|\bfucoids?\b|\bsugar kelp'
+    fr: '\balgues? (marines|brunes)|\blaminaires?\b|\bvarech|\bgoémon|\bmacroalgues?'
+    da: '\btangskov|\bblæretang|\bsukkertang|\bmakroalger?|\bbrunalger?'
+    "no": '\btareskog|\bstortare|\bsukkertare|\bgrisetang|\bmakroalger?'
+    nl: '\bzeewier|\bkelp\b'
+    es: '\balgas? (pardas|marinas)|\blaminarias?|\bmacroalgas?|\bbosques? de (algas|kelp)'
+  kelp_work:
+    label: "Kelp or seaweed restoration, or rocky reef"
+    en: '\b(kelp|seaweed|macroalga\w*)\b.{0,40}\b(restor|transplant|plant|enhance|forest)|\brocky reef'
+    fr: '\b(laminaires?|algues?)\b.{0,40}\b(restaur|transplant)|\brécif rocheux'
+    da: '\btangskov\w*.{0,30}genopret|\bstenrev'
+    "no": '\btareskog\w*.{0,30}(restaur|reetabler)'
+    nl: '\bzeewier\w*.{0,30}herstel'
+    es: '\bbosques? de algas.{0,30}restaur|\barrecife rocoso'
+  coral_core:
+    label: "Coral or coralline habitat"
+    # Not place names such as Coral Harbour (Nunavut).
+    en: '\bcorals?\b(?!\s+harbou?r)|\bcoralline|\bcold[- ]water corals?|\blophelia|\bsponge (reefs?|grounds?|aggregations?)'
+    fr: '\bcorail|\bcoraux\b|\bcoralligène'
+    da: '\bkoraller?\b'
+    "no": '\bkorallrev|\bkoraller?\b|\blophelia'
+    nl: '\bkoraal'
+    es: '\bcorales?\b|\bcoralígen'
+  banking_core:
+    label: "Offsetting, compensation, credits or habitat banking"
+    en: '\b(habitat|mitigation|conservation|offset) bank|\b(habitat|offset|offsetting|mitigation|biodiversity|compensation) credits?|\bbiodiversity net gain|\bno net loss|\b(habitat )?(offsetting|compensation) (plan|project|site|measures?)|\bcompensatory (habitat|measures?|mitigation)|\bhabitat offset|\bfish habitat offset'
+    fr: '\bbanque (d.habitats?|de compensation)|\bcrédits? (d.habitat|de compensation)|\bplan de compensation|\bmesures? (de )?compensatoires?|\baucune perte nette|\bcompensation (de l.habitat|du poisson|écologique)'
+    da: '\berstatningsnatur|\bnaturkompensation|\bkompenserende foranstaltninger|\bkompensationsareal'
+    "no": '\bkompenserende tiltak|\bkompensasjonstiltak|\bnaturkompensasjon'
+    nl: '\bnatuurcompensatie|\bcompenserende maatregelen|\bcompensatieopgave|\bcompensatiegebied'
+    es: '\bbancos? de (hábitat|conservación|biodiversidad)|\bcompensación ambiental|\bmedidas compensatorias|\bcréditos? (de biodiversidad|ambientales)|\bpérdida neta (cero|nula)'
+
+profiles:
+  hard-structure:
+    label: "Hard-structure eco-engineering"
+    short: "Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock."
+    core: [breakwater_jetty, shoreline_protection, bulkhead_marine, wharf_dock, pier_marine, port_terminal, marina_small_craft, infill_causeway, piles, armour_riprap]
+    # The general shoreline group's bulkhead pattern is replaced by bulkhead_marine (no dams or river channels).
+    drop_patterns: {shoreline_protection: ['\bbulkhead'], wharf_dock: ['\bpier\b|\bpiers\b']}
+    types: {breakwater_jetty: 25, shoreline_protection: 25, bulkhead_marine: 25, wharf_dock: 20, pier_marine: 20, port_terminal: 18,
+            infill_causeway: 15, marina_small_craft: 12, piles: 10, offshore_wind: 10, outfall_intake: 5}
+    clues: {eco_units: 20, armour_riprap: 12, habitat_creation: 15, offsetting: 12, fish_habitat: 8, hadd: 8,
+            fisheries_act: 8, marine_footprint: 8, scour_protection: 8, intertidal_marsh: 5, species_at_risk: 4,
+            eelgrass: 4, shellfish_oyster: 4, mitigation_general: 3}
+    routine_repair_cap: true
+    # Any of these found means the notice has clear habitat words, so the routine-repair cap does not apply.
+    habitat_words: [eco_units, habitat_creation, offsetting, hadd, fisheries_act, fish_habitat, eelgrass,
+                    shellfish_oyster, intertidal_marsh, species_at_risk]
+  living-shoreline:
+    label: "Living shoreline and shellfish"
+    short: "Oysters, mussels, salt marsh, shoreline stabilization and erosion control."
+    core: [shellfish_works, intertidal_marsh, living_shoreline, erosion_control, shoreline_protection, bulkhead_marine]
+    drop_patterns: {shoreline_protection: ['\bbulkhead'], wharf_dock: ['\bpier\b|\bpiers\b']}
+    types: {shoreline_protection: 18, bulkhead_marine: 18, breakwater_jetty: 8, infill_causeway: 8, dredging: 6,
+            marina_small_craft: 5, wharf_dock: 4, pier_marine: 4}
+    clues: {living_shoreline: 30, shellfish_works: 20, intertidal_marsh: 18, erosion_control: 15, habitat_creation: 10,
+            offsetting: 8, fish_habitat: 6, eelgrass: 6, shellfish_oyster: 4, species_at_risk: 4, marine_footprint: 4}
+  seagrass:
+    label: "Seagrass and eelgrass"
+    short: "Eelgrass and seagrass beds: surveys, transplants, restoration and compensation."
+    core: [seagrass_core]
+    types: {dredging: 12, infill_causeway: 10, wharf_dock: 6, breakwater_jetty: 6, port_terminal: 6, marina_small_craft: 6,
+            offshore_wind: 6, piles: 4, shoreline_protection: 4}
+    clues: {seagrass_core: 30, seagrass_work: 15, habitat_creation: 8, offsetting: 8, hadd: 6, fisheries_act: 6,
+            fish_habitat: 6, marine_footprint: 6, species_at_risk: 4}
+  kelp:
+    label: "Kelp and other seaweed"
+    short: "Kelp forests, rockweed and other seaweed, and the rocky reefs they grow on."
+    core: [kelp_core]
+    types: {breakwater_jetty: 8, offshore_wind: 8, outfall_intake: 6, wharf_dock: 4, port_terminal: 4, dredging: 4,
+            shoreline_protection: 4}
+    clues: {kelp_core: 30, kelp_work: 15, habitat_creation: 8, offsetting: 8, fish_habitat: 6, marine_footprint: 6,
+            species_at_risk: 4, scour_protection: 4}
+  coral:
+    label: "Coral"
+    short: "Warm- and cold-water coral, coralline habitat and sponge reefs."
+    core: [coral_core]
+    types: {offshore_wind: 8, port_terminal: 6, dredging: 6, breakwater_jetty: 6, wharf_dock: 4, outfall_intake: 4}
+    clues: {coral_core: 30, habitat_creation: 10, offsetting: 8, species_at_risk: 6, marine_footprint: 6, fish_habitat: 4}
+  banking:
+    label: "Mitigation banking and compensation"
+    short: "Offsetting, compensation, credits, habitat banking and compensation plans."
+    core: [banking_core, offsetting, hadd, fisheries_act]
+    types: {infill_causeway: 8, dredging: 6, port_terminal: 6, breakwater_jetty: 6, offshore_wind: 6, wharf_dock: 4,
+            shoreline_protection: 4, marina_small_craft: 4}
+    clues: {banking_core: 30, offsetting: 20, hadd: 15, fisheries_act: 15, habitat_creation: 10, fish_habitat: 6,
+            species_at_risk: 6, intertidal_marsh: 4, eelgrass: 4, shellfish_oyster: 4, marine_footprint: 6}

@@ -25,12 +25,15 @@ def _size_points(big: dict, table: dict) -> list[tuple[str, int]]:
     return out
 
 
-def score_text(text: str, rules: dict) -> dict:
+def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
+    """negated and size_ok are only used by buyer profiles (mpf/profiles.py). Left as None, the score is
+    exactly the general score."""
     caps = rules["caps"]
     reasons = []
+    fp = (lambda t, g: find_patterns(t, g, negated)) if negated else find_patterns
 
     # 1. Project type: best match counts fully, each extra type adds 3 (max +6).
-    types = find_patterns(text, rules["project_types"])
+    types = fp(text, rules["project_types"])
     type_points = 0
     if types:
         ranked = sorted(types.items(), key=lambda kv: -kv[1]["points"])
@@ -41,7 +44,7 @@ def score_text(text: str, rules: dict) -> dict:
                             "matched": hit["matched"], "quote": hit["quote"]})
 
     # 2. Habitat clues: each group once, total capped.
-    clues = find_patterns(text, rules["habitat_clues"])
+    clues = fp(text, rules["habitat_clues"])
     habitat_points = min(caps["habitat_points_max"], sum(h["points"] for h in clues.values()))
     for name, hit in sorted(clues.items(), key=lambda kv: -kv[1]["points"]):
         reasons.append({"rule": f"habitat:{name}", "label": hit["label"], "points": hit["points"],
@@ -49,6 +52,8 @@ def score_text(text: str, rules: dict) -> dict:
 
     # 3. Size.
     sizes = extract_sizes(text)
+    if size_ok is not None:
+        sizes = [s for s in sizes if size_ok(text, s)]
     big = largest_sizes(sizes)
     size_pts = _size_points(big, rules["size_points"])
     size_points = min(caps["size_points_max"], sum(p for _, p in size_pts))

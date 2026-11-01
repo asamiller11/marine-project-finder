@@ -30,6 +30,7 @@ from mpf.history import CHANGE_LABELS
 from mpf.news import GDELT_URL
 from mpf.coverage import STATUS_LABELS, load_coverage, source_names
 from mpf.models import UNKNOWN
+from mpf.profiles import ALL, ALL_LABEL, EMPTY_NOTE, ProfileScorer, listed_in_profile, profile_results
 from mpf.review import auto_summary, decision, own_summary
 from mpf.tiers import TIER_LABELS, TIER_ORDER, find_duplicates, tier_for
 
@@ -304,13 +305,23 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
     skipped["merged_duplicates"] = len(losers)
     by_key = {r["key"]: r for r in kept}
     from mpf.config import load_scoring
-    patterns = quote_patterns(settings.get("scoring") or load_scoring())
+    scoring = settings.get("scoring") or load_scoring()
+    patterns = quote_patterns(scoring)
+    scorer = ProfileScorer(scoring) if scoring.get("profiles") else None
+    tiers_conf = settings.get("tiers", {})
     records = {}
     for r in kept:
         if r["key"] not in losers:
-            records[r["key"]] = make_record(r, review_rows.get(r["key"], {}), settings, today, patterns)
-    # "Probably not relevant" is never published. Duplicates of those are dropped too.
+            rec = make_record(r, review_rows.get(r["key"], {}), settings, today, patterns)
+            rec["profiles"] = profile_results(r, rec["tier"], scorer, tiers_conf) if scorer else {}
+            records[r["key"]] = rec
+    # "Probably not relevant" is never on the general list. Such a project is kept only when a buyer
+    # profile lists it at Possible or better; it then appears under that profile only.
+    possible_min = int(tiers_conf.get("possible_min", 35))
     for key in [k for k, rec in records.items() if rec["tier"] == "notrel"]:
+        if any(listed_in_profile(records[key], p, possible_min) for p in records[key]["profiles"]):
+            records[key]["profile_only"] = True
+            continue
         del records[key]
         skipped["not_relevant"] += 1
     for loser, winner in losers.items():
@@ -328,6 +339,7 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
         if key not in records and key not in losers and decision(review_rows.get(key)) == "yes" \
                 and rec.get("tier") in PUBLISHED_TIERS:   # older or unpublished records are not reused
             rec = dict(rec)
+            rec.setdefault("profiles", {})
             rec.setdefault("page", f"p/{page_slug(key)}.html")
             rec.setdefault("comments", comment_info(rec, {}, today))
             rec["stage_kind"] = stage_kind(rec, today) if rec.get("stage_kind") not in ("decided", "withdrawn") \
@@ -402,6 +414,25 @@ padding:14px 16px;color:#fff;transition:background .15s,border-color .15s}
 .stats .l{display:flex;align-items:center;gap:7px;font-size:.82rem;color:#b9cbd8}
 .stats .dot{width:8px;height:8px;border-radius:50%;flex:none}
 .dot.strong{background:#7ad3a4}.dot.possible{background:#efc26a}.dot.soon{background:#f3a483}
+
+/* Buyer profile bar */
+.profile-bar{background:var(--surface);border-bottom:1px solid var(--line)}
+.profile-bar .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px 24px;align-items:center;padding-top:14px;padding-bottom:14px}
+.profile-pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.profile-pick label{font-weight:650;white-space:nowrap}
+.profile-pick select{font:inherit;font-size:.95rem;font-weight:600;color:var(--ink);background:var(--brand-soft);
+border:1px solid var(--brand);border-radius:9px;padding:8px 12px;min-width:0;max-width:100%}
+.profile-desc{margin:0;color:var(--muted);font-size:.88rem}
+.profile-share{display:flex;gap:12px;align-items:center;font-size:.86rem;white-space:nowrap}
+.profile-empty{grid-column:1/-1;margin:0;padding:10px 14px;border-radius:10px;background:var(--possible-bg);color:var(--possible);font-weight:550;font-size:.9rem}
+.profile-note{grid-column:1/-1;margin:0;color:var(--faint);font-size:.8rem}
+.card p.because{margin:8px 0 0;font-size:.86rem;color:var(--ink-2);background:var(--brand-soft);border-radius:8px;padding:7px 10px}
+.card p.general-line{margin:6px 0 0;font-size:.8rem;color:var(--muted)}
+.t-none{color:var(--muted);border-color:var(--line)}
+ul.profile-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+ul.profile-list li{font-size:.9rem}
+ul.profile-list p.because{margin:4px 0 0;font-size:.84rem;color:var(--muted)}
+@media (max-width:800px){.profile-bar .wrap{grid-template-columns:1fr}.profile-share{white-space:normal;flex-wrap:wrap}}
 
 /* Page layout: filters beside results */
 .layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:28px;align-items:start;padding-top:28px}
@@ -722,7 +753,8 @@ var MPF = (function(){
 
 JS = r"""
 (function(){
-  var cards = Array.prototype.slice.call(document.querySelectorAll('#server-list .card'));
+  // Cards that only a buyer profile lists sit in #profile-only; they never show under "All habitat work".
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#server-list .card, #profile-only .card'));
   var SOON = parseInt(document.body.getAttribute('data-soon') || '30', 10);
   cards.forEach(MPF.countdown);
   var $ = function(id){ return document.getElementById(id); };
@@ -757,12 +789,52 @@ JS = r"""
   fillRegions();
   var TIERS = ['strong', 'possible', 'weak', 'watch'];
   var TIER_NAMES = JSON.parse($('tier-names').textContent);
+  // Buyer profiles. "all" is the general score. The choice is kept only in this browser (localStorage)
+  // and can be shared with ?profile=<key>.
+  var pdEl = $('profile-data'), PD = pdEl ? JSON.parse(pdEl.textContent) : {profiles: [], cards: {}},
+      fp = $('f-profile'), PSTORE = 'mpf-profile-v1', PKEYS = [], PCOUNT = {}, PDESC = {all: PD.all ? PD.all.short : ''};
+  PD.profiles.forEach(function(m){ PKEYS.push(m.key); PCOUNT[m.key] = m.count; PDESC[m.key] = m.short; });
+  function prof(){ return fp && fp.value ? fp.value : 'all'; }
+  function pinfo(c){ var p = prof(); return p === 'all' ? null : ((PD.cards[c.getAttribute('data-id')] || {})[p] || null); }
+  function tierOf(c){ if (prof() === 'all') return c.getAttribute('data-gtier'); var i = pinfo(c); return i ? i[0] : 'none'; }
+  function scoreOf(c){ var i = pinfo(c); return i ? i[1] : +c.getAttribute('data-score'); }
+  function listed(t){ return t === 'strong' || t === 'possible' || t === 'weak' || t === 'watch'; }
+  cards.forEach(function(c){ var b = c.querySelector('.tier-badge'), s = c.querySelector('.badge.score');
+    c._gb = {text: b.textContent, cls: b.className}; c._gs = s ? s.textContent : ''; });
+  // With a profile chosen, the card shows that profile's tier and score, why it matches, and the general score.
+  function paint(c){
+    var i = pinfo(c), b = c.querySelector('.tier-badge'), s = c.querySelector('.badge.score'),
+        bc = c.querySelector('.because'), gl = c.querySelector('.general-line'), gt = c.getAttribute('data-gtier');
+    if (!i) { c.setAttribute('data-tier', gt); b.textContent = c._gb.text; b.className = c._gb.cls;
+              if (s) s.textContent = c._gs; if (bc) bc.hidden = true; if (gl) gl.hidden = true; return; }
+    c.setAttribute('data-tier', i[0]); b.textContent = TIER_NAMES[i[0]] || i[0]; b.className = 'badge tier-badge t-' + i[0];
+    if (s) s.textContent = 'Profile score ' + i[1] + '/100';
+    if (bc) { bc.textContent = 'Matches because: ' + i[2]; bc.hidden = false; }
+    if (gl) { gl.textContent = 'General score ' + c.getAttribute('data-score') + '/100, ' +
+                (gt === 'none' ? 'not on the general list' : (TIER_NAMES[gt] || gt)) + '.'; gl.hidden = false; }
+  }
+  function stored(){ try { return localStorage.getItem(PSTORE) || ''; } catch (e) { return ''; } }
+  function store(k){ try { localStorage.setItem(PSTORE, k); } catch (e) {} }
+  function shareUrl(){
+    var base = location.href.split('#')[0].split('?')[0];
+    var qs = location.search.replace(/^\?/, '').split('&').filter(function(x){ return x && x.indexOf('profile=') !== 0; });
+    if (prof() !== 'all') qs.push('profile=' + encodeURIComponent(prof()));
+    return base + (qs.length ? '?' + qs.join('&') : '');
+  }
+  function paintBar(){
+    var l = $('profile-link'), d = $('profile-desc'), pe = $('profile-empty');
+    if (l) l.href = shareUrl();
+    if (d) d.textContent = PDESC[prof()] || '';
+    if (pe) pe.hidden = prof() === 'all' || PCOUNT[prof()] > 0;
+  }
+  function syncUrl(){ try { history.replaceState(null, '', shareUrl() + location.hash); } catch (e) {} paintBar(); }
   var STAGE_ORDER = ['open', 'assessment', 'closed', 'decided', 'withdrawn', 'watch', 'unknown'];
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function placeOk(c){ return (!fc.value || c.getAttribute('data-country') === fc.value) &&
                               (!fr.value || c.getAttribute('data-region') === fr.value); }
   function visible(c, v, watch){
-    var k = c.getAttribute('data-stage-now'), t = c.getAttribute('data-tier'), q = (fq.value || '').toLowerCase().trim();
+    var k = c.getAttribute('data-stage-now'), t = tierOf(c), q = (fq.value || '').toLowerCase().trim();
+    if (!listed(t)) return false;      // not listed under the chosen profile
     // Closing soon, changed and watch list views show every published tier.
     var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && fw.checked);
     var viewOk = v === 'all' ||
@@ -775,7 +847,7 @@ JS = r"""
       (!q || c.getAttribute('data-search').indexOf(q) >= 0);
   }
   function cmp(a, b){
-    var s = fsort.value, sa = +a.getAttribute('data-score'), sb = +b.getAttribute('data-score');
+    var s = fsort.value, sa = scoreOf(a), sb = scoreOf(b);
     if (s === 'deadline') { var da = a._days === null ? 1e9 : (a._days < 0 ? 1e8 - a._days : a._days),
                                 db = b._days === null ? 1e9 : (b._days < 0 ? 1e8 - b._days : b._days);
                             return da - db || sb - sa; }
@@ -783,7 +855,7 @@ JS = r"""
     if (s === 'newest') return (b.getAttribute('data-first') || '').localeCompare(a.getAttribute('data-first') || '') || sb - sa;
     if (s === 'title') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
     var ao = a.getAttribute('data-stage-now') === 'open' ? 0 : 1, bo = b.getAttribute('data-stage-now') === 'open' ? 0 : 1;
-    return TIERS.indexOf(a.getAttribute('data-tier')) - TIERS.indexOf(b.getAttribute('data-tier')) || ao - bo || sb - sa;
+    return TIERS.indexOf(tierOf(a)) - TIERS.indexOf(tierOf(b)) || ao - bo || sb - sa;
   }
   function groupOf(c){
     var g = fgroup.value;
@@ -805,6 +877,7 @@ JS = r"""
   var shownOrder = [];
   function apply(){
     var v = currentView(), watch = MPF.getWatch();
+    cards.forEach(paint);
     var shown = cards.filter(function(c){ return visible(c, v, watch); }).sort(cmp);
     cards.forEach(function(c){ holder.appendChild(c); });
     while (view.firstChild) view.removeChild(view.firstChild);
@@ -820,7 +893,7 @@ JS = r"""
       if (fgroup.value === 'country' && fsort.value === 'default') {
         gs.removeChild(gs.lastChild);
         TIERS.forEach(function(t){
-          var cs = g.cards.filter(function(c){ return c.getAttribute('data-tier') === t; });
+          var cs = g.cards.filter(function(c){ return tierOf(c) === t; });
           if (!cs.length) return;
           var ts = section('tier', TIER_NAMES[t], cs.length); ts.setAttribute('data-tier', t);
           cs.forEach(function(c){ ts.lastChild.appendChild(c); shownOrder.push(c); }); gs.appendChild(ts);
@@ -831,10 +904,10 @@ JS = r"""
     server.hidden = true; view.hidden = false;
     empty.hidden = shown.length > 0;
     empty.textContent = v === 'watch' && !watch.length ? 'Your watch list is empty. Use "Add to watch list" on any project.'
-      : 'No projects match these filters.';
+      : prof() !== 'all' && !PCOUNT[prof()] ? PD.empty_note : 'No projects match these filters.';
     // Closing soon list at the top: every published tier in the chosen country or region.
     while (ul.firstChild) ul.removeChild(ul.firstChild);
-    var soon = cards.filter(function(c){ return placeOk(c) && c.getAttribute('data-tier') !== 'watch' &&
+    var soon = cards.filter(function(c){ var t = tierOf(c); return placeOk(c) && listed(t) && t !== 'watch' &&
       c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days <= SOON; })
       .sort(function(a,b){ return a._days - b._days; });
     // One row per deadline, in aligned columns: date, days left, project, tier and country.
@@ -859,8 +932,22 @@ JS = r"""
     if (rc) rc.textContent = shown.length + (shown.length === 1 ? ' project shown' : ' projects shown');
     // The banner figure counts every country, so it stays the same when filters change.
     var ss = $('stat-soon');
-    if (ss) ss.textContent = cards.filter(function(c){ return c.getAttribute('data-tier') !== 'watch' &&
+    if (ss) ss.textContent = cards.filter(function(c){ var g = c.getAttribute('data-gtier'); return listed(g) && g !== 'watch' &&
       c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days >= 0 && c._days <= SOON; }).length;
+  }
+  if (fp) {
+    var want = param('profile') || stored();
+    if (want === 'all' || PKEYS.indexOf(want) >= 0) fp.value = want;
+    if (prof() !== 'all') syncUrl(); else paintBar();
+    fp.addEventListener('change', function(){ store(prof()); syncUrl(); apply(); });
+    var cp = $('profile-copy');
+    if (cp) cp.addEventListener('click', function(){
+      var url = shareUrl();
+      function done(t){ cp.textContent = t; setTimeout(function(){ cp.textContent = 'Copy link'; }, 2500); }
+      if (navigator.clipboard && navigator.clipboard.writeText)
+        navigator.clipboard.writeText(url).then(function(){ done('Link copied'); }, function(){ done('Copy the link from the address bar'); });
+      else done('Copy the link from the address bar');
+    });
   }
   var reset = $('reset-btn');
   if (reset) reset.addEventListener('click', function(){
@@ -1104,13 +1191,18 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
     else:
         comments = f'<dt>Comment deadline</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
     title_link = page or link
-    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-country="{escape(rec.get('country') or UNKNOWN)}"
+    if rec.get("profile_only"):
+        # Not on the general list: shown only under a buyer profile, where the script sets its tier.
+        rec = {**rec, "tier": "none", "tier_label": NOT_GENERAL}
+    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-country="{escape(rec.get('country') or UNKNOWN)}"
  data-country-name="{escape(country_name)}" data-country-order="{country_order}" data-region="{escape(rec['province'])}"
  data-types="{escape('|'.join(types))}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}"
  data-score="{int(rec['score'])}" data-first="{escape(rec.get('first_listed') or '')}"
  data-changes="{escape('|'.join(rec.get('changes') or []))}" data-title="{escape(rec['title'].lower())}" data-search="{escape(search)}">
 {_badges(rec, less_tested)}
 <h4><a href="{title_link}">{escape(rec['title'])}</a></h4>
+<p class="because" hidden></p>
+<p class="general-line" hidden></p>
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(location)}</dd>
@@ -1125,6 +1217,35 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
 {_source_lines(rec, link)}
 </div>
 </article>"""
+
+
+NOT_GENERAL = "Not on the general list"
+
+
+def profile_meta(records: list[dict], scoring: dict | None = None) -> list[dict]:
+    """Buyer profiles in config order: key, label, short description, and whether any project matches."""
+    from mpf.config import load_scoring
+    conf = (scoring or load_scoring()).get("profiles") or {}
+    if not any(r.get("profiles") for r in records):
+        return []
+    out = []
+    for key, p in conf.items():
+        n = sum(1 for r in records if listed_in_profile(r, key))
+        out.append({"key": key, "label": p["label"], "short": p.get("short", ""), "count": n})
+    return out
+
+
+def profile_data(records: list[dict], meta: list[dict]) -> dict:
+    """For the page script: per project, [tier, score, matches-because] for each profile that lists it."""
+    cards = {}
+    for r in records:
+        d = {m["key"]: [r["profiles"][m["key"]]["tier"], r["profiles"][m["key"]]["score"],
+                        r["profiles"][m["key"]]["because"]]
+             for m in meta if listed_in_profile(r, m["key"])}
+        if d:
+            cards[r["id"]] = d
+    return {"all": {"key": ALL, "label": ALL_LABEL, "short": "Every kind of marine habitat work. The general score."},
+            "profiles": meta, "cards": cards, "empty_note": EMPTY_NOTE}
 
 
 def _evidence(rec: dict, quotes_html: str) -> str:
@@ -1176,8 +1297,12 @@ def _countries_in_order(records: list[dict], coverage: dict) -> list[dict]:
 
 
 def render_index(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None,
-                 history_dates: list[str] | None = None, news_html: str = "") -> str:
+                 history_dates: list[str] | None = None, news_html: str = "", scoring: dict | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
+    all_records = records
+    meta = profile_meta(all_records, scoring)
+    # The general list ("All habitat work") never shows projects that only a buyer profile lists.
+    records = [r for r in all_records if not r.get("profile_only")]
     title = site.get("title", "MitiMark")
     desc = site.get("description", "")
     soon_days = int(site.get("closing_soon_days", 30))
@@ -1210,8 +1335,25 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
             + "\n".join(tier_parts) + "\n</section>")
     body = "\n".join(country_sections) if country_sections else '<p class="empty">No projects yet.</p>'
     since = since_panel(records, history_dates or [])
-    csv_data = json.dumps({"columns": CSV_COLUMNS, "rows": {r["id"]: csv_row(r, names, site) for r in records}},
+    csv_data = json.dumps({"columns": csv_columns(meta), "rows": {r["id"]: csv_row(r, names, site, meta)
+                                                                  for r in all_records}},
                           ensure_ascii=False).replace("</", "<\\/")
+    order = {c["code"]: i for i, c in enumerate(coverage.get("countries", []))}
+    extra_cards = "\n".join(_card(r, names.get(r.get("country"), r.get("country") or UNKNOWN), less_tested,
+                                  order.get(r.get("country"), 999)) for r in all_records if r.get("profile_only"))
+    prof_json = json.dumps(profile_data(all_records, meta), ensure_ascii=False).replace("</", "<\\/")
+    prof_opts = "".join(f'<option value="{escape(m["key"])}">{escape(m["label"])}'
+                        f'{"" if m["count"] else " (no current matches)"}</option>' for m in meta)
+    profile_bar = f"""<section class="profile-bar js-only" aria-label="Buyer profile" hidden><div class="wrap">
+<div class="profile-pick"><label for="f-profile">I work on:</label>
+<select id="f-profile"><option value="{ALL}">{ALL_LABEL}</option>{prof_opts}</select></div>
+<p id="profile-desc" class="profile-desc"></p>
+<div class="profile-share"><a id="profile-link" href="?">Shareable link</a>
+<button type="button" class="btn" id="profile-copy">Copy link</button></div>
+<p id="profile-empty" class="profile-empty" hidden>{escape(EMPTY_NOTE)}</p>
+<p class="profile-note">Profiles are rule-based guesses, not a statement that mitigation is required.
+Your choice is remembered only in this browser. <a href="about.html#buyer-profiles">How profiles work</a></p>
+</div></section>""" if meta else ""
     tier_names = json.dumps({t: TIER_LABELS[t] for t in PUBLISHED_TIERS + ("watch",)})
 
     opts = ['<option value="">All countries</option>']
@@ -1251,6 +1393,7 @@ work. Every flag shows the exact sentences that triggered it, so you can judge f
 <li><a href="#coverage"><span class="n">{len(countries)}</span><span class="l">Countries with listings{f', {n_sources} sources' if n_sources else ''}</span></a></li>
 </ul>
 </div></section>
+{profile_bar}
 <main class="wrap layout" id="main">
 
 <aside class="sidebar" aria-label="Filters">
@@ -1341,11 +1484,15 @@ Always read the official notice.</p>
 <div id="server-list">
 {body}
 </div>
+<div id="profile-only" hidden>
+{extra_cards}
+</div>
 </div>
 </main>
 {_footer(site)}
 <script type="application/json" id="csv-data">{csv_data}</script>
 <script type="application/json" id="tier-names">{tier_names}</script>
+<script type="application/json" id="profile-data">{prof_json}</script>
 <script>{JS_COMMON}{JS}</script>
 </body>
 </html>
@@ -1357,27 +1504,41 @@ CSV_COLUMNS = ["id", "title", "country", "region", "proponent", "project_types",
                "changes_since_last_update", "first_listed", "project_page", "official_notice", "source"]
 
 
-def csv_row(rec: dict, names: dict, site_conf: dict) -> list:
+def csv_columns(meta: list[dict] | None = None) -> list[str]:
+    """The fixed columns, then one per buyer profile (e.g. profile_seagrass)."""
+    return CSV_COLUMNS + ["profile_" + m["key"].replace("-", "_") for m in meta or []]
+
+
+def _profile_cell(rec: dict, key: str) -> str:
+    """"Possible (53)" when the profile lists the project, else empty."""
+    if not listed_in_profile(rec, key):
+        return ""
+    p = rec["profiles"][key]
+    return f'{p["tier_label"]} ({int(p["score"])})'
+
+
+def csv_row(rec: dict, names: dict, site_conf: dict, meta: list[dict] | None = None) -> list:
     """One CSV row: facts only (no quotes, no summaries). Missing comment data is "Not published"."""
     c = rec.get("comments") or {}
     base = site_conf.get("url", "")
     return [rec["id"], rec["title"], names.get(rec.get("country"), rec.get("country")), rec["province"],
             rec["proponent"], "; ".join(rec["types"] or []), STAGE_LABELS.get(rec["stage_kind"], rec["stage"]),
-            rec["tier_label"], int(rec["score"]), "yes" if rec["reviewed"] else "no",
+            NOT_GENERAL if rec.get("profile_only") else rec["tier_label"], int(rec["score"]),
+            "yes" if rec["reviewed"] else "no",
             c.get("opens") or NOT_PUBLISHED, c.get("closes") or NOT_PUBLISHED,
             c["count"] if c.get("count") is not None else NOT_PUBLISHED, c.get("count_as_of") or "",
             "; ".join(CHANGE_LABELS[x] for x in rec.get("changes") or []), rec.get("first_listed") or "",
             base + rec["page"] if rec.get("page") else "", rec["url"],
-            rec.get("agency") or rec["source_name"]]
+            rec.get("agency") or rec["source_name"]] + [_profile_cell(rec, m["key"]) for m in meta or []]
 
 
-def write_csv(path: Path, records: list[dict], names: dict, site_conf: dict) -> None:
+def write_csv(path: Path, records: list[dict], names: dict, site_conf: dict, meta: list[dict] | None = None) -> None:
     import csv
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f)
-        w.writerow(CSV_COLUMNS)
+        w.writerow(csv_columns(meta))
         for r in records:
-            w.writerow(csv_row(r, names, site_conf))
+            w.writerow(csv_row(r, names, site_conf, meta))
 
 
 def since_panel(records: list[dict], dates: list[str]) -> str:
@@ -1460,8 +1621,30 @@ def _in_the_news_html(rec: dict) -> str:
             'official notice is the record.</p>\n<ul class="news">' + "".join(_news_li(n) for n in news) + "</ul>")
 
 
-def render_project_page(rec: dict, site: dict, updated: date, country_name: str, less_tested: list) -> str:
+def _profiles_card(rec: dict, meta: list[dict] | None) -> str:
+    """Every buyer profile that lists this project, with its tier, score and why."""
+    if not meta:
+        return ""
+    items = []
+    for m in meta:
+        if not listed_in_profile(rec, m["key"]):
+            continue
+        p = rec["profiles"][m["key"]]
+        items.append(f'<li><a href="../index.html?profile={escape(m["key"])}#results">{escape(m["label"])}</a> '
+                     f'<span class="badge tier-badge t-{p["tier"]}">{escape(p["tier_label"])}</span> '
+                     f'<span class="note">score {int(p["score"])}</span>'
+                     f'<p class="because">Matches because: {escape(p["because"])}</p></li>')
+    body = (f'<ul class="profile-list">{"".join(items)}</ul>' if items
+            else '<p class="note">No buyer profile matches this project.</p>')
+    return (f'<section class="side-card">\n<h2 class="side-h">Buyer profiles</h2>\n{body}\n'
+            f'<p class="note">Rule-based guesses, not a statement that mitigation is required.</p>\n</section>')
+
+
+def render_project_page(rec: dict, site: dict, updated: date, country_name: str, less_tested: list,
+                        meta: list[dict] | None = None) -> str:
     title = site.get("title", "MitiMark")
+    if rec.get("profile_only"):
+        rec = {**rec, "tier": "none", "tier_label": NOT_GENERAL}
     types = rec["types"] or []
     deadline, deadline_text = _deadline_text(rec)
     link = escape(rec["url"]) if rec["url"] else "#"
@@ -1521,6 +1704,7 @@ at each update.</p>
 <div class="meter" style="--s:{score}"><span></span></div>
 {'' if rec['tier_reason'].lower().startswith('score') else f'<p class="note">{escape(rec["tier_reason"])}</p>'}
 </section>
+{_profiles_card(rec, meta)}
 <section class="side-card">
 <h2 class="side-h">Key facts</h2>
 <dl class="facts">
@@ -1540,8 +1724,35 @@ at each update.</p>
 """
 
 
+def _about_profiles(meta: list[dict] | None, tiers: dict) -> str:
+    """About section: what buyer profiles are and what they are not."""
+    if not meta:
+        return ""
+    rows = "".join(f'<li><strong>{escape(m["label"])}:</strong> {escape(m["short"])}'
+                   f'{"" if m["count"] else " " + escape(EMPTY_NOTE)}</li>' for m in meta)
+    pm = int(tiers.get("possible_min", 35))
+    return f"""<h2 id="buyer-profiles">Buyer profiles</h2>
+<p>At the top of the project list you can choose the kind of habitat work you do ("I work on: ..."). The list
+then uses that profile's tiers and order, and each project says in plain words why it matches. "{ALL_LABEL}" is
+the general score described above and is the default.</p>
+<ul>{rows}</ul>
+<p>Profiles are rule-based guesses. Each one re-weights the same visible rules (keywords, project types and sizes)
+toward one kind of work, using the same Strong, Possible and Weak cut-offs. A project is listed for a profile only
+if the notice mentions at least one of that profile's core subjects. A project that the general list leaves out
+appears under a profile only if it reaches Possible ({pm} or more) there. A flag under any profile means the notice
+may be relevant to that kind of work. It is not a statement that mitigation, compensation or any particular
+measure is required.</p>
+<p>Profiles read notices a little more strictly than the general score: a keyword does not count when the same
+clause negates it or makes it conditional ("does not propose changes to the wharf", "if required"), sizes taken
+from sentences about past works or distances ("within 250 m of the site") are not counted, and for the
+hard-structure profile, small routine repairs (under 100 m long, 2,000 m&sup2; and 5,000 m&sup3;) stay Weak unless the
+notice also mentions habitat work. Your profile choice is stored only in your browser. You can share a profile
+with a link such as <code>?profile=seagrass</code>.</p>
+"""
+
+
 def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None = None,
-                 records: list[dict] | None = None) -> str:
+                 records: list[dict] | None = None, meta: list[dict] | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
     records = records or []
     bn = balance_note(records)
@@ -1555,7 +1766,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
     from mpf.comments import COUNT_STATUS
     comment_sources = "".join(f'<li><strong>{escape(s.get("name", key))}:</strong> {escape(COUNT_STATUS[key].replace(" This project page shows none.", ""))}</li>'
                               for key, s in coverage.get("sources", {}).items() if key in COUNT_STATUS)
-    toc = '<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a><a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a>'
+    toc = '<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a>' + ('<a href="#buyer-profiles">Buyer profiles</a>' if meta else '') + '<a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a>'
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -1622,6 +1833,7 @@ to this site. Anything a source does not publish is shown as "Not published".</p
 (deadline, stage and tier) and marks projects that are new, whose comment deadline changed, or that are now
 decided. Each project page shows a timeline of those changes next to the official comment dates.</p>
 
+{_about_profiles(meta, tiers)}
 <h2 id="your-watch-list">Your watch list</h2>
 <p>"Add to watch list" saves a project in your own browser only. There are no accounts, and nothing about
 your watch list is sent anywhere. Clearing your browser data clears the list.</p>
@@ -1682,9 +1894,13 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
     if news_items is not None:
         attach_news(records, news_items)
         news_html = news_section(news_items, int((settings.get("news") or {}).get("default_shown", 15)))
+    scoring = settings.get("scoring")
+    meta = profile_meta(records, scoring)
+    general = [r for r in records if not r.get("profile_only")]
     (out_dir / "index.html").write_text(render_index(records, site_conf, tiers, updated, coverage, h["snapshots"],
-                                                     news_html), encoding="utf-8")
-    (out_dir / "about.html").write_text(render_about(site_conf, tiers, updated, coverage, records), encoding="utf-8")
+                                                     news_html, scoring), encoding="utf-8")
+    (out_dir / "about.html").write_text(render_about(site_conf, tiers, updated, coverage, general, meta),
+                                        encoding="utf-8")
     # One page per project, at a stable address (p/<source>-<id>.html). Pages of projects no longer
     # listed are removed, so the folder only holds what the list shows.
     pages = out_dir / "p"
@@ -1694,11 +1910,11 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
         path = out_dir / r["page"]
         keep.add(path.name)
         path.write_text(render_project_page(r, site_conf, updated, names.get(r.get("country"), r.get("country") or UNKNOWN),
-                                            less_tested), encoding="utf-8")
+                                            less_tested, meta), encoding="utf-8")
     for old in pages.glob("*.html"):
         if old.name not in keep:
             mark_unlisted(old, updated)
-    write_csv(out_dir / "projects.csv", records, names, site_conf)
+    write_csv(out_dir / "projects.csv", records, names, site_conf, meta)
     (out_dir / "items.json").write_text(json.dumps(records, ensure_ascii=False, indent=1), encoding="utf-8")
     hist.save(out_dir / "history.json", h)
     (out_dir / ".nojekyll").write_text("", encoding="utf-8")   # tells GitHub Pages to serve files as-is
