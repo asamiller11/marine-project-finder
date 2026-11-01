@@ -413,6 +413,8 @@ padding:14px 16px;color:#fff;transition:background .15s,border-color .15s}
 .stats .n{display:block;font-size:1.7rem;font-weight:700;line-height:1.2;letter-spacing:-.02em}
 .stats .l{display:flex;align-items:center;gap:7px;font-size:.82rem;color:#b9cbd8}
 .stats .dot{width:8px;height:8px;border-radius:50%;flex:none}
+.stats-for{margin:26px 0 -16px;font-size:.8rem;color:#9fb6c6}
+.stats-for strong{color:#fff;font-weight:600}
 .dot.strong{background:#7ad3a4}.dot.possible{background:#efc26a}.dot.soon{background:#f3a483}
 
 /* Buyer profile bar */
@@ -685,7 +687,8 @@ nav.toc p{width:100%}nav.toc a{border:1px solid var(--line);border-radius:999px;
 @media (min-width:1041px){details.tools>summary{pointer-events:none}details.tools>summary::after{display:none}}
 @media (max-width:640px){.wrap{padding:0 16px}body{font-size:14.5px}.topbar .updated{display:none}.topbar .wrap{gap:10px}
 .brand span{display:none}nav.top a{padding:6px 7px;font-size:.84rem}.hero .wrap{padding-top:30px;padding-bottom:28px}
-.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats li:first-child{grid-column:1/-1}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:18px}.stats .stat-countries{display:none}
+.stats a{padding:9px 12px;border-radius:10px}.stats .n{font-size:1.3rem}.stats .l{font-size:.74rem}.stats-for{margin:18px 0 -10px}
 .filters{grid-template-columns:1fr}section.explain ul{grid-template-columns:1fr}
 dl.facts{grid-template-columns:1fr;gap:0}dl.facts dd{margin-bottom:8px}
 section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .meta{grid-column:1/-1}
@@ -813,6 +816,21 @@ JS = r"""
     if (gl) { gl.textContent = 'General score ' + c.getAttribute('data-score') + '/100, ' +
                 (gt === 'none' ? 'not on the general list' : (TIER_NAMES[gt] || gt)) + '.'; gl.hidden = false; }
   }
+  // Banner figures: for the chosen profile, every country, ignoring the filters below.
+  function paintStats(){
+    var mine = cards.filter(function(c){ return listed(tierOf(c)); }), countries = {}, sources = {};
+    function n(t){ return mine.filter(function(c){ return tierOf(c) === t; }).length; }
+    mine.forEach(function(c){ countries[c.getAttribute('data-country')] = 1; if (c.getAttribute('data-source')) sources[c.getAttribute('data-source')] = 1; });
+    var nc = Object.keys(countries).length, ns = Object.keys(sources).length;
+    var set = function(id, v){ var e = $(id); if (e) e.textContent = v; };
+    set('stat-total', mine.length); set('stat-strong', n('strong')); set('stat-possible', n('possible'));
+    set('stat-soon', mine.filter(function(c){ return tierOf(c) !== 'watch' && c.getAttribute('data-stage-now') === 'open' &&
+      c._days !== null && c._days >= 0 && c._days <= SOON; }).length);
+    set('stat-countries', nc);
+    set('stat-countries-l', (nc === 1 ? 'Country' : 'Countries') + ' with listings' + (ns ? ', ' + ns + (ns === 1 ? ' source' : ' sources') : ''));
+    set('stats-for-name', prof() === 'all' ? (PD.all ? PD.all.label : 'All habitat work')
+      : (PD.profiles.filter(function(m){ return m.key === prof(); })[0] || {label: prof()}).label);
+  }
   function stored(){ try { return localStorage.getItem(PSTORE) || ''; } catch (e) { return ''; } }
   function store(k){ try { localStorage.setItem(PSTORE, k); } catch (e) {} }
   function shareUrl(){
@@ -928,12 +946,10 @@ JS = r"""
     if (none) none.hidden = soon.length > 0;
     line.textContent = soon.length + (soon.length === 1 ? ' comment deadline' : ' comment deadlines') +
       ' in the next ' + SOON + ' days.';
+    line.hidden = soon.length === 0;      // "No comment deadlines ..." says it once
     var rc = $('result-count');
     if (rc) rc.textContent = shown.length + (shown.length === 1 ? ' project shown' : ' projects shown');
-    // The banner figure counts every country, so it stays the same when filters change.
-    var ss = $('stat-soon');
-    if (ss) ss.textContent = cards.filter(function(c){ var g = c.getAttribute('data-gtier'); return listed(g) && g !== 'watch' &&
-      c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days >= 0 && c._days <= SOON; }).length;
+    paintStats();
   }
   if (fp) {
     var want = param('profile') || stored();
@@ -1194,7 +1210,7 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
     if rec.get("profile_only"):
         # Not on the general list: shown only under a buyer profile, where the script sets its tier.
         rec = {**rec, "tier": "none", "tier_label": NOT_GENERAL}
-    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-country="{escape(rec.get('country') or UNKNOWN)}"
+    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-source="{escape(rec.get('source') or '')}" data-country="{escape(rec.get('country') or UNKNOWN)}"
  data-country-name="{escape(country_name)}" data-country-order="{country_order}" data-region="{escape(rec['province'])}"
  data-types="{escape('|'.join(types))}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}"
  data-score="{int(rec['score'])}" data-first="{escape(rec.get('first_listed') or '')}"
@@ -1383,14 +1399,15 @@ Your choice is remembered only in this browser. <a href="about.html#buyer-profil
 <p class="eyebrow">{escape(title)} &middot; marine habitat early alerts</p>
 <h1>{escape(desc)}</h1>
 <p class="lede">Public project registries are read automatically and each notice is scored for signs of marine habitat
-work. Every flag shows the exact sentences that triggered it, so you can judge for yourself.</p>
+work. Every flag shows the words that triggered it and, where the source's terms allow, the exact sentences.</p>
 <p class="meta">Updated <time>{_date(updated)}</time>. Refreshed {freq}.</p>
+<p class="stats-for" id="stats-for">Figures for: <strong id="stats-for-name">{ALL_LABEL}</strong></p>
 <ul class="stats">
-<li><a href="?show=weak#results"><span class="n">{len(records)}</span><span class="l">Projects listed</span></a></li>
-<li><a href="#results"><span class="n">{n_tier['strong']}</span><span class="l"><span class="dot strong"></span>{TIER_LABELS['strong']}</span></a></li>
-<li><a href="#results"><span class="n">{n_tier['possible']}</span><span class="l"><span class="dot possible"></span>{TIER_LABELS['possible']}</span></a></li>
+<li><a href="?show=weak#results"><span class="n" id="stat-total">{len(records)}</span><span class="l">Projects listed</span></a></li>
+<li><a href="#results"><span class="n" id="stat-strong">{n_tier['strong']}</span><span class="l"><span class="dot strong"></span>{TIER_LABELS['strong']}</span></a></li>
+<li><a href="#results"><span class="n" id="stat-possible">{n_tier['possible']}</span><span class="l"><span class="dot possible"></span>{TIER_LABELS['possible']}</span></a></li>
 <li><a href="#soon"><span class="n" id="stat-soon">{n_soon}</span><span class="l"><span class="dot soon"></span>Closing in {soon_days} days</span></a></li>
-<li><a href="#coverage"><span class="n">{len(countries)}</span><span class="l">Countries with listings{f', {n_sources} sources' if n_sources else ''}</span></a></li>
+<li class="stat-countries"><a href="#coverage"><span class="n" id="stat-countries">{len(countries)}</span><span class="l" id="stat-countries-l">Countries with listings{f', {n_sources} sources' if n_sources else ''}</span></a></li>
 </ul>
 </div></section>
 {profile_bar}
@@ -1800,8 +1817,10 @@ each notice in a tier:</p>
 listed at all. Only Strong and Possible matches are shown at first; Weak matches can be switched on with
 the "Show weaker matches" toggle. A high score means the notice is worth a closer look. It does not mean
 that mitigation or compensation is required. Only the regulator decides that.</p>
-<p>The short quotes on each listing are complete sentences copied exactly from the notice, chosen because
-they describe the project and its habitat signals, so you can judge for yourself.</p>
+<p>Where a source's terms allow it, each listing shows short quotes: complete sentences copied exactly from the
+notice, chosen because they describe the project and its habitat signals, so you can judge for yourself. Where
+they do not (at the moment, Scotland's marine licensing site), the listing shows short facts, the words that
+matched and a link to the official notice instead.</p>
 
 <h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has

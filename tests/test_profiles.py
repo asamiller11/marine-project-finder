@@ -214,7 +214,34 @@ def test_all_habitat_work_is_the_general_score():
     hidden = html.split('<div id="profile-only" hidden>')[1].split("</div>\n</div>")[0]
     assert "Coastal Erosion Protection" in hidden and 'data-gtier="none"' in hidden
     assert "t-notrel" not in html
-    assert '<span class="n">1</span><span class="l">Projects listed</span>' in html     # banner counts general only
+    assert '<span class="n" id="stat-total">1</span><span class="l">Projects listed</span>' in html  # general only
+
+
+def test_banner_figures_follow_the_profile_and_are_labelled():
+    recs, _ = _records()
+    html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
+    assert 'Figures for: <strong id="stats-for-name">All habitat work</strong>' in html
+    assert "function paintStats()" in html and "set('stats-for-name'" in html
+    for i in ("stat-total", "stat-strong", "stat-possible", "stat-soon", "stat-countries"):
+        assert f'id="{i}"' in html
+    assert 'data-source="iaac"' in html                       # lets the banner count sources per profile
+
+
+def test_one_empty_deadline_line_and_compact_phone_banner():
+    recs, _ = _records()
+    html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
+    assert "line.hidden = soon.length === 0;" in html
+    assert ".stats .stat-countries{display:none}" in html and '<li class="stat-countries">' in html
+
+
+def test_banner_and_about_do_not_promise_quotes_for_every_source(tmp_path):
+    recs, _ = _records()
+    site.write_site(tmp_path, list(recs.values()), SETTINGS, TODAY)
+    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    about = (tmp_path / "about.html").read_text(encoding="utf-8")
+    assert "Every flag shows the words that triggered it and, where the source's terms allow, the exact sentences." in html
+    assert "exact sentences that triggered it" not in html
+    assert "Where a source's terms allow it, each listing shows short quotes" in about
 
 
 def test_picker_link_and_card_data():

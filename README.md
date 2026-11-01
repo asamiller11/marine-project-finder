@@ -9,8 +9,8 @@ harbours, offshore wind) that are **likely to need marine habitat work**: avoida
 reduction measures, habitat enhancement, fish habitat offsetting or compensation,
 nature-inclusive design, or eco-engineered structures.
 
-It never claims mitigation will be required. Every flag shows the exact sentences that
-triggered it, so a person can judge. Most projects score low, and that is expected.
+It never claims mitigation will be required. Every flag shows the words that triggered
+it and, where the source's terms allow, the exact sentences, so a person can judge. Most projects score low, and that is expected.
 
 Status: ingest from five live sources in four countries (mostly Canada for now), scoring in five languages, a review step and a
 static website are built. The monthly digest is not built yet.
