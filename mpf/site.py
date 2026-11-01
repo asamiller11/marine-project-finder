@@ -340,173 +340,327 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
 # HTML
 # ---------------------------------------------------------------------------
 
-CSS = """
-/* Neutral page; colour only for tiers and badges. */
-:root{--bg:#f5f6f7;--card:#ffffff;--text:#1b1f23;--muted:#57606a;--faint:#6e7781;--line:#d8dde2;--line-soft:#e8ebee;
---focus:#1b1f23;--strong:#17603f;--strong-bg:#e1f1e8;--possible:#7a4f00;--possible-bg:#faefd6;--weak:#48525c;
---weak-bg:#eaedf0;--open:#1d4f91;--open-bg:#e3ecf8;--late:#8f3311;--late-bg:#fbe8df;--chg:#5a3e8f;--chg-bg:#eee9f7;
-color-scheme:light dark}
-@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1a1d21;--text:#e6e8ea;--muted:#a3abb4;--faint:#8b949e;
---line:#30363d;--line-soft:#262b31;--focus:#e6e8ea;--strong:#7ad3a4;--strong-bg:#173527;--possible:#efc26a;
---possible-bg:#3a2d10;--weak:#c3cad2;--weak-bg:#2a3038;--open:#9cc2f5;--open-bg:#1b2c45;--late:#f3a483;
---late-bg:#3d2116;--chg:#c8b6f2;--chg-bg:#2c2443}}
+CSS = r"""
+/* MitiMark. Calm neutral surfaces, one ocean accent; colour carries meaning only for tiers and status. */
+:root{--bg:#f4f6f8;--surface:#ffffff;--surface-2:#f6f8fa;--ink:#0f1c2b;--ink-2:#2b3846;--muted:#566273;--faint:#76818f;
+--line:#e2e6eb;--line-strong:#cdd5de;--brand:#0b6684;--brand-ink:#ffffff;--brand-soft:#e2f0f5;--focus:#0b6684;
+--hero-1:#0a2135;--hero-2:#0d3d55;
+--strong:#15703f;--strong-bg:#e1f2e8;--possible:#8a5a00;--possible-bg:#fbefd5;--weak:#4f5a66;--weak-bg:#eceff2;
+--open:#1d4f91;--open-bg:#e3ecf8;--late:#9a3412;--late-bg:#fcebe2;--chg:#5a3e8f;--chg-bg:#eee9f7;
+--shadow:0 1px 2px rgba(15,28,43,.04),0 1px 3px rgba(15,28,43,.05);
+--shadow-lg:0 2px 4px rgba(15,28,43,.05),0 10px 24px -8px rgba(15,28,43,.14);
+--radius:14px;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1117;--surface:#141b23;--surface-2:#1a222c;--ink:#e7ecf1;--ink-2:#cdd5de;
+--muted:#9aa6b3;--faint:#7d8896;--line:#253041;--line-strong:#334055;--brand:#5bbfdf;--brand-ink:#04202b;--brand-soft:#0f2c38;
+--focus:#5bbfdf;--hero-1:#06141f;--hero-2:#0a2a3b;
+--strong:#7ad3a4;--strong-bg:#163327;--possible:#efc26a;--possible-bg:#3a2d10;--weak:#c3cad2;--weak-bg:#28303a;
+--open:#9cc2f5;--open-bg:#1b2c45;--late:#f3a483;--late-bg:#3d2116;--chg:#c8b6f2;--chg-bg:#2c2443;
+--shadow:0 1px 2px rgba(0,0,0,.3);--shadow-lg:0 2px 4px rgba(0,0,0,.3),0 12px 28px -10px rgba(0,0,0,.6)}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:15.5px/1.55 system-ui,-apple-system,BlinkMacSystemFont,
-"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%}
-a{color:inherit;text-decoration-color:var(--faint);text-underline-offset:2px}
-a:hover{text-decoration-color:currentColor}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",
+Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
 a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{
-outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
-time,.countdown,.badge,.num,dl.facts dd{font-variant-numeric:tabular-nums}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-h1,h2,h3,h4{line-height:1.25}
+outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+time,.countdown,.badge,.num,dl.facts dd,.stats .n{font-variant-numeric:tabular-nums}
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{line-height:1.25;letter-spacing:-.012em;color:var(--ink)}
+[hidden]{display:none!important}
+.skip{position:absolute;left:-999px;top:8px;z-index:50;background:var(--surface);padding:8px 12px;border-radius:8px}
+.skip:focus{left:12px}
 
-/* Header: name, one line, date */
-header.site{background:var(--card);border-bottom:1px solid var(--line);padding:22px 0 18px}
-header.site .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px}
-header.site h1{margin:0;font-size:1.75rem;letter-spacing:-.01em}
-header.site p{margin:4px 0 0;color:var(--muted);max-width:60ch}
-header.site p.updated{color:var(--text);font-size:.9rem;margin-top:8px}
-.crumb{margin:0;font-weight:700;font-size:1.3rem;color:var(--text)}
-header.site .crumb a{color:var(--text)}
-.crumb a{text-decoration:none}
-nav.top{font-size:.95rem;display:flex;gap:18px}
-nav.top a{text-decoration:none;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
-nav.top a:hover{color:var(--text);border-bottom-color:var(--line)}
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:30;background:var(--surface);background:color-mix(in srgb,var(--surface) 86%,transparent);
+-webkit-backdrop-filter:saturate(1.5) blur(12px);backdrop-filter:saturate(1.5) blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.06rem;color:var(--ink);letter-spacing:-.01em;flex:none}
+.brand:hover{text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+nav.top{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.top a{color:var(--muted);font-weight:550;font-size:.9rem;padding:6px 11px;border-radius:8px;white-space:nowrap}
+nav.top a:hover{background:var(--surface-2);color:var(--ink);text-decoration:none}
+nav.top a[aria-current=page]{color:var(--ink);background:var(--surface-2)}
+.topbar .updated{margin:0 0 0 auto;font-size:.8rem;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:7px}
+.topbar .updated::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--strong)}
+
+/* Hero */
+.hero{background:radial-gradient(1200px 400px at 85% -10%,rgba(91,191,223,.22),transparent 60%),
+linear-gradient(135deg,var(--hero-1),var(--hero-2));color:#fff}
+.hero .wrap{padding-top:44px;padding-bottom:40px}
+.eyebrow{margin:0 0 10px;font-size:.76rem;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:#8fd3ea}
+.hero h1{color:#fff;font-size:clamp(1.6rem,3.2vw,2.35rem);margin:0 0 12px;max-width:26ch;letter-spacing:-.02em}
+.hero p.lede{color:#c3d4e0;max-width:66ch;margin:0;font-size:1.02rem}
+.hero p.meta{color:#9fb6c6;margin:10px 0 0;font-size:.86rem}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:28px 0 0;padding:0;list-style:none}
+.stats a{display:block;height:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:12px;
+padding:14px 16px;color:#fff;transition:background .15s,border-color .15s}
+.stats a:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.25);text-decoration:none}
+.stats .n{display:block;font-size:1.7rem;font-weight:700;line-height:1.2;letter-spacing:-.02em}
+.stats .l{display:flex;align-items:center;gap:7px;font-size:.82rem;color:#b9cbd8}
+.stats .dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot.strong{background:#7ad3a4}.dot.possible{background:#efc26a}.dot.soon{background:#f3a483}
+
+/* Page layout: filters beside results */
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:28px;align-items:start;padding-top:28px}
+.sidebar{position:sticky;top:80px;max-height:calc(100vh - 96px);overflow:auto;border-radius:var(--radius);scrollbar-width:thin}
+.content{min-width:0}
 
 /* Panels */
-.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0}
-.panel h2{margin:0 0 8px;font-size:1rem}
-.panel ul{margin:6px 0;padding-left:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:0;box-shadow:var(--shadow)}
+.panel h2{margin:0;font-size:1.02rem}
 .panel p{margin:6px 0}
-.overview{display:grid;gap:16px;margin:20px 0 16px}
-.overview .side{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);align-items:start}
-.overview .side>.explain{grid-column:2;grid-row:1 / span 3}
-.overview .side>:not(.explain){grid-column:1}
-.summary-line{margin:0;font-weight:600;color:var(--muted);font-size:.92rem}
-.soon-note{margin:0 0 10px}
-section.explain{margin:0}
-section.explain ul{list-style:none;padding:0;display:grid;gap:4px}
-section.explain li{padding-left:20px;position:relative;font-size:.93rem}
-section.explain li::before{content:"";position:absolute;left:2px;top:.5em;width:10px;height:10px;border-radius:3px;background:var(--weak)}
-section.explain li.key-strong::before{background:var(--strong)}
-section.explain li.key-possible::before{background:var(--possible)}
-section.explain p{color:var(--muted);font-size:.93rem;max-width:90ch}
-details.coverage summary,details.news summary,details.more summary{cursor:pointer;font-weight:600}
-details.coverage[open] summary{margin-bottom:8px}
-table.cov{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:8px}
-table.cov th,table.cov td{text-align:left;padding:6px 8px;border-top:1px solid var(--line-soft);vertical-align:top}
-table.cov th{color:var(--muted);font-weight:600}
-table.cov tr.region td:first-child{padding-left:22px;color:var(--muted)}
-.cov-wrap{overflow-x:auto}
-.pill{font-size:.75rem;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap;border:1px solid var(--line);color:var(--muted);vertical-align:middle}
-.pill.covered{color:var(--strong);border-color:currentColor}
-.since p{font-size:.93rem}
+.panel-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px}
+.stack{display:grid;gap:16px}
+.row-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:start}
+.row-2>details[open]{grid-column:1/-1}
+.summary-line{margin:2px 0 0;color:var(--muted);font-size:.9rem;font-weight:500}
+.note{color:var(--muted);font-size:.86rem;margin:6px 0}
+.soon-note{margin:0;font-size:.8rem}
 
-/* Closing soon: aligned columns */
-section.soon h2{font-size:1rem}
-section.soon ul{list-style:none;padding:0;margin:4px 0 0}
-section.soon li{display:grid;grid-template-columns:6.2em 6.6em minmax(0,1fr) auto;gap:4px 12px;align-items:baseline;
-padding:7px 0;border-top:1px solid var(--line-soft);font-size:.93rem}
-section.soon li:first-child{border-top:0}
-section.soon .left{color:var(--muted);white-space:nowrap}
-section.soon .left.urgent{color:var(--late);font-weight:600}
-section.soon .meta{display:flex;gap:8px;align-items:baseline;white-space:nowrap;color:var(--muted)}
-section.soon #soon-none{color:var(--muted)}
+/* Closing soon */
+section.soon ul{list-style:none;padding:0;margin:14px 0 0}
+section.soon li{display:grid;grid-template-columns:6.6em 7.6em minmax(0,1fr) auto;gap:4px 14px;align-items:center;
+padding:10px 4px;border-top:1px solid var(--line);font-size:.92rem}
+section.soon li time{font-weight:600;color:var(--ink-2)}
+section.soon .left{justify-self:start;font-size:.76rem;font-weight:650;padding:2px 10px;border-radius:999px;
+background:var(--surface-2);color:var(--muted);white-space:nowrap;border:1px solid var(--line)}
+section.soon .left.urgent{background:var(--late-bg);color:var(--late);border-color:transparent}
+section.soon li a{color:var(--ink);font-weight:550}
+section.soon li a:hover{color:var(--brand)}
+section.soon .meta{display:flex;gap:8px;align-items:center;white-space:nowrap;color:var(--muted);font-size:.84rem}
+section.soon #soon-none{color:var(--muted);margin-top:12px}
 
-/* Tools: views, filters */
-details.tools{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0;margin:0 0 8px}
-details.tools>summary{cursor:pointer;font-weight:600;padding:12px 18px;list-style:none}
-details.tools>summary::-webkit-details-marker{display:none}
-details.tools>summary::after{content:"+";float:right;color:var(--muted);font-weight:400}
-details.tools[open]>summary::after{content:"\\2212"}
-details.tools .tools-body{padding:0 18px 14px}
-.views{display:flex;flex-wrap:wrap;gap:0;margin:0 0 12px;border:1px solid var(--line);border-radius:8px;width:max-content;max-width:100%;overflow:hidden}
-.views label{position:relative;padding:6px 14px;font-size:.9rem;font-weight:600;color:var(--muted);cursor:pointer;border-left:1px solid var(--line)}
-.views label:first-child{border-left:0}
+/* How to read */
+section.explain ul{list-style:none;padding:0;margin:14px 0 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+section.explain li{border:1px solid var(--line);border-top:3px solid var(--weak);border-radius:10px;padding:12px 14px;
+font-size:.87rem;color:var(--muted);background:var(--surface-2)}
+section.explain li strong{display:block;color:var(--ink);margin-bottom:2px}
+section.explain li.key-strong{border-top-color:var(--strong)}
+section.explain li.key-possible{border-top-color:var(--possible)}
+section.explain p{color:var(--muted);font-size:.9rem;max-width:95ch}
+
+/* Collapsible panels */
+details.panel>summary{cursor:pointer;font-weight:650;list-style:none;display:flex;align-items:center;gap:10px}
+details>summary::-webkit-details-marker{display:none}
+details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:8px;height:8px;flex:none;
+border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg) translateY(-3px);transition:transform .15s}
+details.panel[open]>summary::after,details.tools[open]>summary::after{transform:rotate(-135deg) translateY(-1px)}
+details.panel[open]>summary{margin-bottom:10px}
+details.more summary{cursor:pointer;font-weight:600;color:var(--brand);font-size:.9rem;margin-top:6px}
+.since p{font-size:.92rem}
+.since h2::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--chg);margin-right:8px;vertical-align:2px}
+
+/* Coverage table */
+.cov-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin-top:12px}
+table.cov{width:100%;border-collapse:collapse;font-size:.88rem}
+table.cov th,table.cov td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+table.cov thead th{border-top:0;background:var(--surface-2);color:var(--muted);font-size:.74rem;font-weight:650;
+text-transform:uppercase;letter-spacing:.05em}
+table.cov tr.region td:first-child{padding-left:28px;color:var(--muted)}
+.pill{display:inline-block;font-size:.72rem;font-weight:650;padding:2px 9px;border-radius:999px;white-space:nowrap;
+vertical-align:middle;background:var(--weak-bg);color:var(--weak);letter-spacing:0}
+.pill.covered{color:var(--strong);background:var(--strong-bg)}
+.pill.partial{color:var(--possible);background:var(--possible-bg)}
+
+/* Filters sidebar */
+details.tools{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:0;box-shadow:var(--shadow)}
+details.tools>summary{cursor:pointer;font-weight:650;padding:14px 18px;list-style:none;display:flex;align-items:center;gap:8px}
+details.tools[open]>summary{border-bottom:1px solid var(--line)}
+details.tools .tools-body{padding:16px 18px 18px;display:grid;gap:16px}
+.filters{display:grid;gap:14px;margin:0}
+.filters label,.toggles>label{display:flex;flex-direction:column;gap:6px;font-size:.74rem;font-weight:650;color:var(--muted);
+text-transform:uppercase;letter-spacing:.05em}
+.filters select,.filters input[type=search]{font:inherit;font-size:.92rem;letter-spacing:0;text-transform:none;color:var(--ink);
+background:var(--surface-2);padding:9px 11px;border:1px solid var(--line);border-radius:9px;width:100%;min-width:0;
+transition:border-color .15s,background .15s}
+.filters select:hover,.filters input[type=search]:hover{border-color:var(--line-strong)}
+.filters select:focus,.filters input[type=search]:focus{background:var(--surface);border-color:var(--brand)}
+.filters .check,.toggles .check{flex-direction:row;align-items:center;gap:9px;text-transform:none;letter-spacing:0;
+font-size:.9rem;font-weight:500;color:var(--ink);cursor:pointer}
+input[type=checkbox]{accent-color:var(--brand);width:16px;height:16px;margin:0;flex:none}
+.filters .sep,.toggles{border-top:1px solid var(--line);padding-top:14px}
+.toggles{display:grid;gap:10px}
+.side-label{font-size:.72rem;font-weight:650;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin:0}
+.downloads{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.downloads a{font-size:.88rem}
+
+/* Buttons */
+.btn,.watch-btn,.toggles button{display:inline-flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-size:.86rem;
+font-weight:600;padding:7px 13px;border-radius:9px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+cursor:pointer;text-decoration:none;line-height:1.3;transition:background .15s,border-color .15s}
+.btn:hover,.watch-btn:hover,.toggles button:hover{border-color:var(--faint);background:var(--surface-2);text-decoration:none}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.primary:hover{background:var(--brand);filter:brightness(1.08)}
+.btn.block{width:100%}
+.btn.quiet{border-color:transparent;background:transparent;color:var(--muted);padding-left:0;padding-right:0}
+.btn.quiet:hover{background:transparent;color:var(--ink)}
+.watch-btn::before{content:"\2606";font-size:1rem;line-height:1}
+.watch-btn[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand);border-color:var(--brand)}
+.watch-btn[aria-pressed="true"]::before{content:"\2605"}
+
+/* Results bar and view tabs */
+.results-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:30px 0 4px}
+.results-bar h2{margin:0;font-size:1.25rem}
+#result-count{margin:0;color:var(--muted);font-size:.9rem}
+.views{display:inline-flex;gap:2px;padding:3px;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;
+max-width:100%;overflow-x:auto;scrollbar-width:none}
+.views label{position:relative;padding:7px 14px;border-radius:8px;font-size:.87rem;font-weight:600;color:var(--muted);
+cursor:pointer;white-space:nowrap;transition:color .15s,background .15s}
+.views label:hover{color:var(--ink)}
 .views input{position:absolute;opacity:0;width:1px;height:1px}
-.views label:has(input:checked){background:var(--text);color:var(--card)}
-.views label:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:-3px}
-.filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px;align-items:end;margin:0}
-.filters label{display:flex;flex-direction:column;gap:3px;font-size:.8rem;font-weight:600;color:var(--muted)}
-.filters select,.filters input[type=search]{font:inherit;font-size:.92rem;color:var(--text);background:var(--card);
-padding:7px 9px;border:1px solid var(--line);border-radius:7px;width:100%;min-width:0}
-.filters .check,.toggles label{flex-direction:row;align-items:center;gap:8px;font-size:.9rem;color:var(--text);font-weight:500}
-.toggles{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:.9rem}
-.toggles label{display:flex}
-.toggles button,.watch-btn{font:inherit;font-size:.85rem;padding:4px 11px;border-radius:7px;border:1px solid var(--line);
-background:var(--card);color:var(--text);cursor:pointer}
-.toggles button:hover,.watch-btn:hover{border-color:var(--faint)}
-.watch-btn[aria-pressed="true"]{background:var(--text);color:var(--card);border-color:var(--text)}
+.views label:has(input:checked){background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(15,28,43,.1),0 0 0 1px var(--line)}
+.views label:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:-2px}
 
-/* Sections and cards */
-section.country>h2,section.group>h2{margin:30px 0 4px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
-section.country>p.country-note{color:var(--muted);margin:0 0 8px;font-size:.93rem;max-width:90ch}
-section.tier h3{margin:18px 0 2px;font-size:1rem;display:flex;align-items:center;gap:8px}
-section.tier h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--weak)}
+/* Groups and tiers */
+section.country>h2,section.group>h2{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:1.2rem;
+margin:30px 0 6px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+section.country>p.country-note{color:var(--muted);margin:0 0 8px;font-size:.9rem;max-width:95ch}
+section.tier h3{display:flex;align-items:center;gap:9px;margin:20px 0 2px;font-size:.98rem}
+section.tier h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--weak);flex:none}
 section.tier[data-tier=strong] h3::before{background:var(--strong)}
 section.tier[data-tier=possible] h3::before{background:var(--possible)}
-section.tier p.tier-desc{color:var(--muted);margin:0 0 10px;font-size:.88rem}
-.count{color:var(--muted);font-weight:500}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr));gap:14px;margin-top:8px}
-.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--weak);border-radius:10px;
-padding:16px 18px;display:flex;flex-direction:column;min-width:0}
-.card[data-tier=strong]{border-left-color:var(--strong)}
-.card[data-tier=possible]{border-left-color:var(--possible)}
-.card h4{margin:0 0 8px;font-size:1.05rem}
-.card h4 a{text-decoration:none}
-.card h4 a:hover{text-decoration:underline}
-.badges{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 12px}
-.badge{font-size:.76rem;font-weight:600;padding:2px 8px;border-radius:6px;white-space:nowrap;line-height:1.5;border:1px solid transparent}
+section.tier p.tier-desc{color:var(--muted);margin:0 0 4px 19px;font-size:.86rem}
+.count{display:inline-block;font-size:.74rem;font-weight:650;color:var(--muted);background:var(--surface-2);
+border:1px solid var(--line);padding:0 9px;border-radius:999px;line-height:1.7;letter-spacing:0}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,430px),1fr));gap:16px;margin-top:12px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 16px;
+display:flex;flex-direction:column;min-width:0;box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .18s,border-color .18s}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--weak)}
+.card[data-tier=strong]::before{background:var(--strong)}
+.card[data-tier=possible]::before{background:var(--possible)}
+.card:hover{box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
+.card:target{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.card h4{margin:12px 0 0;font-size:1.06rem;line-height:1.35}
+.card h4 a{color:var(--ink)}
+.card h4 a:hover{color:var(--brand);text-decoration:none}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:0}
+.badge{font-size:.72rem;font-weight:650;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.55;border:1px solid transparent}
+.tier-badge::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:6px;vertical-align:1px}
 .t-strong{color:var(--strong);background:var(--strong-bg)}
 .t-possible{color:var(--possible);background:var(--possible-bg)}
 .t-weak{color:var(--weak);background:var(--weak-bg)}
 .t-watch{color:var(--muted);border-color:var(--line)}
-.score{color:var(--text);border-color:var(--line)}
+.score{color:var(--ink-2);border-color:var(--line-strong)}
 .late{color:var(--late);background:var(--late-bg)}
 .st-open{color:var(--open);background:var(--open-bg)}
 .st-other{color:var(--muted);border-color:var(--line)}
-.rev{color:var(--text);border-color:var(--text)}
-.rev::before{content:"\\2713\\00a0"}
-.auto{color:var(--muted);border:1px dashed var(--line)}
+.rev{color:var(--strong);border-color:currentColor}
+.rev::before{content:"\2713\00a0"}
+.auto{color:var(--muted);border:1px dashed var(--line-strong)}
 .lang{color:var(--muted);border-color:var(--line)}
 .badge.chg{color:var(--chg);background:var(--chg-bg)}
-dl.facts{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:3px 14px;margin:0 0 12px;font-size:.92rem}
+dl.facts{display:grid;grid-template-columns:8.6em minmax(0,1fr);gap:5px 14px;margin:14px 0;padding:14px 0;font-size:.88rem;
+border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 dl.facts dt{color:var(--muted)}
-dl.facts dd{margin:0;min-width:0;overflow-wrap:anywhere}
-.countdown{font-weight:600}
-.card p.summary{margin:0 0 10px;max-width:75ch}
-.note{color:var(--muted);font-size:.88rem;margin:6px 0}
-.watch-row{margin:0 0 12px}
-ul.quotes{margin:0 0 12px;padding:0;list-style:none}
-ul.quotes li{border-left:2px solid var(--line);padding:2px 0 2px 12px;margin:6px 0;color:var(--muted);font-size:.92rem;max-width:75ch}
-.card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line-soft);font-size:.88rem}
-p.source{margin:4px 0;color:var(--muted)}
-p.source a{color:var(--text)}
-p.attr{margin:6px 0 0;color:var(--faint);font-size:.82rem}
-.empty{padding:24px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:10px}
-footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:.88rem;margin-top:36px}
-footer p{max-width:90ch}
-main.about{padding-bottom:20px}
-main.about h2{margin-top:30px;font-size:1.15rem}
-main.about p,main.about li{max-width:75ch}
-[hidden]{display:none!important}
+dl.facts dd{margin:0;min-width:0;overflow-wrap:anywhere;color:var(--ink-2)}
+.countdown{font-weight:650;color:var(--ink)}
+.card p.summary{margin:0 0 12px;max-width:75ch;font-size:.93rem;color:var(--ink-2)}
+details.evidence{margin:0 0 14px}
+details.evidence>summary{cursor:pointer;font-size:.86rem;font-weight:600;color:var(--brand);list-style:none;display:inline-flex;align-items:center;gap:7px}
+details.evidence>summary::before{content:"";width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+transform:rotate(-45deg);transition:transform .15s}
+details.evidence[open]>summary::before{transform:rotate(45deg)}
+ul.quotes{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+ul.quotes li{border-left:3px solid var(--line-strong);background:var(--surface-2);border-radius:0 8px 8px 0;padding:9px 12px;
+color:var(--ink-2);font-size:.89rem;max-width:75ch}
+.card-foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+p.source{margin:3px 0;color:var(--muted);font-size:.85rem}
+p.attr{margin:6px 0 0;color:var(--faint);font-size:.78rem}
+.empty{padding:32px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);margin:16px 0}
+
 /* Project page */
-article.project{margin:20px 0 0;max-width:820px;border-left-width:4px}
-article.project h1{margin:2px 0 8px;font-size:1.55rem}
-article.project h2{font-size:1.02rem;margin:24px 0 8px;padding-top:14px;border-top:1px solid var(--line-soft)}
-ol.timeline{list-style:none;padding:0;margin:6px 0;border-left:2px solid var(--line)}
-ol.timeline li{padding:3px 0 3px 14px;font-size:.93rem}
-ol.timeline time{font-weight:600;margin-right:10px}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:24px 0 14px;font-size:.86rem;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--brand)}
+.crumbs span[aria-hidden]{color:var(--faint)}
+article.project{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start;margin:0 0 8px}
+.project-main{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 32px 30px;box-shadow:var(--shadow);
+position:relative;overflow:hidden;min-width:0}
+.project-main::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--weak)}
+article.project[data-tier=strong] .project-main::before{background:var(--strong)}
+article.project[data-tier=possible] .project-main::before{background:var(--possible)}
+.project-main h1{margin:14px 0 6px;font-size:clamp(1.45rem,2.6vw,1.95rem);letter-spacing:-.02em}
+.project-main .place{margin:0 0 18px;color:var(--muted)}
+.project-main p.summary{font-size:1.02rem;color:var(--ink-2);max-width:72ch;margin:0}
+.project-main h2{font-size:1.05rem;margin:28px 0 10px;padding-top:22px;border-top:1px solid var(--line)}
+.project-main ul.quotes li{font-size:.93rem}
+.project-side{display:grid;gap:16px;position:sticky;top:80px}
+.side-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.side-card h2{margin:0 0 12px;font-size:.74rem;font-weight:650;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
+.project-side dl.facts{grid-template-columns:1fr;gap:0;margin:0;padding:0;border:0}
+.project-side dl.facts dt{font-size:.78rem}
+.project-side dl.facts dd{margin:0 0 10px}
+.project-side dl.facts dd:last-of-type{margin-bottom:0}
+.project-side .actions{display:grid;gap:8px;margin:0}
+.scorebox{display:flex;align-items:baseline;gap:6px}
+.scorebox .big{font-size:2rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+.scorebox .of{color:var(--muted);font-size:.9rem}
+.meter{height:6px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;margin:10px 0 8px}
+.meter span{display:block;height:100%;width:calc(var(--s) * 1%);background:var(--weak);border-radius:99px}
+article.project[data-tier=strong] .meter span{background:var(--strong)}
+article.project[data-tier=possible] .meter span{background:var(--possible)}
+ol.timeline{list-style:none;padding:0;margin:10px 0}
+ol.timeline li{position:relative;padding:0 0 16px 24px;font-size:.92rem;color:var(--ink-2)}
+ol.timeline li::before{content:"";position:absolute;left:0;top:.35em;width:11px;height:11px;border-radius:50%;
+background:var(--surface);border:2px solid var(--line-strong);z-index:1}
+ol.timeline li::after{content:"";position:absolute;left:5.5px;top:1.1em;bottom:-.3em;width:2px;background:var(--line);transform:translateX(-50%)}
+ol.timeline li:last-child::after{display:none}
+ol.timeline li.official::before{background:var(--open);border-color:var(--open)}
+ol.timeline time{display:block;font-weight:650;font-size:.8rem;color:var(--muted)}
 ol.timeline li.official time{color:var(--open)}
-ul.news{padding-left:18px;margin:6px 0}
-ul.news li{margin:4px 0}
-.gone{background:var(--late-bg);color:var(--late);padding:10px 14px;border-radius:10px;margin:16px 0 0;max-width:820px}
-@media (max-width:900px){.overview .side{grid-template-columns:1fr}.overview .side>*{grid-column:1!important;grid-row:auto!important}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){.wrap{padding:0 14px}header.site h1{font-size:1.45rem}
-.filters{grid-template-columns:1fr}dl.facts{grid-template-columns:1fr;gap:0}dl.facts dd{margin-bottom:6px}
-section.soon li{grid-template-columns:6.2em minmax(0,1fr)}section.soon li a{grid-column:1/-1}
-section.soon .meta{grid-column:1/-1}.card{padding:14px}.views{width:100%}.views label{flex:1 1 auto;text-align:center}}
+ul.news{padding-left:18px;margin:8px 0}
+ul.news li{margin:6px 0}
+.gone{background:var(--late-bg);color:var(--late);padding:12px 16px;border-radius:12px;margin:20px 0 0;font-weight:500}
+
+/* About */
+.page-head{background:radial-gradient(1000px 360px at 85% -10%,rgba(91,191,223,.2),transparent 60%),
+linear-gradient(135deg,var(--hero-1),var(--hero-2));color:#fff}
+.page-head .wrap{padding-top:40px;padding-bottom:36px}
+.page-head h1{color:#fff;margin:0 0 10px;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em}
+.page-head p{margin:0;color:#c3d4e0;max-width:66ch}
+.page-head p.meta{color:#9fb6c6;margin-top:10px;font-size:.86rem}
+.about-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:36px;align-items:start;padding-top:32px}
+nav.toc{position:sticky;top:84px;display:grid;gap:1px}
+nav.toc p{margin:0 0 8px}
+nav.toc a{display:block;padding:6px 12px;border-left:2px solid var(--line);color:var(--muted);font-size:.88rem}
+nav.toc a:hover{color:var(--ink);border-left-color:var(--brand);text-decoration:none}
+.prose{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 36px 32px;box-shadow:var(--shadow);min-width:0}
+.prose h2{font-size:1.2rem;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
+.prose h2:first-child{border-top:0;padding-top:20px}
+.prose p,.prose li{max-width:72ch;color:var(--ink-2)}
+.prose li{margin:4px 0}
+
+/* Footer */
+footer{margin-top:56px;background:var(--surface);border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font-size:.86rem}
+.foot-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px 48px}
+footer p{max-width:80ch;margin:0 0 8px}
+footer .brand{margin-bottom:10px;font-size:1rem}
+footer nav{display:grid;gap:6px;align-content:start}
+footer nav a{color:var(--muted)}
+footer nav a:hover{color:var(--brand)}
+
+@media (max-width:1040px){.layout{grid-template-columns:1fr;gap:16px}.sidebar{position:static;max-height:none;overflow:visible}
+.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.filters .sep{grid-column:1/-1}
+article.project{grid-template-columns:1fr}.project-side{position:static}
+.about-layout{grid-template-columns:1fr;gap:20px}nav.toc{position:static;display:flex;flex-wrap:wrap;gap:6px}
+nav.toc p{width:100%}nav.toc a{border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--surface)}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1041px){details.tools>summary{pointer-events:none}details.tools>summary::after{display:none}}
+@media (max-width:640px){.wrap{padding:0 16px}body{font-size:14.5px}.topbar .updated{display:none}.topbar .wrap{gap:10px}
+.brand span{display:none}nav.top a{padding:6px 7px;font-size:.84rem}.hero .wrap{padding-top:30px;padding-bottom:28px}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats li:first-child{grid-column:1/-1}
+.filters{grid-template-columns:1fr}section.explain ul{grid-template-columns:1fr}
+dl.facts{grid-template-columns:1fr;gap:0}dl.facts dd{margin-bottom:8px}
+section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .meta{grid-column:1/-1}
+.card{padding:18px 16px 14px}.project-main{padding:22px 18px}.prose{padding:4px 18px 24px}
+.views{width:100%}.views label{flex:1 1 auto;text-align:center;padding:7px 10px}
+.foot-grid{grid-template-columns:1fr}}
 """
 
 # Shared by the list and the project pages: countdowns and the watch list (stored only in this browser).
@@ -645,7 +799,7 @@ JS = r"""
   function section(cls, title, n){
     var s = document.createElement('section'); s.className = cls;
     if (title) { var h = document.createElement(cls === 'group' ? 'h2' : 'h3'); h.textContent = title + ' ';
-      var span = document.createElement('span'); span.className = 'count'; span.textContent = '(' + n + ')'; h.appendChild(span); s.appendChild(h); }
+      var span = document.createElement('span'); span.className = 'count'; span.textContent = String(n); h.appendChild(span); s.appendChild(h); }
     var d = document.createElement('div'); d.className = 'cards'; s.appendChild(d); return s;
   }
   var shownOrder = [];
@@ -701,7 +855,18 @@ JS = r"""
     if (none) none.hidden = soon.length > 0;
     line.textContent = soon.length + (soon.length === 1 ? ' comment deadline' : ' comment deadlines') +
       ' in the next ' + SOON + ' days.';
+    var rc = $('result-count');
+    if (rc) rc.textContent = shown.length + (shown.length === 1 ? ' project shown' : ' projects shown');
+    // The banner figure counts every country, so it stays the same when filters change.
+    var ss = $('stat-soon');
+    if (ss) ss.textContent = cards.filter(function(c){ return c.getAttribute('data-tier') !== 'watch' &&
+      c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days >= 0 && c._days <= SOON; }).length;
   }
+  var reset = $('reset-btn');
+  if (reset) reset.addEventListener('click', function(){
+    fq.value = ''; fc.value = ''; fillRegions(); ft.value = ''; fs.value = ''; fo.checked = false; fw.checked = false;
+    fsort.value = 'default'; fgroup.value = 'country'; $('v-all').checked = true; apply();
+  });
   // CSV of the projects shown right now, in the order shown.
   var DATA = JSON.parse($('csv-data').textContent);
   function csvCell(v){ v = v === null || v === undefined ? '' : String(v);
@@ -722,9 +887,9 @@ JS = r"""
   Array.prototype.forEach.call(views, function(el){ el.addEventListener('change', apply); });
   fq.addEventListener('input', apply);
   MPF.initWatch(function(){ if (currentView() === 'watch') apply(); });
-  // On phones the filters and views start folded away.
+  // On phones and tablets the filters sit above the list, so they start folded away.
   var tools = $('tools');
-  if (tools && window.matchMedia && window.matchMedia('(max-width: 600px)').matches) tools.open = false;
+  if (tools && window.matchMedia && window.matchMedia('(max-width: 1040px)').matches) tools.open = false;
   apply();
 })();
 """
@@ -743,19 +908,43 @@ def _head(title: str, description: str) -> str:
             f'<meta name="description" content="{escape(description)}">\n<style>{CSS}</style>')
 
 
-def _header(title: str, desc: str, updated: date) -> str:
-    return (f'<header class="site"><div class="wrap">\n<div class="masthead"><h1>{escape(title)}</h1>\n<p>{escape(desc)}</p>\n'
-            f'<p class="updated">Last updated: <time>{updated.strftime("%B %-d, %Y")}</time></p></div>\n'
-            f'<nav class="top"><a href="index.html">Projects</a><a href="about.html">About</a></nav>\n</div></header>')
+# A wave over a marker: the site's mark, drawn inline so the page needs no image files.
+LOGO = ('<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/>'
+        '<path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" '
+        'stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" '
+        'stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg>')
 
 
-def _footer(site: dict) -> str:
+def _date(d: date) -> str:
+    return d.strftime("%B %-d, %Y")
+
+
+def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> str:
+    """Sticky bar on every page. prefix is "../" on project pages."""
+    title = escape(site.get("title", "MitiMark"))
+    links = [("projects", "index.html", "Projects"), ("soon", "index.html#soon", "Closing soon"),
+             ("coverage", "index.html#coverage", "Coverage"), ("about", "about.html", "About")]
+    current = ' aria-current="page"'
+    nav = "".join(f'<a href="{prefix}{href}"{current if key == active else ""}>{label}</a>'
+                  for key, href, label in links)
+    return (f'<a class="skip" href="#main">Skip to content</a>\n'
+            f'<header class="topbar"><div class="wrap">\n<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>\n'
+            f'<nav class="top" aria-label="Main">{nav}</nav>\n'
+            f'<p class="updated">Last updated: <time>{_date(updated)}</time></p>\n</div></header>')
+
+
+def _footer(site: dict, prefix: str = "") -> str:
     email = escape(site.get("contact_email", ""))
+    title = escape(site.get("title", "MitiMark"))
     return (
-        '<footer><div class="wrap">'
-        f"<p>{escape(site.get('title', 'MitiMark'))} is a prototype. Flags show projects that may need marine habitat work. They do not state that "
+        '<footer><div class="wrap foot-grid"><div>'
+        f'<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>'
+        f"<p>{title} is a prototype. Flags show projects that may need marine habitat work. They do not state that "
         "mitigation is required. Always check the official notice. Compiled from public sources.</p>"
-        f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p>'
+        f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p></div>'
+        f'<nav aria-label="Footer"><a href="{prefix}index.html">Projects</a><a href="{prefix}index.html#soon">Closing soon</a>'
+        f'<a href="{prefix}about.html">About and method</a><a href="{prefix}about.html#coverage">Coverage</a>'
+        f'<a href="{prefix}projects.csv">All listed projects (CSV)</a></nav>'
         "</div></footer>")
 
 
@@ -920,8 +1109,8 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
  data-types="{escape('|'.join(types))}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}"
  data-score="{int(rec['score'])}" data-first="{escape(rec.get('first_listed') or '')}"
  data-changes="{escape('|'.join(rec.get('changes') or []))}" data-title="{escape(rec['title'].lower())}" data-search="{escape(search)}">
-<h4><a href="{title_link}">{escape(rec['title'])}</a></h4>
 {_badges(rec, less_tested)}
+<h4><a href="{title_link}">{escape(rec['title'])}</a></h4>
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(location)}</dd>
@@ -930,12 +1119,21 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
 {comments}
 </dl>
 {_summary_html(rec)}
-{f'<ul class="quotes">{quotes}</ul>' if quotes else ''}
+{_evidence(rec, quotes)}
 <div class="card-foot">
-<p class="source">{f'<a href="{page}">Project page and timeline</a> &middot; ' if page else ''}{_watch_button(rec)}</p>
+<div class="actions">{f'<a class="btn primary" href="{page}">Project page and timeline</a>' if page else ''}{_watch_button(rec)}</div>
 {_source_lines(rec, link)}
 </div>
 </article>"""
+
+
+def _evidence(rec: dict, quotes_html: str) -> str:
+    """Quotes fold away on the list to keep cards short; the project page shows them in full."""
+    if not quotes_html:
+        return ""
+    n = len(rec["quotes"])
+    return (f'<details class="evidence"><summary>Evidence from the notice ({n} {"quote" if n == 1 else "quotes"})</summary>'
+            f'<ul class="quotes">{quotes_html}</ul></details>')
 
 
 LANG_NAMES = {"fr": "French", "da": "Danish", "es": "Spanish", "no": "Norwegian", "nl": "Dutch", "en": "English"}
@@ -1001,14 +1199,15 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
                 continue
             tier_parts.append(
                 f'<section class="tier" data-country="{escape(c["code"])}" data-tier="{t}">\n'
-                f'<h3>{TIER_LABELS[t]} <span class="count">({len(recs)})</span></h3>\n'
+                f'<h3>{TIER_LABELS[t]} <span class="count">{len(recs)}</span></h3>\n'
                 f'<p class="tier-desc">{escape(td[t])}</p>\n<div class="cards">\n'
                 + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested, ci) for r in recs)
                 + "\n</div>\n</section>")
         note = f'<p class="country-note">{escape(c.get("note", ""))}</p>' if c.get("note") else ""
         country_sections.append(
             f'<section class="country" data-country="{escape(c["code"])}" aria-label="{escape(c["name"])}">\n'
-            f'<h2>{escape(c["name"])} {_pill(c["status"])}</h2>\n{note}\n' + "\n".join(tier_parts) + "\n</section>")
+            f'<h2>{escape(c["name"])} <span class="count">{len(recs_c)}</span> {_pill(c["status"])}</h2>\n{note}\n'
+            + "\n".join(tier_parts) + "\n</section>")
     body = "\n".join(country_sections) if country_sections else '<p class="empty">No projects yet.</p>'
     since = since_panel(records, history_dates or [])
     csv_data = json.dumps({"columns": CSV_COLUMNS, "rows": {r["id"]: csv_row(r, names, site) for r in records}},
@@ -1028,61 +1227,36 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     lt = less_tested_note(coverage)
     bn = balance_note(records)
     counts = country_counts(records)
+    n_tier = {t: sum(1 for r in records if r["tier"] == t) for t in PUBLISHED_TIERS}
+    n_sources = len({r.get("source") for r in records if r.get("source")})
+    freq = escape(site.get("update_frequency", "every 2 weeks"))
     return f"""<!doctype html>
 <html lang="en">
 <head>
 {_head(title, desc)}
 </head>
 <body data-soon="{soon_days}">
-{_header(title, desc, updated)}
-<main class="wrap">
-
-
-<div class="overview">
-<section class="panel soon" aria-labelledby="soon-h">
-<h2 id="soon-h">Comment deadlines closing soon (next {soon_days} days)</h2>
-<p class="summary-line" id="summary-line">{n_soon} comment deadlines in the next {soon_days} days.</p>
-<p class="note soon-note">Includes Weak matches.</p>
-<ul id="soon-list"></ul>
-<p id="soon-none">No comment deadlines in the next {soon_days} days.</p>
-<noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>
-</section>
-<div class="side">
-{since}
-<details class="panel coverage" id="coverage">
-<summary>Coverage: {cc['covered']} covered, {cc['partial']} partial, {cc['coming_soon']} coming soon{' (mostly Canada for now)' if bn else ''}</summary>
-{f'<p>{escape(bn)}</p>' if bn else ''}
-<div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
-<tbody>
-{coverage_rows(coverage, counts)}
-</tbody></table></div>
-{f'<p>{escape(lt)}</p>' if lt else ''}
-</details>
-<section class="panel explain" aria-labelledby="explain-h">
-<h2 id="explain-h">How to read this list</h2>
-<p>Every notice is scored automatically from the words and sizes in it, then placed in a tier:</p>
-<ul>
-<li class="key-strong"><strong>{TIER_LABELS['strong']}:</strong> {escape(td['strong'])}</li>
-<li class="key-possible"><strong>{TIER_LABELS['possible']}:</strong> {escape(td['possible'])}</li>
-<li class="key-weak"><strong>{TIER_LABELS['weak']}:</strong> {escape(td['weak'])} Hidden unless you tick "Show weaker matches".</li>
+{_topbar(site, updated, "projects")}
+<section class="hero"><div class="wrap">
+<p class="eyebrow">{escape(title)} &middot; marine habitat early alerts</p>
+<h1>{escape(desc)}</h1>
+<p class="lede">Public project registries are read automatically and each notice is scored for signs of marine habitat
+work. Every flag shows the exact sentences that triggered it, so you can judge for yourself.</p>
+<p class="meta">Updated <time>{_date(updated)}</time>. Refreshed {freq}.</p>
+<ul class="stats">
+<li><a href="?show=weak#results"><span class="n">{len(records)}</span><span class="l">Projects listed</span></a></li>
+<li><a href="#results"><span class="n">{n_tier['strong']}</span><span class="l"><span class="dot strong"></span>{TIER_LABELS['strong']}</span></a></li>
+<li><a href="#results"><span class="n">{n_tier['possible']}</span><span class="l"><span class="dot possible"></span>{TIER_LABELS['possible']}</span></a></li>
+<li><a href="#soon"><span class="n" id="stat-soon">{n_soon}</span><span class="l"><span class="dot soon"></span>Closing in {soon_days} days</span></a></li>
+<li><a href="#coverage"><span class="n">{len(countries)}</span><span class="l">Countries with listings{f', {n_sources} sources' if n_sources else ''}</span></a></li>
 </ul>
-<p>Notices scoring under {int(tiers.get('weak_min', 20))}, quarries and pits, and withdrawn projects are not listed.</p>
-<p>A flag means a notice may involve marine habitat work. It is not a statement that mitigation or
-compensation is required. Items marked "Reviewed by a person" have been checked; the rest are automatic.
-Always read the official notice.</p>
-</section>
-</div>
-</div>
+</div></section>
+<main class="wrap layout" id="main">
 
+<aside class="sidebar" aria-label="Filters">
 <details class="tools" id="tools" open>
 <summary>Filters and views</summary>
 <div class="tools-body">
-<div class="views js-only" role="radiogroup" aria-label="Which projects" hidden>
-<label><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
-<label><input type="radio" name="view" id="v-soon" value="soon"> Closing soon</label>
-<label><input type="radio" name="view" id="v-changed" value="changed"> Changed since last update</label>
-<label><input type="radio" name="view" id="v-watch" value="watch"> My watch list</label>
-</div>
 <form class="filters" onsubmit="return false" aria-label="Filter projects">
 <label>Search<input type="search" id="f-search" placeholder="Name, place, proponent"></label>
 <label>Country<select id="f-country">{''.join(opts)}</select></label>
@@ -1098,20 +1272,75 @@ Always read the official notice.</p>
 <label class="js-only" hidden>Group by<select id="f-group"><option value="country">Country</option>
 <option value="type">Project type</option><option value="stage">Stage</option>
 <option value="month">Deadline month</option><option value="none">No grouping</option></select></label>
-<label class="check"><input type="checkbox" id="f-open"> Comment period open only</label>
+<label class="check sep"><input type="checkbox" id="f-open"> Comment period open only</label>
 </form>
 <div class="toggles">
-<label><input type="checkbox" id="t-weak"> Show weaker matches</label>
-<button type="button" id="csv-btn" class="js-only" hidden>Download shown projects (CSV)</button>
+<label class="check"><input type="checkbox" id="t-weak"> Show weaker matches</label>
+<button type="button" id="reset-btn" class="btn quiet js-only" hidden>Reset all filters</button>
+</div>
+<div class="downloads">
+<p class="side-label">Download</p>
+<button type="button" id="csv-btn" class="btn block js-only" hidden>Download shown projects (CSV)</button>
 <a href="projects.csv">All listed projects (CSV)</a>
 </div>
 </div>
 </details>
-<p class="empty" id="no-match" hidden>No projects match these filters.</p>
+</aside>
+
+<div class="content">
+<div class="stack">
+<section class="panel soon" id="soon" aria-labelledby="soon-h">
+<div class="panel-head"><h2 id="soon-h">Comment deadlines closing soon (next {soon_days} days)</h2>
+<p class="note soon-note">Includes Weak matches.</p></div>
+<p class="summary-line" id="summary-line">{n_soon} comment deadlines in the next {soon_days} days.</p>
+<ul id="soon-list"></ul>
+<p id="soon-none">No comment deadlines in the next {soon_days} days.</p>
+<noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>
+</section>
+
+<section class="panel explain" aria-labelledby="explain-h">
+<h2 id="explain-h">How to read this list</h2>
+<p>Every notice is scored automatically from the words and sizes in it, then placed in a tier:</p>
+<ul>
+<li class="key-strong"><strong>{TIER_LABELS['strong']}:</strong> {escape(td['strong'])}</li>
+<li class="key-possible"><strong>{TIER_LABELS['possible']}:</strong> {escape(td['possible'])}</li>
+<li class="key-weak"><strong>{TIER_LABELS['weak']}:</strong> {escape(td['weak'])} Hidden unless you tick "Show weaker matches".</li>
+</ul>
+<p>Notices scoring under {int(tiers.get('weak_min', 20))}, quarries and pits, and withdrawn projects are not listed.</p>
+<p>A flag means a notice may involve marine habitat work. It is not a statement that mitigation or
+compensation is required. Items marked "Reviewed by a person" have been checked; the rest are automatic.
+Always read the official notice.</p>
+</section>
+
+<div class="row-2">
+{since}
+<details class="panel coverage" id="coverage">
+<summary>Coverage: {cc['covered']} covered, {cc['partial']} partial, {cc['coming_soon']} coming soon{' (mostly Canada for now)' if bn else ''}</summary>
+{f'<p>{escape(bn)}</p>' if bn else ''}
+<div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
+<tbody>
+{coverage_rows(coverage, counts)}
+</tbody></table></div>
+{f'<p class="note">{escape(lt)}</p>' if lt else ''}
+</details>
+</div>
 {news_html}
+</div>
+
+<div class="results-bar" id="results">
+<div><h2>Projects</h2><p id="result-count" aria-live="polite"></p></div>
+<div class="views js-only" role="radiogroup" aria-label="Which projects" hidden>
+<label><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
+<label><input type="radio" name="view" id="v-soon" value="soon"> Closing soon</label>
+<label><input type="radio" name="view" id="v-changed" value="changed"> Changed since last update</label>
+<label><input type="radio" name="view" id="v-watch" value="watch"> My watch list</label>
+</div>
+</div>
+<p class="empty" id="no-match" hidden>No projects match these filters.</p>
 <div id="view" hidden></div>
 <div id="server-list">
 {body}
+</div>
 </div>
 </main>
 {_footer(site)}
@@ -1250,42 +1479,61 @@ def render_project_page(rec: dict, site: dict, updated: date, country_name: str,
 {note}
 <p class="note">Only dates and counts the official registry publishes are shown. Comment text and the names of
 people who commented are not copied here. To comment, use the official notice.</p>"""
+    official = "Official page" if rec["stage_kind"] == "watch" else "Official notice"
+    score = int(rec["score"])
     return f"""<!doctype html>
 <html lang="en">
 <head>
 {_head(rec['title'] + ' - ' + title, rec.get('summary') or site.get('description', ''))}
 </head>
 <body data-soon="{int(site.get('closing_soon_days', 30))}">
-<header class="site"><div class="wrap">
-<div class="masthead"><p class="crumb"><a href="../index.html">{escape(title)}</a></p>
-<p class="updated">Last updated: <time>{updated.strftime("%B %-d, %Y")}</time></p></div>
-<nav class="top"><a href="../index.html">Projects</a><a href="../about.html">About</a></nav>
-</div></header>
+{_topbar(site, updated, "", "../")}
 <main class="wrap">
-<article class="project card" data-id="{escape(rec['id'])}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
-<h1>{escape(rec['title'])}</h1>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Projects</a><span aria-hidden="true">/</span>
+<a href="../index.html?country={escape(rec.get('country') or '')}#results">{escape(country_name)}</a><span aria-hidden="true">/</span>
+<span>{escape(rec['title'])}</span></nav>
+<article class="project" id="main" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
+<div class="project-main">
 {_badges(rec, less_tested)}
-<p class="watch-row">{_watch_button(rec)}</p>
+<h1>{escape(rec['title'])}</h1>
+<p class="place">{escape(_place(rec, country_name))} &middot; {escape(rec['proponent'])}</p>
+{_summary_html(rec)}
+{f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
+<h2>Timeline</h2>
+{_timeline_html(rec)}
+<p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
+at each update.</p>
+{_in_the_news_html(rec)}
+<h2>Source</h2>
+{_source_lines(rec, link)}
+</div>
+<aside class="project-side">
+<section class="side-card">
+<h2 class="side-h">Public comments</h2>
+{comments}
+</section>
+<section class="side-card">
+<div class="actions"><a class="btn primary" href="{link}" rel="noopener">{official} &#8599;</a>{_watch_button(rec)}</div>
+</section>
+<section class="side-card">
+<h2 class="side-h">Score</h2>
+<div class="scorebox"><span class="big">{score}</span><span class="of">/ 100 &middot; {escape(rec['tier_label'])}</span></div>
+<div class="meter" style="--s:{score}"><span></span></div>
+{'' if rec['tier_reason'].lower().startswith('score') else f'<p class="note">{escape(rec["tier_reason"])}</p>'}
+</section>
+<section class="side-card">
+<h2 class="side-h">Key facts</h2>
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
 <dt>Stage</dt><dd>{escape(rec['stage'])}</dd>
 </dl>
-{_summary_html(rec)}
-{f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
-<h2>Public comments</h2>
-{comments}
-{_in_the_news_html(rec)}
-<h2>Timeline</h2>
-{_timeline_html(rec)}
-<p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
-at each update.</p>
-<h2>Source</h2>
-{_source_lines(rec, link)}
+</section>
+</aside>
 </article>
 </main>
-{_footer(site)}
+{_footer(site, "../")}
 <script>{JS_COMMON}{JS_PAGE}</script>
 </body>
 </html>
@@ -1307,21 +1555,32 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
     from mpf.comments import COUNT_STATUS
     comment_sources = "".join(f'<li><strong>{escape(s.get("name", key))}:</strong> {escape(COUNT_STATUS[key].replace(" This project page shows none.", ""))}</li>'
                               for key, s in coverage.get("sources", {}).items() if key in COUNT_STATUS)
+    toc = '<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a><a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a>'
     return f"""<!doctype html>
 <html lang="en">
 <head>
 {_head(title, site.get('description', ''))}
 </head>
 <body>
-{_header("About " + site.get("title", "MitiMark"), site.get('description', ''), updated)}
-<main class="wrap about">
-<h2>What it does</h2>
+{_topbar(site, updated, "about")}
+<section class="page-head"><div class="wrap">
+<p class="eyebrow">About and method</p>
+<h1>About {escape(site.get("title", "MitiMark"))}</h1>
+<p>{escape(site.get('description', ''))}</p>
+<p class="meta">Last updated: <time>{_date(updated)}</time></p>
+</div></section>
+<main class="wrap about-layout" id="main">
+<nav class="toc" aria-label="On this page"><p class="side-label">On this page</p>
+{toc}
+</nav>
+<div class="prose">
+<h2 id="what-it-does">What it does</h2>
 <p>The tool reads public environmental assessment and permit notices for marine construction projects,
 such as ports, wharves, breakwaters, dredging and shoreline works. It flags projects that may need marine
 habitat work, for example avoidance and reduction measures, habitat enhancement, fish habitat offsetting, or
 nature-inclusive design. Each listing links to the official notice.</p>
 
-<h2>What the score and tiers mean</h2>
+<h2 id="what-the-score-and-tiers-mean">What the score and tiers mean</h2>
 <p>Each notice gets a score from 0 to 100 from simple, visible rules: the type of marine work, words about
 fish habitat, offsetting, eelgrass, shellfish or species at risk, and the size of the work. The score places
 each notice in a tier:</p>
@@ -1333,7 +1592,7 @@ that mitigation or compensation is required. Only the regulator decides that.</p
 <p>The short quotes on each listing are complete sentences copied exactly from the notice, chosen because
 they describe the project and its habitat signals, so you can judge for yourself.</p>
 
-<h2>Automatic listings and review</h2>
+<h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has
 checked a listing against the official notice, it is marked "Reviewed by a person". Listings found to be
 wrong or irrelevant on review are removed. Summaries are kept short and factual, and facts that a notice
@@ -1341,7 +1600,7 @@ does not give are shown as "unknown".</p>
 <p>When the same project appears in two registries, it is listed once, with a link to the other listing.
 Listings whose official page cannot be found are left out.</p>
 
-<h2>Notices in other languages</h2>
+<h2 id="notices-in-other-languages">Notices in other languages</h2>
 <p>Quotes always stay in the notice's original language. There is no automatic translation. For notices
 not in English, the English summary is built only from the keywords and sizes the tool found in the text,
 and is labelled "built from keywords, not a translation". When too little was found, the listing says
@@ -1349,7 +1608,7 @@ and is labelled "built from keywords, not a translation". When too little was fo
 Spanish, Norwegian and Dutch have fewer tests than the English rules, so those listings are lower confidence
 and carry a "Less tested language" badge.</p>
 
-<h2>Public comments</h2>
+<h2 id="public-comments">Public comments</h2>
 <p>Each project shows when its public comment period opens and closes and how many days are left, but
 only when the official registry publishes those dates. When an opening date is taken from the date of the
 notice that invited comments, it is labelled "date of the notice". Where a registry publishes the number
@@ -1358,21 +1617,21 @@ comments page. Comment text, the names of people who commented and other persona
 to this site. Anything a source does not publish is shown as "Not published".</p>
 <ul>{comment_sources}</ul>
 
-<h2>Changes between updates and project pages</h2>
+<h2 id="changes-between-updates-and-project-pages">Changes between updates and project pages</h2>
 <p>Every project has its own page with a stable address. At each update the site keeps a short snapshot
 (deadline, stage and tier) and marks projects that are new, whose comment deadline changed, or that are now
 decided. Each project page shows a timeline of those changes next to the official comment dates.</p>
 
-<h2>Your watch list</h2>
+<h2 id="your-watch-list">Your watch list</h2>
 <p>"Add to watch list" saves a project in your own browser only. There are no accounts, and nothing about
 your watch list is sent anywhere. Clearing your browser data clears the list.</p>
 
-<h2>Project watch</h2>
+<h2 id="project-watch">Project watch</h2>
 <p>Some sources list projects rather than notices. When such a source is used, its items appear in a
 separate "Project watch (not a notice feed)" section, with no comment deadline, no countdown, and never in
 the closing-soon list. No project watch source is in use at the moment.</p>
 
-<h2>Coverage</h2>
+<h2 id="coverage">Coverage</h2>
 {f'<p><strong>{escape(bn)}</strong></p>' if bn else ''}
 <p>"Covered" means a source for that place is read automatically. "Partial" means only some sources are
 read, and they are named. "Coming soon" means no source is read yet, and no listings are shown for it.</p>
@@ -1382,14 +1641,14 @@ read, and they are named. "Coming soon" means no source is read yet, and no list
 </tbody></table></div>
 {f'<p>{escape(lt)}</p>' if lt else ''}
 
-<h2>Public sources used</h2>
+<h2 id="public-sources-used">Public sources used</h2>
 <ul>{sources}</ul>
 
-<h2>How often it updates</h2>
+<h2 id="how-often-it-updates">How often it updates</h2>
 <p>The list is refreshed {freq}, and new notices appear on their own. Comment countdowns are calculated
 in your browser, so they stay current between updates.</p>
 
-<h2>Known limits</h2>
+<h2 id="known-limits">Known limits</h2>
 <ul>
 <li>Public notices often appear after a project's design is done, so some listings will be too late to
 influence the design.</li>
@@ -1399,6 +1658,7 @@ influence the design.</li>
 <li>Notices are quoted in their original language. Keyword rules in languages other than English have
 fewer tests, so those listings are lower confidence.</li>
 </ul>
+</div>
 </main>
 {_footer(site)}
 </body>
