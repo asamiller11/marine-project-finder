@@ -48,11 +48,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -11,
+   "days_left": -12,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong match",
+    "score": 100,
+    "because": "Breakwater, jetty or groyne; Wharf, pier or large dock; Infill, reclamation or causeway; size 418,000 cubic metres"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "strong",
+    "tier_label": "Strong match",
+    "score": 84,
+    "because": "Offsetting, compensation, credits or habitat banking; Habitat offsetting or compensation mentioned; New habitat, enhancement or nature-inclusive design; size 418,000 cubic metres"
+   }
   },
   "timeline": [],
   "changes": [],
@@ -102,11 +140,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -288,
+   "days_left": -289,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong match",
+    "score": 78,
+    "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Port or marine terminal; size 1.4 kilometres"
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 52,
+    "because": "Shoreline protection, seawall or bulkhead; Species at risk; Work below high water or footprint on the seabed; size 1.4 kilometres"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -152,11 +228,49 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 15,
+   "days_left": 14,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 40,
+    "because": "Breakwater, jetty or groyne; size 90,000 m 2"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -209,6 +323,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 40,
+    "because": "Breakwater, jetty or groyne; Fish habitat; Species at risk"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -255,11 +407,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -127,
+   "days_left": -128,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 46,
+    "because": "Breakwater, jetty or groyne; Marina or small craft harbour; Outfall or intake in the water; size 230-metre"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -312,6 +502,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "Wharf, pier or large dock; Fish habitat; size 1,500 m²"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -363,6 +591,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 56,
+    "because": "Breakwater, jetty or groyne; Marina or small craft harbour; Rock armour, riprap or armour units; size 185 m"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -407,11 +673,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 30,
+   "days_left": 29,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 53,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; Scour or cable protection; size 145 m (doubtful size reading not counted (4 km))"
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 41,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 145 m (doubtful size reading not counted (4 km))"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [
    {
@@ -420,9 +724,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-10-31"
  },
  {
@@ -466,11 +768,49 @@
    "opens": "2026-10-14",
    "opens_how": "notice date",
    "closes": "2026-11-14",
-   "days_left": 14,
+   "days_left": 13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -516,11 +856,49 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": 1,
+   "days_left": 0,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; Work below high water or footprint on the seabed"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -567,11 +945,49 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 27,
+   "days_left": 26,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; Scour or cable protection"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -618,11 +1034,49 @@
    "opens": "2026-10-26",
    "opens_how": "notice date",
    "closes": "2026-11-14",
-   "days_left": 14,
+   "days_left": 13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Breakwater, jetty or groyne; Marina or small craft harbour"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -669,11 +1123,49 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 15,
+   "days_left": 14,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -719,11 +1211,49 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": 5,
+   "days_left": 4,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 34,
+    "because": "Shoreline protection, seawall or bulkhead; Outfall or intake in the water; size 1,080 m² (small routine repair, kept at Weak)"
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 41,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 1,080 m²"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -771,11 +1301,49 @@
    "opens": "2026-09-28",
    "opens_how": "stated",
    "closes": "2026-10-28",
-   "days_left": -3,
+   "days_left": -4,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; size 4,511 square meters"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -829,6 +1397,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 51,
+    "because": "Breakwater, jetty or groyne; Shoreline protection, seawall or bulkhead; Marina or small craft harbour"
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 24,
+    "because": "Shoreline protection, seawall or bulkhead; Breakwater, jetty or groyne; Marina or small craft harbour"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -873,6 +1479,44 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 53,
+    "because": "Seagrass or eelgrass; Seagrass survey, planting or restoration; New habitat, enhancement or nature-inclusive design"
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -916,11 +1560,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -484,
+   "days_left": -485,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 45,
+    "because": "Breakwater, jetty or groyne; Rock armour, riprap or armour units; size 115-metre"
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Erosion control works or shoreline stabilization; Breakwater, jetty or groyne; size 115-metre"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -973,6 +1655,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 34,
+    "because": "Wharf, pier or large dock; Rock armour, riprap or armour units; Scour or cable protection (small routine repair, kept at Weak)"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1023,6 +1743,44 @@
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Wharf, pier or large dock; Scour or cable protection"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -1075,6 +1833,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Pier (not at a dam, intake or bridge); Scour or cable protection"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1121,11 +1917,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -204,
+   "days_left": -205,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 23,
+    "because": "Pier (not at a dam, intake or bridge); Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -1178,6 +2012,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 34,
+    "because": "Wharf, pier or large dock; Pier (not at a dam, intake or bridge); Marina or small craft harbour; size 144 m"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1224,6 +2096,44 @@
    "count_as_of": null,
    "comments_url": null,
    "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 23,
+    "because": "Wharf, pier or large dock; Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -1272,6 +2182,44 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 21,
+    "because": "Port or marine terminal; Infill, reclamation or causeway"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1319,6 +2267,44 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 12,
+    "because": "Marina or small craft harbour"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1365,6 +2351,44 @@
    "comments_url": null,
    "count_note": "BOE notices give the comment period in working days and publish no count."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1408,11 +2432,49 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -50,
+   "days_left": -51,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -1462,6 +2524,44 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1507,6 +2607,44 @@
    "count_as_of": null,
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
   },
   "timeline": [],
   "changes": [],
@@ -1554,8 +2692,143 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "iaac:90863",
+  "title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90863?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Parks Canada",
+  "country": "CA",
+  "province": "Nova Scotia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "public comment open until 2026-11-28",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-28",
+  "decision_date": null,
+  "score": 12,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 12 (under 20)",
+  "reviewed": false,
+  "summary": "Project by Parks Canada in Nova Scotia. The notice mentions shoreline protection work.",
+  "summary_note": "auto",
+  "quotes": [
+   "Construction activities generally include excavation and grading of the highway embankment, installation of a rock revetment using armourstone, filterstone, and clearstone and extension of four drainage culverts through the revetment.",
+   "Following construction, excavated beach material will be reinstated over and along the sides of the revetment to help integrate the structure into the surrounding landscape.",
+   "The project involves coastal erosion protection along a vulnerable section of the Cabot Trail, La Bloc Beach, within Cape Breton Highlands National Park."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90863.html",
+  "comments": {
+   "opens": "2026-10-29",
+   "opens_how": "notice date",
+   "closes": "2026-11-28",
+   "days_left": 27,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 37,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units"
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 33,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-01",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-01"
  }
 ]
