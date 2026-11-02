@@ -239,12 +239,14 @@ def check_live_site(expected_items: int) -> str:
     try:
         resp = requests.get(SITE_URL + "items.json", timeout=30,
                             headers={"Cache-Control": "no-cache"}, params={"t": int(time.time())})
-        live_count = len(resp.json()) if resp.status_code == 200 else None
+        live = resp.json() if resp.status_code == 200 else None
+        live_count = len(live) if live is not None else None
     except (requests.RequestException, ValueError):
         live_count = None
     if live_count is None:
         return f"could not read {SITE_URL} just now; check it in a browser"
     if live_count == expected_items:
-        return f"live at {SITE_URL} with {live_count} items (matches this update)"
+        from mpf.site import listing_summary
+        return f"live at {SITE_URL} with {listing_summary(live)} (matches this update)"
     return (f"live at {SITE_URL}, but it shows {live_count} items instead of {expected_items}; "
             f"GitHub Pages can take a few more minutes to refresh")

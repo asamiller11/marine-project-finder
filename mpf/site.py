@@ -1238,6 +1238,13 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
 NOT_GENERAL = "Not on the general list"
 
 
+def listing_summary(records: list[dict]) -> str:
+    """"31 on the general list, plus 1 shown only under a profile" (the second part only when there are any)."""
+    extra = sum(1 for r in records if r.get("profile_only"))
+    text = f"{len(records) - extra} on the general list"
+    return text + (f", plus {extra} shown only under a profile" if extra else "")
+
+
 def profile_meta(records: list[dict], scoring: dict | None = None) -> list[dict]:
     """Buyer profiles in config order: key, label, short description, and whether any project matches."""
     from mpf.config import load_scoring

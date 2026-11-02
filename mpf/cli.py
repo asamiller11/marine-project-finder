@@ -219,7 +219,7 @@ def cmd_publish(args, settings):
                                      today().isoformat())
     site.write_site(out, records, settings, today(), news_items=news_items)
     tiers = Counter(r["tier"] for r in records)
-    print(f"Published {len(records)} items to {out / 'index.html'}: " +
+    print(f"Built {out / 'index.html'}: {site.listing_summary(records)}. General list: " +
           ", ".join(f"{TIER_LABELS[t]} {tiers.get(t, 0)}" for t in site.PUBLISHED_TIERS))
     print(f"Reviewed by a person: {sum(r['reviewed'] for r in records)}. Not published: "
           f"{skipped['not_relevant']} probably not relevant (review file only), {skipped['hidden_by_you']} marked no, "

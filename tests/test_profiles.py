@@ -290,3 +290,9 @@ def test_about_explains_profiles(tmp_path):
     assert "rule-based guesses" in about
     assert "It is not a statement that mitigation, compensation or any particular\nmeasure is required" in about
     assert "—" not in about
+
+
+def test_listing_summary_counts_profile_only_projects_separately():
+    recs, _ = _records()
+    assert site.listing_summary(list(recs.values())) == "1 on the general list, plus 1 shown only under a profile"
+    assert site.listing_summary([r for r in recs.values() if not r.get("profile_only")]) == "1 on the general list"
