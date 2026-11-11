@@ -1,6 +1,6 @@
 """Automatic updates on this Mac, through a LaunchAgent for your user only (no sudo).
 
-    python -m mpf auto-check        # what the LaunchAgent runs: update only if 14+ days have passed
+    python -m mpf auto-check        # what the LaunchAgent runs: update only if update.days_between_updates days have passed (7)
     python -m mpf auto-install      # install the LaunchAgent
     python -m mpf auto-uninstall    # remove it completely
     python -m mpf auto-status       # is it installed, paused, when was the last update
@@ -9,7 +9,7 @@
 When the check runs: at login, and then every hour. macOS has no "run on wake" trigger for a
 user LaunchAgent, but an hourly job that was missed during sleep runs once right after the Mac
 wakes, so a check happens soon after every wake. Each check is quick: it reads the date of the
-last successful update and exits unless 14 or more days have passed, you are online, and
+last successful update and exits unless update.days_between_updates (7) or more days have passed, you are online, and
 automatic updates are not paused. The update itself runs at low priority (nice), with
 "caffeinate -i" keeping the Mac awake only until it finishes. Failures are written to the log
 and shown as a macOS notification.
@@ -108,7 +108,8 @@ def auto_check(settings: dict, now: datetime | None = None, run=subprocess.run, 
     upload = bool(once.get("upload", True))
     if p["paused"].exists() and not once.get("force"):
         return "paused"
-    if not once.get("force") and not due_for_update(read_state(settings).get("last_success"), now):
+    days = int((settings.get("update") or {}).get("days_between_updates", DAYS_BETWEEN_UPDATES))
+    if not once.get("force") and not due_for_update(read_state(settings).get("last_success"), now, days):
         log(settings, "Check: not due yet.")
         return "not due"
     if not online():

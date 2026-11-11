@@ -214,7 +214,7 @@ def test_all_habitat_work_is_the_general_score():
     hidden = html.split('<div id="profile-only" hidden>')[1].split("</div>\n</div>")[0]
     assert "Coastal Erosion Protection" in hidden and 'data-gtier="none"' in hidden
     assert "t-notrel" not in html
-    assert '<span class="n" id="stat-total">1</span><span class="l">Projects listed</span>' in html  # general only
+    assert '<span class="n" id="stat-total">1</span><span class="l">Projects listed, all tiers</span>' in html  # general only
 
 
 def test_banner_figures_follow_the_profile_and_are_labelled():

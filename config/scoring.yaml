@@ -327,6 +327,28 @@ language_patterns:
       es: '\bmedidas correctoras|\bmedidas preventivas y correctoras'
 
 # ---------------------------------------------------------------------------
+# FRESHWATER LABEL. A project is labelled "Freshwater" when the notice names a lake and nothing
+# salt-water, or when it is in an inland province or territory and does not mention Hudson Bay or James Bay.
+# The label is shown on every view; the hard-structure profile hides these projects unless the
+# visitor ticks "Include freshwater".
+freshwater:
+  lake: '\b(?:Lake|Lac) [A-Z][\w''’-]+|\bGreat Lakes\b|\blakeshore\b'
+  salt: '(?i)\b(?:sea|seas|ocean|oceans|marine|tidal|intertidal|subtidal|estuar\w*|saltwater|salt water|seawater|brackish|gulf|strait|fjord|atlantic|pacific|arctic|seabed|offshore|mer|océan|marin|marins)\b'
+  # Agency names that contain salt-water words ("Fisheries and Oceans Canada") are ignored.
+  ignore: '(?i)fisheries and oceans( canada)?|pêches et océans( canada)?'
+  inland_regions: [Ontario, Manitoba, Saskatchewan, Alberta]
+  inland_salt_exceptions: '(?i)hudson bay|james bay|churchill'
+
+# MAINTENANCE DREDGING. A notice that only re-dredges an existing berth or channel (no new structure),
+# under this volume and with no clear habitat words, is kept at Weak (34).
+maintenance_dredging:
+  pattern: '(?i)\bmaintenance dredg\w*|\bdragage d.entretien|\bdragado de mantenimiento'
+  no_new_structure: '(?i)\b(?:does not|will not) (?:propose|include|involve) (?:any )?new (?:marine )?(?:infrastructure|structures?)|\bno new (?:marine )?(?:infrastructure|structures?)\b'
+  max_volume_m3: 5000
+  cap_score: 34
+  habitat_words: [offsetting, fisheries_act, hadd, habitat_creation, eelgrass, shellfish_oyster, intertidal_marsh, species_at_risk]
+
+# ---------------------------------------------------------------------------
 # BUYER PROFILES. "All habitat work" is the general score above, unchanged. Each profile below
 # re-weights the groups above (0 or left out = ignored) and adds its own keyword groups. Same tiers
 # and cut-offs as the general score (Strong 60+, Possible 35-59, Weak 20-34), same size table and caps.
@@ -485,6 +507,11 @@ profile_groups:
 profiles:
   hard-structure:
     label: "Hard-structure eco-engineering"
+    # Product makers: show the project stage instead of "Likely too late"; approved projects are leads.
+    audience: product_maker
+    exclude_freshwater: true
+    # "West Dock berth", "Dock Road": a capitalised structure word that is part of a name is not a structure.
+    group_rules: {wharf_dock: {exclude_names: true}}
     short: "Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock."
     core: [breakwater_jetty, shoreline_protection, bulkhead_marine, wharf_dock, pier_marine, port_terminal, marina_small_craft, infill_causeway, piles, armour_riprap]
     # The general shoreline group's bulkhead pattern is replaced by bulkhead_marine (no dams or river channels).
@@ -500,6 +527,7 @@ profiles:
                     shellfish_oyster, intertidal_marsh, species_at_risk]
   living-shoreline:
     label: "Living shoreline and shellfish"
+    group_rules: {wharf_dock: {exclude_names: true}}
     short: "Oysters, mussels, salt marsh, shoreline stabilization and erosion control."
     core: [shellfish_works, intertidal_marsh, living_shoreline, erosion_control, shoreline_protection, bulkhead_marine]
     drop_patterns: {shoreline_protection: ['\bbulkhead'], wharf_dock: ['\bpier\b|\bpiers\b']}

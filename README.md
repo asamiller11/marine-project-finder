@@ -32,7 +32,7 @@ on the 1st and 15th of each month. One-time setup: `docs/github_setup.md`.
 The site is built on this Mac and GitHub only publishes it (fallback mode, `CI_FETCH=false` on the
 repository), because marine.gov.scot refuses requests from GitHub's servers but accepts this Mac.
 
-- **One button:** open `start.py`, press Run, choose **Refresh everything and publish**. It checks the
+- **One button:** open `~/start.py` (in your home folder, not in this project folder), press Run, choose **Refresh everything and publish**. It checks the
   internet connection, fetches every live source (politely, cached), scores, updates
   `review/review.csv` (your yes/no choices are kept), builds `site/`, uploads it to GitHub, waits for
   GitHub to publish, and checks the live site. It takes 15 to 30 minutes, mostly crawl delays.
@@ -40,12 +40,12 @@ repository), because marine.gov.scot refuses requests from GitHub's servers but 
 - **In Claude Code:** type `/update-site`; it runs the same update and reports the counts per country
   and tier, any blocked or failed source, and whether the site is live.
 - **Automatically:** a LaunchAgent for your user (no sudo) checks at login and every hour (including
-  right after the Mac wakes). If 14 or more days have passed since the last successful update and you
-  are online, it runs the update in the background at low priority, keeping the Mac awake only until
+  right after the Mac wakes). If 7 or more days have passed since the last successful update (set by
+  `update.days_between_updates` in `config/settings.yaml`) and you are online, it runs the update in the background at low priority, keeping the Mac awake only until
   it finishes. Failures go to `data/logs/auto_update.log` and appear as a macOS notification. Two
   updates never run at once.
   - Install: `./.venv/bin/python -m mpf auto-install`
-  - Pause or resume: `start.py` menu, or `python -m mpf auto-pause` / `auto-resume`
+  - Pause or resume: `~/start.py` menu, or `python -m mpf auto-pause` / `auto-resume`
   - Status: `python -m mpf auto-status`
   - **Remove completely:** `./.venv/bin/python -m mpf auto-uninstall` (unloads it and deletes
     `~/Library/LaunchAgents/com.marineprojectfinder.autoupdate.plist`). Optionally also delete
@@ -98,8 +98,9 @@ the New York bulletin (disallowed by robots.txt), and others listed in the panel
   `*` wildcards and `Crawl-delay`.
 - Identifies itself with a clear User-Agent (set in `config/settings.yaml`).
 - Waits between requests to the same host (at least 3 seconds).
-- Caches every response in `data/cache/`. A project page is fetched once and never again.
-  List pages are re-read at most every 20 hours to find new items.
+- Caches every response in `data/cache/`. A project page is fetched once, except the pages of
+  listed projects that are not decided yet: those are re-read when the saved copy is more than
+  6 days old (`update.recheck_open_pages_hours`). List pages are re-read at most every 20 hours.
 - If a site answers 401, 403 or 429, the tool stops that source and tells you. It never
   retries with other headers, browsers or proxies.
 - It only reads public pages and writes local files. It sends no email and posts nothing.

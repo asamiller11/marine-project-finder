@@ -74,6 +74,11 @@ timing:
   too_late_days: 7
 
 update:
+  # The LaunchAgent runs an update when this many days have passed since the last uploaded one.
+  days_between_updates: 7
+  # At each update, re-read the project pages of listed projects that are not decided yet, if the saved
+  # copy is older than this (hours). Same polite fetcher and delays.
+  recheck_open_pages_hours: 144
   # When a source is blocked or fails during "Refresh everything and publish":
   #   false = publish the sources that worked, then warn (log and macOS notification)
   #   true  = stop without publishing anything
@@ -97,6 +102,8 @@ tiers:
     - '\b(gravel|sand|borrow) pit\b'
     - '\bpeat\b'
     - '\baggregate\b'
+    # Hydroelectric stations and dams are not marine construction (tidal power is kept).
+    - '^(?!.*\btidal\b).*\b(generating station|hydroelectric|hydro dam|powerhouse)\b'
 
 duplicates:
   # The same project listed by two sources is shown once. Keep the first source in this list.
@@ -109,10 +116,18 @@ site:
   description: "Early alerts on marine construction projects that may need habitat work"
   contact_name: "Asa Miller"
   contact_email: "asamiller11@gmail.com"
-  update_frequency: "every 2 weeks"
+  update_frequency: "every week"
   # The public address, used for project page links in the CSV export.
   url: "https://asamiller11.github.io/marine-project-finder/"
   closing_soon_days: 30
+  # Buyer feedback: a Google Form. Replace YOUR_FORM_ID with the form's id, and the entry number with the
+  # form question that should hold the project id (from the form's "Get pre-filled link"). The site stores
+  # nothing. While the placeholder is here, no feedback link is shown.
+  feedback_form_url: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform"
+  feedback_form_project_field: "entry.0000000000"
+  # The "10 projects" shortlist page (shortlist.html) for the buyer test.
+  shortlist_profile: hard-structure
+  shortlist_size: 10
   # Quotes are whole sentences copied exactly from the notice, never cut. Longer sentences are skipped.
   max_quote_chars: 300
   max_quotes: 3

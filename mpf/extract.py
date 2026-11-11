@@ -170,11 +170,24 @@ def strict_negation(conf: dict):
     return negated
 
 
+_NAME_BEFORE = re.compile(r"\b[A-Z][a-z]+\s+$")
+_NAME_AFTER = re.compile(r"^\s+(?:berth|road|street|lane|avenue|park|drive)\b", re.IGNORECASE)
+
+
+def is_name(text: str, m: re.Match) -> bool:
+    """A capitalised structure word inside a name, such as "West Dock berth" or "Dock Road": not a structure."""
+    word = m.group(0).strip()
+    return bool(word[:1].isupper() and _NAME_BEFORE.search(text[max(0, m.start() - 30):m.start()])
+                and _NAME_AFTER.match(text[m.end():m.end() + 20]))
+
+
 def _match_counts(text: str, m: re.Match, rule: dict, negated) -> bool:
     if negated is is_negated:
         if is_negated(text, m.start()):
             return False
     elif negated(text, m.start(), m.end()):
+        return False
+    if rule.get("exclude_names") and is_name(text, m):
         return False
     if rule.get("exclude_sentence") or rule.get("require_sentence"):
         s = sentence_around(text, m.start(), m.end())

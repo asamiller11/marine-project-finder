@@ -32,9 +32,23 @@ def _open(settings):
     return db.connect(data_dir(settings) / "mpf.sqlite")
 
 
+RECHECK_SOURCES = ("iaac", "nl_ea", "scot_marine")    # sources with project pages that can change
+
+
+def recheck_urls(items_path: Path) -> set[str]:
+    """Pages of projects on the site that are not decided yet: re-read at each update (see PoliteClient)."""
+    try:
+        records = json.loads(items_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    return {r["url"] for r in records if r.get("url") and r.get("source") in RECHECK_SOURCES
+            and r.get("stage_kind") not in ("decided", "withdrawn", "watch")}
+
+
 def cmd_ingest(args, settings):
     conn = _open(settings)
     client = PoliteClient(settings, data_dir(settings) / "cache")
+    client.refresh_urls = recheck_urls(ROOT / "site" / "items.json")
     from mpf.sources import LIVE_SOURCES
     if args.source:
         wanted = args.source
@@ -83,7 +97,8 @@ def cmd_ingest(args, settings):
         print("== news feeds (headline, source, date and link only)")
         for line in news.ingest(conn, client, news_conf):
             print("   " + line)
-    print(f"Network requests this run: {client.network_requests} (everything else came from the cache)")
+    print(f"Network requests this run: {client.network_requests} (everything else came from the cache). "
+          f"Of these, {client.rechecked} re-read pages of the {len(client.refresh_urls)} listed projects not decided yet.")
     if problems:
         print(f"Sources that stopped early or failed: {', '.join(sorted(set(problems)))}. The others ran normally.")
 
@@ -362,7 +377,7 @@ def main(argv=None):
     sub.add_parser("check-access", help="check the sources still allow us (no cache)")
     s = sub.add_parser("update", help="fetch, score, review file, publish, upload, check the live site")
     s.add_argument("--no-upload", action="store_true", help="do everything except the upload")
-    for name, text in [("auto-check", "LaunchAgent check: update if 14+ days have passed"),
+    for name, text in [("auto-check", "LaunchAgent check: update if update.days_between_updates (7) days have passed"),
                        ("auto-install", "install the LaunchAgent"), ("auto-uninstall", "remove the LaunchAgent"),
                        ("auto-status", "show automatic update status"), ("auto-pause", "pause automatic updates"),
                        ("auto-resume", "resume automatic updates"), ("auto-show-plist", "print the LaunchAgent file"),

@@ -121,6 +121,11 @@ class PoliteClient:
         self._robots: dict[str, Robots] = {}
         self._last_request: dict[str, float] = {}
         self.network_requests = 0           # how many real requests we made (for reports)
+        # Project pages to re-read when the saved copy is older than recheck_hours (listed projects that are
+        # not decided yet). Everything else keeps the rule: a detail page is fetched once.
+        self.refresh_urls: set[str] = set()
+        self.recheck_hours = float((settings.get("update") or {}).get("recheck_open_pages_hours", 144))
+        self.rechecked = 0                  # real requests made for those re-reads
 
     # -- cache ---------------------------------------------------------------
     def _cache_paths(self, url: str) -> tuple[Path, Path]:
@@ -235,9 +240,15 @@ class PoliteClient:
         """Fetch a URL (or return the cached copy). Raises Blocked or requests errors.
         list_page=True lets the cache expire, so we see new items on index pages."""
         max_age = self.list_max_age if list_page else None
+        recheck = not list_page and url in self.refresh_urls
+        if recheck:
+            max_age = self.recheck_hours
+        before = self.network_requests
         # headers: only content negotiation an API documents (for example BOE's Accept header).
         # Never used to change who we say we are.
         status, body = self._get_raw(url, max_age, max_bytes=max_bytes, headers=headers)
+        if recheck and self.network_requests > before:
+            self.rechecked += 1
         if status != 200:
             raise requests.HTTPError(f"HTTP {status} for {url}")
         return body

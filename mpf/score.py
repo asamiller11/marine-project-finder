@@ -6,6 +6,8 @@ A high score means "worth a human look", never "mitigation will be required".
 """
 from __future__ import annotations
 
+import re
+
 from mpf.extract import (extract_sizes, find_patterns, has_marine_context, largest_sizes,
                          size_summary)
 
@@ -79,6 +81,19 @@ def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
         reasons.append({"rule": "cap:no_marine_context", "label": "No marine setting mentioned (score capped)",
                         "points": caps["no_marine_context_max"] - total, "matched": "", "quote": ""})
         total = caps["no_marine_context_max"]
+
+    # 6. Maintenance dredging only (no new structure), small, no clear habitat words: kept at Weak.
+    md = rules.get("maintenance_dredging")
+    if md and re.search(md["pattern"], text) and total > md.get("cap_score", 34):
+        others = set(types) - {"dredging"}
+        no_new = not others or re.search(md.get("no_new_structure") or r"(?!x)x", text)
+        vol = big.get("volume_m3")
+        if no_new and vol is not None and vol < md.get("max_volume_m3", 5000) \
+                and not (set(clues) & set(md.get("habitat_words") or [])):
+            reasons.append({"rule": "cap:maintenance_dredging",
+                            "label": "Maintenance dredging only, no new structure (kept at Weak)",
+                            "points": md.get("cap_score", 34) - total, "matched": "", "quote": ""})
+            total = md.get("cap_score", 34)
 
     total = max(0, min(100, int(round(total))))
     return {

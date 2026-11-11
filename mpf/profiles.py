@@ -32,12 +32,14 @@ def _group(conf: dict, points: int) -> dict:
     return g
 
 
-def _weighted(name: str, points: int, base: dict, extra: dict, drop: dict) -> dict:
+def _weighted(name: str, points: int, base: dict, extra: dict, drop: dict, group_rules: dict | None = None) -> dict:
     if name in extra:
-        return _group(extra[name], points)
-    g = dict(base[name], points=points)
-    if name in drop:
-        g["patterns"] = [p for p in g["patterns"] if p not in drop[name]]
+        g = _group(extra[name], points)
+    else:
+        g = dict(base[name], points=points)
+        if name in drop:
+            g["patterns"] = [p for p in g["patterns"] if p not in drop[name]]
+    g.update((group_rules or {}).get(name) or {})
     return g
 
 
@@ -49,11 +51,13 @@ def build_profiles(rules: dict) -> dict:
     for key, p in (rules.get("profiles") or {}).items():
         drop = p.get("drop_patterns") or {}
         r = copy.deepcopy({k: v for k, v in rules.items() if k not in ("profiles", "profile_groups", "profile_rules")})
-        r["project_types"] = {n: _weighted(n, v, rules["project_types"], extra, drop)
+        gr = p.get("group_rules") or {}
+        r["project_types"] = {n: _weighted(n, v, rules["project_types"], extra, drop, gr)
                               for n, v in p.get("types", {}).items() if v > 0}
-        r["habitat_clues"] = {n: _weighted(n, v, rules["habitat_clues"], extra, drop)
+        r["habitat_clues"] = {n: _weighted(n, v, rules["habitat_clues"], extra, drop, gr)
                               for n, v in p.get("clues", {}).items() if v > 0}
         out[key] = {"key": key, "label": p["label"], "short": p.get("short", ""), "core": set(p["core"]),
+                    "audience": p.get("audience", "comment"), "exclude_freshwater": bool(p.get("exclude_freshwater")),
                     "rules": r, "habitat_words": set(p.get("habitat_words") or []),
                     "repair": _group(extra["routine_repair"], 0) if p.get("routine_repair_cap") and "routine_repair" in extra else None,
                     "repair_limits": pr.get("routine_repair") or {}}
@@ -151,3 +155,18 @@ def listed_in_profile(rec: dict, key: str, possible_min: int = 35) -> bool:
     if rec.get("tier") in PROFILE_TIERS + ("watch",):
         return True
     return p["score"] >= possible_min
+
+
+def is_freshwater(row: dict, conf: dict | None) -> bool:
+    """Lake or inland river work: the notice names a lake and nothing salt-water, or the project is in an
+    inland province or territory and does not mention Hudson Bay or James Bay. conf: scoring.yaml freshwater."""
+    if not conf:
+        return False
+    text = row.get("full_text") or ""
+    clean = re.sub(conf.get("ignore") or r"(?!x)x", " ", text)
+    lake = re.search(conf["lake"], text)
+    if lake and not re.search(conf["salt"], clean):
+        return True
+    exceptions = conf.get("inland_salt_exceptions")
+    return (row.get("province") in set(conf.get("inland_regions") or [])
+            and not (exceptions and re.search(exceptions, text)))

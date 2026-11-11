@@ -30,7 +30,8 @@ from mpf.history import CHANGE_LABELS
 from mpf.news import GDELT_URL
 from mpf.coverage import STATUS_LABELS, load_coverage, source_names
 from mpf.models import UNKNOWN
-from mpf.profiles import ALL, ALL_LABEL, EMPTY_NOTE, ProfileScorer, listed_in_profile, profile_results
+from mpf.profiles import (ALL, ALL_LABEL, EMPTY_NOTE, ProfileScorer, is_freshwater, listed_in_profile,
+                          profile_results)
 from mpf.review import auto_summary, decision, own_summary
 from mpf.tiers import TIER_LABELS, TIER_ORDER, find_duplicates, tier_for
 
@@ -314,6 +315,7 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
         if r["key"] not in losers:
             rec = make_record(r, review_rows.get(r["key"], {}), settings, today, patterns)
             rec["profiles"] = profile_results(r, rec["tier"], scorer, tiers_conf) if scorer else {}
+            rec["freshwater"] = is_freshwater(r, scoring.get("freshwater"))
             records[r["key"]] = rec
     # "Probably not relevant" is never on the general list. Such a project is kept only when a buyer
     # profile lists it at Possible or better; it then appears under that profile only.
@@ -340,6 +342,7 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
                 and rec.get("tier") in PUBLISHED_TIERS:   # older or unpublished records are not reused
             rec = dict(rec)
             rec.setdefault("profiles", {})
+            rec.setdefault("freshwater", False)
             rec.setdefault("page", f"p/{page_slug(key)}.html")
             rec.setdefault("comments", comment_info(rec, {}, today))
             rec["stage_kind"] = stage_kind(rec, today) if rec.get("stage_kind") not in ("decided", "withdrawn") \
@@ -478,9 +481,10 @@ section.explain p{color:var(--muted);font-size:.9rem;max-width:95ch}
 /* Collapsible panels */
 details.panel>summary{cursor:pointer;font-weight:650;list-style:none;display:flex;align-items:center;gap:10px}
 details>summary::-webkit-details-marker{display:none}
-details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:8px;height:8px;flex:none;
-border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg) translateY(-3px);transition:transform .15s}
-details.panel[open]>summary::after,details.tools[open]>summary::after{transform:rotate(-135deg) translateY(-1px)}
+/* Open/closed arrow: two small images (down, up). No rotation, so it draws the same in every browser. */
+details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:12px;height:12px;flex:none;
+background:var(--faint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat}
+details.panel[open]>summary::after,details.tools[open]>summary::after{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 details.panel[open]>summary{margin-bottom:10px}
 details.more summary{cursor:pointer;font-weight:600;color:var(--brand);font-size:.9rem;margin-top:6px}
 .since p{font-size:.92rem}
@@ -582,6 +586,15 @@ display:flex;flex-direction:column;min-width:0;box-shadow:var(--shadow);overflow
 .late{color:var(--late);background:var(--late-bg)}
 .st-open{color:var(--open);background:var(--open-bg)}
 .st-other{color:var(--muted);border-color:var(--line)}
+.st-lead{color:var(--strong);background:var(--strong-bg)}
+ol.shortlist{list-style:none;padding:0;margin:20px 0}
+.badge.rank{color:var(--brand-ink);background:var(--brand)}
+.shortlist-intro p{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:24px 0 0;color:var(--muted);font-size:.9rem}
+.badge.fresh{color:var(--brand);background:var(--brand-soft)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+.result-actions{margin:2px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}
+button.linklike{font:inherit;font-size:.86rem;font-weight:600;color:var(--brand);background:none;border:0;padding:0;cursor:pointer;
+text-decoration:underline;text-underline-offset:3px}
 .rev{color:var(--strong);border-color:currentColor}
 .rev::before{content:"\2713\00a0"}
 .auto{color:var(--muted);border:1px dashed var(--line-strong)}
@@ -796,7 +809,15 @@ JS = r"""
   // and can be shared with ?profile=<key>.
   var pdEl = $('profile-data'), PD = pdEl ? JSON.parse(pdEl.textContent) : {profiles: [], cards: {}},
       fp = $('f-profile'), PSTORE = 'mpf-profile-v1', PKEYS = [], PCOUNT = {}, PDESC = {all: PD.all ? PD.all.short : ''};
-  PD.profiles.forEach(function(m){ PKEYS.push(m.key); PCOUNT[m.key] = m.count; PDESC[m.key] = m.short; });
+  var PAUD = {}, PFRESH = {};
+  PD.profiles.forEach(function(m){ PKEYS.push(m.key); PCOUNT[m.key] = m.count; PDESC[m.key] = m.short;
+                                   PAUD[m.key] = m.audience; PFRESH[m.key] = m.exclude_freshwater; });
+  // Product makers care about the project stage, not the comment deadline: approved projects are leads.
+  var PSTAGE = {open: 'Under assessment, comments open', closed: 'Under assessment, comments closed',
+                assessment: 'Under assessment', decided: 'Approved: a lead', withdrawn: 'Withdrawn or rejected',
+                unknown: 'Stage unknown', watch: 'Project watch'};
+  function productView(){ return PAUD[prof()] === 'product_maker'; }
+  var tf = $('t-fresh'), tfl = $('t-fresh-label');
   function prof(){ return fp && fp.value ? fp.value : 'all'; }
   function pinfo(c){ var p = prof(); return p === 'all' ? null : ((PD.cards[c.getAttribute('data-id')] || {})[p] || null); }
   function tierOf(c){ if (prof() === 'all') return c.getAttribute('data-gtier'); var i = pinfo(c); return i ? i[0] : 'none'; }
@@ -808,6 +829,15 @@ JS = r"""
   function paint(c){
     var i = pinfo(c), b = c.querySelector('.tier-badge'), s = c.querySelector('.badge.score'),
         bc = c.querySelector('.because'), gl = c.querySelector('.general-line'), gt = c.getAttribute('data-gtier');
+    var st = c.querySelector('.stage-badge'), late = c.querySelector('.late'), k = c.getAttribute('data-stage-now');
+    if (c._st === undefined) { c._st = st ? {text: st.textContent, cls: st.className} : null; c._late = late ? late.hidden : true; }
+    if (productView()) {
+      if (st) { st.textContent = PSTAGE[k] || st.textContent; st.className = 'badge stage-badge ' + (k === 'decided' ? 'st-lead' : 'st-other'); }
+      if (late) late.hidden = true;                 // "Likely too late" is about commenting, not buying
+    } else {
+      if (st && c._st) { st.textContent = c._st.text; st.className = c._st.cls; }
+      if (late) late.hidden = c._late;
+    }
     if (!i) { c.setAttribute('data-tier', gt); b.textContent = c._gb.text; b.className = c._gb.cls;
               if (s) s.textContent = c._gs; if (bc) bc.hidden = true; if (gl) gl.hidden = true; return; }
     c.setAttribute('data-tier', i[0]); b.textContent = TIER_NAMES[i[0]] || i[0]; b.className = 'badge tier-badge t-' + i[0];
@@ -850,11 +880,12 @@ JS = r"""
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function placeOk(c){ return (!fc.value || c.getAttribute('data-country') === fc.value) &&
                               (!fr.value || c.getAttribute('data-region') === fr.value); }
-  function visible(c, v, watch){
+  function visible(c, v, watch, withWeak, withFresh){
     var k = c.getAttribute('data-stage-now'), t = tierOf(c), q = (fq.value || '').toLowerCase().trim();
     if (!listed(t)) return false;      // not listed under the chosen profile
+    if (PFRESH[prof()] && c.getAttribute('data-fresh') && !(withFresh || (tf && tf.checked))) return false;
     // Closing soon, changed and watch list views show every published tier.
-    var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && fw.checked);
+    var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && (fw.checked || withWeak));
     var viewOk = v === 'all' ||
       (v === 'soon' && t !== 'watch' && k === 'open' && c._days !== null && c._days <= SOON) ||
       (v === 'changed' && !!c.getAttribute('data-changes')) ||
@@ -872,7 +903,8 @@ JS = r"""
     if (s === 'score') return sb - sa;
     if (s === 'newest') return (b.getAttribute('data-first') || '').localeCompare(a.getAttribute('data-first') || '') || sb - sa;
     if (s === 'title') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
-    var ao = a.getAttribute('data-stage-now') === 'open' ? 0 : 1, bo = b.getAttribute('data-stage-now') === 'open' ? 0 : 1;
+    var first = productView() ? 'decided' : 'open';
+    var ao = a.getAttribute('data-stage-now') === first ? 0 : 1, bo = b.getAttribute('data-stage-now') === first ? 0 : 1;
     return TIERS.indexOf(tierOf(a)) - TIERS.indexOf(tierOf(b)) || ao - bo || sb - sa;
   }
   function groupOf(c){
@@ -948,7 +980,17 @@ JS = r"""
       ' in the next ' + SOON + ' days.';
     line.hidden = soon.length === 0;      // "No comment deadlines ..." says it once
     var rc = $('result-count');
-    if (rc) rc.textContent = shown.length + (shown.length === 1 ? ' project shown' : ' projects shown');
+    if (rc) {
+      var hw = v === 'all' && !fw.checked ? cards.filter(function(c){ return tierOf(c) === 'weak' && visible(c, v, watch, true); }).length : 0;
+      var hf = PFRESH[prof()] && !(tf && tf.checked) ? cards.filter(function(c){ return c.getAttribute('data-fresh') && visible(c, v, watch, false, true); }).length : 0;
+      rc.textContent = shown.length + (shown.length === 1 ? ' project shown' : ' projects shown') +
+        (hw ? '. ' + hw + ' Weak ' + (hw === 1 ? 'match is' : 'matches are') + ' hidden' : '') +
+        (hf ? '. ' + hf + ' freshwater ' + (hf === 1 ? 'project is' : 'projects are') + ' hidden' : '') + (hw || hf ? '.' : '');
+      var sw = $('show-weak'), sf = $('show-fresh');
+      if (sw) sw.hidden = !hw;
+      if (sf) sf.hidden = !hf;
+    }
+    if (tfl) tfl.hidden = !PFRESH[prof()];
     paintStats();
   }
   if (fp) {
@@ -965,10 +1007,14 @@ JS = r"""
       else done('Copy the link from the address bar');
     });
   }
+  if (tf) tf.addEventListener('change', apply);
+  var swb = $('show-weak'), sfb = $('show-fresh');
+  if (swb) swb.addEventListener('click', function(){ fw.checked = true; apply(); });
+  if (sfb) sfb.addEventListener('click', function(){ if (tf) tf.checked = true; apply(); });
   var reset = $('reset-btn');
   if (reset) reset.addEventListener('click', function(){
     fq.value = ''; fc.value = ''; fillRegions(); ft.value = ''; fs.value = ''; fo.checked = false; fw.checked = false;
-    fsort.value = 'default'; fgroup.value = 'country'; $('v-all').checked = true; apply();
+    fsort.value = 'default'; fgroup.value = 'country'; $('v-all').checked = true; if (tf) tf.checked = false; apply();
   });
   // CSV of the projects shown right now, in the order shown.
   var DATA = JSON.parse($('csv-data').textContent);
@@ -1046,7 +1092,7 @@ def _footer(site: dict, prefix: str = "") -> str:
         "mitigation is required. Always check the official notice. Compiled from public sources.</p>"
         f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p></div>'
         f'<nav aria-label="Footer"><a href="{prefix}index.html">Projects</a><a href="{prefix}index.html#soon">Closing soon</a>'
-        f'<a href="{prefix}about.html">About and method</a><a href="{prefix}about.html#coverage">Coverage</a>'
+        f'<a href="{prefix}shortlist.html">Hard-structure shortlist</a><a href="{prefix}about.html">About and method</a><a href="{prefix}about.html#coverage">Coverage</a>'
         f'<a href="{prefix}projects.csv">All listed projects (CSV)</a></nav>'
         "</div></footer>")
 
@@ -1146,7 +1192,8 @@ def _badges(rec: dict, less_tested: list, changes: bool = True) -> str:
             f'<span class="badge stage-badge {"st-open" if rec["stage_kind"] == "open" else "st-other"}">'
             f'{STAGE_LABELS[rec["stage_kind"]]}</span>\n'
             f'<span class="badge late"{"" if rec["too_late"] else " hidden"}>Likely too late</span>'
-            f'{review_badge}{lang_badge}{chg}</div>')
+            f'{review_badge}{lang_badge}{chg}'
+            f'{"<span class=" + chr(34) + "badge fresh" + chr(34) + ">Freshwater</span>" if rec.get("freshwater") else ""}</div>')
 
 
 def _comment_count_text(rec: dict, prefix: str = "") -> str:
@@ -1189,7 +1236,7 @@ def _watch_button(rec: dict) -> str:
             f'Add to watch list</button>')
 
 
-def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 0) -> str:
+def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 0, site: dict | None = None) -> str:
     types = rec["types"] or []
     location = f'{_place(rec, country_name)}. Water body: {rec["water_body"]}'
     search = " ".join([rec["title"], rec["proponent"], rec["province"], country_name, rec["water_body"],
@@ -1201,38 +1248,73 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
     page = escape(rec.get("page") or "")
     comments = ""
     if rec["stage_kind"] != "watch":
+        received = _comment_count_text(rec)
         comments = (f'<dt>Comments open</dt><dd>{_opens_text(rec)}</dd>\n'
-                    f'<dt>Comments close</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>\n'
-                    f'<dt>Comments received</dt><dd>{_comment_count_text(rec)}</dd>')
+                    f'<dt>Comments close</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
+                    # The project page always shows the count line; cards only when the registry publishes one.
+                    + ('' if received == NOT_PUBLISHED else f'\n<dt>Comments received</dt><dd>{received}</dd>'))
     else:
         comments = f'<dt>Comment deadline</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
     title_link = page or link
     if rec.get("profile_only"):
         # Not on the general list: shown only under a buyer profile, where the script sets its tier.
         rec = {**rec, "tier": "none", "tier_label": NOT_GENERAL}
-    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-source="{escape(rec.get('source') or '')}" data-country="{escape(rec.get('country') or UNKNOWN)}"
+    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-fresh="{'1' if rec.get('freshwater') else ''}" data-source="{escape(rec.get('source') or '')}" data-country="{escape(rec.get('country') or UNKNOWN)}"
  data-country-name="{escape(country_name)}" data-country-order="{country_order}" data-region="{escape(rec['province'])}"
  data-types="{escape('|'.join(types))}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}"
  data-score="{int(rec['score'])}" data-first="{escape(rec.get('first_listed') or '')}"
  data-changes="{escape('|'.join(rec.get('changes') or []))}" data-title="{escape(rec['title'].lower())}" data-search="{escape(search)}">
 {_badges(rec, less_tested)}
-<h4><a href="{title_link}">{escape(rec['title'])}</a></h4>
+<h4><a href="{title_link}">{_plain(escape(rec['title']))}</a></h4>
 <p class="because" hidden></p>
 <p class="general-line" hidden></p>
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(location)}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
-<dt>Stage</dt><dd>{escape(rec['stage'])}</dd>
+<dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
 {comments}
 </dl>
 {_summary_html(rec)}
 {_evidence(rec, quotes)}
 <div class="card-foot">
-<div class="actions">{f'<a class="btn primary" href="{page}">Project page and timeline</a>' if page else ''}{_watch_button(rec)}</div>
+<div class="actions">{f'<a class="btn primary" href="{page}">Project page and timeline</a>' if page else ''}{_watch_button(rec)}{_feedback_link(rec, site)}</div>
 {_source_lines(rec, link)}
 </div>
 </article>"""
+
+
+# Registry jargon, explained where it appears (titles and stages; quotes are never changed).
+JARGON = [
+    (r"\bSCH\b", "SCH", "Small Craft Harbour: a fishing or recreational harbour run by Fisheries and Oceans Canada"),
+    (r"Intent to Make a Determination", "Intent to Make a Determination",
+     "The federal authority plans to decide whether the project is likely to cause significant adverse "
+     "environmental effects. The public can comment before it decides."),
+]
+
+
+def _plain(escaped: str) -> str:
+    """Wrap known jargon in <abbr> with a plain-language explanation. Input and output are escaped HTML."""
+    for pat, word, meaning in JARGON:
+        escaped = re.sub(pat, f'<abbr title="{escape(meaning)}">{word}</abbr>', escaped)
+    return escaped
+
+
+def feedback_url(rec: dict, site: dict | None) -> str:
+    """The Google Form address with this project's id filled in, or "" while the settings hold the placeholder."""
+    site = site or {}
+    url, field = site.get("feedback_form_url") or "", site.get("feedback_form_project_field") or ""
+    if not url or "YOUR_FORM_ID" in url:
+        return ""
+    from urllib.parse import quote
+    sep = "&" if "?" in url else "?"
+    return url + (f"{sep}usp=pp_url&{field}={quote(rec['id'])}" if field and "0000000000" not in field else "")
+
+
+def _feedback_link(rec: dict, site: dict | None) -> str:
+    url = feedback_url(rec, site)
+    return (f'<a class="btn" href="{escape(url)}" target="_blank" rel="noopener">Feedback on this project</a>'
+            if url else "")
 
 
 NOT_GENERAL = "Not on the general list"
@@ -1254,7 +1336,8 @@ def profile_meta(records: list[dict], scoring: dict | None = None) -> list[dict]
     out = []
     for key, p in conf.items():
         n = sum(1 for r in records if listed_in_profile(r, key))
-        out.append({"key": key, "label": p["label"], "short": p.get("short", ""), "count": n})
+        out.append({"key": key, "label": p["label"], "short": p.get("short", ""), "count": n,
+                    "audience": p.get("audience", "comment"), "exclude_freshwater": bool(p.get("exclude_freshwater"))})
     return out
 
 
@@ -1349,7 +1432,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
                 f'<section class="tier" data-country="{escape(c["code"])}" data-tier="{t}">\n'
                 f'<h3>{TIER_LABELS[t]} <span class="count">{len(recs)}</span></h3>\n'
                 f'<p class="tier-desc">{escape(td[t])}</p>\n<div class="cards">\n'
-                + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested, ci) for r in recs)
+                + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested, ci, site) for r in recs)
                 + "\n</div>\n</section>")
         note = f'<p class="country-note">{escape(c.get("note", ""))}</p>' if c.get("note") else ""
         country_sections.append(
@@ -1363,7 +1446,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
                           ensure_ascii=False).replace("</", "<\\/")
     order = {c["code"]: i for i, c in enumerate(coverage.get("countries", []))}
     extra_cards = "\n".join(_card(r, names.get(r.get("country"), r.get("country") or UNKNOWN), less_tested,
-                                  order.get(r.get("country"), 999)) for r in all_records if r.get("profile_only"))
+                                  order.get(r.get("country"), 999), site) for r in all_records if r.get("profile_only"))
     prof_json = json.dumps(profile_data(all_records, meta), ensure_ascii=False).replace("</", "<\\/")
     prof_opts = "".join(f'<option value="{escape(m["key"])}">{escape(m["label"])}'
                         f'{"" if m["count"] else " (no current matches)"}</option>' for m in meta)
@@ -1410,7 +1493,7 @@ work. Every flag shows the words that triggered it and, where the source's terms
 <p class="meta">Updated <time>{_date(updated)}</time>. Refreshed {freq}.</p>
 <p class="stats-for" id="stats-for">Figures for: <strong id="stats-for-name">{ALL_LABEL}</strong></p>
 <ul class="stats">
-<li><a href="?show=weak#results"><span class="n" id="stat-total">{len(records)}</span><span class="l">Projects listed</span></a></li>
+<li><a href="?show=weak#results"><span class="n" id="stat-total">{len(records)}</span><span class="l">Projects listed, all tiers</span></a></li>
 <li><a href="#results"><span class="n" id="stat-strong">{n_tier['strong']}</span><span class="l"><span class="dot strong"></span>{TIER_LABELS['strong']}</span></a></li>
 <li><a href="#results"><span class="n" id="stat-possible">{n_tier['possible']}</span><span class="l"><span class="dot possible"></span>{TIER_LABELS['possible']}</span></a></li>
 <li><a href="#soon"><span class="n" id="stat-soon">{n_soon}</span><span class="l"><span class="dot soon"></span>Closing in {soon_days} days</span></a></li>
@@ -1443,6 +1526,7 @@ work. Every flag shows the words that triggered it and, where the source's terms
 </form>
 <div class="toggles">
 <label class="check"><input type="checkbox" id="t-weak"> Show weaker matches</label>
+<label class="check" id="t-fresh-label" hidden><input type="checkbox" id="t-fresh"> Include freshwater (lakes and rivers)</label>
 <button type="button" id="reset-btn" class="btn quiet js-only" hidden>Reset all filters</button>
 </div>
 <div class="downloads">
@@ -1495,7 +1579,9 @@ Always read the official notice.</p>
 </div>
 
 <div class="results-bar" id="results">
-<div><h2>Projects</h2><p id="result-count" aria-live="polite"></p></div>
+<div><h2>Projects</h2><p id="result-count" aria-live="polite"></p>
+<p class="result-actions"><button type="button" class="linklike" id="show-weak" hidden>Show Weak matches</button>
+<button type="button" class="linklike" id="show-fresh" hidden>Include freshwater</button></p></div>
 <div class="views js-only" role="radiogroup" aria-label="Which projects" hidden>
 <label><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
 <label><input type="radio" name="view" id="v-soon" value="soon"> Closing soon</label>
@@ -1702,7 +1788,7 @@ people who commented are not copied here. To comment, use the official notice.</
 <article class="project" id="main" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
 <div class="project-main">
 {_badges(rec, less_tested)}
-<h1>{escape(rec['title'])}</h1>
+<h1>{_plain(escape(rec['title']))}</h1>
 <p class="place">{escape(_place(rec, country_name))} &middot; {escape(rec['proponent'])}</p>
 {_summary_html(rec)}
 {f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
@@ -1720,7 +1806,7 @@ at each update.</p>
 {comments}
 </section>
 <section class="side-card">
-<div class="actions"><a class="btn primary" href="{link}" rel="noopener">{official} &#8599;</a>{_watch_button(rec)}</div>
+<div class="actions"><a class="btn primary" href="{link}" rel="noopener">{official} &#8599;</a>{_watch_button(rec)}{_feedback_link(rec, site)}</div>
 </section>
 <section class="side-card">
 <h2 class="side-h">Score</h2>
@@ -1735,7 +1821,7 @@ at each update.</p>
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
-<dt>Stage</dt><dd>{escape(rec['stage'])}</dd>
+<dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
 </dl>
 </section>
 </aside>
@@ -1775,6 +1861,112 @@ with a link such as <code>?profile=seagrass</code>.</p>
 """
 
 
+PRODUCT_STAGES = {"open": "Under assessment, comments open", "closed": "Under assessment, comments closed",
+                  "assessment": "Under assessment", "decided": "Approved: a lead", "withdrawn": "Withdrawn or rejected",
+                  "unknown": "Stage unknown", "watch": "Project watch"}
+
+
+def shortlist(records: list[dict], key: str, n: int = 10) -> list[dict]:
+    """The buyer-test list for one profile: approved projects first (leads), then the rest, each group by the
+    profile's score. Freshwater projects and projects the profile does not list are left out."""
+    from mpf.profiles import listed_in_profile as listed
+    pool = [r for r in records if listed(r, key) and not r.get("freshwater")
+            and r["profiles"][key]["tier"] in PUBLISHED_TIERS]
+    pool.sort(key=lambda r: (0 if r["stage_kind"] == "decided" else 1, -r["profiles"][key]["score"], r["title"]))
+    return pool[:n]
+
+
+def general_feedback_url(site: dict | None) -> str:
+    url = (site or {}).get("feedback_form_url") or ""
+    return "" if not url or "YOUR_FORM_ID" in url else url
+
+
+def _shortlist_item(rec: dict, rank: int, key: str, site: dict, country_name: str, less_tested: list) -> str:
+    p = rec["profiles"][key]
+    types = rec["types"] or []
+    deadline, deadline_text = _deadline_text(rec)
+    quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
+    link = escape(rec["url"]) if rec["url"] else "#"
+    page = escape(rec.get("page") or "")
+    review_badge = ('<span class="badge rev">Reviewed by a person</span>' if rec["reviewed"]
+                    else '<span class="badge auto">Automatic, not yet reviewed</span>')
+    lang = (f'<span class="badge lang">Less tested language ({escape(rec["language"])})</span>'
+            if rec.get("language") in less_tested else "")
+    stage = PRODUCT_STAGES.get(rec["stage_kind"], STAGE_LABELS.get(rec["stage_kind"], ""))
+    general = NOT_GENERAL.lower() if rec.get("profile_only") else rec["tier_label"]
+    return f"""<li class="card" id="s-{escape(page_slug(rec['id']))}" data-tier="{p['tier']}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
+<div class="badges"><span class="badge rank">#{rank}</span><span class="badge tier-badge t-{p['tier']}">{escape(p['tier_label'])}</span>
+<span class="badge score">Profile score {int(p['score'])}/100</span>
+<span class="badge {'st-lead' if rec['stage_kind'] == 'decided' else 'st-other'}">{escape(stage)}</span>{review_badge}{lang}</div>
+<h4><a href="{page or link}">{_plain(escape(rec['title']))}</a></h4>
+<p class="because">Matches because: {escape(p['because'])}</p>
+<p class="general-line">General score {int(rec['score'])}/100, {escape(general)}.</p>
+<dl class="facts">
+<dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
+<dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
+<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
+<dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
+<dt>Comments close</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
+</dl>
+{_summary_html(rec)}
+{_evidence(rec, quotes)}
+<div class="card-foot">
+<div class="actions">{f'<a class="btn primary" href="{page}">Project page and timeline</a>' if page else ''}{_feedback_link(rec, site)}</div>
+{_source_lines(rec, link)}
+</div>
+</li>"""
+
+
+def render_shortlist(records: list[dict], site: dict, updated: date, meta: list[dict], coverage: dict | None = None) -> str:
+    """shortlist.html: ten projects for the buyer test, for the profile named in site.shortlist_profile."""
+    coverage = coverage if coverage is not None else load_coverage()
+    key = site.get("shortlist_profile", "hard-structure")
+    m = next((x for x in meta if x["key"] == key), None)
+    if not m:
+        return ""
+    n = int(site.get("shortlist_size", 10))
+    picks = shortlist(records, key, n)
+    names = {c["code"]: c["name"] for c in coverage.get("countries", [])}
+    less_tested = coverage.get("less_tested_languages", [])
+    items = "\n".join(_shortlist_item(r, i, key, site, names.get(r.get("country"), r.get("country") or UNKNOWN),
+                                      less_tested) for i, r in enumerate(picks, 1))
+    fb = general_feedback_url(site)
+    ask = (f'<p><a class="btn primary" href="{escape(fb)}" target="_blank" rel="noopener">Give feedback on this list</a> '
+           f'Each project also has its own feedback link, with the project filled in.</p>' if fb else "")
+    title = site.get("title", "MitiMark")
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+{_head(m['label'] + ' shortlist - ' + title, 'Ten projects for ' + m['label'])}
+</head>
+<body data-soon="{int(site.get('closing_soon_days', 30))}">
+{_topbar(site, updated, "")}
+<section class="page-head"><div class="wrap">
+<p class="eyebrow">Shortlist &middot; {escape(m['label'])}</p>
+<h1>{len(picks)} projects to look at</h1>
+<p>Projects that may suit eco-engineered marine products, chosen by the rules on the
+<a href="about.html#buyer-profiles">About page</a>. Approved projects come first: they have passed environmental
+review but construction has not been reported, so design and purchasing may still be ahead. Then projects still under
+assessment. Freshwater projects are left out.</p>
+<p class="meta">Updated <time>{_date(updated)}</time>. These are rule-based guesses, not a statement that mitigation
+or any product is required. Always read the official notice.</p>
+</div></section>
+<main class="wrap" id="main">
+<div class="shortlist-intro">{ask}</div>
+<ol class="cards shortlist">
+{items}
+</ol>
+<p class="note"><a href="index.html?profile={escape(key)}#results">See every {escape(m['label'].lower())} project</a></p>
+</main>
+{_footer(site)}
+<script>{JS_COMMON}
+Array.prototype.forEach.call(document.querySelectorAll('.shortlist .card'), MPF.countdown);
+</script>
+</body>
+</html>
+"""
+
+
 def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None = None,
                  records: list[dict] | None = None, meta: list[dict] | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
@@ -1790,7 +1982,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
     from mpf.comments import COUNT_STATUS
     comment_sources = "".join(f'<li><strong>{escape(s.get("name", key))}:</strong> {escape(COUNT_STATUS[key].replace(" This project page shows none.", ""))}</li>'
                               for key, s in coverage.get("sources", {}).items() if key in COUNT_STATUS)
-    toc = '<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a>' + ('<a href="#buyer-profiles">Buyer profiles</a>' if meta else '') + '<a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a>'
+    toc = '<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a>' + ('<a href="#buyer-profiles">Buyer profiles</a>' if meta else '') + '<a href="#stages-and-leads">Project stage and leads</a><a href="#terms-used">Terms used in notices</a><a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a><a href="#who-runs-mitimark">Who runs MitiMark</a>'
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -1860,6 +2052,21 @@ to this site. Anything a source does not publish is shown as "Not published".</p
 decided. Each project page shows a timeline of those changes next to the official comment dates.</p>
 
 {_about_profiles(meta, tiers)}
+<h2 id="stages-and-leads">Project stage and leads</h2>
+<p>For comment periods, a project whose comment period has closed or that has been decided is marked "Likely too
+late". For product makers (the hard-structure profile and its shortlist) that label is replaced by the project's
+stage: under assessment (comments open or closed) or approved. An approved project has passed environmental review;
+it is treated as a lead because design and purchasing may still be ahead. The site cannot yet tell whether
+construction has started or a tender has been issued, so treat "Approved: a lead" as a prompt to check.</p>
+<p>Projects on lakes or rivers carry a "Freshwater" label. They are hidden from the hard-structure profile unless you
+tick "Include freshwater". Hydroelectric stations and dams, and maintenance dredging of an existing berth with no new
+structure, are not treated as marine habitat projects.</p>
+<h2 id="terms-used">Terms used in notices</h2>
+<ul>
+<li><strong>SCH (Small Craft Harbour):</strong> a fishing or recreational harbour run by Fisheries and Oceans Canada.</li>
+<li><strong>Intent to Make a Determination:</strong> the federal authority plans to decide whether the project is
+likely to cause significant adverse environmental effects. The public can comment before it decides.</li>
+</ul>
 <h2 id="your-watch-list">Your watch list</h2>
 <p>"Add to watch list" saves a project in your own browser only. There are no accounts, and nothing about
 your watch list is sent anywhere. Clearing your browser data clears the list.</p>
@@ -1896,6 +2103,12 @@ influence the design.</li>
 <li>Notices are quoted in their original language. Keyword rules in languages other than English have
 fewer tests, so those listings are lower confidence.</li>
 </ul>
+
+<h2 id="who-runs-mitimark">Who runs MitiMark</h2>
+<p>MitiMark is a prototype run by {escape(site.get("contact_name", ""))}, who also works part-time for ECOncrete, a
+maker of eco-engineered marine products. MitiMark uses only public sources: every listing comes from a public registry
+or notice, and nothing comes from any company's internal information.</p>
+<p>Feedback links on the projects go to a Google Form. This site stores nothing about you.</p>
 </div>
 </main>
 {_footer(site)}
@@ -1927,6 +2140,9 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
                                                      news_html, scoring), encoding="utf-8")
     (out_dir / "about.html").write_text(render_about(site_conf, tiers, updated, coverage, general, meta),
                                         encoding="utf-8")
+    sl = render_shortlist(records, site_conf, updated, meta, coverage)
+    if sl:
+        (out_dir / "shortlist.html").write_text(sl, encoding="utf-8")
     # One page per project, at a stable address (p/<source>-<id>.html). Pages of projects no longer
     # listed are removed, so the folder only holds what the list shows.
     pages = out_dir / "p"
