@@ -67,6 +67,13 @@ sources:
     # "sans autorisation préalable et écrite du Cerema".
     enabled: false
     max_projects: 30
+  fed_register:
+    # OFF until the owner approves the sample results (batch 2). US Federal Register API, NOAA Fisheries
+    # incidental harassment notices for pile driving at docks, wharves, piers and terminals. Public domain;
+    # robots.txt allows /api/v1/. One request per run.
+    enabled: false
+    term: '"incidental harassment authorization" pile driving'
+    per_page: 10
   drop_folder:
     enabled: true
 

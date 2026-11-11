@@ -3,6 +3,7 @@ from mpf.sources.bc_eao import BCEAOSource
 from mpf.sources.dfo_far import DFOFARSource
 from mpf.sources.dk_hoering import DKHoeringSource
 from mpf.sources.es_boe import ESBOESource
+from mpf.sources.fed_register import FedRegisterSource
 from mpf.sources.fr_eolien import FREolienSource
 from mpf.sources.iaac import IAACSource
 from mpf.sources.nl_ea import NLEASource
@@ -18,6 +19,9 @@ SOURCES = {
     "es_boe": ESBOESource,
     "fr_eolien": FREolienSource,
     "dfo_far": DFOFARSource,
+    # US Federal Register (NOAA incidental harassment notices). Off in config until the owner approves it, and
+    # not in LIVE_SOURCES yet, so the scheduled run never reads it.
+    "fed_register": FedRegisterSource,
 }
 
 # Live sources the scheduled GitHub run reads (the DFO test set and drop folder are local only).
