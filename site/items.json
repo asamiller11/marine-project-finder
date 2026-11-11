@@ -19,7 +19,7 @@
   "stage": "comment closed 2026-10-20, decision pending",
   "stage_kind": "closed",
   "comment_deadline": "2026-10-20",
-  "decision_date": "2026-10-30",
+  "decision_date": "2026-11-13",
   "score": 96,
   "tier": "strong",
   "tier_label": "Strong match",
@@ -48,7 +48,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -12,
+   "days_left": -22,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -92,6 +92,7 @@
     "because": "Offsetting, compensation, credits or habitat banking; Habitat offsetting or compensation mentioned; New habitat, enhancement or nature-inclusive design; size 418,000 cubic metres"
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -140,7 +141,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -289,
+   "days_left": -299,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -184,6 +185,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -228,7 +230,7 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 14,
+   "days_left": 4,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -272,6 +274,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -361,6 +364,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -407,7 +411,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -128,
+   "days_left": -138,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -451,95 +455,7 @@
     "because": ""
    }
   },
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
-  "id": "iaac:90797",
-  "title": "Suncor Dredging - West Dock Berth",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90797?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Suncor Energy Products Partnership",
-  "country": "CA",
-  "province": "British Columbia",
-  "language": "en",
-  "water_body": "Burrard Inlet",
-  "types": [
-   "Wharf, pier or large dock",
-   "Dredging"
-  ],
-  "stage": "under assessment",
-  "stage_kind": "assessment",
-  "comment_deadline": null,
-  "decision_date": null,
-  "score": 39,
-  "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "score 39",
-  "reviewed": false,
-  "summary": "Project by Suncor Energy Products Partnership in Burrard Inlet, British Columbia. The notice mentions dredging and wharf or dock work and about 700 m3 of material and an area of about 1,500 m2.",
-  "summary_note": "auto",
-  "quotes": [
-   "Environmental management measures will be implemented to address potential effects associated with sediment disturbance, turbidity, fish and fish habitat, underwater noise, and marine vessel operations.",
-   "The proposed dredge footprint is approximately 1,500 m², with an estimated neat dredge volume of approximately 700 m³.",
-   "The project is proposed to occur between November and December 2026, with dredging activities anticipated to take approximately one to two weeks."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90797.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 36,
-    "because": "Wharf, pier or large dock; Fish habitat; size 1,500 m²"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -629,6 +545,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -673,7 +590,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 29,
+   "days_left": 19,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -717,6 +634,7 @@
     "because": ""
    }
   },
+  "freshwater": true,
   "timeline": [
    {
     "date": "2026-10-31",
@@ -726,183 +644,6 @@
   ],
   "changes": [],
   "first_listed": "2026-10-31"
- },
- {
-  "id": "iaac:90835",
-  "title": "Generating Station 2 Intake Structure Replacement",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90835?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Portage Power",
-  "country": "CA",
-  "province": "Ontario",
-  "language": "en",
-  "water_body": "Bronson Channel",
-  "types": [
-   "Wharf, pier or large dock",
-   "Shoreline protection, seawall or bulkhead",
-   "Outfall or intake in the water"
-  ],
-  "stage": "public comment open until 2026-11-14",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-14",
-  "decision_date": null,
-  "score": 29,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 29",
-  "reviewed": false,
-  "summary": "Project by Portage Power in Bronson Channel, Ontario. The notice mentions shoreline protection and wharf or dock work.",
-  "summary_note": "auto",
-  "quotes": [
-   "The proposed GS2 intake structure replacement project will take place on leased NCC lands and affect leased NCC structures.",
-   "The work will be conducted within the Bronson Channel, downstream of the bulkhead, and around the intake deck area."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90835.html",
-  "comments": {
-   "opens": "2026-10-14",
-   "opens_how": "notice date",
-   "closes": "2026-11-14",
-   "days_left": 13,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
-  "id": "iaac:90307",
-  "title": "Raising of the COOP Wharf- L'Étang-du-Nord Harbour – Magdalen Islands",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90307?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Small Craft Harbours - Fisheries and Oceans Canada",
-  "country": "CA",
-  "province": "Quebec",
-  "language": "en",
-  "water_body": "COOP Wharf- L'Étang-du-Nord Harbour",
-  "types": [
-   "Wharf, pier or large dock",
-   "Marina or small craft harbour"
-  ],
-  "stage": "public comment open until 2026-11-01",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-01",
-  "decision_date": null,
-  "score": 26,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 26",
-  "reviewed": false,
-  "summary": "Project by Small Craft Harbours - Fisheries and Oceans Canada in COOP Wharf- L'Étang-du-Nord Harbour, Quebec. The notice mentions small craft harbour and wharf or dock work.",
-  "summary_note": "auto",
-  "quotes": [
-   "The project involves partial demolition of the existing structure and the construction of a new wharf at an elevation better suited to vessel dimensions, to temporary increases in water levels associated with storm surges, and to the long-term rise in ocean levels attributable to climate change.",
-   "A reconstruction and raising project is therefore required to restore the full functionality of the Cooperative wharf."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90307.html",
-  "comments": {
-   "opens": "2026-09-22",
-   "opens_how": "notice date",
-   "closes": "2026-11-01",
-   "days_left": 0,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 31,
-    "because": "Wharf, pier or large dock; Marina or small craft harbour; Work below high water or footprint on the seabed"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90857",
@@ -945,7 +686,7 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 26,
+   "days_left": 16,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -989,6 +730,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1034,7 +776,7 @@
    "opens": "2026-10-26",
    "opens_how": "notice date",
    "closes": "2026-11-14",
-   "days_left": 13,
+   "days_left": 3,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1078,6 +820,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1123,7 +866,7 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 14,
+   "days_left": 4,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1167,51 +910,50 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
  },
  {
-  "id": "iaac:90822",
-  "title": "Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90822?culture=en-CA",
+  "id": "iaac:90491",
+  "title": "Hopkins Slipway Extension – Canadian Coast Guard Academy",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90491?culture=en-CA",
   "source": "iaac",
   "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Mamuitun Tribal Council",
+  "proponent": "Canadian Coast Guard",
   "country": "CA",
-  "province": "Quebec",
+  "province": "Nova Scotia",
   "language": "en",
-  "water_body": "St. Lawrence River",
+  "water_body": "unknown",
   "types": [
-   "Shoreline protection, seawall or bulkhead",
-   "Outfall or intake in the water"
+   "Shoreline protection, seawall or bulkhead"
   ],
-  "stage": "public comment open until 2026-11-05",
+  "stage": "public comment open until 2026-11-24",
   "stage_kind": "open",
-  "comment_deadline": "2026-11-05",
+  "comment_deadline": "2026-11-24",
   "decision_date": null,
-  "score": 23,
+  "score": 20,
   "tier": "weak",
   "tier_label": "Weak",
-  "tier_reason": "score 23",
+  "tier_reason": "score 20",
   "reviewed": false,
-  "summary": "Project by Mamuitun Tribal Council in St. Lawrence River, Quebec. The notice mentions shoreline protection work and an area of about 1,080 m2.",
+  "summary": "Project by Canadian Coast Guard in Nova Scotia. The notice mentions shoreline protection work and an area of about 1,500 m2.",
   "summary_note": "auto",
   "quotes": [
-   "The project involves stabilizing and upgrading a major stormwater outfall located along the shoreline of the St. Lawrence River in the community of Pessamit.",
-   "The overall project footprint is estimated at 1,080 m²."
+   "Adjacent slopes will be protected using two layers of 200–500 kg riprap (approximately 1,100 mm overall armour thickness) over filter fabric and core stone, generally placed at a slope of about 1.5 H :1 V ."
   ],
   "attribution": "",
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
   "too_late": false,
   "also_listed": [],
-  "page": "p/iaac-90822.html",
+  "page": "p/iaac-90491.html",
   "comments": {
-   "opens": "2026-10-05",
+   "opens": "2026-11-05",
    "opens_how": "notice date",
-   "closes": "2026-11-05",
-   "days_left": 4,
+   "closes": "2026-11-24",
+   "days_left": 13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1219,16 +961,16 @@
   },
   "profiles": {
    "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 34,
-    "because": "Shoreline protection, seawall or bulkhead; Outfall or intake in the water; size 1,080 m² (small routine repair, kept at Weak)"
-   },
-   "living-shoreline": {
     "tier": "possible",
     "tier_label": "Possible",
-    "score": 41,
-    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 1,080 m²"
+    "score": 45,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 1,500 m 2"
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 26,
+    "because": "Shoreline protection, seawall or bulkhead; size 1,500 m 2"
    },
    "seagrass": {
     "tier": "notrel",
@@ -1255,53 +997,59 @@
     "because": ""
    }
   },
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-11"
  },
  {
-  "id": "iaac:90805",
-  "title": "Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90805?culture=en-CA",
+  "id": "iaac:90794",
+  "title": "Lazy Head Marine Terminal Project",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90794?culture=en-CA",
   "source": "iaac",
   "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)",
+  "proponent": "Carver Mineral Resources, Inc.",
   "country": "CA",
-  "province": "Newfoundland and Labrador",
+  "province": "Nova Scotia",
   "language": "en",
-  "water_body": "unknown",
+  "water_body": "Chedabucto Bay",
   "types": [
-   "Wharf, pier or large dock",
-   "Dredging",
-   "Marina or small craft harbour"
+   "Port or marine terminal"
   ],
-  "stage": "comment closed 2026-10-28, decision pending",
-  "stage_kind": "closed",
-  "comment_deadline": "2026-10-28",
+  "stage": "public comment open until 2026-11-23",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-23",
   "decision_date": null,
-  "score": 32,
+  "score": 20,
   "tier": "weak",
   "tier_label": "Weak",
-  "tier_reason": "score 32",
+  "tier_reason": "score 20",
   "reviewed": false,
-  "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging, small craft harbour and wharf or dock work and about 1,500 m3 of material and an area of about 4,511 m2.",
+  "summary": "Project by Carver Mineral Resources, Inc. in Chedabucto Bay, Nova Scotia. The notice mentions port or terminal work.",
   "summary_note": "auto",
   "quotes": [
-   "In addition to the aforementioned work, the proposed project will include dredging the harbour basin.",
-   "The proposed dredge area is approximately 4,511 square meters and is located in the northwestern corner of the basin, nearest the new marginal wharf.",
-   "This dredge work will result in the removal of approximately 1,500 cubic meters of dredge material."
+   "As proposed, the Lazy Head Marine Terminal Project would consist of a new marine terminal in Chedabucto Bay, designed to accommodate vessels of up to 48,000 deadweight tonnes and support the export of aggregate.",
+   "November 3, 2026 — The Impact Assessment Agency of Canada is inviting Indigenous Peoples and the public to review the summary of the Initial Project Description for the Lazy Head Marine Terminal Project and provide feedback by November 23, 2026."
   ],
   "attribution": "",
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
-  "too_late": true,
+  "too_late": false,
   "also_listed": [],
-  "page": "p/iaac-90805.html",
+  "page": "p/iaac-90794.html",
   "comments": {
-   "opens": "2026-09-28",
-   "opens_how": "stated",
-   "closes": "2026-10-28",
-   "days_left": -4,
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-23",
+   "days_left": 12,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1309,10 +1057,10 @@
   },
   "profiles": {
    "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 31,
-    "because": "Wharf, pier or large dock; Marina or small craft harbour; size 4,511 square meters"
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Port or marine terminal"
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -1345,7 +1093,112 @@
     "because": ""
    }
   },
-  "timeline": [],
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-11"
+ },
+ {
+  "id": "iaac:90797",
+  "title": "Suncor Dredging - West Dock Berth",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90797?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Suncor Energy Products Partnership",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Burrard Inlet",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 34",
+  "reviewed": false,
+  "summary": "Project by Suncor Energy Products Partnership in Burrard Inlet, British Columbia. The notice mentions dredging and wharf or dock work and about 700 m3 of material and an area of about 1,500 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Environmental management measures will be implemented to address potential effects associated with sediment disturbance, turbidity, fish and fish habitat, underwater noise, and marine vessel operations.",
+   "The proposed dredge footprint is approximately 1,500 m², with an estimated neat dredge volume of approximately 700 m³.",
+   "The project is proposed to occur between November and December 2026, with dredging activities anticipated to take approximately one to two weeks."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90797.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "tier",
+    "text": "Tier changed from possible to weak"
+   }
+  ],
   "changes": [],
   "first_listed": "2026-10-29"
  },
@@ -1435,6 +1288,7 @@
     "because": ""
    }
   },
+  "freshwater": true,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1517,8 +1371,112 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
+  "id": "iaac:90805",
+  "title": "Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90805?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)",
+  "country": "CA",
+  "province": "Newfoundland and Labrador",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "score": 29,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 29",
+  "reviewed": false,
+  "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging and wharf or dock work and about 1,500 m3 of material and an area of about 4,511 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "In addition to the aforementioned work, the proposed project will include dredging the harbour basin.",
+   "The proposed dredge area is approximately 4,511 square meters and is located in the northwestern corner of the basin, nearest the new marginal wharf.",
+   "This dredge work will result in the removal of approximately 1,500 cubic meters of dredge material."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90805.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Wharf, pier or large dock; size 4,511 square meters"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "deadline",
+    "text": "Comment deadline 2026-10-28 no longer shown"
+   },
+   {
+    "date": "2026-11-11",
+    "type": "stage",
+    "text": "Stage now: assessment"
+   }
+  ],
+  "changes": [
+   "deadline"
+  ],
   "first_listed": "2026-10-29"
  },
  {
@@ -1560,7 +1518,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -485,
+   "days_left": -495,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1604,6 +1562,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1693,6 +1652,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1782,6 +1742,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1871,6 +1832,96 @@
     "because": ""
    }
   },
+  "freshwater": false,
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
+  "id": "iaac:90307",
+  "title": "Raising of the COOP Wharf- L'Étang-du-Nord Harbour – Magdalen Islands",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90307?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Small Craft Harbours - Fisheries and Oceans Canada",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "en",
+  "water_body": "COOP Wharf- L'Étang-du-Nord Harbour",
+  "types": [
+   "Wharf, pier or large dock",
+   "Marina or small craft harbour"
+  ],
+  "stage": "comment closed 2026-11-01, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-01",
+  "decision_date": null,
+  "score": 26,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 26",
+  "reviewed": false,
+  "summary": "Project by Small Craft Harbours - Fisheries and Oceans Canada in COOP Wharf- L'Étang-du-Nord Harbour, Quebec. The notice mentions small craft harbour and wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The project involves partial demolition of the existing structure and the construction of a new wharf at an elevation better suited to vessel dimensions, to temporary increases in water levels associated with storm surges, and to the long-term rise in ocean levels attributable to climate change.",
+   "A reconstruction and raising project is therefore required to restore the full functionality of the Cooperative wharf."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90307.html",
+  "comments": {
+   "opens": "2026-09-22",
+   "opens_how": "notice date",
+   "closes": "2026-11-01",
+   "days_left": -10,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; Work below high water or footprint on the seabed"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -1917,7 +1968,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -205,
+   "days_left": -215,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1961,6 +2012,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2050,6 +2102,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2135,9 +2188,104 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "es_boe:BOE-B-2026-36164",
+  "title": "Anuncio de la Autoridad Portuaria de Santander, por el que se somete a información pública la solicitud presentada por CLdN Shipping Lines Spain, S.L., de modificación de la concesión, de la que es titular, en el Espigón central de Raos del Puerto de Santander.",
+  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-36164",
+  "source": "es_boe",
+  "source_name": "Boletín Oficial del Estado (BOE) open data",
+  "proponent": "unknown",
+  "country": "ES",
+  "province": "unknown",
+  "language": "es",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Breakwater, jetty or groyne"
+  ],
+  "stage": "public information period (dates in the notice)",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "score": 23,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 23",
+  "reviewed": false,
+  "summary": "Project in an unknown location. The notice mentions breakwater or jetty and wharf or dock work and an area of about 24 m2.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/es_boe-BOE-B-2026-36164.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Breakwater, jetty or groyne; Wharf, pier or large dock"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-11"
  },
  {
   "id": "scot_marine:00011153 / 00011950",
@@ -2220,8 +2368,294 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
+  "id": "es_boe:BOE-B-2026-36887",
+  "title": "Resolución de la Autoridad Portuaria de Gijón por la que se hace público el acuerdo de otorgamiento concesional a favor de Cruz Roja Española.",
+  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-36887",
+  "source": "es_boe",
+  "source_name": "Boletín Oficial del Estado (BOE) open data",
+  "proponent": "unknown",
+  "country": "ES",
+  "province": "unknown",
+  "language": "es",
+  "water_body": "unknown",
+  "types": [
+   "Breakwater, jetty or groyne",
+   "Marina or small craft harbour"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "score": 23,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 23",
+  "reviewed": false,
+  "summary": "Project in an unknown location. The notice mentions breakwater or jetty and small craft harbour work and an area of about 170 m2.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/es_boe-BOE-B-2026-36887.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Breakwater, jetty or groyne; Marina or small craft harbour"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-11"
+ },
+ {
+  "id": "es_boe:BOE-B-2026-36883",
+  "title": "Resolución de la Presidencia de la Autoridad Portuaria de Baleares por la que se anuncia el otorgamiento de una concesión para la gestión de un centro de almacenamiento y distribución de cemento en el arranque del dique de abrigo, en el puerto de Alcúdia (GSP-193).",
+  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-36883",
+  "source": "es_boe",
+  "source_name": "Boletín Oficial del Estado (BOE) open data",
+  "proponent": "unknown",
+  "country": "ES",
+  "province": "unknown",
+  "language": "es",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Breakwater, jetty or groyne"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "score": 23,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 23",
+  "reviewed": false,
+  "summary": "Project in an unknown location. The notice mentions breakwater or jetty and wharf or dock work and an area of about 890 m2.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/es_boe-BOE-B-2026-36883.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Breakwater, jetty or groyne; Wharf, pier or large dock"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-11"
+ },
+ {
+  "id": "iaac:90822",
+  "title": "Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90822?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Mamuitun Tribal Council",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "en",
+  "water_body": "St. Lawrence River",
+  "types": [
+   "Shoreline protection, seawall or bulkhead",
+   "Outfall or intake in the water"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": "2026-11-05",
+  "decision_date": null,
+  "score": 23,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 23",
+  "reviewed": false,
+  "summary": "Project by Mamuitun Tribal Council in St. Lawrence River, Quebec. The notice mentions shoreline protection work and an area of about 1,080 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The project involves stabilizing and upgrading a major stormwater outfall located along the shoreline of the St. Lawrence River in the community of Pessamit.",
+   "The overall project footprint is estimated at 1,080 m²."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90822.html",
+  "comments": {
+   "opens": "2026-10-05",
+   "opens_how": "notice date",
+   "closes": "2026-11-05",
+   "days_left": -6,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 34,
+    "because": "Shoreline protection, seawall or bulkhead; Outfall or intake in the water; size 1,080 m² (small routine repair, kept at Weak)"
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 41,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 1,080 m²"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "decided",
+    "text": "Decision made"
+   }
+  ],
+  "changes": [
+   "decided"
+  ],
   "first_listed": "2026-10-29"
  },
  {
@@ -2305,6 +2739,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2389,6 +2824,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2432,7 +2868,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -51,
+   "days_left": -61,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2476,6 +2912,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2562,6 +2999,7 @@
     "because": ""
    }
   },
+  "freshwater": true,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2646,6 +3084,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
@@ -2730,9 +3169,103 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "es_boe:BOE-B-2026-35894",
+  "title": "Resolución del Consejo de Administración de la Autoridad Portuaria de Santa Cruz de Tenerife relativa al otorgamiento de licencia a la entidad Terminal de Contenedores de Tenerife, S.A.U. para la prestación del servicio portuario de manipulación de mercancías en el puerto de Santa Cruz de Tenerife.",
+  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-35894",
+  "source": "es_boe",
+  "source_name": "Boletín Oficial del Estado (BOE) open data",
+  "proponent": "unknown",
+  "country": "ES",
+  "province": "unknown",
+  "language": "es",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "score": 20,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 20",
+  "reviewed": false,
+  "summary": "Project in an unknown location. The notice mentions port or terminal work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/es_boe-BOE-B-2026-35894.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "BOE notices give the comment period in working days and publish no count."
+  },
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-11"
  },
  {
   "id": "iaac:90863",
@@ -2774,7 +3307,7 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 27,
+   "days_left": 17,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2818,6 +3351,7 @@
     "because": ""
    }
   },
+  "freshwater": false,
   "profile_only": true,
   "timeline": [
    {
@@ -2826,9 +3360,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-01"
  }
 ]

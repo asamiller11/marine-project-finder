@@ -132,9 +132,10 @@ section.explain p{color:var(--muted);font-size:.9rem;max-width:95ch}
 /* Collapsible panels */
 details.panel>summary{cursor:pointer;font-weight:650;list-style:none;display:flex;align-items:center;gap:10px}
 details>summary::-webkit-details-marker{display:none}
-details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:8px;height:8px;flex:none;
-border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg) translateY(-3px);transition:transform .15s}
-details.panel[open]>summary::after,details.tools[open]>summary::after{transform:rotate(-135deg) translateY(-1px)}
+/* Open/closed arrow: two small images (down, up). No rotation, so it draws the same in every browser. */
+details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:12px;height:12px;flex:none;
+background:var(--faint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat}
+details.panel[open]>summary::after,details.tools[open]>summary::after{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 details.panel[open]>summary{margin-bottom:10px}
 details.more summary{cursor:pointer;font-weight:600;color:var(--brand);font-size:.9rem;margin-top:6px}
 .since p{font-size:.92rem}
@@ -236,6 +237,15 @@ display:flex;flex-direction:column;min-width:0;box-shadow:var(--shadow);overflow
 .late{color:var(--late);background:var(--late-bg)}
 .st-open{color:var(--open);background:var(--open-bg)}
 .st-other{color:var(--muted);border-color:var(--line)}
+.st-lead{color:var(--strong);background:var(--strong-bg)}
+ol.shortlist{list-style:none;padding:0;margin:20px 0}
+.badge.rank{color:var(--brand-ink);background:var(--brand)}
+.shortlist-intro p{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:24px 0 0;color:var(--muted);font-size:.9rem}
+.badge.fresh{color:var(--brand);background:var(--brand-soft)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+.result-actions{margin:2px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}
+button.linklike{font:inherit;font-size:.86rem;font-weight:600;color:var(--brand);background:none;border:0;padding:0;cursor:pointer;
+text-decoration:underline;text-underline-offset:3px}
 .rev{color:var(--strong);border-color:currentColor}
 .rev::before{content:"\2713\00a0"}
 .auto{color:var(--muted);border:1px dashed var(--line-strong)}
@@ -356,17 +366,17 @@ section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .m
 <header class="topbar"><div class="wrap">
 <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a>
 <nav class="top" aria-label="Main"><a href="index.html">Projects</a><a href="index.html#soon">Closing soon</a><a href="index.html#coverage">Coverage</a><a href="about.html" aria-current="page">About</a></nav>
-<p class="updated">Last updated: <time>November 1, 2026</time></p>
+<p class="updated">Last updated: <time>November 11, 2026</time></p>
 </div></header>
 <section class="page-head"><div class="wrap">
 <p class="eyebrow">About and method</p>
 <h1>About MitiMark</h1>
 <p>Early alerts on marine construction projects that may need habitat work</p>
-<p class="meta">Last updated: <time>November 1, 2026</time></p>
+<p class="meta">Last updated: <time>November 11, 2026</time></p>
 </div></section>
 <main class="wrap about-layout" id="main">
 <nav class="toc" aria-label="On this page"><p class="side-label">On this page</p>
-<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a><a href="#buyer-profiles">Buyer profiles</a><a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a>
+<a href="#what-it-does">What it does</a><a href="#what-the-score-and-tiers-mean">What the score and tiers mean</a><a href="#automatic-listings-and-review">Automatic listings and review</a><a href="#notices-in-other-languages">Notices in other languages</a><a href="#public-comments">Public comments</a><a href="#changes-between-updates-and-project-pages">Changes between updates and project pages</a><a href="#buyer-profiles">Buyer profiles</a><a href="#stages-and-leads">Project stage and leads</a><a href="#terms-used">Terms used in notices</a><a href="#your-watch-list">Your watch list</a><a href="#project-watch">Project watch</a><a href="#coverage">Coverage</a><a href="#public-sources-used">Public sources used</a><a href="#how-often-it-updates">How often it updates</a><a href="#known-limits">Known limits</a><a href="#who-runs-mitimark">Who runs MitiMark</a>
 </nav>
 <div class="prose">
 <h2 id="what-it-does">What it does</h2>
@@ -437,6 +447,21 @@ hard-structure profile, small routine repairs (under 100 m long, 2,000 m&sup2; a
 notice also mentions habitat work. Your profile choice is stored only in your browser. You can share a profile
 with a link such as <code>?profile=seagrass</code>.</p>
 
+<h2 id="stages-and-leads">Project stage and leads</h2>
+<p>For comment periods, a project whose comment period has closed or that has been decided is marked "Likely too
+late". For product makers (the hard-structure profile and its shortlist) that label is replaced by the project's
+stage: under assessment (comments open or closed) or approved. An approved project has passed environmental review;
+it is treated as a lead because design and purchasing may still be ahead. The site cannot yet tell whether
+construction has started or a tender has been issued, so treat "Approved, may not be built yet" as a prompt to check.</p>
+<p>Projects on lakes or rivers carry a "Freshwater" label. They are hidden from the hard-structure profile unless you
+tick "Include freshwater". Hydroelectric stations and dams, and maintenance dredging of an existing berth with no new
+structure, are not treated as marine habitat projects.</p>
+<h2 id="terms-used">Terms used in notices</h2>
+<ul>
+<li><strong>SCH (Small Craft Harbour):</strong> a fishing or recreational harbour run by Fisheries and Oceans Canada.</li>
+<li><strong>Intent to Make a Determination:</strong> the federal authority plans to decide whether the project is
+likely to cause significant adverse environmental effects. The public can comment before it decides.</li>
+</ul>
 <h2 id="your-watch-list">Your watch list</h2>
 <p>"Add to watch list" saves a project in your own browser only. There are no accounts, and nothing about
 your watch list is sent anywhere. Clearing your browser data clears the list.</p>
@@ -447,7 +472,7 @@ separate "Project watch (not a notice feed)" section, with no comment deadline, 
 the closing-soon list. No project watch source is in use at the moment.</p>
 
 <h2 id="coverage">Coverage</h2>
-<p><strong>For now the site is mostly Canada: 24 of the 31 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
+<p><strong>For now the site is mostly Canada: 25 of the 36 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
 <p>"Covered" means a source for that place is read automatically. "Partial" means only some sources are
 read, and they are named. "Coming soon" means no source is read yet, and no listings are shown for it.</p>
 <div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
@@ -497,7 +522,7 @@ read, and they are named. "Coming soon" means no source is read yet, and no list
 <ul><li><a href="https://iaac-aeic.gc.ca/050/evaluations" rel="noopener">Canadian Impact Assessment Registry</a></li><li><a href="https://www.gov.nl.ca/eccc/env-assessment/projects-list/" rel="noopener">Newfoundland and Labrador environmental assessment</a></li><li><a href="https://hoeringsportalen.dk/" rel="noopener">Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds)</a></li><li><a href="https://marine.gov.scot/data/marine-licence-documentation" rel="noopener">marine.gov.scot marine licence documentation</a></li><li><a href="https://www.boe.es/datosabiertos/" rel="noopener">Boletín Oficial del Estado (BOE) open data</a></li></ul>
 
 <h2 id="how-often-it-updates">How often it updates</h2>
-<p>The list is refreshed every 2 weeks, and new notices appear on their own. Comment countdowns are calculated
+<p>The list is refreshed every week, and new notices appear on their own. Comment countdowns are calculated
 in your browser, so they stay current between updates.</p>
 
 <h2 id="known-limits">Known limits</h2>
@@ -510,8 +535,14 @@ influence the design.</li>
 <li>Notices are quoted in their original language. Keyword rules in languages other than English have
 fewer tests, so those listings are lower confidence.</li>
 </ul>
+
+<h2 id="who-runs-mitimark">Who runs MitiMark</h2>
+<p>MitiMark is a prototype run by Asa Miller, who also works part-time for ECOncrete, a
+maker of eco-engineered marine products. MitiMark uses only public sources: every listing comes from a public registry
+or notice, and nothing comes from any company's internal information.</p>
+<p>Feedback links on the projects go to a Google Form. This site stores nothing about you.</p>
 </div>
 </main>
-<footer><div class="wrap foot-grid"><div><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="index.html">Projects</a><a href="index.html#soon">Closing soon</a><a href="about.html">About and method</a><a href="about.html#coverage">Coverage</a><a href="projects.csv">All listed projects (CSV)</a></nav></div></footer>
+<footer><div class="wrap foot-grid"><div><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="index.html">Projects</a><a href="index.html#soon">Closing soon</a><a href="shortlist.html">Hard-structure shortlist</a><a href="about.html">About and method</a><a href="about.html#coverage">Coverage</a><a href="projects.csv">All listed projects (CSV)</a></nav></div></footer>
 </body>
 </html>

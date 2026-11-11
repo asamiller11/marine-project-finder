@@ -132,9 +132,10 @@ section.explain p{color:var(--muted);font-size:.9rem;max-width:95ch}
 /* Collapsible panels */
 details.panel>summary{cursor:pointer;font-weight:650;list-style:none;display:flex;align-items:center;gap:10px}
 details>summary::-webkit-details-marker{display:none}
-details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:8px;height:8px;flex:none;
-border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg) translateY(-3px);transition:transform .15s}
-details.panel[open]>summary::after,details.tools[open]>summary::after{transform:rotate(-135deg) translateY(-1px)}
+/* Open/closed arrow: two small images (down, up). No rotation, so it draws the same in every browser. */
+details.panel>summary::after,details.tools>summary::after{content:"";margin-left:auto;width:12px;height:12px;flex:none;
+background:var(--faint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat}
+details.panel[open]>summary::after,details.tools[open]>summary::after{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 details.panel[open]>summary{margin-bottom:10px}
 details.more summary{cursor:pointer;font-weight:600;color:var(--brand);font-size:.9rem;margin-top:6px}
 .since p{font-size:.92rem}
@@ -236,6 +237,15 @@ display:flex;flex-direction:column;min-width:0;box-shadow:var(--shadow);overflow
 .late{color:var(--late);background:var(--late-bg)}
 .st-open{color:var(--open);background:var(--open-bg)}
 .st-other{color:var(--muted);border-color:var(--line)}
+.st-lead{color:var(--strong);background:var(--strong-bg)}
+ol.shortlist{list-style:none;padding:0;margin:20px 0}
+.badge.rank{color:var(--brand-ink);background:var(--brand)}
+.shortlist-intro p{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:24px 0 0;color:var(--muted);font-size:.9rem}
+.badge.fresh{color:var(--brand);background:var(--brand-soft)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+.result-actions{margin:2px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}
+button.linklike{font:inherit;font-size:.86rem;font-weight:600;color:var(--brand);background:none;border:0;padding:0;cursor:pointer;
+text-decoration:underline;text-underline-offset:3px}
 .rev{color:var(--strong);border-color:currentColor}
 .rev::before{content:"\2713\00a0"}
 .auto{color:var(--muted);border:1px dashed var(--line-strong)}
@@ -356,7 +366,7 @@ section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .m
 <header class="topbar"><div class="wrap">
 <a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a>
 <nav class="top" aria-label="Main"><a href="../index.html">Projects</a><a href="../index.html#soon">Closing soon</a><a href="../index.html#coverage">Coverage</a><a href="../about.html">About</a></nav>
-<p class="updated">Last updated: <time>November 1, 2026</time></p>
+<p class="updated">Last updated: <time>November 11, 2026</time></p>
 </div></header>
 <main class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Projects</a><span aria-hidden="true">/</span>
@@ -367,7 +377,7 @@ section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .m
 <div class="badges"><span class="badge tier-badge t-weak">Weak</span>
 <span class="badge score" title="score 33">Score 33/100</span>
 <span class="badge stage-badge st-open">Comment period open</span>
-<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span></div>
+<span class="badge late" hidden>Likely too late</span><span class="badge auto">Automatic, not yet reviewed</span><span class="badge fresh">Freshwater</span></div>
 <h1>Fort Alexander First Nation, Sagkeeng, Shoreline Stabilization Phase III, Part B</h1>
 <p class="place">Manitoba, Canada &middot; Fort Alexander First Nation, Sagkeeng</p>
 <p class="summary">Project by Fort Alexander First Nation, Sagkeeng in Traverse Bay, Manitoba. The notice mentions shoreline protection work and a length of about 4,000 m.</p>
@@ -419,7 +429,7 @@ people who commented are not copied here. To comment, use the official notice.</
 </aside>
 </article>
 </main>
-<footer><div class="wrap foot-grid"><div><a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="../index.html">Projects</a><a href="../index.html#soon">Closing soon</a><a href="../about.html">About and method</a><a href="../about.html#coverage">Coverage</a><a href="../projects.csv">All listed projects (CSV)</a></nav></div></footer>
+<footer><div class="wrap foot-grid"><div><a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="../index.html">Projects</a><a href="../index.html#soon">Closing soon</a><a href="../shortlist.html">Hard-structure shortlist</a><a href="../about.html">About and method</a><a href="../about.html#coverage">Coverage</a><a href="../projects.csv">All listed projects (CSV)</a></nav></div></footer>
 <script>
 var MPF = (function(){
   var today = new Date(); today.setHours(0,0,0,0);
