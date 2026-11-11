@@ -814,7 +814,7 @@ JS = r"""
                                    PAUD[m.key] = m.audience; PFRESH[m.key] = m.exclude_freshwater; });
   // Product makers care about the project stage, not the comment deadline: approved projects are leads.
   var PSTAGE = {open: 'Under assessment, comments open', closed: 'Under assessment, comments closed',
-                assessment: 'Under assessment', decided: 'Approved: a lead', withdrawn: 'Withdrawn or rejected',
+                assessment: 'Under assessment', decided: 'Approved, may not be built yet', withdrawn: 'Withdrawn or rejected',
                 unknown: 'Stage unknown', watch: 'Project watch'};
   function productView(){ return PAUD[prof()] === 'product_maker'; }
   var tf = $('t-fresh'), tfl = $('t-fresh-label');
@@ -1862,17 +1862,19 @@ with a link such as <code>?profile=seagrass</code>.</p>
 
 
 PRODUCT_STAGES = {"open": "Under assessment, comments open", "closed": "Under assessment, comments closed",
-                  "assessment": "Under assessment", "decided": "Approved: a lead", "withdrawn": "Withdrawn or rejected",
+                  "assessment": "Under assessment", "decided": "Approved, may not be built yet", "withdrawn": "Withdrawn or rejected",
                   "unknown": "Stage unknown", "watch": "Project watch"}
 
 
 def shortlist(records: list[dict], key: str, n: int = 10) -> list[dict]:
-    """The buyer-test list for one profile: approved projects first (leads), then the rest, each group by the
-    profile's score. Freshwater projects and projects the profile does not list are left out."""
+    """The buyer-test list for one profile, by the profile's tier (Strong, then Possible, then Weak). Within each tier,
+    approved projects come first, then the rest, each group by the profile's score. Freshwater projects and projects
+    the profile does not list are left out."""
     from mpf.profiles import listed_in_profile as listed
     pool = [r for r in records if listed(r, key) and not r.get("freshwater")
             and r["profiles"][key]["tier"] in PUBLISHED_TIERS]
-    pool.sort(key=lambda r: (0 if r["stage_kind"] == "decided" else 1, -r["profiles"][key]["score"], r["title"]))
+    pool.sort(key=lambda r: (PUBLISHED_TIERS.index(r["profiles"][key]["tier"]),
+                             0 if r["stage_kind"] == "decided" else 1, -r["profiles"][key]["score"], r["title"]))
     return pool[:n]
 
 
@@ -1945,9 +1947,9 @@ def render_shortlist(records: list[dict], site: dict, updated: date, meta: list[
 <p class="eyebrow">Shortlist &middot; {escape(m['label'])}</p>
 <h1>{len(picks)} projects to look at</h1>
 <p>Projects that may suit eco-engineered marine products, chosen by the rules on the
-<a href="about.html#buyer-profiles">About page</a>. Approved projects come first: they have passed environmental
-review but construction has not been reported, so design and purchasing may still be ahead. Then projects still under
-assessment. Freshwater projects are left out.</p>
+<a href="about.html#buyer-profiles">About page</a>. Strong matches come first, then Possible, then Weak. Within each
+group, approved projects come first: they have passed environmental review but construction has not been reported, so
+design and purchasing may still be ahead. Then projects still under assessment. Freshwater projects are left out.</p>
 <p class="meta">Updated <time>{_date(updated)}</time>. These are rule-based guesses, not a statement that mitigation
 or any product is required. Always read the official notice.</p>
 </div></section>
@@ -2057,7 +2059,7 @@ decided. Each project page shows a timeline of those changes next to the officia
 late". For product makers (the hard-structure profile and its shortlist) that label is replaced by the project's
 stage: under assessment (comments open or closed) or approved. An approved project has passed environmental review;
 it is treated as a lead because design and purchasing may still be ahead. The site cannot yet tell whether
-construction has started or a tender has been issued, so treat "Approved: a lead" as a prompt to check.</p>
+construction has started or a tender has been issued, so treat "Approved, may not be built yet" as a prompt to check.</p>
 <p>Projects on lakes or rivers carry a "Freshwater" label. They are hidden from the hard-structure profile unless you
 tick "Include freshwater". Hydroelectric stations and dams, and maintenance dredging of an existing berth with no new
 structure, are not treated as marine habitat projects.</p>

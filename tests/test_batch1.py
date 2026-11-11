@@ -117,7 +117,7 @@ def test_shortlist_page_has_stage_feedback_source_and_no_too_late(tmp_path):
     recs = _records(_items())
     site.write_site(tmp_path, recs, SETTINGS, TODAY)
     page = (tmp_path / "shortlist.html").read_text(encoding="utf-8")
-    assert "<h1>2 projects to look at</h1>" in page and "Approved: a lead" in page
+    assert "<h1>2 projects to look at</h1>" in page and "Approved, may not be built yet" in page
     assert "Likely too late" not in page and "Lake Breakwater" not in page
     assert page.count('<p class="attr">Source: ') == 2 and "Matches because: " in page
     assert "viewform?usp=pp_url&amp;entry.111=nl_ea%3A2" in page
@@ -139,7 +139,7 @@ def test_cards_hide_unpublished_counts_explain_jargon_and_mark_freshwater(tmp_pa
     assert '<abbr title="Small Craft Harbour: a fishing or recreational harbour run by Fisheries and Oceans Canada">SCH</abbr>' in html
     assert '<span class="badge fresh">Freshwater</span>' in html and 'data-fresh="1"' in html
     assert 'id="t-fresh"' in html and 'id="show-weak"' in html and "' Weak ' + (hw === 1" in html
-    assert "Approved: a lead" in html and "productView()" in html
+    assert "Approved, may not be built yet" in html and "productView()" in html
     assert "transform:rotate" not in html.split("details.panel>summary::after")[1][:400]
     page = (tmp_path / "p" / "iaac-1.html").read_text(encoding="utf-8")
     assert "<dt>Comments received</dt><dd>Not published</dd>" in page      # the project page keeps the full line
@@ -191,3 +191,36 @@ def test_rechecked_pages_use_the_recheck_age_and_are_counted(tmp_path):
     client.get("https://example.org/decided")
     assert seen == [("https://example.org/open", 144.0), ("https://example.org/decided", None)]
     assert client.rechecked == 1
+
+
+def _sl(title, tier, score, stage_kind):
+    return {"title": title, "tier": "possible", "freshwater": False, "stage_kind": stage_kind,
+            "profiles": {"hard-structure": {"tier": tier, "score": score}}}
+
+
+def test_shortlist_sorts_by_tier_then_approved_first_then_score():
+    recs = [_sl("Weak approved", "weak", 30, "decided"),
+            _sl("Possible open", "possible", 50, "open"),
+            _sl("Strong open low", "strong", 61, "open"),
+            _sl("Possible approved", "possible", 40, "decided"),
+            _sl("Strong open high", "strong", 90, "open"),
+            _sl("Strong approved", "strong", 65, "decided")]
+    picks = site.shortlist(recs, "hard-structure", 10)
+    assert [r["title"] for r in picks] == ["Strong approved", "Strong open high", "Strong open low",
+                                           "Possible approved", "Possible open", "Weak approved"]
+    assert [r["title"] for r in site.shortlist(recs, "hard-structure", 2)] == ["Strong approved", "Strong open high"]
+
+
+def test_approved_label_reads_may_not_be_built_yet_everywhere(tmp_path):
+    recs = _records(_items())
+    site.write_site(tmp_path, recs, SETTINGS, TODAY)
+    for name in ("index.html", "shortlist.html", "about.html"):
+        html = (tmp_path / name).read_text(encoding="utf-8")
+        assert "a lead\"" not in html and "Approved: a lead" not in html, name
+    assert "Approved, may not be built yet" in (tmp_path / "about.html").read_text(encoding="utf-8")
+    assert "Strong matches come first" in (tmp_path / "shortlist.html").read_text(encoding="utf-8")
+
+
+def test_publish_doc_matches_weekly_schedule():
+    doc = (Path(__file__).resolve().parents[1] / "docs" / "how_to_publish.md").read_text(encoding="utf-8")
+    assert "every 7 days" in doc and "1st and 15th" in doc and "only republishes" in doc

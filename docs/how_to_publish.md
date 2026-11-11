@@ -57,6 +57,14 @@ Your yes, no and summary edits are kept every time the tool refreshes.
 
 ## Automatic refresh
 
-GitHub refreshes the data on the 1st and 15th of each month (about every 2 weeks), so new
-notices appear on their own. You can also start it any time: Actions tab >
-**Refresh and publish** > **Run workflow**.
+**On this Mac (the main way):** the automatic update now runs every 7 days. A background job
+checks once an hour; when 7 days or more have passed since the last upload (and the Mac is
+online), it fetches new notices, rebuilds the site and publishes it. You can change the number
+of days in `config/settings.yaml` under `update: days_between_updates`. To stop it for a while,
+run `./.venv/bin/python -m mpf auto-pause` in the project folder; `auto-resume` starts it again
+and `auto-status` shows when it last ran.
+
+**On GitHub:** GitHub's own scheduled job still runs on the 1st and 15th of each month. In
+fallback mode (the setting this site uses, `CI_FETCH=false`) it does not fetch anything: it
+only republishes the site that this Mac last uploaded. You can also start it any time:
+Actions tab > **Refresh and publish** > **Run workflow**.
