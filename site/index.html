@@ -329,7 +329,7 @@ nav.toc a{display:block;padding:6px 12px;border-left:2px solid var(--line);color
 nav.toc a:hover{color:var(--ink);border-left-color:var(--brand);text-decoration:none}
 .prose{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 36px 32px;box-shadow:var(--shadow);min-width:0}
 .prose h2{font-size:1.2rem;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
-.prose h2:first-child{border-top:0;padding-top:20px}
+.prose h2:first-child{border-top:0;padding-top:20px;margin-top:0}
 .prose p,.prose li{max-width:72ch;color:var(--ink-2)}
 .prose li{margin:4px 0}
 
@@ -357,7 +357,7 @@ nav.toc p{width:100%}nav.toc a{border:1px solid var(--line);border-radius:999px;
 dl.facts{grid-template-columns:1fr;gap:0}dl.facts dd{margin-bottom:8px}
 section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .meta{grid-column:1/-1}
 .card{padding:18px 16px 14px}.project-main{padding:22px 18px}.prose{padding:4px 18px 24px}
-.views{width:100%}.views label{flex:1 1 auto;text-align:center;padding:7px 10px}
+.views{display:grid;grid-template-columns:1fr 1fr;width:100%;overflow:visible}.views label{text-align:center;padding:7px 8px;white-space:normal}
 .foot-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -1743,9 +1743,14 @@ var MPF = (function(){
     if (gl) { gl.textContent = 'General score ' + c.getAttribute('data-score') + '/100, ' +
                 (gt === 'none' ? 'not on the general list' : (TIER_NAMES[gt] || gt)) + '.'; gl.hidden = false; }
   }
-  // Banner figures: for the chosen profile, every country, ignoring the filters below.
+  // Freshwater projects are hidden under profiles that leave them out, unless "Include freshwater" is ticked.
+  function freshOk(c, withFresh){
+    return !(PFRESH[prof()] && c.getAttribute('data-fresh') && !(withFresh || (tf && tf.checked)));
+  }
+  // Banner figures: for the chosen profile, every country, ignoring the filters below (except freshwater, which
+  // the profile itself leaves out, so the figures agree with the list).
   function paintStats(){
-    var mine = cards.filter(function(c){ return listed(tierOf(c)); }), countries = {}, sources = {};
+    var mine = cards.filter(function(c){ return listed(tierOf(c)) && freshOk(c); }), countries = {}, sources = {};
     function n(t){ return mine.filter(function(c){ return tierOf(c) === t; }).length; }
     mine.forEach(function(c){ countries[c.getAttribute('data-country')] = 1; if (c.getAttribute('data-source')) sources[c.getAttribute('data-source')] = 1; });
     var nc = Object.keys(countries).length, ns = Object.keys(sources).length;
@@ -1780,7 +1785,7 @@ var MPF = (function(){
   function visible(c, v, watch, withWeak, withFresh){
     var k = c.getAttribute('data-stage-now'), t = tierOf(c), q = (fq.value || '').toLowerCase().trim();
     if (!listed(t)) return false;      // not listed under the chosen profile
-    if (PFRESH[prof()] && c.getAttribute('data-fresh') && !(withFresh || (tf && tf.checked))) return false;
+    if (!freshOk(c, withFresh)) return false;
     // Closing soon, changed and watch list views show every published tier.
     var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && (fw.checked || withWeak));
     var viewOk = v === 'all' ||
@@ -1854,7 +1859,7 @@ var MPF = (function(){
       : prof() !== 'all' && !PCOUNT[prof()] ? PD.empty_note : 'No projects match these filters.';
     // Closing soon list at the top: every published tier in the chosen country or region.
     while (ul.firstChild) ul.removeChild(ul.firstChild);
-    var soon = cards.filter(function(c){ var t = tierOf(c); return placeOk(c) && listed(t) && t !== 'watch' &&
+    var soon = cards.filter(function(c){ var t = tierOf(c); return placeOk(c) && listed(t) && t !== 'watch' && freshOk(c) &&
       c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days <= SOON; })
       .sort(function(a,b){ return a._days - b._days; });
     // One row per deadline, in aligned columns: date, days left, project, tier and country.
