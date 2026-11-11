@@ -262,6 +262,7 @@ def make_record(row: dict, review_row: dict, settings: dict, today: date,
         "stage_kind": kind,
         "comment_deadline": row.get("comment_deadline") or None,
         "decision_date": row.get("decision_date") or None,
+        "approved_on": approval_date(row, kind, today),
         "score": row.get("score") or 0,
         "tier": tier,
         "tier_label": TIER_LABELS[tier],
@@ -280,6 +281,26 @@ def make_record(row: dict, review_row: dict, settings: dict, today: date,
         "page": f"p/{page_slug(row['key'])}.html",
         "comments": comment_info(row, _extra(row), today),
     }
+
+
+def approval_date(row: dict, kind: str, today: date) -> str | None:
+    """The date an approved project was decided, when the notice gives one (ISO date), else None."""
+    if kind != "decided":
+        return None
+    made = _extra(row).get("decision_made")
+    d = (made.get("date") if isinstance(made, dict) else None) or row.get("decision_date") or ""
+    try:
+        return d if date.fromisoformat(d[:10]) <= today else None
+    except ValueError:
+        return None
+
+
+def approved_label(iso: str | None) -> str:
+    """'Approved July 2025' from '2025-07-11'; empty when there is no date."""
+    if not iso:
+        return ""
+    d = date.fromisoformat(iso[:10])
+    return f"Approved {d.strftime('%B')} {d.year}"
 
 
 def _sort_key(rec: dict):
@@ -678,7 +699,7 @@ nav.toc a{display:block;padding:6px 12px;border-left:2px solid var(--line);color
 nav.toc a:hover{color:var(--ink);border-left-color:var(--brand);text-decoration:none}
 .prose{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 36px 32px;box-shadow:var(--shadow);min-width:0}
 .prose h2{font-size:1.2rem;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
-.prose h2:first-child{border-top:0;padding-top:20px}
+.prose h2:first-child{border-top:0;padding-top:20px;margin-top:0}
 .prose p,.prose li{max-width:72ch;color:var(--ink-2)}
 .prose li{margin:4px 0}
 
@@ -706,7 +727,7 @@ nav.toc p{width:100%}nav.toc a{border:1px solid var(--line);border-radius:999px;
 dl.facts{grid-template-columns:1fr;gap:0}dl.facts dd{margin-bottom:8px}
 section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .meta{grid-column:1/-1}
 .card{padding:18px 16px 14px}.project-main{padding:22px 18px}.prose{padding:4px 18px 24px}
-.views{width:100%}.views label{flex:1 1 auto;text-align:center;padding:7px 10px}
+.views{display:grid;grid-template-columns:1fr 1fr;width:100%;overflow:visible}.views label{text-align:center;padding:7px 8px;white-space:normal}
 .foot-grid{grid-template-columns:1fr}}
 """
 
@@ -846,9 +867,14 @@ JS = r"""
     if (gl) { gl.textContent = 'General score ' + c.getAttribute('data-score') + '/100, ' +
                 (gt === 'none' ? 'not on the general list' : (TIER_NAMES[gt] || gt)) + '.'; gl.hidden = false; }
   }
-  // Banner figures: for the chosen profile, every country, ignoring the filters below.
+  // Freshwater projects are hidden under profiles that leave them out, unless "Include freshwater" is ticked.
+  function freshOk(c, withFresh){
+    return !(PFRESH[prof()] && c.getAttribute('data-fresh') && !(withFresh || (tf && tf.checked)));
+  }
+  // Banner figures: for the chosen profile, every country, ignoring the filters below (except freshwater, which
+  // the profile itself leaves out, so the figures agree with the list).
   function paintStats(){
-    var mine = cards.filter(function(c){ return listed(tierOf(c)); }), countries = {}, sources = {};
+    var mine = cards.filter(function(c){ return listed(tierOf(c)) && freshOk(c); }), countries = {}, sources = {};
     function n(t){ return mine.filter(function(c){ return tierOf(c) === t; }).length; }
     mine.forEach(function(c){ countries[c.getAttribute('data-country')] = 1; if (c.getAttribute('data-source')) sources[c.getAttribute('data-source')] = 1; });
     var nc = Object.keys(countries).length, ns = Object.keys(sources).length;
@@ -883,7 +909,7 @@ JS = r"""
   function visible(c, v, watch, withWeak, withFresh){
     var k = c.getAttribute('data-stage-now'), t = tierOf(c), q = (fq.value || '').toLowerCase().trim();
     if (!listed(t)) return false;      // not listed under the chosen profile
-    if (PFRESH[prof()] && c.getAttribute('data-fresh') && !(withFresh || (tf && tf.checked))) return false;
+    if (!freshOk(c, withFresh)) return false;
     // Closing soon, changed and watch list views show every published tier.
     var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && (fw.checked || withWeak));
     var viewOk = v === 'all' ||
@@ -957,7 +983,7 @@ JS = r"""
       : prof() !== 'all' && !PCOUNT[prof()] ? PD.empty_note : 'No projects match these filters.';
     // Closing soon list at the top: every published tier in the chosen country or region.
     while (ul.firstChild) ul.removeChild(ul.firstChild);
-    var soon = cards.filter(function(c){ var t = tierOf(c); return placeOk(c) && listed(t) && t !== 'watch' &&
+    var soon = cards.filter(function(c){ var t = tierOf(c); return placeOk(c) && listed(t) && t !== 'watch' && freshOk(c) &&
       c.getAttribute('data-stage-now') === 'open' && c._days !== null && c._days <= SOON; })
       .sort(function(a,b){ return a._days - b._days; });
     // One row per deadline, in aligned columns: date, days left, project, tier and country.
@@ -1896,10 +1922,13 @@ def _shortlist_item(rec: dict, rank: int, key: str, site: dict, country_name: st
             if rec.get("language") in less_tested else "")
     stage = PRODUCT_STAGES.get(rec["stage_kind"], STAGE_LABELS.get(rec["stage_kind"], ""))
     general = NOT_GENERAL.lower() if rec.get("profile_only") else rec["tier_label"]
+    when = rec.get("approved_on")
+    approved = (f'<span class="badge approved-on"><time datetime="{escape(when)}">{escape(approved_label(when))}</time></span>'
+                if when else "")
     return f"""<li class="card" id="s-{escape(page_slug(rec['id']))}" data-tier="{p['tier']}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
 <div class="badges"><span class="badge rank">#{rank}</span><span class="badge tier-badge t-{p['tier']}">{escape(p['tier_label'])}</span>
 <span class="badge score">Profile score {int(p['score'])}/100</span>
-<span class="badge {'st-lead' if rec['stage_kind'] == 'decided' else 'st-other'}">{escape(stage)}</span>{review_badge}{lang}</div>
+<span class="badge {'st-lead' if rec['stage_kind'] == 'decided' else 'st-other'}">{escape(stage)}</span>{approved}{review_badge}{lang}</div>
 <h4><a href="{page or link}">{_plain(escape(rec['title']))}</a></h4>
 <p class="because">Matches because: {escape(p['because'])}</p>
 <p class="general-line">General score {int(rec['score'])}/100, {escape(general)}.</p>
