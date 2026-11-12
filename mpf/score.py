@@ -36,6 +36,11 @@ def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
 
     # 1. Project type: best match counts fully, each extra type adds 3 (max +6).
     types = fp(text, rules["project_types"])
+    # A more specific group can replace a general one (a wharf being rebuilt is not also "a wharf").
+    for name in list(types):
+        gone = rules["project_types"][name].get("replaces")
+        if gone:
+            types.pop(gone, None)
     type_points = 0
     if types:
         ranked = sorted(types.items(), key=lambda kv: -kv[1]["points"])
@@ -75,6 +80,13 @@ def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
 
     total = type_points + habitat_points + size_points - penalty
 
+    # 4b. Sizes alone (no project type, no habitat clue) cannot list a project.
+    size_only_max = caps.get("size_only_max")
+    if size_only_max is not None and not types and not clues and total > size_only_max:
+        reasons.append({"rule": "cap:size_only", "label": "Only sizes found, no marine work named (score capped)",
+                        "points": size_only_max - total, "matched": "", "quote": ""})
+        total = size_only_max
+
     # 5. No marine setting mentioned: cap the score.
     marine = has_marine_context(text, rules["marine_context"])
     if not marine and total > caps["no_marine_context_max"]:
@@ -100,7 +112,7 @@ def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
         "score": total,
         "flagged": total >= rules["flag_threshold"],
         "reasons": reasons,
-        "project_types": [types[k]["label"] for k in types],
+        "project_types": list(dict.fromkeys(types[k]["label"] for k in types)),
         "size_summary": size_summary(sizes),
         "facts": {"sizes": sizes, "marine_context": marine,
                   "habitat_clues": sorted(clues), "types": sorted(types)},

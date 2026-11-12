@@ -53,8 +53,11 @@ sources:
     # Uses the default feed list in mpf/sources/dk_hoering.py (all hearings plus marine authorities).
   scot_marine:
     enabled: true
-    # Each project page costs one request at a 10 second crawl delay.
+    # Each project page costs one request at a 10 second crawl delay, plus one for its first attached PDF.
     max_projects: 30
+    # OFF until the owner approves how licence-only notices (species licences, fish farms, safety zones) are kept out.
+    fetch_pdf: false
+    max_pdf_mb: 5
   es_boe:
     enabled: true
     lookback_days: 21

@@ -108,6 +108,27 @@ def _labelled_values(main) -> dict[str, str]:
     return out
 
 
+# Key documents that record the federal decision ("Notice of Determination", "Notice of decision", "Parks Canada
+# has issued a notice of determination and decided ...", "Decision Statement").
+_DECISION_DOC = re.compile(r"notice of (determination|decision)|\b(has )?(determined|decided)\b|decision statement", re.I)
+
+
+def decision_date_from_documents(main) -> str | None:
+    """The newest date of a decision document in the Key documents table, or None."""
+    table = main.find("table", id="keyDocumentsTable")
+    if not table:
+        return None
+    dates = []
+    for tr in table.find_all("tr"):
+        cells = tr.find_all("td")
+        if len(cells) < 4 or not _DECISION_DOC.search(cells[1].get_text(" ")):
+            continue
+        d = parse_date(clean(cells[3].get_text(" "))) or parse_date(clean(cells[1].get_text(" ")))
+        if d:
+            dates.append(d)
+    return max(dates) if dates else None
+
+
 def parse_project_page(html: str) -> dict:
     """Pull the facts we need from one project page. Missing facts stay 'unknown'."""
     soup = BeautifulSoup(html, "html.parser")
@@ -140,6 +161,7 @@ def parse_project_page(html: str) -> dict:
         "location": location or UNKNOWN,
         "reference": facts.get("Reference number", ""),
         "comment_count": parse_comment_count(html),
+        "decision_date": decision_date_from_documents(main),
     }
 
 
@@ -211,7 +233,7 @@ class IAACSource(Source):
             language=guess_language(p["summary"] or text), country=self.country, province=province,
             water_body=extract_water_body(text), lat=lat, lon=lon, proponent=p["proponent"],
             project_type_raw=p["nature"], date_posted=p["start_date"], comment_deadline=deadline,
-            decision_date=None, status_raw=p["status"], full_text=text,
+            decision_date=p["decision_date"], status_raw=p["status"], full_text=text,
             raw_path=str(self.client.cached_path(url) or ""),
             extra={"assessment_type": p["assessment_type"], "authorities": p["authorities"],
                    "open_comment": bool(open_info), "notices": notices, "location": p["location"],

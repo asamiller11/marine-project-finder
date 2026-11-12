@@ -4,6 +4,9 @@ What we read (robots.txt allows it, with a 10 second crawl delay, which we honou
 - /data/marine-licence-documentation?items_per_page=60       newest licence documents
 - /mslot-document-categories/pre-application-consultation    pre-application consultations
 - each project's newest document page (/?q=node/<n>), for its stage, type and reference
+- the first PDF attached to that page (the application, screening request or licence), up to max_pdf_mb, for the
+  project description the one-line document title lacks. Its text is used for scoring only: Scotland shows no
+  quotes (config/coverage.yaml, quotes: false).
 Several documents usually belong to one licence (same reference number), so we group them
 into one item per licence or project and keep the newest document's details.
 """
@@ -74,7 +77,14 @@ def parse_document(html: str) -> dict:
         if key and value and key not in fields:
             fields[key] = value
     h1 = soup.find("h1")
-    return {"title": clean(h1.get_text(" ")) if h1 else "", "fields": fields}
+    pdfs = []
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if "/sites/default/files/" in href and href.lower().split("?")[0].endswith(".pdf"):
+            href = href if href.startswith("http") else BASE + href
+            if href not in pdfs:
+                pdfs.append(href)
+    return {"title": clean(h1.get_text(" ")) if h1 else "", "fields": fields, "pdfs": pdfs}
 
 
 def stage_words(stage: str, title: str) -> str:
@@ -121,15 +131,42 @@ class ScotMarineSource(Source):
             except requests.RequestException as e:
                 self.log.append(f"skipped {newest['url']}: {type(e).__name__}")
                 continue
-            yield self._make_item(key, docs, page)
+            pdf_txt = ""
+            if page["pdfs"] and self.conf.get("fetch_pdf", True):
+                pdf_txt = self._pdf_text(page["pdfs"][0])
+                if pdf_txt is None:     # blocked: stop the source
+                    return
+            yield self._make_item(key, docs, page, pdf_txt)
 
-    def _make_item(self, key: str, docs: list[dict], page: dict) -> Item:
+    def _pdf_text(self, url: str) -> str | None:
+        """Text of the first attached PDF; '' when it is too large or unreadable; None when the site refuses us."""
+        from mpf.sources.nl_ea import pdf_text
+        max_bytes = int(float(self.conf.get("max_pdf_mb", 5)) * 1024 * 1024)
+        try:
+            data = self.client.get(url, max_bytes=max_bytes)
+        except Blocked as e:
+            if "larger than" in str(e):
+                self.log.append(f"PDF too large, skipped: {url}")
+                return ""
+            self.log.append(f"STOPPED: {e}")
+            return None
+        except requests.RequestException as e:
+            self.log.append(f"PDF skipped {url}: {type(e).__name__}")
+            return ""
+        try:
+            return clean(pdf_text(data, max_pages=int(self.conf.get("max_pdf_pages", 15))))
+        except Exception as e:   # a damaged or scanned PDF must not stop the run
+            self.log.append(f"PDF unreadable {url}: {type(e).__name__}")
+            return ""
+
+    def _make_item(self, key: str, docs: list[dict], page: dict, pdf_txt: str = "") -> Item:
         f = page["fields"]
         newest = docs[0]
         name = project_name(newest["title"])
         stage = f.get("Stage document submitted", "")
         text = "\n".join([name] + [d["title"] + "." for d in docs] +
-                         [f"{k}: {v}." for k, v in f.items() if k in ("Type of application", "Document type")])
+                         [f"{k}: {v}." for k, v in f.items() if k in ("Type of application", "Document type")] +
+                         ([pdf_txt] if pdf_txt else []))
         ref = f.get("Reference") or (key if _REF.fullmatch(key) else "")
         return Item(
             source="scot_marine", item_id=ref or key[:80], url=newest["url"], title=name, language="en",
@@ -138,5 +175,6 @@ class ScotMarineSource(Source):
             comment_deadline=None, status_raw=stage_words(stage, newest["title"]), full_text=text,
             raw_path=str(self.client.cached_path(newest["url"]) or ""),
             extra={"reference": ref, "documents": [{"title": d["title"], "url": d["url"], "updated": d["updated"]} for d in docs],
-                   "document_type": f.get("Document type", ""), "link_ok": True},
+                   "document_type": f.get("Document type", ""), "link_ok": True,
+                   "pdf_url": page["pdfs"][0] if page.get("pdfs") else None, "used_pdf_text": bool(pdf_txt)},
         )
