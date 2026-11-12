@@ -109,3 +109,49 @@ def test_fetch_stops_on_a_block_and_does_not_retry(status):
     src = FedRegisterSource(client, {}, {})
     assert list(src.fetch()) == []
     assert len(client.calls) == 1 and src.log[0].startswith("STOPPED")
+
+
+# Its own score (fix 6): title and project description only, plus pile counts; boilerplate ignored.
+from mpf.config import load_scoring  # noqa: E402
+from mpf.sources.fed_register import iha_score, pile_count, project_description  # noqa: E402
+
+RULES = load_scoring()
+BOILER = ("\nBackground\nThe MMPA prohibits the take of marine mammals (e.g., vessels, dredging, aircraft, construction). "
+          "Mitigation measures protect Endangered species. Level B harassment may occur within 24,100 m.\n")
+DESC = ("\nDescription of Proposed Activity\nOverview\nThe Navy proposes to remove 102 degraded 14-inch steel H-piles "
+        "and install 112 20-inch square concrete replacement piles at the east and west wharfs.\n"
+        "Description of Marine Mammals in the Area of Specified Activities\nEndangered whales.\n")
+TABLE = "\nEstimated Take\nFender Piles (16'' steel pipe piles)      600\n   7,356.4   1,000\nFender Piles\n"
+
+
+def test_description_section_only():
+    d = project_description(BOILER + DESC + TABLE)
+    assert "112 20-inch" in d and "Endangered" not in d and "24,100" not in d
+
+
+def test_pile_count_from_sentences_not_tables():
+    assert pile_count("install 230 24-inch steel pipe piles and 5 42-inch piles") == 230
+    assert pile_count(TABLE) == 0
+    assert pile_count("work in 2026 piles and steel") == 0            # a year is not a count
+
+
+def test_iha_score_ignores_boilerplate():
+    s = iha_score("TRF Wharf Interface Repairs Project at Kings Bay, Georgia", "", BOILER + DESC + TABLE, RULES)
+    rules = {r["rule"] for r in s["reasons"]}
+    assert "habitat:species_at_risk" not in rules and "habitat:mitigation_general" not in rules
+    assert "type:dredging" not in rules            # the stock "(e.g., vessels, dredging ...)" list is not counted
+    assert s["facts"]["piles"] == 112 and "size:piles" in rules
+    assert 20 <= s["score"] < 60
+
+
+def test_not_construction_titles_score_zero():
+    for t in ("Office of Naval Research's Arctic Research Activities in the Beaufort Sea",
+              "HEX Operating, LLC Natural Gas Activities in Cook Inlet, Alaska",
+              "Marine Geophysical Survey in the Northwest Atlantic"):
+        assert iha_score(t, "", BOILER + DESC, RULES)["score"] == 0
+
+
+def test_more_piles_more_points():
+    small = iha_score("Pier repairs", "", DESC.replace("112 20-inch", "6 20-inch"), RULES)["score"]
+    big = iha_score("Pier repairs", "", DESC.replace("112 20-inch", "230 20-inch"), RULES)["score"]
+    assert big > small

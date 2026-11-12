@@ -145,3 +145,86 @@ class FedRegisterSource(Source):
             item = doc_to_item(doc)
             item.raw_path = str(self.client.cached_path(url) or "")
             yield item
+
+
+# ---------------------------------------------------------------------------
+# Its own score (fix 6). Every IHA notice repeats the same marine-mammal wording ("mitigation measures",
+# "Endangered", "vessels, dredging, aircraft, construction") and gives noise distances ("24,100 m"), so the general
+# score is fooled. Here only the title and the project-description section count, plus the number of piles.
+
+_SECTION = re.compile(r"\n\s*(Description of (the )?(Proposed|Specified) Activit(y|ies)( and Anticipated Impacts)?|"
+                      r"Summary of (the )?Specified Activit(y|ies)( and Anticipated Impacts)?|Detailed Description of the "
+                      r"(Specified )?Activit(y|ies))\s*\n", re.I)
+_SECTION_END = re.compile(r"\n\s*(Description of (the )?Marine Mammals|Potential Effects|Estimated Take|Determinations|"
+                          r"Proposed Mitigation|Description of Mitigation)\b", re.I)
+# Notices that are not construction: research, surveys, exploration, training, launches, fishing.
+NOT_CONSTRUCTION = re.compile(r"\b(research|survey|surveys|geophysical|seismic|training|testing|exercises?|"
+                              r"natural gas activities|oil and gas|exploration|launch(es)?|fisheries|sonar)\b", re.I)
+# A count in a sentence ("230 24-inch steel pipe piles", "14 24-in permanent\nconcrete piles"), not across table
+# columns (numbers separated by long runs of spaces or by indented line breaks).
+_GAP = r"(?:[ \t]{1,2}|[ \t]?\n)"
+_PILES = re.compile(r"(?<![\d.,])\b(\d{1,4}(?:,\d{3})?)[ \t]{1,2}(?:\(\d+\)[ \t])?(?:[\w\-.\"”'/]+" + _GAP + r"){0,6}?piles\b", re.I)
+_YEARISH = re.compile(r"^(19|20)\d\d$")
+PILE_POINTS = [(200, 20), (50, 15), (10, 8)]     # [at least this many piles, points]
+
+
+def project_description(text: str, limit: int = 15000) -> str:
+    """The notice's own description of the work (first matching section), without the boilerplate around it."""
+    m = _SECTION.search(text or "")
+    if not m:
+        return ""
+    rest = text[m.end():m.end() + limit * 2]
+    end = _SECTION_END.search(rest)
+    return rest[:end.start() if end else limit][:limit]
+
+
+def pile_count(text: str) -> int:
+    """The largest pile count stated in the text ('230 24-inch steel pipe piles' -> 230). 0 if none."""
+    best = 0
+    for m in _PILES.finditer(text or ""):
+        n = m.group(1).replace(",", "")
+        if _YEARISH.match(n):
+            continue
+        if int(n) < 5000:
+            best = max(best, int(n))
+    return best
+
+
+def iha_score(title: str, abstract: str, full_text: str, rules: dict) -> dict:
+    """Score for one NOAA incidental harassment notice: structure types from the title and description, plus pile
+    points. Same shape as mpf.score.score_text's result, so the rest of the tool can use it."""
+    from mpf.extract import find_patterns
+    desc = project_description(full_text)
+    work = "\n".join(t for t in (title, abstract, desc) if t)
+    reasons = []
+    if NOT_CONSTRUCTION.search(title or ""):
+        reasons.append({"rule": "cap:not_construction", "label": "Not construction (research, survey, exploration ...)",
+                        "points": 0, "matched": NOT_CONSTRUCTION.search(title).group(0), "quote": title})
+        return {"score": 0, "flagged": False, "reasons": reasons, "project_types": [], "size_summary": "",
+                "facts": {"piles": 0, "description_found": bool(desc)}}
+    types = find_patterns(work, rules["project_types"])
+    for name in list(types):
+        gone = rules["project_types"][name].get("replaces")
+        if gone:
+            types.pop(gone, None)
+    ranked = sorted(types.items(), key=lambda kv: -kv[1]["points"])
+    type_points = (ranked[0][1]["points"] + min(6, 3 * (len(ranked) - 1))) if ranked else 0
+    for i, (name, hit) in enumerate(ranked):
+        reasons.append({"rule": f"type:{name}", "label": hit["label"], "points": hit["points"] if i == 0 else (3 if i <= 2 else 0),
+                        "matched": hit["matched"], "quote": hit["quote"]})
+    # Habitat words only from the project's own description, never the marine-mammal wording every notice repeats.
+    clues = {k: v for k, v in find_patterns(desc, rules["habitat_clues"]).items()
+             if k not in ("species_at_risk", "mitigation_general")}
+    habitat_points = min(rules["caps"]["habitat_points_max"], sum(h["points"] for h in clues.values()))
+    for name, hit in sorted(clues.items(), key=lambda kv: -kv[1]["points"]):
+        reasons.append({"rule": f"habitat:{name}", "label": hit["label"], "points": hit["points"],
+                        "matched": hit["matched"], "quote": hit["quote"]})
+    # Only counts stated in the description: tables elsewhere hold noise distances and take numbers.
+    piles = pile_count(desc)
+    pts = next((p for n, p in PILE_POINTS if piles >= n), 0)
+    if pts:
+        reasons.append({"rule": "size:piles", "label": f"{piles} piles", "points": pts, "matched": str(piles), "quote": ""})
+    total = max(0, min(100, type_points + habitat_points + pts))
+    return {"score": total, "flagged": total >= rules["flag_threshold"], "reasons": reasons,
+            "project_types": list(dict.fromkeys(types[k]["label"] for k in types)), "size_summary": f"{piles} piles" if piles else "",
+            "facts": {"piles": piles, "description_found": bool(desc), "types": sorted(types)}}
