@@ -49,12 +49,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -23,
+   "days_left": -24,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "strong",
@@ -143,12 +144,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -300,
+   "days_left": -301,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "strong",
@@ -233,12 +235,13 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 3,
+   "days_left": 2,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -281,6 +284,296 @@
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "scot_marine:00012497",
+  "title": "Capital Dredging and Sea Deposit- Port of Greenock",
+  "url": "https://marine.gov.scot/?q=node/28287",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Dredging"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 57,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 57",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging work and about 10,000 m3 of material and an area of about 17,736 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00012497.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 48,
+    "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Work below high water or footprint on the seabed; size 2 km"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "scot_marine:bowdun offshore wind farm east of aberdeenshire",
+  "title": "Bowdun Offshore Wind Farm – East of Aberdeenshire",
+  "url": "https://marine.gov.scot/?q=node/28280",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind"
+  ],
+  "stage": "in progress (consultation stage)",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 51,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 51",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions offshore wind work and an area of about 187,000,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-bowdun-offshore-wind-farm-east-of-aberdeenshire.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "scot_marine:00012570",
+  "title": "Pentland Floating Offshore Wind Farm – Dounreay, Caithness – Micro-pile Anchor Trial",
+  "url": "https://marine.gov.scot/?q=node/28310",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 48,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 48",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions offshore wind and pile work and an area of about 1,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00012570.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 37,
+    "because": "Piles or pile-supported structure; Work below high water or footprint on the seabed; Scour or cable protection; size 1000 square metres"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-12",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-13",
+    "type": "tier",
+    "text": "Tier changed from weak to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-12"
  },
  {
   "id": "iaac:90780",
@@ -330,6 +623,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -374,6 +668,200 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "scot_marine:00011402",
+  "title": "Marine Licence Variation Application– Pontoon Upgrades – Eyemouth Harbour Pontoons, Eyemouth",
+  "url": "https://marine.gov.scot/?q=node/28291",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "Eyemouth Harbour",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Offshore wind"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 42,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 42",
+  "reviewed": false,
+  "summary": "Project in Eyemouth Harbour, Scotland. The notice mentions dredging, offshore wind and wharf or dock work and an area of about 1,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00011402.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Offshore wind; size 1000 square metres"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "scot_marine:additional information public notice ardersier port expansion phase 2",
+  "title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2",
+  "url": "https://marine.gov.scot/?q=node/28304",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Dredging",
+   "Offshore wind"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 41,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 41",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging, offshore wind and port or terminal work and an area of about 400,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-additional-information-public-notice-ardersier-port-expansion-phase-2.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "Port or marine terminal; Offshore wind; size 0.4 km2"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
   "id": "nl_ea:2410",
   "title": "Petty Harbour Breakwater",
   "url": "https://www.gov.nl.ca/eccc/projects/project-2410/",
@@ -416,12 +904,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -139,
+   "days_left": -140,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -464,6 +953,108 @@
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "scot_marine:00011118/00012509",
+  "title": "Subsea Cable Replacement - Loch a Choire, Loch Linnhe",
+  "url": "https://marine.gov.scot/?q=node/28295",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 41,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 41",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions offshore wind work and a length of about 3,098 m.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00011118-00012509.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [
+   "Marine licence",
+   "Basking shark licence",
+   "European Protected Species licence"
+  ],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-12",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-13",
+    "type": "tier",
+    "text": "Tier changed from weak to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-12"
  },
  {
   "id": "iaac:90831",
@@ -513,6 +1104,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -557,6 +1149,107 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "iaac:90890",
+  "title": "Rehabilitation of wharves 3 and 4A at the Port of Trois-Rivières",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90890?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Public Services and Procurement Canada",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Shoreline protection, seawall or bulkhead",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "public comment open until 2026-12-13",
+  "stage_kind": "open",
+  "comment_deadline": "2026-12-13",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 34",
+  "reviewed": false,
+  "summary": "Project by Public Services and Procurement Canada in Quebec. The notice mentions pile and shoreline protection work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The localized seabed depressions will be filled with riprap to stabilize the affected areas.",
+   "Riprap required to fill the seabed depressions will be placed from the surface using a crane or equipment mounted on a barge.",
+   "Public Services and Procurement Canada is planning rehabilitation work on Wharves 3 and 4A at the Port of Trois-Rivières."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90890.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-12-13",
+   "days_left": 30,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 51,
+    "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Piles or pile-supported structure"
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 25,
+    "because": "Shoreline protection, seawall or bulkhead; Work below high water or footprint on the seabed; Wharf, pier or large dock"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
   "id": "iaac:90862",
   "title": "Fort Alexander First Nation, Sagkeeng, Shoreline Stabilization Phase III, Part B",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90862?culture=en-CA",
@@ -597,12 +1290,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 18,
+   "days_left": 17,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -693,12 +1387,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-11",
-   "days_left": 29,
+   "days_left": 28,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -745,9 +1440,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-12"
  },
  {
@@ -792,12 +1485,13 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 15,
+   "days_left": 14,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -883,12 +1577,13 @@
    "opens": "2026-10-26",
    "opens_how": "notice date",
    "closes": "2026-11-14",
-   "days_left": 2,
+   "days_left": 1,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -974,12 +1669,13 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 3,
+   "days_left": 2,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -1064,12 +1760,13 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-12-15",
-   "days_left": 33,
+   "days_left": 32,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -1116,10 +1813,109 @@
     "text": "First listed"
    }
   ],
+  "changes": [],
+  "first_listed": "2026-11-12"
+ },
+ {
+  "id": "iaac:90891",
+  "title": "New dock installation – 2820 Panorama Drive",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90891?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Upland Owner",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Deep Cove",
+  "types": [
+   "Wharf, pier or large dock",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "public comment open until 2026-12-13",
+  "stage_kind": "open",
+  "comment_deadline": "2026-12-13",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 21,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 21",
+  "reviewed": false,
+  "summary": "Project by Upland Owner in Deep Cove, British Columbia. The notice mentions pile and wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The gangway, ramp and mooring float will be constructed off site at an upland location, transported to the site by water and installed using a crane/davit on a floating barge/vessel.",
+   "The Project consists of the installation of a prefabricated dock including an aluminum gangway and ramp and a rectangular float in the water.",
+   "The six piles would be installed using a vibratory hammer on a floating barge."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90891.html",
+  "comments": {
+   "opens": "2026-11-13",
+   "opens_how": "stated",
+   "closes": "2026-12-13",
+   "days_left": 30,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 23,
+    "because": "Wharf, pier or large dock; Piles or pile-supported structure"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
   "changes": [
    "new"
   ],
-  "first_listed": "2026-11-12"
+  "first_listed": "2026-11-13"
  },
  {
   "id": "iaac:90491",
@@ -1160,12 +1956,13 @@
    "opens": "2026-11-05",
    "opens_how": "notice date",
    "closes": "2026-11-24",
-   "days_left": 12,
+   "days_left": 11,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -1255,12 +2052,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-23",
-   "days_left": 11,
+   "days_left": 10,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -1311,6 +2109,103 @@
   "first_listed": "2026-11-11"
  },
  {
+  "id": "scot_marine:00011871, 00011872 & 00011873",
+  "title": "Additional Information - Ardersier Port Expansion Project - Ardersier Port",
+  "url": "https://marine.gov.scot/?q=node/28283",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Dredging",
+   "Offshore wind"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 34",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging, offshore wind and port or terminal work and a length of about 50 m.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00011871--00011872---00011873.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 29,
+    "because": "Port or marine terminal; Offshore wind; size 50 m"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
   "id": "iaac:90797",
   "title": "Suncor Dredging - West Dock Berth",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90797?culture=en-CA",
@@ -1358,6 +2253,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -1456,6 +2352,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -1548,6 +2445,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -1639,6 +2537,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -1741,6 +2640,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -1825,6 +2725,7 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -1916,6 +2817,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2007,6 +2909,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2090,12 +2993,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -496,
+   "days_left": -497,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -2180,12 +3084,13 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": -11,
+   "days_left": -12,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2272,12 +3177,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -216,
+   "days_left": -217,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2370,6 +3276,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2416,106 +3323,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-12"
- },
- {
-  "id": "es_boe:BOE-B-2026-36980",
-  "title": "Anuncio de la Autoridad Portuaria de Barcelona por el que se hace pública la aprobación de la revisión de la concesión administrativa titularidad de Creuers del Port de Barcelona, S.A., destinada a la construcción y explotación de la nueva Estación Marítima C en el muelle Adosado del puerto de Barcelona. Exp. 2026/001832.",
-  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-36980",
-  "source": "es_boe",
-  "source_name": "Boletín Oficial del Estado (BOE) open data",
-  "proponent": "unknown",
-  "country": "ES",
-  "province": "unknown",
-  "language": "es",
-  "water_body": "unknown",
-  "types": [
-   "Port or marine terminal",
-   "Wharf, pier or large dock"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 23,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 23",
-  "reviewed": false,
-  "summary": "Project in an unknown location. The notice mentions port or terminal and wharf or dock work and an area of about 30 m2.",
-  "summary_note": "keywords",
-  "quotes": [
-   "Las nuevas características de la concesión revisada son las siguientes: Objeto: Construcción y explotación de una terminal pública de pasajeros en régimen de crucero turístico, nueva Estación Marítima C, en el muelle Adosado del puerto de Barcelona."
-  ],
-  "attribution": "",
-  "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/es_boe-BOE-B-2026-36980.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "BOE notices give the comment period in working days and publish no count."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 23,
-    "because": "Wharf, pier or large dock; Port or marine terminal"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-12",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-12"
  },
  {
@@ -2562,6 +3370,7 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2646,12 +3455,13 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": -7,
+   "days_left": -8,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -2745,98 +3555,13 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
     "tier_label": "Probably not relevant",
     "score": 12,
     "because": "Marina or small craft harbour"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
-  "id": "es_boe:BOE-B-2026-35366",
-  "title": "Anuncio de la Autoridad Portuaria de Valencia por el que se inicia trámite de competencia de proyectos en relación con la solicitud presentada por Valencia Terminal Pasajeros, S.L.",
-  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-35366",
-  "source": "es_boe",
-  "source_name": "Boletín Oficial del Estado (BOE) open data",
-  "proponent": "unknown",
-  "country": "ES",
-  "province": "unknown",
-  "language": "es",
-  "water_body": "unknown",
-  "types": [
-   "Port or marine terminal"
-  ],
-  "stage": "registered",
-  "stage_kind": "assessment",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 20,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 20",
-  "reviewed": false,
-  "summary": "Project in an unknown location. The notice mentions port or terminal work.",
-  "summary_note": "keywords",
-  "quotes": [],
-  "attribution": "",
-  "agency": "Agencia Estatal Boletín Oficial del Estado (www.boe.es)",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/es_boe-BOE-B-2026-35366.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "BOE notices give the comment period in working days and publish no count."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 18,
-    "because": "Port or marine terminal"
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -2917,6 +3642,7 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -2963,103 +3689,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-12"
- },
- {
-  "id": "scot_marine:00011119/00012511",
-  "title": "Basking Shark Licence- Subsea Cable Replacement - Loch a Choire, Loch Linnhe",
-  "url": "https://marine.gov.scot/?q=node/28297",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Offshore wind"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 20,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 20",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/scot_marine-00011119-00012511.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-12",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-12"
  },
  {
@@ -3102,12 +3732,13 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -62,
+   "days_left": -63,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry publishes the comment deadline but not the number of comments received."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -3152,100 +3783,6 @@
   "first_listed": "2026-10-29"
  },
  {
-  "id": "scot_marine:00011116/00012510",
-  "title": "European Protected Species Licence- Subsea Cable Replacement - Loch a Choire, Loch Linnhe",
-  "url": "https://marine.gov.scot/?q=node/28296",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Offshore wind"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 20,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 20",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/scot_marine-00011116-00012510.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-12",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-12"
- },
- {
   "id": "scot_marine:00012343",
   "title": "Morven North Offshore Wind Array – 61km off Aberdeenshire Coast",
   "url": "https://marine.gov.scot/?q=node/28273",
@@ -3288,6 +3825,7 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -3374,6 +3912,7 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -3418,100 +3957,6 @@
   "first_listed": "2026-10-29"
  },
  {
-  "id": "scot_marine:00012570",
-  "title": "Pentland Floating Offshore Wind Farm – Dounreay, Caithness – Micro-pile Anchor Trial",
-  "url": "https://marine.gov.scot/?q=node/28310",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Offshore wind"
-  ],
-  "stage": "under assessment",
-  "stage_kind": "assessment",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 20,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 20",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/scot_marine-00012570.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-12",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-12"
- },
- {
   "id": "scot_marine:screening opinion berth reconstruction montrose port scr 0103",
   "title": "Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103",
   "url": "https://marine.gov.scot/?q=node/28235",
@@ -3554,6 +3999,7 @@
    "comments_url": null,
    "count_note": "Representations are published as PDF documents, not as a count."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
@@ -3600,103 +4046,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-12"
- },
- {
-  "id": "scot_marine:00011118/00012509",
-  "title": "Subsea Cable Replacement - Loch a Choire, Loch Linnhe",
-  "url": "https://marine.gov.scot/?q=node/28295",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Offshore wind"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 20,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 20",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/scot_marine-00011118-00012509.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-12",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-12"
  },
  {
@@ -3746,6 +4096,7 @@
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "weak",
@@ -3792,9 +4143,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-12"
  },
  {
@@ -3838,12 +4187,13 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 16,
+   "days_left": 15,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
    "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
   },
+  "licence_types": [],
   "profiles": {
    "hard-structure": {
     "tier": "possible",
@@ -3893,5 +4243,516 @@
   ],
   "changes": [],
   "first_listed": "2026-11-01"
+ },
+ {
+  "id": "fed_register:2026-21419",
+  "title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia",
+  "url": "https://www.federalregister.gov/documents/2026/10/20/2026-21419/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "U.S. Navy",
+  "country": "US",
+  "province": "Georgia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "public comment open until 2026-11-19",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-19",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project by U.S. Navy in Georgia.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/fed_register-2026-21419.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-19",
+   "days_left": 6,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "112 piles; wharf, pier or large dock; moorings",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "scot_marine:00012432/00011450",
+  "title": "Rock Armour Installation - Stromeferry",
+  "url": "https://marine.gov.scot/?q=node/28299",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 18,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 18 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions shoreline protection work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00012432-00011450.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 45,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; Scour or cable protection"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Shoreline protection, seawall or bulkhead"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-20789",
+  "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska",
+  "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20789/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "City and Borough of Juneau",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "Juneau",
+  "types": [
+   "Wharf, pier or large dock",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "comment closed 2026-11-12, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-12",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project by City and Borough of Juneau in Juneau, Alaska.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/fed_register-2026-20789.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-12",
+   "days_left": -1,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 41,
+    "because": "pile driving, 230 piles; wharf, pier or large dock; moorings",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-20222",
+  "title": "Marine Structure Maintenance and Pile Replacement Program in Puget Sound, Washington",
+  "url": "https://www.federalregister.gov/documents/2026/10/02/2026-20222/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "United States Navy",
+  "country": "US",
+  "province": "Washington",
+  "language": "en",
+  "water_body": "Puget Sound",
+  "types": [
+   "Wharf, pier or large dock",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-10-02",
+  "approved_on": "2026-10-02",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project by United States Navy in Puget Sound, Washington.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/fed_register-2026-20222.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 38,
+    "because": "pile driving, 234 piles; wharf, pier or large dock",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-18024",
+  "title": "Oregon Department of Transportation's Yaquina Bay Dolphin Replacement Project in Newport, Oregon",
+  "url": "https://www.federalregister.gov/documents/2026/09/03/2026-18024/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "Oregon Department of Transportation",
+  "country": "US",
+  "province": "Oregon",
+  "language": "en",
+  "water_body": "Newport",
+  "types": [
+   "Wharf, pier or large dock",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "comment closed 2026-09-18, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-09-18",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project by Oregon Department of Transportation in Newport, Oregon.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/fed_register-2026-18024.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-09-18",
+   "days_left": -56,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 26,
+    "because": "pile driving, 33 piles; wharf, pier or large dock",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-18458",
+  "title": "PetroMarine Services Juneau Rock Dump Terminal Reconstruction Project, Juneau, Alaska",
+  "url": "https://www.federalregister.gov/documents/2026/09/10/2026-18458/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "PetroMarine Services",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "Juneau",
+  "types": [
+   "Wharf, pier or large dock",
+   "Shoreline protection, seawall or bulkhead",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "comment closed 2026-10-13, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-10-13",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project by PetroMarine Services in Juneau, Alaska.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/fed_register-2026-18458.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-10-13",
+   "days_left": -31,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 21,
+    "because": "pile driving; wharf, pier or large dock; shoreline protection, seawall or bulkhead; moorings",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-17614",
+  "title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington",
+  "url": "https://www.federalregister.gov/documents/2026/08/28/2026-17614/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-year",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "United States Navy",
+  "country": "US",
+  "province": "Washington",
+  "language": "en",
+  "water_body": "Puget Sound",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Shoreline protection, seawall or bulkhead",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "comment closed 2026-09-28, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-09-28",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project by United States Navy in Puget Sound, Washington.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/fed_register-2026-17614.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-09-28",
+   "days_left": -46,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 39,
+    "because": "pile driving, 88 piles; wharf, pier or large dock; dredging; shoreline protection, seawall or bulkhead; moorings",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-13"
  }
 ]

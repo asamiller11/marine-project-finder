@@ -4,234 +4,10 @@
 "2026-10-31",
 "2026-11-01",
 "2026-11-11",
-"2026-11-12"
+"2026-11-12",
+"2026-11-13"
 ],
 "base": {
-"nl_ea:2434": {
-"comment_deadline": "2026-10-20",
-"stage_kind": "closed",
-"tier": "strong",
-"title": "Port aux Basques Navigation Improvement Project"
-},
-"nl_ea:2379": {
-"comment_deadline": "2026-01-16",
-"stage_kind": "decided",
-"tier": "strong",
-"title": "Point Rousse Port Expansion"
-},
-"iaac:90841": {
-"comment_deadline": "2026-11-15",
-"stage_kind": "open",
-"tier": "possible",
-"title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
-},
-"iaac:90780": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "possible",
-"title": "Breakwater Rehabilitation at Fortune SCH, NL"
-},
-"nl_ea:2410": {
-"comment_deadline": "2026-06-26",
-"stage_kind": "decided",
-"tier": "possible",
-"title": "Petty Harbour Breakwater"
-},
-"iaac:90831": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "possible",
-"title": "Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia"
-},
-"iaac:90862": {
-"comment_deadline": "2026-11-30",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Fort Alexander First Nation, Sagkeeng, Shoreline Stabilization Phase III, Part B"
-},
-"iaac:90857": {
-"comment_deadline": "2026-11-27",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Floating Dock Relocation at Belleoram SCH, NL"
-},
-"iaac:90856": {
-"comment_deadline": "2026-11-14",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt"
-},
-"iaac:90830": {
-"comment_deadline": "2026-11-15",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
-},
-"iaac:90491": {
-"comment_deadline": "2026-11-24",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Hopkins Slipway Extension – Canadian Coast Guard Academy"
-},
-"iaac:90794": {
-"comment_deadline": "2026-11-23",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Lazy Head Marine Terminal Project"
-},
-"iaac:90797": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Suncor Dredging - West Dock Berth"
-},
-"iaac:90698": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Shoreline Protection - Whitby, Ontario"
-},
-"scot_marine:00012484": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Seagrass Planting - SE of Isle of Berneray, Sound of Harris, Western Isles"
-},
-"iaac:90805": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL"
-},
-"nl_ea:2357": {
-"comment_deadline": "2025-07-04",
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Chapel’s Cove Breakwater"
-},
-"iaac:90783": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Wharf Reconstruction at Carmanville SCH, NL"
-},
-"iaac:90784": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Wharf Reconstruction at Harbour Breton SCH, NL"
-},
-"iaac:90782": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Wharf Reconstruction at Mary's Harbour SCH, NL"
-},
-"iaac:90307": {
-"comment_deadline": "2026-11-01",
-"stage_kind": "closed",
-"tier": "weak",
-"title": "Raising of the COOP Wharf- L'Étang-du-Nord Harbour – Magdalen Islands"
-},
-"nl_ea:2393": {
-"comment_deadline": "2026-04-10",
-"stage_kind": "decided",
-"tier": "weak",
-"title": "St. John’s Dockyard Upgrades"
-},
-"iaac:90777": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Wharf Reconstruction at the Red Head Small Craft Harbour, Kings County, Prince Edward Island"
-},
-"es_boe:BOE-B-2026-34477": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Anuncio de la Autoridad Portuaria de Bilbao por el que se somete a información pública la solicitud de modificación de la concesión titularidad de \"E. Erhardt y Cía, S.A.\" en la Zona de la Ampliación del Puerto de Bilbao, en el término municipal de Santurtzi."
-},
-"es_boe:BOE-B-2026-36164": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Anuncio de la Autoridad Portuaria de Santander, por el que se somete a información pública la solicitud presentada por CLdN Shipping Lines Spain, S.L., de modificación de la concesión, de la que es titular, en el Espigón central de Raos del Puerto de Santander."
-},
-"scot_marine:00011153 / 00011950": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe"
-},
-"es_boe:BOE-B-2026-36887": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Resolución de la Autoridad Portuaria de Gijón por la que se hace público el acuerdo de otorgamiento concesional a favor de Cruz Roja Española."
-},
-"es_boe:BOE-B-2026-36883": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Resolución de la Presidencia de la Autoridad Portuaria de Baleares por la que se anuncia el otorgamiento de una concesión para la gestión de un centro de almacenamiento y distribución de cemento en el arranque del dique de abrigo, en el puerto de Alcúdia (GSP-193)."
-},
-"iaac:90822": {
-"comment_deadline": "2026-11-05",
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit"
-},
-"scot_marine:00011654": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Capital Dredging & Sea Disposal - Peterhead Bay Marina and Port Henry"
-},
-"es_boe:BOE-B-2026-35366": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Anuncio de la Autoridad Portuaria de Valencia por el que se inicia trámite de competencia de proyectos en relación con la solicitud presentada por Valencia Terminal Pasajeros, S.L."
-},
-"nl_ea:2429": {
-"comment_deadline": "2026-09-11",
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Crémaillère Harbour Marine Port Development Resubmission"
-},
-"iaac:90792": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Grassy Narrows First Nation Mercury Care Home Paapiiwaaniimaan Healing Trail - Additional Federal Authority"
-},
-"scot_marine:00012343": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Morven North Offshore Wind Array – 61km off Aberdeenshire Coast"
-},
-"scot_marine:00012345": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Morven South Offshore Wind Array – 86km off Aberdeenshire Coast"
-},
-"es_boe:BOE-B-2026-35894": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Resolución del Consejo de Administración de la Autoridad Portuaria de Santa Cruz de Tenerife relativa al otorgamiento de licencia a la entidad Terminal de Contenedores de Tenerife, S.A.U. para la prestación del servicio portuario de manipulación de mercancías en el puerto de Santa Cruz de Tenerife."
-},
-"iaac:90863": {
-"comment_deadline": "2026-11-28",
-"stage_kind": "open",
-"tier": "notrel",
-"title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection"
-}
-},
-"base_date": "2026-11-11",
-"current": {
 "nl_ea:2434": {
 "comment_deadline": "2026-10-20",
 "stage_kind": "closed",
@@ -485,6 +261,321 @@
 "title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection"
 }
 },
+"base_date": "2026-11-12",
+"current": {
+"nl_ea:2434": {
+"comment_deadline": "2026-10-20",
+"stage_kind": "closed",
+"tier": "strong",
+"title": "Port aux Basques Navigation Improvement Project"
+},
+"nl_ea:2379": {
+"comment_deadline": "2026-01-16",
+"stage_kind": "decided",
+"tier": "strong",
+"title": "Point Rousse Port Expansion"
+},
+"iaac:90841": {
+"comment_deadline": "2026-11-15",
+"stage_kind": "open",
+"tier": "possible",
+"title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
+},
+"scot_marine:00012497": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Capital Dredging and Sea Deposit- Port of Greenock"
+},
+"scot_marine:bowdun offshore wind farm east of aberdeenshire": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Bowdun Offshore Wind Farm – East of Aberdeenshire"
+},
+"scot_marine:00012570": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Pentland Floating Offshore Wind Farm – Dounreay, Caithness – Micro-pile Anchor Trial"
+},
+"iaac:90780": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Breakwater Rehabilitation at Fortune SCH, NL"
+},
+"scot_marine:00011402": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Marine Licence Variation Application– Pontoon Upgrades – Eyemouth Harbour Pontoons, Eyemouth"
+},
+"scot_marine:additional information public notice ardersier port expansion phase 2": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2"
+},
+"nl_ea:2410": {
+"comment_deadline": "2026-06-26",
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Petty Harbour Breakwater"
+},
+"scot_marine:00011118/00012509": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Subsea Cable Replacement - Loch a Choire, Loch Linnhe"
+},
+"iaac:90831": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia"
+},
+"iaac:90890": {
+"comment_deadline": "2026-12-13",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Rehabilitation of wharves 3 and 4A at the Port of Trois-Rivières"
+},
+"iaac:90862": {
+"comment_deadline": "2026-11-30",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Fort Alexander First Nation, Sagkeeng, Shoreline Stabilization Phase III, Part B"
+},
+"iaac:90726": {
+"comment_deadline": "2026-12-11",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Port Colborne Bulk Biofuels Storage and Marine Refuelling Facility"
+},
+"iaac:90857": {
+"comment_deadline": "2026-11-27",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Floating Dock Relocation at Belleoram SCH, NL"
+},
+"iaac:90856": {
+"comment_deadline": "2026-11-14",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt"
+},
+"iaac:90830": {
+"comment_deadline": "2026-11-15",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
+},
+"iaac:90322": {
+"comment_deadline": "2026-12-15",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Reconstruction of Wharf 402 - Mont-Louis Harbour, Gaspésie"
+},
+"iaac:90891": {
+"comment_deadline": "2026-12-13",
+"stage_kind": "open",
+"tier": "weak",
+"title": "New dock installation – 2820 Panorama Drive"
+},
+"iaac:90491": {
+"comment_deadline": "2026-11-24",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Hopkins Slipway Extension – Canadian Coast Guard Academy"
+},
+"iaac:90794": {
+"comment_deadline": "2026-11-23",
+"stage_kind": "open",
+"tier": "weak",
+"title": "Lazy Head Marine Terminal Project"
+},
+"scot_marine:00011871, 00011872 & 00011873": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Additional Information - Ardersier Port Expansion Project - Ardersier Port"
+},
+"iaac:90797": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Suncor Dredging - West Dock Berth"
+},
+"iaac:90698": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Shoreline Protection - Whitby, Ontario"
+},
+"iaac:90783": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Wharf Reconstruction at Carmanville SCH, NL"
+},
+"iaac:90805": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL"
+},
+"iaac:90777": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Wharf Reconstruction at the Red Head Small Craft Harbour, Kings County, Prince Edward Island"
+},
+"scot_marine:00012484": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Seagrass Planting - SE of Isle of Berneray, Sound of Harris, Western Isles"
+},
+"iaac:90784": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Wharf Reconstruction at Harbour Breton SCH, NL"
+},
+"iaac:90782": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Wharf Reconstruction at Mary's Harbour SCH, NL"
+},
+"nl_ea:2357": {
+"comment_deadline": "2025-07-04",
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Chapel’s Cove Breakwater"
+},
+"iaac:90307": {
+"comment_deadline": "2026-11-01",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Raising of the COOP Wharf- L'Étang-du-Nord Harbour – Magdalen Islands"
+},
+"nl_ea:2393": {
+"comment_deadline": "2026-04-10",
+"stage_kind": "decided",
+"tier": "weak",
+"title": "St. John’s Dockyard Upgrades"
+},
+"iaac:90781": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Wharf Reconstruction at Hermitage SCH, NL"
+},
+"scot_marine:00011153 / 00011950": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe"
+},
+"iaac:90822": {
+"comment_deadline": "2026-11-05",
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit"
+},
+"scot_marine:00011654": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Capital Dredging & Sea Disposal - Peterhead Bay Marina and Port Henry"
+},
+"scot_marine:00010232/00011498 & 00010230/00011497 & 00010231": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Approval Letter - Green Volt Offshore Windfarm - East of Aberdeenshire Coast"
+},
+"nl_ea:2429": {
+"comment_deadline": "2026-09-11",
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Crémaillère Harbour Marine Port Development Resubmission"
+},
+"scot_marine:00012343": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Morven North Offshore Wind Array – 61km off Aberdeenshire Coast"
+},
+"scot_marine:00012345": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Morven South Offshore Wind Array – 86km off Aberdeenshire Coast"
+},
+"scot_marine:screening opinion berth reconstruction montrose port scr 0103": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103"
+},
+"iaac:90786": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Wharf Reconstruction at Wigwam Point SCH, NL"
+},
+"iaac:90863": {
+"comment_deadline": "2026-11-28",
+"stage_kind": "open",
+"tier": "notrel",
+"title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection"
+},
+"fed_register:2026-21419": {
+"comment_deadline": "2026-11-19",
+"stage_kind": "open",
+"tier": "notrel",
+"title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia"
+},
+"scot_marine:00012432/00011450": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Rock Armour Installation - Stromeferry"
+},
+"fed_register:2026-20789": {
+"comment_deadline": "2026-11-12",
+"stage_kind": "closed",
+"tier": "notrel",
+"title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska"
+},
+"fed_register:2026-20222": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Marine Structure Maintenance and Pile Replacement Program in Puget Sound, Washington"
+},
+"fed_register:2026-18024": {
+"comment_deadline": "2026-09-18",
+"stage_kind": "closed",
+"tier": "notrel",
+"title": "Oregon Department of Transportation's Yaquina Bay Dolphin Replacement Project in Newport, Oregon"
+},
+"fed_register:2026-18458": {
+"comment_deadline": "2026-10-13",
+"stage_kind": "closed",
+"tier": "notrel",
+"title": "PetroMarine Services Juneau Rock Dump Terminal Reconstruction Project, Juneau, Alaska"
+},
+"fed_register:2026-17614": {
+"comment_deadline": "2026-09-28",
+"stage_kind": "closed",
+"tier": "notrel",
+"title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington"
+}
+},
 "events": {
 "iaac:90862": [
 {
@@ -622,6 +713,11 @@
 "date": "2026-11-12",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-13",
+"type": "tier",
+"text": "Tier changed from weak to possible"
 }
 ],
 "scot_marine:screening opinion berth reconstruction montrose port scr 0103": [
@@ -636,11 +732,114 @@
 "date": "2026-11-12",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-13",
+"type": "tier",
+"text": "Tier changed from weak to possible"
 }
 ],
 "iaac:90786": [
 {
 "date": "2026-11-12",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00012497": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:bowdun offshore wind farm east of aberdeenshire": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00011402": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:additional information public notice ardersier port expansion phase 2": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"iaac:90890": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"iaac:90891": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00011871, 00011872 & 00011873": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"fed_register:2026-21419": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00012432/00011450": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"fed_register:2026-20789": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"fed_register:2026-20222": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"fed_register:2026-18024": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"fed_register:2026-18458": [
+{
+"date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"fed_register:2026-17614": [
+{
+"date": "2026-11-13",
 "type": "new",
 "text": "First listed"
 }
