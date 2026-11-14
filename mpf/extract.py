@@ -206,9 +206,12 @@ def lang_ok(pattern: str, language: str | None) -> bool:
 def find_patterns(text: str, groups: dict, negated=is_negated, language: str | None = None) -> dict:
     """For each rule group in the scoring config, the first non-negated match and its sentence.
     Optional per-group keys (buyer profiles only): exclude_sentence (skip a match whose sentence matches)
-    and require_sentence (count a match only when its sentence also matches)."""
+    and require_sentence (count a match only when its sentence also matches). require_text (any scorer):
+    the group counts only when the notice text also matches it somewhere."""
     hits = {}
     for name, rule in groups.items():
+        if rule.get("require_text") and not re.search(rule["require_text"], text, re.IGNORECASE):
+            continue
         for pat in rule["patterns"]:
             if not lang_ok(pat, language):
                 continue

@@ -57,6 +57,9 @@ sources:
     max_projects: 30
     fetch_pdf: true
     max_pdf_mb: 5
+    # Notices about one project filed under different references, merged into one entry (newest notice kept).
+    # A phrase matches any project name that contains it.
+    same_project: ["ardersier port expansion"]
   es_boe:
     enabled: true
     # Read and scored every run, but not shown on the site: its notices are mostly port leases and licences,

@@ -334,8 +334,17 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
             skipped["bad_link"] += 1
         else:
             kept.append(r)
+    # A notice that a more recently read entry carries among its documents (Scotland: merged into that entry)
+    # is not shown on its own.
+    carried = {}
+    for r in kept:
+        for d in _extra(r).get("documents") or []:
+            if d.get("url") and d["url"] != r["url"]:
+                carried.setdefault(d["url"], []).append(r)
+    absorbed = [r for r in kept if any((c["last_seen"] or "") > (r["last_seen"] or "") for c in carried.get(r["url"], []))]
+    kept = [r for r in kept if r not in absorbed]
     losers = find_duplicates(kept, settings.get("duplicates", {}))
-    skipped["merged_duplicates"] = len(losers)
+    skipped["merged_duplicates"] = len(losers) + len(absorbed)
     by_key = {r["key"]: r for r in kept}
     from mpf.config import load_scoring
     scoring = settings.get("scoring") or load_scoring()
@@ -2064,7 +2073,9 @@ that mitigation or compensation is required. Only the regulator decides that.</p
 <p>Where a source's terms allow it, each listing shows short quotes: complete sentences copied exactly from the
 notice, chosen because they describe the project and its habitat signals, so you can judge for yourself. Where
 they do not (at the moment, Scotland's marine licensing site), the listing shows short facts, the words that
-matched and a link to the official notice instead.</p>
+matched and a link to the official notice instead. US Federal Register notices also show no quotes: they are
+mostly about marine mammals and noise, so their cards show only what the notice says about the construction,
+and a link.</p>
 
 <h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has

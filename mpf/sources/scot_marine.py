@@ -137,6 +137,23 @@ def merge_licences(groups: dict[str, list[dict]]) -> dict[str, list[dict]]:
     return out
 
 
+def merge_same_project(groups: dict[str, list[dict]], names: list[str]) -> dict[str, list[dict]]:
+    """Join groups whose project name contains the same phrase from the settings list (sources.scot_marine.
+    same_project), e.g. two notices about the Ardersier port expansion filed under different references.
+    The group with the newest document keeps the entry."""
+    out = dict(groups)
+    for phrase in names or []:
+        ph = re.sub(r"\W+", " ", phrase.lower()).strip()
+        keys = [k for k, docs in out.items()
+                if any(ph in re.sub(r"\W+", " ", project_name(d["title"]).lower()) for d in docs)]
+        if len(keys) > 1:
+            keys.sort(key=lambda k: max(d["updated"] or "" for d in out[k]), reverse=True)
+            out[keys[0]] = [d for k in keys for d in out[k]]
+            for k in keys[1:]:
+                del out[k]
+    return out
+
+
 def project_name(title: str) -> str:
     t = _DOC_WORDS.sub("", title)
     t = re.sub(r"\s*[-–]\s*(Marine Licence Granted|Licence Granted|\d{8})\b.*$", "", t)
@@ -196,7 +213,7 @@ class ScotMarineSource(Source):
                 continue
             for row in parse_listing(html):
                 groups.setdefault(project_key(row["title"]), []).append(row)
-        groups = merge_licences(groups)
+        groups = merge_same_project(merge_licences(groups), self.conf.get("same_project") or [])
         cap = int(self.conf.get("max_projects", 40))
         ordered = sorted(groups.items(), key=lambda kv: max(r["updated"] or "" for r in kv[1]), reverse=True)[:cap]
         self.log.append(f"{sum(len(v) for v in groups.values())} documents in {len(groups)} projects; reading {len(ordered)}")

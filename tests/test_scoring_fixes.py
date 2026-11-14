@@ -82,8 +82,9 @@ def test_plain_wharf_mention_is_unchanged():
 # Fix 4: pontoon and moorings are scoring words; moorings alone never list a project.
 def test_pontoon_and_moorings():
     assert "type:wharf_dock" in _rules("Pontoons - Easdale Island Community Harbour, Oban.")
+    # Round 4: moorings alone (no structure larger than one float) add nothing, and are never listed.
     s = score_text("Moorings - Achnacree Bay, Loch Etive. Marine licence application.", R)
-    assert "type:moorings" in {r["rule"] for r in s["reasons"]} and s["score"] < 20
+    assert "type:moorings" not in {r["rule"] for r in s["reasons"]} and s["score"] < 20
 
 
 # Fix 11: SARA only as Canada's Species at Risk Act.

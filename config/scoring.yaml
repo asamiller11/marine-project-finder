@@ -129,9 +129,12 @@ project_types:
       - '(?#fr)\b(réfection|remplacement|prolongement|construction|réhabilitation|relocalisation|installation|stabilisation|nouvel(le)?)\b[^.;]{0,40}\b(émissaire|prise d.eau|exutoire)'
       - '(?#fr)\b(émissaire|prise d.eau|exutoire)s?\b[^.;]{0,30}\b(sera|seront)\s+(remplacé|prolongé|déplacé|reconstruit|réhabilité)'
   # Moorings are usually small (a buoy and a block), so they add a little but never list a project alone.
+  # They count only when the notice names a structure larger than one float (several floats or pontoons,
+  # a marina, berths, a wharf, terminal, quay, jetty, dolphins or breakwater), so one private dock float adds nothing.
   moorings:
     points: 8
     label: "Moorings"
+    require_text: '\b(floats|pontoons|floating (docks|piers|breakwaters?|wave attenuators?)|marinas?|berths|slips|mooring (fields?|areas?|buoys)|wharf|wharves|terminals?|dolphins|cribs|quays?|jett(y|ies)|breakwaters?|pontons|quais?|brise-lames|appontements?)\b'
     patterns:
       - '\bmoorings?\b'
       - '\bmouillages?\b|\bcorps-morts?\b'
