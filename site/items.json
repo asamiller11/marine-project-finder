@@ -49,7 +49,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -24,
+   "days_left": -25,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -144,7 +144,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -301,
+   "days_left": -302,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -235,7 +235,7 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 2,
+   "days_left": 1,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -375,9 +375,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -470,9 +468,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -488,7 +484,6 @@
   "water_body": "unknown",
   "types": [
    "Offshore wind",
-   "Moorings",
    "Piles or pile-supported structure"
   ],
   "stage": "under assessment",
@@ -496,10 +491,10 @@
   "comment_deadline": null,
   "decision_date": null,
   "approved_on": null,
-  "score": 48,
+  "score": 45,
   "tier": "possible",
   "tier_label": "Possible",
-  "tier_reason": "score 48",
+  "tier_reason": "score 45",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions offshore wind and pile work and an area of about 1,000 m2.",
   "summary_note": "auto",
@@ -759,9 +754,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -856,9 +849,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -904,7 +895,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -140,
+   "days_left": -141,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1191,7 +1182,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-13",
-   "days_left": 30,
+   "days_left": 29,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1244,9 +1235,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -1290,7 +1279,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 17,
+   "days_left": 16,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1387,7 +1376,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-11",
-   "days_left": 28,
+   "days_left": 27,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1485,7 +1474,7 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 14,
+   "days_left": 13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1577,7 +1566,7 @@
    "opens": "2026-10-26",
    "opens_how": "notice date",
    "closes": "2026-11-14",
-   "days_left": 1,
+   "days_left": 0,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1669,7 +1658,7 @@
    "opens": "2026-10-16",
    "opens_how": "notice date",
    "closes": "2026-11-15",
-   "days_left": 2,
+   "days_left": 1,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1760,7 +1749,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-12-15",
-   "days_left": 32,
+   "days_left": 31,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1817,107 +1806,6 @@
   "first_listed": "2026-11-12"
  },
  {
-  "id": "iaac:90891",
-  "title": "New dock installation – 2820 Panorama Drive",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90891?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Upland Owner",
-  "country": "CA",
-  "province": "British Columbia",
-  "language": "en",
-  "water_body": "Deep Cove",
-  "types": [
-   "Wharf, pier or large dock",
-   "Moorings",
-   "Piles or pile-supported structure"
-  ],
-  "stage": "public comment open until 2026-12-13",
-  "stage_kind": "open",
-  "comment_deadline": "2026-12-13",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 21,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 21",
-  "reviewed": false,
-  "summary": "Project by Upland Owner in Deep Cove, British Columbia. The notice mentions pile and wharf or dock work.",
-  "summary_note": "auto",
-  "quotes": [
-   "The gangway, ramp and mooring float will be constructed off site at an upland location, transported to the site by water and installed using a crane/davit on a floating barge/vessel.",
-   "The Project consists of the installation of a prefabricated dock including an aluminum gangway and ramp and a rectangular float in the water.",
-   "The six piles would be installed using a vibratory hammer on a floating barge."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90891.html",
-  "comments": {
-   "opens": "2026-11-13",
-   "opens_how": "stated",
-   "closes": "2026-12-13",
-   "days_left": 30,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 23,
-    "because": "Wharf, pier or large dock; Piles or pile-supported structure"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-13"
- },
- {
   "id": "iaac:90491",
   "title": "Hopkins Slipway Extension – Canadian Coast Guard Academy",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90491?culture=en-CA",
@@ -1956,7 +1844,7 @@
    "opens": "2026-11-05",
    "opens_how": "notice date",
    "closes": "2026-11-24",
-   "days_left": 11,
+   "days_left": 10,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2052,7 +1940,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-23",
-   "days_left": 10,
+   "days_left": 9,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2107,103 +1995,6 @@
   ],
   "changes": [],
   "first_listed": "2026-11-11"
- },
- {
-  "id": "scot_marine:00011871, 00011872 & 00011873",
-  "title": "Additional Information - Ardersier Port Expansion Project - Ardersier Port",
-  "url": "https://marine.gov.scot/?q=node/28283",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Port or marine terminal",
-   "Dredging",
-   "Offshore wind"
-  ],
-  "stage": "under assessment",
-  "stage_kind": "assessment",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 34,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 34",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions dredging, offshore wind and port or terminal work and a length of about 50 m.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/scot_marine-00011871--00011872---00011873.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 29,
-    "because": "Port or marine terminal; Offshore wind; size 50 m"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-13"
  },
  {
   "id": "iaac:90797",
@@ -2993,7 +2784,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -497,
+   "days_left": -498,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3084,7 +2875,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": -12,
+   "days_left": -13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3177,7 +2968,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -217,
+   "days_left": -218,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3455,7 +3246,7 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": -8,
+   "days_left": -9,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3732,7 +3523,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -63,
+   "days_left": -64,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4187,7 +3978,7 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 15,
+   "days_left": 14,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4283,7 +4074,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-19",
-   "days_left": 6,
+   "days_left": 5,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4308,9 +4099,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -4404,9 +4193,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -4448,7 +4235,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-12",
-   "days_left": -1,
+   "days_left": -2,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4473,9 +4260,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -4541,9 +4326,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -4584,7 +4367,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-18",
-   "days_left": -56,
+   "days_left": -57,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4609,9 +4392,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -4654,7 +4435,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-13",
-   "days_left": -31,
+   "days_left": -32,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4679,9 +4460,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  },
  {
@@ -4725,7 +4504,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-28",
-   "days_left": -46,
+   "days_left": -47,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4750,9 +4529,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-13"
  }
 ]
