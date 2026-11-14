@@ -148,3 +148,32 @@ def test_french_words_only_in_french_notices():
     assert "type:port_terminal" in {r["rule"] for r in score_text(french, R, language="fr")["reasons"]}
     assert "type:port_terminal" in {r["rule"] for r in score_text(french, R)["reasons"]}          # unknown language
     assert "type:wharf_dock" not in {r["rule"] for r in score_text("Le quai sera refait.", R, language="en")["reasons"]}
+
+
+def test_country_order_is_the_same_for_general_and_profile_only_cards(tmp_path):
+    import re
+    conn = db.connect(Path(":memory:"))
+    gb = Item(source="scot_marine", item_id="1", url="https://example.org/gb", title="Capital Dredging - Port of Dundee",
+              full_text="Capital dredging of the harbour berth.", country="GB", province="Scotland", language="en")
+    us = Item(source="fed_register", item_id="2", url="https://example.org/us", title="Seawalk Extension Project, Juneau, Alaska",
+              full_text="x", country="US", province="Alaska", language="en")
+    ca = Item(source="iaac", item_id="3", url="https://example.org/ca", title="Wharf Reconstruction at Hermitage SCH",
+              full_text="Wharf reconstruction in the harbour.", country="CA", province="Newfoundland and Labrador", language="en")
+    for it in (gb, us, ca):
+        db.upsert_item(conn, it)
+    conn.execute("UPDATE items SET score=30, project_types='[]', reasons='[]', facts='{}', stage='unknown' "
+                 "WHERE source IN ('scot_marine', 'iaac')")
+    conn.execute("UPDATE items SET score=0, project_types='[]', reasons='[]', stage='unknown', facts=? WHERE source='fed_register'",
+                 (json.dumps({"iha": {"score": 41, "because": "pile driving, 230 piles"}}),))
+    settings = dict(S, sources={"scot_marine": {"enabled": True}, "fed_register": {"enabled": True},
+                                "iaac": {"enabled": True}})
+    records, _ = site.build_public_records(conn, {}, settings, TODAY)
+    assert {r["country"] for r in records} == {"CA", "GB", "US"}
+    site.write_site(tmp_path, records, settings, TODAY)
+    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    found = re.findall(r'data-country="(\w+)"[^>]*?data-country-order="(\d+)"', html)
+    by_country = {}
+    for c, o in found:
+        by_country.setdefault(c, set()).add(o)
+    assert all(len(v) == 1 for v in by_country.values()), by_country      # one order per country
+    assert by_country["GB"] != by_country["US"]                            # different countries never share one

@@ -1457,6 +1457,9 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     names = {c["code"]: c["name"] for c in coverage.get("countries", [])}
     names.update({c["code"]: c["name"] for c in countries})
 
+    # One country order for every card (general list and profile-only), from the coverage page, so the page groups
+    # a country's cards together whichever list they come from.
+    order = {c["code"]: i for i, c in enumerate(coverage.get("countries", []))}
     country_sections = []
     for ci, c in enumerate(countries):
         recs_c = [r for r in records if (r.get("country") or UNKNOWN) == c["code"]]
@@ -1469,7 +1472,8 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
                 f'<section class="tier" data-country="{escape(c["code"])}" data-tier="{t}">\n'
                 f'<h3>{TIER_LABELS[t]} <span class="count">{len(recs)}</span></h3>\n'
                 f'<p class="tier-desc">{escape(td[t])}</p>\n<div class="cards">\n'
-                + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested, ci, site) for r in recs)
+                + "\n".join(_card(r, names.get(c["code"], c["code"]), less_tested, order.get(c["code"], 999), site)
+                            for r in recs)
                 + "\n</div>\n</section>")
         note = f'<p class="country-note">{escape(c.get("note", ""))}</p>' if c.get("note") else ""
         country_sections.append(
@@ -1481,7 +1485,6 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     csv_data = json.dumps({"columns": csv_columns(meta), "rows": {r["id"]: csv_row(r, names, site, meta)
                                                                   for r in all_records}},
                           ensure_ascii=False).replace("</", "<\\/")
-    order = {c["code"]: i for i, c in enumerate(coverage.get("countries", []))}
     extra_cards = "\n".join(_card(r, names.get(r.get("country"), r.get("country") or UNKNOWN), less_tested,
                                   order.get(r.get("country"), 999), site) for r in all_records if r.get("profile_only"))
     prof_json = json.dumps(profile_data(all_records, meta), ensure_ascii=False).replace("</", "<\\/")
