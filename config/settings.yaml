@@ -55,11 +55,13 @@ sources:
     enabled: true
     # Each project page costs one request at a 10 second crawl delay, plus one for its first attached PDF.
     max_projects: 30
-    # OFF until the owner approves how licence-only notices (species licences, fish farms, safety zones) are kept out.
-    fetch_pdf: false
+    fetch_pdf: true
     max_pdf_mb: 5
   es_boe:
     enabled: true
+    # Read and scored every run, but not shown on the site: its notices are mostly port leases and licences,
+    # not construction projects (audit 2026-11-12). Set to true to show it again.
+    public: false
     lookback_days: 21
     max_items: 60
   fr_eolien:
@@ -68,10 +70,10 @@ sources:
     enabled: false
     max_projects: 30
   fed_register:
-    # OFF until the owner approves the sample results (batch 2). US Federal Register API, NOAA Fisheries
-    # incidental harassment notices for pile driving at docks, wharves, piers and terminals. Public domain;
-    # robots.txt allows /api/v1/. One request per run.
-    enabled: false
+    # US Federal Register API, NOAA Fisheries incidental harassment notices for pile driving at docks, wharves,
+    # piers and terminals. Public domain; robots.txt allows /api/v1/ and /documents/full_text/. One request for the
+    # list plus one per new notice (full text, fetched once). Shown only under the hard-structure profile.
+    enabled: true
     term: '"incidental harassment authorization" pile driving'
     per_page: 10
   drop_folder:
@@ -114,6 +116,12 @@ tiers:
     - '\baggregate\b'
     # Hydroelectric stations and dams are not marine construction (tidal power is kept).
     - '^(?!.*\btidal\b).*\b(generating station|hydroelectric|hydro dam|powerhouse)\b'
+    # Licences and documents that are not a construction project (Scotland): species licences, fish farms,
+    # wind-farm safety zones, consultee comments. A species licence for a listed job is merged into that job.
+    - '^(European Protected Species|Basking Shark)\b'
+    - '\bmarine farm\b'
+    - '\bsafety zone\b'
+    - '^(consultee|consultation) (representations?|responses?|comments?)\b'
 
 duplicates:
   # The same project listed by two sources is shown once. Keep the first source in this list.

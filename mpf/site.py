@@ -280,7 +280,15 @@ def make_record(row: dict, review_row: dict, settings: dict, today: date,
         "also_listed": [],
         "page": f"p/{page_slug(row['key'])}.html",
         "comments": comment_info(row, _extra(row), today),
+        # Several licences for one job (Scotland): every licence type, merged into one entry.
+        "licence_types": list(_extra(row).get("licence_types") or []),
     }
+
+
+def _licences_row(rec: dict) -> str:
+    """'Licences' fact row when one job has several licences (Scotland), else nothing."""
+    types = rec.get("licence_types") or []
+    return f"\n<dt>Licences</dt><dd>{escape('; '.join(types))}</dd>" if len(types) > 1 else ""
 
 
 def approval_date(row: dict, kind: str, today: date) -> str | None:
@@ -314,6 +322,9 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
     enabled = enabled_sources(settings)
     if enabled is not None:      # items from a source that is switched off never reach the site
         rows = [r for r in rows if r["source"] in enabled]
+    # A source can be read and scored but kept off the site (sources.<name>.public: false).
+    hidden = {n for n, c in (settings.get("sources") or {}).items() if isinstance(c, dict) and c.get("public") is False}
+    rows = [r for r in rows if r["source"] not in hidden]
     skipped = {"hidden_by_you": 0, "bad_link": 0, "merged_duplicates": 0, "not_relevant": 0}
     kept = []
     for r in rows:
@@ -1297,7 +1308,7 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(location)}</dd>
-<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
+<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
 <dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
 {comments}
 </dl>
@@ -1846,7 +1857,7 @@ at each update.</p>
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
-<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
+<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
 <dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
 </dl>
 </section>
@@ -1935,7 +1946,7 @@ def _shortlist_item(rec: dict, rank: int, key: str, site: dict, country_name: st
 <dl class="facts">
 <dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
-<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>
+<dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
 <dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
 <dt>Comments close</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
 </dl>

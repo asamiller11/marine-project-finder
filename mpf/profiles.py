@@ -11,6 +11,7 @@ These are rule-based guesses. A flag never states that mitigation is required.
 from __future__ import annotations
 
 import copy
+import json
 import re
 
 from mpf.extract import extract_sizes, find_patterns, largest_sizes, strict_negation
@@ -25,7 +26,9 @@ EMPTY_NOTE = "No current projects match. Today's sources rarely describe this ha
 
 
 def _group(conf: dict, points: int) -> dict:
-    g = {"label": conf["label"], "points": points, "patterns": [conf[k] for k in LANGS if conf.get(k)]}
+    # French patterns are marked so they count only in French notices (mpf.extract.lang_ok).
+    g = {"label": conf["label"], "points": points,
+         "patterns": [("(?#fr)" + conf[k]) if k == "fr" else conf[k] for k in LANGS if conf.get(k)]}
     for key in ("exclude_sentence", "require_sentence"):
         if conf.get(key):
             g[key] = conf[key]
@@ -84,10 +87,10 @@ class ProfileScorer:
                 return False
         return True
 
-    def score(self, text: str, title: str, key: str, tiers_conf: dict) -> dict:
+    def score(self, text: str, title: str, key: str, tiers_conf: dict, language: str | None = None) -> dict:
         """{"score", "core", "because", "notes"} for one profile. score 0 = not listed for it."""
         p = self.profiles[key]
-        s = score_text(text, p["rules"], negated=self.negated, size_ok=self.size_ok)
+        s = score_text(text, p["rules"], negated=self.negated, size_ok=self.size_ok, language=language)
         hits = set(s["facts"]["types"]) | set(s["facts"]["habitat_clues"])
         core = hits & p["core"]
         if not core:
@@ -102,7 +105,7 @@ class ProfileScorer:
             small = bool(big) and big.get("length_m", 0) < lim.get("max_length_m", 100) \
                 and big.get("area_m2", 0) < lim.get("max_area_m2", 2000) \
                 and big.get("volume_m3", 0) < lim.get("max_volume_m3", 5000)
-            repair = find_patterns(f"{title}. {text}", {"r": p["repair"]}, self.negated)
+            repair = find_patterns(f"{title}. {text}", {"r": p["repair"]}, self.negated, language)
             cap = tiers_conf.get("possible_min", 35) - 1
             if repair and small and not (hits & p["habitat_words"]) and score > cap:
                 notes.append("small routine repair, kept at Weak")
@@ -137,11 +140,32 @@ def profile_tier(row: dict, score: int, tiers_conf: dict, general_tier: str) -> 
     return tier_for({**row, "score": score}, tiers_conf)[0]
 
 
+# Sources shown under one profile only, scored by their own rule (stored in facts.iha), at Possible or Weak.
+PROFILE_ONLY_SOURCES = {"fed_register": "hard-structure"}
+
+
+def _own_rule_result(row: dict, tiers_conf: dict) -> dict:
+    """Profile result for a profile-only source: never Strong, Weak allowed."""
+    try:
+        facts = row.get("facts") if isinstance(row.get("facts"), dict) else json.loads(row.get("facts") or "{}")
+    except ValueError:
+        facts = {}
+    iha = facts.get("iha") or {}
+    score = int(iha.get("score") or 0)
+    tier = profile_tier(row, score, tiers_conf, "notrel")
+    tier = {"strong": "possible"}.get(tier, tier)
+    return {"tier": tier, "tier_label": TIER_LABELS[tier], "score": min(score, int(tiers_conf.get("strong_min", 60)) - 1),
+            "because": iha.get("because") or "", "min": int(tiers_conf.get("weak_min", 20))}
+
+
 def profile_results(row: dict, general_tier: str, scorer: ProfileScorer, tiers_conf: dict) -> dict:
     """Profile key -> {"tier", "tier_label", "score", "because"} for every profile."""
+    own = PROFILE_ONLY_SOURCES.get(row.get("source"))
+    if own:
+        return {own: _own_rule_result(row, tiers_conf)} if own in scorer.profiles else {}
     out = {}
     for key in scorer.profiles:
-        r = scorer.score(row.get("full_text") or "", row.get("title") or "", key, tiers_conf)
+        r = scorer.score(row.get("full_text") or "", row.get("title") or "", key, tiers_conf, row.get("language"))
         tier = profile_tier(row, r["score"], tiers_conf, general_tier)
         out[key] = {"tier": tier, "tier_label": TIER_LABELS[tier], "score": r["score"], "because": r["because"]}
     return out
@@ -154,7 +178,7 @@ def listed_in_profile(rec: dict, key: str, possible_min: int = 35) -> bool:
         return False
     if rec.get("tier") in PROFILE_TIERS + ("watch",):
         return True
-    return p["score"] >= possible_min
+    return p["score"] >= p.get("min", possible_min)
 
 
 def is_freshwater(row: dict, conf: dict | None) -> bool:

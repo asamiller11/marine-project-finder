@@ -21,6 +21,8 @@ import re
 from typing import Iterator
 from urllib.parse import urlencode
 
+import requests
+
 from mpf.http import Blocked
 from mpf.models import UNKNOWN, Item
 from mpf.sources.base import Source
@@ -57,6 +59,12 @@ def search_url(term: str = DEFAULT_TERM, per_page: int = 10, page: int = 1) -> s
     params = [("conditions[term]", term), ("order", "newest"), ("per_page", str(per_page)), ("page", str(page))]
     params += [("fields[]", f) for f in FIELDS]
     return API + "?" + urlencode(params)
+
+
+def full_text_url(doc: dict) -> str:
+    """The notice's plain-text full text (allowed by robots.txt): /documents/full_text/text/YYYY/MM/DD/<number>.txt"""
+    y, m, d = (doc.get("publication_date") or "0000-00-00").split("-")
+    return f"https://www.federalregister.gov/documents/full_text/text/{y}/{m}/{d}/{doc.get('document_number')}.txt"
 
 
 def parse_results(data: bytes) -> tuple[int, list[dict]]:
@@ -121,9 +129,14 @@ def doc_to_item(doc: dict) -> Item:
         project_type_raw=works_of(project + " " + abstract),
         date_posted=doc.get("publication_date"), comment_deadline=doc.get("comments_close_on"),
         decision_date=doc.get("publication_date") if decided else None,
-        status_raw=clean(doc.get("action")) or UNKNOWN, stage=stage,
+        # Plain words the stage logic understands ("authorized" = decided); the notice's own action is kept in extra.
+        status_raw="authorized (incidental harassment authorization issued)" if decided else
+                   ("proposed authorization; public comments requested" if doc.get("comments_close_on") else "under assessment"),
+        stage=stage,
         full_text="\n".join(t for t in (title, abstract, clean(doc.get("dates"))) if t),
-        extra={"notice_title": title, "doc_type": doc.get("type"), "effective_on": doc.get("effective_on")},
+        extra={"notice_title": title, "doc_type": doc.get("type"), "effective_on": doc.get("effective_on"),
+               "action": clean(doc.get("action")), "abstract": abstract, "document_number": doc.get("document_number"),
+               "link_ok": True},
     )
 
 
@@ -143,7 +156,20 @@ class FedRegisterSource(Source):
         self.log.append(f"{total} matching documents; read the newest {len(results)}, kept {len(kept)} from NOAA")
         for doc in kept:
             item = doc_to_item(doc)
-            item.raw_path = str(self.client.cached_path(url) or "")
+            body = ""
+            if self.conf.get("fetch_full_text", True):
+                try:
+                    body = self.client.get(full_text_url(doc)).decode("utf-8", "replace")   # fetched once, cached
+                except Blocked as e:
+                    self.log.append(f"STOPPED: {e}")
+                    return
+                except requests.RequestException as e:
+                    self.log.append(f"full text skipped {doc.get('document_number')}: {type(e).__name__}")
+            if body:
+                item.full_text = item.full_text + "\n" + body
+                item.raw_path = str(self.client.cached_path(full_text_url(doc)) or "")
+            else:
+                item.raw_path = str(self.client.cached_path(url) or "")
             yield item
 
 
@@ -201,7 +227,7 @@ def iha_score(title: str, abstract: str, full_text: str, rules: dict) -> dict:
         reasons.append({"rule": "cap:not_construction", "label": "Not construction (research, survey, exploration ...)",
                         "points": 0, "matched": NOT_CONSTRUCTION.search(title).group(0), "quote": title})
         return {"score": 0, "flagged": False, "reasons": reasons, "project_types": [], "size_summary": "",
-                "facts": {"piles": 0, "description_found": bool(desc)}}
+                "facts": {"piles": 0, "description_found": bool(desc)}, "because": "not construction"}
     types = find_patterns(work, rules["project_types"])
     for name in list(types):
         gone = rules["project_types"][name].get("replaces")
@@ -212,19 +238,24 @@ def iha_score(title: str, abstract: str, full_text: str, rules: dict) -> dict:
     for i, (name, hit) in enumerate(ranked):
         reasons.append({"rule": f"type:{name}", "label": hit["label"], "points": hit["points"] if i == 0 else (3 if i <= 2 else 0),
                         "matched": hit["matched"], "quote": hit["quote"]})
-    # Habitat words only from the project's own description, never the marine-mammal wording every notice repeats.
-    clues = {k: v for k, v in find_patterns(desc, rules["habitat_clues"]).items()
-             if k not in ("species_at_risk", "mitigation_general")}
-    habitat_points = min(rules["caps"]["habitat_points_max"], sum(h["points"] for h in clues.values()))
-    for name, hit in sorted(clues.items(), key=lambda kv: -kv[1]["points"]):
-        reasons.append({"rule": f"habitat:{name}", "label": hit["label"], "points": hit["points"],
-                        "matched": hit["matched"], "quote": hit["quote"]})
-    # Only counts stated in the description: tables elsewhere hold noise distances and take numbers.
+    # No habitat words: these notices are about marine mammals and noise, and the listing must never suggest habitat
+    # work. Only counts stated in the description: tables elsewhere hold noise distances and take numbers.
     piles = pile_count(desc)
     pts = next((p for n, p in PILE_POINTS if piles >= n), 0)
     if pts:
         reasons.append({"rule": "size:piles", "label": f"{piles} piles", "points": pts, "matched": str(piles), "quote": ""})
-    total = max(0, min(100, type_points + habitat_points + pts))
+    total = max(0, min(100, type_points + pts))
     return {"score": total, "flagged": total >= rules["flag_threshold"], "reasons": reasons,
             "project_types": list(dict.fromkeys(types[k]["label"] for k in types)), "size_summary": f"{piles} piles" if piles else "",
-            "facts": {"piles": piles, "description_found": bool(desc), "types": sorted(types)}}
+            "facts": {"piles": piles, "description_found": bool(desc), "types": sorted(types),
+                      "pile_driving": bool(re.search(r"\bpile driving\b", work, re.I))},
+            "because": iha_because(types, piles, bool(re.search(r"\bpile driving\b", work, re.I)))}
+
+
+def iha_because(types: dict, piles: int, pile_driving: bool) -> str:
+    """What the notice says about the construction, e.g. 'pile driving, 230 piles; wharf, pier or large dock'.
+    Never mentions habitat."""
+    first = ", ".join(x for x in ("pile driving" if pile_driving else "", f"{piles} piles" if piles else "") if x)
+    labels = [t["label"].lower() for k, t in types.items() if k != "piles"]
+    parts = [p for p in [first] + list(dict.fromkeys(labels)) if p]
+    return "; ".join(parts) if parts else "in-water construction named in the notice"

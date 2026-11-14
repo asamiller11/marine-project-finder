@@ -33,6 +33,45 @@ _DOC_WORDS = re.compile(r"^(Marine Licence( Variation| Application)?|Consultatio
                         r"Consent Decision|Public Notice)\s*[-–:]\s*", re.I)
 
 
+# The application PDF is a form. Its printed guidance ("When a proposed future dredging level is known this must also be
+# shown", "Bridges over tidal waters: ...", "shellfish harvesting areas") appears in every application and must not be
+# scored. Sentences that read like form instructions are dropped; the applicant's own answers stay.
+_FORM = re.compile(r"\be\.g\.|\bi\.e\.|\bplease\b|\bprovide (the|a|details|an?)\b|\bmust (also )?(be|show|include|state)\b|"
+                   r"\bwhere (relevant|applicable|appropriate|the proposed)|\bif (applicable|relevant|known|yes|no)\b|"
+                   r"\bshould (be|include|show)\b|\byou (must|should|will|may|need)\b|\bapplicants?\b|\bthis form\b|"
+                   r"\bguidance\b|\bnotes?:|\bsee (section|note|annex|guidance)|\bactivities where\b|\bsuch as\b|"
+                   r"\b(tick|delete) (as appropriate|the box)|\bthe licensing authority\b|\bwill not be (backdated|accepted)|"
+                   r"\bthe licensee\b|"
+                   # Headings and lists printed on every version of the form or licence.
+                   r"construction of a new sea outfall|disposal of dredged substance|land reclamation,? (or )?marine/harbour|"
+                   r"special areas? of conservation|licensable activit|materials to be used|maximum amounts? as specified|"
+                   r"determination of a marine licence|indicate the maximum depth", re.I)
+
+
+def _sentences(text: str) -> list[str]:
+    return [p.strip() for p in re.split(r"(?<=[.!?])\s+|\n+", text or "") if p.strip()]
+
+
+def _norm_sentence(s: str) -> str:
+    return re.sub(r"[\d\W_]+", " ", s.lower()).strip()
+
+
+def common_sentences(texts: list[str], min_docs: int = 3) -> set[str]:
+    """Sentences (normalised) that appear in at least min_docs different documents: the form's own wording."""
+    from collections import Counter
+    seen = Counter()
+    for t in texts:
+        seen.update({_norm_sentence(s) for s in _sentences(t) if len(_norm_sentence(s)) >= 12})
+    return {s for s, n in seen.items() if n >= min_docs}
+
+
+def strip_form_text(text: str, common: set[str] | None = None) -> str:
+    """The applicant's own text from an application form: drop the form's printed instructions, and any sentence
+    that appears in several other applications (headings, category lists, standard licence conditions)."""
+    common = common or set()
+    return "\n".join(p for p in _sentences(text) if not _FORM.search(p) and _norm_sentence(p) not in common)
+
+
 def parse_listing(html: str) -> list[dict]:
     """Rows with title, updated date and document link."""
     soup = BeautifulSoup(html, "html.parser")
@@ -56,6 +95,46 @@ def project_key(title: str) -> str:
         return m.group(1)
     t = _DOC_WORDS.sub("", title)
     return re.sub(r"\W+", " ", t.lower()).strip()
+
+
+# Species licences for a job ("European Protected Species Licence- Subsea Cable Replacement - Loch a Choire") are
+# merged into that job's entry, which then lists every licence type.
+_SPECIES = re.compile(r"^(European Protected Species|Basking Shark)\s+(Licen[cs]e(\s+Application)?|Application)\s*[-–:]\s*", re.I)
+
+
+def is_species_licence(title: str) -> bool:
+    return bool(_SPECIES.match(title or ""))
+
+
+def licence_type(title: str) -> str:
+    m = _SPECIES.match(title or "")
+    if not m:
+        return "Marine licence"
+    return "European Protected Species licence" if m.group(1).lower().startswith("european") else "Basking shark licence"
+
+
+def job_key(title: str) -> str:
+    """The job a document belongs to, without any species-licence prefix, for merging."""
+    return re.sub(r"\W+", " ", _SPECIES.sub("", project_name(title)).lower()).strip()
+
+
+def merge_licences(groups: dict[str, list[dict]]) -> dict[str, list[dict]]:
+    """Join groups of documents that are licences for the same job into the job's main group. A job with only
+    species licences stays as it is."""
+    buckets: dict[str, list[str]] = {}
+    for key, docs in groups.items():
+        newest = max(docs, key=lambda r: r["updated"] or "")
+        buckets.setdefault(job_key(_SPECIES.sub("", newest["title"])), []).append(key)
+    out: dict[str, list[dict]] = {}
+    for keys in buckets.values():
+        main = [k for k in keys if any(not is_species_licence(project_name(d["title"])) for d in groups[k])]
+        if len(keys) > 1 and main:
+            main.sort(key=lambda k: max(d["updated"] or "" for d in groups[k]), reverse=True)
+            out[main[0]] = [d for k in keys for d in groups[k]]
+        else:
+            for k in keys:
+                out[k] = groups[k]
+    return out
 
 
 def project_name(title: str) -> str:
@@ -117,12 +196,15 @@ class ScotMarineSource(Source):
                 continue
             for row in parse_listing(html):
                 groups.setdefault(project_key(row["title"]), []).append(row)
+        groups = merge_licences(groups)
         cap = int(self.conf.get("max_projects", 40))
         ordered = sorted(groups.items(), key=lambda kv: max(r["updated"] or "" for r in kv[1]), reverse=True)[:cap]
         self.log.append(f"{sum(len(v) for v in groups.values())} documents in {len(groups)} projects; reading {len(ordered)}")
+        pending = []
         for key, docs in ordered:
             docs = sorted(docs, key=lambda r: r["updated"] or "", reverse=True)
-            newest = docs[0]
+            # The job's own newest document, not a species licence merged into it.
+            newest = next((d for d in docs if not is_species_licence(project_name(d["title"]))), docs[0])
             try:
                 page = parse_document(self.client.get(newest["url"]).decode("utf-8", "replace"))
             except Blocked as e:
@@ -131,15 +213,19 @@ class ScotMarineSource(Source):
             except requests.RequestException as e:
                 self.log.append(f"skipped {newest['url']}: {type(e).__name__}")
                 continue
-            pdf_txt = ""
+            raw = ""
             if page["pdfs"] and self.conf.get("fetch_pdf", True):
-                pdf_txt = self._pdf_text(page["pdfs"][0])
-                if pdf_txt is None:     # blocked: stop the source
+                raw = self._pdf_text(page["pdfs"][0])
+                if raw is None:         # blocked: stop the source
                     return
-            yield self._make_item(key, docs, page, pdf_txt)
+            pending.append((key, docs, page, raw))
+        # Wording shared by several applications is the form, not the project: drop it before scoring.
+        common = common_sentences([raw for *_, raw in pending if raw], int(self.conf.get("form_min_docs", 3)))
+        for key, docs, page, raw in pending:
+            yield self._make_item(key, docs, page, clean(strip_form_text(raw, common)) if raw else "")
 
     def _pdf_text(self, url: str) -> str | None:
-        """Text of the first attached PDF; '' when it is too large or unreadable; None when the site refuses us."""
+        """Raw text of the first attached PDF; '' when too large or unreadable; None when the site refuses us."""
         from mpf.sources.nl_ea import pdf_text
         max_bytes = int(float(self.conf.get("max_pdf_mb", 5)) * 1024 * 1024)
         try:
@@ -154,14 +240,16 @@ class ScotMarineSource(Source):
             self.log.append(f"PDF skipped {url}: {type(e).__name__}")
             return ""
         try:
-            return clean(pdf_text(data, max_pages=int(self.conf.get("max_pdf_pages", 15))))
+            return pdf_text(data, max_pages=int(self.conf.get("max_pdf_pages", 15)))
         except Exception as e:   # a damaged or scanned PDF must not stop the run
             self.log.append(f"PDF unreadable {url}: {type(e).__name__}")
             return ""
 
     def _make_item(self, key: str, docs: list[dict], page: dict, pdf_txt: str = "") -> Item:
         f = page["fields"]
-        newest = docs[0]
+        newest = next((d for d in docs if not is_species_licence(project_name(d["title"]))), docs[0])
+        licences = sorted({licence_type(project_name(d["title"])) for d in docs},
+                          key=lambda t: (t != "Marine licence", t))
         name = project_name(newest["title"])
         stage = f.get("Stage document submitted", "")
         text = "\n".join([name] + [d["title"] + "." for d in docs] +
@@ -176,5 +264,6 @@ class ScotMarineSource(Source):
             raw_path=str(self.client.cached_path(newest["url"]) or ""),
             extra={"reference": ref, "documents": [{"title": d["title"], "url": d["url"], "updated": d["updated"]} for d in docs],
                    "document_type": f.get("Document type", ""), "link_ok": True,
-                   "pdf_url": page["pdfs"][0] if page.get("pdfs") else None, "used_pdf_text": bool(pdf_txt)},
+                   "pdf_url": page["pdfs"][0] if page.get("pdfs") else None, "used_pdf_text": bool(pdf_txt),
+                   "licence_types": licences if len(licences) > 1 else []},
         )

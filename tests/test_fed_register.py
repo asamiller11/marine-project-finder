@@ -19,10 +19,10 @@ def _docs(data=PAGE1):
     return parse_results(data)[1]
 
 
-def test_switched_off_and_not_in_the_scheduled_run():
+def test_switched_on_and_in_the_scheduled_run():
     conf = load_settings()["sources"]["fed_register"]
-    assert conf["enabled"] is False
-    assert "fed_register" in SOURCES and "fed_register" not in LIVE_SOURCES
+    assert conf["enabled"] is True
+    assert "fed_register" in SOURCES and "fed_register" in LIVE_SOURCES
 
 
 def test_search_url_is_small_stable_and_on_the_api_path():
@@ -94,11 +94,12 @@ class _Client:
         return None
 
 
-def test_fetch_makes_one_request_and_yields_noaa_items():
+def test_fetch_reads_the_list_then_each_full_text_once():
     client = _Client(PAGE1)
     src = FedRegisterSource(client, {}, {"per_page": 10})
     items = list(src.fetch())
-    assert len(client.calls) == 1 and "per_page=10" in client.calls[0]
+    assert "per_page=10" in client.calls[0]
+    assert len(client.calls) == 1 + 9 and all("/documents/full_text/text/" in u for u in client.calls[1:])
     assert len(items) == 9 and all(i.source == "fed_register" for i in items)
     assert "946 matching documents" in src.log[0]
 

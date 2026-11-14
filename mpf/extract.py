@@ -198,13 +198,20 @@ def _match_counts(text: str, m: re.Match, rule: dict, negated) -> bool:
     return True
 
 
-def find_patterns(text: str, groups: dict, negated=is_negated) -> dict:
+def lang_ok(pattern: str, language: str | None) -> bool:
+    """French patterns (marked "(?#fr)") count only in French notices, or when the language is not known."""
+    return not pattern.startswith("(?#fr)") or language in (None, "", "unknown", "fr")
+
+
+def find_patterns(text: str, groups: dict, negated=is_negated, language: str | None = None) -> dict:
     """For each rule group in the scoring config, the first non-negated match and its sentence.
     Optional per-group keys (buyer profiles only): exclude_sentence (skip a match whose sentence matches)
     and require_sentence (count a match only when its sentence also matches)."""
     hits = {}
     for name, rule in groups.items():
         for pat in rule["patterns"]:
+            if not lang_ok(pat, language):
+                continue
             m = next((m for m in re.finditer(pat, text, re.IGNORECASE) if _match_counts(text, m, rule, negated)), None)
             if m:
                 hits[name] = {"label": rule.get("label", name), "points": rule["points"],
@@ -213,8 +220,10 @@ def find_patterns(text: str, groups: dict, negated=is_negated) -> dict:
     return hits
 
 
-def has_marine_context(text: str, patterns: list[str]) -> dict | None:
+def has_marine_context(text: str, patterns: list[str], language: str | None = None) -> dict | None:
     for pat in patterns:
+        if not lang_ok(pat, language):
+            continue
         m = re.search(pat, text, re.IGNORECASE)
         if m:
             return {"matched": m.group(0), "quote": snippet(text, m.start(), m.end())}

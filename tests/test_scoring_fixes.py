@@ -130,8 +130,8 @@ def test_document_page_lists_attached_pdfs_in_order():
                     "https://marine.gov.scot/sites/default/files/gis_chart_224.pdf"]
 
 
-def test_scotland_pdf_reading_is_off_in_config():
-    assert load_settings()["sources"]["scot_marine"]["fetch_pdf"] is False
+def test_scotland_pdf_reading_is_on_in_config():
+    assert load_settings()["sources"]["scot_marine"]["fetch_pdf"] is True
 
 
 class _Client:

@@ -27,12 +27,14 @@ def _size_points(big: dict, table: dict) -> list[tuple[str, int]]:
     return out
 
 
-def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
+def score_text(text: str, rules: dict, negated=None, size_ok=None, language: str | None = None) -> dict:
     """negated and size_ok are only used by buyer profiles (mpf/profiles.py). Left as None, the score is
     exactly the general score."""
     caps = rules["caps"]
     reasons = []
-    fp = (lambda t, g: find_patterns(t, g, negated)) if negated else find_patterns
+    # language: the notice's language. French patterns count only in French notices (or when it is unknown).
+    fp = (lambda t, g: find_patterns(t, g, negated, language)) if negated else \
+        (lambda t, g: find_patterns(t, g, language=language))
 
     # 1. Project type: best match counts fully, each extra type adds 3 (max +6).
     types = fp(text, rules["project_types"])
@@ -88,7 +90,7 @@ def score_text(text: str, rules: dict, negated=None, size_ok=None) -> dict:
         total = size_only_max
 
     # 5. No marine setting mentioned: cap the score.
-    marine = has_marine_context(text, rules["marine_context"])
+    marine = has_marine_context(text, rules["marine_context"], language)
     if not marine and total > caps["no_marine_context_max"]:
         reasons.append({"rule": "cap:no_marine_context", "label": "No marine setting mentioned (score capped)",
                         "points": caps["no_marine_context_max"] - total, "matched": "", "quote": ""})

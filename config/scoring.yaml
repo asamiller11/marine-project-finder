@@ -30,9 +30,10 @@ marine_context:
   - '\bcoast(al)?\b|\bshoreline\b|\bnearshore\b|\bforeshore\b'
   - '\b(bay|gulf|strait|sound|inlet|cove|fjord|fiord)\b'
   - '\bwharf|\bwharves\b|\bjetty|\bbreakwater|\bberths?\b'
-  - '\bmarin(e|s)?\b|\bmer\b|\bocéan'
-  - '\bhavre\b|\bportuaire|\bquai'
-  - '\bestuaire|\blittoral|\bcôti(er|ère)|\bbaie\b|\bgolfe\b|\bfleuve\b'
+  - '\bmarines?\b'
+  - '(?#fr)\bmarins?\b|\bmer\b|\bocéan'
+  - '(?#fr)\bhavre\b|\bportuaire|\bquai'
+  - '(?#fr)\bestuaire|\blittoral|\bcôti(er|ère)|\bbaie\b|\bgolfe\b|\bfleuve\b'
 
 project_types:
   port_terminal:
@@ -44,7 +45,7 @@ project_types:
       - '\bmarine terminal|\bcontainer terminal|\bferry terminal|\bLNG (export )?terminal'
       # Not plain "berthing": small craft harbours use it for boat floats.
       - '\b(new|additional|deep[- ]water|deep[- ]sea) berths?\b|\bberth (expansion|extension|construction)'
-      - '\binstallations? portuaires?|\bterminal maritime|\bagrandissement du port|\bport de\b'
+      - '(?#fr)\binstallations? portuaires?|\bterminal maritime|\bagrandissement du port|\bport de\b'
   # A wharf, quay or berth being rebuilt or replaced: in-water structure work, so it counts a little more than a
   # plain mention of a wharf. When it matches, it replaces wharf_dock (the same structure is not counted twice).
   wharf_rebuild:
@@ -54,7 +55,7 @@ project_types:
     patterns:
       - '\b(reconstruct\w*|rebuild\w*|replac\w*|rehabilitat\w*)\b[^.;]{0,30}\b(wharf|wharves|quay|quays|berths?)\b'
       - '\b(wharf|wharves|quay|berths?)\b[^.;]{0,15}\b(reconstruction|replacement|rehabilitation|rebuild)\b'
-      - '\b(reconstruction|réfection|remplacement|réhabilitation)\b[^.;]{0,20}\b(du|des|d.un) quais?\b'
+      - '(?#fr)\b(reconstruction|réfection|remplacement|réhabilitation)\b[^.;]{0,20}\b(du|des|d.un) quais?\b'
   wharf_dock:
     points: 15
     label: "Wharf, pier or large dock"
@@ -62,8 +63,9 @@ project_types:
       - '\bwharf|\bwharves\b'
       - '\bpier\b|\bpiers\b'
       - '\bdock(s|ing)?\b'
-      - '\bquai(s)?\b'
-      - '\bappontement|\bponton|\bpontoons?\b'
+      - '(?#fr)\bquai(s)?\b'
+      - '\bpontoons?\b'
+      - '(?#fr)\bappontement|\bponton\b'
   breakwater_jetty:
     points: 20
     label: "Breakwater, jetty or groyne"
@@ -71,13 +73,13 @@ project_types:
       - '\bbreakwater'
       - '\bjett(y|ies)\b'
       - '\bgroyne|\bgroin\b'
-      - '\bbrise-lames?|\bjetée'
+      - '(?#fr)\bbrise-lames?|\bjetée'
   dredging:
     points: 18
     label: "Dredging"
     patterns:
       - '\bdredg'
-      - '\bdragage|\bdraguer'
+      - '(?#fr)\bdragage|\bdraguer'
       - '\bnavigation channel|\bapproach channel|\bturning basin'
   shoreline_protection:
     points: 12
@@ -89,8 +91,8 @@ project_types:
       - '\brevetment|\briprap|\brip rap|\barmou?r ?stone (protection|placement|revetment)'
       - '\bshoreline protection|\bshore protection|\berosion protection|\bcoastal (protection|defen[cs]e|engineering)'
       - '\b(river|stream)?bank (protection|stabili[sz]ation)|\bprotect(ing)? the (river|stream)?bank|\bshoreline stabili[sz]ation|\bstabili[sz]ing .{0,40}shoreline'
-      - '\benrochement|\bperré\b|\bmur de soutènement|\bprotection (des berges|du littoral|côtière|contre l.érosion)'
-      - '\bstabilisation (des berges|de la berge|de la rive|du littoral|du talus)|\brecharge(ment)? de (la )?plage'
+      - '(?#fr)\benrochement|\bperré\b|\bmur de soutènement|\bprotection (des berges|du littoral|côtière|contre l.érosion)'
+      - '(?#fr)\bstabilisation (des berges|de la berge|de la rive|du littoral|du talus)|\brecharge(ment)? de (la )?plage'
   marina_small_craft:
     points: 15
     label: "Marina or small craft harbour"
@@ -99,7 +101,7 @@ project_types:
       - '(?<!fauna )(?<!flora )(?<!reserva )(?<!zona )(?<!costa )(?<!vida )(?<!eólica )(?<!de la )\bmarinas?\b(?!\s+(mercante|española|de|del)\b)'
       - '\bsmall craft harbou?r'
       - '\bboat (launch|ramp)'
-      - '\bport de plaisance|\bhavre de pêche|\bport pour petits bateaux'
+      - '(?#fr)\bport de plaisance|\bhavre de pêche|\bport pour petits bateaux'
   infill_causeway:
     points: 15
     label: "Infill, reclamation or causeway"
@@ -107,7 +109,7 @@ project_types:
       - '\binfill\b|\bin-fill\b'
       - '\bland reclamation|\breclaim(ed|ing)? land'
       - '\bcauseway'
-      - '\bremblai|\bremblayage|\bchaussée'
+      - '(?#fr)\bremblai|\bremblayage|\bchaussée'
   offshore_wind:
     points: 20
     label: "Offshore wind"
@@ -115,7 +117,7 @@ project_types:
       - '\boffshore wind'
       - '\bwind turbine foundations?\b.{0,40}\b(seabed|offshore)'
       - '\bexport cable|\binter-array cable|\bsubsea cable|\bsubmarine cable'
-      - '\béolien(ne)?s? en mer|\béolien(ne)?s? extracôti'
+      - '(?#fr)\béolien(ne)?s? en mer|\béolien(ne)?s? extracôti'
   outfall_intake:
     points: 8
     label: "Outfall or intake in the water"
@@ -124,8 +126,8 @@ project_types:
     patterns:
       - '\b(new|replac\w*|rehabilitat\w*|upgrad\w*|construct\w*|install\w*|extend\w*|extension of|relocat\w*|repair\w*|rebuild\w*|stabili[sz]\w*)\b[^.;]{0,40}\b(outfall|water intake|intake structure|diffuser)'
       - '\b(outfall|water intake|intake structure|diffuser)s?\b[^.;]{0,30}\b(rehabilitation|replacement|extension|upgrade|construction|reconstruction|repair|relocat\w*|replaced|extended|installed)'
-      - '\b(réfection|remplacement|prolongement|construction|réhabilitation|relocalisation|installation|stabilisation|nouvel(le)?)\b[^.;]{0,40}\b(émissaire|prise d.eau|exutoire)'
-      - '\b(émissaire|prise d.eau|exutoire)s?\b[^.;]{0,30}\b(sera|seront)\s+(remplacé|prolongé|déplacé|reconstruit|réhabilité)'
+      - '(?#fr)\b(réfection|remplacement|prolongement|construction|réhabilitation|relocalisation|installation|stabilisation|nouvel(le)?)\b[^.;]{0,40}\b(émissaire|prise d.eau|exutoire)'
+      - '(?#fr)\b(émissaire|prise d.eau|exutoire)s?\b[^.;]{0,30}\b(sera|seront)\s+(remplacé|prolongé|déplacé|reconstruit|réhabilité)'
   # Moorings are usually small (a buoy and a block), so they add a little but never list a project alone.
   moorings:
     points: 8
@@ -138,7 +140,7 @@ project_types:
     label: "Piles or pile-supported structure"
     patterns:
       - '\bpile (driving|installation|replacement)|\bpiles\b|\bpiling\b'
-      - '\bpieux\b|\bbattage de pieux'
+      - '(?#fr)\bpieux\b|\bbattage de pieux'
 
 # Habitat clues. Each group adds its points once, with the matching sentence as evidence.
 habitat_clues:
@@ -148,19 +150,19 @@ habitat_clues:
     patterns:
       - '\boffset(ting)? (plan|measures?|habitat)|\bhabitat offset|\bfish habitat offset'
       - '\bcompensat(ion|ory) (habitat|measures?|plan|for)'
-      - '\bcompensation (de l.habitat|du poisson)|\bplan de compensation|\bmesures? (de )?compensatoires?'
+      - '(?#fr)\bcompensation (de l.habitat|du poisson)|\bplan de compensation|\bmesures? (de )?compensatoires?'
   fisheries_act:
     points: 20
     label: "Fisheries Act authorization"
     patterns:
       - '\bFisheries Act (authori[sz]ation|paragraph|section 35)|\bparagraph 35\(2\)\(b\)|\bsection 35\(2\)'
-      - '\bautorisation (en vertu de la|de la) Loi sur les pêches|\bLoi sur les pêches'
+      - '(?#fr)\bautorisation (en vertu de la|de la) Loi sur les pêches|\bLoi sur les pêches'
   hadd:
     points: 20
     label: "Harmful alteration, disruption or destruction of fish habitat"
     patterns:
       - '\bHADD\b|\bharmful alteration|\bdeath of fish|\bdestruction of fish habitat'
-      - '\bdétérioration, (la )?destruction ou (la )?perturbation|\bperturbation de l.habitat'
+      - '(?#fr)\bdétérioration, (la )?destruction ou (la )?perturbation|\bperturbation de l.habitat'
   habitat_creation:
     points: 15
     label: "New habitat, enhancement or nature-inclusive design"
@@ -170,13 +172,13 @@ habitat_clues:
       - '\bnature[- ]inclusive|\beco-?engineer|\bliving shoreline|\becological (design|engineering)'
       - '\breef (balls?|units?)|\bartificial reef'
       - '\b(seagrass|eelgrass|oyster|saltmarsh|salt marsh|kelp|seaweed) (planting|restoration|reef|bed restoration)|\brestoration of (seagrass|eelgrass|oyster|saltmarsh|salt marsh)'
-      - '\b(création|aménagement|amélioration) d.habitats?|\bhabitat du poisson.{0,40}(créé|aménagé)|\brécif artificiel'
+      - '(?#fr)\b(création|aménagement|amélioration) d.habitats?|\bhabitat du poisson.{0,40}(créé|aménagé)|\brécif artificiel'
   eelgrass:
     points: 15
     label: "Eelgrass or seagrass"
     patterns:
       - '\beelgrass|\bseagrass|\bzostera\b|\bsubmerged aquatic vegetation|\bSAV\b'
-      - '\bzostère|\bherbiers?\b'
+      - '(?#fr)\bzostère|\bherbiers?\b'
   fish_habitat:
     points: 10
     label: "Fish habitat"
@@ -188,26 +190,26 @@ habitat_clues:
     label: "Shellfish, oyster or mussel beds"
     patterns:
       - '\bshellfish|\boyster|\bmussel bed|\bclam bed|\bscallop'
-      - '\bmollusques|\bhuîtr|\bmoules?\b|\bpétoncle'
+      - '(?#fr)\bmollusques|\bhuîtr|\bmoules?\b|\bpétoncle'
   intertidal_marsh:
     points: 8
     label: "Intertidal zone, salt marsh or tidal wetland"
     patterns:
       - '\bintertidal|\bsalt ?marsh|\btidal (marsh|wetland|flat)|\bmudflat'
-      - '\bzone intertidale|\bmarais salé|\bestran|\bbatture'
+      - '(?#fr)\bzone intertidale|\bmarais salé|\bestran|\bbatture'
   species_at_risk:
     points: 8
     label: "Species at risk"
     patterns:
       # "SARA" only as Canada's Species at Risk Act ("(SARA)", "SARA-listed", "under SARA"), not a name like "Sara".
       - '\bspecies at risk|\(SARA\)|\bSARA[- ](listed|schedule)|\bunder SARA\b|\bendangered|\bthreatened species|\bcritical habitat'
-      - '\bespèces? en péril|\bLEP\b|\bhabitat essentiel|\bmenacée'
+      - '(?#fr)\bespèces? en péril|\bLEP\b|\bhabitat essentiel|\bmenacée'
   marine_footprint:
     points: 8
     label: "Work below high water or footprint on the seabed"
     patterns:
       - '\bbelow (the )?(high water|HHWLT|high-water)|\bseabed|\bsea floor|\bseafloor|\bmarine footprint|\bsubtidal'
-      - '\bfond marin|\bsous la ligne des hautes eaux|\blit du fleuve'
+      - '(?#fr)\bfond marin|\bsous la ligne des hautes eaux|\blit du fleuve'
   scour_protection:
     points: 6
     label: "Scour or cable protection"
@@ -219,7 +221,7 @@ habitat_clues:
     label: "General mitigation language (weak signal)"
     patterns:
       - '\bavoid and minimi[sz]e|\bmitigation measures'
-      - '\bmesures d.atténuation'
+      - '(?#fr)\bmesures d.atténuation'
 
 # Size clues. Units are converted to metres, square metres, cubic metres, MW.
 size_points:

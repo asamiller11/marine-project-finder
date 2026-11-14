@@ -34,6 +34,14 @@ sources:
     # No site-wide licence was found for marine.gov.scot, so: short facts and a link only, no quotes.
     quotes: false
     attribution: "© Crown Copyright"
+  fed_register:
+    name: "Federal Register (NOAA Fisheries incidental harassment notices)"
+    url: "https://www.federalregister.gov/"
+    languages: [en]
+    agency: "Office of the Federal Register, National Archives; NOAA Fisheries"
+    # The notices are mostly about marine mammals and noise. Quotes would pick those sentences and suggest habitat
+    # work, so the card shows only what the notice says about the construction, and a link.
+    quotes: false
   es_boe:
     name: "Boletín Oficial del Estado (BOE) open data"
     url: "https://www.boe.es/datosabiertos/"
@@ -66,9 +74,9 @@ countries:
   - code: "US"
     name: "United States"
     region_label: "State"
-    status: coming_soon
-    sources: []
-    note: "Not approved yet. The Army Corps of Engineers site blocks automated access."
+    status: partial
+    sources: [fed_register]
+    note: "NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register. Shown under the hard-structure profile only, because these notices are about construction noise, not habitat work. The Army Corps of Engineers site blocks automated access."
     regions:
       - {name: "New York", status: coming_soon, note: "The Environmental Notice Bulletin is disallowed by robots.txt."}
       - {name: "Florida", status: coming_soon, note: "Permit data sits in JavaScript map applications."}
@@ -80,7 +88,7 @@ countries:
   - {code: "DK", name: Denmark, status: partial, sources: [dk_hoering], note: "National consultation portal only, filtered with Danish marine keywords (less tested).", empty_note: "Source read; no marine project hearings found in this run."}
   - {code: "FR", name: France, status: coming_soon, sources: [], note: "No usable source yet. The offshore wind site's legal notice forbids copying or publishing its content without written permission; the national impact-assessment dataset and the compensation-measures files are disallowed by robots.txt. A permission request has been drafted."}
   - {code: "NL", name: Netherlands, status: coming_soon, sources: [], note: "Official publications search and API are disallowed by robots.txt, and Platform Participatie's project list needs JavaScript."}
-  - {code: "ES", name: Spain, status: partial, sources: [es_boe], note: "National gazette (BOE) only: impact-assessment resolutions and port or public-information notices (Spanish, less tested). Regional bulletins are not read."}
+  - {code: "ES", name: Spain, status: coming_soon, sources: [], note: "Not listed for now. The national gazette (BOE) is still read every week, but its marine notices are almost all port leases and licences, not construction projects. Regional bulletins are not read."}
   - code: "GB"
     name: "United Kingdom"
     status: partial

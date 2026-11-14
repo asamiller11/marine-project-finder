@@ -112,7 +112,15 @@ def cmd_score(args, settings):
     for r in rows:
         row = dict(r)
         row["extra"] = json.loads(row["extra"] or "{}")
-        s = score_text(row["full_text"] or "", rules)
+        if row["source"] == "fed_register":
+            # Its own rule (construction only). Score 0 keeps it off the general list; the hard-structure profile
+            # uses the stored result (mpf/profiles.py).
+            from mpf.sources.fed_register import iha_score
+            iha = iha_score(row["title"] or "", row["extra"].get("abstract") or "", row["full_text"] or "", rules)
+            s = {"score": 0, "flagged": False, "reasons": [], "project_types": iha["project_types"],
+                 "size_summary": iha["size_summary"], "facts": {"iha": iha}}
+        else:
+            s = score_text(row["full_text"] or "", rules, language=row.get("language"))
         tm = compute(row, now, t.get("closing_soon_days", 14), t.get("too_late_days", 7))
         conn.execute(
             "UPDATE items SET score=?, flagged=?, project_types=?, size_summary=?, reasons=?, facts=?, "

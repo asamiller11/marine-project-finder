@@ -19,13 +19,12 @@ SOURCES = {
     "es_boe": ESBOESource,
     "fr_eolien": FREolienSource,
     "dfo_far": DFOFARSource,
-    # US Federal Register (NOAA incidental harassment notices). Off in config until the owner approves it, and
-    # not in LIVE_SOURCES yet, so the scheduled run never reads it.
+    # US Federal Register (NOAA incidental harassment notices), shown under the hard-structure profile only.
     "fed_register": FedRegisterSource,
 }
 
 # Live sources the scheduled GitHub run reads (the DFO test set and drop folder are local only).
-LIVE_SOURCES = ["iaac", "nl_ea", "bc_eao", "dk_hoering", "scot_marine", "es_boe", "fr_eolien"]
+LIVE_SOURCES = ["iaac", "nl_ea", "bc_eao", "dk_hoering", "scot_marine", "es_boe", "fr_eolien", "fed_register"]
 
 # A page each source must be able to reach, for `python -m mpf check-access`.
 CHECK_URLS = {
@@ -36,4 +35,5 @@ CHECK_URLS = {
     "scot_marine": "https://marine.gov.scot/data/marine-licence-documentation",
     "es_boe": "https://www.boe.es/datosabiertos/api/boe/sumario/{date}",
     "fr_eolien": "https://www.eoliennesenmer.fr/parcs-et-projets-eoliens-en-france",
+    "fed_register": "https://www.federalregister.gov/api/v1/documents.json?per_page=1",
 }
