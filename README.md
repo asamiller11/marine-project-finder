@@ -94,6 +94,12 @@ the New York bulletin (disallowed by robots.txt), and others listed in the panel
 
 ## How the tool behaves on the web
 
+**Source rule.** A source whose robots.txt disallows automated reading may be read only if (a) the site owner has given written permission, or (b) its official terms or open-data licence explicitly invite automated access (for example a documented API or bulk download page). Never work around a 401, 403 or 429 or any block.
+
+The code enforces it: a URL that robots.txt disallows is refused unless that source's block in
+`config/settings.yaml` has a complete `robots_exception` (basis `a` or `b`, the host, and the evidence).
+The run log lists every source that used an exception. Details: `docs/source_rules.md`.
+
 - Reads `robots.txt` before the first request to each host and obeys it, including
   `*` wildcards and `Crawl-delay`.
 - Identifies itself with a clear User-Agent (set in `config/settings.yaml`).
@@ -101,8 +107,9 @@ the New York bulletin (disallowed by robots.txt), and others listed in the panel
 - Caches every response in `data/cache/`. A project page is fetched once, except the pages of
   listed projects that are not decided yet: those are re-read when the saved copy is more than
   6 days old (`update.recheck_open_pages_hours`). List pages are re-read at most every 20 hours.
-- If a site answers 401, 403 or 429, the tool stops that source and tells you. It never
-  retries with other headers, browsers or proxies.
+- If a site answers 401, 403 or 429, the tool stops that source and tells you, and asks that site
+  nothing more during the run, with or without an exception. It never retries with other headers,
+  browsers or proxies.
 - It only reads public pages and writes local files. It sends no email and posts nothing.
 
 ## Setup (macOS, Python 3.9 or newer)

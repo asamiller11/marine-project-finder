@@ -25,6 +25,13 @@ data_dir: data          # cache, database and raw files live here (not in git)
 drop_dir: drop          # put hand-saved PDF, HTML or text files here
 labels_file: labels/labels.csv
 
+# Source rule (README.md, docs/source_rules.md): a source whose robots.txt disallows automated reading may be
+# read only if (a) the site owner has given written permission, or (b) its official terms or open-data licence
+# explicitly invite automated access (for example a documented API or bulk download page). Never work around a
+# 401, 403 or 429 or any block.
+# To record an exception, add to that source's block (all three keys are required, or robots.txt applies):
+#   robots_exception: {basis: b, hosts: ["data.example.org"], evidence: "terms URL and date checked"}
+# No source uses an exception today.
 sources:
   iaac:
     enabled: true
@@ -38,6 +45,10 @@ sources:
     # Also read the short "Summary of Registration" PDF when there is one.
     fetch_summary_pdf: true
     max_pdf_mb: 5
+    # Also read the Minister's decision letter and the conditions of release, for projects whose own text names
+    # a marine construction type. At most this many real requests per run; saved copies cost nothing.
+    fetch_decision_docs: true
+    max_decision_doc_requests: 30
   dfo_far:
     # Scorer test set only. All rows are issued authorizations from 2019-08 to 2023-06.
     enabled: true
@@ -98,6 +109,17 @@ update:
   #   false = publish the sources that worked, then warn (log and macOS notification)
   #   true  = stop without publishing anything
   stop_on_blocked_source: false
+
+health:
+  # The daily health check (python -m mpf health), run by its own LaunchAgent at this hour.
+  hour: 9
+  # Warn when the last uploaded update is older than update.days_between_updates plus this many days.
+  grace_days: 1
+  # Warn when a source returns less than this share of its usual number of notices.
+  min_share_of_usual: 0.5
+  # Projects that must stay on the live site while they are listed (a title phrase each).
+  # Replace one when its project leaves the list for a normal reason.
+  canaries: ["Port aux Basques", "Point Rousse", "Kings Bay"]
 
 review:
   # Every scored item goes into review/review.csv. In the "publish" column:

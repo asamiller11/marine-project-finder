@@ -5,7 +5,18 @@ Rules it follows:
 - Waits between requests to the same host (robots.txt Crawl-delay, or our default).
 - Caches every response on disk. Detail pages are never fetched twice.
 - If a site answers 401, 403 or 429, it stops and raises Blocked. It never retries with
-  different headers or tools.
+  different headers or tools, and every later request to that site in the same run is refused too.
+
+The source rule (also in README.md and docs/source_rules.md), word for word:
+  A source whose robots.txt disallows automated reading may be read only if (a) the site owner has
+  given written permission, or (b) its official terms or open-data licence explicitly invite automated
+  access (for example a documented API or bulk download page). Never work around a 401, 403 or 429 or
+  any block.
+
+How the code enforces it: a URL that robots.txt disallows is refused, unless the source being read has a
+`robots_exception` block in config/settings.yaml with basis "a" or "b", the host listed, and the evidence
+written down (see valid_exception). Each use is counted per source and printed in the run log. A 401, 403
+or 429 always stops the source, with or without an exception.
 """
 from __future__ import annotations
 
@@ -22,6 +33,25 @@ import requests
 
 class Blocked(Exception):
     """The site refused us, or robots.txt / our config forbids this URL."""
+
+
+EXCEPTION_BASES = {
+    "a": "written permission from the site owner",
+    "b": "official terms or open-data licence invite automated access",
+}
+
+
+def valid_exception(conf: dict | None) -> dict | None:
+    """A source's robots_exception block, if it is complete: basis a or b, at least one host, and the
+    evidence (where the permission or the terms are). Anything less counts as no exception."""
+    if not isinstance(conf, dict):
+        return None
+    basis = str(conf.get("basis") or "").strip().lower()
+    hosts = [h.strip().lower() for h in (conf.get("hosts") or []) if str(h).strip()]
+    evidence = str(conf.get("evidence") or "").strip()
+    if basis not in EXCEPTION_BASES or not hosts or not evidence:
+        return None
+    return {"basis": basis, "hosts": hosts, "evidence": evidence}
 
 
 # ---------------------------------------------------------------------------
@@ -126,6 +156,32 @@ class PoliteClient:
         self.refresh_urls: set[str] = set()
         self.recheck_hours = float((settings.get("update") or {}).get("recheck_open_pages_hours", 144))
         self.rechecked = 0                  # real requests made for those re-reads
+        # The source rule. current_source is set by the caller before each source runs.
+        self.current_source: str | None = None
+        self.exceptions: dict[str, dict] = {}       # source name -> valid robots_exception
+        self.exceptions_used: dict[str, int] = {}   # source name -> requests robots.txt alone would have refused
+        self.refused_hosts: dict[str, str] = {}     # host -> why it refused us (401, 403, 429) this run
+
+    def set_exceptions(self, sources_conf: dict) -> list[str]:
+        """Read every source's robots_exception from config. Returns notes about incomplete blocks."""
+        notes = []
+        for name, conf in (sources_conf or {}).items():
+            raw = (conf or {}).get("robots_exception")
+            if raw is None:
+                continue
+            ok = valid_exception(raw)
+            if ok:
+                self.exceptions[name] = ok
+            else:
+                notes.append(f"{name}: robots_exception is incomplete (needs basis a or b, hosts and evidence), "
+                             f"so robots.txt applies in full")
+        return notes
+
+    def _exception_for(self, host: str) -> dict | None:
+        exc = self.exceptions.get(self.current_source or "")
+        if exc and host.lower() in exc["hosts"]:
+            return exc
+        return None
 
     # -- cache ---------------------------------------------------------------
     def _cache_paths(self, url: str) -> tuple[Path, Path]:
@@ -163,7 +219,8 @@ class PoliteClient:
         robots_url = base + "/robots.txt"
         # robots.txt itself is re-read at most once a day.
         status, body = self._get_raw(robots_url, max_age_hours=24, check_robots=False)
-        if status in (401, 403):
+        if status in (401, 403, 429):
+            self.refused_hosts[p.netloc] = f"{robots_url} answered HTTP {status}"
             raise Blocked(f"{robots_url} answered {status}. Treating the whole site as off limits.")
         if status >= 500:
             raise Blocked(f"{robots_url} answered {status}. Not crawling until it works.")
@@ -193,13 +250,19 @@ class PoliteClient:
                 return meta["status"], body_path.read_bytes()
 
         host = urlparse(url).netloc
+        if host in self.refused_hosts:
+            # This site already said no (401, 403 or 429) during this run: never ask again.
+            raise Blocked(f"{host} refused us earlier in this run ({self.refused_hosts[host]}). Not asking again.")
         delay = max(self.default_delay, self.host_delays.get(host, 0))
+        used_exception = False
         if check_robots:
             robots = self._robots_for(url)
             p = urlparse(url)
             path = p.path + ("?" + p.query if p.query else "")
             if not robots.allowed(path or "/"):
-                raise Blocked(f"robots.txt disallows {url}")
+                if not self._exception_for(host):
+                    raise Blocked(f"robots.txt disallows {url}")
+                used_exception = True
             if robots.crawl_delay is not None:
                 delay = max(delay, robots.crawl_delay)
         self._wait(host, delay)
@@ -212,7 +275,7 @@ class PoliteClient:
             self._check_never_fetch(resp.url)
             fp = urlparse(resp.url)
             final_path = fp.path + ("?" + fp.query if fp.query else "")
-            if not self._robots_for(resp.url).allowed(final_path or "/"):
+            if not self._robots_for(resp.url).allowed(final_path or "/") and not self._exception_for(fp.netloc):
                 raise Blocked(f"{url} redirects to {resp.url}, which robots.txt disallows")
             resp = self.session.get(url, timeout=self.timeout, stream=True, headers=headers)
             self.network_requests += 1
@@ -224,7 +287,12 @@ class PoliteClient:
                 resp.close()
                 raise Blocked(f"File larger than {max_bytes} bytes, skipped: {url}")
         body = b"".join(chunks)
+        if used_exception:
+            name = self.current_source or "unknown"
+            self.exceptions_used[name] = self.exceptions_used.get(name, 0) + 1
         if resp.status_code in (401, 403, 429) and check_robots:
+            # Always stops the source, exception or not. Later requests to this host are refused too.
+            self.refused_hosts[host] = f"HTTP {resp.status_code} for {url}"
             raise Blocked(f"{url} answered HTTP {resp.status_code}. Stopping this source, not retrying.")
         meta = {
             "url": url, "final_url": resp.url, "status": resp.status_code,

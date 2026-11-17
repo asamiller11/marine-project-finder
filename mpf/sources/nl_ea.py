@@ -6,6 +6,9 @@ What we read (robots.txt allows it; no crawl delay set, so we use our default):
 - /eccc/projects/project-<n>/          : one project, with a description and a dated list
   such as "October 20, 2026 – Deadline for public comments."
 - Optionally the short "Summary of Registration" PDF linked from the project page.
+- The Minister's decision letter and the conditions of release, when the project page links them, for
+  projects whose own text already names a marine construction type (a breakwater, wharf, port...). At most
+  max_decision_doc_requests real requests per run (30); saved copies are free, so later runs catch up.
 """
 from __future__ import annotations
 
@@ -62,6 +65,11 @@ _DECISION_MADE = re.compile(r"(released|minister.s decision|decision letter|not 
                             r"environmental (impact statement|preview report) (is )?required)", re.I)
 
 
+# Links to the decision letter and the conditions of release (not EIS or EPR guidelines, which are long).
+_DECISION_DOC = re.compile(r"decision letter|conditions of release|minister.?s? decision", re.I)
+_NOT_DECISION_DOC = re.compile(r"guideline", re.I)
+
+
 def parse_project_page(html: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     art = soup.find("article") or soup
@@ -110,6 +118,13 @@ def parse_project_page(html: str) -> dict:
             summary_pdf = a["href"]
             break
 
+    decision_docs = []
+    for a in content.find_all("a", href=True):
+        label = clean(a.get_text(" "))
+        if (_DECISION_DOC.search(label) and not _NOT_DECISION_DOC.search(label)
+                and a["href"].lower().endswith(".pdf") and a["href"] not in [d["url"] for d in decision_docs]):
+            decision_docs.append({"title": label, "url": a["href"]})
+
     return {
         "title": clean(h1.get_text()) if h1 else UNKNOWN,
         "proponent": proponent or UNKNOWN,
@@ -119,6 +134,7 @@ def parse_project_page(html: str) -> dict:
         "decision_due": max(due) if due else None,
         "decision_made": max(made, key=lambda e: e["date"]) if made else None,
         "summary_pdf": summary_pdf,
+        "decision_docs": decision_docs,
     }
 
 
@@ -163,6 +179,7 @@ class NLEASource(Source):
         cutoff = (today() - timedelta(days=int(self.conf.get("lookback_days", 540)))).isoformat()
         recent = [r for r in rows if r["registered"] and r["registered"] >= cutoff and r["url"]]
         self.log.append(f"{len(rows)} projects listed, {len(recent)} registered since {cutoff}")
+        pages = []
         for row in recent:
             try:
                 page = self.client.get(row["url"]).decode("utf-8", "replace")
@@ -172,9 +189,66 @@ class NLEASource(Source):
             except requests.RequestException as e:
                 self.log.append(f"skipped {row['reg']}: {e}")
                 continue
-            yield self._make_item(row, page)
+            pages.append((row, page))
+        try:
+            decision_texts = self._decision_texts(pages)
+        except Blocked as e:
+            self.log.append(f"STOPPED: {e}")
+            return
+        for row, page in pages:
+            yield self._make_item(row, page, decision_texts.get(row["reg"]))
 
-    def _make_item(self, row: dict, page_html: str) -> Item:
+    def _decision_texts(self, pages: list) -> dict:
+        """Text of the decision letter and conditions of release, for projects whose own text names a marine
+        construction type. Newest projects first; at most max_decision_doc_requests real requests per run."""
+        if not self.conf.get("fetch_decision_docs", True):
+            return {}
+        from mpf.config import load_scoring
+        from mpf.score import score_text
+        rules = load_scoring()
+        budget = int(self.conf.get("max_decision_doc_requests", 30))
+        weak_min = int((self.settings.get("tiers") or {}).get("weak_min", 20))
+        max_bytes = int(float(self.conf.get("max_pdf_mb", 5)) * 1024 * 1024)
+        start = self.client.network_requests
+        out, read, waiting, scanned = {}, 0, 0, 0
+        for row, page in sorted(pages, key=lambda rp: rp[0]["registered"] or "", reverse=True):
+            p = parse_project_page(page)
+            if not p["decision_docs"]:
+                continue
+            own = score_text("\n".join(t for t in (p["title"], p["description"]) if t), rules)
+            if not own["project_types"] or own["score"] < weak_min:
+                # Only projects already listed on their own description: the letter's standard conditions
+                # ("mitigate", "species at risk") must not list a project by themselves.
+                continue
+            parts = []
+            for doc in p["decision_docs"]:
+                fresh = self.client.cached_path(doc["url"]) is None
+                if fresh and self.client.network_requests - start >= budget:
+                    waiting += 1
+                    continue
+                try:
+                    text = pdf_text(self.client.get(doc["url"], max_bytes=max_bytes))
+                except Blocked as e:
+                    if "answered HTTP" in str(e) or "refused us" in str(e):
+                        raise
+                    self.log.append(f"decision document skipped for {row['reg']}: {e}")
+                    continue
+                except Exception as e:     # a broken PDF should not stop the run
+                    self.log.append(f"decision document unreadable for {row['reg']}: {type(e).__name__}")
+                    continue
+                if text:
+                    parts.append({"title": doc["title"], "url": doc["url"], "text": text})
+                    read += 1
+                else:
+                    scanned += 1    # a scanned image with no text layer; we do not run OCR
+            if parts:
+                out[row["reg"]] = parts
+        used = self.client.network_requests - start
+        self.log.append(f"decision letters and conditions: {read} read, {scanned} scanned without text "
+                        f"({used} new requests, cap {budget})" + (f"; {waiting} left for the next run" if waiting else ""))
+        return out
+
+    def _make_item(self, row: dict, page_html: str, decision_docs: list | None = None) -> Item:
         p = parse_project_page(page_html)
         # The NL site's links are irregular (project-2434, projects-2437, project_2364, project-2383-2).
         # We use the link exactly as NL publishes it, and check the page is the right project.
@@ -192,7 +266,8 @@ class NLEASource(Source):
                 self.log.append(f"summary PDF unreadable for {row['reg']}: {type(e).__name__}")
 
         title = p["title"] if p["title"] != UNKNOWN else row["title"]
-        text = "\n".join(t for t in (title, p["description"], pdf_txt) if t)
+        decision_txt = "\n".join(d["text"] for d in decision_docs or [])
+        text = "\n".join(t for t in (title, p["description"], pdf_txt, decision_txt) if t)
         lat, lon = extract_coordinates(text)
         decision_date = p["decision_due"]
         if p["decision_made"]:
@@ -208,5 +283,6 @@ class NLEASource(Source):
             decision_date=decision_date, status_raw=row["status"], full_text=text,
             raw_path=str(self.client.cached_path(row["url"]) or ""),
             extra={"events": p["events"], "summary_pdf": p["summary_pdf"],
-                   "decision_made": p["decision_made"], "used_pdf_text": bool(pdf_txt), "link_ok": link_ok},
+                   "decision_made": p["decision_made"], "used_pdf_text": bool(pdf_txt), "link_ok": link_ok,
+                   "decision_docs": [{"title": d["title"], "url": d["url"]} for d in decision_docs or []]},
         )

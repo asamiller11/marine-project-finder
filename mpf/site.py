@@ -1125,7 +1125,7 @@ def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> st
     return (f'<a class="skip" href="#main">Skip to content</a>\n'
             f'<header class="topbar"><div class="wrap">\n<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>\n'
             f'<nav class="top" aria-label="Main">{nav}</nav>\n'
-            f'<p class="updated">Last updated: <time>{_date(updated)}</time></p>\n</div></header>')
+            f'<p class="updated">Last successful update: <time>{_date(updated)}</time></p>\n</div></header>')
 
 
 def _footer(site: dict, prefix: str = "") -> str:
@@ -1539,7 +1539,7 @@ Your choice is remembered only in this browser. <a href="about.html#buyer-profil
 <h1>{escape(desc)}</h1>
 <p class="lede">Public project registries are read automatically and each notice is scored for signs of marine habitat
 work. Every flag shows the words that triggered it and, where the source's terms allow, the exact sentences.</p>
-<p class="meta">Updated <time>{_date(updated)}</time>. Refreshed {freq}.</p>
+<p class="meta">Last successful update: <time>{_date(updated)}</time>. Updated {freq}.</p>
 <p class="stats-for" id="stats-for">Figures for: <strong id="stats-for-name">{ALL_LABEL}</strong></p>
 <ul class="stats">
 <li><a href="?show=weak#results"><span class="n" id="stat-total">{len(records)}</span><span class="l">Projects listed, all tiers</span></a></li>
@@ -1715,6 +1715,14 @@ def since_panel(records: list[dict], dates: list[str]) -> str:
 TIMELINE_TYPES = {"new": "Listed", "deadline": "Deadline", "decided": "Decision", "stage": "Stage", "tier": "Tier"}
 
 
+def decision_word(rec: dict) -> str:
+    """'Decided' only when an official decision is posted (the project is decided and its decision date is not
+    in the future); otherwise the date is when a decision is due: 'Decision due'."""
+    if rec.get("stage_kind") == "decided" and rec.get("approved_on"):
+        return "Decided"
+    return "Decision due"
+
+
 def _timeline_html(rec: dict) -> str:
     evs = rec.get("timeline") or []
     items = []
@@ -1729,7 +1737,8 @@ def _timeline_html(rec: dict) -> str:
     if c.get("closes"):
         items.append(f'<li class="official"><time>{escape(c["closes"])}</time> Comment period closes (official notice)</li>')
     if rec.get("decision_date"):
-        items.append(f'<li class="official"><time>{escape(rec["decision_date"])}</time> Decision date (official notice)</li>')
+        items.append(f'<li class="official"><time>{escape(rec["decision_date"])}</time> '
+                     f'{decision_word(rec)} (official notice)</li>')
     items.sort(key=lambda li: re.search(r"<time>([^<]+)", li).group(1))
     if not items:
         return "<p>No changes recorded yet.</p>"
@@ -2021,6 +2030,14 @@ Array.prototype.forEach.call(document.querySelectorAll('.shortlist .card'), MPF.
 """
 
 
+def _feeds_section(meta: list[dict] | None) -> str:
+    links = ['<li><a href="feeds/all.xml">All projects on the general list</a></li>']
+    links += [f'<li><a href="feeds/{escape(m["key"])}.xml">{escape(m["label"])}</a></li>' for m in meta or []]
+    return ('<h2 id="feeds">RSS feeds</h2>\n<p>Each feed lists the projects that are new since the last update, '
+            'with a link to the official notice and the source. Add a feed address to any feed reader. There is no '
+            'sign-up and no email: this site stores nothing about who reads the feeds.</p>\n<ul>' + "".join(links) + "</ul>")
+
+
 def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None = None,
                  records: list[dict] | None = None, meta: list[dict] | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
@@ -2048,7 +2065,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
 <p class="eyebrow">About and method</p>
 <h1>About {escape(site.get("title", "MitiMark"))}</h1>
 <p>{escape(site.get('description', ''))}</p>
-<p class="meta">Last updated: <time>{_date(updated)}</time></p>
+<p class="meta">Last successful update: <time>{_date(updated)}</time></p>
 </div></section>
 <main class="wrap about-layout" id="main">
 <nav class="toc" aria-label="On this page"><p class="side-label">On this page</p>
@@ -2149,6 +2166,7 @@ read, and they are named. "Coming soon" means no source is read yet, and no list
 <p>The list is refreshed {freq}, and new notices appear on their own. Comment countdowns are calculated
 in your browser, so they stay current between updates.</p>
 
+{_feeds_section(meta)}
 <h2 id="known-limits">Known limits</h2>
 <ul>
 <li>Public notices often appear after a project's design is done, so some listings will be too late to
@@ -2213,9 +2231,99 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
         if old.name not in keep:
             mark_unlisted(old, updated)
     write_csv(out_dir / "projects.csv", records, names, site_conf, meta)
+    write_feeds(out_dir, records, meta, site_conf, updated)
     (out_dir / "items.json").write_text(json.dumps(records, ensure_ascii=False, indent=1), encoding="utf-8")
     hist.save(out_dir / "history.json", h)
+    # Read by the health check (mpf/health.py): the live copy only changes when an update is uploaded.
+    (out_dir / "status.json").write_text(json.dumps({"last_successful_update": updated.isoformat(),
+                                                    "items": len(records)}, indent=1), encoding="utf-8")
     (out_dir / ".nojekyll").write_text("", encoding="utf-8")   # tells GitHub Pages to serve files as-is
+
+
+# ---------------------------------------------------------------------------
+# RSS: one feed per buyer profile (feeds/<profile>.xml), plus feeds/all.xml for the general list.
+# Each feed holds the projects that are new since the last update, with the Source line. Nothing is stored
+# about readers: no email, no addresses, no tracking.
+# ---------------------------------------------------------------------------
+
+def source_line(rec: dict) -> str:
+    """The card's Source line, as plain text."""
+    out = f"Source: {rec.get('agency') or rec['source_name']}"
+    if rec.get("issued_by"):
+        out += f". Hearing by {rec['issued_by']}"
+    if rec.get("attribution"):
+        out += f". {rec['attribution']}"
+    return out + "."
+
+
+def feed_items(records: list[dict], key: str | None, exclude_freshwater: bool = False) -> list[dict]:
+    """Projects new since the last update, under one profile (or the general list when key is None)."""
+    out = []
+    for r in records:
+        if "new" not in (r.get("changes") or []):
+            continue
+        if key is None:
+            if r.get("profile_only") or r.get("tier") not in ("strong", "possible", "weak", "watch"):
+                continue
+        elif not listed_in_profile(r, key):
+            continue
+        if exclude_freshwater and r.get("freshwater"):
+            continue
+        out.append(r)
+    return sorted(out, key=lambda r: (TIER_ORDER.index(r["tier"]) if r.get("tier") in TIER_ORDER else 9, r["title"]))
+
+
+def _rfc822(day: str) -> str:
+    from email.utils import format_datetime
+    from datetime import datetime, timezone
+    d = date.fromisoformat(day[:10])
+    return format_datetime(datetime(d.year, d.month, d.day, 12, tzinfo=timezone.utc))
+
+
+def render_feed(items: list[dict], title: str, description: str, site_url: str, feed_path: str, updated: date) -> str:
+    from xml.sax.saxutils import escape as x
+    base = site_url.rstrip("/") + "/"
+    entries = []
+    for r in items:
+        place = ", ".join(v for v in (r.get("province"), r.get("country")) if v and v != UNKNOWN)
+        tier = r.get("tier_label") or ""
+        lines = [f"{tier}." if tier else "", f"Place: {place}." if place else "",
+                 f"Type: {', '.join(r.get('types') or [])}." if r.get("types") else "",
+                 (r.get("summary") or "").strip(), f"Official notice: {r['url']}", source_line(r)]
+        body = "\n".join(l for l in lines if l)
+        entries.append(
+            "<item>"
+            f"<title>{x(r['title'])}</title>"
+            f"<link>{x(base + r['page'])}</link>"
+            f'<guid isPermaLink="false">{x(r["id"])}</guid>'
+            f"<pubDate>{_rfc822(r.get('first_listed') or updated.isoformat())}</pubDate>"
+            f"<description>{x(body)}</description>"
+            f"<source url=\"{x(r['url'])}\">{x(r.get('agency') or r['source_name'])}</source>"
+            "</item>")
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'
+            f"<channel><title>{x(title)}</title><link>{x(base)}</link>"
+            f'<atom:link href="{x(base + feed_path)}" rel="self" type="application/rss+xml"/>'
+            f"<description>{x(description)}</description><language>en</language>"
+            f"<lastBuildDate>{_rfc822(updated.isoformat())}</lastBuildDate>"
+            + "".join(entries) + "</channel></rss>\n")
+
+
+def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict, updated: date) -> list[str]:
+    folder = out_dir / "feeds"
+    folder.mkdir(exist_ok=True)
+    name = site.get("title", "MitiMark")
+    url = site.get("url", "")
+    written = []
+    feeds = [("all", None, f"{name}: new projects", "New projects on the general list since the last update.", False)]
+    for m in meta:
+        feeds.append((m["key"], m["key"], f"{name}: new projects, {m['label']}",
+                      f"New projects since the last update, for the profile: {m['label']}.", m.get("exclude_freshwater")))
+    for slug, key, title, desc, fresh in feeds:
+        path = f"feeds/{slug}.xml"
+        (out_dir / path).write_text(render_feed(feed_items(records, key, bool(fresh)), title, desc, url, path, updated),
+                                    encoding="utf-8")
+        written.append(path)
+    return written
 
 
 GONE_MARK = '<p class="gone">'

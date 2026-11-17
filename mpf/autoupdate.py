@@ -106,6 +106,12 @@ def auto_check(settings: dict, now: datetime | None = None, run=subprocess.run, 
     if once:
         log(settings, f"One-time instruction: force={once.get('force')}, upload={once.get('upload', True)}")
     upload = bool(once.get("upload", True))
+    from mpf.health import stale_health_warning
+    stale = stale_health_warning(settings, now)
+    if stale and not (p["log"].exists() and stale in p["log"].read_text(encoding="utf-8")[-4000:]):
+        # The health check watches the update; this watches the health check (said once, not every hour).
+        log(settings, stale)
+        notify("MitiMark", stale)
     if p["paused"].exists() and not once.get("force"):
         return "paused"
     days = int((settings.get("update") or {}).get("days_between_updates", DAYS_BETWEEN_UPDATES))

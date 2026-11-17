@@ -45,10 +45,26 @@ def recheck_urls(items_path: Path) -> set[str]:
             and r.get("stage_kind") not in ("decided", "withdrawn", "watch")}
 
 
+def robots_exception_line(client) -> str:
+    """The run-log line naming every source that read pages robots.txt alone would have refused."""
+    from mpf.http import EXCEPTION_BASES
+    if not client.exceptions_used:
+        return "Robots.txt exceptions used this run: none."
+    parts = []
+    for name, n in sorted(client.exceptions_used.items()):
+        exc = client.exceptions.get(name) or {}
+        basis = exc.get("basis", "?")
+        parts.append(f"{name} ({n} requests; exception ({basis}): {EXCEPTION_BASES.get(basis, '?')}; "
+                     f"evidence: {exc.get('evidence', '?')})")
+    return "Robots.txt exceptions used this run: " + "; ".join(parts) + "."
+
+
 def cmd_ingest(args, settings):
     conn = _open(settings)
     client = PoliteClient(settings, data_dir(settings) / "cache")
     client.refresh_urls = recheck_urls(ROOT / "site" / "items.json")
+    for note in client.set_exceptions(settings.get("sources") or {}):
+        print("Note: " + note)
     from mpf.sources import LIVE_SOURCES
     if args.source:
         wanted = args.source
@@ -57,6 +73,7 @@ def cmd_ingest(args, settings):
     else:
         wanted = [n for n, c in settings["sources"].items() if c.get("enabled")]
     problems = []
+    run_counts: dict[str, dict] = {}
     for name in wanted:
         conf = settings["sources"].get(name, {})
         if name == "drop_folder":
@@ -67,6 +84,8 @@ def cmd_ingest(args, settings):
             print(f"Unknown source '{name}'. Known: {', '.join(list(SOURCES) + ['drop_folder'])}")
             continue
         print(f"== {name}")
+        client.current_source = name
+        refused_before = dict(client.refused_hosts)
         new = total = 0
         try:
             for item in source.fetch():
@@ -88,17 +107,31 @@ def cmd_ingest(args, settings):
             print("   " + line)
             if line.startswith("STOPPED"):
                 problems.append(name)
+        # A 401, 403 or 429 always stops the source, even if the source's own code carried on.
+        for host, why in client.refused_hosts.items():
+            if host not in refused_before:
+                print(f"   STOPPED: {host} refused us ({why}). No more requests to it this run.")
+                problems.append(name)
         print(f"   {total} items ({new} new)")
+        run_counts[name] = {"items": total, "new": new, "problem": name in problems}
+        client.current_source = None
     news_conf = settings.get("news") or {}
     from mpf.news import news_on
     if args.live and not args.source and news_on(news_conf):
         # News feeds are early-warning extras: a blocked feed is reported but is not a source problem.
         from mpf import news
         print("== news feeds (headline, source, date and link only)")
+        client.current_source = "news"
         for line in news.ingest(conn, client, news_conf):
             print("   " + line)
+        client.current_source = None
     print(f"Network requests this run: {client.network_requests} (everything else came from the cache). "
           f"Of these, {client.rechecked} re-read pages of the {len(client.refresh_urls)} listed projects not decided yet.")
+    print(robots_exception_line(client))
+    if args.live and not args.source:
+        # Kept for the health check (python -m mpf health): what each source returned in recent runs.
+        from mpf.health import record_ingest_run
+        record_ingest_run(settings, run_counts, client.exceptions_used, client.network_requests)
     if problems:
         print(f"Sources that stopped early or failed: {', '.join(sorted(set(problems)))}. The others ran normally.")
 
@@ -357,6 +390,24 @@ def cmd_auto(args, settings):
         print(autoupdate.kick(settings, upload=True))
 
 
+def cmd_health(args, settings):
+    from mpf import health
+    action = args.cmd
+    if action == "health":
+        result = health.run_health(settings)
+        print("Health check: " + ("all checks passed" if result["ok"] else f"{len(result['problems'])} problem(s)"))
+        for line in result["checks"]:
+            print("  " + line)
+        if not result["ok"]:
+            sys.exit(1)
+    elif action == "health-install":
+        print(health.install(settings))
+    elif action == "health-uninstall":
+        print(health.uninstall())
+    elif action == "health-status":
+        print(health.status(settings))
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="python -m mpf", description="MitiMark")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -392,6 +443,11 @@ def main(argv=None):
                        ("auto-kick-dry", "start the agent now under launchd: forced, no upload"),
                        ("auto-kick-upload", "start the agent now under launchd: forced, with upload")]:
         sub.add_parser(name, help=text)
+    for name, text in [("health", "check the readers and the live site; notify on a problem"),
+                       ("health-install", "install the daily health check LaunchAgent"),
+                       ("health-uninstall", "remove the health check LaunchAgent"),
+                       ("health-status", "show when the health check last ran")]:
+        sub.add_parser(name, help=text)
     args = p.parse_args(argv)
     settings = load_settings()
     {"ingest": cmd_ingest, "score": cmd_score, "show": cmd_show, "label-template": cmd_label_template,
@@ -399,7 +455,8 @@ def main(argv=None):
      "approved-count": cmd_approved_count, "news": cmd_news, "zip-site": cmd_zip_site,
      "check-access": cmd_check_access, "update": cmd_update,
      **{n: cmd_auto for n in ("auto-check", "auto-install", "auto-uninstall", "auto-status", "auto-pause",
-                              "auto-resume", "auto-show-plist", "auto-kick-dry", "auto-kick-upload")}}[args.cmd](args, settings)
+                              "auto-resume", "auto-show-plist", "auto-kick-dry", "auto-kick-upload")},
+     **{n: cmd_health for n in ("health", "health-install", "health-uninstall", "health-status")}}[args.cmd](args, settings)
 
 
 if __name__ == "__main__":
