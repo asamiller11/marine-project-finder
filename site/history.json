@@ -6,7 +6,8 @@
 "2026-11-11",
 "2026-11-12",
 "2026-11-13",
-"2026-11-14"
+"2026-11-14",
+"2026-11-17"
 ],
 "base": {
 "nl_ea:2434": {
@@ -123,12 +124,6 @@
 "tier": "weak",
 "title": "Reconstruction of Wharf 402 - Mont-Louis Harbour, Gaspésie"
 },
-"iaac:90891": {
-"comment_deadline": "2026-12-13",
-"stage_kind": "open",
-"tier": "weak",
-"title": "New dock installation – 2820 Panorama Drive"
-},
 "iaac:90491": {
 "comment_deadline": "2026-11-24",
 "stage_kind": "open",
@@ -140,12 +135,6 @@
 "stage_kind": "open",
 "tier": "weak",
 "title": "Lazy Head Marine Terminal Project"
-},
-"scot_marine:00011871, 00011872 & 00011873": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Additional Information - Ardersier Port Expansion Project - Ardersier Port"
 },
 "iaac:90797": {
 "comment_deadline": null,
@@ -322,7 +311,7 @@
 "title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington"
 }
 },
-"base_date": "2026-11-13",
+"base_date": "2026-11-14",
 "current": {
 "nl_ea:2434": {
 "comment_deadline": "2026-10-20",
@@ -335,12 +324,6 @@
 "stage_kind": "decided",
 "tier": "strong",
 "title": "Point Rousse Port Expansion"
-},
-"iaac:90841": {
-"comment_deadline": "2026-11-15",
-"stage_kind": "open",
-"tier": "possible",
-"title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
 },
 "scot_marine:00012497": {
 "comment_deadline": null,
@@ -390,11 +373,23 @@
 "tier": "possible",
 "title": "Subsea Cable Replacement - Loch a Choire, Loch Linnhe"
 },
+"iaac:90841": {
+"comment_deadline": "2026-11-15",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
+},
 "iaac:90831": {
 "comment_deadline": null,
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia"
+},
+"scot_marine:00011429": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "EGL3 Cable - Sandford Bay, Peterhead to the English Border"
 },
 "iaac:90890": {
 "comment_deadline": "2026-12-13",
@@ -419,18 +414,6 @@
 "stage_kind": "open",
 "tier": "weak",
 "title": "Floating Dock Relocation at Belleoram SCH, NL"
-},
-"iaac:90856": {
-"comment_deadline": "2026-11-14",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt"
-},
-"iaac:90830": {
-"comment_deadline": "2026-11-15",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
 },
 "iaac:90322": {
 "comment_deadline": "2026-12-15",
@@ -468,6 +451,12 @@
 "tier": "weak",
 "title": "Wharf Reconstruction at Carmanville SCH, NL"
 },
+"nl_ea:2357": {
+"comment_deadline": "2025-07-04",
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Chapel’s Cove Breakwater"
+},
 "iaac:90805": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -498,12 +487,6 @@
 "tier": "weak",
 "title": "Wharf Reconstruction at Mary's Harbour SCH, NL"
 },
-"nl_ea:2357": {
-"comment_deadline": "2025-07-04",
-"stage_kind": "decided",
-"tier": "weak",
-"title": "Chapel’s Cove Breakwater"
-},
 "iaac:90307": {
 "comment_deadline": "2026-11-01",
 "stage_kind": "closed",
@@ -522,11 +505,23 @@
 "tier": "weak",
 "title": "Wharf Reconstruction at Hermitage SCH, NL"
 },
+"iaac:90856": {
+"comment_deadline": "2026-11-14",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt"
+},
 "scot_marine:00011153 / 00011950": {
 "comment_deadline": null,
 "stage_kind": "decided",
 "tier": "weak",
 "title": "Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe"
+},
+"iaac:90830": {
+"comment_deadline": "2026-11-15",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
 },
 "iaac:90822": {
 "comment_deadline": "2026-11-05",
@@ -593,6 +588,12 @@
 "stage_kind": "decided",
 "tier": "notrel",
 "title": "Rock Armour Installation - Stromeferry"
+},
+"scot_marine:00011784": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Rock Armour Reventment Works- Old Rosskeen Bridge, West of Invergordon"
 },
 "fed_register:2026-20789": {
 "comment_deadline": "2026-11-12",
@@ -889,6 +890,20 @@
 "fed_register:2026-17614": [
 {
 "date": "2026-11-13",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00011429": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00011784": [
+{
+"date": "2026-11-17",
 "type": "new",
 "text": "First listed"
 }

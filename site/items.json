@@ -49,7 +49,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -25,
+   "days_left": -28,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -144,7 +144,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -302,
+   "days_left": -305,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -163,97 +163,6 @@
     "tier_label": "Possible",
     "score": 52,
     "because": "Shoreline protection, seawall or bulkhead; Species at risk; Work below high water or footprint on the seabed; size 1.4 kilometres"
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
-  "id": "iaac:90841",
-  "title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Department of National Defence",
-  "country": "CA",
-  "province": "Nova Scotia",
-  "language": "en",
-  "water_body": "CFB Halifax Wrights Cove",
-  "types": [
-   "Breakwater, jetty or groyne",
-   "Dredging"
-  ],
-  "stage": "public comment open until 2026-11-15",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-15",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 38,
-  "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "score 38",
-  "reviewed": true,
-  "summary": "Project by Department of National Defence in CFB Halifax Wrights Cove, Nova Scotia. The notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2.",
-  "summary_note": "auto",
-  "quotes": [
-   "Parkade The construction activities will also involve dredging, vegetation clearing, excavation, demolition, marine works, and the movement of construction equipment and materials.",
-   "The approximate size of the construction area is 90,000 m 2 ."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90841.html",
-  "comments": {
-   "opens": "2026-10-16",
-   "opens_how": "notice date",
-   "closes": "2026-11-15",
-   "days_left": 1,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 40,
-    "because": "Breakwater, jetty or groyne; size 90,000 m 2"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
    },
    "seagrass": {
     "tier": "notrel",
@@ -895,7 +804,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -141,
+   "days_left": -144,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1048,6 +957,97 @@
   "first_listed": "2026-11-12"
  },
  {
+  "id": "iaac:90841",
+  "title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90841?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Department of National Defence",
+  "country": "CA",
+  "province": "Nova Scotia",
+  "language": "en",
+  "water_body": "CFB Halifax Wrights Cove",
+  "types": [
+   "Breakwater, jetty or groyne",
+   "Dredging"
+  ],
+  "stage": "comment closed 2026-11-15, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-15",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 38,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 38",
+  "reviewed": true,
+  "summary": "Project by Department of National Defence in CFB Halifax Wrights Cove, Nova Scotia. The notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Parkade The construction activities will also involve dredging, vegetation clearing, excavation, demolition, marine works, and the movement of construction equipment and materials.",
+   "The approximate size of the construction area is 90,000 m 2 ."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90841.html",
+  "comments": {
+   "opens": "2026-10-16",
+   "opens_how": "notice date",
+   "closes": "2026-11-15",
+   "days_left": -2,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 40,
+    "because": "Breakwater, jetty or groyne; size 90,000 m 2"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
   "id": "iaac:90831",
   "title": "Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90831?culture=en-CA",
@@ -1140,6 +1140,99 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "scot_marine:00011429",
+  "title": "EGL3 Cable - Sandford Bay, Peterhead to the English Border",
+  "url": "https://marine.gov.scot/?q=node/28317",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "Sandford Bay",
+  "types": [],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 37,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 37",
+  "reviewed": false,
+  "summary": "Project in Sandford Bay, Scotland. The notice mentions about 111,000 m3 of material and an area of about 2,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00011429.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
   "id": "iaac:90890",
   "title": "Rehabilitation of wharves 3 and 4A at the Port of Trois-Rivières",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90890?culture=en-CA",
@@ -1182,7 +1275,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-13",
-   "days_left": 29,
+   "days_left": 26,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1279,7 +1372,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 16,
+   "days_left": 13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1376,7 +1469,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-11",
-   "days_left": 27,
+   "days_left": 24,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1474,7 +1567,7 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 13,
+   "days_left": 10,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1487,190 +1580,6 @@
     "tier_label": "Weak",
     "score": 31,
     "because": "Wharf, pier or large dock; Marina or small craft harbour; Scour or cable protection"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
-  "id": "iaac:90856",
-  "title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90856?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Department of National Defence",
-  "country": "CA",
-  "province": "British Columbia",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Breakwater, jetty or groyne",
-   "Marina or small craft harbour"
-  ],
-  "stage": "public comment open until 2026-11-14",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-14",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 23,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 23",
-  "reviewed": false,
-  "summary": "Project by Department of National Defence in British Columbia. The notice mentions breakwater or jetty and small craft harbour work.",
-  "summary_note": "auto",
-  "quotes": [
-   "A new boat ramp will also be constructed to the north of F-Jetty to replace the existing boat ramp at Yew Point, which will become inaccessible following D-Jetty demolition.",
-   "This includes existing buildings, utilities, the jetty, structures, upland fill materials and associated site features, together with any ancillary works required to prepare the site for future submarine support infrastructure.",
-   "Phase 1 of CPSP will include the demolition and removal of existing infrastructure at D-Jetty."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90856.html",
-  "comments": {
-   "opens": "2026-10-26",
-   "opens_how": "notice date",
-   "closes": "2026-11-14",
-   "days_left": 0,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 28,
-    "because": "Breakwater, jetty or groyne; Marina or small craft harbour"
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
-  "id": "iaac:90830",
-  "title": "Heidelberg Materials Barclay Point Barge Offloading Facility",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90830?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Heidelberg Materials",
-  "country": "CA",
-  "province": "British Columbia",
-  "language": "en",
-  "water_body": "Victoria Upper Harbour",
-  "types": [
-   "Port or marine terminal",
-   "Dredging"
-  ],
-  "stage": "public comment open until 2026-11-15",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-15",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 23,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 23",
-  "reviewed": false,
-  "summary": "Project by Heidelberg Materials in Victoria Upper Harbour, British Columbia. The notice mentions dredging and port or terminal work.",
-  "summary_note": "auto",
-  "quotes": [
-   "The Project will involve dredging of the berth, as well as installation of a steel conveyor head frame supported by 4 steel pilings with a material conveyor extending to the shore above the high tide line.",
-   "This includes installation of approximately five steel berthing dolphins perpendicular to the shoreline spanned by wooden boomsticks.",
-   "Transport Canada (TC) is reviewing the project for approval under the Canadian Navigable Waters Act (CNWA) and the Public Ports and Public Port Facilities Regulations (PPPPFR), as the proposed project falls within lands administered by Transport Canada."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90830.html",
-  "comments": {
-   "opens": "2026-10-16",
-   "opens_how": "notice date",
-   "closes": "2026-11-15",
-   "days_left": 1,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 18,
-    "because": "Port or marine terminal"
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -1749,7 +1658,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-12-15",
-   "days_left": 31,
+   "days_left": 28,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1844,7 +1753,7 @@
    "opens": "2026-11-05",
    "opens_how": "notice date",
    "closes": "2026-11-24",
-   "days_left": 10,
+   "days_left": 7,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1940,7 +1849,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-23",
-   "days_left": 9,
+   "days_left": 6,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2249,6 +2158,97 @@
     "tier_label": "Probably not relevant",
     "score": 0,
     "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
+  "id": "nl_ea:2357",
+  "title": "Chapel’s Cove Breakwater",
+  "url": "https://www.gov.nl.ca/eccc/projects/project-2357/",
+  "source": "nl_ea",
+  "source_name": "Newfoundland and Labrador environmental assessment",
+  "proponent": "Town of Harbour Main-Chapel’s Cove-Lakeview",
+  "country": "CA",
+  "province": "Newfoundland and Labrador",
+  "language": "en",
+  "water_body": "Chapel’s Cove",
+  "types": [
+   "Breakwater, jetty or groyne"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": "2025-07-04",
+  "decision_date": "2025-07-11",
+  "approved_on": "2025-07-11",
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 31",
+  "reviewed": false,
+  "summary": "Project by Town of Harbour Main-Chapel’s Cove-Lakeview in Chapel’s Cove, Newfoundland and Labrador. The notice mentions breakwater or jetty work and a length of about 115 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proponent is proposing to construct a 115-metre breakwater on the western shoreline of Chapel’s Cove.",
+   "4.14 Throughout the life of the Project, the Proponent shall conduct any additional studies or monitoring and/or implement additional mitigation measures as required by the Minister.",
+   "The breakwater would protect adjacent roads and residential properties from wave action during storm surge events, mitigating coastal erosion, flooding and damage to the coastline."
+  ],
+  "attribution": "",
+  "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/nl_ea-2357.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2025-07-04",
+   "days_left": -501,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 45,
+    "because": "Breakwater, jetty or groyne; Rock armour, riprap or armour units; size 115-metre"
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 31,
+    "because": "Erosion control works or shoreline stabilization; Breakwater, jetty or groyne; size 115-metre"
    },
    "seagrass": {
     "tier": "notrel",
@@ -2745,96 +2745,6 @@
   "first_listed": "2026-10-29"
  },
  {
-  "id": "nl_ea:2357",
-  "title": "Chapel’s Cove Breakwater",
-  "url": "https://www.gov.nl.ca/eccc/projects/project-2357/",
-  "source": "nl_ea",
-  "source_name": "Newfoundland and Labrador environmental assessment",
-  "proponent": "Town of Harbour Main-Chapel’s Cove-Lakeview",
-  "country": "CA",
-  "province": "Newfoundland and Labrador",
-  "language": "en",
-  "water_body": "Chapel’s Cove",
-  "types": [
-   "Breakwater, jetty or groyne"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": "2025-07-04",
-  "decision_date": "2025-07-11",
-  "approved_on": "2025-07-11",
-  "score": 28,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "score 28",
-  "reviewed": false,
-  "summary": "Project by Town of Harbour Main-Chapel’s Cove-Lakeview in Chapel’s Cove, Newfoundland and Labrador. The notice mentions breakwater or jetty work and a length of about 115 m.",
-  "summary_note": "auto",
-  "quotes": [
-   "The proponent is proposing to construct a 115-metre breakwater on the western shoreline of Chapel’s Cove.",
-   "The breakwater would protect adjacent roads and residential properties from wave action during storm surge events, mitigating coastal erosion, flooding and damage to the coastline."
-  ],
-  "attribution": "",
-  "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/nl_ea-2357.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": "2025-07-04",
-   "days_left": -498,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry publishes the comment deadline but not the number of comments received."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 45,
-    "because": "Breakwater, jetty or groyne; Rock armour, riprap or armour units; size 115-metre"
-   },
-   "living-shoreline": {
-    "tier": "weak",
-    "tier_label": "Weak",
-    "score": 31,
-    "because": "Erosion control works or shoreline stabilization; Breakwater, jetty or groyne; size 115-metre"
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": ""
-   }
-  },
-  "freshwater": false,
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
- },
- {
   "id": "iaac:90307",
   "title": "Raising of the COOP Wharf- L'Étang-du-Nord Harbour – Magdalen Islands",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90307?culture=en-CA",
@@ -2875,7 +2785,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": -13,
+   "days_left": -16,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2968,7 +2878,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -218,
+   "days_left": -221,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3118,6 +3028,98 @@
   "first_listed": "2026-11-12"
  },
  {
+  "id": "iaac:90856",
+  "title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90856?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Department of National Defence",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Breakwater, jetty or groyne",
+   "Marina or small craft harbour"
+  ],
+  "stage": "comment closed 2026-11-14, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-14",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 23,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 23",
+  "reviewed": false,
+  "summary": "Project by Department of National Defence in British Columbia. The notice mentions breakwater or jetty and small craft harbour work.",
+  "summary_note": "auto",
+  "quotes": [
+   "A new boat ramp will also be constructed to the north of F-Jetty to replace the existing boat ramp at Yew Point, which will become inaccessible following D-Jetty demolition.",
+   "This includes existing buildings, utilities, the jetty, structures, upland fill materials and associated site features, together with any ancillary works required to prepare the site for future submarine support infrastructure.",
+   "Phase 1 of CPSP will include the demolition and removal of existing infrastructure at D-Jetty."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90856.html",
+  "comments": {
+   "opens": "2026-10-26",
+   "opens_how": "notice date",
+   "closes": "2026-11-14",
+   "days_left": -3,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 28,
+    "because": "Breakwater, jetty or groyne; Marina or small craft harbour"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
   "id": "scot_marine:00011153 / 00011950",
   "title": "Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe",
   "url": "https://marine.gov.scot/?q=node/28218",
@@ -3206,6 +3208,98 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "iaac:90830",
+  "title": "Heidelberg Materials Barclay Point Barge Offloading Facility",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90830?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Heidelberg Materials",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Victoria Upper Harbour",
+  "types": [
+   "Port or marine terminal",
+   "Dredging"
+  ],
+  "stage": "comment closed 2026-11-15, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-15",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 23,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "score 23",
+  "reviewed": false,
+  "summary": "Project by Heidelberg Materials in Victoria Upper Harbour, British Columbia. The notice mentions dredging and port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The Project will involve dredging of the berth, as well as installation of a steel conveyor head frame supported by 4 steel pilings with a material conveyor extending to the shore above the high tide line.",
+   "This includes installation of approximately five steel berthing dolphins perpendicular to the shoreline spanned by wooden boomsticks.",
+   "Transport Canada (TC) is reviewing the project for approval under the Canadian Navigable Waters Act (CNWA) and the Public Ports and Public Port Facilities Regulations (PPPPFR), as the proposed project falls within lands administered by Transport Canada."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90830.html",
+  "comments": {
+   "opens": "2026-10-16",
+   "opens_how": "notice date",
+   "closes": "2026-11-15",
+   "days_left": -2,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Port or marine terminal"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [],
+  "changes": [],
+  "first_listed": "2026-10-29"
+ },
+ {
   "id": "iaac:90822",
   "title": "Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90822?culture=en-CA",
@@ -3246,7 +3340,7 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": -9,
+   "days_left": -12,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3523,7 +3617,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -64,
+   "days_left": -67,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3978,7 +4072,7 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 14,
+   "days_left": 11,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4074,7 +4168,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-19",
-   "days_left": 5,
+   "days_left": 2,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4197,6 +4291,102 @@
   "first_listed": "2026-11-13"
  },
  {
+  "id": "scot_marine:00011784",
+  "title": "Rock Armour Reventment Works- Old Rosskeen Bridge, West of Invergordon",
+  "url": "https://marine.gov.scot/?q=node/28318",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 12,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 12 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions shoreline protection work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00011784.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 37,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units"
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 18,
+    "because": "Shoreline protection, seawall or bulkhead"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
   "id": "fed_register:2026-20789",
   "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska",
   "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20789/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
@@ -4235,7 +4425,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-12",
-   "days_left": -2,
+   "days_left": -5,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4367,7 +4557,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-18",
-   "days_left": -57,
+   "days_left": -60,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4435,7 +4625,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-13",
-   "days_left": -32,
+   "days_left": -35,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4504,7 +4694,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-28",
-   "days_left": -47,
+   "days_left": -50,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
