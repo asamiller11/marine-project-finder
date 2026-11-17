@@ -288,3 +288,12 @@ def test_built_site_has_feeds_status_and_last_successful_update(tmp_path):
     assert "Last successful update" in (tmp_path / "index.html").read_text()
     assert 'href="feeds/all.xml"' in (tmp_path / "about.html").read_text()
     assert "Decision due (official notice)" in (tmp_path / "p" / "nl_ea-1.html").read_text()
+
+
+def test_feed_attributes_are_quoted_and_only_web_links_are_kept():
+    import xml.etree.ElementTree as ET
+    recs = [_rec(1, url='https://x.test/a?b="c"&d=<e>'), _rec(2, url="javascript:alert(1)")]
+    xml = site.render_feed(site.feed_items(recs, None), "M", "d", "https://x.test/", "feeds/all.xml", date(2026, 11, 17))
+    items = ET.fromstring(xml).findall("./channel/item")      # parses: the quote did not break the XML
+    assert items[0].find("source").get("url") == 'https://x.test/a?b="c"&d=<e>'
+    assert items[1].find("source") is None and "javascript:" not in xml

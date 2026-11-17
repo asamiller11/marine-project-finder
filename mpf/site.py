@@ -2281,15 +2281,16 @@ def _rfc822(day: str) -> str:
 
 
 def render_feed(items: list[dict], title: str, description: str, site_url: str, feed_path: str, updated: date) -> str:
-    from xml.sax.saxutils import escape as x
+    from xml.sax.saxutils import escape as x, quoteattr as qa
     base = site_url.rstrip("/") + "/"
     entries = []
     for r in items:
         place = ", ".join(v for v in (r.get("province"), r.get("country")) if v and v != UNKNOWN)
         tier = r.get("tier_label") or ""
+        link = r["url"] if re.match(r"https?://", r.get("url") or "") else ""
         lines = [f"{tier}." if tier else "", f"Place: {place}." if place else "",
                  f"Type: {', '.join(r.get('types') or [])}." if r.get("types") else "",
-                 (r.get("summary") or "").strip(), f"Official notice: {r['url']}", source_line(r)]
+                 (r.get("summary") or "").strip(), f"Official notice: {link}" if link else "", source_line(r)]
         body = "\n".join(l for l in lines if l)
         entries.append(
             "<item>"
@@ -2298,11 +2299,11 @@ def render_feed(items: list[dict], title: str, description: str, site_url: str, 
             f'<guid isPermaLink="false">{x(r["id"])}</guid>'
             f"<pubDate>{_rfc822(r.get('first_listed') or updated.isoformat())}</pubDate>"
             f"<description>{x(body)}</description>"
-            f"<source url=\"{x(r['url'])}\">{x(r.get('agency') or r['source_name'])}</source>"
-            "</item>")
+            + (f"<source url={qa(link)}>{x(r.get('agency') or r['source_name'])}</source>" if link else "")
+            + "</item>")
     return ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'
             f"<channel><title>{x(title)}</title><link>{x(base)}</link>"
-            f'<atom:link href="{x(base + feed_path)}" rel="self" type="application/rss+xml"/>'
+            f'<atom:link href={qa(base + feed_path)} rel="self" type="application/rss+xml"/>'
             f"<description>{x(description)}</description><language>en</language>"
             f"<lastBuildDate>{_rfc822(updated.isoformat())}</lastBuildDate>"
             + "".join(entries) + "</channel></rss>\n")
