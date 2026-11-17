@@ -123,9 +123,11 @@ def test_429_on_robots_txt_stops_the_site(tmp_path, monkeypatch):
     assert "z.example" in c.refused_hosts
 
 
-def test_no_source_uses_an_exception_today():
+def test_only_the_netherlands_source_has_an_exception_and_it_is_off():
     from mpf.config import load_settings
-    assert not any("robots_exception" in (c or {}) for c in load_settings()["sources"].values())
+    with_exc = {n: c for n, c in load_settings()["sources"].items() if "robots_exception" in (c or {})}
+    assert list(with_exc) == ["nl_sru"] and not with_exc["nl_sru"]["enabled"]
+    assert valid_exception(with_exc["nl_sru"]["robots_exception"])["basis"] == "b"
 
 
 # --- A2: decision wording ---------------------------------------------------------------------------------

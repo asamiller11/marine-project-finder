@@ -4,9 +4,13 @@ from mpf.sources.dfo_far import DFOFARSource
 from mpf.sources.dk_hoering import DKHoeringSource
 from mpf.sources.es_boe import ESBOESource
 from mpf.sources.fed_register import FedRegisterSource
+from mpf.sources.fed_register_broad import FedRegisterBroadSource
 from mpf.sources.fr_eolien import FREolienSource
+from mpf.sources.fr_mce import FRMCESource
 from mpf.sources.iaac import IAACSource
 from mpf.sources.nl_ea import NLEASource
+from mpf.sources.nl_sru import NLSRUSource
+from mpf.sources.noaa_ita import NOAAITASource
 from mpf.sources.scot_marine import ScotMarineSource
 
 # Web sources. The drop folder is handled separately because it reads local files.
@@ -21,10 +25,16 @@ SOURCES = {
     "dfo_far": DFOFARSource,
     # US Federal Register (NOAA incidental harassment notices), shown under the hard-structure profile only.
     "fed_register": FedRegisterSource,
+    # Batch 3 sources (2026-11-17), all OFF until the owner switches them on.
+    "noaa_ita": NOAAITASource,
+    "fed_register_broad": FedRegisterBroadSource,
+    "fr_mce": FRMCESource,
+    "nl_sru": NLSRUSource,
 }
 
 # Live sources the scheduled GitHub run reads (the DFO test set and drop folder are local only).
-LIVE_SOURCES = ["iaac", "nl_ea", "bc_eao", "dk_hoering", "scot_marine", "es_boe", "fr_eolien", "fed_register"]
+LIVE_SOURCES = ["iaac", "nl_ea", "bc_eao", "dk_hoering", "scot_marine", "es_boe", "fr_eolien", "fed_register",
+                "noaa_ita", "fed_register_broad", "fr_mce", "nl_sru"]
 
 # A page each source must be able to reach, for `python -m mpf check-access`.
 CHECK_URLS = {

@@ -90,6 +90,29 @@ sources:
     enabled: true
     term: '"incidental harassment authorization" pile driving'
     per_page: 10
+  # Batch 3 (2026-11-17): readers built and tested, all OFF until the owner decides (see private/ report).
+  noaa_ita:
+    # NOAA Fisheries construction ITA page. US public domain; robots.txt allows it. One request per run.
+    enabled: false
+  fed_register_broad:
+    # Federal Register API, broader construction and restoration searches. Public domain. One request per term.
+    enabled: false
+    per_page: 10
+  fr_mce:
+    # Cerema compensation measures, France (Licence Ouverte 2.0). The monthly GeoPackage is about 56 MB: a bulk
+    # download, read once a month. Off until the owner approves that.
+    enabled: false
+    max_mb: 80
+  nl_sru:
+    # Netherlands official notices (CC0). The repository host's robots.txt disallows all robots, so this source
+    # runs only under exception (b): the national open-data portal documents the SRU interface for automated use.
+    enabled: false
+    lookback_days: 30
+    max_records: 50
+    robots_exception:
+      basis: b
+      hosts: ["repository.overheid.nl"]
+      evidence: "https://data.overheid.nl/dataset/officiele-bekendmakingen (CC0; documented SRU interface and manual HandleidingSRU2.0.pdf), checked 2026-11-17"
   drop_folder:
     enabled: true
 

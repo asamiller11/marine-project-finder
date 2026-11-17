@@ -42,6 +42,27 @@ sources:
     # The notices are mostly about marine mammals and noise. Quotes would pick those sentences and suggest habitat
     # work, so the card shows only what the notice says about the construction, and a link.
     quotes: false
+  noaa_ita:
+    name: "NOAA Fisheries incidental take authorizations for construction"
+    url: "https://www.fisheries.noaa.gov/national/marine-mammal-protection/incidental-take-authorizations-construction-activities"
+    languages: [en]
+    agency: "NOAA Fisheries (U.S. National Marine Fisheries Service)"
+  fed_register_broad:
+    name: "Federal Register (construction and restoration notices)"
+    url: "https://www.federalregister.gov/"
+    languages: [en]
+    agency: "Office of the Federal Register, National Archives"
+  fr_mce:
+    name: "Mesures compensatoires prescrites des atteintes à la biodiversité (Cerema, data.gouv.fr)"
+    url: "https://www.data.gouv.fr/datasets/mesures-compensatoires-prescrites-des-atteintes-a-la-biodiversite-france-entiere"
+    languages: [fr]
+    agency: "Cerema, via data.gouv.fr"
+    attribution: "Licence Ouverte 2.0"
+  nl_sru:
+    name: "Officiële bekendmakingen (Netherlands official notices, SRU)"
+    url: "https://zoek.officielebekendmakingen.nl/"
+    languages: [nl]
+    agency: "KOOP, Officiële bekendmakingen"
   es_boe:
     name: "Boletín Oficial del Estado (BOE) open data"
     url: "https://www.boe.es/datosabiertos/"
