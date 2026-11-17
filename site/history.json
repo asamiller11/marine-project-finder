@@ -355,6 +355,12 @@
 "tier": "possible",
 "title": "Marine Licence Variation Application– Pontoon Upgrades – Eyemouth Harbour Pontoons, Eyemouth"
 },
+"iaac:90624": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Rock Bay Harbour Ferry Project - Dredging and Dock Construction"
+},
 "scot_marine:additional information public notice ardersier port expansion phase 2": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -374,8 +380,8 @@
 "title": "Subsea Cable Replacement - Loch a Choire, Loch Linnhe"
 },
 "iaac:90841": {
-"comment_deadline": "2026-11-15",
-"stage_kind": "closed",
+"comment_deadline": null,
+"stage_kind": "assessment",
 "tier": "possible",
 "title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
 },
@@ -506,8 +512,8 @@
 "title": "Wharf Reconstruction at Hermitage SCH, NL"
 },
 "iaac:90856": {
-"comment_deadline": "2026-11-14",
-"stage_kind": "closed",
+"comment_deadline": null,
+"stage_kind": "assessment",
 "tier": "weak",
 "title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt"
 },
@@ -518,8 +524,8 @@
 "title": "Construction of Ferry Terminal and Land Reclamation - Corran Narrows, Loch Linnhe"
 },
 "iaac:90830": {
-"comment_deadline": "2026-11-15",
-"stage_kind": "closed",
+"comment_deadline": null,
+"stage_kind": "assessment",
 "tier": "weak",
 "title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
 },
@@ -595,6 +601,24 @@
 "tier": "notrel",
 "title": "Rock Armour Reventment Works- Old Rosskeen Bridge, West of Invergordon"
 },
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-angoon": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Alaska Department of Transportation and Public Facilities' Angoon Ferry Terminal Modification Project in Angoon, Alaska"
+},
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Alaska Department of Transportation and Public Facilities' Prince William Sound Ferry Terminal Improvement Projects in Cordova, Chenega, and Tatitlek, Alaska"
+},
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Alaska Department of Transportation and Public Facilities’ Cold Bay Ferry Terminal Reconstruction Project in Cold Bay, Alaska"
+},
 "fed_register:2026-20789": {
 "comment_deadline": "2026-11-12",
 "stage_kind": "closed",
@@ -607,6 +631,12 @@
 "tier": "notrel",
 "title": "Marine Structure Maintenance and Pile Replacement Program in Puget Sound, Washington"
 },
+"noaa_ita:incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Modification of Port of Alaska's Modernization Program Phase 2B: Cargo Terminal Replacement Project in Anchorage, Alaska"
+},
 "fed_register:2026-18024": {
 "comment_deadline": "2026-09-18",
 "stage_kind": "closed",
@@ -618,6 +648,24 @@
 "stage_kind": "closed",
 "tier": "notrel",
 "title": "PetroMarine Services Juneau Rock Dump Terminal Reconstruction Project, Juneau, Alaska"
+},
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Reissuance of Alaska Department of Transportation and Public Facilities Pile Driving and Removal to Improve the Auke Bay East Ferry Terminal in Juneau, Alaska"
+},
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Reissuance of Alaska Department of Transportation and Public Facilities' Ferry Berth Construction Tongass Narrows Project"
+},
+"noaa_ita:incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "notrel",
+"title": "Tradepoint TiL Terminal, LLC's Sparrows Point Container Terminal Project in Baltimore County, MD"
 },
 "fed_register:2026-17614": {
 "comment_deadline": "2026-09-28",
@@ -902,6 +950,98 @@
 }
 ],
 "scot_marine:00011784": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"iaac:90624": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"iaac:90841": [
+{
+"date": "2026-11-17",
+"type": "deadline",
+"text": "Comment deadline 2026-11-15 no longer shown"
+},
+{
+"date": "2026-11-17",
+"type": "stage",
+"text": "Stage now: assessment"
+}
+],
+"iaac:90856": [
+{
+"date": "2026-11-17",
+"type": "deadline",
+"text": "Comment deadline 2026-11-14 no longer shown"
+},
+{
+"date": "2026-11-17",
+"type": "stage",
+"text": "Stage now: assessment"
+}
+],
+"iaac:90830": [
+{
+"date": "2026-11-17",
+"type": "deadline",
+"text": "Comment deadline 2026-11-15 no longer shown"
+},
+{
+"date": "2026-11-17",
+"type": "stage",
+"text": "Stage now: assessment"
+}
+],
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-angoon": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"noaa_ita:incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass": [
+{
+"date": "2026-11-17",
+"type": "new",
+"text": "First listed"
+}
+],
+"noaa_ita:incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal": [
 {
 "date": "2026-11-17",
 "type": "new",

@@ -667,6 +667,109 @@
   "first_listed": "2026-11-13"
  },
  {
+  "id": "iaac:90624",
+  "title": "Rock Bay Harbour Ferry Project - Dredging and Dock Construction",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90624?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Ralmax Group of Companies",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Rock Bay Harbour",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Shoreline protection, seawall or bulkhead",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-11-05",
+  "approved_on": "2026-11-05",
+  "score": 42,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "score 42",
+  "reviewed": false,
+  "summary": "Project by Ralmax Group of Companies in Rock Bay Harbour, British Columbia. The notice mentions dredging, pile, port or terminal, shoreline protection and wharf or dock work and an area of about 3,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Dredging of seabed sediments would be completed using a derrick barge and dredged materials would be transported to an upland facility for disposal.",
+   "Dredging would occur within a footprint of approximately 3000 m 2 to a target dredge depth of -1 m Chart Datum.",
+   "The docks will be constructed off-site and floated to the project site."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90624.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 59,
+    "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Port or marine terminal; size 3000 m 2"
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "Shoreline protection, seawall or bulkhead; Work below high water or footprint on the seabed; Dredging; size 3000 m 2"
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": ""
+   }
+  },
+  "freshwater": false,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
   "id": "scot_marine:additional information public notice ardersier port expansion phase 2",
   "title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2",
   "url": "https://marine.gov.scot/?q=node/28304",
@@ -971,9 +1074,9 @@
    "Breakwater, jetty or groyne",
    "Dredging"
   ],
-  "stage": "comment closed 2026-11-15, decision pending",
-  "stage_kind": "closed",
-  "comment_deadline": "2026-11-15",
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
   "decision_date": null,
   "approved_on": null,
   "score": 38,
@@ -990,14 +1093,14 @@
   "attribution": "",
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
-  "too_late": true,
+  "too_late": false,
   "also_listed": [],
   "page": "p/iaac-90841.html",
   "comments": {
-   "opens": "2026-10-16",
-   "opens_how": "notice date",
-   "closes": "2026-11-15",
-   "days_left": -2,
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1043,8 +1146,21 @@
    }
   },
   "freshwater": false,
-  "timeline": [],
-  "changes": [],
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "deadline",
+    "text": "Comment deadline 2026-11-15 no longer shown"
+   },
+   {
+    "date": "2026-11-17",
+    "type": "stage",
+    "text": "Stage now: assessment"
+   }
+  ],
+  "changes": [
+   "deadline"
+  ],
   "first_listed": "2026-10-29"
  },
  {
@@ -1057,7 +1173,7 @@
   "country": "CA",
   "province": "Nova Scotia",
   "language": "en",
-  "water_body": "Morien Small Craft Harbour",
+  "water_body": "Small Craft Harbour",
   "types": [
    "Breakwater, jetty or groyne",
    "Marina or small craft harbour"
@@ -1072,7 +1188,7 @@
   "tier_label": "Possible",
   "tier_reason": "score 37",
   "reviewed": false,
-  "summary": "Project by Fisheries and Oceans Canada – Small Craft Harbours in Morien Small Craft Harbour, Nova Scotia. The notice mentions breakwater or jetty and small craft harbour work and an area of about 440 m2.",
+  "summary": "Project by Fisheries and Oceans Canada – Small Craft Harbours in Small Craft Harbour, Nova Scotia. The notice mentions breakwater or jetty and small craft harbour work and an area of about 440 m2.",
   "summary_note": "auto",
   "quotes": [
    "The proposed reconstructed breakwater will be orientated in the same ell configuration with the stem measuring approximately 185 m long and a 73 m-long ell section offset from the stem by approximately 50 degrees to the west.",
@@ -3042,9 +3158,9 @@
    "Breakwater, jetty or groyne",
    "Marina or small craft harbour"
   ],
-  "stage": "comment closed 2026-11-14, decision pending",
-  "stage_kind": "closed",
-  "comment_deadline": "2026-11-14",
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
   "decision_date": null,
   "approved_on": null,
   "score": 23,
@@ -3062,14 +3178,14 @@
   "attribution": "",
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
-  "too_late": true,
+  "too_late": false,
   "also_listed": [],
   "page": "p/iaac-90856.html",
   "comments": {
-   "opens": "2026-10-26",
-   "opens_how": "notice date",
-   "closes": "2026-11-14",
-   "days_left": -3,
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3115,8 +3231,21 @@
    }
   },
   "freshwater": false,
-  "timeline": [],
-  "changes": [],
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "deadline",
+    "text": "Comment deadline 2026-11-14 no longer shown"
+   },
+   {
+    "date": "2026-11-17",
+    "type": "stage",
+    "text": "Stage now: assessment"
+   }
+  ],
+  "changes": [
+   "deadline"
+  ],
   "first_listed": "2026-10-29"
  },
  {
@@ -3222,9 +3351,9 @@
    "Port or marine terminal",
    "Dredging"
   ],
-  "stage": "comment closed 2026-11-15, decision pending",
-  "stage_kind": "closed",
-  "comment_deadline": "2026-11-15",
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
   "decision_date": null,
   "approved_on": null,
   "score": 23,
@@ -3242,14 +3371,14 @@
   "attribution": "",
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
   "issued_by": "",
-  "too_late": true,
+  "too_late": false,
   "also_listed": [],
   "page": "p/iaac-90830.html",
   "comments": {
-   "opens": "2026-10-16",
-   "opens_how": "notice date",
-   "closes": "2026-11-15",
-   "days_left": -2,
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3295,8 +3424,21 @@
    }
   },
   "freshwater": false,
-  "timeline": [],
-  "changes": [],
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "deadline",
+    "text": "Comment deadline 2026-11-15 no longer shown"
+   },
+   {
+    "date": "2026-11-17",
+    "type": "stage",
+    "text": "Stage now: assessment"
+   }
+  ],
+  "changes": [
+   "deadline"
+  ],
   "first_listed": "2026-10-29"
  },
  {
@@ -4162,7 +4304,13 @@
   "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
   "issued_by": "",
   "too_late": false,
-  "also_listed": [],
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-us-navys-trf-wharf-interface-repairs-project-us-naval",
+    "comment_deadline": "2026-11-20"
+   }
+  ],
   "page": "p/fed_register-2026-21419.html",
   "comments": {
    "opens": null,
@@ -4387,6 +4535,213 @@
   "first_listed": "2026-11-17"
  },
  {
+  "id": "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-angoon",
+  "title": "Alaska Department of Transportation and Public Facilities' Angoon Ferry Terminal Modification Project in Angoon, Alaska",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-alaska-department-transportation-and-public-facilities-angoon",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2025-06-05",
+  "approved_on": "2025-06-05",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Alaska.",
+  "summary_note": "auto",
+  "quotes": [
+   "NOAA Fisheries has issued an incidental harassment authorization to Alaska Department of Transportation and Public Facilities for authorization to take marine mammals incidental to the Angoon Ferry Terminal Modification Project in Angoon, Alaska."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-alaska-department-transportation-and-public-facilities-angoon.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Port or marine terminal",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
+  "id": "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince",
+  "title": "Alaska Department of Transportation and Public Facilities' Prince William Sound Ferry Terminal Improvement Projects in Cordova, Chenega, and Tatitlek, Alaska",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2025-07-25",
+  "approved_on": "2025-07-25",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Alaska.",
+  "summary_note": "auto",
+  "quotes": [
+   "NOAA Fisheries has issued three incidental harassment authorizations to the Alaska Department of Transportation and Public Facilities for authorization to take marine mammals incidental to the Prince William Sound Ferry Terminal Improvement Projects in Cordova, Chenega, and Tatitlek, Alaska."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Port or marine terminal",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
+  "id": "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold",
+  "title": "Alaska Department of Transportation and Public Facilities’ Cold Bay Ferry Terminal Reconstruction Project in Cold Bay, Alaska",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-03-16",
+  "approved_on": "2026-03-16",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Alaska.",
+  "summary_note": "auto",
+  "quotes": [
+   "NOAA Fisheries has issued an incidental harassment authorization to the Alaska Department of Transportation and Public Facilities for authorization to take marine mammals incidental to the Cold Bay Ferry Terminal Reconstruction Project in Cold Bay, Alaska."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Port or marine terminal",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
   "id": "fed_register:2026-20789",
   "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska",
   "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20789/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
@@ -4419,7 +4774,13 @@
   "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
   "issued_by": "",
   "too_late": true,
-  "also_listed": [],
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-city-and-borough-juneaus-seawalk-extension-project-juneau",
+    "comment_deadline": null
+   }
+  ],
   "page": "p/fed_register-2026-20789.html",
   "comments": {
    "opens": null,
@@ -4485,7 +4846,13 @@
   "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
   "issued_by": "",
   "too_late": true,
-  "also_listed": [],
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-marine-structure-maintenance-and-pile-replacement-program",
+    "comment_deadline": null
+   }
+  ],
   "page": "p/fed_register-2026-20222.html",
   "comments": {
    "opens": null,
@@ -4518,6 +4885,76 @@
   ],
   "changes": [],
   "first_listed": "2026-11-13"
+ },
+ {
+  "id": "noaa_ita:incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization",
+  "title": "Modification of Port of Alaska's Modernization Program Phase 2B: Cargo Terminal Replacement Project in Anchorage, Alaska",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2025-08-15",
+  "approved_on": "2025-08-15",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Alaska.",
+  "summary_note": "auto",
+  "quotes": [
+   "NOAA Fisheries has issued a modified letter of authorization (LOA) to the Don Young Port of Alaska, for the unintentional taking of marine mammals incidental to the Cargo Terminals Replacement project at the existing port facility in Anchorage, Alaska over the course of 5 years (2026 – 2031)."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 23,
+    "because": "Port or marine terminal; Piles or pile-supported structure",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
  },
  {
   "id": "fed_register:2026-18024",
@@ -4619,7 +5056,13 @@
   "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
   "issued_by": "",
   "too_late": true,
-  "also_listed": [],
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-taking-marine-mammals-incidental-petromarine-services-juneau",
+    "comment_deadline": null
+   }
+  ],
   "page": "p/fed_register-2026-18458.html",
   "comments": {
    "opens": null,
@@ -4652,6 +5095,214 @@
   ],
   "changes": [],
   "first_listed": "2026-11-13"
+ },
+ {
+  "id": "noaa_ita:incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal",
+  "title": "Reissuance of Alaska Department of Transportation and Public Facilities Pile Driving and Removal to Improve the Auke Bay East Ferry Terminal in Juneau, Alaska",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2025-07-30",
+  "approved_on": "2025-07-30",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Alaska.",
+  "summary_note": "auto",
+  "quotes": [
+   "The initial IHA authorized take of eleven species of marine mammals, by harassment only, incidental to construction activities associated with the Auke Bay East Ferry Terminal in Juneau, Alaska."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 23,
+    "because": "Port or marine terminal; Piles or pile-supported structure",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
+  "id": "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass",
+  "title": "Reissuance of Alaska Department of Transportation and Public Facilities' Ferry Berth Construction Tongass Narrows Project",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-08-12",
+  "approved_on": "2026-08-12",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Alaska.",
+  "summary_note": "auto",
+  "quotes": [
+   "The initial IHA authorized take of 11 species of marine mammals, by harassment only, incidental to construction associated with the Ferry Berth in Ketchikan, Alaska."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Port or marine terminal",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
+ },
+ {
+  "id": "noaa_ita:incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal",
+  "title": "Tradepoint TiL Terminal, LLC's Sparrows Point Container Terminal Project in Baltimore County, MD",
+  "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal",
+  "source": "noaa_ita",
+  "source_name": "NOAA Fisheries incidental take authorizations for construction",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "Maryland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-05-28",
+  "approved_on": "2026-05-28",
+  "score": 0,
+  "tier": "notrel",
+  "tier_label": "Probably not relevant",
+  "tier_reason": "score 0 (under 20)",
+  "reviewed": false,
+  "summary": "Project in Maryland.",
+  "summary_note": "auto",
+  "quotes": [
+   "NOAA Fisheries has issued two consecutive incidental harassment authorizations to Tradepoint TiL Terminals, LLC for authorization to take marine mammals incidental to the Sparrows Point Container Terminal Project in Baltimore County, Maryland."
+  ],
+  "attribution": "",
+  "agency": "NOAA Fisheries (U.S. National Marine Fisheries Service)",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/noaa_ita-incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Port or marine terminal",
+    "min": 20
+   }
+  },
+  "freshwater": false,
+  "profile_only": true,
+  "timeline": [
+   {
+    "date": "2026-11-17",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-17"
  },
  {
   "id": "fed_register:2026-17614",
@@ -4688,7 +5339,13 @@
   "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
   "issued_by": "",
   "too_late": true,
-  "also_listed": [],
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorizations-taking-marine-mammals-incidental-year-1-bremerton-waterfront",
+    "comment_deadline": null
+   }
+  ],
   "page": "p/fed_register-2026-17614.html",
   "comments": {
    "opens": null,
