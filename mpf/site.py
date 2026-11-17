@@ -1000,7 +1000,10 @@ JS = r"""
     server.hidden = true; view.hidden = false;
     empty.hidden = shown.length > 0;
     empty.textContent = v === 'watch' && !watch.length ? 'Your watch list is empty. Use "Add to watch list" on any project.'
-      : prof() !== 'all' && !PCOUNT[prof()] ? PD.empty_note : 'No projects match these filters.';
+      : prof() !== 'all' && !PCOUNT[prof()] ? PD.empty_note
+      : (function(){ var o = fc.options[fc.selectedIndex], m = o && /\(only under (.+)\)$/.exec(o.text);
+          return m && prof() === 'all' ? 'Projects in this country appear only under ' + m[1] +
+            '. Choose it in "I work on" above.' : 'No projects match these filters.'; })();
     // Closing soon list at the top: every published tier in the chosen country or region.
     while (ul.firstChild) ul.removeChild(ul.firstChild);
     var soon = cards.filter(function(c){ var t = tierOf(c); return placeOk(c) && listed(t) && t !== 'watch' && freshOk(c) &&
@@ -1448,6 +1451,24 @@ def _countries_in_order(records: list[dict], coverage: dict) -> list[dict]:
     return ordered
 
 
+def country_option(c: dict, all_records: list[dict], meta: list[dict]) -> str:
+    """The country menu entry for a country with nothing on the general list.
+    "(coming soon)" only when MitiMark does not read it yet; a country it reads whose projects appear only under a
+    buyer profile says which ("United States (only under Hard-structure)") and can be chosen."""
+    code, name = escape(c["code"]), escape(c["name"])
+    if c.get("status") == "coming_soon":
+        return f'<option value="{code}" disabled>{name} (coming soon)</option>'
+    labels = {m["key"]: m["label"].replace(" eco-engineering", "") for m in meta or []}
+    under = [labels.get(k, k) for k in labels
+             if any(r.get("profile_only") and r.get("country") == c["code"] and listed_in_profile(r, k)
+                    for r in all_records)]
+    if under:
+        region = escape(c.get("region_label", ""))
+        return (f'<option value="{code}" data-region-label="{region}">{name} (only under '
+                f'{escape(" and ".join(under))})</option>')
+    return f'<option value="{code}" disabled>{name} (nothing listed now)</option>'
+
+
 def render_index(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None,
                  history_dates: list[str] | None = None, news_html: str = "", scoring: dict | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
@@ -1519,7 +1540,7 @@ Your choice is remembered only in this browser. <a href="about.html#buyer-profil
                         f'{escape(c["name"])}</option>')
     for c in coverage.get("countries", []):
         if c["code"] not in with_data:
-            opts.append(f'<option value="{escape(c["code"])}" disabled>{escape(c["name"])} (coming soon)</option>')
+            opts.append(country_option(c, all_records, meta))
     cc = coverage_counts(coverage)
     lt = less_tested_note(coverage)
     bn = balance_note(records)

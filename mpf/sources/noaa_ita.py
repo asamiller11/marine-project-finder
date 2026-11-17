@@ -6,7 +6,8 @@ Each entry has a title, a status table (status, public comment, date issued, eff
 summary and a link to its documents. Works of the US federal government: public domain.
 
 One request per run (a list page, re-read at most every 20 hours). In-process and active entries are kept;
-expired ones are skipped. OFF by default.
+expired ones are skipped. Shown under the hard-structure
+profile only (like fed_register), never on the general list.
 """
 from __future__ import annotations
 
@@ -19,7 +20,7 @@ from mpf.http import Blocked
 from mpf.models import UNKNOWN, Item
 from mpf.sources.base import Source
 from mpf.sources.fed_register import STATE_RE
-from mpf.textutil import clean, parse_date
+from mpf.textutil import clean, today
 
 PAGE = ("https://www.fisheries.noaa.gov/national/marine-mammal-protection/"
         "incidental-take-authorizations-construction-activities")
@@ -52,6 +53,12 @@ def parse_page(html: str) -> list[dict]:
     return out
 
 
+def window_ended(effective: str, today_iso: str) -> bool:
+    """True when the authorization's last effective date is before today."""
+    dates = re.findall(r"\d{1,2}/\d{1,2}/\d{4}", effective or "")
+    return bool(dates) and (_date(dates[-1]) or "9999") < today_iso
+
+
 def _date(text: str) -> str | None:
     m = re.search(r"\d{1,2}/\d{1,2}/\d{4}", text or "")
     if not m:
@@ -71,8 +78,10 @@ class NOAAITASource(Source):
             self.log.append(f"STOPPED: {e}")
             return
         rows = parse_page(html)
-        keep = [r for r in rows if r["url"] and not r["section"].lower().startswith("expired")]
-        self.log.append(f"{len(rows)} authorizations on the page, {len(keep)} in process or active")
+        keep = [r for r in rows if r["url"] and not r["section"].lower().startswith("expired")
+                and not window_ended(r["effective"], today().isoformat())]
+        self.log.append(f"{len(rows)} authorizations on the page, {len(keep)} in process or active "
+                        f"(an authorization whose work window has ended is skipped: the work is probably done)")
         for r in keep:
             yield self.make_item(r)
 
@@ -84,5 +93,7 @@ class NOAAITASource(Source):
         return Item(source=self.name, item_id=slug[:120], url=r["url"], title=r["title"], language="en",
                     country=self.country, province=state.group(1) if state else UNKNOWN,
                     comment_deadline=deadline, decision_date=_date(r["issued"]),
-                    status_raw=f"{r['section']}: {r['status']}".strip(": "), full_text=text,
+                    status_raw=("authorized (NOAA Fisheries incidental take authorization issued)"
+                                if r["section"].lower().startswith("active") else "in process: " + (r["status"] or "")),
+                    full_text=text,
                     extra={"section": r["section"], "effective": r["effective"]})

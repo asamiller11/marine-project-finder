@@ -34,6 +34,9 @@ from mpf.textutil import clean, guess_language, parse_date
 BASE = "https://iaac-aeic.gc.ca"
 COMMENT_URL = BASE + "/050/evaluations/participation/comment?culture=en-CA"
 SITEMAP_URL = BASE + "/050/evaluations/sitemaps/projects"
+# The registry search, newest "Last Modified" first: the 50 most recently changed projects, whatever their age.
+# (Later pages need JavaScript, so only this first page is read.)
+RECENT_URL = BASE + "/050/evaluations/exploration?culture=en-CA"
 
 
 def project_url(ref: str) -> str:
@@ -85,6 +88,17 @@ def listed_with_count(items_json: Path) -> set[str]:
         return set()
     return {r["id"].split(":", 1)[1] for r in records
             if r.get("source") == "iaac" and (r.get("comments") or {}).get("count") is not None}
+
+
+def parse_recent_changes(html: str) -> list[tuple[str, str]]:
+    """(reference number, last modified YYYY-MM-DD) for each project on the registry search page."""
+    out = []
+    for art in BeautifulSoup(html, "html.parser").find_all("article"):
+        a = art.find("a", href=re.compile(r"/proj/\d+"))
+        mod = re.search(r"Last Modified:\s*(\d{4}-\d{2}-\d{2})", art.get_text(" "))
+        if a:
+            out.append((re.search(r"/proj/(\d+)", a["href"]).group(1), mod.group(1) if mod else ""))
+    return out
 
 
 def parse_sitemap_refs(xml_text: str) -> list[str]:
@@ -194,6 +208,26 @@ class IAACSource(Source):
             newest = sorted({int(r) for r in parse_sitemap_refs(sitemap)}, reverse=True)[:n_recent]
             refs += [str(r) for r in newest if str(r) not in open_items]
 
+        # 2b. The 50 most recently changed projects (any age). A project whose saved page is older than its
+        #     "Last Modified" date is read again.
+        changed = set()
+        if self.conf.get("recent_changes", True):
+            try:
+                recent = parse_recent_changes(self.client.get(RECENT_URL, list_page=True).decode("utf-8", "replace"))
+            except Blocked as e:
+                self.log.append(f"STOPPED: {e}")
+                return
+            added = 0
+            for ref, modified in recent:
+                if ref not in refs:
+                    refs.append(ref)
+                    added += 1
+                saved = self.client.fetched_at(project_url(ref))
+                if saved and modified and modified > saved:
+                    changed.add(ref)
+            self.log.append(f"{len(recent)} recently changed projects: {added} outside the usual list, "
+                            f"{len(changed)} changed since we saved them")
+
         # 3. Each project page (fetched once, then served from cache forever), except listed
         #    projects whose page shows a comment total: those are re-read so the total stays current.
         from mpf.config import ROOT
@@ -201,7 +235,7 @@ class IAACSource(Source):
         for ref in refs:
             url = project_url(ref)
             try:
-                html = self.client.get(url, list_page=ref in refresh).decode("utf-8", "replace")
+                html = self.client.get(url, list_page=ref in refresh or ref in changed).decode("utf-8", "replace")
             except Blocked as e:
                 self.log.append(f"STOPPED: {e}")
                 return

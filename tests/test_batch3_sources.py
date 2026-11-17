@@ -10,10 +10,12 @@ from mpf.site import source_display_name, source_line
 NEW = ["noaa_ita", "fed_register_broad", "fr_mce", "nl_sru"]
 
 
-def test_new_sources_are_registered_and_off():
+def test_new_sources_are_registered_and_only_noaa_is_on():
     s = load_settings()["sources"]
     for n in NEW:
-        assert n in SOURCES and n in LIVE_SOURCES and s[n]["enabled"] is False
+        assert n in SOURCES and n in LIVE_SOURCES
+    assert s["noaa_ita"]["enabled"] is True
+    assert not any(s[n]["enabled"] for n in ("fed_register_broad", "fr_mce", "nl_sru"))
 
 
 def test_each_has_a_real_name_for_the_source_line():
@@ -77,3 +79,34 @@ def test_fr_mce_picks_the_newest_geopackage():
         {"format": "gpkg", "created_at": "2026-10-13", "url": "old"}, {"format": "zip", "created_at": "2026-11-05", "url": "z"},
         {"format": "gpkg", "created_at": "2026-11-05", "url": "new"}]}).encode()
     assert fr_mce.newest_gpkg(data)["url"] == "new"
+
+
+# --- 2026-11-17 owner decisions -------------------------------------------------------------------------------
+
+def test_noaa_active_is_approved_and_finished_windows_are_skipped():
+    assert noaa_ita.window_ended("9/1/2025 - 8/31/2026", "2026-11-17")
+    assert not noaa_ita.window_ended("9/1/2026 - 8/31/2027", "2026-11-17")
+    assert not noaa_ita.window_ended("--", "2026-11-17")
+    r = {"section": "Active Authorizations", "title": "Cold Bay Ferry Terminal Reconstruction Project in Cold Bay, Alaska",
+         "status": "Active", "comment": "Closed", "issued": "3/16/2026", "effective": "5/1/2028 - 4/30/2029",
+         "summary": "", "url": "https://www.fisheries.noaa.gov/action/x"}
+    it = noaa_ita.NOAAITASource(None, {}, {}).make_item(r)
+    from mpf.timing import compute
+    from datetime import date
+    assert it.decision_date == "2026-03-16"
+    assert compute(it.to_dict(), date(2026, 11, 17))["stage"] == "decision made"
+
+
+def test_noaa_is_shown_under_hard_structure_only():
+    from mpf.profiles import PROFILE_ONLY_SOURCES, _own_rule_result
+    assert PROFILE_ONLY_SOURCES["noaa_ita"] == "hard-structure"
+    res = _own_rule_result({"facts": {"iha": {"score": 23, "because": "Port or marine terminal"}}, "title": "x"},
+                           {"weak_min": 20, "possible_min": 35, "strong_min": 60})
+    assert res["tier"] == "weak" and res["score"] == 23
+
+
+def test_iaac_recent_changes_page(samples):
+    from mpf.sources import iaac
+    rows = iaac.parse_recent_changes((samples / "iaac_recent_changes.html").read_text(encoding="utf-8"))
+    assert len(rows) == 50 and rows[0] == ("90624", "2026-11-16")
+    assert ("80913", "2026-11-12") in rows          # an old project number, changed recently

@@ -141,7 +141,7 @@ def profile_tier(row: dict, score: int, tiers_conf: dict, general_tier: str) -> 
 
 
 # Sources shown under one profile only, scored by their own rule (stored in facts.iha), at Possible or Weak.
-PROFILE_ONLY_SOURCES = {"fed_register": "hard-structure"}
+PROFILE_ONLY_SOURCES = {"fed_register": "hard-structure", "noaa_ita": "hard-structure"}
 
 
 def _own_rule_result(row: dict, tiers_conf: dict) -> dict:

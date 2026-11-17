@@ -21,6 +21,7 @@ from mpf import db
 from mpf.config import ROOT, data_dir, drop_dir, load_scoring, load_settings
 from mpf.evaluate import read_labels, run_dfo_recall, run_hand_label_eval
 from mpf.http import PoliteClient
+from mpf.profiles import PROFILE_ONLY_SOURCES
 from mpf.score import reason_lines, score_text
 from mpf.sources import SOURCES
 from mpf.sources.drop_folder import DropFolderSource
@@ -152,6 +153,13 @@ def cmd_score(args, settings):
             iha = iha_score(row["title"] or "", row["extra"].get("abstract") or "", row["full_text"] or "", rules)
             s = {"score": 0, "flagged": False, "reasons": [], "project_types": iha["project_types"],
                  "size_summary": iha["size_summary"], "facts": {"iha": iha}}
+        elif row["source"] in PROFILE_ONLY_SOURCES:
+            # Shown under one profile only: the normal rules give the profile score; 0 keeps it off the general list.
+            g = score_text(row["full_text"] or "", rules, language=row.get("language"))
+            own = {"score": g["score"], "because": "; ".join(g["project_types"]),
+                   "project_types": g["project_types"], "size_summary": g["size_summary"]}
+            s = {"score": 0, "flagged": False, "reasons": g["reasons"], "project_types": g["project_types"],
+                 "size_summary": g["size_summary"], "facts": {"iha": own}}
         else:
             s = score_text(row["full_text"] or "", rules, language=row.get("language"))
         tm = compute(row, now, t.get("closing_soon_days", 14), t.get("too_late_days", 7))

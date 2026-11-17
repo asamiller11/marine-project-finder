@@ -38,6 +38,9 @@ sources:
     # Besides the open comment list, also read the newest N project pages from the
     # registry sitemap, so we see recent projects whose comment period has closed.
     recent_projects: 150
+    # Also read the registry search's first page: the 50 most recently changed projects, whatever their age
+    # (owner, 2026-11-17). One extra request per run, plus any new or changed project pages.
+    recent_changes: true
   nl_ea:
     enabled: true
     # Only read projects registered in the last N days.
@@ -93,7 +96,8 @@ sources:
   # Batch 3 (2026-11-17): readers built and tested, all OFF until the owner decides (see private/ report).
   noaa_ita:
     # NOAA Fisheries construction ITA page. US public domain; robots.txt allows it. One request per run.
-    enabled: false
+    # ON (owner, 2026-11-17), shown under the hard-structure profile only.
+    enabled: true
   fed_register_broad:
     # Federal Register API, broader construction and restoration searches. Public domain. One request per term.
     enabled: false
@@ -173,7 +177,7 @@ tiers:
 
 duplicates:
   # The same project listed by two sources is shown once. Keep the first source in this list.
-  prefer: [nl_ea, iaac, drop]
+  prefer: [nl_ea, iaac, drop, fed_register, noaa_ita]
   # How alike two titles must be (0 to 1) to count as the same project.
   min_title_similarity: 0.8
 

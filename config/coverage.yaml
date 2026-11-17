@@ -96,8 +96,8 @@ countries:
     name: "United States"
     region_label: "State"
     status: partial
-    sources: [fed_register]
-    note: "NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register. Shown under the hard-structure profile only, because these notices are about construction noise, not habitat work. The Army Corps of Engineers site blocks automated access."
+    sources: [fed_register, noaa_ita]
+    note: "NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register and NOAA's construction authorizations page. Shown under the hard-structure profile only, because these notices are about construction noise, not habitat work. The Army Corps of Engineers site blocks automated access."
     regions:
       - {name: "New York", status: coming_soon, note: "The Environmental Notice Bulletin is disallowed by robots.txt."}
       - {name: "Florida", status: coming_soon, note: "Permit data sits in JavaScript map applications."}

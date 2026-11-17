@@ -299,3 +299,19 @@ def test_feed_attributes_are_quoted_and_only_web_links_are_kept():
     items = ET.fromstring(xml).findall("./channel/item")      # parses: the quote did not break the XML
     assert items[0].find("source").get("url") == 'https://x.test/a?b="c"&d=<e>'
     assert items[1].find("source") is None and "javascript:" not in xml
+
+
+# --- Country menu labels (2026-11-17) ---------------------------------------------------------------------
+
+def test_country_menu_says_coming_soon_only_for_countries_not_read():
+    meta = [{"key": "hard-structure", "label": "Hard-structure eco-engineering"}]
+    us_rec = {"profile_only": True, "country": "US", "tier": "notrel",
+              "profiles": {"hard-structure": {"tier": "weak", "score": 23, "min": 20}}}
+    us = {"code": "US", "name": "United States", "status": "partial", "region_label": "State"}
+    opt = site.country_option(us, [us_rec], meta)
+    assert ">United States (only under Hard-structure)<" in opt and "disabled" not in opt
+    assert "coming soon" not in opt
+    no = {"code": "NO", "name": "Norway", "status": "coming_soon"}
+    assert "Norway (coming soon)" in site.country_option(no, [], meta) and "disabled" in site.country_option(no, [], meta)
+    dk = {"code": "DK", "name": "Denmark", "status": "partial"}
+    assert "Denmark (nothing listed now)" in site.country_option(dk, [], meta)
