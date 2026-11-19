@@ -72,6 +72,24 @@ def strip_form_text(text: str, common: set[str] | None = None) -> str:
     return "\n".join(p for p in _sentences(text) if not _FORM.search(p) and _norm_sentence(p) not in common)
 
 
+_LICENSEE = re.compile(r'[“"]Licensee[”"]\s+means\s+(.+?)\s*(?:;|\s[a-z]\)\s)', re.S)
+_MD_NO = re.compile(r"\bM[DS]-(\d{8})\b")
+
+
+def licensee(raw: str, own_refs: str) -> str:
+    """The licence holder named in the licence PDF, but only when the PDF's own licence number belongs to this
+    project (a page can link another project's licence)."""
+    if not raw:
+        return ""
+    m = _LICENSEE.search(raw)
+    if not m:
+        return ""
+    numbers = set(_MD_NO.findall(raw))
+    if numbers and not any(n in own_refs for n in numbers):
+        return ""
+    return clean(re.sub(r"\s+", " ", m.group(1)))[:120]
+
+
 def parse_listing(html: str) -> list[dict]:
     """Rows with title, updated date and document link."""
     soup = BeautifulSoup(html, "html.parser")
@@ -240,7 +258,14 @@ class ScotMarineSource(Source):
         # Wording shared by several applications is the form, not the project: drop it before scoring.
         common = common_sentences([raw for *_, raw in pending if raw], int(self.conf.get("form_min_docs", 3)))
         for key, docs, page, raw in pending:
-            yield self._make_item(key, docs, page, clean(strip_form_text(raw, common)) if raw else "")
+            item = self._make_item(key, docs, page, clean(strip_form_text(raw, common)) if raw else "")
+            # The licence names its holder in Part 1 ('"Licensee" means ...'); that line is form text, so it is read
+            # from the raw PDF before the form wording is removed.
+            holder = licensee(raw, item.item_id + " " + key + " " + item.title)
+            if holder:
+                item.proponent = holder
+                item.extra["licensee"] = holder
+            yield item
 
     def _pdf_text(self, url: str) -> str | None:
         """Raw text of the first attached PDF; '' when too large or unreadable; None when the site refuses us."""

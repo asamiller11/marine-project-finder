@@ -330,3 +330,76 @@
       text: "Early: proposals still being developed; public engagement events held 28 October and 10 November 2026."
       source: https://www.cmassets.co.uk/public-engagement-events-announced-ardrossan-harbour-redevelopment/
       checked: read
+
+# --- Research queue, 2026-11-19 (round 3) and the Scottish licence check ------------------------------------
+
+"scot_marine:00012484":
+  owner:
+    - name: Namara Projects Ltd (Sound of Harris Seagrass Restoration Project)
+      source: https://marine.gov.scot/sites/default/files/md-00012484_licence_1.pdf
+      checked: read
+  facts:
+    - kind: structure
+      text: "About 2.5 ha of seagrass (Zostera marina) to be restored south-east of Berneray, in four planting areas."
+      source: https://marine.gov.scot/sites/default/files/00011980_method_statement.pdf
+      checked: search
+    - kind: timeline
+      text: "Main planting from 2026 to April 2028."
+      source: https://marine.gov.scot/sites/default/files/00011980_method_statement.pdf
+      checked: search
+
+"scot_marine:00011654":
+  owner:
+    - name: Peterhead Port Authority
+      source: https://marine.gov.scot/sites/default/files/marine_licence_md-00011654.pdf
+      checked: read
+
+"scot_marine:00011118/00012509":
+  owner:
+    - name: Scottish Hydro Electric Power Distribution plc
+      source: https://marine.gov.scot/sites/default/files/marine_licence_md-00012509.pdf
+      checked: read
+
+"scot_marine:00011784":
+  owner:
+    - name: The Highland Council
+      source: https://marine.gov.scot/sites/default/files/md-00011784_licence.pdf
+      checked: read
+
+"scot_marine:screening opinion berth reconstruction montrose port scr 0103":
+  owner:
+    - name: Montrose Port Authority (the screening opinion is addressed to it)
+      source: https://marine.gov.scot/sites/default/files/scr-0103_-_screening_opinion.pdf
+      checked: read
+
+"iaac:90862":
+  facts:
+    - kind: procurement
+      text: "Sagkeeng First Nation tenders its Traverse Bay shoreline protection works itself (earlier Phase III packages were called as public tenders); watch for the next package."
+      source: https://iaac-aeic.gc.ca/050/evaluations/proj/89367
+      checked: search
+    - kind: structure
+      text: "Phase III is split into three work packages along Traverse Bay; earlier phases used a hard-armouring design first prepared by UMA Engineering Ltd. in 2008."
+      source: https://iaac-aeic.gc.ca/050/evaluations/proj/89367
+      checked: search
+
+"nl_ea:2410":
+  facts:
+    - kind: structure
+      text: "120 m rubble mound breakwater with a footprint of about 8,000 m2, plus a 230 m effluent pipeline extension."
+      source: https://iaac-aeic.gc.ca/050/evaluations/proj/90056
+      checked: search
+
+"iaac:90831":
+  facts:
+    - kind: procurement
+      text: "A separate seawall repair at Port Morien was tendered on CanadaBuys in 2026 (bids closed 4 August 2026): the same owner tenders its harbour works there."
+      source: https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/cb-714-42414289
+      checked: search
+
+"fed_register:2026-17614":
+  facts:
+    - kind: procurement
+      text: "NAVFAC Northwest awarded a multiple-award construction contract for marine piers and waterfront facilities in July 2026 (awardees include Manson Construction, Triton Marine Construction, DOD Marine Constructors JV and Michels). Its use for this project is not confirmed; these firms are the likely bidders."
+      source: https://www.navfac.navy.mil/Home/News-Detail/Article/4562776/new-macc-contract-award-supports-marine-pier-and-facility-construction-for-navf/
+      checked: search

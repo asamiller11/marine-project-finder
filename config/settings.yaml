@@ -117,6 +117,15 @@ sources:
       basis: b
       hosts: ["repository.overheid.nl"]
       evidence: "https://data.overheid.nl/dataset/officiele-bekendmakingen (CC0; documented SRU interface and manual HandleidingSRU2.0.pdf), checked 2026-11-17"
+  ca_coastal:
+    # California Coastal Commission monthly agendas, coastal development permit items only (project name, applicant,
+    # location, hearing date, up to three short quotes, link back, source credit). Written permission from Joshua
+    # Smith, Public Information Officer, by email 2026-11-19 (private/permission_requests_2026-11.md). robots.txt
+    # allows all robots. Read at most once every 28 days, as described in the request.
+    enabled: true
+    min_days_between_reads: 28
+    permission: {basis: a, from: "Joshua Smith, Public Information Officer, California Coastal Commission", date: "2026-11-19",
+                 quote: "I don't see why you couldn't use the public information on the Coastal Commission agenda for your website."}
   drop_folder:
     enabled: true
 

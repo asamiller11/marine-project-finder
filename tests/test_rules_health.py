@@ -231,6 +231,7 @@ def test_run_health_notifies_on_problems_and_passes_when_all_is_well(tmp_path):
              "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay")]
     (tmp_path / "site" / "feeds").mkdir(parents=True)
     (tmp_path / "site" / "feeds" / "comment-periods.xml").write_text('<rss version="2.0"><channel></channel></rss>')
+    (tmp_path / "site" / "logo.svg").write_text("<svg/>")
     s["site_dir"] = str(tmp_path / "site")
     fetch = lambda url: {"last_successful_update": "2026-11-14"} if url.endswith("status.json") else live
     sent = []

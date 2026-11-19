@@ -47,6 +47,12 @@ sources:
     url: "https://www.fisheries.noaa.gov/national/marine-mammal-protection/incidental-take-authorizations-construction-activities"
     languages: [en]
     agency: "NOAA Fisheries (U.S. National Marine Fisheries Service)"
+  ca_coastal:
+    name: "California Coastal Commission meeting agendas"
+    url: "https://www.coastal.ca.gov/meetings/agenda/"
+    languages: [en]
+    agency: "California Coastal Commission"
+    attribution: "Used with the Commission's written permission."
   fed_register_broad:
     name: "Federal Register (construction and restoration notices)"
     url: "https://www.federalregister.gov/"
@@ -96,12 +102,12 @@ countries:
     name: "United States"
     region_label: "State"
     status: partial
-    sources: [fed_register, noaa_ita]
+    sources: [fed_register, noaa_ita, ca_coastal]
     note: "NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register and NOAA's construction authorizations page. Shown under the hard-structure profile only, because these notices are about construction noise, not habitat work. The Army Corps of Engineers site blocks automated access."
     regions:
       - {name: "New York", status: coming_soon, note: "The Environmental Notice Bulletin is disallowed by robots.txt."}
       - {name: "Florida", status: coming_soon, note: "Permit data sits in JavaScript map applications."}
-      - {name: "California", status: coming_soon, note: "CEQAnet was checked and is workable, but not approved yet."}
+      - {name: "California", status: partial, sources: [ca_coastal], note: "California Coastal Commission monthly agendas: coastal development permit items, used with the Commission's written permission (November 2026). CEQAnet is not read yet."}
       - {name: "Massachusetts", status: coming_soon, note: "The MEPA Environmental Monitor is a JavaScript application."}
       - {name: "Texas", status: coming_soon, note: "Public notices are mostly boundary surveys and leases."}
 

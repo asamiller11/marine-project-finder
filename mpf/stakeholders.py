@@ -202,7 +202,9 @@ def find_stakeholders(row: dict, extra: dict | None = None) -> dict:
 
     # Owner or proponent: the registry's own field first.
     prop = (row.get("proponent") or "").strip()
-    if prop and prop != UNKNOWN:
+    if extra.get("licensee"):
+        _add(out, "owner", _entry(extra["licensee"], "Licence holder named on the marine licence"))
+    elif prop and prop != UNKNOWN:
         _add(out, "owner", _entry(prop, "Proponent named by the registry"))
     if source == "noaa_ita":
         m = re.match(r"^(?:Reissuance|Modification|Renewal|Extension) of\s+(.+?)['’]s?\s", row.get("title") or "") or \

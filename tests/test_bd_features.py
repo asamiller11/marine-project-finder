@@ -253,3 +253,51 @@ def test_weekly_check_queues_new_strong_and_possible_projects(tmp_path, monkeypa
     r = research.weekly_check({}, recs, client=object(), today=TODAY, log=lambda *a: None)
     q = (tmp_path / "queue.md").read_text()
     assert r["queued"] == 1 and "New wharf" in q and "Weak one" not in q
+
+
+# --- California Coastal Commission agendas (written permission 2026-11-19) --------------------------------
+
+def test_coastal_commission_agenda_keeps_permit_items_and_permitted_fields_only():
+    from mpf.sources.ca_coastal import months_to_read, parse_agenda
+    data = [{"days": [{"date": 9, "districts": [
+        {"name": {"english": "San Diego Coast District"}, "categories": [
+            {"title": {"english": "Coastal Permit Applications"}, "items": [
+                {"title": {"english": "Application No. 6-24-0663 (St. Malo Association et al. Oceanside). "},
+                 "blurb": {"english": "Application of St. Malo Association et al. for after-the-fact approval of the "
+                                      "expansion of an approximately 2,000 ft. long rock revetment."}, "result": None}]},
+            {"title": {"english": "Local Coastal Programs (LCPs)"}, "items": [
+                {"title": {"english": "City of Oceanside LCP Amendment"}, "blurb": {"english": "x"}}]}]}]}]}]
+    items = parse_agenda(data, 2026, 12)
+    assert len(items) == 1
+    it = items[0]
+    assert it["number"] == "6-24-0663" and it["name"] == "St. Malo Association et al. Oceanside"
+    assert it["applicant"] == "St. Malo Association et al." and it["hearing"] == "2026-12-09"
+    assert it["url"] == "https://www.coastal.ca.gov/meetings/agenda/#/2026/12/9"
+    assert set(it) == {"number", "name", "applicant", "district", "hearing", "description", "result", "url"}
+    assert months_to_read(date(2026, 12, 20)) == [(2026, 12), (2027, 1)]
+
+
+def test_coastal_commission_is_read_at_most_monthly():
+    from mpf.config import load_settings
+    conf = load_settings()["sources"]["ca_coastal"]
+    assert conf["enabled"] and int(conf["min_days_between_reads"]) >= 28 and conf["permission"]["basis"] == "a"
+
+
+def test_scotland_licensee_read_from_the_licence_only_when_the_number_matches():
+    from mpf.sources.scot_marine import licensee
+    raw = 'MD-00012484 06 October, 2026 1. PART 1 c) "Licensee" means Namara Projects Ltd d) "Mean High Water'
+    assert licensee(raw, "00012484 Seagrass Planting") == "Namara Projects Ltd"
+    burnt = 'MD-00012359 02 November 1. PART 1 c) "Licensee" means Amcogiffen d) "Mean High Water'
+    assert licensee(burnt, "00012432/00011450 Rock Armour Installation - Stromeferry") == ""
+
+
+def test_health_checks_permission_record_logo_and_dashes(tmp_path):
+    (tmp_path / "p").mkdir()
+    (tmp_path / "logo.svg").write_text("<svg/>")
+    (tmp_path / "index.html").write_text("plain - text")
+    s = {"sources": {"ca_coastal": {"enabled": True, "min_days_between_reads": 28, "permission": {
+        "basis": "a", "from": "J. Smith", "date": "2026-11-19", "quote": "ok"}}}}
+    assert all(ok for ok, _ in health.check_permissions_and_site(s, tmp_path))
+    (tmp_path / "index.html").write_text("bad — dash")
+    s["sources"]["ca_coastal"]["min_days_between_reads"] = 7
+    assert sum(not ok for ok, _ in health.check_permissions_and_site(s, tmp_path)) == 2

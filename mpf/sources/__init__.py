@@ -1,5 +1,6 @@
 """All sources, by the name used in config/settings.yaml."""
 from mpf.sources.bc_eao import BCEAOSource
+from mpf.sources.ca_coastal import CACoastalSource
 from mpf.sources.dfo_far import DFOFARSource
 from mpf.sources.dk_hoering import DKHoeringSource
 from mpf.sources.es_boe import ESBOESource
@@ -30,11 +31,13 @@ SOURCES = {
     "fed_register_broad": FedRegisterBroadSource,
     "fr_mce": FRMCESource,
     "nl_sru": NLSRUSource,
+    # California Coastal Commission agendas (written permission, 2026-11-19).
+    "ca_coastal": CACoastalSource,
 }
 
 # Live sources the scheduled GitHub run reads (the DFO test set and drop folder are local only).
 LIVE_SOURCES = ["iaac", "nl_ea", "bc_eao", "dk_hoering", "scot_marine", "es_boe", "fr_eolien", "fed_register",
-                "noaa_ita", "fed_register_broad", "fr_mce", "nl_sru"]
+                "noaa_ita", "fed_register_broad", "fr_mce", "nl_sru", "ca_coastal"]
 
 # A page each source must be able to reach, for `python -m mpf check-access`.
 CHECK_URLS = {

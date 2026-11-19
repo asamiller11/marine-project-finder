@@ -175,6 +175,26 @@ def check_research(live_items: list[dict] | None) -> list[tuple[bool, str]]:
     return out
 
 
+def check_permissions_and_site(settings: dict, site_dir: Path) -> list[tuple[bool, str]]:
+    """Sources used under written permission keep their record and agreed read interval; the built site has its logo
+    and no em dashes (added 2026-11-19)."""
+    out = []
+    for name, conf in (settings.get("sources") or {}).items():
+        perm = (conf or {}).get("permission") if isinstance(conf, dict) else None
+        if not (conf or {}).get("enabled") or not perm:
+            continue
+        ok = all(perm.get(k) for k in ("basis", "from", "date", "quote"))
+        if name == "ca_coastal":
+            ok = ok and int(conf.get("min_days_between_reads", 0)) >= 28
+        out.append((ok, f"{name}: written permission record " + ("complete" if ok else "incomplete or read too often") + "."))
+    dashes = sum(p.read_text(encoding="utf-8").count("\u2014") for p in list(site_dir.glob("*.html")) + list((site_dir / "p").glob("*.html"))
+                 if p.exists())
+    logo = (site_dir / "logo.svg").exists()
+    out.append((not dashes and logo, f"Site style: {'logo file present' if logo else 'logo file MISSING'}, "
+                                     f"{dashes} em dashes on the site."))
+    return out
+
+
 def check_comment_feed(site_dir: Path) -> tuple[bool, str]:
     """The comment-periods RSS feed was written and is valid XML."""
     import xml.etree.ElementTree as ET
@@ -215,6 +235,7 @@ def run_health(settings: dict, now: datetime | None = None, fetch=_fetch_json, n
     checks += check_new_fields(live_items, live_status)
     checks += check_research(live_items)
     checks.append(check_comment_feed(Path(settings.get("site_dir") or ROOT / "site")))
+    checks += check_permissions_and_site(settings, Path(settings.get("site_dir") or ROOT / "site"))
     problems = [m for ok, m in checks if not ok]
     result = {"at": now.isoformat(timespec="seconds"), "ok": not problems, "problems": problems,
               "checks": [m for _, m in checks]}
