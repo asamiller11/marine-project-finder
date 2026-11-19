@@ -5591,165 +5591,6 @@
   "first_listed": "2026-11-12"
  },
  {
-  "id": "scot_marine:00010232/00011498 & 00010230/00011497 & 00010231",
-  "title": "Approval Letter - Green Volt Offshore Windfarm - East of Aberdeenshire Coast",
-  "url": "https://marine.gov.scot/?q=node/28307",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Offshore wind"
-  ],
-  "stage": "registered",
-  "stage_kind": "assessment",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 28,
-  "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +8",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/scot_marine-00010232-00011498---00010230-00011497---00010231.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 36,
-    "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
-    "relevance": 28
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "Flotation Energy and Vårgrønn (Green Volt)",
-     "detail": "",
-     "how": "Named by an official web source",
-     "quote": "",
-     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
-    }
-   ],
-   "consultant": [],
-   "contractor": [
-    {
-     "name": "Aker Solutions with ABB (FEED, offshore substation)",
-     "detail": "",
-     "how": "Named by an official web source",
-     "quote": "",
-     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
-    },
-    {
-     "name": "Aibel with Hitachi Energy (FEED)",
-     "detail": "",
-     "how": "Named by an official web source",
-     "quote": "",
-     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
-    }
-   ],
-   "agency_contact": [
-    {
-     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
-     "detail": "Scottish Government",
-     "how": "Licensing team named in the notice",
-     "quote": "…g Operations Team (“MD-LOT”), on beh…"
-    }
-   ]
-  },
-  "research": {
-   "facts": [
-    {
-     "kind": "structure",
-     "text": "560 MW floating wind farm; the FEED scope includes an offshore substation jacket and topsides.",
-     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/",
-     "checked": "read"
-    }
-   ],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 20,
-  "win": {
-   "points": 8,
-   "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Flotation Energy and Vårgrønn (Green Volt)); no engineering firm is named yet.",
-   "reasons": [
-    "Offshore wind",
-    "Early: still under review, design not final (+8)"
-   ],
-   "construction_start": ""
-  },
-  "timeline": [
-   {
-    "date": "2026-11-12",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-12"
- },
- {
   "id": "scot_marine:00012343",
   "title": "Morven North Offshore Wind Array – 61km off Aberdeenshire Coast",
   "url": "https://marine.gov.scot/?q=node/28273",
@@ -6596,6 +6437,173 @@
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "scot_marine:00010232/00011498 & 00010230/00011497 & 00010231",
+  "title": "Approval Letter - Green Volt Offshore Windfarm - East of Aberdeenshire Coast",
+  "url": "https://marine.gov.scot/?q=node/28307",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 20,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "Relevance 20, winnability -8",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions offshore wind work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00010232-00011498---00010230-00011497---00010231.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
+    "relevance": 28
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Flotation Energy and Vårgrønn (Green Volt)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
+    }
+   ],
+   "consultant": [],
+   "contractor": [
+    {
+     "name": "Aker Solutions with ABB (FEED, offshore substation)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
+    },
+    {
+     "name": "Aibel with Hitachi Energy (FEED)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
+    }
+   ],
+   "agency_contact": [
+    {
+     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
+     "detail": "Scottish Government",
+     "how": "Licensing team named in the notice",
+     "quote": "…g Operations Team (“MD-LOT”), on beh…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "560 MW floating wind farm; the FEED scope includes an offshore substation jacket and topsides.",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": -8,
+   "stage": "decided",
+   "entry_point": "Approved: contact the proponent (Flotation Energy and Vårgrønn (Green Volt)) and watch for the construction tender.",
+   "reasons": [
+    "Offshore wind",
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-12",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "decided",
+    "text": "Decision made"
+   }
+  ],
+  "changes": [
+   "decided"
+  ],
+  "first_listed": "2026-11-12"
  },
  {
   "id": "scot_marine:00011654",

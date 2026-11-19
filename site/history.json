@@ -590,12 +590,6 @@
 "tier": "weak",
 "title": "Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103"
 },
-"scot_marine:00010232/00011498 & 00010230/00011497 & 00010231": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "weak",
-"title": "Approval Letter - Green Volt Offshore Windfarm - East of Aberdeenshire Coast"
-},
 "scot_marine:00012343": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -631,6 +625,12 @@
 "stage_kind": "decided",
 "tier": "weak",
 "title": "Seagrass Planting - SE of Isle of Berneray, Sound of Harris, Western Isles"
+},
+"scot_marine:00010232/00011498 & 00010230/00011497 & 00010231": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Approval Letter - Green Volt Offshore Windfarm - East of Aberdeenshire Coast"
 },
 "scot_marine:00011654": {
 "comment_deadline": null,
@@ -901,6 +901,11 @@
 "date": "2026-11-12",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "decided",
+"text": "Decision made"
 }
 ],
 "scot_marine:00011119/00012511": [
