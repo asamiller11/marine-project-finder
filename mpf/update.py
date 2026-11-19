@@ -161,6 +161,13 @@ def run_update(settings: dict, upload: bool = True) -> int:
         _run([_python(), "-W", "ignore", "-m", "mpf", "publish"], "Building the website")
         records = json.loads((ROOT / "site" / "items.json").read_text(encoding="utf-8"))
         counts = counts_by_country(records)
+        # Research queue: new Strong/Possible projects to research, and changed developer pages of Strong projects
+        # (mpf/research.py). Reads politely; never stops the update.
+        try:
+            from mpf import research
+            research.weekly_check(settings, records)
+        except Exception as e:      # noqa: BLE001  the weekly research check must not block publishing
+            print(f"Research check skipped: {e}")
 
         live = "not uploaded (--no-upload): the live site was not changed"
         if upload:

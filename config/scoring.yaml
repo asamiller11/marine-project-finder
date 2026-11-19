@@ -416,6 +416,25 @@ profile_rules:
     max_volume_m3: 5000
 
 profile_groups:
+  # Offshore wind under hard-structure (owner, 2026-11-19): turbine foundations need scour protection and cables need
+  # cable protection, a core hard-structure market, even when the notice does not say "scour" or "piles".
+  wind_farm:
+    label: "Offshore wind farm (foundations need scour and cable protection)"
+    en: '\boffshore wind ?(farm|array|development|project|park)s?\b|\boffshore windfarms?\b|\bwind (farm|array)\b.{0,60}\boffshore\b|\boffshore\b.{0,40}\bwind turbines?\b'
+    fr: '\b(parc )?éolien(ne)?s? en mer\b|\béolien(ne)?s? (extracôtier|offshore)'
+    da: '\bhavvindmøllepark|\bhavmøllepark|\bhavvind'
+    nl: '\bwindpark op zee|\bwind op zee'
+    es: '\bparque eólico marino|\beólica marina'
+  # Floating turbines sit on anchors and moorings: less rock protection, so fewer points. Replaces wind_farm.
+  wind_floating:
+    label: "Floating offshore wind (anchors and moorings, less rock protection)"
+    en: '\bFLOW-Park\b|\bfloating (offshore )?wind|\bfloating (foundations?|turbines?|platforms?|substructures?)\b|\bsemi-submersibles?\b|\bspar[- ]buoys?\b|\btension[- ]leg platforms?\b'
+    fr: '\béolien(ne)?s? flottant|\bflotteurs?\b'
+    replaces: wind_farm
+  wind_fixed:
+    label: "Fixed-bottom foundations (monopile, jacket or gravity base)"
+    en: '\bmonopiles?\b|\bjacket (foundations?|substructures?|structures?)\b|\bgravity[- ]based?\b|\bfixed[- ]bottom\b|\bsuction (buckets?|caissons?)\b|\bpin[- ]piles?\b|\bfixed (foundations?|offshore wind)\b'
+    fr: '\bmonopieux?\b|\bfondations? (gravitaires?|jacket|posées?)|\béolien(ne)?s? posée'
   bulkhead_marine:
     kind: type
     label: "Bulkhead (not at a dam, intake or river channel)"
@@ -542,12 +561,14 @@ profiles:
     # "West Dock berth", "Dock Road": a capitalised structure word that is part of a name is not a structure.
     group_rules: {wharf_dock: {exclude_names: true}}
     short: "Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock."
-    core: [breakwater_jetty, shoreline_protection, bulkhead_marine, wharf_dock, pier_marine, port_terminal, marina_small_craft, infill_causeway, piles, armour_riprap]
+    core: [breakwater_jetty, shoreline_protection, bulkhead_marine, wharf_dock, pier_marine, port_terminal, marina_small_craft, infill_causeway, piles, armour_riprap,
+           wind_farm, wind_floating]
     # The general shoreline group's bulkhead pattern is replaced by bulkhead_marine (no dams or river channels).
     drop_patterns: {shoreline_protection: ['\bbulkhead'], wharf_dock: ['\bpier\b|\bpiers\b']}
     types: {breakwater_jetty: 25, shoreline_protection: 25, bulkhead_marine: 25, wharf_dock: 20, pier_marine: 20, port_terminal: 18,
-            infill_causeway: 15, marina_small_craft: 12, piles: 10, offshore_wind: 10, outfall_intake: 5}
-    clues: {eco_units: 20, armour_riprap: 12, habitat_creation: 15, offsetting: 12, fish_habitat: 8, hadd: 8,
+            infill_causeway: 15, marina_small_craft: 12, piles: 10, offshore_wind: 10, outfall_intake: 5,
+            wind_farm: 25, wind_floating: 12}
+    clues: {eco_units: 20, armour_riprap: 12, wind_fixed: 12, habitat_creation: 15, offsetting: 12, fish_habitat: 8, hadd: 8,
             fisheries_act: 8, marine_footprint: 8, scour_protection: 8, intertidal_marsh: 5, species_at_risk: 4,
             eelgrass: 4, shellfish_oyster: 4, mitigation_general: 3}
     routine_repair_cap: true

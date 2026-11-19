@@ -110,7 +110,9 @@ def test_shortlist_puts_approved_leads_first_and_leaves_out_freshwater():
     fresh = [r for r in recs if r["freshwater"]]
     assert [r["title"] for r in fresh] == ["Lake Breakwater"]
     picks = site.shortlist(recs, "hard-structure", 10)
-    assert [r["title"] for r in picks] == ["Approved Breakwater", "Breakwater at Test SCH"]
+    # Approved projects are capped at Possible (owner, 2026-11-19), so the Strong one under review comes first.
+    assert [r["title"] for r in picks] == ["Breakwater at Test SCH", "Approved Breakwater"]
+    assert picks[1]["profiles"]["hard-structure"]["tier"] == "possible"
 
 
 def test_shortlist_page_has_stage_feedback_source_and_no_too_late(tmp_path):

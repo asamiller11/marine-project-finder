@@ -176,3 +176,80 @@ def test_health_checks_new_fields():
     bad = [dict(good[0], comment_deadline="2026-11-01", stakeholders={"owner": []}, win={})]
     res = health.check_new_fields(bad, {"last_successful_update": "2026-11-19"})
     assert sum(not ok for ok, _ in res) == 3
+
+
+# --- Round 2 (2026-11-19): offshore wind, approval caps, research ------------------------------------------
+
+def _hs(text, title="X"):
+    from mpf.profiles import ProfileScorer
+    return ProfileScorer(load_scoring()).score(text, title, "hard-structure", TIERS, "en")
+
+
+def test_offshore_wind_counts_under_hard_structure_fixed_more_than_floating():
+    plain = _hs("Morven North Offshore Wind Array, 61km off Aberdeenshire coast.")["score"]
+    fixed = _hs("Offshore wind farm with monopile foundations on the seabed off the coast.")["score"]
+    floating = _hs("Floating offshore wind farm with semi-submersible platforms off the coast.")["score"]
+    assert plain > 0 and fixed > plain > floating > 0
+
+
+def test_approved_capped_at_possible_and_under_construction_at_weak():
+    assert winnability.adjusted(79, -4, TIERS, cap_tier="possible") == 59
+    assert winnability.adjusted(70, 0, TIERS, cap_tier="weak") == 34
+    w = _assess("A wharf.", "decided")
+    assert w["cap_tier"] == "possible"
+
+
+def test_scotland_approval_letters_and_decision_notices_are_decided():
+    from mpf.sources.scot_marine import stage_words
+    assert stage_words("", "Approval Letter - Green Volt Offshore Windfarm") == "decision made"
+    assert stage_words("", "Electricity Works Decision Notice - Muir Mhor") == "decision made"
+
+
+def test_research_files_follow_the_rules():
+    from mpf import research
+    p, o = research.load_research()
+    assert research.problems(p, o) == []
+    bad = {"x": {"owner": [{"name": "A Ltd", "source": "https://www.linkedin.com/in/someone"}],
+                 "facts": [{"kind": "procurement", "text": "t"}], "people": [{"name": "B", "source": "https://a.gov"}]}}
+    msgs = research.problems(bad, {})
+    assert any("personal-data" in m for m in msgs) and any("no source" in m for m in msgs) and any("no role" in m for m in msgs)
+
+
+def test_find_contacts_is_a_linkedin_people_search_only():
+    from mpf import research
+    url = research.find_contacts_url("Thistle Wind Partners")
+    assert url.startswith("https://www.linkedin.com/search/results/people/?keywords=")
+    assert "Thistle+Wind+Partners" in url and "procurement" in url
+
+
+def test_research_merges_into_card_with_procurement_first():
+    rec = {"stakeholders": {"owner": [], "consultant": [], "contractor": [], "agency_contact": []}}
+    proj = {"owner": [{"name": "Marine Atlantic Inc.", "source": "https://www.marineatlantic.ca/x", "checked": "read"}],
+            "facts": [{"kind": "biodiversity", "text": "Habitat creation.", "source": "https://m.ca/a", "checked": "read"},
+                      {"kind": "procurement", "text": "RFP on CanadaBuys.", "source": "https://c.ca/t", "checked": "search"}]}
+    site.add_research(rec, proj, {})
+    assert rec["stakeholders"]["owner"][0]["source"] == "https://www.marineatlantic.ca/x"
+    assert rec["research"]["facts"][0]["kind"] == "procurement"
+    html = site._research_html(rec)
+    assert html.index("How to get in") < html.index("Habitat creation") and "open the link to confirm" in html
+    assert "Find contacts" in site._stakeholder_rows(rec)
+
+
+def test_developer_only_projects_are_scored_and_labelled():
+    rows = site.developer_rows({"developer:x": {"developer_only": True, "title": "New breakwater, Test Harbour",
+                                                "country": "GB", "url": "https://dev.example/x", "stage": "pre-application",
+                                                "full_text": "A new 200 m rock breakwater at Test Harbour on the coast."}},
+                               load_scoring(), TODAY)
+    assert rows and rows[0]["score"] >= 20 and rows[0]["source"] == "developer"
+
+
+def test_weekly_check_queues_new_strong_and_possible_projects(tmp_path, monkeypatch):
+    from mpf import research
+    monkeypatch.setattr(research, "QUEUE_FILE", tmp_path / "queue.md")
+    monkeypatch.setattr(research, "load_research", lambda: ({}, {}))
+    monkeypatch.setattr(research, "_state_path", lambda s: tmp_path / "state.json")
+    recs = [{"id": "iaac:1", "title": "New wharf", "url": "https://x", "tier": "possible", "tier_label": "Possible"},
+            {"id": "iaac:2", "title": "Weak one", "url": "https://y", "tier": "weak", "profiles": {}}]
+    r = research.weekly_check({}, recs, client=object(), today=TODAY, log=lambda *a: None)
+    q = (tmp_path / "queue.md").read_text()
+    assert r["queued"] == 1 and "New wharf" in q and "Weak one" not in q

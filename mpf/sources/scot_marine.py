@@ -185,7 +185,8 @@ def parse_document(html: str) -> dict:
 
 def stage_words(stage: str, title: str) -> str:
     s = (stage + " " + title).lower()
-    if "granted" in s or s.startswith("licence") or "consent decision" in s:
+    if "granted" in s or s.startswith("licence") or "consent decision" in s or "approval letter" in s \
+            or "decision notice" in s or re.search(r"\bapproved\b", s):
         return "decision made"
     if "pre-application" in s:
         return "pre-application consultation"

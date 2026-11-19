@@ -34,6 +34,9 @@ from mpf.profiles import (ALL, ALL_LABEL, EMPTY_NOTE, PROFILE_ONLY_SOURCES, PROF
                           is_freshwater, listed_in_profile, profile_results, profile_tier)
 from mpf import winnability
 from mpf.stakeholders import NOT_NAMED, ROLES, find_stakeholders, summary_line
+from mpf import research as rsrch
+
+DEVELOPER_ONLY = "From the developer's website, not in a permit notice yet"
 from mpf.review import auto_summary, decision, own_summary
 from mpf.tiers import TIER_LABELS, TIER_ORDER, find_duplicates, tier_for
 
@@ -273,7 +276,8 @@ def make_record(row: dict, review_row: dict, settings: dict, today: date,
         "summary": summary,
         "summary_note": summary_note,
         "quotes": (pick_quotes(row.get("full_text") or "", reasons, site_conf, title=row.get("title") or "",
-                               patterns=patterns) if source_conf(row.get("source")).get("quotes", True) else []),
+                               patterns=patterns) if source_conf(row.get("source")).get("quotes", True)
+                    and row.get("source") != "developer" else []),   # developer cards hold our summary, not quotes
         "attribution": source_conf(row.get("source")).get("attribution", ""),
         "agency": source_conf(row.get("source")).get("agency") or source_display_name(row.get("source")),
         # For a hearing portal, also name the authority that issued the notice.
@@ -317,6 +321,84 @@ def _sort_key(rec: dict):
     return (TIER_ORDER.index(rec["tier"]), rec["stage_kind"] != "open", -rec["score"], rec["title"])
 
 
+def _load_research() -> tuple[dict, dict]:
+    return rsrch.load_research()
+
+
+def developer_rows(projects: dict, rules: dict, today: date) -> list[dict]:
+    """Projects found on a developer's website (research/projects.yaml, developer_only), scored with the same rules."""
+    from mpf.score import score_text
+    from mpf.timing import compute
+    out = []
+    for key, p in (projects or {}).items():
+        if not p.get("developer_only"):
+            continue
+        text = f"{p['title']}. {p['full_text']}"
+        sc = score_text(text, rules, language="en")
+        row = {"key": key, "source": "developer", "item_id": key.split(":", 1)[-1], "url": p["url"], "title": p["title"],
+               "language": "en", "country": p.get("country"), "province": p.get("province") or UNKNOWN,
+               "water_body": p.get("water_body") or UNKNOWN, "proponent": p.get("proponent") or UNKNOWN,
+               "status_raw": p.get("stage") or UNKNOWN, "comment_deadline": None, "decision_date": None,
+               "date_posted": None, "full_text": text, "raw_path": "", "is_test_set": 0, "first_seen": "", "last_seen": "",
+               "extra": json.dumps({"developer_only": True}), "score": sc["score"],
+               "reasons": json.dumps(sc["reasons"]), "facts": json.dumps(sc["facts"]),
+               "project_types": json.dumps(sc["project_types"])}
+        tm = compute({**row, "extra": {}}, today)
+        row["stage"] = "under construction" if re.search(r"construction", p.get("stage") or "", re.I) else tm["stage"]
+        out.append(row)
+    return out
+
+
+def add_research(rec: dict, proj: dict | None, orgs: dict) -> None:
+    """Merge checked research into a record: named organisations (with their source), facts (procurement first),
+    named people with their role, and each organisation's published website, email and phone."""
+    proj = proj or {}
+    st = rec.setdefault("stakeholders", {k: [] for k, _ in ROLES})
+    for role in ("owner", "consultant", "contractor"):
+        for e in proj.get(role) or []:
+            entry = {"name": e["name"], "detail": "", "how": "Named by an official web source" if e.get("checked") == "read"
+                     else "Found by a web search (page not read automatically)", "quote": "", "source": e["source"]}
+            keys = [_name_key(x["name"]) for x in st.get(role) or []]
+            k = _name_key(e["name"])
+            if not any(k == x or k.startswith(x + " ") or x.startswith(k + " ") for x in keys):
+                st.setdefault(role, []).append(entry)
+    order = list(rsrch.FACT_KINDS)
+    facts = sorted(proj.get("facts") or [], key=lambda f: order.index(f["kind"]) if f.get("kind") in order else 99)
+    org_info = {}
+    for role in ("owner", "consultant", "contractor"):
+        for e in st.get(role) or []:
+            o = _org_lookup(orgs, e["name"])
+            if o:
+                org_info[e["name"]] = o
+                for pr in o.get("procurement") or []:
+                    if not any(f.get("source") == pr["url"] for f in facts):
+                        facts.insert(0, {"kind": "procurement", "text": pr["text"], "source": pr["url"],
+                                         "checked": pr.get("checked", "search")})
+    rec["research"] = {"facts": facts, "people": proj.get("people") or [], "orgs": org_info,
+                       "developer_only": bool(proj.get("developer_only"))}
+    if proj.get("developer_only"):
+        rec["developer_only"] = True
+        rec["source_name"] = rec["agency"] = DEVELOPER_ONLY
+
+
+def _name_key(name: str) -> str:
+    from mpf.stakeholders import name_key
+    return name_key(re.sub(r"\s*\(.*$", "", name))
+
+
+def _org_lookup(orgs: dict, name: str) -> dict | None:
+    k = _name_key(name)
+    for oname, o in (orgs or {}).items():
+        ok = _name_key(oname)
+        if ok and (ok == k or k.startswith(ok) or ok.startswith(k)):
+            return {**o, "name": oname}
+    return None
+
+
+def procurement_routes(rec: dict) -> list[dict]:
+    return [f for f in (rec.get("research") or {}).get("facts") or [] if f.get("kind") == "procurement"]
+
+
 def _top_reason(row: dict) -> str:
     """The strongest relevance signal, in words ("Breakwater, jetty or groyne")."""
     try:
@@ -343,7 +425,7 @@ def apply_winnability(rec: dict, row: dict, scoring: dict, tiers_conf: dict, tod
     rel = int(rec["score"] or 0)
     rec["relevance_score"] = rel
     if rec["tier"] != "watch":
-        new = winnability.adjusted(rel, win["points"], tiers_conf)
+        new = winnability.adjusted(rel, win["points"], tiers_conf, cap_tier=win.get("cap_tier"))
         tier, why = tier_for({**row, "score": new}, tiers_conf)
         rec.update(score=new, tier=tier, tier_label=TIER_LABELS[tier],
                    tier_reason=(f"Relevance {rel}, winnability {win['points']:+d}" if why.startswith("score") else why))
@@ -351,7 +433,8 @@ def apply_winnability(rec: dict, row: dict, scoring: dict, tiers_conf: dict, tod
     for p in (rec.get("profiles") or {}).values():
         p["relevance"] = p["score"]
         if p["tier"] in PROFILE_TIERS:
-            new = winnability.adjusted(int(p["score"]), win["points"], tiers_conf, strong_cap=own)
+            new = winnability.adjusted(int(p["score"]), win["points"], tiers_conf, strong_cap=own,
+                                       cap_tier=win.get("cap_tier"))
             t = profile_tier(row, new, tiers_conf, rec["tier"] if not own else "notrel")
             t = {"strong": "possible"}.get(t, t) if own else t
             p.update(score=new, tier=t, tier_label=TIER_LABELS[t])
@@ -364,6 +447,9 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
                          previous: dict | None = None) -> tuple[list[dict], dict]:
     """All records for the public site, plus counts of what was left out and why."""
     rows = [dict(r) for r in conn.execute("SELECT * FROM items WHERE is_test_set=0 AND score IS NOT NULL")]
+    # Research files (research/*.yaml) are used with the real settings; tests pass their own as settings["research"].
+    research_projects, research_orgs = settings["research"] if "research" in settings else (
+        _load_research() if isinstance(settings.get("sources"), dict) and settings["sources"] else ({}, {}))
     enabled = enabled_sources(settings)
     if enabled is not None:      # items from a source that is switched off never reach the site
         rows = [r for r in rows if r["source"] in enabled]
@@ -388,6 +474,8 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
                 carried.setdefault(d["url"], []).append(r)
     absorbed = [r for r in kept if any((c["last_seen"] or "") > (r["last_seen"] or "") for c in carried.get(r["url"], []))]
     kept = [r for r in kept if r not in absorbed]
+    from mpf.config import load_scoring as _ls
+    kept += developer_rows(research_projects, settings.get("scoring") or _ls(), today)
     losers = find_duplicates(kept, settings.get("duplicates", {}))
     skipped["merged_duplicates"] = len(losers) + len(absorbed)
     by_key = {r["key"]: r for r in kept}
@@ -403,6 +491,7 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
             rec["profiles"] = profile_results(r, rec["tier"], scorer, tiers_conf) if scorer else {}
             rec["freshwater"] = is_freshwater(r, scoring.get("freshwater"))
             rec["stakeholders"] = find_stakeholders(r, _extra(r))
+            add_research(rec, research_projects.get(r["key"]), research_orgs)
             apply_winnability(rec, r, scoring, tiers_conf, today)
             records[r["key"]] = rec
     # "Probably not relevant" is never on the general list. Such a project is kept only when a buyer
@@ -697,6 +786,12 @@ text-decoration:underline;text-underline-offset:3px}
 .win ul.why{margin:0;padding-left:1.2em}
 .win ul.why li{margin:1px 0}
 .not-named{color:var(--faint);font-style:italic}
+.research{margin:10px 0 0;font-size:.86rem;color:var(--ink-2)}
+.research ul{margin:2px 0 6px;padding-left:1.2em}
+.getin{border:1px solid var(--open);background:var(--open-bg);border-radius:8px;padding:8px 10px;margin:0 0 8px}
+.getin-h{margin:0 0 2px;font-weight:700;color:var(--open)}
+a.fc,a.src{font-size:.76rem;white-space:nowrap}
+.badge.devonly{color:var(--chg);background:var(--chg-bg);border-color:var(--chg)}
 dl.facts dd .muted{color:var(--muted)}
 ul.who{list-style:none;padding:0;margin:0}
 ul.who li{margin:0 0 10px}
@@ -1308,6 +1403,7 @@ def _badges(rec: dict, less_tested: list, changes: bool = True) -> str:
             f'<span class="badge stage-badge {"st-open" if rec["stage_kind"] == "open" else "st-other"}">'
             f'{STAGE_LABELS[rec["stage_kind"]]}</span>\n'
             f'{_open_until_badge(rec)}'
+            f'{("<span class=" + chr(34) + "badge devonly" + chr(34) + ">" + escape(DEVELOPER_ONLY) + "</span>") if rec.get("developer_only") else ""}'
             f'<span class="badge late"{"" if rec["too_late"] else " hidden"}>Likely too late</span>'
             f'{review_badge}{lang_badge}{chg}'
             f'{"<span class=" + chr(34) + "badge fresh" + chr(34) + ">Freshwater</span>" if rec.get("freshwater") else ""}</div>')
@@ -1329,9 +1425,57 @@ def _stakeholder_rows(rec: dict) -> str:
     for key, label in ROLES:
         entries = _role(rec, key)
         val = ("; ".join(escape(e["name"]) + (f' <span class="muted">({escape(e["detail"])})</span>' if e.get("detail") else "")
+                         + (f' <a class="src" href="{escape(e["source"])}" rel="noopener">source</a>' if e.get("source") else "")
+                         + (_find_contacts(e["name"]) if key != "agency_contact" else "")
                          for e in entries) if entries else f'<span class="not-named">{NOT_NAMED}</span>')
         rows.append(f"<dt>{escape(label)}</dt><dd>{val}</dd>")
     return "\n".join(rows)
+
+
+def _find_contacts(org: str) -> str:
+    """Link to LinkedIn's own people search for this organisation and the roles a supplier approaches. Nothing is stored."""
+    name = re.sub(r"\s*\(.*$", "", org).strip()
+    return (f' <a class="fc" href="{escape(rsrch.find_contacts_url(name))}" rel="noopener nofollow" target="_blank" '
+            f'title="LinkedIn people search: environmental manager, project manager, procurement">Find contacts</a>')
+
+
+def _checked_note(f: dict) -> str:
+    return "" if f.get("checked") == "read" else ' <span class="muted">(found by a web search; open the link to confirm)</span>'
+
+
+def _research_html(rec: dict, full: bool = False) -> str:
+    """'How to get in' (procurement routes, shown first) and other facts from official web sources."""
+    r = rec.get("research") or {}
+    facts = r.get("facts") or []
+    if not facts and not (full and (r.get("orgs") or r.get("people"))):
+        return ""
+    proc = [f for f in facts if f.get("kind") == "procurement"]
+    other = [f for f in facts if f.get("kind") != "procurement"]
+    li = lambda f: (f'<li>{escape(f["text"])} <a href="{escape(f["source"])}" rel="noopener">source</a>{_checked_note(f)}</li>')
+    out = []
+    if proc:
+        out.append(f'<div class="getin"><p class="getin-h">How to get in</p><ul>{"".join(li(f) for f in proc)}</ul></div>')
+    shown = other if full else other[:3]
+    if shown:
+        out.append('<div class="devfacts"><p class="why-h">From the developer and other official sources</p><ul>' +
+                   "".join(f'<li><strong>{escape(rsrch.FACT_KINDS.get(f["kind"], f["kind"]))}:</strong> {li(f)[4:]}'
+                           for f in shown) + "</ul></div>")
+    if full:
+        orgs = []
+        for name, o in (r.get("orgs") or {}).items():
+            bits = [f'<a href="{escape(o["website"])}" rel="noopener">website</a>'] if o.get("website") else []
+            bits += [f'{escape(e["address"])} ({escape(e.get("published_for") or "general")})' for e in o.get("emails") or []]
+            bits += [escape(ph) for ph in o.get("phones") or []]
+            if bits:
+                orgs.append(f'<li><strong>{escape(name)}</strong>: {"; ".join(bits)} '
+                            f'<a href="{escape(o["source"])}" rel="noopener">source</a></li>')
+        people = [f'<li>{escape(pp["name"])}, {escape(pp["role"])} <a href="{escape(pp["source"])}" rel="noopener">source</a></li>'
+                  for pp in r.get("people") or []]
+        if orgs:
+            out.append('<p class="why-h">Published contact details</p><ul class="orgs">' + "".join(orgs) + "</ul>")
+        if people:
+            out.append('<p class="why-h">People named by an official source</p><ul>' + "".join(people) + "</ul>")
+    return '<div class="research">' + "".join(out) + "</div>" if out else ""
 
 
 def _who_html(rec: dict) -> str:
@@ -1347,9 +1491,12 @@ def _who_html(rec: dict) -> str:
             q = f' &ldquo;{escape(e["quote"])}&rdquo;' if quotes_ok and e.get("quote") else ""
             items.append(f'<li><span class="role">{escape(label)}</span>{escape(e["name"])}'
                          f'{(" (" + escape(e["detail"]) + ")") if e.get("detail") else ""}'
-                         f'<span class="how">{escape(e.get("how") or "")}{q}</span></li>')
-    return (f'<ul class="who">{"".join(items)}</ul>\n<p class="note">Only names the official source states. Contractors are '
-            f'usually named only when a project goes to bid. Phone numbers and email addresses are on the official notice.</p>')
+                         f'{(" " + _find_contacts(e["name"]).strip()) if key != "agency_contact" else ""}'
+                         f'<span class="how">{escape(e.get("how") or "")}{q}'
+                         f'{(" " + chr(60) + "a href=" + chr(34) + escape(e["source"]) + chr(34) + " rel=" + chr(34) + "noopener" + chr(34) + ">source</a>") if e.get("source") else ""}</span></li>')
+    return (f'<ul class="who">{"".join(items)}</ul>\n<p class="note">Only names an official source states, with where each came from. Contractors are '
+            f'usually named only when a project goes to bid. "Find contacts" opens a LinkedIn people search for that '
+            f'organisation; this site stores nothing from it.</p>')
 
 
 def _win_html(rec: dict) -> str:
@@ -1388,7 +1535,7 @@ def _source_lines(rec: dict, link: str) -> str:
             d = f', comment deadline {escape(a["comment_deadline"])}' if a.get("comment_deadline") else ""
             parts.append(f'<a href="{escape(a["url"])}" rel="noopener">{escape(a["source_name"])}</a>{d}')
         also = f'<p class="source">Also listed: {"; ".join(parts)}</p>\n'
-    official = "Official page" if rec["stage_kind"] == "watch" else "Official notice"
+    official = "Official page" if rec["stage_kind"] == "watch" else "Developer's page" if rec.get("developer_only") else "Official notice"
     attribution = (" " + escape(rec["attribution"])) if rec.get("attribution") else ""
     return (f'<p class="source"><a href="{link}" rel="noopener">{official}</a> ({escape(rec["source_name"])}){attribution}</p>\n'
             f'{also}'
@@ -1436,6 +1583,7 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
 <p class="because" hidden></p>
 <p class="general-line" hidden></p>
 {_win_html(rec)}
+{_research_html(rec)}
 <dl class="facts">
 {_stakeholder_rows(rec)}
 <dt>Location</dt><dd>{escape(location)}</dd>
@@ -1837,7 +1985,7 @@ CSV_COLUMNS = ["id", "title", "country", "region", "proponent", "project_types",
                "reviewed_by_a_person", "comments_open", "comments_close", "comments_received", "comments_received_as_of",
                "changes_since_last_update", "first_listed", "project_page", "official_notice", "source",
                "open_for_comment_until", "owner_or_proponent", "consultant", "contractor", "agency_contact",
-               "entry_point", "score_reasons"]
+               "entry_point", "score_reasons", "procurement_routes"]
 
 
 def csv_columns(meta: list[dict] | None = None) -> list[str]:
@@ -1868,7 +2016,8 @@ def csv_row(rec: dict, names: dict, site_conf: dict, meta: list[dict] | None = N
             rec.get("agency") or rec["source_name"],
             c.get("closes") if rec.get("stage_kind") == "open" and c.get("closes") else ""] + \
         [summary_line(_role(rec, k)) for k, _ in ROLES] + \
-        [(rec.get("win") or {}).get("entry_point", ""), "; ".join((rec.get("win") or {}).get("reasons") or [])] + \
+        [(rec.get("win") or {}).get("entry_point", ""), "; ".join((rec.get("win") or {}).get("reasons") or []),
+         " | ".join(f'{f["text"]} ({f["source"]})' for f in procurement_routes(rec))] + \
         [_profile_cell(rec, m["key"]) for m in meta or []]
 
 
@@ -2038,6 +2187,7 @@ people who commented are not copied here. To comment, use the official notice.</
 <p class="place">{escape(_place(rec, country_name))} &middot; {escape(rec['proponent'])}</p>
 {_summary_html(rec)}
 {_win_html(rec)}
+{_research_html(rec, full=True)}
 {f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
 <h2>Who is involved</h2>
 {_who_html(rec)}
@@ -2302,6 +2452,16 @@ guessed. A role the source does not name shows "Not named yet": contractors, for
 project goes to bid. For agency contacts only the name, job title and office are shown; phone numbers and email
 addresses are on the official notice. "Download shown projects (CSV)" includes these names, for building a target
 list.</p>
+<p>For Strong and Possible projects, names and facts are also taken from officially published web pages: the developer's
+project site, press releases, procurement notices and environmental reports. Each is linked to its source; facts found
+only through a web search, on sites that do not allow automated reading, say so. Procurement routes (supplier portals,
+tenders, meet-the-buyer events) appear first, under "How to get in". "Find contacts" opens a LinkedIn people search for
+the organisation (environmental manager, project manager, procurement); this site stores nothing from it. Projects
+marked "From the developer's website, not in a permit notice yet" come from a developer's own pages and are scored
+with the same rules.</p>
+<p>Offshore wind counts under the hard-structure profile: turbine foundations need scour protection and cables need cable
+protection. Fixed-bottom foundations score higher than floating ones. Approved projects can be at most Possible, and
+projects under construction at most Weak.</p>
 
 <h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has

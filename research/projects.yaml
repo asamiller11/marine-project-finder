@@ -1,0 +1,332 @@
+# Researched facts per MitiMark project (key = the project id), checked by a person on 2026-11-19.
+# owner / consultant / contractor: organisations an official source names for this project.
+# facts: kind is one of procurement, contractor, structure, timeline, consent, biodiversity, contact.
+# checked: read (page read with MitiMark's polite reader) or search (found by a web search; page not read automatically).
+# watch_pages: developer pages the weekly update re-reads for Strong projects (procurement and contractor news).
+# developer_only: true = a project found on a developer's website, not in a permit notice yet. It gets its own card,
+#   scored with the same rules, from the text below (the developer's own words, summarised).
+
+"scot_marine:bowdun offshore wind farm east of aberdeenshire":
+  owner:
+    - name: Thistle Wind Partners (Qair, Aspiravi and DEME Group)
+      source: https://www.energyglobal.com/wind/11122025/thistle-wind-partners-submits-plans-for-bowdun-offshore-wind-farm/
+      checked: search
+  facts:
+    - kind: procurement
+      text: "Supply Chain Pathways Programme: Bowdun's partner DEME Offshore pre-qualifies local firms as suppliers for transport, installation and balance-of-plant work. Register through the programme."
+      source: https://www.energyglobal.com/wind/24092025/bid-to-unlock-1-billion-scotwind-project-for-oil-and-gas-firms/
+      checked: search
+    - kind: structure
+      text: "About 1 GW, fixed-bottom, about 27 miles off Stonehaven (ScotWind lease)."
+      source: https://www.oedigital.com/news/530371-bowdun-offshore-wind-opens-supply-chain-doors-to-scottish-o-g-firms
+      checked: search
+    - kind: consent
+      text: "Onshore planning application submitted to Aberdeenshire Council; offshore consent application expected in 2026."
+      source: https://www.energyglobal.com/wind/11122025/thistle-wind-partners-submits-plans-for-bowdun-offshore-wind-farm/
+      checked: search
+
+"scot_marine:00012343": &morven
+  owner:
+    - name: Morven Offshore Wind Limited (EnBW and JERA Nex bp)
+      source: https://enbw-bp.com/latest/2022-04-07-bp-and-enbw-sign-morven-option-to-lease-agreement
+      checked: search
+  facts:
+    - kind: procurement
+      text: "Supplier registration portal run by the developers (listed as enbw-bp.com/suppliers in a 2023 ORE Catapult developer briefing). bp.com refuses automated reading, so the portal address was not confirmed."
+      source: https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf
+      checked: search
+    - kind: structure
+      text: "Up to 2.9 GW lease area, 61 to 86 km off Aberdeenshire."
+      source: https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf
+      checked: search
+    - kind: timeline
+      text: "Construction expected from 2027 (2023 briefing)."
+      source: https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf
+      checked: search
+"scot_marine:00012345": *morven
+
+"scot_marine:00011025": &muirmhor
+  owner:
+    - name: Fred. Olsen Seawind (taking over Vattenfall's 50% stake, subject to approvals)
+      source: https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm
+      checked: search
+  facts:
+    - kind: structure
+      text: "Floating offshore wind farm, up to about 1 GW, operational in the early 2030s."
+      source: https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm
+      checked: search
+    - kind: procurement
+      text: "The 2023 supply chain outlook listed a supplier portal under development and supply chain events. No portal address was found."
+      source: https://www.crownestatescotland.com/sites/default/files/2023-07/muir-mhor-offshore-wind-farm-scds-outlook-july-2023-update.pdf
+      checked: search
+"scot_marine:00011026": *muirmhor
+
+"scot_marine:00012570":
+  owner:
+    - name: Highland Wind Limited (majority owned by funds managed by Copenhagen Infrastructure Partners)
+      source: https://www.offshorewindscotland.org.uk/news/2026/january/14/pentland-floating-wind-project-wins-cfd-in-ar7/
+      checked: read
+  contractor:
+    - name: Stiesdal Offshore (TetraSub floating foundation selected)
+      source: https://www.offshorewind.biz/2022/10/11/scottish-floater-opts-for-stiesdal-foundations/
+      checked: search
+  facts:
+    - kind: structure
+      text: "100 MW floating wind farm off Dounreay, Caithness, with an operations base proposed at Scrabster."
+      source: https://pentlandfloatingwind.com/
+      checked: read
+    - kind: consent
+      text: "Won a Contract for Difference in Allocation Round 7 (January 2026)."
+      source: https://www.offshorewindscotland.org.uk/news/2026/january/14/pentland-floating-wind-project-wins-cfd-in-ar7/
+      checked: read
+    - kind: procurement
+      text: "A 2024 supply chain presentation lists a supplier registration portal and a Tier 1 sub-contractor selection stage."
+      source: https://www.offshorewindscotland.org.uk/media/wmulaahp/pentland-floating-offshore-wind-farm-deepwing-intog-aberdeen-2024-_final.pdf
+      checked: search
+  watch_pages: [https://pentlandfloatingwind.com/]
+
+"scot_marine:00010232/00011498 & 00010230/00011497 & 00010231":
+  owner:
+    - name: Flotation Energy and Vårgrønn (Green Volt)
+      source: https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/
+      checked: read
+  contractor:
+    - name: Aker Solutions with ABB (FEED, offshore substation)
+      source: https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/
+      checked: read
+    - name: Aibel with Hitachi Energy (FEED)
+      source: https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/
+      checked: read
+  facts:
+    - kind: structure
+      text: "560 MW floating wind farm; the FEED scope includes an offshore substation jacket and topsides."
+      source: https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/
+      checked: read
+
+"scot_marine:SCOP-0076":
+  owner:
+    - name: Offshore Solutions Group (OSG)
+      source: https://www.offshorewind.biz/2025/04/22/osg-signs-seabed-deal-with-crown-estate-scotland-for-floating-anchorage-site
+      checked: search
+  consultant:
+    - name: GoBe Consultants (APEM Group), lead environmental consultant
+      source: https://www.energyglobal.com/wind/29102025/gobe-consultants-appointed-lead-environmental-consultant-for-moray-flow-park/
+      checked: search
+  facts:
+    - kind: structure
+      text: "Moray FLOW-Park: a floating-turbine storage and anchorage site of about 36 km2 in the inner Moray Firth (off Nairn and Findhorn), with mooring lines and anchors."
+      source: https://www.offshorewind.biz/2025/04/22/osg-signs-seabed-deal-with-crown-estate-scotland-for-floating-anchorage-site
+      checked: search
+
+"scot_marine:screening request tobermory ferry terminal scr 0134":
+  owner:
+    - name: Caledonian Maritime Assets Ltd (CMAL)
+      source: https://www.find-tender.service.gov.uk/Notice/079381-2025
+      checked: search
+  consultant:
+    - name: Haskoning UK Ltd
+      source: https://marine.gov.scot/?q=node/28319
+      checked: read
+  facts:
+    - kind: procurement
+      text: "CMAL engineering design framework with a Tobermory Ferry Terminal lot (Find a Tender notice 079381-2025; bids were due February 2026). Find a Tender refuses automated reading."
+      source: https://www.find-tender.service.gov.uk/Notice/079381-2025
+      checked: search
+    - kind: structure
+      text: "Works covered by the screening: an aligning structure, shore power and a larger marshalling area; part of CMAL's Small Vessel Replacement Programme."
+      source: https://marine.gov.scot/sites/default/files/scr-0106_-_screening_opinion_schedule_2.pdf
+      checked: search
+
+"scot_marine:additional information public notice ardersier port expansion phase 2":
+  owner:
+    - name: Ardersier Port (Scotland) Limited
+      source: https://www.find-tender.service.gov.uk/Notice/002601-2026
+      checked: search
+  consultant:
+    - name: Xodus Group
+      source: https://marine.gov.scot/sites/default/files/3._eiar_chapters_1_-_15.pdf
+      checked: search
+  facts:
+    - kind: procurement
+      text: "Phase 2 tenders on Find a Tender: Quay Civils (300 m), notice 002601-2026; Landside Civils, notice 002600-2026; and a dredging works tender (closed May 2026). Find a Tender refuses automated reading, so the award status was not checked."
+      source: https://www.find-tender.service.gov.uk/Notice/002601-2026
+      checked: search
+    - kind: structure
+      text: "Phase 2 adds about 198 acres of port land, inner harbour dredging and more quay."
+      source: https://marine.gov.scot/sites/default/files/3._eiar_chapters_1_-_15.pdf
+      checked: search
+
+"scot_marine:00012497":
+  facts:
+    - kind: procurement
+      text: "Peel Ports runs a Dredging Services dynamic purchasing system (Find a Tender 001062-2025) and a construction framework. Find a Tender refuses automated reading."
+      source: https://www.find-tender.service.gov.uk/Notice/001062-2025
+      checked: search
+
+"scot_marine:00011153 / 00011950":
+  owner:
+    - name: Highland Council
+      source: https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026
+      checked: read
+  contractor:
+    - name: Charles Brand Group Ltd (principal contractor)
+      source: https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026
+      checked: read
+  facts:
+    - kind: timeline
+      text: "Under construction; completion expected in summer 2027."
+      source: https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026
+      checked: read
+    - kind: structure
+      text: "Rock armour is being placed along the foreshore against erosion; also a berthing structure, slipway and dredging."
+      source: https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026
+      checked: read
+
+"scot_marine:00011402":
+  owner:
+    - name: Eyemouth Harbour Trust
+      source: https://marine.gov.scot/sites/default/files/md-00011548_licence_redacted.pdf
+      checked: search
+  contractor:
+    - name: Intermarine (pontoon installer, method statement)
+      source: https://marine.gov.scot/sites/default/files/method_statement_redacted_11.pdf
+      checked: search
+
+"scot_marine:00011429":
+  owner:
+    - name: National Grid Electricity Transmission and SSEN Transmission (joint project)
+      source: https://www.nationalgrid.com/eastern-green-link-3-reaches-major-milestone-appointment-construction-partner
+      checked: search
+  contractor:
+    - name: NKT (subsea and underground cable, about 680 km)
+      source: https://www.nationalgrid.com/eastern-green-link-3-reaches-major-milestone-appointment-construction-partner
+      checked: search
+    - name: Hitachi Energy (converter stations)
+      source: https://www.nationalgrid.com/eastern-green-link-3-reaches-major-milestone-appointment-construction-partner
+      checked: search
+
+"nl_ea:2434":
+  facts:
+    - kind: procurement
+      text: "Request for proposals on CanadaBuys for removing Vardy's Rock and improving the breakwater (closed 8 September 2026). Watch for the award and for subcontract work. CanadaBuys refuses automated reading."
+      source: https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/MX-444086928167
+      checked: search
+    - kind: biodiversity
+      text: "Marine Atlantic says the project includes habitat creation and enhancement measures that may benefit lobster populations."
+      source: https://www.marineatlantic.ca/port-aux-basques-harbour-navigation
+      checked: read
+    - kind: consent
+      text: "Needs a Fisheries Act authorization from DFO and a Canadian Navigable Waters Act approval, besides the provincial assessment."
+      source: https://www.marineatlantic.ca/port-aux-basques-harbour-navigation
+      checked: read
+  watch_pages: [https://www.marineatlantic.ca/port-aux-basques-harbour-navigation]
+
+"nl_ea:2379":
+  facts:
+    - kind: consent
+      text: "Federal early decision (2 April 2026): no further federal assessment; Canadian Navigable Waters Act approval still needed for the second berth and infill."
+      source: https://www.canada.ca/en/impact-assessment-agency/news/2026/04/government-of-canada-provides-early-decision-on-point-rousse-port-expansion-project-in-newfoundland-and-labrador.html
+      checked: read
+    - kind: structure
+      text: "Second berth, access road, quayside upgrades and laydown areas; built to export aggregate and armour stone."
+      source: https://www.canada.ca/en/impact-assessment-agency/news/2026/04/government-of-canada-provides-early-decision-on-point-rousse-port-expansion-project-in-newfoundland-and-labrador.html
+      checked: read
+
+"iaac:90726":
+  owner:
+    - name: Canada Clean Fuels and Canada Steamship Lines (partners with HOPA Ports)
+      source: https://www.hopaports.ca/two-transformative-projects-help-create-green-shipping-corridor-on-the-great-lakes/
+      checked: search
+  facts:
+    - kind: structure
+      text: "$33 million, 12-acre, 8-million-litre marine biofuel terminal on the Welland Canal east pier."
+      source: https://www.hopaports.ca/two-transformative-projects-help-create-green-shipping-corridor-on-the-great-lakes/
+      checked: search
+
+"iaac:90624":
+  owner:
+    - name: Ralmax Properties Limited
+      source: https://iaac-aeic.gc.ca/050/evaluations/document/167141
+      checked: search
+
+"iaac:90784":
+  facts:
+    - kind: procurement
+      text: "A CanadaBuys award notice covers 'Wharf Construction - Harbour Breton, NL' (CAD 716,985); check whether it is this phase."
+      source: https://canadabuys.canada.ca/en/tender-opportunities/award-notice/ea003-170290001pwd
+      checked: search
+
+"iaac:90841": &cpsp
+  facts:
+    - kind: structure
+      text: "Canada has reserved part of the submarine project budget for new maintenance, operations and training infrastructure at CFB Halifax and CFB Esquimalt."
+      source: https://www.canada.ca/en/defence-investment-agency/news/2026/07/backgrounder-government-of-canada-advances-canadian-patrol-submarine-project.html
+      checked: search
+"iaac:90856": *cpsp
+
+"noaa_ita:incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization":
+  consultant:
+    - name: Jacobs (program management consultant)
+      source: https://www.jacobs.com/node/4683
+      checked: search
+  facts:
+    - kind: contact
+      text: "Program questions: PortModernization@AnchorageAK.gov (published on the program website)."
+      source: https://modernization.portofalaska.com/
+      checked: read
+  watch_pages: [https://modernization.portofalaska.com/]
+
+"fed_register:2026-20789":
+  facts:
+    - kind: procurement
+      text: "City and Borough of Juneau posts construction bids on its Engineering and Public Works bids page."
+      source: https://juneau.org/engineering-public-works/bids-and-rfps
+      checked: search
+
+"developer:cmal-port-ellen-terminal":
+  developer_only: true
+  title: "Port Ellen Terminal Development, Islay"
+  country: GB
+  province: Scotland
+  water_body: "Port Ellen harbour, Islay"
+  url: https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/
+  proponent: Caledonian Maritime Assets Ltd (CMAL)
+  stage: under construction
+  full_text: "Port Ellen Terminal Development. Construction of new ferry terminal infrastructure at Port Ellen harbour, Islay, by Caledonian Maritime Assets Ltd. Marine construction includes dredging, rock fill placement and percussion piling at the Fish Quay and Commercial Quay from 31 August 2026, then a finger pier and fixed ramp from May 2027 to May 2028."
+  owner:
+    - name: Caledonian Maritime Assets Ltd (CMAL)
+      source: https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/
+      checked: read
+  facts:
+    - kind: structure
+      text: "Dredging, rock fill, piled quays (Fish Quay, then Commercial Quay), a finger pier and a fixed ramp."
+      source: https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/
+      checked: read
+    - kind: timeline
+      text: "Piling from 31 August 2026 to April 2027; finger pier and ramp works May 2027 to May 2028."
+      source: https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/
+      checked: read
+    - kind: contact
+      text: "Project email published by CMAL: petd@cmassets.co.uk"
+      source: https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/
+      checked: read
+
+"developer:cmal-ardrossan-harbour":
+  developer_only: true
+  title: "Ardrossan Harbour Redevelopment"
+  country: GB
+  province: Scotland
+  water_body: "Ardrossan Harbour, Firth of Clyde"
+  url: https://www.cmassets.co.uk/public-engagement-events-announced-ardrossan-harbour-redevelopment/
+  proponent: Caledonian Maritime Assets Ltd (CMAL)
+  stage: pre-application consultation
+  full_text: "Ardrossan Harbour Redevelopment. Caledonian Maritime Assets Ltd is developing proposals to redevelop Ardrossan Harbour, the mainland ferry harbour for Arran, and held public engagement events in October and November 2026 on how the harbour requirements will be developed."
+  owner:
+    - name: Caledonian Maritime Assets Ltd (CMAL)
+      source: https://www.cmassets.co.uk/public-engagement-events-announced-ardrossan-harbour-redevelopment/
+      checked: read
+  facts:
+    - kind: consent
+      text: "Early: proposals still being developed; public engagement events held 28 October and 10 November 2026."
+      source: https://www.cmassets.co.uk/public-engagement-events-announced-ardrossan-harbour-redevelopment/
+      checked: read

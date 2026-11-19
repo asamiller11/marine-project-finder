@@ -24,3 +24,13 @@ def samples():
 def rules():
     from mpf.config import load_scoring
     return load_scoring()
+
+
+import pytest as _pytest
+
+
+@_pytest.fixture(autouse=True)
+def _no_research_files(monkeypatch):
+    """Site builds in tests do not read research/*.yaml (tests that need research pass settings["research"])."""
+    from mpf import site
+    monkeypatch.setattr(site, "_load_research", lambda: ({}, {}))

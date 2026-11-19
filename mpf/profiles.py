@@ -29,7 +29,7 @@ def _group(conf: dict, points: int) -> dict:
     # French patterns are marked so they count only in French notices (mpf.extract.lang_ok).
     g = {"label": conf["label"], "points": points,
          "patterns": [("(?#fr)" + conf[k]) if k == "fr" else conf[k] for k in LANGS if conf.get(k)]}
-    for key in ("exclude_sentence", "require_sentence"):
+    for key in ("exclude_sentence", "require_sentence", "replaces"):
         if conf.get(key):
             g[key] = conf[key]
     return g

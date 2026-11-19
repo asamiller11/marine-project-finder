@@ -158,6 +158,23 @@ def check_new_fields(live_items: list[dict] | None, live_status: dict | None) ->
     return out
 
 
+def check_research(live_items: list[dict] | None) -> list[tuple[bool, str]]:
+    """The research files follow the rules (every fact and name linked to a source, no personal-data sites), and the
+    live site carries the research fields (added 2026-11-19)."""
+    from mpf import research
+    projects, orgs = research.load_research()
+    bad = research.problems(projects, orgs)
+    out = [(not bad, "Research files: " + ("every fact and name has a source link." if not bad
+                                           else f"{len(bad)} problems (first: {bad[0]})."))]
+    if live_items is not None:
+        listed = [r for r in live_items if r.get("id") in projects]
+        missing = [r["title"] for r in listed if not r.get("research")]
+        n_proc = sum(1 for r in live_items if any(f.get("kind") == "procurement" for f in (r.get("research") or {}).get("facts") or []))
+        out.append((not missing, f"Research on the live site: {len(listed)} researched projects, {n_proc} with a procurement route"
+                    + ("." if not missing else f"; {len(missing)} missing their research (first: {missing[0]}).")))
+    return out
+
+
 def check_comment_feed(site_dir: Path) -> tuple[bool, str]:
     """The comment-periods RSS feed was written and is valid XML."""
     import xml.etree.ElementTree as ET
@@ -196,6 +213,7 @@ def run_health(settings: dict, now: datetime | None = None, fetch=_fetch_json, n
     live_items = fetch(site + "items.json")
     checks += check_canaries(live_items, conf.get("canaries") or [])
     checks += check_new_fields(live_items, live_status)
+    checks += check_research(live_items)
     checks.append(check_comment_feed(Path(settings.get("site_dir") or ROOT / "site")))
     problems = [m for ok, m in checks if not ok]
     result = {"at": now.isoformat(timespec="seconds"), "ok": not problems, "problems": problems,

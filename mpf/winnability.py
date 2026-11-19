@@ -27,6 +27,8 @@ DEFAULTS = {
     "engineering_firm": 6,
     "construction_start": {"within_months": 30, "soon": 6, "later": 2},
     "large_size": {"length_m": 100, "area_m2": 5000, "volume_m3": 10000, "points": 4},
+    # The highest tier a project at this stage can reach, whatever its relevance (owner, 2026-11-19).
+    "tier_caps": {"decided": "possible", "under_construction": "weak"},
     "max_bonus": 25,
     "max_penalty": 15,
     "offset_groups": ["offsetting", "fisheries_act", "hadd"],
@@ -209,20 +211,27 @@ def assess(row: dict, stage_kind: str, stakeholders: dict, rules: dict | None, t
 
     total = sum(p for p, _ in reasons)
     total = max(-int(conf["max_penalty"]), min(int(conf["max_bonus"]), total))
-    return {"points": total, "stage": stage, "reasons": reasons, "start": start, "offsets": bool(offsets),
+    cap = (conf.get("tier_caps") or {}).get(stage)
+    if cap:
+        reasons.append((0, {"possible": "Approved, so kept at Possible or below",
+                            "weak": "Under construction, so kept at Weak"}.get(cap, "")))
+    return {"points": total, "stage": stage, "reasons": reasons, "cap_tier": cap, "start": start, "offsets": bool(offsets),
             "entry_point": entry_point(stage, {"comment_deadline": row.get("comment_deadline")}, stakeholders,
                                        bool(offsets), start)}
 
 
-def adjusted(relevance: int, points: int, tiers_conf: dict, strong_cap: bool = False) -> int:
+def adjusted(relevance: int, points: int, tiers_conf: dict, strong_cap: bool = False, cap_tier: str | None = None) -> int:
     """Relevance plus winnability. A listed project stays listed (at least Weak); one under the Weak line is
-    not lifted. strong_cap: sources that are never Strong (profile-only sources) stay under the Strong line."""
+    not lifted. strong_cap: sources that are never Strong (profile-only sources) stay under the Strong line.
+    cap_tier: the highest tier allowed at this stage ("possible" for approved, "weak" for under construction)."""
     weak_min = int(tiers_conf.get("weak_min", 20))
     if relevance < weak_min:
         return relevance
     s = max(weak_min, min(100, relevance + points))
-    if strong_cap:
+    if strong_cap or cap_tier in ("possible", "weak"):
         s = min(s, int(tiers_conf.get("strong_min", 60)) - 1)
+    if cap_tier == "weak":
+        s = min(s, int(tiers_conf.get("possible_min", 35)) - 1)
     return s
 
 
