@@ -30,8 +30,10 @@ from mpf.history import CHANGE_LABELS
 from mpf.news import GDELT_URL
 from mpf.coverage import STATUS_LABELS, load_coverage, source_names
 from mpf.models import UNKNOWN
-from mpf.profiles import (ALL, ALL_LABEL, EMPTY_NOTE, ProfileScorer, is_freshwater, listed_in_profile,
-                          profile_results)
+from mpf.profiles import (ALL, ALL_LABEL, EMPTY_NOTE, PROFILE_ONLY_SOURCES, PROFILE_TIERS, ProfileScorer,
+                          is_freshwater, listed_in_profile, profile_results, profile_tier)
+from mpf import winnability
+from mpf.stakeholders import NOT_NAMED, ROLES, find_stakeholders, summary_line
 from mpf.review import auto_summary, decision, own_summary
 from mpf.tiers import TIER_LABELS, TIER_ORDER, find_duplicates, tier_for
 
@@ -315,6 +317,49 @@ def _sort_key(rec: dict):
     return (TIER_ORDER.index(rec["tier"]), rec["stage_kind"] != "open", -rec["score"], rec["title"])
 
 
+def _top_reason(row: dict) -> str:
+    """The strongest relevance signal, in words ("Breakwater, jetty or groyne")."""
+    try:
+        reasons = json.loads(row.get("reasons") or "[]")
+        facts = json.loads(row.get("facts") or "{}")
+    except ValueError:
+        reasons, facts = [], {}
+    pos = sorted((r for r in reasons if r.get("points", 0) > 0 and not r["rule"].startswith("size:")),
+                 key=lambda r: -r["points"])
+    if pos:
+        return pos[0]["label"]
+    because = ((facts.get("iha") or {}).get("because") or "").split(";")[0].strip()
+    return because
+
+
+def apply_winnability(rec: dict, row: dict, scoring: dict, tiers_conf: dict, today: date) -> None:
+    """Add winnability points to the general score and to every profile score, re-tier, and keep the reasons.
+    The listing itself does not change: listed projects stay at least Weak, unlisted ones are not lifted."""
+    try:
+        sizes = json.loads(row.get("facts") or "{}").get("sizes") or []
+    except ValueError:
+        sizes = []
+    win = winnability.assess(row, rec["stage_kind"], rec["stakeholders"], scoring, today, _extra(row), sizes)
+    rel = int(rec["score"] or 0)
+    rec["relevance_score"] = rel
+    if rec["tier"] != "watch":
+        new = winnability.adjusted(rel, win["points"], tiers_conf)
+        tier, why = tier_for({**row, "score": new}, tiers_conf)
+        rec.update(score=new, tier=tier, tier_label=TIER_LABELS[tier],
+                   tier_reason=(f"Relevance {rel}, winnability {win['points']:+d}" if why.startswith("score") else why))
+    own = row.get("source") in PROFILE_ONLY_SOURCES
+    for p in (rec.get("profiles") or {}).values():
+        p["relevance"] = p["score"]
+        if p["tier"] in PROFILE_TIERS:
+            new = winnability.adjusted(int(p["score"]), win["points"], tiers_conf, strong_cap=own)
+            t = profile_tier(row, new, tiers_conf, rec["tier"] if not own else "notrel")
+            t = {"strong": "possible"}.get(t, t) if own else t
+            p.update(score=new, tier=t, tier_label=TIER_LABELS[t])
+    rec["win"] = {"points": win["points"], "stage": win["stage"], "entry_point": win["entry_point"],
+                  "reasons": winnability.plain_reasons(_top_reason(row), win),
+                  "construction_start": win["start"]["quote"] if win.get("start") else ""}
+
+
 def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: dict, today: date,
                          previous: dict | None = None) -> tuple[list[dict], dict]:
     """All records for the public site, plus counts of what was left out and why."""
@@ -357,6 +402,8 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
             rec = make_record(r, review_rows.get(r["key"], {}), settings, today, patterns)
             rec["profiles"] = profile_results(r, rec["tier"], scorer, tiers_conf) if scorer else {}
             rec["freshwater"] = is_freshwater(r, scoring.get("freshwater"))
+            rec["stakeholders"] = find_stakeholders(r, _extra(r))
+            apply_winnability(rec, r, scoring, tiers_conf, today)
             records[r["key"]] = rec
     # "Probably not relevant" is never on the general list. Such a project is kept only when a buyer
     # profile lists it at Possible or better; it then appears under that profile only.
@@ -386,6 +433,8 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
             rec.setdefault("freshwater", False)
             rec.setdefault("page", f"p/{page_slug(key)}.html")
             rec.setdefault("comments", comment_info(rec, {}, today))
+            rec.setdefault("stakeholders", {k: [] for k, _ in ROLES})
+            rec.setdefault("win", {})
             rec["stage_kind"] = stage_kind(rec, today) if rec.get("stage_kind") not in ("decided", "withdrawn") \
                 else rec["stage_kind"]
             records[key] = rec
@@ -641,6 +690,19 @@ text-decoration:underline;text-underline-offset:3px}
 .auto{color:var(--muted);border:1px dashed var(--line-strong)}
 .lang{color:var(--muted);border-color:var(--line)}
 .badge.chg{color:var(--chg);background:var(--chg-bg)}
+.badge.open-until{color:var(--open);background:var(--open-bg);border-color:var(--open)}
+.win{margin:10px 0 0;font-size:.86rem;color:var(--ink-2)}
+.win p.entry{margin:0;padding:7px 10px;border-left:3px solid var(--brand);background:var(--surface-2);border-radius:0 8px 8px 0}
+.win p.why-h{margin:8px 0 2px;color:var(--muted);font-size:.8rem;font-weight:600}
+.win ul.why{margin:0;padding-left:1.2em}
+.win ul.why li{margin:1px 0}
+.not-named{color:var(--faint);font-style:italic}
+dl.facts dd .muted{color:var(--muted)}
+ul.who{list-style:none;padding:0;margin:0}
+ul.who li{margin:0 0 10px}
+ul.who .role{display:block;font-size:.78rem;color:var(--muted)}
+ul.who .how{display:block;font-size:.78rem;color:var(--faint)}
+section.soon .open-all{margin:10px 0 0;font-size:.88rem}
 dl.facts{display:grid;grid-template-columns:8.6em minmax(0,1fr);gap:5px 14px;margin:14px 0;padding:14px 0;font-size:.88rem;
 border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 dl.facts dt{color:var(--muted)}
@@ -777,6 +839,7 @@ var MPF = (function(){
     var late = el.querySelector('.late'); if (late) late.hidden = !(kind === 'decided' || kind === 'closed');
     var st = el.querySelector('.stage-badge');
     if (st) { st.textContent = STAGE[kind]; st.className = 'badge stage-badge ' + (kind === 'open' ? 'st-open' : 'st-other'); }
+    var ou = el.querySelector('.open-until'); if (ou) ou.hidden = kind !== 'open';
   }
   // The watch list lives only in this browser (localStorage). No account, nothing is sent anywhere.
   var KEY = 'watchlist-v1';
@@ -837,6 +900,7 @@ JS = r"""
   }
   function param(name){ return (location.search.match(new RegExp('[?&]' + name + '=([^&]*)')) || [])[1] || ''; }
   if (param('show').indexOf('weak') >= 0) fw.checked = true;
+  if (param('open') === '1') fo.checked = true;
   if (/^[A-Za-z]{2}$/.test(param('country'))) fc.value = param('country').toUpperCase();
   var views = document.querySelectorAll('input[name="view"]');
   function currentView(){ for (var i = 0; i < views.length; i++) if (views[i].checked) return views[i].value; return 'all'; }
@@ -941,8 +1005,11 @@ JS = r"""
       (!fs.value || k === fs.value) && (!fo.checked || k === 'open') &&
       (!q || c.getAttribute('data-search').indexOf(q) >= 0);
   }
+  // "Open for comment only": closing soonest first, in one list (unless another sort or grouping is chosen).
+  function sortMode(){ return fo.checked && fsort.value === 'default' ? 'deadline' : fsort.value; }
+  function groupMode(){ return fo.checked && fgroup.value === 'country' && fsort.value === 'default' ? 'none' : fgroup.value; }
   function cmp(a, b){
-    var s = fsort.value, sa = scoreOf(a), sb = scoreOf(b);
+    var s = sortMode(), sa = scoreOf(a), sb = scoreOf(b);
     if (s === 'deadline') { var da = a._days === null ? 1e9 : (a._days < 0 ? 1e8 - a._days : a._days),
                                 db = b._days === null ? 1e9 : (b._days < 0 ? 1e8 - b._days : b._days);
                             return da - db || sb - sa; }
@@ -954,7 +1021,7 @@ JS = r"""
     return TIERS.indexOf(tierOf(a)) - TIERS.indexOf(tierOf(b)) || ao - bo || sb - sa;
   }
   function groupOf(c){
-    var g = fgroup.value;
+    var g = groupMode();
     if (g === 'country') return {key: ('000' + c.getAttribute('data-country-order')).slice(-3), name: c.getAttribute('data-country-name')};
     if (g === 'type') { var t = (c.getAttribute('data-types') || '').split('|')[0];
                         return {key: t ? '0' + t : '1', name: t || 'Project type unknown'}; }
@@ -986,7 +1053,7 @@ JS = r"""
     groups.forEach(function(g){
       var gs = section('group', g.name, g.cards.length);
       // Grouped by country with the default order: keep the tier headings inside each country.
-      if (fgroup.value === 'country' && fsort.value === 'default') {
+      if (groupMode() === 'country' && sortMode() === 'default') {
         gs.removeChild(gs.lastChild);
         TIERS.forEach(function(t){
           var cs = g.cards.filter(function(c){ return tierOf(c) === t; });
@@ -1240,9 +1307,59 @@ def _badges(rec: dict, less_tested: list, changes: bool = True) -> str:
             f'<span class="badge score" title="{escape(rec["tier_reason"])}">Score {int(rec["score"])}/100</span>\n'
             f'<span class="badge stage-badge {"st-open" if rec["stage_kind"] == "open" else "st-other"}">'
             f'{STAGE_LABELS[rec["stage_kind"]]}</span>\n'
+            f'{_open_until_badge(rec)}'
             f'<span class="badge late"{"" if rec["too_late"] else " hidden"}>Likely too late</span>'
             f'{review_badge}{lang_badge}{chg}'
             f'{"<span class=" + chr(34) + "badge fresh" + chr(34) + ">Freshwater</span>" if rec.get("freshwater") else ""}</div>')
+
+
+def _open_until_badge(rec: dict) -> str:
+    """'Open for comment until November 27, 2026' while the source's comment deadline is today or later.
+    The page script hides it once the date has passed, between weekly updates."""
+    d = rec.get("comment_deadline")
+    if rec.get("stage_kind") != "open" or not d:
+        return ""
+    return (f'<span class="badge open-until" data-until="{escape(d)}">Open for comment until '
+            f'{escape(winnability.long_date(d))}</span>\n')
+
+
+def _stakeholder_rows(rec: dict) -> str:
+    """Fact rows for the card: one per role, "Not named yet" when the source names no one."""
+    rows = []
+    for key, label in ROLES:
+        entries = _role(rec, key)
+        val = ("; ".join(escape(e["name"]) + (f' <span class="muted">({escape(e["detail"])})</span>' if e.get("detail") else "")
+                         for e in entries) if entries else f'<span class="not-named">{NOT_NAMED}</span>')
+        rows.append(f"<dt>{escape(label)}</dt><dd>{val}</dd>")
+    return "\n".join(rows)
+
+
+def _who_html(rec: dict) -> str:
+    """Project page: every named person or organisation, with how we know (and the words, where quotes are allowed)."""
+    quotes_ok = source_conf(rec.get("source")).get("quotes", True)
+    items = []
+    for key, label in ROLES:
+        entries = (rec.get("stakeholders") or {}).get(key) or []
+        if not entries:
+            items.append(f'<li><span class="role">{escape(label)}</span><span class="not-named">{NOT_NAMED}</span></li>')
+            continue
+        for e in entries:
+            q = f' &ldquo;{escape(e["quote"])}&rdquo;' if quotes_ok and e.get("quote") else ""
+            items.append(f'<li><span class="role">{escape(label)}</span>{escape(e["name"])}'
+                         f'{(" (" + escape(e["detail"]) + ")") if e.get("detail") else ""}'
+                         f'<span class="how">{escape(e.get("how") or "")}{q}</span></li>')
+    return (f'<ul class="who">{"".join(items)}</ul>\n<p class="note">Only names the official source states. Contractors are '
+            f'usually named only when a project goes to bid. Phone numbers and email addresses are on the official notice.</p>')
+
+
+def _win_html(rec: dict) -> str:
+    """Entry point line and two or three plain reasons for the score."""
+    w = rec.get("win") or {}
+    if not w.get("entry_point"):
+        return ""
+    reasons = "".join(f"<li>{escape(x)}</li>" for x in w.get("reasons") or [])
+    return (f'<div class="win"><p class="entry"><strong>Entry point:</strong> {escape(w["entry_point"])}</p>'
+            + (f'<p class="why-h">Why this score</p><ul class="why">{reasons}</ul>' if reasons else "") + "</div>")
 
 
 def _comment_count_text(rec: dict, prefix: str = "") -> str:
@@ -1289,7 +1406,8 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
     types = rec["types"] or []
     location = f'{_place(rec, country_name)}. Water body: {rec["water_body"]}'
     search = " ".join([rec["title"], rec["proponent"], rec["province"], country_name, rec["water_body"],
-                       rec["summary"], " ".join(types)]).lower()
+                       rec["summary"], " ".join(types)] +
+                      [e["name"] for es in (rec.get("stakeholders") or {}).values() for e in es]).lower()
     deadline, deadline_text = _deadline_text(rec)
     quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
     anchor = "p-" + page_slug(rec["id"])
@@ -1317,8 +1435,9 @@ def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 
 <h4><a href="{title_link}">{_plain(escape(rec['title']))}</a></h4>
 <p class="because" hidden></p>
 <p class="general-line" hidden></p>
+{_win_html(rec)}
 <dl class="facts">
-<dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
+{_stakeholder_rows(rec)}
 <dt>Location</dt><dd>{escape(location)}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
 <dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
@@ -1469,6 +1588,39 @@ def country_option(c: dict, all_records: list[dict], meta: list[dict]) -> str:
     return f'<option value="{code}" disabled>{name} (nothing listed now)</option>'
 
 
+def closing_soon(records: list[dict], days: int, today: date, key: str | None = None,
+                 exclude_freshwater: bool = False) -> list[dict]:
+    """Projects whose comment period closes within `days` (today included), soonest first. key: a buyer profile,
+    or None for the general list."""
+    out = []
+    for r in records:
+        d = r.get("comment_deadline")
+        if r.get("stage_kind") != "open" or not d or r.get("tier") == "watch":
+            continue
+        left = (date.fromisoformat(d) - today).days
+        if not 0 <= left <= days:
+            continue
+        if key is None and (r.get("profile_only") or r.get("tier") not in PUBLISHED_TIERS):
+            continue
+        if key is not None and not listed_in_profile(r, key):
+            continue
+        if exclude_freshwater and r.get("freshwater"):
+            continue
+        out.append(r)
+    return sorted(out, key=lambda r: (r["comment_deadline"], r["title"]))
+
+
+def _soon_li(rec: dict, country_name: str, today: date) -> str:
+    """One row of the closing-soon list (the page script rebuilds it for the chosen profile and filters)."""
+    left = (date.fromisoformat(rec["comment_deadline"]) - today).days
+    txt = "closes today" if left == 0 else "1 day left" if left == 1 else f"{left} days left"
+    return (f'<li><time class="d" datetime="{escape(rec["comment_deadline"])}">{escape(rec["comment_deadline"])}</time>'
+            f'<span class="left{" urgent" if left <= 7 else ""}">{txt}</span>'
+            f'<a href="{escape(rec.get("page") or rec["url"])}">{_plain(escape(rec["title"]))}</a>'
+            f'<span class="meta"><span class="t-{rec["tier"]} badge">{escape(rec["tier_label"])}</span>'
+            f'<span>{escape(country_name)}</span></span></li>')
+
+
 def render_index(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None,
                  history_dates: list[str] | None = None, news_html: str = "", scoring: dict | None = None) -> str:
     coverage = coverage if coverage is not None else load_coverage()
@@ -1478,14 +1630,15 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     records = [r for r in all_records if not r.get("profile_only")]
     title = site.get("title", "MitiMark")
     desc = site.get("description", "")
-    soon_days = int(site.get("closing_soon_days", 30))
+    soon_days = int(site.get("closing_soon_days", 14))
     td = tier_descriptions(tiers)
     less_tested = coverage.get("less_tested_languages", [])
-    n_soon = sum(1 for r in records if r["stage_kind"] == "open" and r.get("comment_deadline")
-                 and 0 <= (date.fromisoformat(r["comment_deadline"]) - updated).days <= soon_days)
+    soon_recs = closing_soon(records, soon_days, updated)
+    n_soon = len(soon_recs)
     countries = _countries_in_order(records, coverage)
     names = {c["code"]: c["name"] for c in coverage.get("countries", [])}
     names.update({c["code"]: c["name"] for c in countries})
+    soon_items = "".join(_soon_li(r, names.get(r.get("country"), r.get("country") or UNKNOWN), updated) for r in soon_recs)
 
     # One country order for every card (general list and profile-only), from the coverage page, so the page groups
     # a country's cards together whichever list they come from.
@@ -1592,7 +1745,7 @@ work. Every flag shows the words that triggered it and, where the source's terms
 <label class="js-only" hidden>Group by<select id="f-group"><option value="country">Country</option>
 <option value="type">Project type</option><option value="stage">Stage</option>
 <option value="month">Deadline month</option><option value="none">No grouping</option></select></label>
-<label class="check sep"><input type="checkbox" id="f-open"> Comment period open only</label>
+<label class="check sep"><input type="checkbox" id="f-open"> Open for comment only (closing soonest first)</label>
 </form>
 <div class="toggles">
 <label class="check"><input type="checkbox" id="t-weak"> Show weaker matches</label>
@@ -1611,11 +1764,12 @@ work. Every flag shows the words that triggered it and, where the source's terms
 <div class="content">
 <div class="stack">
 <section class="panel soon" id="soon" aria-labelledby="soon-h">
-<div class="panel-head"><h2 id="soon-h">Comment deadlines closing soon (next {soon_days} days)</h2>
+<div class="panel-head"><h2 id="soon-h">Comment periods closing in the next {soon_days} days</h2>
 <p class="note soon-note">Includes Weak matches.</p></div>
 <p class="summary-line" id="summary-line">{n_soon} comment deadlines in the next {soon_days} days.</p>
-<ul id="soon-list"></ul>
-<p id="soon-none">No comment deadlines in the next {soon_days} days.</p>
+<ul id="soon-list">{soon_items}</ul>
+<p id="soon-none"{' hidden' if n_soon else ''}>No comment periods close in the next {soon_days} days.</p>
+<p class="open-all"><a href="?open=1#results">All projects open for comment, closing soonest first</a></p>
 <noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>
 </section>
 
@@ -1681,7 +1835,9 @@ Always read the official notice.</p>
 
 CSV_COLUMNS = ["id", "title", "country", "region", "proponent", "project_types", "stage", "tier", "score",
                "reviewed_by_a_person", "comments_open", "comments_close", "comments_received", "comments_received_as_of",
-               "changes_since_last_update", "first_listed", "project_page", "official_notice", "source"]
+               "changes_since_last_update", "first_listed", "project_page", "official_notice", "source",
+               "open_for_comment_until", "owner_or_proponent", "consultant", "contractor", "agency_contact",
+               "entry_point", "score_reasons"]
 
 
 def csv_columns(meta: list[dict] | None = None) -> list[str]:
@@ -1709,7 +1865,18 @@ def csv_row(rec: dict, names: dict, site_conf: dict, meta: list[dict] | None = N
             c["count"] if c.get("count") is not None else NOT_PUBLISHED, c.get("count_as_of") or "",
             "; ".join(CHANGE_LABELS[x] for x in rec.get("changes") or []), rec.get("first_listed") or "",
             base + rec["page"] if rec.get("page") else "", rec["url"],
-            rec.get("agency") or rec["source_name"]] + [_profile_cell(rec, m["key"]) for m in meta or []]
+            rec.get("agency") or rec["source_name"],
+            c.get("closes") if rec.get("stage_kind") == "open" and c.get("closes") else ""] + \
+        [summary_line(_role(rec, k)) for k, _ in ROLES] + \
+        [(rec.get("win") or {}).get("entry_point", ""), "; ".join((rec.get("win") or {}).get("reasons") or [])] + \
+        [_profile_cell(rec, m["key"]) for m in meta or []]
+
+
+def _role(rec: dict, key: str) -> list[dict]:
+    entries = (rec.get("stakeholders") or {}).get(key) or []
+    if key == "owner" and not entries and rec.get("proponent") not in (None, "", UNKNOWN):
+        entries = [{"name": rec["proponent"], "detail": ""}]
+    return entries
 
 
 def write_csv(path: Path, records: list[dict], names: dict, site_conf: dict, meta: list[dict] | None = None) -> None:
@@ -1870,7 +2037,10 @@ people who commented are not copied here. To comment, use the official notice.</
 <h1>{_plain(escape(rec['title']))}</h1>
 <p class="place">{escape(_place(rec, country_name))} &middot; {escape(rec['proponent'])}</p>
 {_summary_html(rec)}
+{_win_html(rec)}
 {f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
+<h2>Who is involved</h2>
+{_who_html(rec)}
 <h2>Timeline</h2>
 {_timeline_html(rec)}
 <p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
@@ -1897,7 +2067,7 @@ at each update.</p>
 <section class="side-card">
 <h2 class="side-h">Key facts</h2>
 <dl class="facts">
-<dt>Proponent</dt><dd>{escape(rec['proponent'])}</dd>
+<dt>Owner or proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
 <dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
@@ -2052,10 +2222,11 @@ Array.prototype.forEach.call(document.querySelectorAll('.shortlist .card'), MPF.
 
 
 def _feeds_section(meta: list[dict] | None) -> str:
-    links = ['<li><a href="feeds/all.xml">All projects on the general list</a></li>']
+    links = [f'<li><a href="feeds/{COMMENT_FEED}.xml">Comment periods closing in the next 14 days (every profile)</a></li>',
+             '<li><a href="feeds/all.xml">All projects on the general list</a></li>']
     links += [f'<li><a href="feeds/{escape(m["key"])}.xml">{escape(m["label"])}</a></li>' for m in meta or []]
-    return ('<h2 id="feeds">RSS feeds</h2>\n<p>Each feed lists the projects that are new since the last update, '
-            'with a link to the official notice and the source. Add a feed address to any feed reader. There is no '
+    return ('<h2 id="feeds">RSS feeds</h2>\n<p>Each feed lists the comment periods closing in the next 14 days, '
+            'then the projects that are new since the last update, with a link to the official notice and the source. Add a feed address to any feed reader. There is no '
             'sign-up and no email: this site stores nothing about who reads the feeds.</p>\n<ul>' + "".join(links) + "</ul>")
 
 
@@ -2115,6 +2286,23 @@ matched and a link to the official notice instead. US Federal Register notices a
 mostly about marine mammals and noise, so their cards show only what the notice says about the construction,
 and a link.</p>
 
+<h3 id="winnability">How winnable a project is</h3>
+<p>The score has two parts. Relevance (above) asks whether the notice describes the right kind of work. Winnability
+adds or takes away points for what decides whether a supplier can still get in: the stage (pre-application, open
+for comment and under review score higher than approved or under construction), whether habitat offsetting,
+compensation or a Fisheries Act authorization is mentioned, whether an engineering or environmental consultant is
+named, when construction is due to start, and the size of the work. Winnability changes a project's tier but never
+adds a project to the list or takes one off it. Every project shows an "Entry point" line (who to approach, and when)
+and two or three plain reasons for its score.</p>
+
+<h3 id="who-is-involved">Who is involved</h3>
+<p>Each project lists its owner or proponent, its engineering or environmental consultant, its contractor and the
+agency contact, but only when the official source names them, with a note of where the name came from. Nothing is
+guessed. A role the source does not name shows "Not named yet": contractors, for example, are usually named only when a
+project goes to bid. For agency contacts only the name, job title and office are shown; phone numbers and email
+addresses are on the official notice. "Download shown projects (CSV)" includes these names, for building a target
+list.</p>
+
 <h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has
 checked a listing against the official notice, it is marked "Reviewed by a person". Listings found to be
@@ -2138,6 +2326,9 @@ notice that invited comments, it is labelled "date of the notice". Where a regis
 of comments received, the number is shown with the date it was read and a link to the registry's own
 comments page. Comment text, the names of people who commented and other personal details are never copied
 to this site. Anything a source does not publish is shown as "Not published".</p>
+<p>While a comment period is open, the project carries an "Open for comment until" label with the closing date. The
+label disappears once that date has passed. "Comment periods closing in the next 14 days" at the top of the project
+list, the "Open for comment only" filter (closing soonest first) and the RSS feeds all use the same dates.</p>
 <ul>{comment_sources}</ul>
 
 <h2 id="changes-between-updates-and-project-pages">Changes between updates and project pages</h2>
@@ -2150,8 +2341,10 @@ decided. Each project page shows a timeline of those changes next to the officia
 <p>For comment periods, a project whose comment period has closed or that has been decided is marked "Likely too
 late". For product makers (the hard-structure profile and its shortlist) that label is replaced by the project's
 stage: under assessment (comments open or closed) or approved. An approved project has passed environmental review;
-it is treated as a lead because design and purchasing may still be ahead. The site cannot yet tell whether
-construction has started or a tender has been issued, so treat "Approved, may not be built yet" as a prompt to check.</p>
+it is still shown as a lead because design and purchasing may still be ahead, but it scores lower than a project that
+is still under review (see <a href="#winnability">How winnable a project is</a>). The site marks a project as under
+construction only when the notice says so or its works window has started; it cannot tell whether a tender has been
+issued, so treat "Approved, may not be built yet" as a prompt to check.</p>
 <p>Projects on lakes or rivers carry a "Freshwater" label. They are hidden from the hard-structure profile unless you
 tick "Include freshwater". Hydroelectric stations and dams, and maintenance dredging of an existing berth with no new
 structure, are not treated as marine habitat projects.</p>
@@ -2301,10 +2494,26 @@ def _rfc822(day: str) -> str:
     return format_datetime(datetime(d.year, d.month, d.day, 12, tzinfo=timezone.utc))
 
 
-def render_feed(items: list[dict], title: str, description: str, site_url: str, feed_path: str, updated: date) -> str:
+def render_feed(items: list[dict], title: str, description: str, site_url: str, feed_path: str, updated: date,
+                closing: list[dict] | None = None) -> str:
+    """items: new projects. closing: projects whose comment period closes soon, listed first as their own entries."""
     from xml.sax.saxutils import escape as x, quoteattr as qa
     base = site_url.rstrip("/") + "/"
     entries = []
+    for r in closing or []:
+        link = r["url"] if re.match(r"https?://", r.get("url") or "") else ""
+        when = winnability.long_date(r["comment_deadline"])
+        lines = [f"Open for comment until {when}.", f"{r.get('tier_label')}." if r.get("tier_label") else "",
+                 (r.get("win") or {}).get("entry_point", ""), f"Official notice: {link}" if link else "", source_line(r)]
+        entries.append(
+            "<item>"
+            f"<title>{x('Comments close ' + when + ': ' + r['title'])}</title>"
+            f"<link>{x(base + r['page'])}</link>"
+            f'<guid isPermaLink="false">{x(r["id"] + "#comments-" + r["comment_deadline"])}</guid>'
+            f"<pubDate>{_rfc822(updated.isoformat())}</pubDate>"
+            f"<description>{x(chr(10).join(l for l in lines if l))}</description>"
+            + (f"<source url={qa(link)}>{x(r.get('agency') or r['source_name'])}</source>" if link else "")
+            + "</item>")
     for r in items:
         place = ", ".join(v for v in (r.get("province"), r.get("country")) if v and v != UNKNOWN)
         tier = r.get("tier_label") or ""
@@ -2330,21 +2539,44 @@ def render_feed(items: list[dict], title: str, description: str, site_url: str, 
             + "".join(entries) + "</channel></rss>\n")
 
 
+COMMENT_FEED = "comment-periods"
+
+
 def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict, updated: date) -> list[str]:
+    """One feed per profile plus all.xml: comment periods closing in the next N days first, then new projects.
+    comment-periods.xml: only the closing comment periods, every profile."""
     folder = out_dir / "feeds"
     folder.mkdir(exist_ok=True)
     name = site.get("title", "MitiMark")
     url = site.get("url", "")
+    days = int(site.get("closing_soon_days", 14))
     written = []
-    feeds = [("all", None, f"{name}: new projects", "New projects on the general list since the last update.", False)]
+    feeds = [("all", None, f"{name}: new projects", "New projects on the general list since the last update, after the "
+              f"comment periods closing in the next {days} days.", False)]
     for m in meta:
         feeds.append((m["key"], m["key"], f"{name}: new projects, {m['label']}",
-                      f"New projects since the last update, for the profile: {m['label']}.", m.get("exclude_freshwater")))
+                      f"New projects since the last update, for the profile: {m['label']}, after the comment periods "
+                      f"closing in the next {days} days.", m.get("exclude_freshwater")))
     for slug, key, title, desc, fresh in feeds:
         path = f"feeds/{slug}.xml"
-        (out_dir / path).write_text(render_feed(feed_items(records, key, bool(fresh)), title, desc, url, path, updated),
+        (out_dir / path).write_text(render_feed(feed_items(records, key, bool(fresh)), title, desc, url, path, updated,
+                                                closing_soon(records, days, updated, key, bool(fresh))),
                                     encoding="utf-8")
         written.append(path)
+    # Every listed project (general list or any profile) whose comment period closes soon.
+    keys = [m["key"] for m in meta]
+    closing, seen = [], set()
+    for k in [None] + keys:
+        for r in closing_soon(records, days, updated, k):
+            if r["id"] not in seen:
+                seen.add(r["id"])
+                closing.append(r)
+    closing.sort(key=lambda r: (r["comment_deadline"], r["title"]))
+    path = f"feeds/{COMMENT_FEED}.xml"
+    (out_dir / path).write_text(render_feed([], f"{name}: comment periods closing in the next {days} days",
+                                            f"Projects whose public comment period closes in the next {days} days.",
+                                            url, path, updated, closing), encoding="utf-8")
+    written.append(path)
     return written
 
 

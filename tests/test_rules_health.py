@@ -223,8 +223,15 @@ def test_run_health_notifies_on_problems_and_passes_when_all_is_well(tmp_path):
     update.write_state(s, {"last_success": "2026-11-14T18:30:00"})
     for _ in range(3):
         health.record_ingest_run(s, {"nl_ea": {"items": 83, "new": 0, "problem": False}}, {}, 5)
-    live = [{"title": "Port aux Basques Navigation Improvement Project"}, {"title": "Point Rousse Port Expansion"},
-            {"title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay"}]
+    roles = {"owner": [{"name": "Marine Atlantic Inc.", "how": "Proponent named by the registry"}], "consultant": [],
+             "contractor": [], "agency_contact": []}
+    win = {"entry_point": "Design stage: contact the proponent.", "reasons": ["Breakwater"]}
+    live = [{"title": t, "stakeholders": roles, "win": win} for t in
+            ("Port aux Basques Navigation Improvement Project", "Point Rousse Port Expansion",
+             "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay")]
+    (tmp_path / "site" / "feeds").mkdir(parents=True)
+    (tmp_path / "site" / "feeds" / "comment-periods.xml").write_text('<rss version="2.0"><channel></channel></rss>')
+    s["site_dir"] = str(tmp_path / "site")
     fetch = lambda url: {"last_successful_update": "2026-11-14"} if url.endswith("status.json") else live
     sent = []
     r = health.run_health(s, datetime(2026, 11, 17, 9), fetch=fetch, notify_fn=lambda t, m: sent.append(m))

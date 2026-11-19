@@ -594,3 +594,30 @@ profiles:
             shoreline_protection: 4, marina_small_craft: 4}
     clues: {banking_core: 30, offsetting: 20, hadd: 15, fisheries_act: 15, habitat_creation: 10, fish_habitat: 6,
             species_at_risk: 6, intertidal_marsh: 4, eelgrass: 4, shellfish_oyster: 4, marine_footprint: 6}
+
+# Winnability (owner, 2026-11-19; mpf/winnability.py): points added to the relevance score, for the general list
+# and every buyer profile, for how likely a project is to be winnable. It changes tiers, never who is listed: a
+# listed project stays at least Weak, and one under the Weak line is not lifted onto a list.
+winnability:
+  stage:                      # earlier is better
+    pre_application: 10
+    open: 10                  # public comment period open
+    assessment: 8             # under review
+    closed: 4                 # comments closed, decision pending
+    decided: -8               # approved
+    under_construction: -15   # the notice says so, or an approved project's works window has started
+    unknown: 0
+  habitat_offsetting: 8       # offsetting, compensation, HADD or a Fisheries Act authorization is mentioned
+  offset_groups: [offsetting, fisheries_act, hadd]
+  engineering_firm: 6         # an engineering or environmental consultant is named
+  construction_start:         # when the notice gives a start date
+    within_months: 30
+    soon: 6                   # starts within within_months
+    later: 2                  # starts later than that
+  large_size:                 # a size from a sentence about the marine works themselves
+    length_m: 100
+    area_m2: 5000
+    volume_m3: 10000
+    points: 4
+  max_bonus: 25
+  max_penalty: 15

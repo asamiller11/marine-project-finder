@@ -178,7 +178,8 @@ def listed_in_profile(rec: dict, key: str, possible_min: int = 35) -> bool:
         return False
     if rec.get("tier") in PROFILE_TIERS + ("watch",):
         return True
-    return p["score"] >= p.get("min", possible_min)
+    # Listing depends on relevance only (winnability, mpf/winnability.py, changes the tier, not the listing).
+    return p.get("relevance", p["score"]) >= p.get("min", possible_min)
 
 
 def is_freshwater(row: dict, conf: dict | None) -> bool:

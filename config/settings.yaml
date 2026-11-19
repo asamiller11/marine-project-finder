@@ -189,7 +189,8 @@ site:
   update_frequency: "every week"
   # The public address, used for project page links in the CSV export.
   url: "https://asamiller11.github.io/marine-project-finder/"
-  closing_soon_days: 30
+  # "Comment periods closing in the next N days" at the top of the site and in the RSS feeds (owner, 2026-11-19).
+  closing_soon_days: 14
   # Buyer feedback: a Google Form. Replace YOUR_FORM_ID with the form's id, and the entry number with the
   # form question that should hold the project id (from the form's "Get pre-filled link"). The site stores
   # nothing. While the placeholder is here, no feedback link is shown.

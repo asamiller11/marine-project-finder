@@ -29,6 +29,7 @@ from mpf.extract import extract_coordinates, extract_water_body
 from mpf.http import Blocked
 from mpf.models import UNKNOWN, Item
 from mpf.sources.base import Source
+from mpf.stakeholders import parse_iaac_contacts
 from mpf.textutil import clean, guess_language, parse_date
 
 BASE = "https://iaac-aeic.gc.ca"
@@ -176,6 +177,8 @@ def parse_project_page(html: str) -> dict:
         "reference": facts.get("Reference number", ""),
         "comment_count": parse_comment_count(html),
         "decision_date": decision_date_from_documents(main),
+        # The Contacts box: name, job title and office only (no phone or email). See mpf/stakeholders.py.
+        "contacts": parse_iaac_contacts(html, title),
     }
 
 
@@ -273,6 +276,7 @@ class IAACSource(Source):
                    "open_comment": bool(open_info), "notices": notices, "location": p["location"],
                    # The page loaded and shows this project's reference number.
                    "link_ok": p["reference"] == ref,
+                   "contacts": p["contacts"],
                    "comment_count": p["comment_count"],
                    "comment_count_as_of": self.client.fetched_at(url) if p["comment_count"] is not None else None,
                    "comments_url": f"{BASE}/050/evaluations/proj/{ref}/contributions?culture=en-CA"

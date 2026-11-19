@@ -127,6 +127,48 @@ def check_canaries(live_items: list[dict] | None, canaries: list[str]) -> list[t
     return out
 
 
+ROLE_KEYS = ("owner", "consultant", "contractor", "agency_contact")
+
+
+def check_new_fields(live_items: list[dict] | None, live_status: dict | None) -> list[tuple[bool, str]]:
+    """Comment deadlines, stakeholders and the winnability fields on the live site (added 2026-11-19)."""
+    if live_items is None:
+        return [(False, "Could not read the live site's items.json, so the comment, stakeholder and score fields were not checked.")]
+    built = ((live_status or {}).get("last_successful_update") or "")[:10]
+    out = []
+    no_roles = [r.get("title", "?") for r in live_items if set(ROLE_KEYS) - set((r.get("stakeholders") or {}))]
+    bad_names = [r.get("title", "?") for r in live_items for es in (r.get("stakeholders") or {}).values()
+                 for e in es if not (e.get("name") or "").strip() or not e.get("how")]
+    out.append((not no_roles and not bad_names,
+                "Stakeholder fields: " + ("present on every project, each name with its source." if not no_roles and not bad_names
+                                          else f"{len(no_roles)} projects missing roles, {len(bad_names)} names without a source "
+                                               f"(first: {(no_roles or bad_names)[0]}).")))
+    no_entry = [r.get("title", "?") for r in live_items if r.get("tier") != "watch" and not (r.get("win") or {}).get("entry_point")]
+    out.append((not no_entry, "Entry point and score reasons: " + ("on every project." if not no_entry else
+                                                                    f"missing on {len(no_entry)} (first: {no_entry[0]}).")))
+    open_recs = [r for r in live_items if r.get("stage_kind") == "open"]
+    stale = [r.get("title", "?") for r in open_recs if not r.get("comment_deadline")
+             or (built and r["comment_deadline"] < built)]
+    out.append((not stale, f"Open for comment labels: {len(open_recs)} projects, " +
+                ("every one with a deadline on or after the update date." if not stale else
+                 f"{len(stale)} without a valid deadline (first: {stale[0]}).")))
+    filled = {k: sum(1 for r in live_items if (r.get("stakeholders") or {}).get(k)) for k in ROLE_KEYS}
+    out.append((True, f"Names found: owner {filled['owner']}, consultant {filled['consultant']}, contractor "
+                      f"{filled['contractor']}, agency contact {filled['agency_contact']} of {len(live_items)} projects."))
+    return out
+
+
+def check_comment_feed(site_dir: Path) -> tuple[bool, str]:
+    """The comment-periods RSS feed was written and is valid XML."""
+    import xml.etree.ElementTree as ET
+    path = site_dir / "feeds" / "comment-periods.xml"
+    try:
+        n = len(ET.parse(path).getroot().findall("./channel/item"))
+    except (OSError, ET.ParseError) as e:
+        return False, f"Comment-periods RSS feed missing or broken ({e.__class__.__name__})."
+    return True, f"Comment-periods RSS feed: {n} entries."
+
+
 def _fetch_json(url: str):
     import time
     import requests
@@ -149,8 +191,12 @@ def run_health(settings: dict, now: datetime | None = None, fetch=_fetch_json, n
                              auto_paths(settings)["paused"].exists())]
     checks += check_sources(load_runs(settings), float(conf.get("min_share_of_usual", 0.5)))
     site = settings.get("site", {}).get("url") or SITE_URL
-    checks.append(check_site_status(fetch(site + "status.json"), state))
-    checks += check_canaries(fetch(site + "items.json"), conf.get("canaries") or [])
+    live_status = fetch(site + "status.json")
+    checks.append(check_site_status(live_status, state))
+    live_items = fetch(site + "items.json")
+    checks += check_canaries(live_items, conf.get("canaries") or [])
+    checks += check_new_fields(live_items, live_status)
+    checks.append(check_comment_feed(Path(settings.get("site_dir") or ROOT / "site")))
     problems = [m for ok, m in checks if not ok]
     result = {"at": now.isoformat(timespec="seconds"), "ok": not problems, "problems": problems,
               "checks": [m for _, m in checks]}
