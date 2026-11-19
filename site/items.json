@@ -114,6 +114,45 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Request for proposals on CanadaBuys for removing Vardy's Rock and improving the breakwater (closed 8 September 2026). Watch for the award and for subcontract work. CanadaBuys refuses automated reading.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/MX-444086928167",
+     "checked": "search"
+    },
+    {
+     "kind": "consent",
+     "text": "Needs a Fisheries Act authorization from DFO and a Canadian Navigable Waters Act approval, besides the provincial assessment.",
+     "source": "https://www.marineatlantic.ca/port-aux-basques-harbour-navigation",
+     "checked": "read"
+    },
+    {
+     "kind": "biodiversity",
+     "text": "Marine Atlantic says the project includes habitat creation and enhancement measures that may benefit lobster populations.",
+     "source": "https://www.marineatlantic.ca/port-aux-basques-harbour-navigation",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Marine Atlantic Inc.": {
+     "website": "https://www.marineatlantic.ca/",
+     "source": "https://www.marineatlantic.ca/port-aux-basques-harbour-navigation",
+     "checked": "read",
+     "procurement": [
+      {
+       "text": "Marine Atlantic posts its tenders on CanadaBuys (for example the Port aux Basques navigation RFP).",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/MX-444086928167",
+       "checked": "search"
+      }
+     ],
+     "name": "Marine Atlantic Inc."
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 96,
   "win": {
    "points": 22,
@@ -152,10 +191,10 @@
   "comment_deadline": null,
   "decision_date": null,
   "approved_on": null,
-  "score": 86,
+  "score": 92,
   "tier": "strong",
   "tier_label": "Strong match",
-  "tier_reason": "Relevance 76, winnability +10",
+  "tier_reason": "Relevance 76, winnability +16",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging, offshore wind and pile work and an area of about 18,000,000 m2.",
   "summary_note": "auto",
@@ -181,14 +220,14 @@
    "hard-structure": {
     "tier": "strong",
     "tier_label": "Strong match",
-    "score": 68,
-    "because": "Piles or pile-supported structure; Work below high water or footprint on the seabed; Scour or cable protection; size 600 m",
-    "relevance": 58
+    "score": 79,
+    "because": "Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; Work below high water or footprint on the seabed; size 600 m",
+    "relevance": 63
    },
    "living-shoreline": {
     "tier": "strong",
     "tier_label": "Strong match",
-    "score": 62,
+    "score": 68,
     "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Shellfish, oyster or mussel beds; size 600 m",
     "relevance": 52
    },
@@ -223,8 +262,24 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
-   "consultant": [],
+   "owner": [
+    {
+     "name": "Offshore Solutions Group (OSG)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.offshorewind.biz/2025/04/22/osg-signs-seabed-deal-with-crown-estate-scotland-for-floating-anchorage-site"
+    }
+   ],
+   "consultant": [
+    {
+     "name": "GoBe Consultants (APEM Group), lead environmental consultant",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.energyglobal.com/wind/29102025/gobe-consultants-appointed-lead-environmental-consultant-for-moray-flow-park/"
+    }
+   ],
    "contractor": [],
    "agency_contact": [
     {
@@ -235,14 +290,28 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "Moray FLOW-Park: a floating-turbine storage and anchorage site of about 36 km2 in the inner Moray Firth (off Nairn and Findhorn), with mooring lines and anchors.",
+     "source": "https://www.offshorewind.biz/2025/04/22/osg-signs-seabed-deal-with-crown-estate-scotland-for-floating-anchorage-site",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 76,
   "win": {
-   "points": 10,
+   "points": 16,
    "stage": "pre_application",
-   "entry_point": "Pre-application: contact the proponent before the design is fixed.",
+   "entry_point": "Pre-application: contact the engineering firm (GoBe Consultants (APEM Group), lead environmental consultant).",
    "reasons": [
     "Offshore wind",
-    "Early: pre-application stage, before the design is fixed (+10)"
+    "Early: pre-application stage, before the design is fixed (+10)",
+    "Consultant named: GoBe Consultants (APEM Group), lead environmental consultant (someone to approach) (+6)"
    ],
    "construction_start": ""
   },
@@ -282,10 +351,10 @@
   "comment_deadline": null,
   "decision_date": null,
   "approved_on": null,
-  "score": 79,
+  "score": 85,
   "tier": "strong",
   "tier_label": "Strong match",
-  "tier_reason": "Relevance 65, winnability +14",
+  "tier_reason": "Relevance 65, winnability +20",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging, pile, port or terminal, shoreline protection and wharf or dock work and an area of about 10,000 m2.",
   "summary_note": "auto",
@@ -311,14 +380,14 @@
    "hard-structure": {
     "tier": "strong",
     "tier_label": "Strong match",
-    "score": 80,
+    "score": 98,
     "because": "Shoreline protection, seawall or bulkhead; Pier (not at a dam, intake or bridge); Port or marine terminal; size 1.9 km (doubtful size reading not counted (5km))",
-    "relevance": 66
+    "relevance": 78
    },
    "living-shoreline": {
     "tier": "strong",
     "tier_label": "Strong match",
-    "score": 66,
+    "score": 72,
     "because": "Shoreline protection, seawall or bulkhead; Shellfish, oyster or mussel beds; Work below high water or footprint on the seabed; size 1.9 km (doubtful size reading not counted (5km))",
     "relevance": 52
    },
@@ -332,7 +401,7 @@
    "kelp": {
     "tier": "strong",
     "tier_label": "Strong match",
-    "score": 80,
+    "score": 86,
     "because": "Kelp or seaweed; Work below high water or footprint on the seabed; Wharf, pier or large dock; size 1.9 km (doubtful size reading not counted (5km))",
     "relevance": 66
    },
@@ -353,8 +422,24 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
-   "consultant": [],
+   "owner": [
+    {
+     "name": "Caledonian Maritime Assets Ltd (CMAL)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.find-tender.service.gov.uk/Notice/079381-2025"
+    }
+   ],
+   "consultant": [
+    {
+     "name": "Haskoning UK Ltd",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://marine.gov.scot/?q=node/28319"
+    }
+   ],
    "contractor": [],
    "agency_contact": [
     {
@@ -365,15 +450,54 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+     "checked": "read"
+    },
+    {
+     "kind": "procurement",
+     "text": "CMAL engineering design framework with a Tobermory Ferry Terminal lot (Find a Tender notice 079381-2025; bids were due February 2026). Find a Tender refuses automated reading.",
+     "source": "https://www.find-tender.service.gov.uk/Notice/079381-2025",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Works covered by the screening: an aligning structure, shore power and a larger marshalling area; part of CMAL's Small Vessel Replacement Programme.",
+     "source": "https://marine.gov.scot/sites/default/files/scr-0106_-_screening_opinion_schedule_2.pdf",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Caledonian Maritime Assets Ltd (CMAL)": {
+     "website": "https://www.cmassets.co.uk/",
+     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+     "checked": "read",
+     "procurement": [
+      {
+       "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+       "url": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+       "checked": "read"
+      }
+     ],
+     "name": "Caledonian Maritime Assets Ltd (CMAL)"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 65,
   "win": {
-   "points": 14,
+   "points": 20,
    "stage": "pre_application",
-   "entry_point": "Pre-application: contact the proponent before the design is fixed.",
+   "entry_point": "Pre-application: contact the engineering firm (Haskoning UK Ltd).",
    "reasons": [
     "Port or marine terminal",
     "Early: pre-application stage, before the design is fixed (+10)",
-    "Large project (2 km) (+4)"
+    "Consultant named: Haskoning UK Ltd (someone to approach) (+6)"
    ],
    "construction_start": ""
   },
@@ -505,6 +629,19 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Peel Ports runs a Dredging Services dynamic purchasing system (Find a Tender 001062-2025) and a construction framework. Find a Tender refuses automated reading.",
+     "source": "https://www.find-tender.service.gov.uk/Notice/001062-2025",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 57,
   "win": {
    "points": 18,
@@ -531,255 +668,6 @@
   ],
   "changes": [],
   "first_listed": "2026-11-13"
- },
- {
-  "id": "scot_marine:00011025",
-  "title": "Electricity Works Decision Notice - Muir Mhor Offshore Wind Farm",
-  "url": "https://marine.gov.scot/?q=node/28333",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Dredging",
-   "Marina or small craft harbour",
-   "Offshore wind",
-   "Moorings",
-   "Piles or pile-supported structure"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 75,
-  "tier": "strong",
-  "tier_label": "Strong match",
-  "tier_reason": "Relevance 79, winnability -4",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions dredging, small craft harbour, offshore wind and pile work and an area of about 200,000,000 m2.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/scot_marine-00011025.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "strong",
-    "tier_label": "Strong match",
-    "score": 62,
-    "because": "Marina or small craft harbour; Piles or pile-supported structure; Work below high water or footprint on the seabed; size 250km",
-    "relevance": 66
-   },
-   "living-shoreline": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 51,
-    "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Shellfish, oyster or mussel beds; size 250km",
-    "relevance": 55
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": []
-  },
-  "relevance_score": 79,
-  "win": {
-   "points": -4,
-   "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
-   "reasons": [
-    "Offshore wind",
-    "Already approved: the design is mostly set (-8)",
-    "Large project (250km) (+4)"
-   ],
-   "construction_start": ""
-  },
-  "timeline": [
-   {
-    "date": "2026-11-19",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [
-   "new"
-  ],
-  "first_listed": "2026-11-19"
- },
- {
-  "id": "nl_ea:2379",
-  "title": "Point Rousse Port Expansion",
-  "url": "https://www.gov.nl.ca/eccc/projects/project-2379/",
-  "source": "nl_ea",
-  "source_name": "Newfoundland and Labrador environmental assessment",
-  "proponent": "Point Rousse Marine Terminal Ltd.",
-  "country": "CA",
-  "province": "Newfoundland and Labrador",
-  "language": "en",
-  "water_body": "Green Bay",
-  "types": [
-   "Port or marine terminal",
-   "Wharf, pier or large dock",
-   "Shoreline protection, seawall or bulkhead",
-   "Marina or small craft harbour",
-   "Infill, reclamation or causeway"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": "2026-01-16",
-  "decision_date": "2026-01-21",
-  "approved_on": "2026-01-21",
-  "score": 61,
-  "tier": "strong",
-  "tier_label": "Strong match",
-  "tier_reason": "Relevance 65, winnability -4",
-  "reviewed": true,
-  "summary": "Project by Point Rousse Marine Terminal Ltd. in Green Bay, Newfoundland and Labrador. The notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2.",
-  "summary_note": "auto",
-  "quotes": [
-   "The project would involve the construction of a second berth to increase export capacity for crushed aggregate and armourstone from nearby quarry operations.",
-   "Construction and new infrastructure would include a port access road, storage/laydown areas, shoreline infilling, armourstone protection, two rock filled access causeways, a dock structure, and a barge.",
-   "The Project involves the construction, operation, and eventual closure of expanded marine terminal facilities to support primarily the export of construction aggregate and armourstone from Shoreline Aggregates Inc.’s (SAI’s) quarry operations."
-  ],
-  "attribution": "",
-  "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/nl_ea-2379.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": "2026-01-16",
-   "days_left": -307,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry publishes the comment deadline but not the number of comments received."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "strong",
-    "tier_label": "Strong match",
-    "score": 74,
-    "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Port or marine terminal; size 1.4 kilometres",
-    "relevance": 78
-   },
-   "living-shoreline": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 48,
-    "because": "Shoreline protection, seawall or bulkhead; Species at risk; Work below high water or footprint on the seabed; size 1.4 kilometres",
-    "relevance": 52
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "Point Rousse Marine Terminal Ltd.",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": []
-  },
-  "relevance_score": 65,
-  "win": {
-   "points": -4,
-   "stage": "decided",
-   "entry_point": "Approved: contact the proponent (Point Rousse Marine Terminal Ltd.) and watch for the construction tender.",
-   "reasons": [
-    "Port or marine terminal",
-    "Already approved: the design is mostly set (-8)",
-    "Large project (11.5 ha) (+4)"
-   ],
-   "construction_start": ""
-  },
-  "timeline": [],
-  "changes": [],
-  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90890",
@@ -895,6 +783,33 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Federal works are tendered on CanadaBuys.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Public Services and Procurement Canada": {
+     "website": "https://www.canada.ca/en/public-services-procurement.html",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Federal works are tendered on CanadaBuys.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Public Services and Procurement Canada"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 34,
   "win": {
@@ -1036,6 +951,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 33,
   "win": {
    "points": 14,
@@ -1163,6 +1084,13 @@
      "detail": "",
      "how": "Proponent named by the registry",
      "quote": ""
+    },
+    {
+     "name": "Canada Clean Fuels and Canada Steamship Lines (partners with HOPA Ports)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.hopaports.ca/two-transformative-projects-help-create-green-shipping-corridor-on-the-great-lakes/"
     }
    ],
    "consultant": [],
@@ -1175,6 +1103,19 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "$33 million, 12-acre, 8-million-litre marine biofuel terminal on the Welland Canal east pier.",
+     "source": "https://www.hopaports.ca/two-transformative-projects-help-create-green-shipping-corridor-on-the-great-lakes/",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 30,
   "win": {
@@ -1248,11 +1189,11 @@
   "licence_types": [],
   "profiles": {
    "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
+    "tier": "strong",
+    "tier_label": "Strong match",
+    "score": 63,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Work below high water or footprint on the seabed; Species at risk; size 187km2",
+    "relevance": 55
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -1292,16 +1233,49 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Thistle Wind Partners (Qair, Aspiravi and DEME Group)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.energyglobal.com/wind/11122025/thistle-wind-partners-submits-plans-for-bowdun-offshore-wind-farm/"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Supply Chain Pathways Programme: Bowdun's partner DEME Offshore pre-qualifies local firms as suppliers for transport, installation and balance-of-plant work. Register through the programme.",
+     "source": "https://www.energyglobal.com/wind/24092025/bid-to-unlock-1-billion-scotwind-project-for-oil-and-gas-firms/",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "About 1 GW, fixed-bottom, about 27 miles off Stonehaven (ScotWind lease).",
+     "source": "https://www.oedigital.com/news/530371-bowdun-offshore-wind-opens-supply-chain-doors-to-scottish-o-g-firms",
+     "checked": "search"
+    },
+    {
+     "kind": "consent",
+     "text": "Onshore planning application submitted to Aberdeenshire Council; offshore consent application expected in 2026.",
+     "source": "https://www.energyglobal.com/wind/11122025/thistle-wind-partners-submits-plans-for-bowdun-offshore-wind-farm/",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 51,
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Thistle Wind Partners (Qair, Aspiravi and DEME Group)); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -1317,6 +1291,314 @@
   ],
   "changes": [],
   "first_listed": "2026-11-13"
+ },
+ {
+  "id": "scot_marine:00011025",
+  "title": "Electricity Works Decision Notice - Muir Mhor Offshore Wind Farm",
+  "url": "https://marine.gov.scot/?q=node/28333",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Dredging",
+   "Marina or small craft harbour",
+   "Offshore wind",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 59,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "Relevance 79, winnability -4",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging, small craft harbour, offshore wind and pile work and an area of about 200,000,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00011025.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 59,
+    "because": "Marina or small craft harbour; Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; size 250km",
+    "relevance": 66
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 51,
+    "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Shellfish, oyster or mussel beds; size 250km",
+    "relevance": 55
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Fred. Olsen Seawind (taking over Vattenfall's 50% stake, subject to approvals)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm"
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "The 2023 supply chain outlook listed a supplier portal under development and supply chain events. No portal address was found.",
+     "source": "https://www.crownestatescotland.com/sites/default/files/2023-07/muir-mhor-offshore-wind-farm-scds-outlook-july-2023-update.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Floating offshore wind farm, up to about 1 GW, operational in the early 2030s.",
+     "source": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fred. Olsen Seawind (taking over Vattenfall's 50% stake, subject to approvals)": {
+     "website": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm",
+     "source": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm",
+     "checked": "search",
+     "name": "Fred. Olsen Seawind"
+    }
+   },
+   "developer_only": false
+  },
+  "relevance_score": 79,
+  "win": {
+   "points": -4,
+   "stage": "decided",
+   "entry_point": "Approved: contact the proponent (Fred. Olsen Seawind (taking over Vattenfall's 50% stake, su…) and watch for the construction tender.",
+   "reasons": [
+    "Offshore wind",
+    "Already approved: the design is mostly set (-8)",
+    "Large project (250km) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-19",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-19"
+ },
+ {
+  "id": "nl_ea:2379",
+  "title": "Point Rousse Port Expansion",
+  "url": "https://www.gov.nl.ca/eccc/projects/project-2379/",
+  "source": "nl_ea",
+  "source_name": "Newfoundland and Labrador environmental assessment",
+  "proponent": "Point Rousse Marine Terminal Ltd.",
+  "country": "CA",
+  "province": "Newfoundland and Labrador",
+  "language": "en",
+  "water_body": "Green Bay",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Shoreline protection, seawall or bulkhead",
+   "Marina or small craft harbour",
+   "Infill, reclamation or causeway"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": "2026-01-16",
+  "decision_date": "2026-01-21",
+  "approved_on": "2026-01-21",
+  "score": 59,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "Relevance 65, winnability -4",
+  "reviewed": true,
+  "summary": "Project by Point Rousse Marine Terminal Ltd. in Green Bay, Newfoundland and Labrador. The notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The project would involve the construction of a second berth to increase export capacity for crushed aggregate and armourstone from nearby quarry operations.",
+   "Construction and new infrastructure would include a port access road, storage/laydown areas, shoreline infilling, armourstone protection, two rock filled access causeways, a dock structure, and a barge.",
+   "The Project involves the construction, operation, and eventual closure of expanded marine terminal facilities to support primarily the export of construction aggregate and armourstone from Shoreline Aggregates Inc.’s (SAI’s) quarry operations."
+  ],
+  "attribution": "",
+  "agency": "Government of Newfoundland and Labrador, Department of Environment and Climate Change",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/nl_ea-2379.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-01-16",
+   "days_left": -307,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry publishes the comment deadline but not the number of comments received."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 59,
+    "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Port or marine terminal; size 1.4 kilometres",
+    "relevance": 78
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 48,
+    "because": "Shoreline protection, seawall or bulkhead; Species at risk; Work below high water or footprint on the seabed; size 1.4 kilometres",
+    "relevance": 52
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Point Rousse Marine Terminal Ltd.",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "Second berth, access road, quayside upgrades and laydown areas; built to export aggregate and armour stone.",
+     "source": "https://www.canada.ca/en/impact-assessment-agency/news/2026/04/government-of-canada-provides-early-decision-on-point-rousse-port-expansion-project-in-newfoundland-and-labrador.html",
+     "checked": "read"
+    },
+    {
+     "kind": "consent",
+     "text": "Federal early decision (2 April 2026): no further federal assessment; Canadian Navigable Waters Act approval still needed for the second berth and infill.",
+     "source": "https://www.canada.ca/en/impact-assessment-agency/news/2026/04/government-of-canada-provides-early-decision-on-point-rousse-port-expansion-project-in-newfoundland-and-labrador.html",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 65,
+  "win": {
+   "points": -4,
+   "stage": "decided",
+   "entry_point": "Approved: contact the proponent (Point Rousse Marine Terminal Ltd.) and watch for the construction tender.",
+   "reasons": [
+    "Port or marine terminal",
+    "Already approved: the design is mostly set (-8)",
+    "Large project (11.5 ha) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from strong to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-10-29"
  },
  {
   "id": "iaac:90841",
@@ -1431,6 +1713,39 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Canada has reserved part of the submarine project budget for new maintenance, operations and training infrastructure at CFB Halifax and CFB Esquimalt.",
+     "source": "https://www.canada.ca/en/defence-investment-agency/news/2026/07/backgrounder-government-of-canada-advances-canadian-patrol-submarine-project.html",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Department of National Defence": {
+     "website": "https://www.canada.ca/en/department-national-defence.html",
+     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+       "url": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+       "checked": "search"
+      }
+     ],
+     "name": "Department of National Defence"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 38,
   "win": {
    "points": 18,
@@ -1457,6 +1772,167 @@
   ],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "scot_marine:additional information public notice ardersier port expansion phase 2",
+  "title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2",
+  "url": "https://marine.gov.scot/?q=node/28304",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Dredging",
+   "Offshore wind"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 55,
+  "tier": "possible",
+  "tier_label": "Possible",
+  "tier_reason": "Relevance 41, winnability +14",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging, offshore wind and port or terminal work and an area of about 400,000 m2.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-additional-information-public-notice-ardersier-port-expansion-phase-2.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong match",
+    "score": 60,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Port or marine terminal; Offshore wind; size 0.4 km2",
+    "relevance": 46
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Ardersier Port (Scotland) Limited",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.find-tender.service.gov.uk/Notice/002601-2026"
+    }
+   ],
+   "consultant": [
+    {
+     "name": "Xodus Group",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://marine.gov.scot/sites/default/files/3._eiar_chapters_1_-_15.pdf"
+    }
+   ],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
+     "detail": "Scottish Government",
+     "how": "Licensing team named in the notice",
+     "quote": "…r Processing Notice Marine Directorate - Licensing Operations Team (“MD-LOT”…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Phase 2 tenders on Find a Tender: Quay Civils (300 m), notice 002601-2026; Landside Civils, notice 002600-2026; and a dredging works tender (closed May 2026). Find a Tender refuses automated reading, so the award status was not checked.",
+     "source": "https://www.find-tender.service.gov.uk/Notice/002601-2026",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Phase 2 adds about 198 acres of port land, inner harbour dredging and more quay.",
+     "source": "https://marine.gov.scot/sites/default/files/3._eiar_chapters_1_-_15.pdf",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 41,
+  "win": {
+   "points": 14,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the engineering firm (Xodus Group).",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)",
+    "Consultant named: Xodus Group (someone to approach) (+6)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-13"
  },
  {
   "id": "scot_marine:00012570",
@@ -1507,9 +1983,9 @@
    "hard-structure": {
     "tier": "possible",
     "tier_label": "Possible",
-    "score": 45,
-    "because": "Piles or pile-supported structure; Work below high water or footprint on the seabed; Scour or cable protection; size 1000 square metres",
-    "relevance": 37
+    "score": 50,
+    "because": "Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; Work below high water or footprint on the seabed; size 1000 square metres",
+    "relevance": 42
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -1549,9 +2025,25 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Highland Wind Limited (majority owned by funds managed by Copenhagen Infrastructure Partners)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://www.offshorewindscotland.org.uk/news/2026/january/14/pentland-floating-wind-project-wins-cfd-in-ar7/"
+    }
+   ],
    "consultant": [],
-   "contractor": [],
+   "contractor": [
+    {
+     "name": "Stiesdal Offshore (TetraSub floating foundation selected)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.offshorewind.biz/2022/10/11/scottish-floater-opts-for-stiesdal-foundations/"
+    }
+   ],
    "agency_contact": [
     {
      "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
@@ -1561,11 +2053,36 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "A 2024 supply chain presentation lists a supplier registration portal and a Tier 1 sub-contractor selection stage.",
+     "source": "https://www.offshorewindscotland.org.uk/media/wmulaahp/pentland-floating-offshore-wind-farm-deepwing-intog-aberdeen-2024-_final.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "100 MW floating wind farm off Dounreay, Caithness, with an operations base proposed at Scrabster.",
+     "source": "https://pentlandfloatingwind.com/",
+     "checked": "read"
+    },
+    {
+     "kind": "consent",
+     "text": "Won a Contract for Difference in Allocation Round 7 (January 2026).",
+     "source": "https://www.offshorewindscotland.org.uk/news/2026/january/14/pentland-floating-wind-project-wins-cfd-in-ar7/",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 45,
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Highland Wind Limited (majority owned by funds managed by C…); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -1701,6 +2218,33 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada – Small Craft Harbours": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 37,
   "win": {
    "points": 14,
@@ -1767,9 +2311,9 @@
    "hard-structure": {
     "tier": "possible",
     "tier_label": "Possible",
-    "score": 39,
-    "because": "Wharf, pier or large dock; Offshore wind; size 1000 square metres",
-    "relevance": 31
+    "score": 42,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Wharf, pier or large dock; Offshore wind; size 1000 square metres (small routine repair, kept at Weak)",
+    "relevance": 34
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -1809,143 +2353,40 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Eyemouth Harbour Trust",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://marine.gov.scot/sites/default/files/md-00011548_licence_redacted.pdf"
+    }
+   ],
    "consultant": [],
-   "contractor": [],
+   "contractor": [
+    {
+     "name": "Intermarine (pontoon installer, method statement)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://marine.gov.scot/sites/default/files/method_statement_redacted_11.pdf"
+    }
+   ],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 42,
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Eyemouth Harbour Trust); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
-    "Early: still under review, design not final (+8)"
-   ],
-   "construction_start": ""
-  },
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-13"
- },
- {
-  "id": "scot_marine:additional information public notice ardersier port expansion phase 2",
-  "title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2",
-  "url": "https://marine.gov.scot/?q=node/28304",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Port or marine terminal",
-   "Dredging",
-   "Offshore wind"
-  ],
-  "stage": "under assessment",
-  "stage_kind": "assessment",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 49,
-  "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 41, winnability +8",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions dredging, offshore wind and port or terminal work and an area of about 400,000 m2.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/scot_marine-additional-information-public-notice-ardersier-port-expansion-phase-2.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 44,
-    "because": "Port or marine terminal; Offshore wind; size 0.4 km2",
-    "relevance": 36
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
-     "detail": "Scottish Government",
-     "how": "Licensing team named in the notice",
-     "quote": "…r Processing Notice Marine Directorate - Licensing Operations Team (“MD-LOT”…"
-    }
-   ]
-  },
-  "relevance_score": 41,
-  "win": {
-   "points": 8,
-   "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
-   "reasons": [
-    "Port or marine terminal",
     "Early: still under review, design not final (+8)"
    ],
    "construction_start": ""
@@ -2073,6 +2514,33 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada – Small Craft Harbours": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 31,
   "win": {
@@ -2209,6 +2677,12 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 34,
   "win": {
@@ -2351,6 +2825,33 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 32,
   "win": {
    "points": 8,
@@ -2485,6 +2986,33 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 31,
   "win": {
@@ -2625,6 +3153,33 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada, Small Craft Harbours": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 41,
   "win": {
    "points": -4,
@@ -2754,6 +3309,39 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    },
+    {
+     "kind": "procurement",
+     "text": "A CanadaBuys award notice covers 'Wharf Construction - Harbour Breton, NL' (CAD 716,985); check whether it is this phase.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities/award-notice/ea003-170290001pwd",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 29,
   "win": {
@@ -2890,6 +3478,33 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 29,
   "win": {
    "points": 8,
@@ -3025,6 +3640,33 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 44,
   "win": {
    "points": -8,
@@ -3032,7 +3674,8 @@
    "entry_point": "Approved: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)) and watch for the construction tender.",
    "reasons": [
     "Breakwater, jetty or groyne",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -3153,6 +3796,33 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 24,
   "win": {
@@ -3281,6 +3951,12 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 23,
   "win": {
@@ -3413,6 +4089,12 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 20,
   "win": {
@@ -3547,6 +4229,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 20,
   "win": {
    "points": 10,
@@ -3672,6 +4360,13 @@
      "detail": "",
      "how": "Proponent named by the registry",
      "quote": ""
+    },
+    {
+     "name": "Ralmax Properties Limited",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://iaac-aeic.gc.ca/050/evaluations/document/167141"
     }
    ],
    "consultant": [],
@@ -3685,6 +4380,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 42,
   "win": {
    "points": -8,
@@ -3692,7 +4393,8 @@
    "entry_point": "Approved: contact the proponent (Ralmax Group of Companies) and watch for the construction tender.",
    "reasons": [
     "Port or marine terminal",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -3826,6 +4528,33 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 26,
   "win": {
    "points": 8,
@@ -3935,16 +4664,45 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "National Grid Electricity Transmission and SSEN Transmission (joint project)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.nationalgrid.com/eastern-green-link-3-reaches-major-milestone-appointment-construction-partner"
+    }
+   ],
    "consultant": [],
-   "contractor": [],
+   "contractor": [
+    {
+     "name": "NKT (subsea and underground cable, about 680 km)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.nationalgrid.com/eastern-green-link-3-reaches-major-milestone-appointment-construction-partner"
+    },
+    {
+     "name": "Hitachi Energy (converter stations)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.nationalgrid.com/eastern-green-link-3-reaches-major-milestone-appointment-construction-partner"
+    }
+   ],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 37,
   "win": {
    "points": -4,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (National Grid Electricity Transmission and SSEN Transmissio…) and watch for the construction tender.",
    "reasons": [
     "Work below high water or footprint on the seabed",
     "Already approved: the design is mostly set (-8)",
@@ -4013,11 +4771,11 @@
   "licence_types": [],
   "profiles": {
    "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 55,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Fixed-bottom foundations (monopile, jacket or gravity base); Scour or cable protection; size 3 km",
+    "relevance": 63
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -4057,19 +4815,54 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Fred. Olsen Seawind (taking over Vattenfall's 50% stake, subject to approvals)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "The 2023 supply chain outlook listed a supplier portal under development and supply chain events. No portal address was found.",
+     "source": "https://www.crownestatescotland.com/sites/default/files/2023-07/muir-mhor-offshore-wind-farm-scds-outlook-july-2023-update.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Floating offshore wind farm, up to about 1 GW, operational in the early 2030s.",
+     "source": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fred. Olsen Seawind (taking over Vattenfall's 50% stake, subject to approvals)": {
+     "website": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm",
+     "source": "https://group.vattenfall.com/uk/newsroom/pressreleases/2026/change-of-ownership-agreed-for-muir-mhor-floating-offshore-wind-farm",
+     "checked": "search",
+     "name": "Fred. Olsen Seawind"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 41,
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Fred. Olsen Seawind (taking over Vattenfall's 50% stake, su…) and watch for the construction tender.",
    "reasons": [
     "Offshore wind",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -4184,6 +4977,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 41,
   "win": {
    "points": -8,
@@ -4191,7 +4990,8 @@
    "entry_point": "Approved: contact the proponent and watch for the construction tender.",
    "reasons": [
     "Offshore wind",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -4328,6 +5128,39 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Canada has reserved part of the submarine project budget for new maintenance, operations and training infrastructure at CFB Halifax and CFB Esquimalt.",
+     "source": "https://www.canada.ca/en/defence-investment-agency/news/2026/07/backgrounder-government-of-canada-advances-canadian-patrol-submarine-project.html",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Department of National Defence": {
+     "website": "https://www.canada.ca/en/department-national-defence.html",
+     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+       "url": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+       "checked": "search"
+      }
+     ],
+     "name": "Department of National Defence"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 23,
   "win": {
@@ -4469,6 +5302,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 23,
   "win": {
    "points": 8,
@@ -4608,6 +5447,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 26,
   "win": {
    "points": 4,
@@ -4718,6 +5563,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 20,
   "win": {
    "points": 10,
@@ -4785,11 +5636,11 @@
   "licence_types": [],
   "profiles": {
    "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
+    "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -4829,9 +5680,32 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Flotation Energy and Vårgrønn (Green Volt)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
+    }
+   ],
    "consultant": [],
-   "contractor": [],
+   "contractor": [
+    {
+     "name": "Aker Solutions with ABB (FEED, offshore substation)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
+    },
+    {
+     "name": "Aibel with Hitachi Energy (FEED)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/"
+    }
+   ],
    "agency_contact": [
     {
      "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
@@ -4841,11 +5715,24 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "560 MW floating wind farm; the FEED scope includes an offshore substation jacket and topsides.",
+     "source": "https://flotationenergy.com/vargronn-and-flotation-energy-award-feed-contracts-advancing-pioneering-green-volt-floating-wind-project/",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 20,
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Flotation Energy and Vårgrønn (Green Volt)); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -4908,11 +5795,11 @@
   "licence_types": [],
   "profiles": {
    "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
+    "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -4952,16 +5839,49 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Morven Offshore Wind Limited (EnBW and JERA Nex bp)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://enbw-bp.com/latest/2022-04-07-bp-and-enbw-sign-morven-option-to-lease-agreement"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Supplier registration portal run by the developers (listed as enbw-bp.com/suppliers in a 2023 ORE Catapult developer briefing). bp.com refuses automated reading, so the portal address was not confirmed.",
+     "source": "https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Up to 2.9 GW lease area, 61 to 86 km off Aberdeenshire.",
+     "source": "https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "timeline",
+     "text": "Construction expected from 2027 (2023 briefing).",
+     "source": "https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 20,
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Morven Offshore Wind Limited (EnBW and JERA Nex bp)); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -5018,11 +5938,11 @@
   "licence_types": [],
   "profiles": {
    "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
+    "tier": "possible",
+    "tier_label": "Possible",
+    "score": 36,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
+    "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
@@ -5062,16 +5982,49 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Morven Offshore Wind Limited (EnBW and JERA Nex bp)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://enbw-bp.com/latest/2022-04-07-bp-and-enbw-sign-morven-option-to-lease-agreement"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Supplier registration portal run by the developers (listed as enbw-bp.com/suppliers in a 2023 ORE Catapult developer briefing). bp.com refuses automated reading, so the portal address was not confirmed.",
+     "source": "https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Up to 2.9 GW lease area, 61 to 86 km off Aberdeenshire.",
+     "source": "https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "timeline",
+     "text": "Construction expected from 2027 (2023 briefing).",
+     "source": "https://ore.catapult.org.uk/wp-content/uploads/2023/12/EnBW-bp-Developer-Deep-Dive.pdf",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 20,
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Morven Offshore Wind Limited (EnBW and JERA Nex bp)); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -5194,6 +6147,33 @@
      "quote": ""
     }
    ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 20,
   "win": {
@@ -5321,6 +6301,12 @@
    "consultant": [],
    "contractor": [],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 31,
   "win": {
@@ -5453,6 +6439,33 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Fisheries and Oceans Canada, Small Craft Harbours, Ontario & Prairie Region": {
+     "website": "https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html",
+     "source": "https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html",
+     "checked": "search",
+     "procurement": [
+      {
+       "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+       "checked": "search"
+      }
+     ],
+     "name": "Fisheries and Oceans Canada - Small Craft Harbours"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 32,
   "win": {
    "points": -8,
@@ -5460,7 +6473,8 @@
    "entry_point": "Approved: contact the proponent (Fisheries and Oceans Canada, Small Craft Harbours, Ontario…) and watch for the construction tender.",
    "reasons": [
     "Breakwater, jetty or groyne",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -5561,6 +6575,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 30,
   "win": {
    "points": -8,
@@ -5568,7 +6588,8 @@
    "entry_point": "Approved: contact the proponent and watch for the construction tender.",
    "reasons": [
     "New habitat, enhancement or nature-inclusive design",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -5672,6 +6693,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 21,
   "win": {
    "points": -8,
@@ -5679,7 +6706,8 @@
    "entry_point": "Approved: contact the proponent and watch for the construction tender.",
    "reasons": [
     "Dredging",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -5778,19 +6806,62 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Highland Council",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026"
+    }
+   ],
    "consultant": [],
-   "contractor": [],
+   "contractor": [
+    {
+     "name": "Charles Brand Group Ltd (principal contractor)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026"
+    }
+   ],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "Rock armour is being placed along the foreshore against erosion; also a berthing structure, slipway and dredging.",
+     "source": "https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026",
+     "checked": "read"
+    },
+    {
+     "kind": "timeline",
+     "text": "Under construction; completion expected in summer 2027.",
+     "source": "https://www.highland.gov.uk/news/article/17364/corran-ferry-infrastructure-improvement-scheme-progress-update-july-2026",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Highland Council": {
+     "website": "https://www.highland.gov.uk/",
+     "source": "https://www.highland.gov.uk/corran-ferry/corran-ferry-infrastructure-improvement-scheme-cfiis",
+     "checked": "search",
+     "name": "Highland Council"
+    }
+   },
+   "developer_only": false
   },
   "relevance_score": 23,
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Highland Council) and watch for the construction tender.",
    "reasons": [
     "Port or marine terminal",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -5903,6 +6974,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 20,
   "win": {
    "points": -8,
@@ -5910,13 +6987,189 @@
    "entry_point": "Approved: contact the proponent (Great Northern Port Development) and watch for the construction tender.",
    "reasons": [
     "Port or marine terminal",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "developer:cmal-port-ellen-terminal",
+  "title": "Port Ellen Terminal Development, Islay",
+  "url": "https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/",
+  "source": "developer",
+  "source_name": "From the developer's website, not in a permit notice yet",
+  "proponent": "Caledonian Maritime Assets Ltd (CMAL)",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "Port Ellen harbour, Islay",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "under construction",
+  "stage_kind": "unknown",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 20,
+  "tier": "weak",
+  "tier_label": "Weak",
+  "tier_reason": "Relevance 26, winnability -15",
+  "reviewed": false,
+  "summary": "Project by Caledonian Maritime Assets Ltd (CMAL) in Port Ellen harbour, Islay, Scotland. The notice mentions dredging, pile, port or terminal and wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "From the developer's website, not in a permit notice yet",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/developer-cmal-port-ellen-terminal.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak",
+    "score": 20,
+    "because": "Pier (not at a dam, intake or bridge); Port or marine terminal; Piles or pile-supported structure",
+    "relevance": 26
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Probably not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Caledonian Maritime Assets Ltd (CMAL)",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+     "checked": "read"
+    },
+    {
+     "kind": "structure",
+     "text": "Dredging, rock fill, piled quays (Fish Quay, then Commercial Quay), a finger pier and a fixed ramp.",
+     "source": "https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/",
+     "checked": "read"
+    },
+    {
+     "kind": "timeline",
+     "text": "Piling from 31 August 2026 to April 2027; finger pier and ramp works May 2027 to May 2028.",
+     "source": "https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/",
+     "checked": "read"
+    },
+    {
+     "kind": "contact",
+     "text": "Project email published by CMAL: petd@cmassets.co.uk",
+     "source": "https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Caledonian Maritime Assets Ltd (CMAL)": {
+     "website": "https://www.cmassets.co.uk/",
+     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+     "checked": "read",
+     "procurement": [
+      {
+       "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+       "url": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+       "checked": "read"
+      }
+     ],
+     "name": "Caledonian Maritime Assets Ltd (CMAL)"
+    }
+   },
+   "developer_only": true
+  },
+  "developer_only": true,
+  "relevance_score": 26,
+  "win": {
+   "points": -15,
+   "stage": "under_construction",
+   "entry_point": "Under construction: late; watch for later phases or repairs.",
+   "reasons": [
+    "Port or marine terminal",
+    "Under construction or works window started: late to get in (-15)",
+    "Under construction, so kept at Weak"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-19",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-19"
  },
  {
   "id": "nl_ea:2393",
@@ -6033,6 +7286,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 26,
   "win": {
    "points": -8,
@@ -6040,7 +7299,8 @@
    "entry_point": "Approved: contact the proponent (St. John’s Dockyard Limited) and watch for the construction tender.",
    "reasons": [
     "Port or marine terminal",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -6161,6 +7421,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 23,
   "win": {
    "points": -8,
@@ -6168,7 +7434,8 @@
    "entry_point": "Approved: contact the proponent (Mamuitun Tribal Council) and watch for the construction tender.",
    "reasons": [
     "Shoreline protection, seawall or bulkhead",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -6295,6 +7562,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 12,
   "win": {
    "points": 10,
@@ -6399,6 +7672,12 @@
      "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Austin Demarest, Office of Protected Resources, NMFS, […]…"
     }
    ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 0,
   "win": {
@@ -6517,6 +7796,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 18,
   "win": {
    "points": -8,
@@ -6524,7 +7809,8 @@
    "entry_point": "Approved: contact the proponent and watch for the construction tender.",
    "reasons": [
     "Shoreline protection, seawall or bulkhead",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -6634,6 +7920,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 12,
   "win": {
    "points": -8,
@@ -6641,7 +7933,8 @@
    "entry_point": "Approved: contact the proponent and watch for the construction tender.",
    "reasons": [
     "Shoreline protection, seawall or bulkhead",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -6726,6 +8019,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": -8,
@@ -6733,7 +8032,8 @@
    "entry_point": "Approved: contact the proponent (Alaska Department of Transportation and Public Facilities) and watch for the construction tender.",
    "reasons": [
     "Port or marine terminal",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -6818,6 +8118,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": -15,
@@ -6825,7 +8131,8 @@
    "entry_point": "Under construction: late; watch for later phases or repairs.",
    "reasons": [
     "Port or marine terminal",
-    "Under construction or works window started: late to get in (-15)"
+    "Under construction or works window started: late to get in (-15)",
+    "Under construction, so kept at Weak"
    ],
    "construction_start": "Authorization effective 7/24/2026 - 7/24/2027"
   },
@@ -6909,6 +8216,12 @@
    "consultant": [],
    "contractor": [],
    "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 0,
   "win": {
@@ -7016,6 +8329,19 @@
     }
    ]
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "City and Borough of Juneau posts construction bids on its Engineering and Public Works bids page.",
+     "source": "https://juneau.org/engineering-public-works/bids-and-rfps",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": 10,
@@ -7121,6 +8447,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": -8,
@@ -7128,7 +8460,8 @@
    "entry_point": "Approved: contact the proponent (United States Navy) and watch for the construction tender.",
    "reasons": [
     "pile driving, 234 piles",
-    "Already approved: the design is mostly set (-8)"
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
    ],
    "construction_start": ""
   },
@@ -7166,7 +8499,7 @@
   "score": 0,
   "tier": "notrel",
   "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -15",
+  "tier_reason": "Relevance 0, winnability -9",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -7210,18 +8543,53 @@
      "quote": "Modification of Port of Alaska's Modernization Program Phase 2B: Cargo Terminal Replacement Project in Anchorage, Alaska"
     }
    ],
-   "consultant": [],
+   "consultant": [
+    {
+     "name": "Jacobs (program management consultant)",
+     "detail": "",
+     "how": "Found by a web search (page not read automatically)",
+     "quote": "",
+     "source": "https://www.jacobs.com/node/4683"
+    }
+   ],
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [
+    {
+     "kind": "contact",
+     "text": "Program questions: PortModernization@AnchorageAK.gov (published on the program website).",
+     "source": "https://modernization.portofalaska.com/",
+     "checked": "read"
+    }
+   ],
+   "people": [],
+   "orgs": {
+    "Port of Alaska": {
+     "website": "https://modernization.portofalaska.com/",
+     "source": "https://modernization.portofalaska.com/",
+     "checked": "read",
+     "emails": [
+      {
+       "address": "PortModernization@AnchorageAK.gov",
+       "published_for": "questions about the modernization program"
+      }
+     ],
+     "name": "Port of Alaska Modernization Program"
+    }
+   },
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
-   "points": -15,
+   "points": -9,
    "stage": "under_construction",
    "entry_point": "Under construction: late; watch for later phases or repairs.",
    "reasons": [
     "Port or marine terminal",
-    "Under construction or works window started: late to get in (-15)"
+    "Under construction or works window started: late to get in (-15)",
+    "Consultant named: Jacobs (program management consultant) (someone to approach) (+6)"
    ],
    "construction_start": "Authorization effective 3/1/2026 - 2/28/2031"
   },
@@ -7311,6 +8679,12 @@
      "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Cara Hotchkin, Office of Protected Resources, NMFS, […]…"
     }
    ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 0,
   "win": {
@@ -7418,6 +8792,12 @@
     }
    ]
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": 10,
@@ -7505,6 +8885,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": -15,
@@ -7512,7 +8898,8 @@
    "entry_point": "Under construction: late; watch for later phases or repairs.",
    "reasons": [
     "Port or marine terminal",
-    "Under construction or works window started: late to get in (-15)"
+    "Under construction or works window started: late to get in (-15)",
+    "Under construction, so kept at Weak"
    ],
    "construction_start": "Authorization effective 10/1/2026 - 9/30/2027"
   },
@@ -7597,6 +8984,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": -15,
@@ -7604,7 +8997,8 @@
    "entry_point": "Under construction: late; watch for later phases or repairs.",
    "reasons": [
     "Port or marine terminal",
-    "Under construction or works window started: late to get in (-15)"
+    "Under construction or works window started: late to get in (-15)",
+    "Under construction, so kept at Weak"
    ],
    "construction_start": "Authorization effective 9/1/2026 - 8/31/2027"
   },
@@ -7689,6 +9083,12 @@
    "contractor": [],
    "agency_contact": []
   },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
   "relevance_score": 0,
   "win": {
    "points": -15,
@@ -7696,7 +9096,8 @@
    "entry_point": "Under construction: late; watch for later phases or repairs.",
    "reasons": [
     "Port or marine terminal",
-    "Under construction or works window started: late to get in (-15)"
+    "Under construction or works window started: late to get in (-15)",
+    "Under construction, so kept at Weak"
    ],
    "construction_start": "Authorization effective 06/01/2026 - 05/31/2028"
   },
@@ -7795,6 +9196,12 @@
      "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Kate Fleming, OPR, NMFS, […]…"
     }
    ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
   },
   "relevance_score": 0,
   "win": {

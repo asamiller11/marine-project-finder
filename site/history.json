@@ -398,18 +398,6 @@
 "tier": "strong",
 "title": "Capital Dredging and Sea Deposit- Port of Greenock"
 },
-"scot_marine:00011025": {
-"comment_deadline": null,
-"stage_kind": "decided",
-"tier": "strong",
-"title": "Electricity Works Decision Notice - Muir Mhor Offshore Wind Farm"
-},
-"nl_ea:2379": {
-"comment_deadline": "2026-01-16",
-"stage_kind": "decided",
-"tier": "strong",
-"title": "Point Rousse Port Expansion"
-},
 "iaac:90890": {
 "comment_deadline": "2026-12-13",
 "stage_kind": "open",
@@ -434,11 +422,29 @@
 "tier": "possible",
 "title": "Bowdun Offshore Wind Farm – East of Aberdeenshire"
 },
+"scot_marine:00011025": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Electricity Works Decision Notice - Muir Mhor Offshore Wind Farm"
+},
+"nl_ea:2379": {
+"comment_deadline": "2026-01-16",
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Point Rousse Port Expansion"
+},
 "iaac:90841": {
 "comment_deadline": null,
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
+},
+"scot_marine:additional information public notice ardersier port expansion phase 2": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2"
 },
 "scot_marine:00012570": {
 "comment_deadline": null,
@@ -457,12 +463,6 @@
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "Marine Licence Variation Application– Pontoon Upgrades – Eyemouth Harbour Pontoons, Eyemouth"
-},
-"scot_marine:additional information public notice ardersier port expansion phase 2": {
-"comment_deadline": null,
-"stage_kind": "assessment",
-"tier": "possible",
-"title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2"
 },
 "iaac:90777": {
 "comment_deadline": null,
@@ -649,6 +649,12 @@
 "stage_kind": "decided",
 "tier": "weak",
 "title": "Crémaillère Harbour Marine Port Development Resubmission"
+},
+"developer:cmal-port-ellen-terminal": {
+"comment_deadline": null,
+"stage_kind": "unknown",
+"tier": "weak",
+"title": "Port Ellen Terminal Development, Islay"
 },
 "nl_ea:2393": {
 "comment_deadline": "2026-04-10",
@@ -1228,6 +1234,20 @@
 }
 ],
 "scot_marine:00011026": [
+{
+"date": "2026-11-19",
+"type": "new",
+"text": "First listed"
+}
+],
+"nl_ea:2379": [
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from strong to possible"
+}
+],
+"developer:cmal-port-ellen-terminal": [
 {
 "date": "2026-11-19",
 "type": "new",

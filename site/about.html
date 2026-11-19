@@ -258,6 +258,12 @@ text-decoration:underline;text-underline-offset:3px}
 .win ul.why{margin:0;padding-left:1.2em}
 .win ul.why li{margin:1px 0}
 .not-named{color:var(--faint);font-style:italic}
+.research{margin:10px 0 0;font-size:.86rem;color:var(--ink-2)}
+.research ul{margin:2px 0 6px;padding-left:1.2em}
+.getin{border:1px solid var(--open);background:var(--open-bg);border-radius:8px;padding:8px 10px;margin:0 0 8px}
+.getin-h{margin:0 0 2px;font-weight:700;color:var(--open)}
+a.fc,a.src{font-size:.76rem;white-space:nowrap}
+.badge.devonly{color:var(--chg);background:var(--chg-bg);border-color:var(--chg)}
 dl.facts dd .muted{color:var(--muted)}
 ul.who{list-style:none;padding:0;margin:0}
 ul.who li{margin:0 0 10px}
@@ -430,6 +436,16 @@ guessed. A role the source does not name shows "Not named yet": contractors, for
 project goes to bid. For agency contacts only the name, job title and office are shown; phone numbers and email
 addresses are on the official notice. "Download shown projects (CSV)" includes these names, for building a target
 list.</p>
+<p>For Strong and Possible projects, names and facts are also taken from officially published web pages: the developer's
+project site, press releases, procurement notices and environmental reports. Each is linked to its source; facts found
+only through a web search, on sites that do not allow automated reading, say so. Procurement routes (supplier portals,
+tenders, meet-the-buyer events) appear first, under "How to get in". "Find contacts" opens a LinkedIn people search for
+the organisation (environmental manager, project manager, procurement); this site stores nothing from it. Projects
+marked "From the developer's website, not in a permit notice yet" come from a developer's own pages and are scored
+with the same rules.</p>
+<p>Offshore wind counts under the hard-structure profile: turbine foundations need scour protection and cables need cable
+protection. Fixed-bottom foundations score higher than floating ones. Approved projects can be at most Possible, and
+projects under construction at most Weak.</p>
 
 <h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has
@@ -509,7 +525,7 @@ separate "Project watch (not a notice feed)" section, with no comment deadline, 
 the closing-soon list. No project watch source is in use at the moment.</p>
 
 <h2 id="coverage">Coverage</h2>
-<p><strong>For now the site is mostly Canada: 30 of the 48 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
+<p><strong>For now the site is mostly Canada: 30 of the 49 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
 <p>"Covered" means a source for that place is read automatically. "Partial" means only some sources are
 read, and they are named. "Coming soon" means no source is read yet, and no listings are shown for it.</p>
 <div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
