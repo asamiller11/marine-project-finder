@@ -60,15 +60,15 @@ def test_three_tiers_published_and_not_relevant_left_out(tmp_path):
     records, skipped, html = _publish(_db_with(rows))
     assert [r["tier"] for r in records] == ["strong", "possible", "weak"]
     assert skipped["not_relevant"] == 2                      # score 5, and the quarry rule
-    for label in ("Strong match", "Possible", "Weak"):
+    for label in ("Strong fit", "Possible fit", "Weak fit"):
         assert label in html
     assert "Project 3" not in html and "Harbour Quarry" not in html
-    assert 'id="t-weak"' in html and "Show weaker matches" in html
+    assert 'id="t-weak"' in html and "Also show weak fits" in html
     assert "t-notrel" not in html and "Show probably not relevant" not in html
     assert "are not listed" in html
-    assert "Score 75/100" in html
+    assert "Score 75 out of 100" in html
     assert "It is not a statement that mitigation or\ncompensation is required" in html
-    assert "0 comment deadlines in the next 30 days.</p>" in html and "Includes Weak matches." in html
+    assert "0 deadlines in the next 30 days.</p>" in html and "Public comment deadlines coming up" in html
     site.write_site(tmp_path, records, SETTINGS, TODAY)
     data = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
     assert {r["tier"] for r in data} == {"strong", "possible", "weak"}
@@ -93,8 +93,8 @@ def test_yes_badge_no_hidden_blank_automatic():
     titles = {r["title"]: r for r in records}
     assert "Rejected one" not in html and skipped["hidden_by_you"] == 1
     assert titles["Checked one"]["reviewed"] and not titles["Untouched one"]["reviewed"]
-    assert html.count("Reviewed by a person</span>") == 1
-    assert html.count("Automatic, not yet reviewed</span>") == 1
+    assert html.count("Checked by a person against the official notice.") == 1
+    assert html.count("Listed automatically; not yet checked by a person.") == 1
 
 
 def test_review_file_blank_default_and_old_format_migration(tmp_path):
@@ -111,7 +111,7 @@ def test_review_file_blank_default_and_old_format_migration(tmp_path):
     rows = {r["id"]: r for r in csv.DictReader(open(path, encoding="utf-8"))}
     assert rows["iaac:1"]["publish"] == "yes" and rows["iaac:1"]["summary"] == "My summary."
     assert rows["iaac:2"]["publish"] == ""             # old default "no" became "not reviewed"
-    assert rows["iaac:1"]["tier"] == "Possible" and rows["iaac:2"]["tier"] == "Probably not relevant"
+    assert rows["iaac:1"]["tier"] == "Possible fit" and rows["iaac:2"]["tier"] == "Not relevant"
     assert counts == {"rows": 2, "new": 0, "yes": 1, "no": 0}
     # In the new format, a "no" you type is kept and hides the item.
     rows["iaac:2"]["publish"] = "no"
@@ -163,8 +163,7 @@ def test_missing_fields_show_unknown():
     records, _, html = _publish(_db_with([(item, {"score": 40})]))
     rec = records[0]
     assert rec["proponent"] == "unknown" and rec["water_body"] == "unknown"
-    assert "Water body: unknown" in html
-    assert ">unknown<" in html                      # comment deadline
+    assert "<dt>Water body</dt><dd>unknown</dd>" in html
     assert rec["stage_kind"] == "unknown"
 
 
@@ -173,8 +172,8 @@ def test_closed_comment_period_is_likely_too_late():
                 comment_deadline="2026-10-01")
     records, _, html = _publish(_db_with([(item, {"score": 50, "stage": "comment closed 2026-10-01, decision pending"})]))
     assert records[0]["stage_kind"] == "closed" and records[0]["too_late"]
-    assert 'class="badge late">Likely too late' in html      # visible (no hidden attribute)
-    assert "2026-10-01 (closed)" in html
+    # A deadline that has passed is not shown on the card (owner, 2026-11-19): only the stage.
+    assert "Public comments close" not in html and "Under review, decision pending" in html
 
 
 def test_open_items_first_within_a_tier():
@@ -239,7 +238,7 @@ def test_written_site_files(tmp_path):
     about = (tmp_path / "about.html").read_text(encoding="utf-8")
     assert '<meta name="robots" content="noindex, nofollow">' in html
     assert "contact@example.org" in html
-    assert "Automatic, not yet reviewed" in about and "Strong match" in about
+    assert "Listed automatically; not yet" in about and "Strong fit" in about
     assert json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))[0]["tier"] == "strong"
 
 

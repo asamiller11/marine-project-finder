@@ -197,24 +197,29 @@ def _records():
     return {r["id"]: r for r in records}, skipped
 
 
-def test_profile_only_projects_need_possible_and_stay_off_the_general_list():
+def test_profile_projects_need_possible_and_are_also_on_the_full_list():
+    # "All habitat work" is the full list (owner, 2026-11-19): a project a profile lists is on it too.
     recs, skipped = _records()
-    assert "iaac:2" in recs and recs["iaac:2"]["profile_only"]
+    assert "iaac:2" in recs and not recs["iaac:2"].get("profile_only") and recs["iaac:2"]["tier"] == "possible"
+    assert recs["iaac:2"]["listed_via"] == "Hard-structure eco-engineering"
     assert recs["iaac:2"]["profiles"]["hard-structure"]["score"] >= 35
     assert listed_in_profile(recs["iaac:2"], "hard-structure")
     assert "iaac:3" not in recs and skipped["not_relevant"] == 1
     assert not recs["iaac:1"].get("profile_only") and recs["iaac:1"]["tier"] == "strong"
 
 
-def test_all_habitat_work_is_the_general_score():
+def test_all_habitat_work_is_the_full_list_and_profiles_are_subsets():
+    from mpf.profiles import listed_in_profile as lp
     recs, _ = _records()
     html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
     server = html.split('<div id="server-list">')[1].split('<div id="profile-only"')[0]
-    assert "Harbour Breakwater Extension" in server and "Coastal Erosion Protection" not in server
-    hidden = html.split('<div id="profile-only" hidden>')[1].split("</div>\n</div>")[0]
-    assert "Coastal Erosion Protection" in hidden and 'data-gtier="none"' in hidden
+    assert "Harbour Breakwater Extension" in server and "Coastal Erosion Protection" in server
+    everyone = set(recs)
+    for p in PROFILES:
+        assert {k for k, r in recs.items() if lp(r, p)} <= everyone
+    assert "|| 'hard-structure'" in html          # hard-structure is the default view
     assert "t-notrel" not in html
-    assert '<span class="n" id="stat-total">1</span><span class="l">Projects listed, all tiers</span>' in html  # general only
+    assert '<span class="n" id="stat-total">2</span><span class="l">Projects listed</span>' in html  # the full list
 
 
 def test_banner_figures_follow_the_profile_and_are_labelled():
@@ -231,7 +236,7 @@ def test_one_empty_deadline_line_and_compact_phone_banner():
     recs, _ = _records()
     html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
     assert "line.hidden = soon.length === 0;" in html
-    assert ".stats .stat-countries{display:none}" in html and '<li class="stat-countries">' in html
+    assert '<li class="stat-countries">' in html
 
 
 def test_banner_and_about_do_not_promise_quotes_for_every_source(tmp_path):
@@ -239,8 +244,7 @@ def test_banner_and_about_do_not_promise_quotes_for_every_source(tmp_path):
     site.write_site(tmp_path, list(recs.values()), SETTINGS, TODAY)
     html = (tmp_path / "index.html").read_text(encoding="utf-8")
     about = (tmp_path / "about.html").read_text(encoding="utf-8")
-    assert "Every flag shows the words that triggered it and, where the source's terms allow, the exact sentences." in html
-    assert "exact sentences that triggered it" not in html
+    assert "links to the official notice" in html and "exact sentences that triggered it" not in html
     assert "Where a source's terms allow it, each listing shows short quotes" in about
 
 
@@ -268,7 +272,7 @@ def test_project_page_lists_matching_profiles_and_keeps_source(tmp_path):
     assert "Matches because: Breakwater" in page and "Kelp and other seaweed" not in page
     assert '<p class="attr">Source: ' in page
     other = (tmp_path / "p" / "iaac-2.html").read_text(encoding="utf-8")
-    assert "Not on the general list" in other and "Hard-structure eco-engineering" in other
+    assert "On the list because it fits the profile: Hard-structure eco-engineering" in other
 
 
 def test_csv_has_a_column_per_profile(tmp_path):
@@ -276,10 +280,10 @@ def test_csv_has_a_column_per_profile(tmp_path):
     site.write_site(tmp_path, list(recs.values()), SETTINGS, TODAY)
     rows = list(csv.DictReader(open(tmp_path / "projects.csv", encoding="utf-8-sig")))
     by_id = {r["id"]: r for r in rows}
-    assert by_id["iaac:1"]["profile_hard_structure"].startswith("Strong match (")
+    assert by_id["iaac:1"]["profile_hard_structure"].startswith("Strong fit (")
     assert by_id["iaac:1"]["profile_kelp"] == ""
-    assert by_id["iaac:2"]["tier"] == "Not on the general list"
-    assert by_id["iaac:2"]["profile_hard_structure"].startswith("Possible (")
+    assert by_id["iaac:2"]["tier"] == "Possible fit"
+    assert by_id["iaac:2"]["profile_hard_structure"].startswith("Possible fit (")
 
 
 def test_about_explains_profiles(tmp_path):
@@ -292,7 +296,6 @@ def test_about_explains_profiles(tmp_path):
     assert "—" not in about
 
 
-def test_listing_summary_counts_profile_only_projects_separately():
+def test_listing_summary_counts_every_listed_project():
     recs, _ = _records()
-    assert site.listing_summary(list(recs.values())) == "1 on the general list, plus 1 shown only under a profile"
-    assert site.listing_summary([r for r in recs.values() if not r.get("profile_only")]) == "1 on the general list"
+    assert site.listing_summary(list(recs.values())) == "2 on the general list"

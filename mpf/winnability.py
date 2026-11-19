@@ -140,9 +140,10 @@ def _short(name: str, n: int = 60) -> str:
 
 
 def entry_point(stage: str, rec: dict, stakeholders: dict, offsets: bool, start: dict | None) -> str:
-    owner = (stakeholders.get("owner") or [{}])[0].get("name")
-    firm = (stakeholders.get("consultant") or [{}])[0].get("name")
-    contractor = (stakeholders.get("contractor") or [{}])[0].get("name")
+    plain = lambda n: re.sub(r"\s*\(.*$", "", n) if n else n      # "Thistle Wind Partners (Qair ...)" -> the name
+    owner = plain((stakeholders.get("owner") or [{}])[0].get("name"))
+    firm = plain((stakeholders.get("consultant") or [{}])[0].get("name"))
+    contractor = plain((stakeholders.get("contractor") or [{}])[0].get("name"))
     who = f"the proponent ({_short(owner)})" if owner else "the proponent"
     if stage == "open":
         line = f"Comment period open until {long_date(rec.get('comment_deadline'))}: submit a comment or contact {who}"

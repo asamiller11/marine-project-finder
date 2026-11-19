@@ -139,10 +139,10 @@ def test_cards_hide_unpublished_counts_explain_jargon_and_mark_freshwater(tmp_pa
     html = (tmp_path / "index.html").read_text(encoding="utf-8")
     assert "<dt>Comments received</dt>" not in html
     assert '<abbr title="Small Craft Harbour: a fishing or recreational harbour run by Fisheries and Oceans Canada">SCH</abbr>' in html
-    assert '<span class="badge fresh">Freshwater</span>' in html and 'data-fresh="1"' in html
+    assert "On a lake or river (freshwater)." in html and 'data-fresh="1"' in html
     assert 'id="t-fresh"' in html and 'id="show-weak"' in html and "' Weak ' + (hw === 1" in html
     assert "Approved, may not be built yet" in html and "productView()" in html
-    assert "transform:rotate" not in html.split("details.panel>summary::after")[1][:400]
+    assert "transform:rotate" not in html
     page = (tmp_path / "p" / "iaac-1.html").read_text(encoding="utf-8")
     assert "<dt>Comments received</dt><dd>Not published</dd>" in page      # the project page keeps the full line
     assert "Feedback on this project" in page
@@ -220,7 +220,7 @@ def test_approved_label_reads_may_not_be_built_yet_everywhere(tmp_path):
         html = (tmp_path / name).read_text(encoding="utf-8")
         assert "a lead\"" not in html and "Approved: a lead" not in html, name
     assert "Approved, may not be built yet" in (tmp_path / "about.html").read_text(encoding="utf-8")
-    assert "Strong matches come first" in (tmp_path / "shortlist.html").read_text(encoding="utf-8")
+    assert "Strong fits come first" in (tmp_path / "shortlist.html").read_text(encoding="utf-8")
 
 
 def test_publish_doc_matches_weekly_schedule():

@@ -64,7 +64,7 @@ def test_country_sections_selector_and_region_filter():
     assert '<option value="NO" disabled>Norway (coming soon)</option>' in html
     assert 'id="f-region-label" hidden' in html                     # shown by the script for CA or US only
     assert 'data-region="Quebec"' in html
-    assert "Less tested language (fr)" in html
+    assert "Notice in a less tested language (French)." in html
 
 
 def test_coverage_panel_on_home_and_about():

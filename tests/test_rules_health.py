@@ -294,7 +294,7 @@ def test_built_site_has_feeds_status_and_last_successful_update(tmp_path):
     site.write_site(tmp_path, recs, s, date(2026, 11, 17), coverage={"countries": []})
     assert json.loads((tmp_path / "status.json").read_text()) == {"last_successful_update": "2026-11-17", "items": 1}
     assert (tmp_path / "feeds" / "all.xml").exists()
-    assert "Last successful update" in (tmp_path / "index.html").read_text()
+    assert "Last update" in (tmp_path / "index.html").read_text()
     assert 'href="feeds/all.xml"' in (tmp_path / "about.html").read_text()
     assert "Decision due (official notice)" in (tmp_path / "p" / "nl_ea-1.html").read_text()
 

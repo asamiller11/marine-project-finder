@@ -98,7 +98,7 @@ def test_every_project_gets_a_stable_page_with_source_badges_comments_and_timeli
     assert records[0]["page"] == "p/iaac-77.html"
     page = (tmp_path / "p" / "iaac-77.html").read_text()
     assert "Harbour Wharf Extension" in page and 'class="attr">Source:' in page
-    assert "tier-badge" in page and "Automatic, not yet reviewed" in page
+    assert "tier-badge" in page and "Listed automatically; not yet checked by a person." in page
     assert "2026-10-20 (date of the notice)" in page
     assert "9 (as of 2026-10-27)" in page and 'href="https://example.org/77/contributions"' in page
     assert "<h2>Timeline</h2>" in page and "Comment period closes (official notice)" in page
@@ -145,7 +145,7 @@ def test_history_file_is_written_and_second_update_marks_changes(tmp_path):
     records[0]["comment_deadline"] = "2026-12-01"
     site.write_site(tmp_path, records, SETTINGS, date(2026, 11, 12))
     index = (tmp_path / "index.html").read_text()
-    assert "Since the last update (2026-10-28)" in index and "1 deadline changed" in index
+    assert "What changed since the last update (2026-10-28)" in index and "1 deadline changed" in index
     assert "Deadline changed" in (tmp_path / "p" / "iaac-77.html").read_text()
 
 

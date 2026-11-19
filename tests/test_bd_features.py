@@ -231,7 +231,7 @@ def test_research_merges_into_card_with_procurement_first():
     assert rec["stakeholders"]["owner"][0]["source"] == "https://www.marineatlantic.ca/x"
     assert rec["research"]["facts"][0]["kind"] == "procurement"
     html = site._research_html(rec)
-    assert html.index("How to get in") < html.index("Habitat creation") and "open the link to confirm" in html
+    assert html.index("Supplier portals") < html.index("Habitat creation") and "found by web search, confirm" in html
     assert "Find contacts" in site._stakeholder_rows(rec)
 
 

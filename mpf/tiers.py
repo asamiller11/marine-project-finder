@@ -7,8 +7,8 @@ from __future__ import annotations
 import re
 
 TIER_ORDER = ["strong", "possible", "weak", "notrel", "watch"]
-TIER_LABELS = {"strong": "Strong match", "possible": "Possible", "weak": "Weak", "notrel": "Probably not relevant",
-               "watch": "Project watch (not a notice feed)"}
+TIER_LABELS = {"strong": "Strong fit", "possible": "Possible fit", "weak": "Weak fit", "notrel": "Not relevant",
+               "watch": "Project page we follow (not a notice)"}
 
 
 def tier_for(row: dict, conf: dict) -> tuple[str, str]:

@@ -11,6 +11,7 @@ Caledonian Maritime Assets Ltd (CMAL):
   checked: read
   procurement:
     - text: "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices."
+      short: "Watch CMAL's news and Find a Tender for the works tender."
       url: https://www.cmassets.co.uk/projects/tiree-terminal-works/
       checked: read
 
@@ -25,6 +26,7 @@ Marine Atlantic Inc.:
   checked: read
   procurement:
     - text: "Marine Atlantic posts its tenders on CanadaBuys (for example the Port aux Basques navigation RFP)."
+      short: "Watch CanadaBuys for Marine Atlantic tenders."
       url: https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/MX-444086928167
       checked: search
 
@@ -34,6 +36,7 @@ Fisheries and Oceans Canada - Small Craft Harbours:
   checked: search
   procurement:
     - text: "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors."
+      short: "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there)."
       url: https://canadabuys.canada.ca/en/tender-opportunities
       checked: search
 
@@ -43,6 +46,7 @@ Public Services and Procurement Canada:
   checked: search
   procurement:
     - text: "Federal works are tendered on CanadaBuys."
+      short: "Watch CanadaBuys for the construction tender."
       url: https://canadabuys.canada.ca/en/tender-opportunities
       checked: search
 
@@ -52,6 +56,7 @@ Department of National Defence:
   checked: search
   procurement:
     - text: "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada."
+      short: "Watch Defence Construction Canada and DND's major infrastructure list for the tender."
       url: https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html
       checked: search
 
