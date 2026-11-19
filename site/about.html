@@ -251,6 +251,19 @@ text-decoration:underline;text-underline-offset:3px}
 .auto{color:var(--muted);border:1px dashed var(--line-strong)}
 .lang{color:var(--muted);border-color:var(--line)}
 .badge.chg{color:var(--chg);background:var(--chg-bg)}
+.badge.open-until{color:var(--open);background:var(--open-bg);border-color:var(--open)}
+.win{margin:10px 0 0;font-size:.86rem;color:var(--ink-2)}
+.win p.entry{margin:0;padding:7px 10px;border-left:3px solid var(--brand);background:var(--surface-2);border-radius:0 8px 8px 0}
+.win p.why-h{margin:8px 0 2px;color:var(--muted);font-size:.8rem;font-weight:600}
+.win ul.why{margin:0;padding-left:1.2em}
+.win ul.why li{margin:1px 0}
+.not-named{color:var(--faint);font-style:italic}
+dl.facts dd .muted{color:var(--muted)}
+ul.who{list-style:none;padding:0;margin:0}
+ul.who li{margin:0 0 10px}
+ul.who .role{display:block;font-size:.78rem;color:var(--muted)}
+ul.who .how{display:block;font-size:.78rem;color:var(--faint)}
+section.soon .open-all{margin:10px 0 0;font-size:.88rem}
 dl.facts{display:grid;grid-template-columns:8.6em minmax(0,1fr);gap:5px 14px;margin:14px 0;padding:14px 0;font-size:.88rem;
 border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 dl.facts dt{color:var(--muted)}
@@ -366,13 +379,13 @@ section.soon li{grid-template-columns:auto 1fr}section.soon li a,section.soon .m
 <header class="topbar"><div class="wrap">
 <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b6684"/><path d="M6 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 24c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="#8fd3ea" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="#8fd3ea"/></svg><span>MitiMark</span></a>
 <nav class="top" aria-label="Main"><a href="index.html">Projects</a><a href="index.html#soon">Closing soon</a><a href="index.html#coverage">Coverage</a><a href="about.html" aria-current="page">About</a></nav>
-<p class="updated">Last successful update: <time>November 17, 2026</time></p>
+<p class="updated">Last successful update: <time>November 19, 2026</time></p>
 </div></header>
 <section class="page-head"><div class="wrap">
 <p class="eyebrow">About and method</p>
 <h1>About MitiMark</h1>
 <p>Early alerts on marine construction projects that may need habitat work</p>
-<p class="meta">Last successful update: <time>November 17, 2026</time></p>
+<p class="meta">Last successful update: <time>November 19, 2026</time></p>
 </div></section>
 <main class="wrap about-layout" id="main">
 <nav class="toc" aria-label="On this page"><p class="side-label">On this page</p>
@@ -401,6 +414,23 @@ matched and a link to the official notice instead. US Federal Register notices a
 mostly about marine mammals and noise, so their cards show only what the notice says about the construction,
 and a link.</p>
 
+<h3 id="winnability">How winnable a project is</h3>
+<p>The score has two parts. Relevance (above) asks whether the notice describes the right kind of work. Winnability
+adds or takes away points for what decides whether a supplier can still get in: the stage (pre-application, open
+for comment and under review score higher than approved or under construction), whether habitat offsetting,
+compensation or a Fisheries Act authorization is mentioned, whether an engineering or environmental consultant is
+named, when construction is due to start, and the size of the work. Winnability changes a project's tier but never
+adds a project to the list or takes one off it. Every project shows an "Entry point" line (who to approach, and when)
+and two or three plain reasons for its score.</p>
+
+<h3 id="who-is-involved">Who is involved</h3>
+<p>Each project lists its owner or proponent, its engineering or environmental consultant, its contractor and the
+agency contact, but only when the official source names them, with a note of where the name came from. Nothing is
+guessed. A role the source does not name shows "Not named yet": contractors, for example, are usually named only when a
+project goes to bid. For agency contacts only the name, job title and office are shown; phone numbers and email
+addresses are on the official notice. "Download shown projects (CSV)" includes these names, for building a target
+list.</p>
+
 <h2 id="automatic-listings-and-review">Automatic listings and review</h2>
 <p>Every scored notice is published automatically, marked "Automatic, not yet reviewed". When a person has
 checked a listing against the official notice, it is marked "Reviewed by a person". Listings found to be
@@ -424,6 +454,9 @@ notice that invited comments, it is labelled "date of the notice". Where a regis
 of comments received, the number is shown with the date it was read and a link to the registry's own
 comments page. Comment text, the names of people who commented and other personal details are never copied
 to this site. Anything a source does not publish is shown as "Not published".</p>
+<p>While a comment period is open, the project carries an "Open for comment until" label with the closing date. The
+label disappears once that date has passed. "Comment periods closing in the next 14 days" at the top of the project
+list, the "Open for comment only" filter (closing soonest first) and the RSS feeds all use the same dates.</p>
 <ul><li><strong>Canadian Impact Assessment Registry:</strong> The registry shows the number of comments received on some project pages (mostly larger assessments).</li><li><strong>Newfoundland and Labrador environmental assessment:</strong> The registry publishes the comment deadline but not the number of comments received.</li><li><strong>Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds):</strong> The portal&#x27;s feeds give the hearing deadline but not the number of responses.</li><li><strong>marine.gov.scot marine licence documentation:</strong> Representations are published as PDF documents, not as a count.</li><li><strong>Boletín Oficial del Estado (BOE) open data:</strong> BOE notices give the comment period in working days and publish no count.</li></ul>
 
 <h2 id="changes-between-updates-and-project-pages">Changes between updates and project pages</h2>
@@ -435,7 +468,7 @@ decided. Each project page shows a timeline of those changes next to the officia
 <p>At the top of the project list you can choose the kind of habitat work you do ("I work on: ..."). The list
 then uses that profile's tiers and order, and each project says in plain words why it matches. "All habitat work" is
 the general score described above and is the default.</p>
-<ul><li><strong>Hard-structure eco-engineering:</strong> Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock.</li><li><strong>Living shoreline and shellfish:</strong> Oysters, mussels, salt marsh, shoreline stabilization and erosion control.</li><li><strong>Seagrass and eelgrass:</strong> Eelgrass and seagrass beds: surveys, transplants, restoration and compensation.</li><li><strong>Kelp and other seaweed:</strong> Kelp forests, rockweed and other seaweed, and the rocky reefs they grow on. No current projects match. Today&#x27;s sources rarely describe this habitat.</li><li><strong>Coral:</strong> Warm- and cold-water coral, coralline habitat and sponge reefs. No current projects match. Today&#x27;s sources rarely describe this habitat.</li><li><strong>Mitigation banking and compensation:</strong> Offsetting, compensation, credits, habitat banking and compensation plans.</li></ul>
+<ul><li><strong>Hard-structure eco-engineering:</strong> Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock.</li><li><strong>Living shoreline and shellfish:</strong> Oysters, mussels, salt marsh, shoreline stabilization and erosion control.</li><li><strong>Seagrass and eelgrass:</strong> Eelgrass and seagrass beds: surveys, transplants, restoration and compensation.</li><li><strong>Kelp and other seaweed:</strong> Kelp forests, rockweed and other seaweed, and the rocky reefs they grow on.</li><li><strong>Coral:</strong> Warm- and cold-water coral, coralline habitat and sponge reefs. No current projects match. Today&#x27;s sources rarely describe this habitat.</li><li><strong>Mitigation banking and compensation:</strong> Offsetting, compensation, credits, habitat banking and compensation plans.</li></ul>
 <p>Profiles are rule-based guesses. Each one re-weights the same visible rules (keywords, project types and sizes)
 toward one kind of work, using the same Strong, Possible and Weak cut-offs. A project is listed for a profile only
 if the notice mentions at least one of that profile's core subjects. A project that the general list leaves out
@@ -453,8 +486,10 @@ with a link such as <code>?profile=seagrass</code>.</p>
 <p>For comment periods, a project whose comment period has closed or that has been decided is marked "Likely too
 late". For product makers (the hard-structure profile and its shortlist) that label is replaced by the project's
 stage: under assessment (comments open or closed) or approved. An approved project has passed environmental review;
-it is treated as a lead because design and purchasing may still be ahead. The site cannot yet tell whether
-construction has started or a tender has been issued, so treat "Approved, may not be built yet" as a prompt to check.</p>
+it is still shown as a lead because design and purchasing may still be ahead, but it scores lower than a project that
+is still under review (see <a href="#winnability">How winnable a project is</a>). The site marks a project as under
+construction only when the notice says so or its works window has started; it cannot tell whether a tender has been
+issued, so treat "Approved, may not be built yet" as a prompt to check.</p>
 <p>Projects on lakes or rivers carry a "Freshwater" label. They are hidden from the hard-structure profile unless you
 tick "Include freshwater". Hydroelectric stations and dams, and maintenance dredging of an existing berth with no new
 structure, are not treated as marine habitat projects.</p>
@@ -474,7 +509,7 @@ separate "Project watch (not a notice feed)" section, with no comment deadline, 
 the closing-soon list. No project watch source is in use at the moment.</p>
 
 <h2 id="coverage">Coverage</h2>
-<p><strong>For now the site is mostly Canada: 30 of the 44 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
+<p><strong>For now the site is mostly Canada: 30 of the 48 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
 <p>"Covered" means a source for that place is read automatically. "Partial" means only some sources are
 read, and they are named. "Coming soon" means no source is read yet, and no listings are shown for it.</p>
 <div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
@@ -528,8 +563,8 @@ read, and they are named. "Coming soon" means no source is read yet, and no list
 in your browser, so they stay current between updates.</p>
 
 <h2 id="feeds">RSS feeds</h2>
-<p>Each feed lists the projects that are new since the last update, with a link to the official notice and the source. Add a feed address to any feed reader. There is no sign-up and no email: this site stores nothing about who reads the feeds.</p>
-<ul><li><a href="feeds/all.xml">All projects on the general list</a></li><li><a href="feeds/hard-structure.xml">Hard-structure eco-engineering</a></li><li><a href="feeds/living-shoreline.xml">Living shoreline and shellfish</a></li><li><a href="feeds/seagrass.xml">Seagrass and eelgrass</a></li><li><a href="feeds/kelp.xml">Kelp and other seaweed</a></li><li><a href="feeds/coral.xml">Coral</a></li><li><a href="feeds/banking.xml">Mitigation banking and compensation</a></li></ul>
+<p>Each feed lists the comment periods closing in the next 14 days, then the projects that are new since the last update, with a link to the official notice and the source. Add a feed address to any feed reader. There is no sign-up and no email: this site stores nothing about who reads the feeds.</p>
+<ul><li><a href="feeds/comment-periods.xml">Comment periods closing in the next 14 days (every profile)</a></li><li><a href="feeds/all.xml">All projects on the general list</a></li><li><a href="feeds/hard-structure.xml">Hard-structure eco-engineering</a></li><li><a href="feeds/living-shoreline.xml">Living shoreline and shellfish</a></li><li><a href="feeds/seagrass.xml">Seagrass and eelgrass</a></li><li><a href="feeds/kelp.xml">Kelp and other seaweed</a></li><li><a href="feeds/coral.xml">Coral</a></li><li><a href="feeds/banking.xml">Mitigation banking and compensation</a></li></ul>
 <h2 id="known-limits">Known limits</h2>
 <ul>
 <li>Public notices often appear after a project's design is done, so some listings will be too late to
