@@ -23,8 +23,8 @@
   "approved_on": null,
   "score": 100,
   "tier": "strong",
-  "tier_label": "Strong match",
-  "tier_reason": "Relevance 96, winnability +22",
+  "tier_label": "Strong fit",
+  "tier_reason": "96 points for the kind of work, plus 22 for stage, timing and who is named",
   "reviewed": true,
   "summary": "Project by Marine Atlantic Inc. in Port aux Basques Harbour, Newfoundland and Labrador. The notice mentions breakwater or jetty, dredging, infill or causeway and wharf or dock work and about 418,000 m3 of material.",
   "summary_note": "auto",
@@ -59,42 +59,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 100,
     "because": "Breakwater, jetty or groyne; Wharf, pier or large dock; Infill, reclamation or causeway; size 418,000 cubic metres",
     "relevance": 100
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 100,
     "because": "Offsetting, compensation, credits or habitat banking; Habitat offsetting or compensation mentioned; New habitat, enhancement or nature-inclusive design; size 418,000 cubic metres",
     "relevance": 84
@@ -144,6 +144,7 @@
      "procurement": [
       {
        "text": "Marine Atlantic posts its tenders on CanadaBuys (for example the Port aux Basques navigation RFP).",
+       "short": "Watch CanadaBuys for Marine Atlantic tenders.",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/MX-444086928167",
        "checked": "search"
       }
@@ -193,8 +194,8 @@
   "approved_on": null,
   "score": 92,
   "tier": "strong",
-  "tier_label": "Strong match",
-  "tier_reason": "Relevance 76, winnability +16",
+  "tier_label": "Strong fit",
+  "tier_reason": "76 points for the kind of work, plus 16 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging, offshore wind and pile work and an area of about 18,000,000 m2.",
   "summary_note": "auto",
@@ -219,42 +220,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 79,
     "because": "Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; Work below high water or footprint on the seabed; size 600 m",
     "relevance": 63
    },
    "living-shoreline": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 68,
     "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Shellfish, oyster or mussel beds; size 600 m",
     "relevance": 52
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -307,7 +308,7 @@
   "win": {
    "points": 16,
    "stage": "pre_application",
-   "entry_point": "Pre-application: contact the engineering firm (GoBe Consultants (APEM Group), lead environmental consultant).",
+   "entry_point": "Pre-application: contact the engineering firm (GoBe Consultants).",
    "reasons": [
     "Offshore wind",
     "Early: pre-application stage, before the design is fixed (+10)",
@@ -353,8 +354,8 @@
   "approved_on": null,
   "score": 85,
   "tier": "strong",
-  "tier_label": "Strong match",
-  "tier_reason": "Relevance 65, winnability +20",
+  "tier_label": "Strong fit",
+  "tier_reason": "65 points for the kind of work, plus 20 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging, pile, port or terminal, shoreline protection and wharf or dock work and an area of about 10,000 m2.",
   "summary_note": "auto",
@@ -379,42 +380,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 98,
     "because": "Shoreline protection, seawall or bulkhead; Pier (not at a dam, intake or bridge); Port or marine terminal; size 1.9 km (doubtful size reading not counted (5km))",
     "relevance": 78
    },
    "living-shoreline": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 72,
     "because": "Shoreline protection, seawall or bulkhead; Shellfish, oyster or mussel beds; Work below high water or footprint on the seabed; size 1.9 km (doubtful size reading not counted (5km))",
     "relevance": 52
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 86,
     "because": "Kelp or seaweed; Work below high water or footprint on the seabed; Wharf, pier or large dock; size 1.9 km (doubtful size reading not counted (5km))",
     "relevance": 66
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -454,12 +455,6 @@
    "facts": [
     {
      "kind": "procurement",
-     "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
-     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
-     "checked": "read"
-    },
-    {
-     "kind": "procurement",
      "text": "CMAL engineering design framework with a Tobermory Ferry Terminal lot (Find a Tender notice 079381-2025; bids were due February 2026). Find a Tender refuses automated reading.",
      "source": "https://www.find-tender.service.gov.uk/Notice/079381-2025",
      "checked": "search"
@@ -469,6 +464,14 @@
      "text": "Works covered by the screening: an aligning structure, shore power and a larger marshalling area; part of CMAL's Small Vessel Replacement Programme.",
      "source": "https://marine.gov.scot/sites/default/files/scr-0106_-_screening_opinion_schedule_2.pdf",
      "checked": "search"
+    },
+    {
+     "kind": "procurement",
+     "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+     "checked": "read",
+     "short": "Watch CMAL's news and Find a Tender for the works tender.",
+     "general": true
     }
    ],
    "people": [],
@@ -480,6 +483,7 @@
      "procurement": [
       {
        "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+       "short": "Watch CMAL's news and Find a Tender for the works tender.",
        "url": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
        "checked": "read"
       }
@@ -534,8 +538,8 @@
   "approved_on": null,
   "score": 75,
   "tier": "strong",
-  "tier_label": "Strong match",
-  "tier_reason": "Relevance 57, winnability +18",
+  "tier_label": "Strong fit",
+  "tier_reason": "57 points for the kind of work, plus 18 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging work and about 10,000 m3 of material and an area of about 17,736 m2.",
   "summary_note": "auto",
@@ -560,42 +564,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "living-shoreline": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 66,
     "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Work below high water or footprint on the seabed; size 2 km",
     "relevance": 48
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -692,8 +696,8 @@
   "approved_on": null,
   "score": 50,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 34, winnability +16",
+  "tier_label": "Possible fit",
+  "tier_reason": "34 points for the kind of work, plus 16 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Public Services and Procurement Canada in Quebec. The notice mentions pile and shoreline protection work.",
   "summary_note": "auto",
@@ -722,42 +726,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 67,
     "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Piles or pile-supported structure",
     "relevance": 51
    },
    "living-shoreline": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 41,
     "because": "Shoreline protection, seawall or bulkhead; Work below high water or footprint on the seabed; Wharf, pier or large dock",
     "relevance": 25
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -790,7 +794,9 @@
      "kind": "procurement",
      "text": "Federal works are tendered on CanadaBuys.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender.",
+     "general": true
     }
    ],
    "people": [],
@@ -802,6 +808,7 @@
      "procurement": [
       {
        "text": "Federal works are tendered on CanadaBuys.",
+       "short": "Watch CanadaBuys for the construction tender.",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -859,8 +866,8 @@
   "approved_on": null,
   "score": 47,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 33, winnability +14",
+  "tier_label": "Possible fit",
+  "tier_reason": "33 points for the kind of work, plus 14 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fort Alexander First Nation, Sagkeeng in Traverse Bay, Manitoba. The notice mentions shoreline protection work and a length of about 4,000 m.",
   "summary_note": "auto",
@@ -889,42 +896,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 67,
     "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; Scour or cable protection; size 145 m (doubtful size reading not counted (4 km))",
     "relevance": 53
    },
    "living-shoreline": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 55,
     "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 145 m (doubtful size reading not counted (4 km))",
     "relevance": 41
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -952,7 +959,20 @@
    ]
   },
   "research": {
-   "facts": [],
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "Sagkeeng First Nation tenders its Traverse Bay shoreline protection works itself (earlier Phase III packages were called as public tenders); watch for the next package.",
+     "source": "https://iaac-aeic.gc.ca/050/evaluations/proj/89367",
+     "checked": "search"
+    },
+    {
+     "kind": "structure",
+     "text": "Phase III is split into three work packages along Traverse Bay; earlier phases used a hard-armouring design first prepared by UMA Engineering Ltd. in 2008.",
+     "source": "https://iaac-aeic.gc.ca/050/evaluations/proj/89367",
+     "checked": "search"
+    }
+   ],
    "people": [],
    "orgs": {},
    "developer_only": false
@@ -1005,8 +1025,8 @@
   "approved_on": null,
   "score": 40,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 30, winnability +10",
+  "tier_label": "Possible fit",
+  "tier_reason": "30 points for the kind of work, plus 10 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Hamilton-Oshawa Port Authority in Ontario. The notice mentions wharf or dock work and a length of about 850 m.",
   "summary_note": "auto",
@@ -1035,42 +1055,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 45,
     "because": "Wharf, pier or large dock; size 850-metre",
     "relevance": 35
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -1144,6 +1164,268 @@
   "first_listed": "2026-11-12"
  },
  {
+  "id": "iaac:90863",
+  "title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90863?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Parks Canada",
+  "country": "CA",
+  "province": "Nova Scotia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "public comment open until 2026-11-28",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-28",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 12,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project by Parks Canada in Nova Scotia. The notice mentions shoreline protection work.",
+  "summary_note": "auto",
+  "quotes": [
+   "Construction activities generally include excavation and grading of the highway embankment, installation of a rock revetment using armourstone, filterstone, and clearstone and extension of four drainage culverts through the revetment.",
+   "Following construction, excavated beach material will be reinstated over and along the sides of the revetment to help integrate the structure into the surrounding landscape.",
+   "The project involves coastal erosion protection along a vulnerable section of the Cabot Trail, La Bloc Beach, within Cape Breton Highlands National Park."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/iaac-90863.html",
+  "comments": {
+   "opens": "2026-10-29",
+   "opens_how": "notice date",
+   "closes": "2026-11-28",
+   "days_left": 9,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 47,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units",
+    "relevance": 37
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 43,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization",
+    "relevance": 33
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Parks Canada",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Cape Breton Highlands National Park",
+     "detail": "",
+     "how": "Contact office listed on the registry page",
+     "quote": ""
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 12,
+  "win": {
+   "points": 10,
+   "stage": "open",
+   "entry_point": "Comment period open until November 28, 2026: submit a comment or contact the proponent (Parks Canada).",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Early: public comment period open (+10)"
+   ],
+   "construction_start": ""
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-01",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-01"
+ },
+ {
+  "id": "fed_register:2026-21419",
+  "title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia",
+  "url": "https://www.federalregister.gov/documents/2026/10/20/2026-21419/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "U.S. Navy",
+  "country": "US",
+  "province": "Georgia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "public comment open until 2026-11-19",
+  "stage_kind": "open",
+  "comment_deadline": "2026-11-19",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project by U.S. Navy in Georgia.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-us-navys-trf-wharf-interface-repairs-project-us-naval",
+    "comment_deadline": "2026-11-20"
+   }
+  ],
+  "page": "p/fed_register-2026-21419.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-19",
+   "days_left": 0,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 46,
+    "because": "112 piles; wharf, pier or large dock; moorings",
+    "min": 20,
+    "relevance": 36
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "U.S. Navy",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Austin Demarest",
+     "detail": "Office of Protected Resources, NMFS",
+     "how": "Contact named in the notice",
+     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Austin Demarest, Office of Protected Resources, NMFS, […]…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 0,
+  "win": {
+   "points": 10,
+   "stage": "open",
+   "entry_point": "Comment period open until November 19, 2026: submit a comment or contact the proponent (U.S. Navy).",
+   "reasons": [
+    "112 piles",
+    "Early: public comment period open (+10)"
+   ],
+   "construction_start": ""
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-13"
+ },
+ {
   "id": "scot_marine:bowdun offshore wind farm east of aberdeenshire",
   "title": "Bowdun Offshore Wind Farm – East of Aberdeenshire",
   "url": "https://marine.gov.scot/?q=node/28280",
@@ -1164,8 +1446,8 @@
   "approved_on": null,
   "score": 59,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 51, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "51 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions offshore wind work and an area of about 187,000,000 m2.",
   "summary_note": "auto",
@@ -1190,42 +1472,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 63,
     "because": "Offshore wind farm (foundations need scour and cable protection); Work below high water or footprint on the seabed; Species at risk; size 187km2",
     "relevance": 55
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -1275,7 +1557,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Thistle Wind Partners (Qair, Aspiravi and DEME Group)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Thistle Wind Partners); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -1317,8 +1599,8 @@
   "approved_on": null,
   "score": 59,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 79, winnability -4",
+  "tier_label": "Possible fit",
+  "tier_reason": "79 points for the kind of work, minus 4 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging, small craft harbour, offshore wind and pile work and an area of about 200,000,000 m2.",
   "summary_note": "auto",
@@ -1343,42 +1625,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 59,
     "because": "Marina or small craft harbour; Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; size 250km",
     "relevance": 66
    },
    "living-shoreline": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 51,
     "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Shellfish, oyster or mussel beds; size 250km",
     "relevance": 55
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -1429,7 +1711,7 @@
   "win": {
    "points": -4,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent (Fred. Olsen Seawind (taking over Vattenfall's 50% stake, su…) and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Fred. Olsen Seawind) and watch for the construction tender.",
    "reasons": [
     "Offshore wind",
     "Already approved: the design is mostly set (-8)",
@@ -1474,8 +1756,8 @@
   "approved_on": "2026-01-21",
   "score": 59,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 65, winnability -4",
+  "tier_label": "Possible fit",
+  "tier_reason": "65 points for the kind of work, minus 4 for stage, timing and who is named",
   "reviewed": true,
   "summary": "Project by Point Rousse Marine Terminal Ltd. in Green Bay, Newfoundland and Labrador. The notice mentions infill or causeway, small craft harbour, port or terminal, shoreline protection and wharf or dock work and an area of about 115,000 m2.",
   "summary_note": "auto",
@@ -1504,42 +1786,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 59,
     "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Port or marine terminal; size 1.4 kilometres",
     "relevance": 78
    },
    "living-shoreline": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 48,
     "because": "Shoreline protection, seawall or bulkhead; Species at risk; Work below high water or footprint on the seabed; size 1.4 kilometres",
     "relevance": 52
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -1622,8 +1904,8 @@
   "approved_on": null,
   "score": 56,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 38, winnability +18",
+  "tier_label": "Possible fit",
+  "tier_reason": "38 points for the kind of work, plus 18 for stage, timing and who is named",
   "reviewed": true,
   "summary": "Project by Department of National Defence in CFB Halifax Wrights Cove, Nova Scotia. The notice mentions breakwater or jetty and dredging work and an area of about 90,000 m2.",
   "summary_note": "auto",
@@ -1651,42 +1933,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 58,
     "because": "Breakwater, jetty or groyne; size 90,000 m 2",
     "relevance": 40
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -1716,16 +1998,18 @@
   "research": {
    "facts": [
     {
-     "kind": "procurement",
-     "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
-     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
-     "checked": "search"
-    },
-    {
      "kind": "structure",
      "text": "Canada has reserved part of the submarine project budget for new maintenance, operations and training infrastructure at CFB Halifax and CFB Esquimalt.",
      "source": "https://www.canada.ca/en/defence-investment-agency/news/2026/07/backgrounder-government-of-canada-advances-canadian-patrol-submarine-project.html",
      "checked": "search"
+    },
+    {
+     "kind": "procurement",
+     "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+     "checked": "search",
+     "short": "Watch Defence Construction Canada and DND's major infrastructure list for the tender.",
+     "general": true
     }
    ],
    "people": [],
@@ -1737,6 +2021,7 @@
      "procurement": [
       {
        "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+       "short": "Watch Defence Construction Canada and DND's major infrastructure list for the tender.",
        "url": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
        "checked": "search"
       }
@@ -1796,8 +2081,8 @@
   "approved_on": null,
   "score": 55,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 41, winnability +14",
+  "tier_label": "Possible fit",
+  "tier_reason": "41 points for the kind of work, plus 14 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions dredging, offshore wind and port or terminal work and an area of about 400,000 m2.",
   "summary_note": "auto",
@@ -1822,42 +2107,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 60,
     "because": "Offshore wind farm (foundations need scour and cable protection); Port or marine terminal; Offshore wind; size 0.4 km2",
     "relevance": 46
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -1956,8 +2241,8 @@
   "approved_on": null,
   "score": 53,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 45, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "45 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions offshore wind and pile work and an area of about 1,000 m2.",
   "summary_note": "auto",
@@ -1982,42 +2267,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 50,
     "because": "Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; Work below high water or footprint on the seabed; size 1000 square metres",
     "relevance": 42
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2082,7 +2367,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Highland Wind Limited (majority owned by funds managed by C…); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Highland Wind Limited); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -2126,8 +2411,8 @@
   "approved_on": null,
   "score": 51,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 37, winnability +14",
+  "tier_label": "Possible fit",
+  "tier_reason": "37 points for the kind of work, plus 14 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada – Small Craft Harbours in Small Craft Harbour, Nova Scotia. The notice mentions breakwater or jetty and small craft harbour work and an area of about 440 m2.",
   "summary_note": "auto",
@@ -2156,42 +2441,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "strong",
-    "tier_label": "Strong match",
+    "tier_label": "Strong fit",
     "score": 70,
     "because": "Breakwater, jetty or groyne; Marina or small craft harbour; Rock armour, riprap or armour units; size 185 m",
     "relevance": 56
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2222,9 +2507,17 @@
    "facts": [
     {
      "kind": "procurement",
+     "text": "A separate seawall repair at Port Morien was tendered on CanadaBuys in 2026 (bids closed 4 August 2026): the same owner tenders its harbour works there.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/cb-714-42414289",
+     "checked": "search"
+    },
+    {
+     "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -2236,6 +2529,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -2284,8 +2578,8 @@
   "approved_on": null,
   "score": 50,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 42, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "42 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Eyemouth Harbour, Scotland. The notice mentions dredging, offshore wind and wharf or dock work and an area of about 1,000 m2.",
   "summary_note": "auto",
@@ -2310,42 +2604,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 42,
     "because": "Offshore wind farm (foundations need scour and cable protection); Wharf, pier or large dock; Offshore wind; size 1000 square metres (small routine repair, kept at Weak)",
     "relevance": 34
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2423,8 +2717,8 @@
   "approved_on": null,
   "score": 49,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 31, winnability +18",
+  "tier_label": "Possible fit",
+  "tier_reason": "31 points for the kind of work, plus 18 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada – Small Craft Harbours in Head Small Craft Harbour, Prince Edward Island. The notice mentions small craft harbour work and a length of about 144 m.",
   "summary_note": "auto",
@@ -2453,42 +2747,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 52,
     "because": "Wharf, pier or large dock; Pier (not at a dam, intake or bridge); Marina or small craft harbour; size 144 m",
     "relevance": 34
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2521,7 +2815,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -2533,6 +2829,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -2586,8 +2883,8 @@
   "approved_on": null,
   "score": 42,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 34, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "34 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Suncor Energy Products Partnership in Burrard Inlet, British Columbia. The notice mentions dredging and wharf or dock work and about 700 m3 of material and an area of about 1,500 m2.",
   "summary_note": "auto",
@@ -2616,42 +2913,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2711,6 +3008,140 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "ca_coastal:5-21-0866",
+  "title": "OCTA & SCRRA, San Clemente",
+  "url": "https://www.coastal.ca.gov/meetings/agenda/#/2026/11/5",
+  "source": "ca_coastal",
+  "source_name": "California Coastal Commission meeting agendas",
+  "proponent": "Orange County Transportation Authority (OCTA) and Southern California Regional Rail Authority (SCRRA or Metrolink)",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-11-05",
+  "approved_on": "2026-11-05",
+  "score": 40,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "44 points for the kind of work, minus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Orange County Transportation Authority (OCTA) and Southern California Regional Rail Authority (SCRRA or Metrolink) in California. The notice mentions dredging, shoreline protection and wharf or dock work and about 527,574 m3 of material.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "Used with the Commission's written permission.",
+  "agency": "California Coastal Commission",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/ca_coastal-5-21-0866.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 56,
+    "because": "Shoreline protection, seawall or bulkhead; Pier (not at a dam, intake or bridge); Rock armour, riprap or armour units; size 700 ft",
+    "relevance": 60
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 40,
+    "because": "Shoreline protection, seawall or bulkhead; Dredging; Pier (not at a dam, intake or bridge); size 700 ft",
+    "relevance": 44
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Orange County Transportation Authority (OCTA) and Southern California Regional Rail Authority (SCRRA or Metrolink)",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 44,
+  "win": {
+   "points": -4,
+   "stage": "decided",
+   "entry_point": "Approved: contact the proponent (Orange County Transportation Authority) and watch for the construction tender.",
+   "reasons": [
+    "Dredging",
+    "Already approved: the design is mostly set (-8)",
+    "Large project (700 ft) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-19",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-19"
+ },
+ {
   "id": "iaac:90783",
   "title": "Wharf Reconstruction at Carmanville SCH, NL",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90783?culture=en-CA",
@@ -2733,8 +3164,8 @@
   "approved_on": null,
   "score": 40,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 32, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "32 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging work and about 800 m3 of material.",
   "summary_note": "auto",
@@ -2763,42 +3194,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 42,
     "because": "Wharf, pier or large dock; Rock armour, riprap or armour units; Scour or cable protection (small routine repair, kept at Weak)",
     "relevance": 34
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2831,7 +3262,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -2843,6 +3276,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -2856,7 +3290,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: still under review, design not final (+8)"
@@ -2895,8 +3329,8 @@
   "approved_on": null,
   "score": 39,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 31, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "31 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging work and about 1,500 m3 of material and an area of about 4,511 m2.",
   "summary_note": "auto",
@@ -2925,42 +3359,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 36,
     "because": "Wharf, pier or large dock; size 4,511 square meters",
     "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -2993,7 +3427,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -3005,6 +3441,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -3018,7 +3455,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: still under review, design not final (+8)"
@@ -3068,8 +3505,8 @@
   "approved_on": "2026-07-02",
   "score": 37,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 41, winnability -4",
+  "tier_label": "Possible fit",
+  "tier_reason": "41 points for the kind of work, minus 4 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada, Small Craft Harbours in Petty Harbour, Newfoundland and Labrador. The notice mentions breakwater or jetty and small craft harbour work and a length of about 230 m.",
   "summary_note": "auto",
@@ -3098,42 +3535,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 42,
     "because": "Breakwater, jetty or groyne; Marina or small craft harbour; Outfall or intake in the water; size 230-metre",
     "relevance": 46
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -3156,10 +3593,18 @@
   "research": {
    "facts": [
     {
+     "kind": "structure",
+     "text": "120 m rubble mound breakwater with a footprint of about 8,000 m2, plus a 230 m effluent pipeline extension.",
+     "source": "https://iaac-aeic.gc.ca/050/evaluations/proj/90056",
+     "checked": "search"
+    },
+    {
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -3171,6 +3616,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -3218,8 +3664,8 @@
   "approved_on": null,
   "score": 37,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 29, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "29 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging work.",
   "summary_note": "auto",
@@ -3248,42 +3694,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 36,
     "because": "Wharf, pier or large dock; Scour or cable protection",
     "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -3314,15 +3760,17 @@
    "facts": [
     {
      "kind": "procurement",
-     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
-     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "text": "A CanadaBuys award notice covers 'Wharf Construction - Harbour Breton, NL' (CAD 716,985); check whether it is this phase.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities/award-notice/ea003-170290001pwd",
      "checked": "search"
     },
     {
      "kind": "procurement",
-     "text": "A CanadaBuys award notice covers 'Wharf Construction - Harbour Breton, NL' (CAD 716,985); check whether it is this phase.",
-     "source": "https://canadabuys.canada.ca/en/tender-opportunities/award-notice/ea003-170290001pwd",
-     "checked": "search"
+     "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+     "source": "https://canadabuys.canada.ca/en/tender-opportunities",
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -3334,6 +3782,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -3347,7 +3796,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: still under review, design not final (+8)"
@@ -3386,8 +3835,8 @@
   "approved_on": null,
   "score": 37,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 29, winnability +8",
+  "tier_label": "Possible fit",
+  "tier_reason": "29 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Mary's Harbour, Newfoundland and Labrador. The notice mentions dredging work.",
   "summary_note": "auto",
@@ -3416,42 +3865,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 39,
     "because": "Wharf, pier or large dock; Pier (not at a dam, intake or bridge); Scour or cable protection",
     "relevance": 31
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -3484,7 +3933,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -3496,6 +3947,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -3509,7 +3961,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: still under review, design not final (+8)"
@@ -3548,8 +4000,8 @@
   "approved_on": "2026-10-20",
   "score": 36,
   "tier": "possible",
-  "tier_label": "Possible",
-  "tier_reason": "Relevance 44, winnability -8",
+  "tier_label": "Possible fit",
+  "tier_reason": "44 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions breakwater or jetty and wharf or dock work and an area of about 265 m2.",
   "summary_note": "auto",
@@ -3578,42 +4030,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 32,
     "because": "Breakwater, jetty or groyne; Fish habitat; Species at risk",
     "relevance": 40
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -3646,7 +4098,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -3658,6 +4112,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -3671,7 +4126,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)) and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours) and watch for the construction tender.",
    "reasons": [
     "Breakwater, jetty or groyne",
     "Already approved: the design is mostly set (-8)",
@@ -3682,6 +4137,516 @@
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "ca_coastal:6-24-0663",
+  "title": "St. Malo Association et al. Oceanside",
+  "url": "https://www.coastal.ca.gov/meetings/agenda/#/2026/12/9",
+  "source": "ca_coastal",
+  "source_name": "California Coastal Commission meeting agendas",
+  "proponent": "St. Malo Association et al.",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": "2026-12-09",
+  "approved_on": null,
+  "score": 35,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "27 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by St. Malo Association et al. in California. The notice mentions shoreline protection work and a length of about 610 m.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "Used with the Commission's written permission.",
+  "agency": "California Coastal Commission",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ca_coastal-6-24-0663.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 60,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 2,000 ft",
+    "relevance": 52
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 41,
+    "because": "Shoreline protection, seawall or bulkhead; size 2,000 ft",
+    "relevance": 33
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "St. Malo Association et al.",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 27,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (St. Malo Association et al.); no engineering firm is named yet.",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-19",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-19"
+ },
+ {
+  "id": "scot_marine:00012432/00011450",
+  "title": "Rock Armour Installation - Stromeferry",
+  "url": "https://marine.gov.scot/?q=node/28299",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 18,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions shoreline protection work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00012432-00011450.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 37,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; Scour or cable protection",
+    "relevance": 45
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Shoreline protection, seawall or bulkhead",
+    "relevance": 18
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 18,
+  "win": {
+   "points": -8,
+   "stage": "decided",
+   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Already approved: the design is mostly set (-8)",
+    "Approved, so kept at Possible or below"
+   ],
+   "construction_start": ""
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-20789",
+  "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska",
+  "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20789/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "City and Borough of Juneau",
+  "country": "US",
+  "province": "Alaska",
+  "language": "en",
+  "water_body": "Juneau",
+  "types": [
+   "Wharf, pier or large dock",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "comment closed 2026-11-12, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-12",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project by City and Borough of Juneau in Juneau, Alaska.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-city-and-borough-juneaus-seawalk-extension-project-juneau",
+    "comment_deadline": null
+   }
+  ],
+  "page": "p/fed_register-2026-20789.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-12",
+   "days_left": -7,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 51,
+    "because": "pile driving, 230 piles; wharf, pier or large dock; moorings",
+    "min": 20,
+    "relevance": 41
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "City and Borough of Juneau",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Kristy Jacobus",
+     "detail": "Office of Protected Resources, NMFS",
+     "how": "Contact named in the notice",
+     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Kristy Jacobus, Office of Protected Resources, NMFS, […]…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "City and Borough of Juneau posts construction bids on its Engineering and Public Works bids page.",
+     "source": "https://juneau.org/engineering-public-works/bids-and-rfps",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 0,
+  "win": {
+   "points": 10,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (City and Borough of Juneau); no engineering firm is named yet.",
+   "reasons": [
+    "pile driving, 230 piles",
+    "Construction expected to start April 2027: buying decisions soon (+6)",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": "The specified activities are currently scheduled to begin in April 2027"
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-13"
+ },
+ {
+  "id": "fed_register:2026-17614",
+  "title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington",
+  "url": "https://www.federalregister.gov/documents/2026/08/28/2026-17614/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-year",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "United States Navy",
+  "country": "US",
+  "province": "Washington",
+  "language": "en",
+  "water_body": "Puget Sound",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Shoreline protection, seawall or bulkhead",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "comment closed 2026-09-28, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-09-28",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project by United States Navy in Puget Sound, Washington.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorizations-taking-marine-mammals-incidental-year-1-bremerton-waterfront",
+    "comment_deadline": null
+   }
+  ],
+  "page": "p/fed_register-2026-17614.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-09-28",
+   "days_left": -52,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 49,
+    "because": "pile driving, 88 piles; wharf, pier or large dock; dredging; shoreline protection, seawall or bulkhead; moorings",
+    "min": 20,
+    "relevance": 39
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "United States Navy",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Kate Fleming",
+     "detail": "OPR, NMFS",
+     "how": "Contact named in the notice",
+     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Kate Fleming, OPR, NMFS, […]…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [
+    {
+     "kind": "procurement",
+     "text": "NAVFAC Northwest awarded a multiple-award construction contract for marine piers and waterfront facilities in July 2026 (awardees include Manson Construction, Triton Marine Construction, DOD Marine Constructors JV and Michels). Its use for this project is not confirmed; these firms are the likely bidders.",
+     "source": "https://www.navfac.navy.mil/Home/News-Detail/Article/4562776/new-macc-contract-award-supports-marine-pier-and-facility-construction-for-navf/",
+     "checked": "search"
+    }
+   ],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 0,
+  "win": {
+   "points": 10,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (United States Navy); no engineering firm is named yet.",
+   "reasons": [
+    "pile driving, 88 piles",
+    "Construction expected to start July 2027: buying decisions soon (+6)",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": "In-water work would occur between July 16, 2027"
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-13"
  },
  {
   "id": "iaac:90857",
@@ -3705,8 +4670,8 @@
   "approved_on": null,
   "score": 34,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 24, winnability +10",
+  "tier_label": "Weak fit",
+  "tier_reason": "24 points for the kind of work, plus 10 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions small craft harbour and wharf or dock work.",
   "summary_note": "auto",
@@ -3735,42 +4700,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 41,
     "because": "Wharf, pier or large dock; Marina or small craft harbour; Scour or cable protection",
     "relevance": 31
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -3803,7 +4768,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -3815,6 +4782,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -3828,7 +4796,7 @@
   "win": {
    "points": 10,
    "stage": "open",
-   "entry_point": "Comment period open until November 27, 2026: submit a comment or contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)).",
+   "entry_point": "Comment period open until November 27, 2026: submit a comment or contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours).",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: public comment period open (+10)"
@@ -3861,8 +4829,8 @@
   "approved_on": null,
   "score": 33,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 23, winnability +10",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 10 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Small Craft Harbours - Fisheries and Oceans Canada in Mont-Louis Harbour, Quebec. The notice mentions small craft harbour work.",
   "summary_note": "auto",
@@ -3890,42 +4858,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 33,
     "because": "Wharf, pier or large dock; Marina or small craft harbour",
     "relevance": 23
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4000,8 +4968,8 @@
   "approved_on": null,
   "score": 30,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +10",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 10 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Canadian Coast Guard in Nova Scotia. The notice mentions shoreline protection work and an area of about 1,500 m2.",
   "summary_note": "auto",
@@ -4028,42 +4996,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 55,
     "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 1,500 m 2",
     "relevance": 45
    },
    "living-shoreline": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 36,
     "because": "Shoreline protection, seawall or bulkhead; size 1,500 m 2",
     "relevance": 26
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4138,14 +5106,14 @@
   "approved_on": null,
   "score": 30,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +10",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 10 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Carver Mineral Resources, Inc. in Chedabucto Bay, Nova Scotia. The notice mentions port or terminal work.",
   "summary_note": "auto",
   "quotes": [
    "As proposed, the Lazy Head Marine Terminal Project would consist of a new marine terminal in Chedabucto Bay, designed to accommodate vessels of up to 48,000 deadweight tonnes and support the export of aggregate.",
-   "November 3, 2026 — The Impact Assessment Agency of Canada is inviting Indigenous Peoples and the public to review the summary of the Initial Project Description for the Lazy Head Marine Terminal Project and provide feedback by November 23, 2026."
+   "November 3, 2026 - The Impact Assessment Agency of Canada is inviting Indigenous Peoples and the public to review the summary of the Initial Project Description for the Lazy Head Marine Terminal Project and provide feedback by November 23, 2026."
   ],
   "attribution": "",
   "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
@@ -4167,42 +5135,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 18,
     "because": "Port or marine terminal",
     "relevance": 18
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4281,8 +5249,8 @@
   "approved_on": "2026-11-05",
   "score": 34,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 42, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "42 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Ralmax Group of Companies in Rock Bay Harbour, British Columbia. The notice mentions dredging, pile, port or terminal, shoreline protection and wharf or dock work and an area of about 3,000 m2.",
   "summary_note": "auto",
@@ -4311,42 +5279,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 51,
     "because": "Shoreline protection, seawall or bulkhead; Wharf, pier or large dock; Port or marine terminal; size 3000 m 2",
     "relevance": 59
    },
    "living-shoreline": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 28,
     "because": "Shoreline protection, seawall or bulkhead; Work below high water or footprint on the seabed; Dredging; size 3000 m 2",
     "relevance": 36
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4436,8 +5404,8 @@
   "approved_on": null,
   "score": 34,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 26, winnability +8",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions pile work.",
   "summary_note": "auto",
@@ -4466,42 +5434,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 31,
     "because": "Wharf, pier or large dock; Piles or pile-supported structure",
     "relevance": 23
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4534,7 +5502,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -4546,6 +5516,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -4559,7 +5530,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: still under review, design not final (+8)"
@@ -4582,7 +5553,7 @@
   "url": "https://marine.gov.scot/?q=node/28317",
   "source": "scot_marine",
   "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
+  "proponent": "Scottish Hydro Electric Transmission PLC",
   "country": "GB",
   "province": "Scotland",
   "language": "en",
@@ -4595,10 +5566,10 @@
   "approved_on": null,
   "score": 33,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 37, winnability -4",
+  "tier_label": "Weak fit",
+  "tier_reason": "37 points for the kind of work, minus 4 for stage, timing and who is named",
   "reviewed": false,
-  "summary": "Project in Sandford Bay, Scotland. The notice mentions about 111,000 m3 of material and an area of about 2,000 m2.",
+  "summary": "Project by Scottish Hydro Electric Transmission PLC in Sandford Bay, Scotland. The notice mentions about 111,000 m3 of material and an area of about 2,000 m2.",
   "summary_note": "auto",
   "quotes": [],
   "attribution": "© Crown Copyright",
@@ -4621,42 +5592,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4665,6 +5636,12 @@
   "freshwater": false,
   "stakeholders": {
    "owner": [
+    {
+     "name": "Scottish Hydro Electric Transmission PLC",
+     "detail": "",
+     "how": "Licence holder named on the marine licence",
+     "quote": ""
+    },
     {
      "name": "National Grid Electricity Transmission and SSEN Transmission (joint project)",
      "detail": "",
@@ -4702,7 +5679,7 @@
   "win": {
    "points": -4,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent (National Grid Electricity Transmission and SSEN Transmissio…) and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Scottish Hydro Electric Transmission PLC) and watch for the construction tender.",
    "reasons": [
     "Work below high water or footprint on the seabed",
     "Already approved: the design is mostly set (-8)",
@@ -4731,7 +5708,7 @@
   "url": "https://marine.gov.scot/?q=node/28337",
   "source": "scot_marine",
   "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
+  "proponent": "Muir Mhòr Offshore Wind Farm Ltd (Company Number SC717262) having its registered office at 120 Bath Street, Glasgow, Sco",
   "country": "GB",
   "province": "Scotland",
   "language": "en",
@@ -4746,10 +5723,10 @@
   "approved_on": null,
   "score": 33,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 41, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "41 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work and a length of about 3,000 m.",
+  "summary": "Project by Muir Mhòr Offshore Wind Farm Ltd (Company Number SC717262) having its registered office at 120 Bath Street, Glasgow, Sco in Scotland. The notice mentions offshore wind work and a length of about 3,000 m.",
   "summary_note": "auto",
   "quotes": [],
   "attribution": "© Crown Copyright",
@@ -4772,42 +5749,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 55,
     "because": "Offshore wind farm (foundations need scour and cable protection); Fixed-bottom foundations (monopile, jacket or gravity base); Scour or cable protection; size 3 km",
     "relevance": 63
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4816,6 +5793,12 @@
   "freshwater": false,
   "stakeholders": {
    "owner": [
+    {
+     "name": "Muir Mhòr Offshore Wind Farm Ltd (Company Number SC717262) having its registered office at 120 Bath Street, Glasgow, Sco",
+     "detail": "",
+     "how": "Licence holder named on the marine licence",
+     "quote": ""
+    },
     {
      "name": "Fred. Olsen Seawind (taking over Vattenfall's 50% stake, subject to approvals)",
      "detail": "",
@@ -4858,7 +5841,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent (Fred. Olsen Seawind (taking over Vattenfall's 50% stake, su…) and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Muir Mhòr Offshore Wind Farm Ltd) and watch for the construction tender.",
    "reasons": [
     "Offshore wind",
     "Already approved: the design is mostly set (-8)",
@@ -4884,7 +5867,7 @@
   "url": "https://marine.gov.scot/?q=node/28295",
   "source": "scot_marine",
   "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
+  "proponent": "Scottish Hydro Electric Power Distribution Plc",
   "country": "GB",
   "province": "Scotland",
   "language": "en",
@@ -4899,10 +5882,10 @@
   "approved_on": null,
   "score": 33,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 41, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "41 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions offshore wind work and a length of about 3,098 m.",
+  "summary": "Project by Scottish Hydro Electric Power Distribution Plc in Scotland. The notice mentions offshore wind work and a length of about 3,098 m.",
   "summary_note": "auto",
   "quotes": [],
   "attribution": "© Crown Copyright",
@@ -4929,42 +5912,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -4972,7 +5955,14 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Scottish Hydro Electric Power Distribution Plc",
+     "detail": "",
+     "how": "Licence holder named on the marine licence",
+     "quote": ""
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
@@ -4987,7 +5977,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Scottish Hydro Electric Power Distribution Plc) and watch for the construction tender.",
    "reasons": [
     "Offshore wind",
     "Already approved: the design is mostly set (-8)",
@@ -5037,8 +6027,8 @@
   "approved_on": null,
   "score": 31,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 23, winnability +8",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Department of National Defence in British Columbia. The notice mentions breakwater or jetty and small craft harbour work.",
   "summary_note": "auto",
@@ -5067,42 +6057,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 36,
     "because": "Breakwater, jetty or groyne; Marina or small craft harbour",
     "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5132,16 +6122,18 @@
   "research": {
    "facts": [
     {
-     "kind": "procurement",
-     "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
-     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
-     "checked": "search"
-    },
-    {
      "kind": "structure",
      "text": "Canada has reserved part of the submarine project budget for new maintenance, operations and training infrastructure at CFB Halifax and CFB Esquimalt.",
      "source": "https://www.canada.ca/en/defence-investment-agency/news/2026/07/backgrounder-government-of-canada-advances-canadian-patrol-submarine-project.html",
      "checked": "search"
+    },
+    {
+     "kind": "procurement",
+     "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+     "source": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
+     "checked": "search",
+     "short": "Watch Defence Construction Canada and DND's major infrastructure list for the tender.",
+     "general": true
     }
    ],
    "people": [],
@@ -5153,6 +6145,7 @@
      "procurement": [
       {
        "text": "Defence infrastructure of $25 million and more is listed on DND's Defence Major Infrastructure Projects page; construction is usually tendered through Defence Construction Canada.",
+       "short": "Watch Defence Construction Canada and DND's major infrastructure list for the tender.",
        "url": "https://www.canada.ca/en/department-national-defence/services/defence-major-infrastructure-projects.html",
        "checked": "search"
       }
@@ -5210,8 +6203,8 @@
   "approved_on": null,
   "score": 31,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 23, winnability +8",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Heidelberg Materials in Victoria Upper Harbour, British Columbia. The notice mentions dredging and port or terminal work.",
   "summary_note": "auto",
@@ -5240,42 +6233,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 18,
     "because": "Port or marine terminal",
     "relevance": 18
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5356,8 +6349,8 @@
   "approved_on": null,
   "score": 30,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 26, winnability +4",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 4 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Small Craft Harbours - Fisheries and Oceans Canada in COOP Wharf- L'Étang-du-Nord Harbour, Quebec. The notice mentions small craft harbour and wharf or dock work.",
   "summary_note": "auto",
@@ -5385,42 +6378,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 35,
     "because": "Wharf, pier or large dock; Marina or small craft harbour; Work below high water or footprint on the seabed",
     "relevance": 31
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5489,8 +6482,8 @@
   "approved_on": null,
   "score": 30,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +10",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 10 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland.",
   "summary_note": "auto",
@@ -5515,42 +6508,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5558,7 +6551,15 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Montrose Port Authority (the screening opinion is addressed to it)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://marine.gov.scot/sites/default/files/scr-0103_-_screening_opinion.pdf"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
@@ -5573,7 +6574,7 @@
   "win": {
    "points": 10,
    "stage": "pre_application",
-   "entry_point": "Pre-application: contact the proponent before the design is fixed.",
+   "entry_point": "Pre-application: contact the proponent (Montrose Port Authority) before the design is fixed.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: pre-application stage, before the design is fixed (+10)"
@@ -5611,8 +6612,8 @@
   "approved_on": null,
   "score": 28,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +8",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions offshore wind work.",
   "summary_note": "auto",
@@ -5637,42 +6638,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 36,
     "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
     "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5722,7 +6723,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Morven Offshore Wind Limited (EnBW and JERA Nex bp)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Morven Offshore Wind Limited); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -5754,8 +6755,8 @@
   "approved_on": null,
   "score": 28,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +8",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions offshore wind work.",
   "summary_note": "auto",
@@ -5780,42 +6781,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 36,
     "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
     "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5865,7 +6866,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Morven Offshore Wind Limited (EnBW and JERA Nex bp)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Morven Offshore Wind Limited); no engineering firm is named yet.",
    "reasons": [
     "Offshore wind",
     "Early: still under review, design not final (+8)"
@@ -5897,8 +6898,8 @@
   "approved_on": null,
   "score": 28,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability +8",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador.",
   "summary_note": "auto",
@@ -5927,42 +6928,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 28,
     "because": "Wharf, pier or large dock",
     "relevance": 20
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -5995,7 +6996,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -6007,6 +7010,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -6020,7 +7024,7 @@
   "win": {
    "points": 8,
    "stage": "assessment",
-   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)); no engineering firm is named yet.",
+   "entry_point": "Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.",
    "reasons": [
     "Wharf, pier or large dock",
     "Early: still under review, design not final (+8)"
@@ -6058,8 +7062,8 @@
   "approved_on": "2025-07-11",
   "score": 27,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 31, winnability -4",
+  "tier_label": "Weak fit",
+  "tier_reason": "31 points for the kind of work, minus 4 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Town of Harbour Main-Chapel’s Cove-Lakeview in Chapel’s Cove, Newfoundland and Labrador. The notice mentions breakwater or jetty work and a length of about 115 m.",
   "summary_note": "auto",
@@ -6088,42 +7092,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 41,
     "because": "Breakwater, jetty or groyne; Rock armour, riprap or armour units; size 115-metre",
     "relevance": 45
    },
    "living-shoreline": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 27,
     "because": "Erosion control works or shoreline stabilization; Breakwater, jetty or groyne; size 115-metre",
     "relevance": 31
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -6166,6 +7170,136 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "ca_coastal:5-26-0129",
+  "title": "Tahiti Marina Apartment and Docks LLC",
+  "url": "https://www.coastal.ca.gov/meetings/agenda/#/2026/11/6",
+  "source": "ca_coastal",
+  "source_name": "California Coastal Commission meeting agendas",
+  "proponent": "unknown",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Marina or small craft harbour",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-11-06",
+  "approved_on": "2026-11-06",
+  "score": 25,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "29 points for the kind of work, minus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project in California. The notice mentions small craft harbour, pile and wharf or dock work and an area of about 5,368 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Demolition of an existing 57,090 sq. ft., 9-dock, 214- slip marina supported by 109 piles, and construction of a new 57,786 sq. ft., 8-dock, 179-slip marina supported by 103 piles within the same parcel footprint.",
+   "The proposed docks will reduce the total number of slips in the marinas by 35 slips (214 existing to 179 new slips) at 4360 Via Marina, Marina Del Rey, Los Angeles County."
+  ],
+  "attribution": "Used with the Commission's written permission.",
+  "agency": "California Coastal Commission",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/ca_coastal-5-26-0129.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 30,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; Piles or pile-supported structure; size 57,786 sq. ft",
+    "relevance": 34
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 29,
+  "win": {
+   "points": -4,
+   "stage": "decided",
+   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "reasons": [
+    "Wharf, pier or large dock",
+    "Already approved: the design is mostly set (-8)",
+    "Large project (57,786 sq. ft) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-19",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-19"
+ },
+ {
   "id": "iaac:90698",
   "title": "Shoreline Protection - Whitby, Ontario",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90698?culture=en-CA",
@@ -6188,8 +7322,8 @@
   "approved_on": null,
   "score": 24,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 32, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "32 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Fisheries and Oceans Canada, Small Craft Harbours, Ontario & Prairie Region in Whitby Harbour, Ontario. The notice mentions breakwater or jetty, small craft harbour and shoreline protection work.",
   "summary_note": "auto",
@@ -6218,42 +7352,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 43,
     "because": "Breakwater, jetty or groyne; Shoreline protection, seawall or bulkhead; Marina or small craft harbour",
     "relevance": 51
    },
    "living-shoreline": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Shoreline protection, seawall or bulkhead; Breakwater, jetty or groyne; Marina or small craft harbour",
     "relevance": 24
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -6286,7 +7420,9 @@
      "kind": "procurement",
      "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
      "source": "https://canadabuys.canada.ca/en/tender-opportunities",
-     "checked": "search"
+     "checked": "search",
+     "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
+     "general": true
     }
    ],
    "people": [],
@@ -6298,6 +7434,7 @@
      "procurement": [
       {
        "text": "Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example 'Wharf Construction - Harbour Breton, NL'). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors.",
+       "short": "Watch CanadaBuys for the construction tender (Small Craft Harbours posts its wharf work there).",
        "url": "https://canadabuys.canada.ca/en/tender-opportunities",
        "checked": "search"
       }
@@ -6342,8 +7479,8 @@
   "approved_on": null,
   "score": 22,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 30, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "30 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland.",
   "summary_note": "auto",
@@ -6368,42 +7505,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 45,
     "because": "Seagrass or eelgrass; Seagrass survey, planting or restoration; New habitat, enhancement or nature-inclusive design",
     "relevance": 53
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -6411,13 +7548,34 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Namara Projects Ltd (Sound of Harris Seagrass Restoration Project)",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://marine.gov.scot/sites/default/files/md-00012484_licence_1.pdf"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
   },
   "research": {
-   "facts": [],
+   "facts": [
+    {
+     "kind": "structure",
+     "text": "About 2.5 ha of seagrass (Zostera marina) to be restored south-east of Berneray, in four planting areas.",
+     "source": "https://marine.gov.scot/sites/default/files/00011980_method_statement.pdf",
+     "checked": "search"
+    },
+    {
+     "kind": "timeline",
+     "text": "Main planting from 2026 to April 2028.",
+     "source": "https://marine.gov.scot/sites/default/files/00011980_method_statement.pdf",
+     "checked": "search"
+    }
+   ],
    "people": [],
    "orgs": {},
    "developer_only": false
@@ -6426,7 +7584,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Namara Projects Ltd) and watch for the construction tender.",
    "reasons": [
     "New habitat, enhancement or nature-inclusive design",
     "Already approved: the design is mostly set (-8)",
@@ -6459,8 +7617,8 @@
   "approved_on": null,
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions offshore wind work.",
   "summary_note": "auto",
@@ -6485,42 +7643,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Offshore wind farm (foundations need scour and cable protection); Offshore wind",
     "relevance": 28
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -6580,7 +7738,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent (Flotation Energy and Vårgrønn (Green Volt)) and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Flotation Energy and Vårgrønn) and watch for the construction tender.",
    "reasons": [
     "Offshore wind",
     "Already approved: the design is mostly set (-8)",
@@ -6627,8 +7785,8 @@
   "approved_on": null,
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 21, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "21 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Peterhead Bay, Scotland. The notice mentions dredging and small craft harbour work.",
   "summary_note": "auto",
@@ -6653,42 +7811,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 12,
     "because": "Marina or small craft harbour",
     "relevance": 12
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -6696,7 +7854,15 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "Peterhead Port Authority",
+     "detail": "",
+     "how": "Named by an official web source",
+     "quote": "",
+     "source": "https://marine.gov.scot/sites/default/files/marine_licence_md-00011654.pdf"
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
@@ -6711,7 +7877,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (Peterhead Port Authority) and watch for the construction tender.",
    "reasons": [
     "Dredging",
     "Already approved: the design is mostly set (-8)",
@@ -6745,8 +7911,8 @@
   "approved_on": null,
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 23, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project in Scotland. The notice mentions infill or causeway and port or terminal work.",
   "summary_note": "auto",
@@ -6771,42 +7937,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal; Infill, reclamation or causeway",
     "relevance": 21
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -6898,8 +8064,8 @@
   "approved_on": "2026-10-14",
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 20, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Great Northern Port Development in Crémaillère Harbour, Newfoundland and Labrador. The notice mentions port or terminal work.",
   "summary_note": "auto",
@@ -6927,42 +8093,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 18,
     "because": "Port or marine terminal",
     "relevance": 18
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -7028,8 +8194,8 @@
   "approved_on": null,
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 26, winnability -15",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, minus 15 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Caledonian Maritime Assets Ltd (CMAL) in Port Ellen harbour, Islay, Scotland. The notice mentions dredging, pile, port or terminal and wharf or dock work.",
   "summary_note": "auto",
@@ -7054,42 +8220,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Pier (not at a dam, intake or bridge); Port or marine terminal; Piles or pile-supported structure",
     "relevance": 26
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -7112,12 +8278,6 @@
   "research": {
    "facts": [
     {
-     "kind": "procurement",
-     "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
-     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
-     "checked": "read"
-    },
-    {
      "kind": "structure",
      "text": "Dredging, rock fill, piled quays (Fish Quay, then Commercial Quay), a finger pier and a fixed ramp.",
      "source": "https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/",
@@ -7134,6 +8294,14 @@
      "text": "Project email published by CMAL: petd@cmassets.co.uk",
      "source": "https://www.cmassets.co.uk/port-ellen-terminal-development-project-reaches-next-construction-milestone/",
      "checked": "read"
+    },
+    {
+     "kind": "procurement",
+     "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+     "source": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
+     "checked": "read",
+     "short": "Watch CMAL's news and Find a Tender for the works tender.",
+     "general": true
     }
    ],
    "people": [],
@@ -7145,6 +8313,7 @@
      "procurement": [
       {
        "text": "CMAL tenders its harbour and terminal works publicly (Tiree: tender issued Q3 2025, contract awarded 2026). Watch CMAL's news and Find a Tender for its notices.",
+       "short": "Watch CMAL's news and Find a Tender for the works tender.",
        "url": "https://www.cmassets.co.uk/projects/tiree-terminal-works/",
        "checked": "read"
       }
@@ -7202,8 +8371,8 @@
   "approved_on": "2026-04-28",
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 26, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by St. John’s Dockyard Limited in St. John’s Harbour, Newfoundland and Labrador. The notice mentions dredging, port or terminal and wharf or dock work.",
   "summary_note": "auto",
@@ -7232,42 +8401,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Pier (not at a dam, intake or bridge); Port or marine terminal",
     "relevance": 23
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -7338,8 +8507,8 @@
   "approved_on": "2026-11-06",
   "score": 20,
   "tier": "weak",
-  "tier_label": "Weak",
-  "tier_reason": "Relevance 23, winnability -8",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
   "summary": "Project by Mamuitun Tribal Council in St. Lawrence River, Quebec. The notice mentions shoreline protection work and an area of about 1,080 m2.",
   "summary_note": "auto",
@@ -7367,42 +8536,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 26,
     "because": "Shoreline protection, seawall or bulkhead; Outfall or intake in the water; size 1,080 m² (small routine repair, kept at Weak)",
     "relevance": 34
    },
    "living-shoreline": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 33,
     "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 1,080 m²",
     "relevance": 41
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -7458,192 +8627,43 @@
   "first_listed": "2026-10-29"
  },
  {
-  "id": "iaac:90863",
-  "title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90863?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Parks Canada",
-  "country": "CA",
-  "province": "Nova Scotia",
+  "id": "ca_coastal:3-26-0524",
+  "title": "West Cliff Armoring, Adaptation, and Access, Santa Cruz",
+  "url": "https://www.coastal.ca.gov/meetings/agenda/#/2026/11/4",
+  "source": "ca_coastal",
+  "source_name": "California Coastal Commission meeting agendas",
+  "proponent": "City of Santa Cruz",
+  "country": "US",
+  "province": "California",
   "language": "en",
   "water_body": "unknown",
   "types": [
    "Shoreline protection, seawall or bulkhead"
   ],
-  "stage": "public comment open until 2026-11-28",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-28",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 12,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 12, winnability +10",
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": "2026-11-04",
+  "approved_on": "2026-11-04",
+  "score": 20,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, minus 8 for stage, timing and who is named",
   "reviewed": false,
-  "summary": "Project by Parks Canada in Nova Scotia. The notice mentions shoreline protection work.",
-  "summary_note": "auto",
-  "quotes": [
-   "Construction activities generally include excavation and grading of the highway embankment, installation of a rock revetment using armourstone, filterstone, and clearstone and extension of four drainage culverts through the revetment.",
-   "Following construction, excavated beach material will be reinstated over and along the sides of the revetment to help integrate the structure into the surrounding landscape.",
-   "The project involves coastal erosion protection along a vulnerable section of the Cabot Trail, La Bloc Beach, within Cape Breton Highlands National Park."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90863.html",
-  "comments": {
-   "opens": "2026-10-29",
-   "opens_how": "notice date",
-   "closes": "2026-11-28",
-   "days_left": 9,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 47,
-    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units",
-    "relevance": 37
-   },
-   "living-shoreline": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 43,
-    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization",
-    "relevance": 33
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "Parks Canada",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Cape Breton Highlands National Park",
-     "detail": "",
-     "how": "Contact office listed on the registry page",
-     "quote": ""
-    }
-   ]
-  },
-  "research": {
-   "facts": [],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 12,
-  "win": {
-   "points": 10,
-   "stage": "open",
-   "entry_point": "Comment period open until November 28, 2026: submit a comment or contact the proponent (Parks Canada).",
-   "reasons": [
-    "Shoreline protection, seawall or bulkhead",
-    "Early: public comment period open (+10)"
-   ],
-   "construction_start": ""
-  },
-  "profile_only": true,
-  "timeline": [
-   {
-    "date": "2026-11-01",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-01"
- },
- {
-  "id": "fed_register:2026-21419",
-  "title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia",
-  "url": "https://www.federalregister.gov/documents/2026/10/20/2026-21419/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
-  "source": "fed_register",
-  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
-  "proponent": "U.S. Navy",
-  "country": "US",
-  "province": "Georgia",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Wharf, pier or large dock",
-   "Moorings",
-   "Piles or pile-supported structure"
-  ],
-  "stage": "public comment open until 2026-11-19",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-19",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability +10",
-  "reviewed": false,
-  "summary": "Project by U.S. Navy in Georgia.",
+  "summary": "Project by City of Santa Cruz in California. The notice mentions shoreline protection work and about 1,453 m3 of material.",
   "summary_note": "auto",
   "quotes": [],
-  "attribution": "",
-  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "attribution": "Used with the Commission's written permission.",
+  "agency": "California Coastal Commission",
   "issued_by": "",
-  "too_late": false,
-  "also_listed": [
-   {
-    "source_name": "NOAA Fisheries incidental take authorizations for construction",
-    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-us-navys-trf-wharf-interface-repairs-project-us-naval",
-    "comment_deadline": "2026-11-20"
-   }
-  ],
-  "page": "p/fed_register-2026-21419.html",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/ca_coastal-3-26-0524.html",
   "comments": {
    "opens": null,
    "opens_how": "",
-   "closes": "2026-11-19",
-   "days_left": 0,
+   "closes": null,
+   "days_left": null,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -7653,145 +8673,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "possible",
-    "tier_label": "Possible",
-    "score": 46,
-    "because": "112 piles; wharf, pier or large dock; moorings",
-    "min": 20,
-    "relevance": 36
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "U.S. Navy",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Austin Demarest",
-     "detail": "Office of Protected Resources, NMFS",
-     "how": "Contact named in the notice",
-     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Austin Demarest, Office of Protected Resources, NMFS, […]…"
-    }
-   ]
-  },
-  "research": {
-   "facts": [],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 0,
-  "win": {
-   "points": 10,
-   "stage": "open",
-   "entry_point": "Comment period open until November 19, 2026: submit a comment or contact the proponent (U.S. Navy).",
-   "reasons": [
-    "112 piles",
-    "Early: public comment period open (+10)"
-   ],
-   "construction_start": ""
-  },
-  "profile_only": true,
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-13"
- },
- {
-  "id": "scot_marine:00012432/00011450",
-  "title": "Rock Armour Installation - Stromeferry",
-  "url": "https://marine.gov.scot/?q=node/28299",
-  "source": "scot_marine",
-  "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
-  "country": "GB",
-  "province": "Scotland",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Shoreline protection, seawall or bulkhead"
-  ],
-  "stage": "decision made",
-  "stage_kind": "decided",
-  "comment_deadline": null,
-  "decision_date": null,
-  "approved_on": null,
-  "score": 18,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 18, winnability -8",
-  "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions shoreline protection work.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "© Crown Copyright",
-  "agency": "Scottish Government, marine.gov.scot",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [],
-  "page": "p/scot_marine-00012432-00011450.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": null,
-   "days_left": null,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "Representations are published as PDF documents, not as a count."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
+    "tier_label": "Possible fit",
     "score": 37,
-    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; Scour or cable protection",
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 600-foot",
     "relevance": 45
    },
    "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Probably not relevant",
-    "score": 18,
-    "because": "Shoreline protection, seawall or bulkhead",
-    "relevance": 18
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 20,
+    "because": "Shoreline protection, seawall or bulkhead; size 600-foot",
+    "relevance": 26
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -7799,7 +8716,14 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "City of Santa Cruz",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
@@ -7810,11 +8734,11 @@
    "orgs": {},
    "developer_only": false
   },
-  "relevance_score": 18,
+  "relevance_score": 20,
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (City of Santa Cruz) and watch for the construction tender.",
    "reasons": [
     "Shoreline protection, seawall or bulkhead",
     "Already approved: the design is mostly set (-8)",
@@ -7822,16 +8746,17 @@
    ],
    "construction_start": ""
   },
-  "profile_only": true,
   "timeline": [
    {
-    "date": "2026-11-13",
+    "date": "2026-11-19",
     "type": "new",
     "text": "First listed"
    }
   ],
-  "changes": [],
-  "first_listed": "2026-11-13"
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-19"
  },
  {
   "id": "scot_marine:00011784",
@@ -7839,7 +8764,7 @@
   "url": "https://marine.gov.scot/?q=node/28318",
   "source": "scot_marine",
   "source_name": "marine.gov.scot marine licence documentation",
-  "proponent": "unknown",
+  "proponent": "The Highland Council",
   "country": "GB",
   "province": "Scotland",
   "language": "en",
@@ -7853,11 +8778,11 @@
   "decision_date": null,
   "approved_on": null,
   "score": 12,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 12, winnability -8",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
-  "summary": "Project in Scotland. The notice mentions shoreline protection work.",
+  "summary": "Project by The Highland Council in Scotland. The notice mentions shoreline protection work.",
   "summary_note": "auto",
   "quotes": [],
   "attribution": "© Crown Copyright",
@@ -7880,42 +8805,42 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 29,
     "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units",
     "relevance": 37
    },
    "living-shoreline": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 18,
     "because": "Shoreline protection, seawall or bulkhead",
     "relevance": 18
    },
    "seagrass": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "kelp": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "coral": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
    },
    "banking": {
     "tier": "notrel",
-    "tier_label": "Probably not relevant",
+    "tier_label": "Not relevant",
     "score": 0,
     "because": "",
     "relevance": 0
@@ -7923,7 +8848,14 @@
   },
   "freshwater": false,
   "stakeholders": {
-   "owner": [],
+   "owner": [
+    {
+     "name": "The Highland Council",
+     "detail": "",
+     "how": "Licence holder named on the marine licence",
+     "quote": ""
+    }
+   ],
    "consultant": [],
    "contractor": [],
    "agency_contact": []
@@ -7938,7 +8870,7 @@
   "win": {
    "points": -8,
    "stage": "decided",
-   "entry_point": "Approved: contact the proponent and watch for the construction tender.",
+   "entry_point": "Approved: contact the proponent (The Highland Council) and watch for the construction tender.",
    "reasons": [
     "Shoreline protection, seawall or bulkhead",
     "Already approved: the design is mostly set (-8)",
@@ -7946,12 +8878,17 @@
    ],
    "construction_start": ""
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -7977,9 +8914,9 @@
   "decision_date": "2025-06-05",
   "approved_on": "2025-06-05",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -8",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -8006,7 +8943,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal",
     "min": 20,
@@ -8045,12 +8982,17 @@
    ],
    "construction_start": ""
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8076,9 +9018,9 @@
   "decision_date": "2025-07-25",
   "approved_on": "2025-07-25",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -15",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -8105,7 +9047,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal",
     "min": 20,
@@ -8144,12 +9086,17 @@
    ],
    "construction_start": "Authorization effective 7/24/2026 - 7/24/2027"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8175,9 +9122,9 @@
   "decision_date": "2026-03-16",
   "approved_on": "2026-03-16",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -2",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -8204,7 +9151,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal",
     "min": 20,
@@ -8243,135 +9190,21 @@
    ],
    "construction_start": "Authorization effective 5/1/2028 - 4/30/2029"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
   "first_listed": "2026-11-17"
- },
- {
-  "id": "fed_register:2026-20789",
-  "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska",
-  "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20789/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
-  "source": "fed_register",
-  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
-  "proponent": "City and Borough of Juneau",
-  "country": "US",
-  "province": "Alaska",
-  "language": "en",
-  "water_body": "Juneau",
-  "types": [
-   "Wharf, pier or large dock",
-   "Moorings",
-   "Piles or pile-supported structure"
-  ],
-  "stage": "comment closed 2026-11-12, decision pending",
-  "stage_kind": "closed",
-  "comment_deadline": "2026-11-12",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability +10",
-  "reviewed": false,
-  "summary": "Project by City and Borough of Juneau in Juneau, Alaska.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "",
-  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [
-   {
-    "source_name": "NOAA Fisheries incidental take authorizations for construction",
-    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-city-and-borough-juneaus-seawalk-extension-project-juneau",
-    "comment_deadline": null
-   }
-  ],
-  "page": "p/fed_register-2026-20789.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": "2026-11-12",
-   "days_left": -7,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "This source publishes no comment data."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 51,
-    "because": "pile driving, 230 piles; wharf, pier or large dock; moorings",
-    "min": 20,
-    "relevance": 41
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "City and Borough of Juneau",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Kristy Jacobus",
-     "detail": "Office of Protected Resources, NMFS",
-     "how": "Contact named in the notice",
-     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Kristy Jacobus, Office of Protected Resources, NMFS, […]…"
-    }
-   ]
-  },
-  "research": {
-   "facts": [
-    {
-     "kind": "procurement",
-     "text": "City and Borough of Juneau posts construction bids on its Engineering and Public Works bids page.",
-     "source": "https://juneau.org/engineering-public-works/bids-and-rfps",
-     "checked": "search"
-    }
-   ],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 0,
-  "win": {
-   "points": 10,
-   "stage": "closed",
-   "entry_point": "Decision pending: contact the proponent (City and Borough of Juneau); no engineering firm is named yet.",
-   "reasons": [
-    "pile driving, 230 piles",
-    "Construction expected to start April 2027: buying decisions soon (+6)",
-    "Comment period closed, decision still pending (+4)"
-   ],
-   "construction_start": "The specified activities are currently scheduled to begin in April 2027"
-  },
-  "profile_only": true,
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-13"
  },
  {
   "id": "fed_register:2026-20222",
@@ -8394,9 +9227,9 @@
   "decision_date": "2026-10-02",
   "approved_on": "2026-10-02",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -8",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project by United States Navy in Puget Sound, Washington.",
   "summary_note": "auto",
@@ -8427,7 +9260,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 30,
     "because": "pile driving, 234 piles; wharf, pier or large dock",
     "min": 20,
@@ -8473,12 +9306,17 @@
    ],
    "construction_start": ""
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-13",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8505,9 +9343,9 @@
   "decision_date": "2025-08-15",
   "approved_on": "2025-08-15",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -9",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -8534,7 +9372,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal; Piles or pile-supported structure",
     "min": 20,
@@ -8601,12 +9439,17 @@
    ],
    "construction_start": "Authorization effective 3/1/2026 - 2/28/2031"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8633,9 +9476,9 @@
   "decision_date": null,
   "approved_on": null,
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability +4",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project by Oregon Department of Transportation in Newport, Oregon.",
   "summary_note": "auto",
@@ -8660,7 +9503,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 30,
     "because": "pile driving, 33 piles; wharf, pier or large dock",
     "min": 20,
@@ -8705,12 +9548,17 @@
    ],
    "construction_start": ""
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-13",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8739,9 +9587,9 @@
   "decision_date": null,
   "approved_on": null,
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability +10",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project by PetroMarine Services in Juneau, Alaska.",
   "summary_note": "auto",
@@ -8772,7 +9620,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 31,
     "because": "pile driving; wharf, pier or large dock; shoreline protection, seawall or bulkhead; moorings",
     "min": 20,
@@ -8818,12 +9666,17 @@
    ],
    "construction_start": "The specified activities are currently scheduled to begin January 1, 2027"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-13",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8850,9 +9703,9 @@
   "decision_date": "2025-07-30",
   "approved_on": "2025-07-30",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -15",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -8879,7 +9732,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal; Piles or pile-supported structure",
     "min": 20,
@@ -8911,12 +9764,17 @@
    ],
    "construction_start": "Authorization effective 10/1/2026 - 9/30/2027"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -8942,9 +9800,9 @@
   "decision_date": "2026-08-12",
   "approved_on": "2026-08-12",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -15",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Alaska.",
   "summary_note": "auto",
@@ -8971,7 +9829,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal",
     "min": 20,
@@ -9010,12 +9868,17 @@
    ],
    "construction_start": "Authorization effective 9/1/2026 - 8/31/2027"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
@@ -9041,9 +9904,9 @@
   "decision_date": "2026-05-28",
   "approved_on": "2026-05-28",
   "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability -15",
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
   "reviewed": false,
   "summary": "Project in Maryland.",
   "summary_note": "auto",
@@ -9070,7 +9933,7 @@
   "profiles": {
    "hard-structure": {
     "tier": "weak",
-    "tier_label": "Weak",
+    "tier_label": "Weak fit",
     "score": 20,
     "because": "Port or marine terminal",
     "min": 20,
@@ -9109,129 +9972,20 @@
    ],
    "construction_start": "Authorization effective 06/01/2026 - 05/31/2028"
   },
-  "profile_only": true,
+  "listed_via": "Hard-structure eco-engineering",
   "timeline": [
    {
     "date": "2026-11-17",
     "type": "new",
     "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to weak"
    }
   ],
   "changes": [],
   "first_listed": "2026-11-17"
- },
- {
-  "id": "fed_register:2026-17614",
-  "title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington",
-  "url": "https://www.federalregister.gov/documents/2026/08/28/2026-17614/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-year",
-  "source": "fed_register",
-  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
-  "proponent": "United States Navy",
-  "country": "US",
-  "province": "Washington",
-  "language": "en",
-  "water_body": "Puget Sound",
-  "types": [
-   "Wharf, pier or large dock",
-   "Dredging",
-   "Shoreline protection, seawall or bulkhead",
-   "Moorings",
-   "Piles or pile-supported structure"
-  ],
-  "stage": "comment closed 2026-09-28, decision pending",
-  "stage_kind": "closed",
-  "comment_deadline": "2026-09-28",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 0,
-  "tier": "notrel",
-  "tier_label": "Probably not relevant",
-  "tier_reason": "Relevance 0, winnability +10",
-  "reviewed": false,
-  "summary": "Project by United States Navy in Puget Sound, Washington.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "",
-  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
-  "issued_by": "",
-  "too_late": true,
-  "also_listed": [
-   {
-    "source_name": "NOAA Fisheries incidental take authorizations for construction",
-    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorizations-taking-marine-mammals-incidental-year-1-bremerton-waterfront",
-    "comment_deadline": null
-   }
-  ],
-  "page": "p/fed_register-2026-17614.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": "2026-09-28",
-   "days_left": -52,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "This source publishes no comment data."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible",
-    "score": 49,
-    "because": "pile driving, 88 piles; wharf, pier or large dock; dredging; shoreline protection, seawall or bulkhead; moorings",
-    "min": 20,
-    "relevance": 39
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "United States Navy",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Kate Fleming",
-     "detail": "OPR, NMFS",
-     "how": "Contact named in the notice",
-     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Kate Fleming, OPR, NMFS, […]…"
-    }
-   ]
-  },
-  "research": {
-   "facts": [],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 0,
-  "win": {
-   "points": 10,
-   "stage": "closed",
-   "entry_point": "Decision pending: contact the proponent (United States Navy); no engineering firm is named yet.",
-   "reasons": [
-    "pile driving, 88 piles",
-    "Construction expected to start July 2027: buying decisions soon (+6)",
-    "Comment period closed, decision still pending (+4)"
-   ],
-   "construction_start": "In-water work would occur between July 16, 2027"
-  },
-  "profile_only": true,
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-13"
  }
 ]

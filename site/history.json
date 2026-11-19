@@ -416,6 +416,18 @@
 "tier": "possible",
 "title": "Port Colborne Bulk Biofuels Storage and Marine Refuelling Facility"
 },
+"iaac:90863": {
+"comment_deadline": "2026-11-28",
+"stage_kind": "open",
+"tier": "possible",
+"title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection"
+},
+"fed_register:2026-21419": {
+"comment_deadline": "2026-11-19",
+"stage_kind": "open",
+"tier": "possible",
+"title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia"
+},
 "scot_marine:bowdun offshore wind farm east of aberdeenshire": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -476,6 +488,12 @@
 "tier": "possible",
 "title": "Suncor Dredging - West Dock Berth"
 },
+"ca_coastal:5-21-0866": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "OCTA & SCRRA, San Clemente"
+},
 "iaac:90783": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -511,6 +529,30 @@
 "stage_kind": "decided",
 "tier": "possible",
 "title": "Breakwater Rehabilitation at Fortune SCH, NL"
+},
+"ca_coastal:6-24-0663": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "St. Malo Association et al. Oceanside"
+},
+"scot_marine:00012432/00011450": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "possible",
+"title": "Rock Armour Installation - Stromeferry"
+},
+"fed_register:2026-20789": {
+"comment_deadline": "2026-11-12",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska"
+},
+"fed_register:2026-17614": {
+"comment_deadline": "2026-09-28",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington"
 },
 "iaac:90857": {
 "comment_deadline": "2026-11-27",
@@ -614,6 +656,12 @@
 "tier": "weak",
 "title": "Chapel’s Cove Breakwater"
 },
+"ca_coastal:5-26-0129": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Tahiti Marina Apartment and Docks LLC"
+},
 "iaac:90698": {
 "comment_deadline": null,
 "stage_kind": "decided",
@@ -668,101 +716,77 @@
 "tier": "weak",
 "title": "Stormwater Outfall Rehabilitation and Coastal Protection Project, Pessamit"
 },
-"iaac:90863": {
-"comment_deadline": "2026-11-28",
-"stage_kind": "open",
-"tier": "notrel",
-"title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection"
-},
-"fed_register:2026-21419": {
-"comment_deadline": "2026-11-19",
-"stage_kind": "open",
-"tier": "notrel",
-"title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia"
-},
-"scot_marine:00012432/00011450": {
+"ca_coastal:3-26-0524": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
-"title": "Rock Armour Installation - Stromeferry"
+"tier": "weak",
+"title": "West Cliff Armoring, Adaptation, and Access, Santa Cruz"
 },
 "scot_marine:00011784": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Rock Armour Reventment Works- Old Rosskeen Bridge, West of Invergordon"
 },
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-angoon": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Alaska Department of Transportation and Public Facilities' Angoon Ferry Terminal Modification Project in Angoon, Alaska"
 },
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Alaska Department of Transportation and Public Facilities' Prince William Sound Ferry Terminal Improvement Projects in Cordova, Chenega, and Tatitlek, Alaska"
 },
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Alaska Department of Transportation and Public Facilities’ Cold Bay Ferry Terminal Reconstruction Project in Cold Bay, Alaska"
-},
-"fed_register:2026-20789": {
-"comment_deadline": "2026-11-12",
-"stage_kind": "closed",
-"tier": "notrel",
-"title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska"
 },
 "fed_register:2026-20222": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Marine Structure Maintenance and Pile Replacement Program in Puget Sound, Washington"
 },
 "noaa_ita:incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Modification of Port of Alaska's Modernization Program Phase 2B: Cargo Terminal Replacement Project in Anchorage, Alaska"
 },
 "fed_register:2026-18024": {
 "comment_deadline": "2026-09-18",
 "stage_kind": "closed",
-"tier": "notrel",
+"tier": "weak",
 "title": "Oregon Department of Transportation's Yaquina Bay Dolphin Replacement Project in Newport, Oregon"
 },
 "fed_register:2026-18458": {
 "comment_deadline": "2026-10-13",
 "stage_kind": "closed",
-"tier": "notrel",
+"tier": "weak",
 "title": "PetroMarine Services Juneau Rock Dump Terminal Reconstruction Project, Juneau, Alaska"
 },
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Reissuance of Alaska Department of Transportation and Public Facilities Pile Driving and Removal to Improve the Auke Bay East Ferry Terminal in Juneau, Alaska"
 },
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Reissuance of Alaska Department of Transportation and Public Facilities' Ferry Berth Construction Tongass Narrows Project"
 },
 "noaa_ita:incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal": {
 "comment_deadline": null,
 "stage_kind": "decided",
-"tier": "notrel",
+"tier": "weak",
 "title": "Tradepoint TiL Terminal, LLC's Sparrows Point Container Terminal Project in Baltimore County, MD"
-},
-"fed_register:2026-17614": {
-"comment_deadline": "2026-09-28",
-"stage_kind": "closed",
-"tier": "notrel",
-"title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington"
 }
 },
 "events": {
@@ -783,6 +807,11 @@
 "date": "2026-11-01",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to possible"
 }
 ],
 "iaac:90491": [
@@ -1029,6 +1058,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to possible"
 }
 ],
 "scot_marine:00012432/00011450": [
@@ -1036,6 +1070,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to possible"
 }
 ],
 "fed_register:2026-20789": [
@@ -1043,6 +1082,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to possible"
 }
 ],
 "fed_register:2026-20222": [
@@ -1050,6 +1094,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "fed_register:2026-18024": [
@@ -1057,6 +1106,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "fed_register:2026-18458": [
@@ -1064,6 +1118,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "fed_register:2026-17614": [
@@ -1071,6 +1130,11 @@
 "date": "2026-11-13",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to possible"
 }
 ],
 "scot_marine:00011429": [
@@ -1090,6 +1154,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "iaac:90624": [
@@ -1145,6 +1214,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-prince": [
@@ -1152,6 +1226,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-cold": [
@@ -1159,6 +1238,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "noaa_ita:incidental-take-authorization-port-alaskas-construction-activities-port-alaska-modernization": [
@@ -1166,6 +1250,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-pile-driving-and-removal": [
@@ -1173,6 +1262,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "noaa_ita:incidental-take-authorization-alaska-department-transportation-and-public-facilities-tongass": [
@@ -1180,6 +1274,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "noaa_ita:incidental-take-authorization-tradepoint-til-terminal-llcs-sparrows-point-container-terminal": [
@@ -1187,6 +1286,11 @@
 "date": "2026-11-17",
 "type": "new",
 "text": "First listed"
+},
+{
+"date": "2026-11-19",
+"type": "tier",
+"text": "Tier changed from notrel to weak"
 }
 ],
 "scot_marine:SCOP-0076": [
@@ -1253,6 +1357,34 @@
 }
 ],
 "developer:cmal-port-ellen-terminal": [
+{
+"date": "2026-11-19",
+"type": "new",
+"text": "First listed"
+}
+],
+"ca_coastal:5-21-0866": [
+{
+"date": "2026-11-19",
+"type": "new",
+"text": "First listed"
+}
+],
+"ca_coastal:6-24-0663": [
+{
+"date": "2026-11-19",
+"type": "new",
+"text": "First listed"
+}
+],
+"ca_coastal:5-26-0129": [
+{
+"date": "2026-11-19",
+"type": "new",
+"text": "First listed"
+}
+],
+"ca_coastal:3-26-0524": [
 {
 "date": "2026-11-19",
 "type": "new",
