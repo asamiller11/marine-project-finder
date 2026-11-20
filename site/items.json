@@ -49,7 +49,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -30,
+   "days_left": -31,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -323,9 +323,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -512,9 +510,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -716,7 +712,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-13",
-   "days_left": 24,
+   "days_left": 23,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -886,7 +882,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 11,
+   "days_left": 10,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1045,7 +1041,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-11",
-   "days_left": 22,
+   "days_left": 21,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1204,7 +1200,7 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 9,
+   "days_left": 8,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1308,122 +1304,6 @@
   ],
   "changes": [],
   "first_listed": "2026-11-01"
- },
- {
-  "id": "fed_register:2026-21419",
-  "title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia",
-  "url": "https://www.federalregister.gov/documents/2026/10/20/2026-21419/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
-  "source": "fed_register",
-  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
-  "proponent": "U.S. Navy",
-  "country": "US",
-  "province": "Georgia",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Wharf, pier or large dock",
-   "Moorings",
-   "Piles or pile-supported structure"
-  ],
-  "stage": "public comment open until 2026-11-19",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-19",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 0,
-  "tier": "possible",
-  "tier_label": "Possible fit",
-  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
-  "reviewed": false,
-  "summary": "Project by U.S. Navy in Georgia.",
-  "summary_note": "auto",
-  "quotes": [],
-  "attribution": "",
-  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [
-   {
-    "source_name": "NOAA Fisheries incidental take authorizations for construction",
-    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-us-navys-trf-wharf-interface-repairs-project-us-naval",
-    "comment_deadline": "2026-11-20"
-   }
-  ],
-  "page": "p/fed_register-2026-21419.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": "2026-11-19",
-   "days_left": 0,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "This source publishes no comment data."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible fit",
-    "score": 46,
-    "because": "112 piles; wharf, pier or large dock; moorings",
-    "min": 20,
-    "relevance": 36
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "U.S. Navy",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Austin Demarest",
-     "detail": "Office of Protected Resources, NMFS",
-     "how": "Contact named in the notice",
-     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Austin Demarest, Office of Protected Resources, NMFS, […]…"
-    }
-   ]
-  },
-  "research": {
-   "facts": [],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 0,
-  "win": {
-   "points": 10,
-   "stage": "open",
-   "entry_point": "Comment period open until November 19, 2026: submit a comment or contact the proponent (U.S. Navy).",
-   "reasons": [
-    "112 piles",
-    "Early: public comment period open (+10)"
-   ],
-   "construction_start": ""
-  },
-  "listed_via": "Hard-structure eco-engineering",
-  "timeline": [
-   {
-    "date": "2026-11-13",
-    "type": "new",
-    "text": "First listed"
-   },
-   {
-    "date": "2026-11-19",
-    "type": "tier",
-    "text": "Tier changed from notrel to possible"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-13"
  },
  {
   "id": "scot_marine:bowdun offshore wind farm east of aberdeenshire",
@@ -1726,9 +1606,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -1776,7 +1654,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -307,
+   "days_left": -308,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3136,9 +3014,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -3525,7 +3401,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -146,
+   "days_left": -147,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4264,9 +4140,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -4443,7 +4317,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-12",
-   "days_left": -7,
+   "days_left": -8,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4523,6 +4397,122 @@
   "first_listed": "2026-11-13"
  },
  {
+  "id": "fed_register:2026-21419",
+  "title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia",
+  "url": "https://www.federalregister.gov/documents/2026/10/20/2026-21419/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
+  "source": "fed_register",
+  "source_name": "Federal Register (NOAA Fisheries incidental harassment notices)",
+  "proponent": "U.S. Navy",
+  "country": "US",
+  "province": "Georgia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Moorings",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "public comment open until 2026-11-19",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-19",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 0,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project by U.S. Navy in Georgia.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "",
+  "agency": "Office of the Federal Register, National Archives; NOAA Fisheries",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [
+   {
+    "source_name": "NOAA Fisheries incidental take authorizations for construction",
+    "url": "https://www.fisheries.noaa.gov/action/incidental-take-authorization-us-navys-trf-wharf-interface-repairs-project-us-naval",
+    "comment_deadline": "2026-11-20"
+   }
+  ],
+  "page": "p/fed_register-2026-21419.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-19",
+   "days_left": -1,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 40,
+    "because": "112 piles; wharf, pier or large dock; moorings",
+    "min": 20,
+    "relevance": 36
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "U.S. Navy",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Austin Demarest",
+     "detail": "Office of Protected Resources, NMFS",
+     "how": "Contact named in the notice",
+     "quote": "…tected information. FOR FURTHER INFORMATION CONTACT: Austin Demarest, Office of Protected Resources, NMFS, […]…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 0,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (U.S. Navy); no engineering firm is named yet.",
+   "reasons": [
+    "112 piles",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-13",
+    "type": "new",
+    "text": "First listed"
+   },
+   {
+    "date": "2026-11-19",
+    "type": "tier",
+    "text": "Tier changed from notrel to possible"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-13"
+ },
+ {
   "id": "fed_register:2026-17614",
   "title": "Year 1 of the Bremerton Waterfront Infrastructure Improvements Project in Puget Sound, Washington",
   "url": "https://www.federalregister.gov/documents/2026/08/28/2026-17614/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-year",
@@ -4569,7 +4559,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-28",
-   "days_left": -52,
+   "days_left": -53,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4690,7 +4680,7 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 8,
+   "days_left": 7,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4848,7 +4838,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-12-15",
-   "days_left": 26,
+   "days_left": 25,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4986,7 +4976,7 @@
    "opens": "2026-11-05",
    "opens_how": "notice date",
    "closes": "2026-11-24",
-   "days_left": 5,
+   "days_left": 4,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -5125,7 +5115,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-23",
-   "days_left": 4,
+   "days_left": 3,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -5856,9 +5846,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -6368,7 +6356,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": -18,
+   "days_left": -19,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -7082,7 +7070,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -503,
+   "days_left": -504,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -7294,9 +7282,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -7758,9 +7744,7 @@
     "text": "Decision made"
    }
   ],
-  "changes": [
-   "decided"
-  ],
+  "changes": [],
   "first_listed": "2026-11-12"
  },
  {
@@ -8083,7 +8067,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -69,
+   "days_left": -70,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -8343,9 +8327,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -8391,7 +8373,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -223,
+   "days_left": -224,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -8526,7 +8508,7 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": -14,
+   "days_left": -15,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -8753,9 +8735,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-19"
  },
  {
@@ -9493,7 +9473,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-18",
-   "days_left": -62,
+   "days_left": -63,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -9610,7 +9590,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-13",
-   "days_left": -37,
+   "days_left": -38,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
