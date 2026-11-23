@@ -99,3 +99,13 @@ def test_softer_pass_header_blends_and_bands_curve(tmp_path):
     assert "flex-wrap:nowrap" in css.split(".toolbar{")[1].split("}")[0]                # scrolls sideways on phones
     assert "repeat(2,minmax(0,1fr))" in css                                            # two-column list on wide screens
     assert "prefers-reduced-motion: reduce" in page and "IntersectionObserver" in page  # fade-in respects motion
+
+
+def test_filters_in_use_are_always_visible(tmp_path):
+    """Owner, 2026-11-23: "open for comment" stayed on unseen and emptied every country. Filters in use now show
+    as removable chips, the empty message names them, and the address only keeps filters still switched on."""
+    _, projects, _ = _built(tmp_path)
+    assert 'id="active-filters"' in projects and "Open for public comment only" in projects
+    assert "Remove filter: " in projects and "Clear all filters" in projects
+    assert "No projects match these filters: " in projects and "OWN = ['profile', 'open', 'country'" in projects
+    assert "fo.checked = false" in projects

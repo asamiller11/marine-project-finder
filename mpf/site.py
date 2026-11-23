@@ -714,6 +714,10 @@ background-repeat:no-repeat;background-position:right 18px center;background-siz
 .results-bar h2{margin:0 0 4px;font-size:clamp(1.4rem,2.3vw,1.75rem)}
 #result-count{margin:4px 0 0;color:var(--muted);font-size:.97rem}
 .result-actions{margin:0;display:flex;flex-wrap:wrap;gap:0 18px}
+.active-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:12px 0 0}
+.fchip{font:inherit;font-size:.92rem;font-weight:600;min-height:40px;padding:6px 14px;border-radius:999px;border:0;cursor:pointer;background:var(--chip-on-bg);color:var(--chip-on-text);display:inline-flex;align-items:center;gap:6px}
+.fchip span{font-size:1.15rem;line-height:1}
+.fchip:hover{filter:brightness(.96)}
 /* The buttons above the list sit in one light rounded track that hugs them; on a phone it scrolls sideways. */
 .toolbar{display:flex;flex-wrap:nowrap;gap:4px;align-items:center;width:max-content;max-width:100%;margin:28px 0 0;padding:6px;
 background:var(--track);border-radius:999px;box-shadow:var(--shadow);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -930,7 +934,7 @@ nav.toc a,footer nav a{min-height:48px;display:flex;align-items:center}
 .picker{--band-top:32px;padding-bottom:calc(var(--curve) + 28px)}.picker select{width:100%}
 .page-band{--band-top:28px;padding-bottom:calc(var(--curve) + 24px)}.page-head .wrap{padding-top:32px;padding-bottom:calc(var(--curve) + 28px)}
 section.soon li{grid-template-columns:minmax(0,1fr);padding:12px 16px}
-.toolbar .chip{min-height:48px}
+.toolbar .chip{min-height:48px}.fchip{min-height:48px}
 .sheet{top:auto;left:0;width:100%;max-height:88vh;border-radius:var(--r) var(--r) 0 0;transform:translateY(100%)}
 .sheet.on{transform:none}
 details.fold>summary{padding:14px 18px;font-size:1.15rem}details.fold>.fold-body{padding:0 18px 18px}
@@ -1097,10 +1101,21 @@ JS = r"""
   }
   function stored(){ try { return localStorage.getItem(PSTORE) || ''; } catch (e) { return ''; } }
   function store(k){ try { localStorage.setItem(PSTORE, k); } catch (e) {} }
+  // The address always mirrors what is chosen now, so a filter switched off never comes back on reload.
+  var OWN = ['profile', 'open', 'country', 'show', 'view', 'sort', 'group'];
   function shareUrl(){
     var base = location.href.split('#')[0].split('?')[0];
-    var qs = location.search.replace(/^\?/, '').split('&').filter(function(x){ return x && x.indexOf('profile=') !== 0; });
+    var qs = location.search.replace(/^\?/, '').split('&').filter(function(x){
+      return x && OWN.indexOf(x.split('=')[0]) < 0; });
     if (prof() !== 'all') qs.push('profile=' + encodeURIComponent(prof()));
+    if (typeof fc !== 'undefined') {
+      if (fc.value) qs.push('country=' + fc.value);
+      if (fo.checked) qs.push('open=1');
+      if (fw.checked) qs.push('show=weak');
+      var v = currentView(); if (v !== 'all') qs.push('view=' + v);
+      if (fsort.value !== 'default') qs.push('sort=' + fsort.value);
+      if (fgroup.value !== 'country') qs.push('group=' + fgroup.value);
+    }
     return base + (qs.length ? '?' + qs.join('&') : '');
   }
   function paintBar(){
@@ -1244,6 +1259,55 @@ JS = r"""
              (fgroup.value !== 'country' ? 1 : 0) + (v !== 'all' ? 1 : 0), fcnt = $('filter-count');
     if (fcnt) { fcnt.textContent = nf; fcnt.hidden = !nf; }
     var cs = $('chip-soon'); if (cs) cs.textContent = soon.length;
+    paintActive(shown.length, v, watch);
+    try { history.replaceState(null, '', shareUrl() + location.hash); } catch (e) {}
+    paintBar();
+  }
+  // Every filter in use is shown as a chip with its own remove button, so nothing is ever hidden silently.
+  function activeFilters(v){
+    var a = [], txt = function(sel){ return sel.options[sel.selectedIndex].text; };
+    if (v !== 'all') a.push({label: {soon: 'Comment deadline soon', changed: 'Changed since last update', watch: 'My watch list'}[v],
+                             off: function(){ $('v-all').checked = true; }});
+    if (fo.checked) a.push({label: 'Open for public comment only', off: function(){ fo.checked = false; }});
+    if (fc.value) a.push({label: txt(fc).replace(/ \(.*\)$/, ''), off: function(){ fc.value = ''; fillRegions(); }});
+    if (fr.value) a.push({label: fr.value, off: function(){ fr.value = ''; }});
+    if (ft.value) a.push({label: ft.value, off: function(){ ft.value = ''; }});
+    if (fs.value) a.push({label: txt(fs), off: function(){ fs.value = ''; }});
+    if (fq.value) a.push({label: 'Search: ' + fq.value, off: function(){ fq.value = ''; }});
+    if (fw.checked) a.push({label: 'Weak fits shown', off: function(){ fw.checked = false; }});
+    if (tf && tf.checked) a.push({label: 'Freshwater included', off: function(){ tf.checked = false; }});
+    if (fsort.value !== 'default') a.push({label: 'Sorted: ' + txt(fsort), off: function(){ fsort.value = 'default'; }});
+    if (fgroup.value !== 'country') a.push({label: 'Grouped: ' + txt(fgroup), off: function(){ fgroup.value = 'country'; }});
+    return a;
+  }
+  function paintActive(n, v, watch){
+    var box = $('active-filters'); if (!box) return;
+    var a = activeFilters(v);
+    while (box.firstChild) box.removeChild(box.firstChild);
+    box.hidden = !a.length;
+    a.forEach(function(f){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'fchip';
+      b.setAttribute('aria-label', 'Remove filter: ' + f.label);
+      b.appendChild(document.createTextNode(f.label + ' '));
+      var x = document.createElement('span'); x.setAttribute('aria-hidden', 'true'); x.textContent = '\u00d7'; b.appendChild(x);
+      b.addEventListener('click', function(){ f.off(); apply(); var r = $('active-filters'); if (r && !r.hidden) { var c = r.querySelector('button'); if (c) c.focus(); } });
+      box.appendChild(b);
+    });
+    if (a.length > 1) {
+      var c = document.createElement('button'); c.type = 'button'; c.className = 'linklike'; c.textContent = 'Clear all filters';
+      c.addEventListener('click', function(){ var r = $('reset-btn'); if (r) r.click(); });
+      box.appendChild(c);
+    }
+    // With nothing to show, say which filters cause it and how many come back without "open for comment only".
+    if (!n && a.length) {
+      var names = a.map(function(f){ return f.label; }).join(', ');
+      var more = '';
+      if (fo.checked) { fo.checked = false;
+        var k = cards.filter(function(c){ return visible(c, v, watch); }).length; fo.checked = true;
+        if (k) more = ' Without "Open for public comment only" there ' + (k === 1 ? 'is 1 project.' : 'are ' + k + ' projects.'); }
+      if (v !== 'watch' || watch.length) empty.textContent = 'No projects match these filters: ' + names + '.' + more +
+        ' Remove a filter above, or clear all.';
+    }
   }
   if (fp) {
     var want = param('profile') || stored() || 'hard-structure';   // hard-structure is the main view
@@ -1982,7 +2046,8 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
 <div class="results-bar">
 <div><p class="step js-only" hidden>Step 2</p><h2 id="results-h">Projects</h2><p id="result-count" aria-live="polite">{len(records)} projects listed.</p>
 <p class="result-actions"><button type="button" class="linklike" id="show-weak" hidden>Also show weak fits</button>
-<button type="button" class="linklike" id="show-fresh" hidden>Include freshwater</button></p></div>
+<button type="button" class="linklike" id="show-fresh" hidden>Include freshwater</button></p>
+<div class="active-filters" id="active-filters" aria-label="Filters in use" hidden></div></div>
 </div>
 <div class="toolbar js-only" hidden>
 <button type="button" class="btn primary small" id="filters-btn" aria-haspopup="dialog" aria-controls="filters">Filters
