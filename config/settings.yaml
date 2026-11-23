@@ -38,7 +38,8 @@ sources:
     # The canada.ca terms need prior written permission for commercial reproduction. Requested 2026-11-17
     # (information@iaac-aeic.gc.ca, private/permission_requests_2026-11.md, request 1). The owner reports a written yes
     # (2026-11-23); date and exact words go in below once the reply is filed.
-    permission: {basis: a, from: "Impact Assessment Agency of Canada (information@iaac-aeic.gc.ca)", date: "", quote: ""}
+    permission: {basis: a, from: "Impact Assessment Agency of Canada (information@iaac-aeic.gc.ca)", date: "", quote: "",
+                 reported_by_owner: "2026-11-23"}
     # Besides the open comment list, also read the newest N project pages from the
     # registry sitemap, so we see recent projects whose comment period has closed.
     recent_projects: 150
@@ -65,7 +66,8 @@ sources:
     # Requested 2026-11-17 (EAOinfo@gov.bc.ca, private/permission_requests_2026-11.md, request 6). The owner reports a
     # written yes (2026-11-23); date and exact words go in below once the reply is filed. Read about once a week.
     enabled: true
-    permission: {basis: a, from: "BC Environmental Assessment Office (EAOinfo@gov.bc.ca)", date: "", quote: ""}
+    permission: {basis: a, from: "BC Environmental Assessment Office (EAOinfo@gov.bc.ca)", date: "", quote: "",
+                 reported_by_owner: "2026-11-23"}
     # Keep projects that are still active, or had a comment period in the last N days.
     lookback_days: 730
   dk_hoering:
@@ -138,14 +140,16 @@ sources:
     # exact words go in below once the reply is filed. robots.txt allows these paths. Read about once a week.
     enabled: true
     lookback_days: 540
-    permission: {basis: a, from: "Nova Scotia Environmental Assessment Branch (EA@novascotia.ca)", date: "", quote: ""}
+    permission: {basis: a, from: "Nova Scotia Environmental Assessment Branch (EA@novascotia.ca)", date: "", quote: "",
+                 reported_by_owner: "2026-11-23"}
   ceqanet:
     # California CEQAnet (State Clearinghouse). Written permission requested 2026-11-17 (state.clearinghouse@lci.ca.gov,
-    # private/permission_requests_2026-11.md, request 8). The owner reports a written yes (2026-11-23); date and exact
+    # private/permission_requests_2026-11.md, request 8). The owner reports a written yes (2026-11-23) and asked for it to be used now; date and exact
     # words go in below once the reply is filed. robots.txt allows it; attachment zips are never fetched. Weekly.
     enabled: true
     lookback_days: 30
-    permission: {basis: a, from: "Governor's Office of Land Use and Climate Innovation, State Clearinghouse (state.clearinghouse@lci.ca.gov)", date: "", quote: ""}
+    permission: {basis: a, from: "Governor's Office of Land Use and Climate Innovation, State Clearinghouse (state.clearinghouse@lci.ca.gov)", date: "", quote: "",
+                 reported_by_owner: "2026-11-23"}
   qc_ree:
     # Québec Registre des évaluations environnementales. Authorization requested 2026-11-17 from the Québec copyright
     # office (droitdauteur@mcc.gouv.qc.ca, private/permission_requests_2026-11.md, request 5). The owner reports a written
@@ -153,7 +157,8 @@ sources:
     # four searches (two activities, two procedures) plus the pages of projects changed in the last lookback_days.
     enabled: true
     lookback_days: 540
-    permission: {basis: a, from: "Gouvernement du Québec, droit d'auteur (droitdauteur@mcc.gouv.qc.ca)", date: "", quote: ""}
+    permission: {basis: a, from: "Gouvernement du Québec, droit d'auteur (droitdauteur@mcc.gouv.qc.ca)", date: "", quote: "",
+                 reported_by_owner: "2026-11-23"}
   drop_folder:
     enabled: true
 

@@ -183,10 +183,18 @@ def check_permissions_and_site(settings: dict, site_dir: Path) -> list[tuple[boo
         perm = (conf or {}).get("permission") if isinstance(conf, dict) else None
         if not (conf or {}).get("enabled") or not perm:
             continue
-        ok = all(perm.get(k) for k in ("basis", "from", "date", "quote"))
+        filed = all(perm.get(k) for k in ("basis", "from", "date", "quote"))
+        # The owner reported a written yes but the reply is not filed yet (owner, 2026-11-23): allowed, with a reminder.
+        reported = bool(perm.get("basis") and perm.get("from") and perm.get("reported_by_owner"))
+        ok = filed or reported
         if name == "ca_coastal":
             ok = ok and int(conf.get("min_days_between_reads", 0)) >= 28
-        out.append((ok, f"{name}: written permission record " + ("complete" if ok else "incomplete or read too often") + "."))
+        if filed or not ok:
+            msg = "complete" if ok else "incomplete or read too often"
+        else:
+            msg = (f"granted in writing (reported by the owner on {perm['reported_by_owner']}); "
+                   "reminder: file the reply's date and exact words in config/settings.yaml")
+        out.append((ok, f"{name}: written permission record {msg}."))
     dashes = sum(p.read_text(encoding="utf-8").count("\u2014") for p in list(site_dir.glob("*.html")) + list((site_dir / "p").glob("*.html"))
                  if p.exists())
     logo = (site_dir / "logo.svg").exists()

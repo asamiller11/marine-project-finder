@@ -96,3 +96,19 @@ def test_post_form_keeps_the_polite_rules(tmp_path, monkeypatch):
     monkeypatch.setattr(c.session, "post", lambda url, data=None, **k: R(403))
     with pytest.raises(Blocked):
         c.post_form("https://x.example/s", {"a": "3"})
+
+
+def test_health_accepts_owner_reported_permission_with_a_reminder(tmp_path):
+    from mpf.health import check_permissions_and_site
+    base = {"basis": "a", "from": "An office"}
+    conf = {"sources": {
+        "filed": {"enabled": True, "permission": dict(base, date="2026-11-19", quote="Yes.")},
+        "reported": {"enabled": True, "permission": dict(base, date="", quote="", reported_by_owner="2026-11-23")},
+        "missing": {"enabled": True, "permission": dict(base, date="", quote="")}}}
+    res = {m.split(":")[0]: (ok, m) for ok, m in check_permissions_and_site(conf, tmp_path) if ":" in m}
+    assert res["filed"][0] and "complete" in res["filed"][1]
+    assert res["reported"][0] and "reminder" in res["reported"][1]
+    assert not res["missing"][0]
+    settings = load_settings()
+    for name in ("iaac", "bc_eao", "ns_ea", "ceqanet", "qc_ree"):
+        assert settings["sources"][name]["permission"]["reported_by_owner"] == "2026-11-23"
