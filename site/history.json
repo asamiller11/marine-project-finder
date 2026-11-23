@@ -10,7 +10,8 @@
 "2026-11-17",
 "2026-11-19",
 "2026-11-20",
-"2026-11-22"
+"2026-11-22",
+"2026-11-23"
 ],
 "base": {
 "nl_ea:2434": {
@@ -428,7 +429,7 @@
 "title": "Tradepoint TiL Terminal, LLC's Sparrows Point Container Terminal Project in Baltimore County, MD"
 }
 },
-"base_date": "2026-11-20",
+"base_date": "2026-11-22",
 "current": {
 "nl_ea:2434": {
 "comment_deadline": "2026-10-20",
