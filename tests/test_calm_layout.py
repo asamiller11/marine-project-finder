@@ -80,3 +80,22 @@ def test_no_em_dashes_or_emoji_in_the_new_pages(tmp_path):
     for html in _built(tmp_path):
         assert "—" not in html
         assert not re.search("[\U0001F300-\U0001FAFF☀-⛿]", html)
+
+
+def test_softer_pass_header_blends_and_bands_curve(tmp_path):
+    """Owner, 2026-11-22: softer and less boxy. Header on the band, curved band ends, no card outlines."""
+    home, projects, page = _built(tmp_path)
+    css = site.CSS
+    assert ".topbar+main>.blue:first-child,.topbar+.blue{margin-top:-200px" in css      # band reaches under header
+    assert ".blue:not(.hero){border-radius:0 0 50% 50%" in css                          # soft arc, not a straight cut
+    assert "footer{position:relative" in css and "border-radius:50% 50% 0 0" in css
+    assert "--shadow:0 12px 32px rgba(11,60,93,.08)" in css and "--r:22px" in css
+    for rule in re.findall(r"\.(?:card|steps li|who-for a|side-card|info-panel|prose)\{[^}]*\}", css):
+        assert "border:1px" not in rule
+    assert "font-weight:700;color:var(--text)" not in css                              # headings are 600
+    assert 'class="band band-white curve-bottom" id="how"' in home and "curve-top" in home
+    picker = projects.split('class="blue picker')[1].split("</section>")[0]
+    assert '<div class="pick">' in picker and '<div class="pick-about"><p id="profile-desc"' in picker
+    assert "flex-wrap:nowrap" in css.split(".toolbar{")[1].split("}")[0]                # scrolls sideways on phones
+    assert "repeat(2,minmax(0,1fr))" in css                                            # two-column list on wide screens
+    assert "prefers-reduced-motion: reduce" in page and "IntersectionObserver" in page  # fade-in respects motion
