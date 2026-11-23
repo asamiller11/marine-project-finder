@@ -58,13 +58,14 @@ def test_country_sections_selector_and_region_filter():
     recs = [_record("a", "CA", "Quebec", language="fr"), _record("b", "CA", "Newfoundland and Labrador")]
     html = site.render_index(recs, SITE, TIERS, TODAY, COV)
     assert '<section class="country" data-country="CA"' in html
-    assert 'data-country="US"' not in html.split("<form")[1].split("</form>")[1]   # no US section or cards
+    assert 'data-country="US"' not in html.split('<div id="server-list">')[1].split('<aside class="sheet"')[0]   # no US section or cards
     assert '<option value="CA" data-region-label="Province or territory">Canada</option>' in html
     assert '<option value="US" disabled>United States (coming soon)</option>' in html
     assert '<option value="NO" disabled>Norway (coming soon)</option>' in html
     assert 'id="f-region-label" hidden' in html                     # shown by the script for CA or US only
     assert 'data-region="Quebec"' in html
-    assert "Notice in a less tested language (French)." in html
+    page = site.render_project_page(recs[0], SITE, TODAY, "Canada", ["fr"])
+    assert "Notice in a less tested language (French)." in page
 
 
 def test_coverage_panel_on_home_and_about():

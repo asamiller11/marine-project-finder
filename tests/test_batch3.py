@@ -170,7 +170,7 @@ def test_country_order_is_the_same_for_general_and_profile_only_cards(tmp_path):
     records, _ = site.build_public_records(conn, {}, settings, TODAY)
     assert {r["country"] for r in records} == {"CA", "GB", "US"}
     site.write_site(tmp_path, records, settings, TODAY)
-    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    html = (tmp_path / "projects.html").read_text(encoding="utf-8")
     found = re.findall(r'data-country="(\w+)"[^>]*?data-country-order="(\d+)"', html)
     by_country = {}
     for c, o in found:

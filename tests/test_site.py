@@ -36,7 +36,10 @@ def _reason(quote, matched, rule="habitat:fish_habitat", points=10):
 
 def _publish(conn, review_rows=None):
     records, skipped = site.build_public_records(conn, review_rows or {}, SETTINGS, TODAY)
-    return records, skipped, site.render_index(records, SETTINGS["site"], SETTINGS["tiers"], TODAY)
+    # The list page plus every project page: the details (score reasons, facts, sources) live on the project pages.
+    html = site.render_index(records, SETTINGS["site"], SETTINGS["tiers"], TODAY)
+    return records, skipped, html + "".join(site.render_project_page(r, SETTINGS["site"], TODAY, r.get("country") or "", [])
+                                            for r in records)
 
 
 # --- tiers -------------------------------------------------------------------
@@ -66,7 +69,7 @@ def test_three_tiers_published_and_not_relevant_left_out(tmp_path):
     assert 'id="t-weak"' in html and "Also show weak fits" in html
     assert "t-notrel" not in html and "Show probably not relevant" not in html
     assert "are not listed" in html
-    assert "Score 75 out of 100" in html
+    assert '<span class="big">75</span><span class="of">/ 100' in html
     assert "It is not a statement that mitigation or\ncompensation is required" in html
     assert "0 deadlines in the next 30 days.</p>" in html and "Public comment deadlines coming up" in html
     site.write_site(tmp_path, records, SETTINGS, TODAY)
@@ -163,7 +166,7 @@ def test_missing_fields_show_unknown():
     records, _, html = _publish(_db_with([(item, {"score": 40})]))
     rec = records[0]
     assert rec["proponent"] == "unknown" and rec["water_body"] == "unknown"
-    assert "<dt>Water body</dt><dd>unknown</dd>" in html
+    assert "Water body: unknown</dd>" in html
     assert rec["stage_kind"] == "unknown"
 
 
@@ -234,7 +237,7 @@ def test_written_site_files(tmp_path):
     conn = _db_with([(Item(source="iaac", item_id="1", url="u1", title="One"), {"score": 70})])
     records, _ = site.build_public_records(conn, {}, SETTINGS, TODAY)
     site.write_site(tmp_path, records, SETTINGS, TODAY)
-    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    html = (tmp_path / "projects.html").read_text(encoding="utf-8")
     about = (tmp_path / "about.html").read_text(encoding="utf-8")
     assert '<meta name="robots" content="noindex, nofollow">' in html
     assert "contact@example.org" in html
@@ -278,7 +281,7 @@ def test_facts_only_source_gets_no_quotes_and_credit_line():
     conn = _db_with([(item, {"score": 30})])
     rec = site.build_public_records(conn, {}, SETTINGS, TODAY)[0][0]
     assert rec["quotes"] == [] and rec["attribution"] == "© Crown Copyright"
-    assert "© Crown Copyright" in site.render_index([rec], SETTINGS["site"], SETTINGS["tiers"], TODAY)
+    assert "© Crown Copyright" in site.render_project_page(rec, SETTINGS["site"], TODAY, "United Kingdom", [])
 
 
 def test_mostly_canada_note_and_empty_country_note():
@@ -298,7 +301,7 @@ def test_every_card_has_an_agency_attribution_line():
                   proponent="Kystdirektoratet")]
     conn = _db_with([(i, {"score": 50}) for i in items])
     records, _ = site.build_public_records(conn, {}, SETTINGS, TODAY)
-    html = site.render_index(records, SETTINGS["site"], SETTINGS["tiers"], TODAY)
+    html = "".join(site.render_project_page(r, SETTINGS["site"], TODAY, r["country"], []) for r in records)
     assert html.count('<p class="attr">Source: ') == 3
     assert "Source: Impact Assessment Agency of Canada" in html
     assert "Source: Agencia Estatal Boletín Oficial del Estado (www.boe.es)." in html

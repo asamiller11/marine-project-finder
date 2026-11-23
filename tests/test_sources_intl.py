@@ -121,13 +121,13 @@ def test_non_english_summary_from_keywords_or_not_translated():
     conn = _row(da, 50, facts={"types": ["port_terminal", "dredging"], "sizes": []})
     rec = site.build_public_records(conn, {}, SETTINGS, TODAY)[0][0]
     assert rec["summary_note"] == "keywords" and "mentions port or terminal and dredging work" in rec["summary"]
-    html = site.render_index([rec], {"title": "T", "description": "d"}, SETTINGS["tiers"], TODAY)
+    html = site.render_project_page(rec, {"title": "T", "description": "d"}, TODAY, "Denmark", [])
     assert "built from keywords found in the Danish text. Not a translation." in html
     es = Item(source="es_boe", item_id="2", url="u", title="Anuncio", language="es", country="ES")
     conn = _row(es, 40, facts={"types": [], "sizes": []})
     rec = site.build_public_records(conn, {}, SETTINGS, TODAY)[0][0]
     assert rec["summary_note"] == "not_translated" and rec["summary"] == ""
-    html = site.render_index([rec], {"title": "T", "description": "d"}, SETTINGS["tiers"], TODAY)
+    html = site.render_project_page(rec, {"title": "T", "description": "d"}, TODAY, "Spain", [])
     assert "Not translated</span>" in html
 
 

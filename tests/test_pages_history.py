@@ -101,16 +101,17 @@ def test_every_project_gets_a_stable_page_with_source_badges_comments_and_timeli
     assert "tier-badge" in page and "Listed automatically; not yet checked by a person." in page
     assert "2026-10-20 (date of the notice)" in page
     assert "9 (as of 2026-10-27)" in page and 'href="https://example.org/77/contributions"' in page
-    assert "<h2>Timeline</h2>" in page and "Comment period closes (official notice)" in page
+    assert '<h2 class="side-h">Timeline</h2>' in page and "Comment period closes (official notice)" in page
     assert '<meta name="robots" content="noindex, nofollow">' in page
-    index = (tmp_path / "index.html").read_text()
+    index = (tmp_path / "projects.html").read_text()
     assert 'href="p/iaac-77.html"' in index
 
 
 def test_missing_comment_data_says_not_published(tmp_path):
     _written(tmp_path, extra={"link_ok": True})
     page = (tmp_path / "p" / "iaac-77.html").read_text()
-    assert "<dt>Comments received</dt><dd>Not published</dd>" in page
+    # The owner asked (2026-11-22) not to repeat "Not published": rows with nothing published are left out.
+    assert "<dt>Comments received</dt>" not in page and "Not published" not in page.split("<script>")[0]
 
 
 def test_unlisted_project_page_keeps_its_address_with_a_note(tmp_path):
@@ -133,7 +134,7 @@ def test_csv_export_has_facts_but_no_quotes(tmp_path):
     assert row["comments_close"] == "2026-11-20" and row["comments_received"] == "9"
     assert row["source"] and row["official_notice"] == "https://example.org/77"
     assert "eelgrass" not in open(tmp_path / "projects.csv", encoding="utf-8-sig").read()
-    data = (tmp_path / "index.html").read_text()
+    data = (tmp_path / "projects.html").read_text()
     assert 'id="csv-data"' in data and json.loads(data.split('id="csv-data">')[1].split("</script>")[0])["rows"]
 
 
@@ -144,7 +145,7 @@ def test_history_file_is_written_and_second_update_marks_changes(tmp_path):
     records = [dict(r) for r in json.loads((tmp_path / "items.json").read_text())]
     records[0]["comment_deadline"] = "2026-12-01"
     site.write_site(tmp_path, records, SETTINGS, date(2026, 11, 12))
-    index = (tmp_path / "index.html").read_text()
+    index = (tmp_path / "projects.html").read_text()
     assert "What changed since the last update (2026-10-28)" in index and "1 deadline changed" in index
     assert "Deadline changed" in (tmp_path / "p" / "iaac-77.html").read_text()
 

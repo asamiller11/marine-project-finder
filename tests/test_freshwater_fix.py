@@ -29,7 +29,7 @@ def _script(html):
 
 def test_banner_and_closing_soon_table_use_the_freshwater_filter(tmp_path):
     site.write_site(tmp_path, _records(_items()), SETTINGS, TODAY)
-    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    html = (tmp_path / "projects.html").read_text(encoding="utf-8")
     js = _script(html)
     assert "PFRESH[prof()] && c.getAttribute('data-fresh') && !(withFresh || (tf && tf.checked))" in js
     # Banner figures, the closing-soon table and the project list all apply the same check.
@@ -42,7 +42,7 @@ def test_banner_and_closing_soon_table_use_the_freshwater_filter(tmp_path):
 
 def test_phone_view_tabs_fit_in_a_grid_and_about_has_no_top_gap(tmp_path):
     site.write_site(tmp_path, _records(_items()), SETTINGS, TODAY)
-    css = (tmp_path / "index.html").read_text(encoding="utf-8")
+    css = (tmp_path / "projects.html").read_text(encoding="utf-8")
     assert "[hidden]{display:none!important}" in css      # the tabs still stay hidden until the script runs
     about = (tmp_path / "about.html").read_text(encoding="utf-8")
     assert ".prose h2:first-child{border-top:0;padding-top:0;margin-top:0}" in about

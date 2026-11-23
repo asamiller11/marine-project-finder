@@ -54,6 +54,7 @@ def test_comment_deadlines_say_the_date_not_a_day_count(tmp_path):
 def test_one_shadow_style_one_accent_and_big_tap_targets(tmp_path):
     css = site.CSS
     assert len(set(re.findall(r"box-shadow:([^;}]+)", css))) == 1     # only var(--shadow)
-    assert "gradient" not in css and "backdrop-filter" not in css
-    assert "min-height:44px" in css and "min-height:48px" in css     # dropdown rows on desktop and phone
+    # The owner asked for one flat navy-to-sea gradient on the blue bands (2026-11-22), no blur or glass.
+    assert len(re.findall(r"gradient\(", css)) == 1 and "backdrop-filter" not in css and "blur" not in css
+    assert "min-height:48px" in css                                    # phone tap targets
     assert "—" not in css

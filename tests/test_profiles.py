@@ -219,16 +219,18 @@ def test_all_habitat_work_is_the_full_list_and_profiles_are_subsets():
         assert {k for k, r in recs.items() if lp(r, p)} <= everyone
     assert "|| 'hard-structure'" in html          # hard-structure is the default view
     assert "t-notrel" not in html
-    assert '<span class="n" id="stat-total">2</span><span class="l">Projects listed</span>' in html  # the full list
+    home = site.render_home(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
+    assert '<span class="n">2</span><span class="l">Projects tracked</span>' in home       # the full list
 
 
 def test_banner_figures_follow_the_profile_and_are_labelled():
     recs, _ = _records()
     html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
-    assert 'Figures for: <strong id="stats-for-name">All habitat work</strong>' in html
-    assert "function paintStats()" in html and "set('stats-for-name'" in html
-    for i in ("stat-total", "stat-strong", "stat-possible", "stat-soon", "stat-countries"):
-        assert f'id="{i}"' in html
+    # The list page no longer has figure tiles; the home page has exactly three big numbers.
+    assert 'class="stats"' not in html
+    home = site.render_home(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
+    stats = home.split('<ul class="stats">')[1].split("</ul>")[0]
+    assert stats.count("<li>") == 3 and "Strong fits" in stats and "Deadlines this fortnight" in stats
     assert 'data-source="iaac"' in html                       # lets the banner count sources per profile
 
 
@@ -236,22 +238,23 @@ def test_one_empty_deadline_line_and_compact_phone_banner():
     recs, _ = _records()
     html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
     assert "line.hidden = soon.length === 0;" in html
-    assert '<li class="stat-countries">' in html
+    assert 'class="stat-countries"' not in html
 
 
 def test_banner_and_about_do_not_promise_quotes_for_every_source(tmp_path):
     recs, _ = _records()
     site.write_site(tmp_path, list(recs.values()), SETTINGS, TODAY)
-    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    html = (tmp_path / "projects.html").read_text(encoding="utf-8")
     about = (tmp_path / "about.html").read_text(encoding="utf-8")
-    assert "links to the official notice" in html and "exact sentences that triggered it" not in html
+    home = (tmp_path / "index.html").read_text(encoding="utf-8")
+    assert "exact sentences that triggered it" not in html + home
     assert "Where a source's terms allow it, each listing shows short quotes" in about
 
 
 def test_picker_link_and_card_data():
     recs, _ = _records()
     html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
-    assert '<label for="f-profile">I work on:</label>' in html
+    assert '<label for="f-profile">I work on</label>' in html
     assert '<option value="all">All habitat work</option>' in html
     assert '<option value="kelp">Kelp and other seaweed (no current matches)</option>' in html
     assert 'id="profile-link"' in html and "localStorage" in html and "profile=" in html
@@ -261,14 +264,15 @@ def test_picker_link_and_card_data():
     tier, score, because = data["cards"]["iaac:1"]["hard-structure"]
     assert tier == "strong" and score >= 60 and because.startswith("Breakwater")
     assert "kelp" not in data["cards"]["iaac:1"]
-    assert 'class="because" hidden' in html and 'class="general-line" hidden' in html
+    # Compact cards (owner, 2026-11-22): the "matches because" line is on the project page, not the card.
+    assert 'class="because"' not in html.split('<div id="server-list">')[1]
 
 
 def test_project_page_lists_matching_profiles_and_keeps_source(tmp_path):
     recs, _ = _records()
     site.write_site(tmp_path, list(recs.values()), SETTINGS, TODAY)
     page = (tmp_path / "p" / "iaac-1.html").read_text(encoding="utf-8")
-    assert "<h2 class=\"side-h\">Buyer profiles</h2>" in page and "Hard-structure eco-engineering" in page
+    assert "<h3>Buyer profiles that list it</h3>" in page and "Hard-structure eco-engineering" in page
     assert "Matches because: Breakwater" in page and "Kelp and other seaweed" not in page
     assert '<p class="attr">Source: ' in page
     other = (tmp_path / "p" / "iaac-2.html").read_text(encoding="utf-8")

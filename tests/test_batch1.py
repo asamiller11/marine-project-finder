@@ -136,15 +136,16 @@ def test_feedback_link_is_hidden_while_the_placeholder_is_set():
 def test_cards_hide_unpublished_counts_explain_jargon_and_mark_freshwater(tmp_path):
     recs = _records(_items())
     site.write_site(tmp_path, recs, SETTINGS, TODAY)
-    html = (tmp_path / "index.html").read_text(encoding="utf-8")
+    html = (tmp_path / "projects.html").read_text(encoding="utf-8")
     assert "<dt>Comments received</dt>" not in html
     assert '<abbr title="Small Craft Harbour: a fishing or recreational harbour run by Fisheries and Oceans Canada">SCH</abbr>' in html
-    assert "On a lake or river (freshwater)." in html and 'data-fresh="1"' in html
+    assert 'data-fresh="1"' in html and "&middot; Freshwater" in html             # the card says so
+    assert "On a lake or river (freshwater)." in (tmp_path / "p" / "iaac-3.html").read_text(encoding="utf-8")
     assert 'id="t-fresh"' in html and 'id="show-weak"' in html and "' Weak ' + (hw === 1" in html
     assert "Approved, may not be built yet" in html and "productView()" in html
     assert "transform:rotate" not in html
     page = (tmp_path / "p" / "iaac-1.html").read_text(encoding="utf-8")
-    assert "<dt>Comments received</dt><dd>Not published</dd>" in page      # the project page keeps the full line
+    assert "<dt>Comments received</dt>" not in page          # nothing published: the row is left out (owner, 2026-11-22)
     assert "Feedback on this project" in page
 
 

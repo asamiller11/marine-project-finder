@@ -1,7 +1,7 @@
 """Builds the static website from every scored item, grouped into tiers.
 
 Output (folder site/):
-  index.html   the project list (works without JavaScript; JavaScript adds live
+  index.html   the home page; projects.html is the project list (works without JavaScript; JavaScript adds live
                countdowns, the "closing soon" list, tier toggles, filters and search)
   about.html   what the tool does, tiers, sources, limits
   items.json   the published records
@@ -546,322 +546,359 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
 # ---------------------------------------------------------------------------
 
 CSS = r"""
-/* MitiMark. Soft white cards on a light sea-tinted page. Sea blue from the logo, plus one accent: the coral,
-   used for "Strong fit" and comment deadlines. One shadow style, rounded corners, gentle transitions. */
-:root{--bg:#f1f5f7;--surface:#ffffff;--surface-2:#f5f8fa;--ink:#13222b;--ink-2:#334550;--muted:#556773;--faint:#667883;
---line:#e0e7eb;--line-strong:#c6d2d8;--sea:#1b7f9e;--sea-ink:#11607a;--sea-soft:#e4f1f5;
---coral:#e8735a;--coral-ink:#a33d27;--coral-soft:#fcebe6;--weak-ink:#51626d;--weak-soft:#ebf0f2;
---shadow:0 1px 2px rgba(19,48,61,.05),0 6px 18px -8px rgba(19,48,61,.16);--radius:16px;--r-sm:10px;
+/* MitiMark. Calm and oceanic: navy header and footer, a navy-to-sea hero, then bands that alternate between the
+   pale sea tint and white. Coral is used only for comment deadlines and "Strong fit". One shadow, one font. */
+:root{--navy:#0B3C5D;--sea:#1B7F9E;--mid:#4FA3BF;--tint:#E8F4F8;--soft:#F3F9FB;--coral:#E2725B;--text:#16313F;
+--coral-text:#B4452E;--link:#156C87;--muted:#4B6573;--card:#ffffff;--band-white:#ffffff;--band-tint:var(--tint);
+--line:#D5E6ED;--line-strong:#B3CEDA;--on-blue:#ffffff;--on-blue-2:#ffffff;--pill-on-navy:#E8F4F8;
+--strong-bg:#FCEBE6;--possible-bg:#E3F0F5;--possible-text:#0B3C5D;--weak-bg:#EEF2F4;--weak-text:#4B6573;
+--shadow:0 1px 2px rgba(11,60,93,.06),0 8px 24px -12px rgba(11,60,93,.24);--r:16px;--r-sm:12px;
 --ease:cubic-bezier(.2,.7,.2,1);color-scheme:light dark}
-@media (prefers-color-scheme:dark){:root{--bg:#0e161a;--surface:#152026;--surface-2:#1b2930;--ink:#e5edf0;--ink-2:#c3d0d6;
---muted:#97a9b2;--faint:#8597a0;--line:#23333b;--line-strong:#34474f;--sea:#4fb1cf;--sea-ink:#7ccae2;--sea-soft:#14323c;
---coral:#ef8a71;--coral-ink:#f5a591;--coral-soft:#3a231d;--weak-ink:#b2c0c7;--weak-soft:#21313a;
---shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px -8px rgba(0,0,0,.55)}}
+@media (prefers-color-scheme:dark){:root{--navy:#082C44;--text:#E3EEF2;--coral-text:#F2A28E;--link:#8ACDE2;--muted:#A6BCC6;
+--card:#12303F;--band-white:#0D2533;--band-tint:#0A1C27;--soft:#102B39;--line:#1F4456;--line-strong:#2F5A6E;
+--strong-bg:#3D241D;--possible-bg:#153D4F;--possible-text:#D4ECF4;--weak-bg:#1B3644;--weak-text:#BCCDD5;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px -12px rgba(0,0,0,.6)}}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after,::details-content{transition:none!important;animation:none!important}}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+body{margin:0;background:var(--band-tint);color:var(--text);font:17px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
 "Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
-a{color:var(--sea-ink);text-decoration:none}
-a:hover{text-decoration:underline;text-underline-offset:3px}
-a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--sea);outline-offset:2px;border-radius:6px}
-time,.countdown,.num,.stats .n{font-variant-numeric:tabular-nums}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-h1,h2,h3,h4{line-height:1.25;font-weight:650;color:var(--ink);letter-spacing:-.01em}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--mid);outline-offset:2px;border-radius:8px}
+time,.countdown,.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{line-height:1.2;font-weight:700;color:var(--text);letter-spacing:-.015em}
 [hidden]{display:none!important}
-.skip{position:absolute;left:-999px;top:8px;background:var(--surface);padding:8px 12px;border-radius:8px;z-index:50}
+.skip{position:absolute;left:-999px;top:8px;background:var(--card);padding:10px 14px;border-radius:8px;z-index:60}
 .skip:focus{left:12px}
 .note,.muted{color:var(--muted)}
-.note{font-size:.9rem;margin:6px 0}
+.note{font-size:.92rem;margin:8px 0}
+.eyebrow{display:none}
+
+/* Bands */
+.band{padding:64px 0}
+.band-white{background:var(--band-white)}
+.band-tint{background:var(--band-tint)}
+.band h2.band-h{font-size:clamp(1.55rem,2.8vw,2.1rem);margin:0 0 8px}
+.band p.band-sub{margin:0 0 32px;color:var(--muted);max-width:62ch;font-size:1.05rem}
+.blue{background:linear-gradient(165deg,var(--navy) 0%,var(--navy) 40%,var(--sea) 100%);color:var(--on-blue)}
+.blue h1,.blue h2,.blue a:not(.btn){color:var(--on-blue)}
 
 /* Header */
-.topbar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line)}
-.topbar .wrap{display:flex;align-items:center;gap:24px;min-height:66px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
-.brand:hover{text-decoration:none}
-.brand .mark{width:24px;height:38px;flex:none}
-nav.top{display:flex;gap:4px;flex-wrap:wrap}
-nav.top a{color:var(--muted);text-decoration:none;font-size:.94rem;font-weight:550;padding:8px 12px;border-radius:999px;transition:background .18s,color .18s}
-nav.top a:hover{background:var(--surface-2);color:var(--ink)}
-nav.top a[aria-current=page]{background:var(--sea-soft);color:var(--sea-ink)}
-.topbar .updated{margin:0 0 0 auto;font-size:.85rem;color:var(--muted)}
+.topbar{background:var(--navy);color:#fff}
+.topbar .wrap{display:flex;align-items:center;gap:28px;min-height:72px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem;color:#fff;text-decoration:none}
+.brand .mark{width:26px;height:41px;flex:none}
+nav.top{display:flex;gap:6px;flex-wrap:wrap}
+nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 16px;border-radius:999px;transition:background .2s,color .2s}
+nav.top a:hover{background:rgba(255,255,255,.12)}
+nav.top a[aria-current=page]{background:var(--pill-on-navy);color:#0B3C5D}
+.topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
 
-/* Intro */
-.hero .wrap{padding-top:44px;padding-bottom:4px}
-.hero h1{font-size:clamp(1.55rem,3.2vw,2.2rem);margin:0 0 12px;max-width:28ch;letter-spacing:-.02em}
-.hero p.lede{margin:0;max-width:66ch;color:var(--ink-2);font-size:1.03rem}
-.hero p.meta{margin:10px 0 0;font-size:.88rem;color:var(--muted)}
-.eyebrow{display:none}
-.stats-for{margin:28px 0 10px;font-size:.88rem;color:var(--muted)}
-.stats-for strong{color:var(--ink);font-weight:600}
-.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
-.stats a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px;
-color:var(--ink);text-decoration:none;transition:border-color .18s,transform .18s var(--ease)}
-.stats a:hover{border-color:var(--line-strong);transform:translateY(-1px)}
-.stats a:hover .l{text-decoration:none}
-.stats .n{display:block;font-size:1.65rem;font-weight:700;line-height:1.2;letter-spacing:-.02em}
-.stats .l{display:flex;align-items:center;gap:7px;font-size:.86rem;color:var(--muted);line-height:1.35}
-.stats .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--line-strong)}
-.dot.strong{background:var(--coral)}.dot.possible{background:var(--sea)}.dot.soon{background:var(--coral-ink)}
-
-/* Profile choice */
-.profile-bar{margin-top:24px}
-.profile-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px 24px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 22px}
-.profile-inner>*{min-width:0}
-.profile-pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.profile-pick label{font-weight:650}
-.profile-pick select{font:inherit;font-weight:600;color:var(--sea-ink);background:var(--sea-soft);border:1px solid transparent;
-border-radius:var(--r-sm);padding:9px 12px;min-height:44px;max-width:100%;cursor:pointer;transition:border-color .18s}
-.profile-pick select:hover{border-color:var(--sea)}
-.profile-desc{margin:0;color:var(--muted);font-size:.9rem}
-.profile-share{display:flex;gap:12px;align-items:center;font-size:.88rem;flex-wrap:wrap}
-.profile-empty{grid-column:1/-1;margin:0;color:var(--coral-ink);font-size:.92rem}
-.profile-note{grid-column:1/-1;margin:0;color:var(--faint);font-size:.82rem}
-@media (max-width:800px){.profile-inner{grid-template-columns:minmax(0,1fr);padding:14px 16px}}
-
-/* Layout */
-.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:32px;align-items:start;padding-top:28px}
-.sidebar{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto;border-radius:var(--radius);scrollbar-width:thin}
-.content{min-width:0}
-.stack{display:grid;gap:16px}
-.row-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:start}
-.row-2>details[open]{grid-column:1/-1}
-
-/* Panels and fold-outs */
-.panel{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow)}
-.panel h2,section.soon h2{font-size:1.1rem;margin:0}
-.panel p{margin:6px 0}
-.panel-head{display:block}
-details>summary{cursor:pointer;list-style:none}
-details>summary::-webkit-details-marker{display:none}
-details.panel>summary{font-weight:650;display:flex;align-items:center;gap:10px;min-height:28px}
-/* One chevron for every fold-out: two small images (down, up), not a rotation, so it draws the same in every browser. */
-details.panel>summary::after,details.tools>summary::after,details.more>summary::after{content:"";display:inline-block;flex:none;width:12px;height:12px;margin-left:auto;background:var(--faint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat}
-details[open].panel>summary::after,details[open].tools>summary::after,details[open].more>summary::after{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
-details.panel[open]>summary{margin-bottom:8px}
-@supports (interpolate-size:allow-keywords){:root{interpolate-size:allow-keywords}
-details.more::details-content,details.panel::details-content{height:0;overflow:clip;
-transition:height .28s var(--ease),content-visibility .28s allow-discrete}
-details.more[open]::details-content,details.panel[open]::details-content{height:auto}}
-details[open].more>div,details[open].panel>:not(summary){animation:fold-in .28s var(--ease)}
-@keyframes fold-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-.summary-line{margin:4px 0 0;color:var(--muted);font-size:.92rem}
-.soon-note{margin:4px 0 0;font-size:.9rem;color:var(--muted);max-width:70ch}
-
-/* Public comment deadlines */
-section.soon ul{list-style:none;padding:0;margin:12px 0 0}
-section.soon li{display:grid;grid-template-columns:6.5em minmax(0,1fr) auto;gap:2px 18px;align-items:baseline;padding:10px 0;
-border-top:1px solid var(--line);font-size:.95rem}
-section.soon li time{color:var(--coral-ink);font-weight:650}
-section.soon .left{display:none}
-section.soon li a{color:var(--ink);font-weight:550}
-section.soon li a:hover{color:var(--sea-ink)}
-section.soon .meta{color:var(--muted);font-size:.88rem;white-space:nowrap;display:flex;gap:10px;align-items:baseline}
-section.soon #soon-none{color:var(--muted)}
-section.soon .open-all{margin:10px 0 0;font-size:.92rem}
-
-section.explain ul{padding-left:1.2em;margin:8px 0}
-section.explain li{margin:4px 0}
-section.explain p{color:var(--ink-2);max-width:75ch}
-
-/* Coverage table */
-.cov-wrap{overflow-x:auto;margin-top:10px;border:1px solid var(--line);border-radius:var(--r-sm)}
-table.cov{width:100%;border-collapse:collapse;font-size:.9rem}
-table.cov th,table.cov td{text-align:left;padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
-table.cov thead th{border-top:0;color:var(--muted);font-weight:600;background:var(--surface-2)}
-table.cov tr.region td:first-child{padding-left:26px;color:var(--muted)}
-.pill{font-size:.88rem;color:var(--muted);white-space:nowrap}
-.pill.covered{color:var(--sea-ink);font-weight:600}
-.pill.partial{color:var(--coral-ink)}
-
-/* Filters */
-details.tools{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-details.tools>summary{font-weight:650;padding:14px 18px;display:flex;align-items:center;min-height:48px}
-details.tools[open]>summary{border-bottom:1px solid var(--line)}
-details.tools .tools-body{display:grid;gap:16px;padding:16px 18px 18px}
-.filters{display:grid;gap:14px;margin:0}
-.filters label,.toggles>label{display:flex;flex-direction:column;gap:5px;font-size:.86rem;font-weight:550;color:var(--muted)}
-.filters select,.filters input[type=search]{font:inherit;font-size:.95rem;color:var(--ink);background:var(--surface-2);padding:9px 11px;
-border:1px solid var(--line);border-radius:var(--r-sm);width:100%;min-width:0;min-height:42px;transition:border-color .18s,background .18s}
-.filters select:hover,.filters input[type=search]:hover{border-color:var(--line-strong)}
-.filters select:focus,.filters input[type=search]:focus{background:var(--surface);border-color:var(--sea)}
-.filters .check,.toggles .check{flex-direction:row;align-items:flex-start;gap:9px;color:var(--ink);cursor:pointer;font-size:.93rem;font-weight:400}
-input[type=checkbox]{accent-color:var(--sea);width:18px;height:18px;margin:2px 0 0;flex:none}
-.filters .sep,.toggles,.downloads{border-top:1px solid var(--line);padding-top:14px}
-.toggles,.downloads{display:grid;gap:10px}
-.side-label{font-size:.86rem;font-weight:600;color:var(--muted);margin:0}
-.downloads a{font-size:.92rem}
+/* Home hero */
+.hero{position:relative;padding:84px 0 0}
+.hero h1{color:#fff;font-size:clamp(2rem,4.6vw,3.2rem);margin:0 0 18px;max-width:20ch;letter-spacing:-.025em}
+.hero p.lede{margin:0;color:var(--on-blue-2);font-weight:400;font-size:clamp(1.05rem,1.8vw,1.25rem);max-width:56ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 0}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:56px 0 0;padding:28px 0 0;list-style:none;border-top:1px solid rgba(255,255,255,.28)}
+.stats a{display:block;color:#fff;text-decoration:none}
+.stats .n{display:block;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:750;line-height:1.05;letter-spacing:-.03em}
+.stats .l{display:block;margin-top:6px;font-size:1rem;color:#fff}
+.stats a:hover .l{text-decoration:underline}
+.wave{display:block;width:100%;height:72px;margin:40px 0 -1px}
+.wave path{fill:var(--band-white)}
+.wave path.back{fill:var(--mid);opacity:.35}
 
 /* Buttons */
-.btn,.watch-btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-size:.92rem;font-weight:600;padding:8px 14px;
-min-height:40px;border:1px solid var(--line-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);cursor:pointer;
-text-decoration:none;transition:border-color .18s,background .18s,color .18s}
-.btn:hover,.watch-btn:hover{border-color:var(--sea);color:var(--sea-ink);text-decoration:none}
-.btn.primary{background:var(--sea-ink);border-color:var(--sea-ink);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:1rem;font-weight:650;padding:10px 20px;min-height:48px;
+border-radius:999px;border:2px solid var(--sea);background:var(--card);color:var(--link);cursor:pointer;text-decoration:none;
+transition:background .2s,color .2s,border-color .2s,transform .2s var(--ease)}
+.btn:hover{background:var(--soft);text-decoration:none}
+.btn.primary{background:var(--sea);border-color:var(--sea);color:#fff}
+.btn.primary:hover{background:var(--navy);border-color:var(--navy)}
+.btn.white{background:#fff;border-color:#fff;color:#0B3C5D}
+.btn.white:hover{background:var(--tint);border-color:var(--tint)}
+.btn.outline-white{background:transparent;border-color:#fff;color:#fff}
+.btn.outline-white:hover{background:rgba(255,255,255,.12)}
+.btn.small{min-height:44px;padding:8px 16px;font-size:.95rem}
 .btn.block{width:100%}
-.btn.quiet{border-color:transparent;background:none;padding-left:0;padding-right:0;color:var(--muted);min-height:0;justify-content:flex-start}
-.btn.quiet:hover{color:var(--ink)}
-.watch-btn[aria-pressed="true"]{background:var(--sea-soft);border-color:var(--sea);color:var(--sea-ink)}
-button.linklike{font:inherit;font-size:.92rem;color:var(--sea-ink);background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.btn.quiet{border-color:transparent;background:none;color:var(--muted);padding-left:4px;padding-right:4px}
+.btn.quiet:hover{color:var(--text)}
+.btn .count-dot{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--sea);color:#fff;font-size:.82rem}
+.watch-btn{font:inherit;font-weight:650;font-size:.98rem;min-height:48px;padding:10px 20px;border-radius:999px;border:2px solid var(--line-strong);
+background:var(--card);color:var(--text);cursor:pointer;transition:border-color .2s,background .2s}
+.watch-btn:hover{border-color:var(--sea)}
+.watch-btn[aria-pressed="true"]{background:var(--possible-bg);border-color:var(--sea);color:var(--possible-text)}
+button.linklike{font:inherit;font-size:.95rem;color:var(--link);background:none;border:0;padding:8px 0;min-height:40px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
-/* Results */
-.results-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:36px 0 0}
-.results-bar h2{margin:0;font-size:1.35rem}
-#result-count{margin:2px 0 0;color:var(--muted);font-size:.92rem}
-.result-actions{margin:2px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}
-.views{display:inline-flex;gap:2px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;max-width:100%;flex-wrap:wrap}
-.views label{position:relative;padding:7px 14px;border-radius:9px;font-size:.9rem;font-weight:550;color:var(--muted);cursor:pointer;
-white-space:nowrap;transition:background .18s,color .18s}
-.views label:hover{color:var(--ink)}
-.views input{position:absolute;opacity:0;width:1px;height:1px}
-.views label:has(input:checked){background:var(--sea-soft);color:var(--sea-ink)}
-.views label:has(input:focus-visible){outline:2px solid var(--sea);outline-offset:-2px}
-section.country>h2,section.group>h2{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:1.25rem;margin:34px 0 0}
-section.country>p.country-note{color:var(--muted);margin:4px 0;font-size:.92rem;max-width:80ch}
-section.tier h3{display:flex;align-items:center;gap:9px;font-size:1.02rem;margin:22px 0 0;color:var(--ink-2)}
-section.tier h3::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--line-strong);flex:none}
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none;counter-reset:step}
+.steps li{background:var(--soft);border:1px solid var(--line);border-radius:var(--r);padding:28px 26px}
+.steps .icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:16px;background:var(--sea);color:#fff;margin-bottom:18px}
+.steps .icon svg{width:30px;height:30px}
+.steps h3{font-size:1.2rem;margin:0 0 6px}
+.steps h3::before{counter-increment:step;content:counter(step) ". ";color:var(--muted);font-weight:600}
+.steps p{margin:0;color:var(--muted)}
+
+/* Who it is for */
+.who-for{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:0;padding:0;list-style:none}
+.who-for a{display:block;height:100%;background:var(--soft);border:1px solid var(--line);border-radius:var(--r);padding:26px;text-decoration:none;color:var(--text);
+transition:border-color .2s,transform .2s var(--ease)}
+.who-for a:hover{border-color:var(--sea);transform:translateY(-2px)}
+.who-for h3{margin:0 0 6px;font-size:1.2rem;color:var(--text)}
+.who-for p{margin:0;color:var(--muted)}
+.who-for .go{display:inline-block;margin-top:14px;color:var(--link);font-weight:650}
+
+/* Project cards: compact, the whole card opens the project page */
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin:14px 0 0;padding:0;list-style:none}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 24px;box-shadow:var(--shadow);
+min-width:0;transition:border-color .2s,transform .2s var(--ease)}
+.card:hover{border-color:var(--sea);transform:translateY(-1px)}
+.card:target{outline:3px solid var(--mid);outline-offset:2px}
+.card h4{margin:0;font-size:1.15rem;font-weight:700;line-height:1.35;padding-right:28px}
+.card h4 a{color:var(--text);text-decoration:none}
+.card.linked h4 a::after{content:"";position:absolute;inset:0;border-radius:var(--r)}
+.card.linked::after{content:"";position:absolute;right:22px;top:24px;width:12px;height:12px;background:var(--sea);
+-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4.5 2l4 4-4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4.5 2l4 4-4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.card .where{margin:4px 0 0;color:var(--muted);font-size:.97rem}
+.card .status,.status{margin:12px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:.95rem}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:650;padding:4px 12px;border-radius:999px;line-height:1.45;white-space:nowrap}
+.tier-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.t-strong{color:var(--coral-text);background:var(--strong-bg)}
+.t-strong.tier-badge::before{background:var(--coral)}
+.t-possible{color:var(--possible-text);background:var(--possible-bg)}
+.t-possible.tier-badge::before{background:var(--sea)}
+.t-weak,.t-watch,.t-none{color:var(--weak-text);background:var(--weak-bg)}
+.stage-badge{font-weight:500;color:var(--text);background:none;border:1px solid var(--line-strong)}
+.badge.score{display:inline;padding:0;background:none;color:var(--text);font-size:inherit;font-weight:700;white-space:normal}
+.deadline{color:var(--coral-text);font-weight:700}
+.center{text-align:center;margin:28px 0 0}
+
+/* Projects page: step 1, the picker band */
+.picker{padding:48px 0 52px}
+.picker .step{margin:0 0 10px;font-size:.95rem;font-weight:650;color:var(--on-blue-2);letter-spacing:.02em}
+.picker label{display:block;font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:750;color:#fff;margin:0 0 16px;letter-spacing:-.02em}
+.picker select{font:inherit;font-size:1.15rem;font-weight:650;color:#0B3C5D;background:#fff;border:0;border-radius:var(--r-sm);
+padding:14px 48px 14px 18px;min-height:58px;width:min(100%,560px);cursor:pointer;-webkit-appearance:none;appearance:none;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%230B3C5D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+background-repeat:no-repeat;background-position:right 18px center;background-size:14px}
+.picker .profile-desc{margin:14px 0 0;color:#fff;font-size:1.05rem;max-width:62ch}
+.picker .profile-empty{margin:10px 0 0;color:#fff;font-weight:650}
+
+/* Projects page: step 2, the results */
+.results{padding:36px 0 64px}
+.results .step{margin:0 0 6px;font-size:.95rem;font-weight:650;color:var(--muted)}
+.results-bar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px}
+.results-bar h2{margin:0;font-size:clamp(1.5rem,2.6vw,1.9rem)}
+#result-count{margin:4px 0 0;color:var(--muted);font-size:.97rem}
+.result-actions{margin:0;display:flex;flex-wrap:wrap;gap:0 18px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0;align-items:center}
+.toolbar .chip{font:inherit;font-size:.95rem;font-weight:600;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--line-strong);
+background:var(--card);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .2s,border-color .2s,color .2s}
+.toolbar .chip:hover{border-color:var(--sea)}
+.toolbar .chip[aria-expanded=true]{background:var(--navy);border-color:var(--navy);color:#fff}
+.toolbar .chip .n{color:var(--coral-text);font-weight:700}
+.toolbar .chip[aria-expanded=true] .n{color:#fff}
+.info-panel{margin:16px 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 26px;box-shadow:var(--shadow);animation:fold-in .28s var(--ease)}
+.info-panel h3{margin:0 0 6px;font-size:1.2rem}
+.info-panel p{margin:6px 0}
+.summary-line{color:var(--muted);font-size:.95rem}
+section.soon ul{list-style:none;padding:0;margin:12px 0 0}
+section.soon li{display:grid;grid-template-columns:6.5em minmax(0,1fr) auto;gap:2px 18px;align-items:baseline;padding:12px 0;border-top:1px solid var(--line)}
+section.soon li time{color:var(--coral-text);font-weight:700}
+section.soon li a{color:var(--text);font-weight:600}
+section.soon .meta{color:var(--muted);font-size:.9rem;white-space:nowrap;display:flex;gap:10px;align-items:baseline}
+section.soon .meta .badge{font-size:.82rem;padding:2px 10px}
+section.explain ul{padding-left:1.2em;margin:8px 0}
+.cov-wrap{overflow-x:auto;margin-top:12px;border:1px solid var(--line);border-radius:var(--r-sm)}
+table.cov{width:100%;border-collapse:collapse;font-size:.93rem}
+table.cov th,table.cov td{text-align:left;padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+table.cov thead th{border-top:0;color:var(--muted);font-weight:650;background:var(--soft)}
+table.cov tr.region td:first-child{padding-left:28px;color:var(--muted)}
+.pill{font-size:.9rem;color:var(--muted);white-space:nowrap}
+.pill.covered{color:var(--link);font-weight:650}
+.pill.partial{color:var(--coral-text)}
+section.country>h2,section.group>h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;font-size:1.35rem;margin:36px 0 0}
+section.country>p.country-note{color:var(--muted);margin:4px 0;font-size:.95rem;max-width:80ch}
+section.tier h3{display:flex;align-items:center;gap:10px;font-size:1.05rem;margin:22px 0 0}
+section.tier h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--line-strong);flex:none}
 section.tier[data-tier=strong] h3::before{background:var(--coral)}
 section.tier[data-tier=possible] h3::before{background:var(--sea)}
-section.tier p.tier-desc{color:var(--muted);margin:2px 0 0 18px;font-size:.9rem}
+section.tier p.tier-desc{color:var(--muted);margin:2px 0 0 20px;font-size:.93rem}
 .count{color:var(--muted);font-weight:500;font-size:.85em}
-.empty{padding:28px;color:var(--muted);text-align:center;background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);margin:16px 0}
+.empty{padding:32px;color:var(--muted);text-align:center;background:var(--card);border:1px dashed var(--line-strong);border-radius:var(--r);margin:20px 0}
 
-/* Project cards */
-.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:12px;max-width:920px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px 8px;box-shadow:var(--shadow);
-min-width:0;transition:border-color .2s}
-.card:hover{border-color:var(--line-strong)}
-.card:target{border-color:var(--sea);outline:3px solid var(--sea-soft)}
-.card h4{margin:0;font-size:1.1rem;font-weight:650;line-height:1.35}
-.card h4 a{color:var(--ink);text-decoration:none}
-.card h4 a:hover{color:var(--sea-ink)}
-.card .where{margin:3px 0 0;color:var(--muted);font-size:.93rem}
-.card .status,.project-main .status{margin:12px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font-size:.9rem}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;font-weight:600;padding:3px 10px;border-radius:999px;
-line-height:1.45;white-space:nowrap;border:1px solid transparent}
-.tier-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
-.t-strong{color:var(--coral-ink);background:var(--coral-soft)}
-.t-strong.tier-badge::before{background:var(--coral)}
-.t-possible{color:var(--sea-ink);background:var(--sea-soft)}
-.t-possible.tier-badge::before{background:var(--sea)}
-.t-weak,.t-watch,.t-none{color:var(--weak-ink);background:var(--weak-soft)}
-.stage-badge{color:var(--ink-2);background:none;border-color:var(--line-strong);font-weight:500}
-.badge.score{display:inline;padding:0;border:0;background:none;color:var(--ink);font-size:inherit;font-weight:650;white-space:normal}
-section.soon .meta .badge{font-size:.8rem;padding:1px 9px}
-.deadline{color:var(--coral-ink);font-weight:650}
-.card .why{margin:12px 0 0;color:var(--ink-2);max-width:75ch}
-.card .way-in{margin:6px 0 0;max-width:75ch;font-size:.95rem;color:var(--ink-2)}
-.card .way-in strong{font-weight:650;color:var(--ink)}
-.card p.because{margin:8px 0 0;font-size:.9rem;color:var(--ink-2);background:var(--sea-soft);border-radius:8px;padding:7px 10px}
-.card p.general-line{margin:6px 0 0;font-size:.88rem;color:var(--muted)}
-/* Fold-outs inside a card: quiet rows with a chevron, at least 44 px tall to tap. */
-.card .folds{margin:14px -22px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;padding:0 12px}
-.card details.more{margin:0;font-size:.93rem}
-.card .folds details[open]{flex-basis:100%;order:-1}
-.card details.more>summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:4px 10px;border-radius:8px;
-color:var(--sea-ink);font-weight:600;transition:background .18s}
-.card details.more>summary:hover{background:var(--surface-2)}
-.card details.more>summary::after{margin-left:2px;background:var(--sea)}
-.card details.more>div{padding:4px 10px 14px;max-width:80ch}
-.card .folds details[open]+details[open]{border-top:1px solid var(--line)}
-.why-h{margin:10px 0 2px;color:var(--muted);font-size:.88rem;font-weight:600}
-ul.why,.research ul{margin:2px 0 6px;padding-left:1.2em}
-.getin{margin:0 0 8px;padding:10px 12px;background:var(--surface-2);border-radius:var(--r-sm)}
-.getin-h{margin:0;font-weight:650}
-.getin ul{margin-bottom:0}
-a.fc,a.src{font-size:.88rem;white-space:nowrap}
-.not-named{color:var(--faint)}
-dl.facts{display:grid;grid-template-columns:10em minmax(0,1fr);gap:6px 16px;margin:8px 0;font-size:.93rem}
-dl.facts dt{color:var(--muted)}
-dl.facts dd{margin:0;min-width:0;overflow-wrap:anywhere;color:var(--ink-2)}
-ul.quotes{margin:6px 0;padding:0;list-style:none;display:grid;gap:8px}
-ul.quotes li{border-left:3px solid var(--sea);background:var(--surface-2);border-radius:0 8px 8px 0;padding:8px 12px;color:var(--ink-2)}
-ul.who{list-style:none;padding:0;margin:0}
-ul.who li{margin:0 0 10px}
-ul.who .role{display:block;font-size:.86rem;color:var(--muted)}
-ul.who .how{display:block;font-size:.86rem;color:var(--faint)}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
-p.source{margin:3px 0;color:var(--muted);font-size:.9rem}
-p.attr{margin:4px 0 0;color:var(--faint);font-size:.86rem}
-p.summary{margin:6px 0;color:var(--ink-2)}
-ol.shortlist{list-style:none;padding:0;margin:20px 0;display:grid;gap:16px}
-.shortlist-intro p{margin:20px 0 0;color:var(--muted)}
-abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+/* Filters: a panel that slides in from the right, a bottom sheet on phones */
+.scrim{position:fixed;inset:0;background:rgba(6,30,46,.45);z-index:70;opacity:0;transition:opacity .25s}
+.scrim.on{opacity:1}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);z-index:80;background:var(--card);color:var(--text);box-shadow:var(--shadow);
+display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s var(--ease);border-radius:var(--r) 0 0 var(--r)}
+.sheet.on{transform:none}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px 16px 24px;border-bottom:1px solid var(--line)}
+.sheet-head h2{margin:0;font-size:1.3rem}
+.sheet-close{font:inherit;width:48px;height:48px;border-radius:50%;border:0;background:var(--soft);color:var(--text);cursor:pointer;font-size:1.5rem;line-height:1}
+.sheet-body{overflow:auto;padding:20px 24px;display:grid;gap:18px;flex:1}
+.sheet-foot{padding:14px 24px;border-top:1px solid var(--line);display:flex;gap:12px}
+#filters-done{flex:1}
+.filters{display:grid;gap:16px;margin:0}
+.filters label,.sheet-body>label,.sheet fieldset>label{display:flex;flex-direction:column;gap:6px;font-size:.92rem;font-weight:600;color:var(--muted)}
+.sheet select,.sheet input[type=search]{font:inherit;font-size:1rem;color:var(--text);background:var(--soft);padding:10px 12px;border:1px solid var(--line-strong);
+border-radius:var(--r-sm);width:100%;min-width:0;min-height:48px}
+.sheet select:focus,.sheet input[type=search]:focus{border-color:var(--sea);background:var(--card)}
+.sheet .check{flex-direction:row!important;align-items:center;gap:12px;color:var(--text)!important;font-weight:500!important;min-height:44px;cursor:pointer;font-size:1rem!important}
+input[type=checkbox],input[type=radio]{accent-color:var(--sea);width:20px;height:20px;margin:0;flex:none}
+fieldset.views{border:0;margin:0;padding:0;display:grid;gap:2px}
+fieldset.views legend{font-size:.92rem;font-weight:600;color:var(--muted);margin-bottom:6px;padding:0}
+.sheet .sep{border-top:1px solid var(--line);padding-top:14px}
+.side-label{font-size:.92rem;font-weight:600;color:var(--muted);margin:0}
+.downloads,.share{display:grid;gap:10px}
+body.sheet-open{overflow:hidden}
+
+/* Fold-outs (project page and About): the arrow swaps between two images, it never rotates. */
+details>summary{cursor:pointer;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details.fold>summary::after,details.more>summary::after,.prose details>summary::after{content:"";display:inline-block;flex:none;width:14px;height:14px;margin-left:auto;background:var(--sea);
+-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
+mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+details[open].fold>summary::after,details[open].more>summary::after,.prose details[open]>summary::after{
+-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 7.5l4-4 4 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+@supports (interpolate-size:allow-keywords){:root{interpolate-size:allow-keywords}
+details.fold::details-content,details.more::details-content{height:0;overflow:clip;transition:height .3s var(--ease),content-visibility .3s allow-discrete}
+details[open].fold::details-content,details[open].more::details-content{height:auto}}
+details[open].fold>.fold-body,details[open].more>div{animation:fold-in .3s var(--ease)}
+@keyframes fold-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+details.fold{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);margin:0 0 16px}
+details.fold>summary{display:flex;align-items:center;gap:12px;min-height:64px;padding:16px 24px;font-size:1.25rem;font-weight:700;border-radius:var(--r);transition:background .2s}
+details.fold>summary:hover{background:var(--soft)}
+details.fold>.fold-body{padding:0 24px 22px}
+details.more>summary{display:flex;align-items:center;gap:8px;min-height:44px;color:var(--link);font-weight:650}
 
 /* Project page */
-.crumbs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 14px;font-size:.9rem;color:var(--muted)}
-.crumbs a{color:var(--muted)}
-article.project{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
-.project-main{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px 28px;box-shadow:var(--shadow)}
-.project-main>.status:first-child,.project-main .status{margin:0 0 14px}
-.project-main h1{margin:0 0 6px;font-size:clamp(1.4rem,2.6vw,1.9rem);letter-spacing:-.02em}
-.project-main .place{margin:0 0 4px;color:var(--muted)}
-.project-main h2{font-size:1.1rem;margin:26px 0 8px;padding-top:20px;border-top:1px solid var(--line)}
-.project-side{display:grid;gap:16px;position:sticky;top:84px}
-.side-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
-.side-card h2{margin:0 0 10px;font-size:.95rem;color:var(--muted)}
-.project-side dl.facts{grid-template-columns:1fr;gap:0}
-.project-side dl.facts dd{margin:0 0 10px}
-.scorebox{display:flex;align-items:baseline;gap:6px}
-.scorebox .big{font-size:2rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.page-band{padding:40px 0 44px}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;font-size:.95rem;color:var(--on-blue-2)}
+.crumbs a{color:#fff}
+.crumbs span:last-child{display:none}
+.page-band h1{color:#fff;margin:0 0 8px;font-size:clamp(1.6rem,3.6vw,2.5rem);max-width:30ch}
+.page-band .place{margin:0;color:var(--on-blue-2);font-size:1.08rem}
+.page-band .status{margin-top:18px}
+.page-band .t-strong{background:#FCEBE6;color:#A9412B}
+.page-band .t-possible{background:#E8F4F8;color:#0B3C5D}
+.page-band .t-weak,.page-band .t-watch,.page-band .t-none{background:#EEF2F4;color:#3E5663}
+.page-band .deadline{color:#fff;background:rgba(226,114,91,.95);background:#B4452E;padding:4px 12px;border-radius:999px;font-size:.9rem}
+.page-band p.note{color:var(--on-blue-2)}
+.project-body{padding:32px 0 64px}
+article.project{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:28px;align-items:start}
+.project-main{min-width:0}
+.project-side{display:grid;gap:16px}
+.side-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+.side-card h2{margin:0 0 10px;font-size:1.05rem}
+.side-card .actions{display:grid;gap:10px;margin:0}
+.fold-body h3,.why-h{margin:18px 0 6px;font-size:1rem;color:var(--muted);font-weight:650}
+p.approach{margin:0 0 12px;padding:14px 16px;background:var(--possible-bg);color:var(--possible-text);border-radius:var(--r-sm);font-size:1.05rem}
+p.approach strong{font-weight:750}
+p.summary{margin:0 0 10px}
+ul.why,.research ul{margin:4px 0 8px;padding-left:1.2em}
+ul.why li,.research li{margin:4px 0}
+.getin{margin:12px 0;padding:14px 16px;background:var(--soft);border:1px solid var(--line);border-radius:var(--r-sm)}
+.getin-h{margin:0;font-weight:700}
+.getin ul{margin-bottom:0}
+a.fc,a.src{font-size:.92rem;white-space:nowrap}
+.not-named{color:var(--muted)}
+dl.facts{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:6px 0;font-size:.97rem}
+dl.facts dt{color:var(--muted);font-size:.9rem}
+dl.facts dd{margin:0 0 10px;min-width:0;overflow-wrap:anywhere}
+ul.quotes{margin:8px 0;padding:0;list-style:none;display:grid;gap:10px}
+ul.quotes li{border-left:4px solid var(--sea);background:var(--soft);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 14px}
+ul.who{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+ul.who .role{display:block;font-size:.9rem;color:var(--muted);font-weight:600}
+ul.who .how{display:block;font-size:.9rem;color:var(--muted)}
+ul.profile-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+ul.profile-list p.because{margin:4px 0 0;font-size:.92rem;color:var(--muted)}
+p.source{margin:4px 0;color:var(--muted);font-size:.95rem}
+p.attr{margin:6px 0 0;color:var(--muted);font-size:.88rem}
+.scorebox{display:flex;align-items:baseline;gap:8px}
+.scorebox .big{font-size:2.4rem;font-weight:750;line-height:1;letter-spacing:-.03em}
 .scorebox .of{color:var(--muted)}
-.meter{height:6px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;margin:10px 0 8px}
+.meter{height:8px;border-radius:99px;background:var(--tint);overflow:hidden;margin:12px 0 8px}
 .meter span{display:block;height:100%;width:calc(var(--s) * 1%);background:var(--line-strong);border-radius:99px}
 article.project[data-tier=strong] .meter span{background:var(--coral)}
 article.project[data-tier=possible] .meter span{background:var(--sea)}
-ol.timeline{list-style:none;padding:0;margin:10px 0}
-ol.timeline li{position:relative;padding:0 0 14px 22px;color:var(--ink-2)}
-ol.timeline li::before{content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--line-strong)}
+ol.timeline{list-style:none;padding:0;margin:8px 0}
+ol.timeline li{position:relative;padding:0 0 14px 22px;font-size:.95rem}
+ol.timeline li::before{content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;border-radius:50%;background:var(--card);border:2px solid var(--line-strong)}
 ol.timeline li.official::before{background:var(--sea);border-color:var(--sea)}
-ol.timeline time{display:block;font-size:.86rem;color:var(--muted);font-weight:600}
-ol.timeline li.official time{color:var(--sea-ink)}
+ol.timeline time{display:block;font-size:.88rem;color:var(--muted);font-weight:650}
 ul.news{padding-left:18px;margin:8px 0}
-.gone{background:var(--coral-soft);color:var(--coral-ink);padding:12px 16px;border-radius:var(--r-sm);margin:20px 0 0}
+.gone{background:var(--strong-bg);color:var(--coral-text);padding:14px 18px;border-radius:var(--r-sm);margin:0 0 16px}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
 
-/* About */
-.page-head .wrap{padding-top:40px;padding-bottom:8px}
-.page-head h1{margin:0 0 8px;font-size:clamp(1.55rem,3vw,2.2rem);letter-spacing:-.02em}
-.page-head p{margin:0;max-width:68ch;color:var(--ink-2)}
-.page-head p.meta{color:var(--muted);margin-top:8px;font-size:.88rem}
-.page-head .mark{width:44px;height:69px;margin-bottom:14px}
-.about-layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:32px;align-items:start;padding-top:24px}
-nav.toc{position:sticky;top:84px;display:grid;gap:2px;font-size:.9rem}
-nav.toc a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:8px;transition:background .18s,color .18s}
-nav.toc a:hover{color:var(--ink);background:var(--surface)}
-.prose{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 36px 30px;box-shadow:var(--shadow)}
-.prose h2{font-size:1.25rem;margin:30px 0 8px;padding-top:22px;border-top:1px solid var(--line)}
+/* About and shortlist */
+.page-head .wrap{padding-top:48px;padding-bottom:52px}
+.page-head h1{color:#fff;margin:0 0 10px;font-size:clamp(1.8rem,3.8vw,2.6rem)}
+.page-head p{margin:0;max-width:66ch;color:var(--on-blue-2);font-size:1.05rem}
+.page-head p a{color:#fff}
+.page-head p.meta{margin-top:10px;font-size:.92rem}
+.page-head .mark{display:none}
+.about-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;align-items:start;padding-top:36px;padding-bottom:64px}
+nav.toc{position:sticky;top:24px;display:grid;gap:2px;font-size:.95rem}
+nav.toc a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;transition:background .2s}
+nav.toc a:hover{background:var(--card);color:var(--text)}
+.prose{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px 40px;box-shadow:var(--shadow)}
+.prose h2{font-size:1.4rem;margin:36px 0 10px;padding-top:28px;border-top:1px solid var(--line)}
 .prose h2:first-child{border-top:0;padding-top:0;margin-top:0}
-.prose h3{font-size:1.04rem;margin:22px 0 6px}
-.prose p,.prose li{color:var(--ink-2);max-width:72ch}
-.prose details{margin:8px 0}
-.prose details>summary{color:var(--sea-ink);font-weight:600}
+.prose h3{font-size:1.1rem;margin:24px 0 6px}
+.prose p,.prose li{max-width:70ch}
+.prose details{margin:10px 0}
+.prose details>summary{display:flex;align-items:center;gap:8px;color:var(--link);font-weight:650;min-height:44px}
+main.shortlist-main{padding-top:32px;padding-bottom:64px}
+.shortlist-intro p{margin:0;color:var(--muted)}
+ol.shortlist{list-style:none}
+ol.shortlist .card .because{margin:10px 0 0;padding:10px 14px;background:var(--soft);border-radius:var(--r-sm);font-size:.95rem}
+ol.shortlist .card dl.facts{grid-template-columns:10em minmax(0,1fr);gap:4px 14px}
+ol.shortlist .card dl.facts dd{margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px}
 
 /* Footer */
-footer{margin-top:64px;background:var(--surface);border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);font-size:.9rem}
-.foot-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px 48px}
-footer p{max-width:80ch;margin:0 0 8px}
-footer .brand{margin-bottom:10px;font-size:1rem}
-footer nav{display:grid;gap:6px;align-content:start}
-footer nav a{color:var(--muted)}
-footer nav a:hover{color:var(--sea-ink)}
+footer{background:var(--navy);color:var(--on-blue-2);padding:48px 0 56px;font-size:.95rem}
+.foot-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:28px 56px}
+footer p{max-width:72ch;margin:0 0 10px}
+footer a{color:#fff}
+footer .brand{margin-bottom:14px;font-size:1.1rem}
+footer nav{display:grid;gap:4px;align-content:start}
+footer nav a{text-decoration:none;padding:6px 0}
+footer nav a:hover{text-decoration:underline}
 
-@media (max-width:1040px){.layout{grid-template-columns:minmax(0,1fr);gap:16px}.sidebar{position:static;max-height:none;overflow:visible}
-.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.filters .sep{grid-column:1/-1}
-article.project{grid-template-columns:minmax(0,1fr);gap:16px}.project-side{position:static}
-.about-layout{grid-template-columns:minmax(0,1fr);gap:16px}nav.toc{position:static;display:flex;flex-wrap:wrap;gap:4px 6px}
-nav.toc .side-label{width:100%}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (min-width:1041px){details.tools>summary{pointer-events:none}details.tools>summary::after{display:none}}
-@media (max-width:640px){.wrap{padding:0 16px}.topbar .updated{display:none}.topbar .wrap{gap:4px 12px;padding-top:8px;padding-bottom:8px;min-height:0}
-.topbar{position:static}.brand .mark{width:20px;height:32px}nav.top{gap:0;margin:0 -8px;flex-wrap:nowrap;max-width:calc(100% + 16px);overflow-x:auto;scrollbar-width:none}nav.top a{padding:8px 8px;font-size:.88rem;white-space:nowrap;min-height:40px}
-.hero .wrap{padding-top:28px}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stats .stat-countries{display:none}
-.stats a{padding:10px 12px}.stats .n{font-size:1.35rem}.filters{grid-template-columns:minmax(0,1fr)}
-dl.facts{grid-template-columns:minmax(0,1fr);gap:0}dl.facts dd{margin-bottom:8px}
-section.soon li{grid-template-columns:minmax(0,1fr)}.panel{padding:16px}
-.card{padding:18px 16px 6px}.card .folds{margin:12px -16px 0;padding:0;flex-direction:column}
-.card details.more>summary{min-height:48px;padding:4px 16px;border-radius:0}
-.card details.more+details.more{border-top:1px solid var(--line)}.card details.more>div{padding:4px 16px 14px}
-.views{display:grid;grid-template-columns:1fr 1fr;width:100%}.views label{text-align:center;white-space:normal;padding:8px}
-.project-main{padding:20px 18px}.prose{padding:20px 18px 24px}.foot-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:1000px){.topbar .updated{display:none}}
+@media (max-width:900px){.steps,.who-for{grid-template-columns:minmax(0,1fr)}
+.steps{gap:12px}.steps li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:2px 18px;padding:20px 22px}
+.steps .icon{grid-row:1/3;width:52px;height:52px;margin:0}.steps h3{margin:4px 0 2px}article.project{grid-template-columns:minmax(0,1fr)}
+.about-layout{grid-template-columns:minmax(0,1fr);gap:16px}nav.toc{position:static;display:flex;flex-wrap:wrap;gap:4px}
+nav.toc .side-label{width:100%}}
+@media (max-width:640px){body{font-size:16px}.wrap{padding:0 18px}.band{padding:44px 0}.topbar .updated{display:none}
+.topbar .wrap{gap:4px 10px;padding-top:10px;padding-bottom:6px;min-height:0}.brand .mark{width:22px;height:35px}
+nav.top{gap:2px;margin:0 -12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:calc(100% + 24px)}
+nav.top a{padding:12px 12px;min-height:48px;white-space:nowrap;font-size:.93rem}
+.hero{padding-top:44px}.hero .ctas .btn{flex:1 1 100%}.stats{gap:12px;margin-top:36px;padding-top:20px}.stats .l{font-size:.86rem}
+.wave{height:44px;margin-top:28px}
+.hide-sm{display:none}.show-sm[hidden]{display:inline!important}
+.steps{gap:12px}.steps li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:2px 16px;padding:18px}
+.steps .icon{grid-row:1/3;width:48px;height:48px;border-radius:14px;margin:0}.steps .icon svg{width:26px;height:26px}
+.steps h3{font-size:1.08rem;margin:2px 0 2px}.steps p{font-size:.95rem}
+.who-for{gap:12px}.who-for a{padding:20px}
+button.linklike,.btn.small,.sheet .check,.sheet-close{min-height:48px}.sheet-close{width:48px;height:48px}
+details>summary{min-height:48px;display:flex;align-items:center}.sheet select,.sheet input[type=search]{min-height:48px}
+nav.toc a,footer nav a{min-height:48px;display:flex;align-items:center}
+.card{padding:18px 18px}.card.linked::after{right:16px;top:22px}
+.picker{padding:32px 0 36px}.picker select{width:100%}
+section.soon li{grid-template-columns:minmax(0,1fr)}
+.toolbar .chip{min-height:48px}
+.sheet{top:auto;left:0;width:100%;max-height:88vh;border-radius:var(--r) var(--r) 0 0;transform:translateY(100%)}
+.sheet.on{transform:none}
+details.fold>summary{padding:14px 18px;font-size:1.15rem}details.fold>.fold-body{padding:0 18px 18px}
+.info-panel{padding:18px}.prose{padding:24px 20px}.foot-grid{grid-template-columns:minmax(0,1fr)}
+ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 """
 
 
@@ -1087,8 +1124,10 @@ JS = r"""
       var span = document.createElement('span'); span.className = 'count'; span.textContent = String(n); h.appendChild(span); s.appendChild(h); }
     var d = document.createElement('div'); d.className = 'cards'; s.appendChild(d); return s;
   }
-  var shownOrder = [];
-  function apply(){
+  var shownOrder = [], PAGE = 12, limit = PAGE;
+  // apply(true) keeps how many cards are shown ("Show more"); every other change starts again at 12.
+  function apply(keep){
+    if (keep !== true) limit = PAGE;
     var v = currentView(), watch = MPF.getWatch();
     cards.forEach(paint);
     var shown = cards.filter(function(c){ return visible(c, v, watch); }).sort(cmp);
@@ -1114,6 +1153,11 @@ JS = r"""
       } else { g.cards.forEach(function(c){ gs.lastChild.appendChild(c); shownOrder.push(c); }); }
       view.appendChild(gs);
     });
+    shownOrder.forEach(function(c, i){ c.hidden = i >= limit; });
+    Array.prototype.forEach.call(view.querySelectorAll('section.tier, section.group'), function(s){
+      s.hidden = !s.querySelector('.card:not([hidden])'); });
+    var more = $('show-more'), left = shownOrder.length - limit;
+    if (more) { more.hidden = left <= 0; more.textContent = 'Show more (' + left + ' more)'; }
     server.hidden = true; view.hidden = false;
     empty.hidden = shown.length > 0;
     empty.textContent = v === 'watch' && !watch.length ? 'Your watch list is empty. Use "Add to watch list" on any project.'
@@ -1158,6 +1202,11 @@ JS = r"""
     }
     if (tfl) tfl.hidden = !PFRESH[prof()];
     paintStats();
+    var nf = (fq.value ? 1 : 0) + (fc.value ? 1 : 0) + (fr.value ? 1 : 0) + (ft.value ? 1 : 0) + (fs.value ? 1 : 0) +
+             (fo.checked ? 1 : 0) + (fw.checked ? 1 : 0) + (tf && tf.checked ? 1 : 0) + (fsort.value !== 'default' ? 1 : 0) +
+             (fgroup.value !== 'country' ? 1 : 0) + (v !== 'all' ? 1 : 0), fcnt = $('filter-count');
+    if (fcnt) { fcnt.textContent = nf; fcnt.hidden = !nf; }
+    var cs = $('chip-soon'); if (cs) cs.textContent = soon.length;
   }
   if (fp) {
     var want = param('profile') || stored() || 'hard-structure';   // hard-structure is the main view
@@ -1194,18 +1243,38 @@ JS = r"""
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   });
-  // A link ending in #coverage opens the Coverage panel.
-  var cov = $('coverage');
-  if (cov && location.hash === '#coverage') { cov.open = true; }
   fc.addEventListener('change', function(){ fillRegions(); apply(); });
   [fr, ft, fs, fo, fw, fsort, fgroup].forEach(function(el){ el.addEventListener('change', apply); });
   Array.prototype.forEach.call(views, function(el){ el.addEventListener('change', apply); });
   fq.addEventListener('input', apply);
   MPF.initWatch(function(){ if (currentView() === 'watch') apply(); });
-  // On phones and tablets the filters sit above the list, so they start folded away.
-  var tools = $('tools');
-  if (tools && window.matchMedia && window.matchMedia('(max-width: 1040px)').matches) tools.open = false;
+  var sm = $('show-more');
+  if (sm) sm.addEventListener('click', function(){ var first = shownOrder[limit]; limit += PAGE; apply(true);
+    if (first) { var a = first.querySelector('h4 a'); if (a) a.focus(); } });
+  // Filters live in a panel that slides in (a bottom sheet on phones). Esc or the backdrop closes it.
+  var sheet = $('filters'), scrim = $('scrim'), fbtn = $('filters-btn');
+  function openSheet(){ sheet.hidden = false; scrim.hidden = false; document.body.classList.add('sheet-open');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ sheet.classList.add('on'); scrim.classList.add('on'); }); });
+    setTimeout(function(){ var f = sheet.querySelector('input,select,button'); if (f) f.focus(); }, 60); }
+  function closeSheet(){ if (sheet.hidden) return; sheet.classList.remove('on'); scrim.classList.remove('on');
+    document.body.classList.remove('sheet-open');
+    setTimeout(function(){ sheet.hidden = true; scrim.hidden = true; }, 300); if (fbtn) fbtn.focus(); }
+  if (fbtn) fbtn.addEventListener('click', openSheet);
+  [$('filters-close'), $('filters-done'), scrim].forEach(function(el){ if (el) el.addEventListener('click', closeSheet); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSheet(); });
+  // Deadlines, changes, coverage and how-to-read sit behind buttons above the list; one opens at a time.
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.toolbar .chip'));
+  function showPanel(id){
+    chips.forEach(function(b){ var on = b.getAttribute('aria-controls') === id && b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', on ? 'true' : 'false'); $(b.getAttribute('aria-controls')).hidden = !on; });
+  }
+  chips.forEach(function(b){ b.addEventListener('click', function(){ showPanel(b.getAttribute('aria-controls')); }); });
+  function fromHash(){ var id = location.hash.slice(1);
+    if (chips.some(function(b){ return b.getAttribute('aria-controls') === id; }) && $(id).hidden) {
+      showPanel(id); var bar = document.querySelector('.toolbar'); if (bar) bar.scrollIntoView(); } }
+  window.addEventListener('hashchange', fromHash);
   apply();
+  fromHash();
 })();
 """
 
@@ -1250,8 +1319,8 @@ def _date(d: date) -> str:
 def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> str:
     """Sticky bar on every page. prefix is "../" on project pages."""
     title = escape(site.get("title", "MitiMark"))
-    links = [("projects", "index.html", "Projects"), ("soon", "index.html#soon", "Comment deadlines"),
-             ("coverage", "index.html#coverage", "Coverage"), ("about", "about.html", "About")]
+    links = [("projects", "projects.html", "Projects"), ("soon", "projects.html#soon", '<span class="hide-sm">Comment deadlines</span><span class="show-sm" hidden>Deadlines</span>'),
+             ("coverage", "projects.html#coverage", "Coverage"), ("about", "about.html", "About")]
     current = ' aria-current="page"'
     nav = "".join(f'<a href="{prefix}{href}"{current if key == active else ""}>{label}</a>'
                   for key, href, label in links)
@@ -1270,7 +1339,8 @@ def _footer(site: dict, prefix: str = "") -> str:
         f"<p>{title} is a prototype. Flags show projects that may need marine habitat work. They do not state that "
         "mitigation is required. Always check the official notice. Compiled from public sources.</p>"
         f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p></div>'
-        f'<nav aria-label="Footer"><a href="{prefix}index.html">Projects</a><a href="{prefix}index.html#soon">Comment deadlines</a>'
+        f'<nav aria-label="Footer"><a href="{prefix}index.html">Home</a><a href="{prefix}projects.html">Projects</a>'
+        f'<a href="{prefix}projects.html#soon">Comment deadlines</a>'
         f'<a href="{prefix}shortlist.html">Hard-structure shortlist</a><a href="{prefix}about.html">About and method</a><a href="{prefix}about.html#coverage">Coverage</a>'
         f'<a href="{prefix}projects.csv">All listed projects (CSV)</a></nav>'
         "</div></footer>")
@@ -1573,73 +1643,29 @@ def _fold(title: str, body: str) -> str:
     return f'<details class="more"><summary>{escape(title)}</summary><div>{body}</div></details>' if body.strip() else ""
 
 
-def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 0, site: dict | None = None) -> str:
+def _card(rec: dict, country_name: str, less_tested: list, country_order: int = 0, site: dict | None = None,
+          prefix: str = "") -> str:
+    """Compact list card: name, place, fit and the comment deadline when one is open. The whole card opens the
+    project page, which holds everything else (why it scored, who to contact, how to get in, sources)."""
     types = rec["types"] or []
     search = " ".join([rec["title"], rec["proponent"], rec["province"], country_name, rec["water_body"],
                        rec["summary"], " ".join(types)] +
                       [e["name"] for es in (rec.get("stakeholders") or {}).values() for e in es]).lower()
-    deadline, deadline_text = _deadline_text(rec)
-    quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
+    deadline, _ = _deadline_text(rec)
     anchor = "p-" + page_slug(rec["id"])
-    link = escape(rec["url"]) if rec["url"] else "#"
     page = escape(rec.get("page") or "")
-    title_link = page or link
+    title_link = (prefix + page) if page else (escape(rec["url"]) if rec["url"] else "#")
     w = rec.get("win") or {}
     if rec.get("profile_only"):
         rec = {**rec, "tier": "none", "tier_label": NOT_GENERAL}
-    way = best_way_in(rec)
-    # Why it scored this way
-    reasons = "".join(f"<li>{escape(x)}</li>" for x in w.get("reasons") or [])
-    scored = (f'<p><span class="badge score">Score {int(rec["score"])} out of 100</span>. {escape(rec.get("tier_reason") or "")}</p>'
-              f'<p class="because" hidden></p><p class="general-line" hidden></p>'
-              + (f'<ul class="why">{reasons}</ul>' if reasons else "")
-              + (f'<p class="why-h">Words from the notice</p><ul class="quotes">{quotes}</ul>' if quotes else ""))
-    # How to get in
-    getin = (f'<p><strong>Suggested approach:</strong> {escape(w.get("entry_point") or "")}</p>' if w.get("entry_point") else "") \
-        + _research_html(rec)
-    # Project details
-    comments = ""
-    if rec["stage_kind"] == "open":
-        comments = (f'<dt>Public comments open</dt><dd>{_opens_text(rec)}</dd>'
-                    f'<dt>Public comments close</dt><dd>{escape(deadline_text)}</dd>')
-    received = _comment_count_text(rec)
-    if received != NOT_PUBLISHED:
-        comments += f'<dt>Comments received</dt><dd>{received}</dd>'
-    notes = []
-    if rec.get("freshwater"):
-        notes.append("On a lake or river (freshwater).")
-    if rec.get("language") in less_tested:
-        notes.append(f"Notice in a less tested language ({escape(LANG_NAMES.get(rec['language'], rec['language']))}).")
-    if rec.get("changes"):
-        notes.append("Changed since the last update: " + escape(", ".join(CHANGE_LABELS[c].lower() for c in rec["changes"])) + ".")
-    details = (f'{_summary_html(rec)}<dl class="facts">'
-               f'<dt>Place</dt><dd>{escape(_place(rec, country_name))}</dd>'
-               f'<dt>Water body</dt><dd>{escape(rec["water_body"])}</dd>'
-               f'<dt>Type of work</dt><dd>{escape(", ".join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}'
-               f'<dt>Stage in the notice</dt><dd>{_plain(escape(rec["stage"]))}</dd>{comments}</dl>'
-               + "".join(f'<p class="note">{n}</p>' for n in notes))
-    review = ("Checked by a person against the official notice." if rec["reviewed"]
-              else "Listed automatically; not yet checked by a person.")
-    sources = (f'{_source_lines(rec, link)}<p class="note">{review}</p>'
-               f'<div class="actions">{f"<a class=btn href={chr(34)}{page}{chr(34)}>Project page and timeline</a>" if page else ""}'
-               f'{_watch_button(rec)}{_feedback_link(rec, site)}</div>')
-    return f"""<article class="card" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-fresh="{'1' if rec.get('freshwater') else ''}" data-source="{escape(rec.get('source') or '')}" data-country="{escape(rec.get('country') or UNKNOWN)}"
+    return f"""<article class="card linked" id="{anchor}" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-gtier="{rec['tier']}" data-fresh="{'1' if rec.get('freshwater') else ''}" data-source="{escape(rec.get('source') or '')}" data-country="{escape(rec.get('country') or UNKNOWN)}"
  data-country-name="{escape(country_name)}" data-country-order="{country_order}" data-region="{escape(rec['province'])}"
  data-types="{escape('|'.join(types))}" data-stage="{rec['stage_kind']}" data-wstage="{escape(w.get('stage') or '')}" data-deadline="{escape(deadline or '')}"
  data-score="{int(rec['score'])}" data-first="{escape(rec.get('first_listed') or '')}"
  data-changes="{escape('|'.join(rec.get('changes') or []))}" data-title="{escape(rec['title'].lower())}" data-search="{escape(search)}">
 <h4><a href="{title_link}">{_plain(escape(rec['title']))}</a></h4>
-<p class="where">{escape(_place(rec, country_name))}{(" &middot; " + escape(DEVELOPER_ONLY)) if rec.get("developer_only") else ""}</p>
-{_status_line(rec)}
-{f'<p class="why">{escape(why_line(rec))}</p>' if why_line(rec) else ''}
-{f'<p class="way-in"><strong>Best way in:</strong> {way}</p>' if way else ''}
-<div class="folds">
-{_fold("Why it scored this way", scored)}
-{_fold("Who's involved", f'<dl class="facts">{_stakeholder_rows(rec)}</dl>')}
-{_fold("How to get in", getin)}
-{_fold("Project details", details)}
-{_fold("Sources", sources)}
-</div>
+<p class="where">{escape(_place(rec, country_name))}{(" &middot; " + escape(DEVELOPER_ONLY)) if rec.get("developer_only") else ""}{" &middot; Freshwater" if rec.get("freshwater") else ""}</p>
+<p class="status"><span class="badge tier-badge t-{rec['tier']}">{escape(rec['tier_label'])}</span>{_deadline_span(rec)}</p>
 </article>"""
 
 
@@ -1863,16 +1889,13 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     prof_json = json.dumps(profile_data(all_records, meta), ensure_ascii=False).replace("</", "<\\/")
     prof_opts = "".join(f'<option value="{escape(m["key"])}">{escape(m["label"])}'
                         f'{"" if m["count"] else " (no current matches)"}</option>' for m in meta)
-    profile_bar = f"""<section class="profile-bar js-only" aria-label="Buyer profile" hidden><div class="wrap"><div class="profile-inner">
-<div class="profile-pick"><label for="f-profile">I work on:</label>
-<select id="f-profile"><option value="{ALL}">{ALL_LABEL}</option>{prof_opts}</select></div>
+    profile_bar = f"""<section class="blue picker js-only" aria-label="Choose your kind of work" hidden><div class="wrap">
+<p class="step">Step 1</p>
+<label for="f-profile">I work on</label>
+<select id="f-profile"><option value="{ALL}">{ALL_LABEL}</option>{prof_opts}</select>
 <p id="profile-desc" class="profile-desc"></p>
-<div class="profile-share"><a id="profile-link" href="?">Shareable link</a>
-<button type="button" class="btn" id="profile-copy">Copy link</button></div>
 <p id="profile-empty" class="profile-empty" hidden>{escape(EMPTY_NOTE)}</p>
-<p class="profile-note">Profiles are rule-based guesses, not a statement that mitigation is required.
-Your choice is remembered only in this browser. <a href="about.html#buyer-profiles">How profiles work</a></p>
-</div></div></section>""" if meta else ""
+</div></section>""" if meta else ""
     tier_names = json.dumps({t: TIER_LABELS[t] for t in PUBLISHED_TIERS + ("watch",)})
 
     opts = ['<option value="">All countries</option>']
@@ -1891,120 +1914,71 @@ Your choice is remembered only in this browser. <a href="about.html#buyer-profil
     n_tier = {t: sum(1 for r in records if r["tier"] == t) for t in PUBLISHED_TIERS}
     n_sources = len({r.get("source") for r in records if r.get("source")})
     freq = escape(site.get("update_frequency", "every 2 weeks"))
+    since_html = since_panel(records, history_dates or [])
+    panels = [("soon", "Comment deadlines", n_soon), ("changes", "What changed", None) if since_html else None,
+              ("coverage", "Coverage", None), ("how-to-read", "How to read the list", None),
+              ("news", "News", None) if news_html else None]
+    chips = "".join(f'<button type="button" class="chip" aria-expanded="false" aria-controls="{k}">{label}'
+                    f'{f" <span class={chr(34)}n{chr(34)} id={chr(34)}chip-soon{chr(34)}>{n}</span>" if n is not None else ""}</button>'
+                    for k, label, n in filter(None, panels))
     return f"""<!doctype html>
 <html lang="en">
 <head>
-{_head(title, desc)}
+{CARD_ANCHOR_JS}
+{_head("Projects - " + title, desc)}
 </head>
 <body data-soon="{soon_days}">
 {_topbar(site, updated, "projects")}
-<section class="hero"><div class="wrap">
-<p class="eyebrow">{escape(title)} &middot; marine habitat early alerts</p>
-<h1>{escape(desc)}</h1>
-<p class="lede">Every week we read public permit and environmental assessment notices and pick out marine construction
-projects that may need habitat work. Each listing says how well it fits, what stage it is at and the best way in, and
-links to the official notice.</p>
-<p class="meta">Updated {freq}. Last update: <time>{_date(updated)}</time>.</p>
-<p class="stats-for" id="stats-for">Figures for: <strong id="stats-for-name">{ALL_LABEL}</strong></p>
-<ul class="stats">
-<li><a href="?show=weak#results"><span class="n" id="stat-total">{len(records)}</span><span class="l">Projects listed</span></a></li>
-<li><a href="#results"><span class="n" id="stat-strong">{n_tier['strong']}</span><span class="l"><span class="dot strong"></span>{TIER_LABELS['strong']}</span></a></li>
-<li><a href="#results"><span class="n" id="stat-possible">{n_tier['possible']}</span><span class="l"><span class="dot possible"></span>{TIER_LABELS['possible']}</span></a></li>
-<li><a href="#soon"><span class="n" id="stat-soon">{n_soon}</span><span class="l"><span class="dot soon"></span>Public comment deadlines in the next {soon_days} days</span></a></li>
-<li class="stat-countries"><a href="#coverage"><span class="n" id="stat-countries">{len(countries)}</span><span class="l" id="stat-countries-l">Countries with listings{f', {n_sources} sources' if n_sources else ''}</span></a></li>
-</ul>
-</div></section>
+<main id="main">
 {profile_bar}
-<main class="wrap layout" id="main">
+<section class="band-tint results" id="results" aria-labelledby="results-h"><div class="wrap">
+<div class="results-bar">
+<div><p class="step js-only" hidden>Step 2</p><h2 id="results-h">Projects</h2><p id="result-count" aria-live="polite">{len(records)} projects listed.</p>
+<p class="result-actions"><button type="button" class="linklike" id="show-weak" hidden>Also show weak fits</button>
+<button type="button" class="linklike" id="show-fresh" hidden>Include freshwater</button></p></div>
+</div>
+<div class="toolbar js-only" hidden>
+<button type="button" class="btn primary small" id="filters-btn" aria-haspopup="dialog" aria-controls="filters">Filters
+<span class="count-dot" id="filter-count" hidden>0</span></button>
+{chips}
+</div>
 
-<aside class="sidebar" aria-label="Filters">
-<details class="tools" id="tools" open>
-<summary>Filters and views</summary>
-<div class="tools-body">
-<form class="filters" onsubmit="return false" aria-label="Filter projects">
-<label>Search<input type="search" id="f-search" placeholder="Name, place, proponent"></label>
-<label>Country<select id="f-country">{''.join(opts)}</select></label>
-<label id="f-region-label" hidden><span id="f-region-text">Province or state</span><select id="f-region"><option value="">All</option></select></label>
-<label>Project type<select id="f-type"><option value="">All types</option></select></label>
-<label>Stage<select id="f-stage"><option value="">All stages</option>
-<option value="open">Open for public comment</option><option value="closed">Comments closed, decision pending</option>
-<option value="assessment">Under review</option><option value="decided">Approved</option>
-<option value="withdrawn">Withdrawn or rejected</option><option value="unknown">Stage not stated</option></select></label>
-<label class="js-only" hidden>Sort by<select id="f-sort"><option value="default">Best fit first</option>
-<option value="deadline">Public comment deadline, soonest first</option><option value="score">Score, highest first</option>
-<option value="newest">Newest listed first</option><option value="title">Name, A to Z</option></select></label>
-<label class="js-only" hidden>Group by<select id="f-group"><option value="country">Country</option>
-<option value="type">Project type</option><option value="stage">Stage</option>
-<option value="month">Month of the comment deadline</option><option value="none">No grouping</option></select></label>
-<label class="check sep"><input type="checkbox" id="f-open"> Only projects open for public comment (soonest deadline first)</label>
-</form>
-<div class="toggles">
-<label class="check"><input type="checkbox" id="t-weak"> Also show weak fits</label>
-<label class="check" id="t-fresh-label" hidden><input type="checkbox" id="t-fresh"> Include freshwater (lakes and rivers)</label>
-<button type="button" id="reset-btn" class="btn quiet js-only" hidden>Reset all filters</button>
-</div>
-<div class="downloads">
-<p class="side-label">Download</p>
-<button type="button" id="csv-btn" class="btn block js-only" hidden>Download shown projects (CSV)</button>
-<a href="projects.csv">All listed projects (CSV)</a>
-</div>
-</div>
-</details>
-</aside>
-
-<div class="content">
-<div class="stack">
-<section class="panel soon" id="soon" aria-labelledby="soon-h">
-<div class="panel-head"><h2 id="soon-h">Public comment deadlines coming up</h2>
-<p class="soon-note">Projects where the public can still send comments to the regulator. Companies can also use the
-deadline as a reason to get in touch.</p></div>
+<section class="info-panel soon" id="soon" aria-labelledby="soon-h" hidden>
+<h3 id="soon-h">Public comment deadlines coming up</h3>
+<p class="note">Projects where the public can still send comments to the regulator. Companies can also use the
+deadline as a reason to get in touch.</p>
 <p class="summary-line" id="summary-line">{n_soon} deadlines in the next {soon_days} days.</p>
 <ul id="soon-list">{soon_items}</ul>
 <p id="soon-none"{' hidden' if n_soon else ''}>No public comment deadlines in the next {soon_days} days.</p>
-<p class="open-all"><a href="?open=1#results">See every project open for public comment</a></p>
-<noscript><p>Turn on JavaScript for live countdowns, filters and search. Without it, all three tiers are listed below.</p></noscript>
+<p><a href="?open=1#results">See every project open for public comment</a></p>
 </section>
-
-<details class="panel explain">
-<summary>How to read this list</summary>
-<p>Every notice is scored automatically from the words and sizes in it, then placed in a tier:</p>
-<ul>
-<li class="key-strong"><strong>{TIER_LABELS['strong']}:</strong> {escape(td['strong'])}</li>
-<li class="key-possible"><strong>{TIER_LABELS['possible']}:</strong> {escape(td['possible'])}</li>
-<li class="key-weak"><strong>{TIER_LABELS['weak']}:</strong> {escape(td['weak'])} Hidden unless you tick "Also show weak fits".</li>
-</ul>
-<p>Notices scoring under {int(tiers.get('weak_min', 20))}, quarries and pits, and withdrawn projects are not listed.</p>
-<p>A flag means a notice may involve marine habitat work. It is not a statement that mitigation or
-compensation is required. Listings checked by a person say so under "Sources"; the rest are automatic.
-Always read the official notice.</p>
-</details>
-
-<div class="row-2">
-{since}
-<details class="panel coverage" id="coverage">
-<summary>Coverage: {cc['covered']} covered, {cc['partial']} partial, {cc['coming_soon']} coming soon{' (mostly Canada for now)' if bn else ''}</summary>
+{f'<section class="info-panel since" id="changes" hidden>{since_html}</section>' if since_html else ''}
+<section class="info-panel coverage" id="coverage" hidden>
+<h3>Coverage: {cc['covered']} covered, {cc['partial']} partial, {cc['coming_soon']} coming soon</h3>
 {f'<p>{escape(bn)}</p>' if bn else ''}
 <div class="cov-wrap"><table class="cov"><thead><tr><th>Place</th><th>Status</th><th>Details</th></tr></thead>
 <tbody>
 {coverage_rows(coverage, counts)}
 </tbody></table></div>
 {f'<p class="note">{escape(lt)}</p>' if lt else ''}
-</details>
-</div>
-{news_html}
-</div>
+</section>
+<section class="info-panel explain" id="how-to-read" hidden>
+<h3>How to read this list</h3>
+<p>Every notice is scored automatically from the words and sizes in it, then placed in a tier:</p>
+<ul>
+<li><strong>{TIER_LABELS['strong']}:</strong> {escape(td['strong'])}</li>
+<li><strong>{TIER_LABELS['possible']}:</strong> {escape(td['possible'])}</li>
+<li><strong>{TIER_LABELS['weak']}:</strong> {escape(td['weak'])} Hidden unless you tick "Also show weak fits" under Filters.</li>
+</ul>
+<p>Notices scoring under {int(tiers.get('weak_min', 20))}, quarries and pits, and withdrawn projects are not listed.</p>
+<p>A flag means a notice may involve marine habitat work. It is not a statement that mitigation or
+compensation is required. Profiles are rule-based guesses, not a statement that mitigation is required.
+Always read the official notice.
+<a href="about.html#buyer-profiles">How profiles work</a></p>
+</section>
+{f'<section class="info-panel news-panel" id="news" hidden>{news_html}</section>' if news_html else ''}
+<noscript><p class="note">Turn on JavaScript for filters, search and the profile picker. Without it, every listed project is shown below.</p></noscript>
 
-<div class="results-bar" id="results">
-<div><h2>Projects</h2><p id="result-count" aria-live="polite"></p>
-<p class="result-actions"><button type="button" class="linklike" id="show-weak" hidden>Also show weak fits</button>
-<button type="button" class="linklike" id="show-fresh" hidden>Include freshwater</button></p></div>
-<div class="views js-only" role="radiogroup" aria-label="Which projects" hidden>
-<label><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
-<label><input type="radio" name="view" id="v-soon" value="soon"> Comment deadline soon</label>
-<label><input type="radio" name="view" id="v-changed" value="changed"> Changed since last update</label>
-<label><input type="radio" name="view" id="v-watch" value="watch"> My watch list</label>
-</div>
-</div>
 <p class="empty" id="no-match" hidden>No projects match these filters.</p>
 <div id="view" hidden></div>
 <div id="server-list">
@@ -2013,8 +1987,49 @@ Always read the official notice.</p>
 <div id="profile-only" hidden>
 {extra_cards}
 </div>
-</div>
+<p class="center js-only" hidden><button type="button" class="btn" id="show-more" hidden>Show more</button></p>
+</div></section>
 </main>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="sheet" id="filters" role="dialog" aria-modal="true" aria-labelledby="filters-h" hidden>
+<div class="sheet-head"><h2 id="filters-h">Filters</h2><button type="button" class="sheet-close" id="filters-close" aria-label="Close filters">&times;</button></div>
+<div class="sheet-body">
+<fieldset class="views"><legend>Show</legend>
+<label class="check"><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
+<label class="check"><input type="radio" name="view" id="v-soon" value="soon"> Comment deadline soon</label>
+<label class="check"><input type="radio" name="view" id="v-changed" value="changed"> Changed since last update</label>
+<label class="check"><input type="radio" name="view" id="v-watch" value="watch"> My watch list</label>
+</fieldset>
+<form class="filters sep" onsubmit="return false" aria-label="Filter projects">
+<label>Search<input type="search" id="f-search" placeholder="Name, place, proponent"></label>
+<label>Country<select id="f-country">{''.join(opts)}</select></label>
+<label id="f-region-label" hidden><span id="f-region-text">Province or state</span><select id="f-region"><option value="">All</option></select></label>
+<label>Project type<select id="f-type"><option value="">All types</option></select></label>
+<label>Stage<select id="f-stage"><option value="">All stages</option>
+<option value="open">Open for public comment</option><option value="closed">Comments closed, decision pending</option>
+<option value="assessment">Under review</option><option value="decided">Approved</option>
+<option value="withdrawn">Withdrawn or rejected</option><option value="unknown">Stage not stated</option></select></label>
+<label>Sort by<select id="f-sort"><option value="default">Best fit first</option>
+<option value="deadline">Public comment deadline, soonest first</option><option value="score">Score, highest first</option>
+<option value="newest">Newest listed first</option><option value="title">Name, A to Z</option></select></label>
+<label>Group by<select id="f-group"><option value="country">Country</option>
+<option value="type">Project type</option><option value="stage">Stage</option>
+<option value="month">Month of the comment deadline</option><option value="none">No grouping</option></select></label>
+<label class="check"><input type="checkbox" id="f-open"> Only projects open for public comment</label>
+<label class="check"><input type="checkbox" id="t-weak"> Also show weak fits</label>
+<label class="check" id="t-fresh-label" hidden><input type="checkbox" id="t-fresh"> Include freshwater (lakes and rivers)</label>
+</form>
+<div class="share sep"><p class="side-label">Share this view</p>
+<p class="note">Your profile choice is remembered only in this browser. <a id="profile-link" href="?">Shareable link</a></p>
+<button type="button" class="btn small" id="profile-copy">Copy link</button></div>
+<div class="downloads sep"><p class="side-label">Download</p>
+<button type="button" id="csv-btn" class="btn small">Shown projects (CSV)</button>
+<a href="projects.csv">All listed projects (CSV)</a></div>
+</div>
+<div class="sheet-foot"><button type="button" id="reset-btn" class="btn quiet">Reset all</button>
+<button type="button" class="btn primary" id="filters-done">Show projects</button></div>
+</aside>
 {_footer(site)}
 <script type="application/json" id="csv-data">{csv_data}</script>
 <script type="application/json" id="tier-names">{tier_names}</script>
@@ -2023,6 +2038,107 @@ Always read the official notice.</p>
 </body>
 </html>
 """
+
+
+# Old links pointed at index.html for the list (?profile=..., #p-..., #soon). Home sends those on to projects.html.
+# A link to one card (#p-<slug>) goes straight to that project's page, which always exists.
+CARD_ANCHOR_JS = ("<script>(function(){var m=/^#p-([A-Za-z0-9_-]+)$/.exec(location.hash);"
+                  "if(m)location.replace('p/'+m[1]+'.html');})();</script>")
+OLD_LIST_LINKS = ("<script>(function(){var s=location.search,h=location.hash,m=/^#p-([A-Za-z0-9_-]+)$/.exec(h);"
+                  "if(m)location.replace('p/'+m[1]+'.html');"
+                  "else if(/[?&](profile|view|open|show|country|sort|group)=/.test(s)||/^#(results|soon|coverage|tools)/.test(h))"
+                  "location.replace('projects.html'+s+h);})();</script>")
+
+WAVE = ('<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+        '<path class="back" d="M0 38C240 8 480 68 720 38S1200 8 1440 38V80H0Z"/>'
+        '<path d="M0 56C300 28 520 80 760 54S1180 26 1440 50V80H0Z"/></svg>')
+
+STEP_ICONS = {
+    "scan": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v6"/><path d="M14 3v4h4"/><path d="M7 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><circle cx="16.5" cy="16.5" r="3.5"/><path d="M19 19l2.5 2.5"/></svg>',
+    "score": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>',
+    "list": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h7"/><path d="M4 6l1 1 2-2"/><path d="M4 12l1 1 2-2"/><path d="M4 18l1 1 2-2"/></svg>',
+}
+
+# Who the site is for, each linked to the profile that fits that work.
+AUDIENCES = [("hard-structure", "Reef builders",
+              "Breakwaters, seawalls and wharves where reef units or eco-engineered blocks could replace plain rock or concrete."),
+             ("living-shoreline", "Living shoreline firms",
+              "Eroding shores, salt marsh, oyster and mussel work where a living shoreline could do the job."),
+             ("banking", "Mitigation banks",
+              "Projects whose notices mention offsetting, compensation or habitat credits.")]
+
+
+def render_home(records: list[dict], site: dict, tiers: dict, updated: date, coverage: dict | None = None,
+                scoring: dict | None = None) -> str:
+    """index.html: a short front page. Hero with three numbers, how it works, three top picks, who it is for."""
+    coverage = coverage if coverage is not None else load_coverage()
+    title = site.get("title", "MitiMark")
+    meta = {m["key"]: m for m in profile_meta(records, scoring)}
+    general = [r for r in records if not r.get("profile_only")]
+    soon_days = int(site.get("closing_soon_days", 14))
+    n_soon = len(closing_soon(general, soon_days, updated))
+    n_strong = sum(1 for r in general if r["tier"] == "strong")
+    names = {c["code"]: c["name"] for c in coverage.get("countries", [])}
+    picks = sorted((r for r in general if r["tier"] in ("strong", "possible")), key=_sort_key)[:3]
+    cards = "\n".join(_card(r, names.get(r.get("country"), r.get("country") or UNKNOWN), []) for r in picks)
+    n_countries = len({r.get("country") for r in general if r.get("country")})
+    who = "".join(f'<li><a href="projects.html?profile={k}#results"><h3>{escape(name)}</h3><p>{escape(line)}</p>'
+                  f'<span class="go">See {meta[k]["count"]} project{"" if meta[k]["count"] == 1 else "s"}</span></a></li>'
+                  for k, name, line in AUDIENCES if k in meta)
+    who_band = f"""<section class="band band-white" aria-labelledby="who-h"><div class="wrap">
+<h2 class="band-h" id="who-h">Who this is for</h2>
+<p class="band-sub">Pick your kind of work and the list re-sorts for it.</p>
+<ul class="who-for">{who}</ul>
+</div></section>""" if who else ""
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+{OLD_LIST_LINKS}
+{_head(title, site.get("description", ""))}
+</head>
+<body data-soon="{soon_days}">
+{_topbar(site, updated, "home")}
+<main id="main">
+<section class="blue hero"><div class="wrap">
+<h1>Find coastal projects that need marine mitigation, before they&rsquo;re awarded.</h1>
+<p class="lede">For reef builders, living shoreline firms, mitigation banks and other companies that do marine mitigation work.</p>
+<p class="ctas"><a class="btn white" href="projects.html">See projects</a><a class="btn outline-white" href="#how">How it works</a></p>
+<ul class="stats">
+<li><a href="projects.html?profile=all#results"><span class="n">{len(general)}</span><span class="l">Projects tracked</span></a></li>
+<li><a href="projects.html?profile=all#results"><span class="n">{n_strong}</span><span class="l">Strong fits</span></a></li>
+<li><a href="projects.html?profile=all#soon"><span class="n">{n_soon}</span><span class="l">Deadlines this fortnight</span></a></li>
+</ul>
+</div>{WAVE}</section>
+
+<section class="band band-white" id="how" aria-labelledby="how-h"><div class="wrap">
+<h2 class="band-h" id="how-h">How it works</h2>
+<p class="band-sub">Updated {escape(site.get("update_frequency", "every week"))}. Last update <time>{_date(updated)}</time>.</p>
+<ol class="steps">
+<li><span class="icon">{STEP_ICONS["scan"]}</span><h3>We scan public notices</h3>
+<p>Official permit and environmental assessment notices from {n_countries} countries, read every week.</p></li>
+<li><span class="icon">{STEP_ICONS["score"]}</span><h3>We score each project</h3>
+<p>Clear rules on the type of work, habitat words in the notice and its size give each project a fit.</p></li>
+<li><span class="icon">{STEP_ICONS["list"]}</span><h3>You get a weekly list</h3>
+<p>Strong and possible fits, with who to contact, how to get in and the deadline to beat.</p></li>
+</ol>
+</div></section>
+
+<section class="band band-tint" aria-labelledby="picks-h"><div class="wrap">
+<h2 class="band-h" id="picks-h">Top picks this week</h2>
+<p class="band-sub">The three best fits across all habitat work right now.</p>
+<div class="cards">{cards}</div>
+<p class="center"><a class="btn primary" href="projects.html">See all projects</a></p>
+</div></section>
+{who_band}
+</main>
+{_footer(site)}
+<script>{JS_COMMON}
+Array.prototype.forEach.call(document.querySelectorAll('.card'), MPF.countdown);
+</script>
+</body>
+</html>
+"""
+
 
 
 CSV_COLUMNS = ["id", "title", "country", "region", "proponent", "project_types", "stage", "tier", "score",
@@ -2088,8 +2204,8 @@ def since_panel(records: list[dict], dates: list[str]) -> str:
     counts = {k: sum(1 for r in records if k in (r.get("changes") or [])) for k in CHANGE_LABELS}
     parts = [f"{counts[k]} {CHANGE_LABELS[k].lower() if i else CHANGE_LABELS[k].split(' since')[0].lower()}"
              for i, k in enumerate(CHANGE_LABELS)]
-    return (f'<details class="panel since"><summary>What changed since the last update ({escape(dates[-2])})</summary>\n'
-            f'<p>{escape(", ".join(parts))}. <a href="?view=changed&amp;show=weak">Show the changed projects</a>.</p></details>')
+    return (f'<h3>What changed since the last update ({escape(dates[-2])})</h3>\n'
+            f'<p>{escape(", ".join(parts))}. <a href="?view=changed&amp;show=weak">Show the changed projects</a>.</p>')
 
 
 TIMELINE_TYPES = {"new": "Listed", "deadline": "Deadline", "decided": "Decision", "stage": "Stage", "tier": "Tier"}
@@ -2178,7 +2294,7 @@ def _profiles_card(rec: dict, meta: list[dict] | None) -> str:
         if not listed_in_profile(rec, m["key"]):
             continue
         p = rec["profiles"][m["key"]]
-        items.append(f'<li><a href="../index.html?profile={escape(m["key"])}#results">{escape(m["label"])}</a> '
+        items.append(f'<li><a href="../projects.html?profile={escape(m["key"])}#results">{escape(m["label"])}</a> '
                      f'<span class="badge tier-badge t-{p["tier"]}">{escape(p["tier_label"])}</span> '
                      f'<span class="note">score {int(p["score"])}</span>'
                      f'<p class="because">Matches because: {escape(p["because"])}</p></li>')
@@ -2186,6 +2302,40 @@ def _profiles_card(rec: dict, meta: list[dict] | None) -> str:
             else '<p class="note">No buyer profile matches this project.</p>')
     return (f'<section class="side-card">\n<h2 class="side-h">Buyer profiles</h2>\n{body}\n'
             f'<p class="note">Rule-based guesses, not a statement that mitigation is required.</p>\n</section>')
+
+
+def approach_first(rec: dict) -> str:
+    """Who to approach first, in plain words, from the project's entry point: the owner, the engineering consultant
+    or the contractor. Empty when there is no entry point (project watch)."""
+    ep = (rec.get("win") or {}).get("entry_point") or ""
+    name = lambda key: (", " + _role(rec, key)[0]["name"]) if _role(rec, key) else ""
+    if not ep:
+        return ""
+    if "contact the contractor" in ep:
+        return "the contractor" + name("contractor")
+    if "engineering firm (" in ep:
+        return "the engineering consultant" + name("consultant")
+    if "late; watch" in ep:
+        return "nobody yet: construction has started, so watch for later phases or repairs"
+    return "the owner" + name("owner")
+
+
+def _comments_side(rec: dict, deadline_text: str) -> str:
+    """Public comments box, only when the registry publishes something: a date or a count."""
+    c = rec.get("comments") or {}
+    if rec["stage_kind"] == "watch" or not (c.get("opens") or rec.get("comment_deadline") or c.get("count") is not None):
+        return ""
+    rows = ""
+    if c.get("opens"):
+        rows += f"<dt>Opens</dt><dd>{_opens_text(rec)}</dd>"
+    if rec.get("comment_deadline"):
+        rows += f'<dt>Closes</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
+    if c.get("count") is not None:
+        rows += f"<dt>Comments received</dt><dd>{_comment_count_text(rec)}</dd>"
+    note = f'<p class="note">{escape(c["count_note"])}</p>' if c.get("count_note") else ""
+    return (f'<section class="side-card">\n<h2 class="side-h">Public comments</h2>\n<dl class="facts">{rows}</dl>\n{note}'
+            '<p class="note">Only dates and counts the official registry publishes are shown. Comment text and the names of '
+            'people who commented are not copied here. To comment, use the official notice.</p>\n</section>')
 
 
 def render_project_page(rec: dict, site: dict, updated: date, country_name: str, less_tested: list,
@@ -2197,21 +2347,36 @@ def render_project_page(rec: dict, site: dict, updated: date, country_name: str,
     deadline, deadline_text = _deadline_text(rec)
     link = escape(rec["url"]) if rec["url"] else "#"
     quotes = "".join(f"<li>&ldquo;{escape(q)}&rdquo;</li>" for q in rec["quotes"])
-    c = rec.get("comments") or {}
-    if rec["stage_kind"] == "watch":
-        comments = "<p>Not applicable: this is a project page, not a notice.</p>"
-    else:
-        note = f'<p class="note">{escape(c["count_note"])}</p>' if c.get("count_note") else ""
-        comments = f"""<dl class="facts">
-<dt>Opens</dt><dd>{_opens_text(rec)}</dd>
-<dt>Closes</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
-<dt>Comments received</dt><dd>{_comment_count_text(rec)}</dd>
-</dl>
-{note}
-<p class="note">Only dates and counts the official registry publishes are shown. Comment text and the names of
-people who commented are not copied here. To comment, use the official notice.</p>"""
     official = "Official page" if rec["stage_kind"] == "watch" else "Official notice"
     score = int(rec["score"])
+    w = rec.get("win") or {}
+    reasons = "".join(f"<li>{escape(x)}</li>" for x in w.get("reasons") or [])
+    review = ("Checked by a person against the official notice." if rec["reviewed"]
+              else "Listed automatically; not yet checked by a person.")
+    changed = ((" Changed since the last update: " + escape(", ".join(CHANGE_LABELS[c] for c in rec.get("changes") or [])) + ".")
+               if rec.get("changes") else "")
+    notes = []
+    if rec.get("freshwater"):
+        notes.append("On a lake or river (freshwater).")
+    if rec.get("language") in less_tested:
+        notes.append(f"Notice in a less tested language ({escape(LANG_NAMES.get(rec['language'], rec['language']))}).")
+    reason_note = '' if rec['tier_reason'].lower().startswith('score') else f' {escape(rec["tier_reason"])}'
+    why = (f'{_summary_html(rec)}'
+           f'<p><strong>Stage:</strong> {escape(_stage_text(rec))}.</p>'
+           f'<div class="scorebox"><span class="big">{score}</span><span class="of">/ 100 &middot; {escape(rec["tier_label"])}</span></div>'
+           f'<div class="meter" style="--s:{score}"><span></span></div><p class="note">{reason_note.strip()}</p>'
+           + (f'<h3>Why it scored {score} out of 100</h3><ul class="why">{reasons}</ul>' if reasons else "")
+           + _profiles_card(rec, meta).replace('<section class="side-card">', '<div class="profiles">', 1)
+                 .replace('</section>', '</div>').replace('<h2 class="side-h">Buyer profiles</h2>', '<h3>Buyer profiles that list it</h3>')
+           + (f'<h3>Words from the notice</h3><ul class="quotes">{quotes}</ul>' if quotes else "")
+           + "".join(f'<p class="note">{n}</p>' for n in notes)
+           + f'<p class="note">{review}{changed}</p>')
+    who = approach_first(rec)
+    getin = ((f'<p class="approach"><strong>Approach first:</strong> {escape(who)}.</p>' if who else "")
+             + (f'<p><strong>Suggested approach:</strong> {escape(w["entry_point"])}</p>' if w.get("entry_point") else "")
+             + _research_html(rec, full=True))
+    if not getin.strip():
+        getin = "<p>Read the official notice: it names who to contact.</p>"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -2219,56 +2384,50 @@ people who commented are not copied here. To comment, use the official notice.</
 </head>
 <body data-soon="{int(site.get('closing_soon_days', 30))}">
 {_topbar(site, updated, "", "../")}
-<main class="wrap">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Projects</a><span aria-hidden="true">/</span>
-<a href="../index.html?country={escape(rec.get('country') or '')}#results">{escape(country_name)}</a><span aria-hidden="true">/</span>
+<main class="project" id="main" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
+<section class="blue page-band"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../projects.html">Projects</a><span aria-hidden="true">/</span>
+<a href="../projects.html?country={escape(rec.get('country') or '')}#results">{escape(country_name)}</a><span aria-hidden="true">/</span>
 <span>{escape(rec['title'])}</span></nav>
-<article class="project" id="main" data-id="{escape(rec['id'])}" data-tier="{rec['tier']}" data-stage="{rec['stage_kind']}" data-deadline="{escape(deadline or '')}">
-<div class="project-main">
-{_status_line(rec)}
 <h1>{_plain(escape(rec['title']))}</h1>
-<p class="note">{"Checked by a person against the official notice." if rec["reviewed"] else "Listed automatically; not yet checked by a person."}{(" Changed since the last update: " + escape(", ".join(CHANGE_LABELS[c] for c in rec.get("changes") or [])) + ".") if rec.get("changes") else ""}</p>
 <p class="place">{escape(_place(rec, country_name))}{(" &middot; " + escape(_role(rec, "owner")[0]["name"])) if _role(rec, "owner") else ""}</p>
-{_summary_html(rec)}
-{_win_html(rec)}
-{_research_html(rec, full=True)}
-{f'<h2>Evidence from the notice</h2><ul class="quotes">{quotes}</ul>' if quotes else ''}
-<h2>Who is involved</h2>
-{_who_html(rec)}
-<h2>Timeline</h2>
-{_timeline_html(rec)}
-<p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
-at each update.</p>
-{_in_the_news_html(rec)}
-<h2>Source</h2>
-{_source_lines(rec, link)}
+<p class="status"><span class="badge tier-badge t-{rec['tier']}">{escape(rec['tier_label'])}</span>{_deadline_span(rec)}</p>
+</div></section>
+<div class="band-tint project-body"><div class="wrap">
+<article class="project" data-tier="{rec['tier']}">
+<div class="project-main">
+<details class="fold" open><summary>Why it matters</summary><div class="fold-body">{why}</div></details>
+<details class="fold"><summary>Who to contact</summary><div class="fold-body">{_who_html(rec)}</div></details>
+<details class="fold"><summary>How to get in</summary><div class="fold-body">{getin}</div></details>
+{_in_the_news_html(rec).replace('<h2>', '<section class="side-card"><h2>', 1) + '</section>' if _in_the_news_html(rec) else ''}
 </div>
 <aside class="project-side">
 <section class="side-card">
-<h2 class="side-h">Public comments</h2>
-{comments}
-</section>
-<section class="side-card">
 <div class="actions"><a class="btn primary" href="{link}" rel="noopener">{official} &#8599;</a>{_watch_button(rec)}{_feedback_link(rec, site)}</div>
 </section>
-<section class="side-card">
-<h2 class="side-h">Score</h2>
-<div class="scorebox"><span class="big">{score}</span><span class="of">/ 100 &middot; {escape(rec['tier_label'])}</span></div>
-<div class="meter" style="--s:{score}"><span></span></div>
-{'' if rec['tier_reason'].lower().startswith('score') else f'<p class="note">{escape(rec["tier_reason"])}</p>'}
-</section>
-{_profiles_card(rec, meta)}
+{_comments_side(rec, deadline_text)}
 <section class="side-card">
 <h2 class="side-h">Key facts</h2>
 <dl class="facts">
 <dt>Owner or proponent</dt><dd>{escape(rec['proponent'])}</dd>
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
-<dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
+<dt>Stage in the notice</dt><dd>{_plain(escape(rec['stage']))}</dd>
 </dl>
+</section>
+<section class="side-card">
+<h2 class="side-h">Timeline</h2>
+{_timeline_html(rec)}
+<p class="note">Dates marked "official notice" come from the registry. Other entries are what this site saw
+at each update.</p>
+</section>
+<section class="side-card">
+<h2 class="side-h">Source</h2>
+{_source_lines(rec, link)}
 </section>
 </aside>
 </article>
+</div></div>
 </main>
 {_footer(site, "../")}
 <script>{JS_COMMON}{JS_PAGE}</script>
@@ -2389,7 +2548,7 @@ def render_shortlist(records: list[dict], site: dict, updated: date, meta: list[
 </head>
 <body data-soon="{int(site.get('closing_soon_days', 30))}">
 {_topbar(site, updated, "")}
-<section class="page-head"><div class="wrap">
+<section class="blue page-head"><div class="wrap">
 <p class="eyebrow">Shortlist &middot; {escape(m['label'])}</p>
 <h1>{len(picks)} projects to look at</h1>
 <p>Projects that may suit eco-engineered marine products, chosen by the rules on the
@@ -2399,12 +2558,12 @@ design and purchasing may still be ahead. Then projects still under assessment. 
 <p class="meta">Updated <time>{_date(updated)}</time>. These are rule-based guesses, not a statement that mitigation
 or any product is required. Always read the official notice.</p>
 </div></section>
-<main class="wrap" id="main">
+<main class="wrap shortlist-main" id="main">
 <div class="shortlist-intro">{ask}</div>
 <ol class="cards shortlist">
 {items}
 </ol>
-<p class="note"><a href="index.html?profile={escape(key)}#results">See every {escape(m['label'].lower())} project</a></p>
+<p class="center"><a class="btn" href="projects.html?profile={escape(key)}#results">See every {escape(m['label'].lower())} project</a></p>
 </main>
 {_footer(site)}
 <script>{JS_COMMON}
@@ -2447,7 +2606,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
 </head>
 <body>
 {_topbar(site, updated, "about")}
-<section class="page-head"><div class="wrap">
+<section class="blue page-head"><div class="wrap">
 {LOGO}
 <p class="eyebrow">About and method</p>
 <h1>About {escape(site.get("title", "MitiMark"))}</h1>
@@ -2629,8 +2788,9 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
     scoring = settings.get("scoring")
     meta = profile_meta(records, scoring)
     general = [r for r in records if not r.get("profile_only")]
-    (out_dir / "index.html").write_text(render_index(records, site_conf, tiers, updated, coverage, h["snapshots"],
-                                                     news_html, scoring), encoding="utf-8")
+    (out_dir / "index.html").write_text(render_home(records, site_conf, tiers, updated, coverage, scoring), encoding="utf-8")
+    (out_dir / "projects.html").write_text(render_index(records, site_conf, tiers, updated, coverage, h["snapshots"],
+                                                        news_html, scoring), encoding="utf-8")
     (out_dir / "about.html").write_text(render_about(site_conf, tiers, updated, coverage, general, meta),
                                         encoding="utf-8")
     sl = render_shortlist(records, site_conf, updated, meta, coverage)
@@ -2817,7 +2977,8 @@ def mark_unlisted(path: Path, updated: date) -> None:
         return
     note = (f'{GONE_MARK}This project is no longer listed on this site (as of {updated.isoformat()}). The details '
             f'below are from the last time it was listed. Check the official notice for the current status.</p>')
-    path.write_text(html.replace('<main class="wrap">', '<main class="wrap">\n' + note, 1), encoding="utf-8")
+    marker = '<div class="project-main">' if '<div class="project-main">' in html else '<main class="wrap">'
+    path.write_text(html.replace(marker, marker + "\n" + note, 1), encoding="utf-8")
 
 
 def load_previous(out_dir: Path) -> dict:

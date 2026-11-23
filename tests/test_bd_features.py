@@ -294,10 +294,10 @@ def test_scotland_licensee_read_from_the_licence_only_when_the_number_matches():
 def test_health_checks_permission_record_logo_and_dashes(tmp_path):
     (tmp_path / "p").mkdir()
     (tmp_path / "logo.svg").write_text("<svg/>")
-    (tmp_path / "index.html").write_text("plain - text")
+    (tmp_path / "projects.html").write_text("plain - text")
     s = {"sources": {"ca_coastal": {"enabled": True, "min_days_between_reads": 28, "permission": {
         "basis": "a", "from": "J. Smith", "date": "2026-11-19", "quote": "ok"}}}}
     assert all(ok for ok, _ in health.check_permissions_and_site(s, tmp_path))
-    (tmp_path / "index.html").write_text("bad — dash")
+    (tmp_path / "projects.html").write_text("bad — dash")
     s["sources"]["ca_coastal"]["min_days_between_reads"] = 7
     assert sum(not ok for ok, _ in health.check_permissions_and_site(s, tmp_path)) == 2
