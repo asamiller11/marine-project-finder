@@ -26,7 +26,7 @@ import re
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlencode, urlparse
 
 import requests
 
@@ -239,9 +239,12 @@ class PoliteClient:
 
     # -- fetching ------------------------------------------------------------
     def _get_raw(self, url: str, max_age_hours: float | None, check_robots: bool = True,
-                 max_bytes: int | None = None, headers: dict | None = None) -> tuple[int, bytes]:
+                 max_bytes: int | None = None, headers: dict | None = None,
+                 form: dict | None = None) -> tuple[int, bytes]:
         self._check_never_fetch(url)
-        body_path, meta_path = self._cache_paths(url)
+        # A search form sent by POST is cached under its URL plus the form fields.
+        cache_key = url if form is None else url + "#POST " + urlencode(sorted(form.items()))
+        body_path, meta_path = self._cache_paths(cache_key)
         if body_path.exists() and meta_path.exists():
             meta = json.loads(meta_path.read_text())
             fetched = datetime.fromisoformat(meta["fetched_at"])
@@ -267,7 +270,12 @@ class PoliteClient:
                 delay = max(delay, robots.crawl_delay)
         self._wait(host, delay)
 
-        resp = self.session.get(url, timeout=self.timeout, stream=True, headers=headers)
+        def send():
+            if form is not None:
+                return self.session.post(url, data=form, timeout=self.timeout, stream=True, headers=headers)
+            return self.session.get(url, timeout=self.timeout, stream=True, headers=headers)
+
+        resp = send()
         self.network_requests += 1
         # A redirect must not lead somewhere we may not go: check the final address too.
         if check_robots and resp.url != url:
@@ -277,7 +285,7 @@ class PoliteClient:
             final_path = fp.path + ("?" + fp.query if fp.query else "")
             if not self._robots_for(resp.url).allowed(final_path or "/") and not self._exception_for(fp.netloc):
                 raise Blocked(f"{url} redirects to {resp.url}, which robots.txt disallows")
-            resp = self.session.get(url, timeout=self.timeout, stream=True, headers=headers)
+            resp = send()
             self.network_requests += 1
         chunks, size = [], 0
         for chunk in resp.iter_content(64 * 1024):
@@ -317,6 +325,14 @@ class PoliteClient:
         status, body = self._get_raw(url, max_age, max_bytes=max_bytes, headers=headers)
         if recheck and self.network_requests > before:
             self.rechecked += 1
+        if status != 200:
+            raise requests.HTTPError(f"HTTP {status} for {url}")
+        return body
+
+    def post_form(self, url: str, form: dict, list_page: bool = True) -> bytes:
+        """Send a site's own public search form (POST), with every rule get() follows: robots.txt, the wait between
+        requests, the cache, and a full stop on 401, 403 or 429. Only for search forms that need no login."""
+        status, body = self._get_raw(url, self.list_max_age if list_page else None, form=form)
         if status != 200:
             raise requests.HTTPError(f"HTTP {status} for {url}")
         return body

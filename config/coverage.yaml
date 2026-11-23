@@ -47,6 +47,30 @@ sources:
     url: "https://www.fisheries.noaa.gov/national/marine-mammal-protection/incidental-take-authorizations-construction-activities"
     languages: [en]
     agency: "NOAA Fisheries (U.S. National Marine Fisheries Service)"
+  bc_eao:
+    name: "BC Environmental Assessment Office project information (EPIC)"
+    url: "https://projects.eao.gov.bc.ca/"
+    languages: [en]
+    agency: "Province of British Columbia, Environmental Assessment Office"
+    attribution: "Used with the Province's written permission."
+  ns_ea:
+    name: "Nova Scotia environmental assessment projects"
+    url: "https://novascotia.ca/nse/ea/projects.asp"
+    languages: [en]
+    agency: "Government of Nova Scotia, Department of Environment and Climate Change"
+    attribution: "Used with the Province's written permission."
+  ceqanet:
+    name: "CEQAnet (California State Clearinghouse CEQA documents)"
+    url: "https://ceqanet.lci.ca.gov/"
+    languages: [en]
+    agency: "Governor's Office of Land Use and Climate Innovation, State Clearinghouse"
+    attribution: "Used with the State Clearinghouse's written permission."
+  qc_ree:
+    name: "Registre des évaluations environnementales du Québec"
+    url: "https://www.ree.environnement.gouv.qc.ca/"
+    languages: [fr]
+    agency: "Gouvernement du Québec, ministère de l'Environnement"
+    attribution: "Utilisé avec l'autorisation écrite du gouvernement du Québec."
   ca_coastal:
     name: "California Coastal Commission meeting agendas"
     url: "https://www.coastal.ca.gov/meetings/agenda/"
@@ -83,13 +107,13 @@ countries:
     name: Canada
     region_label: "Province or territory"
     status: partial
-    sources: [iaac, nl_ea]
-    note: "Federal assessments across Canada, plus the Newfoundland and Labrador provincial registry."
+    sources: [iaac, nl_ea, ns_ea, bc_eao, qc_ree]
+    note: "Federal assessments across Canada, plus the British Columbia, Newfoundland and Labrador, Nova Scotia and Quebec provincial registries."
     regions:
       - {name: "Newfoundland and Labrador", status: covered, sources: [nl_ea, iaac]}
-      - {name: "British Columbia", status: partial, sources: [iaac], note: "Federal registry only. The BC government's copyright policy forbids reproducing its websites' content without written permission, so the BC Environmental Assessment Office is not read."}
-      - {name: "Quebec", status: partial, sources: [iaac], note: "Federal registry only. Quebec's copyright terms forbid reproducing government content without prior authorization, so its registry is not read."}
-      - {name: "Nova Scotia", status: partial, sources: [iaac], note: "Federal registry only. The provincial list holds few marine projects."}
+      - {name: "British Columbia", status: covered, sources: [bc_eao, iaac], note: "Provincial Environmental Assessment Office projects, used with written permission (November 2026), plus the federal registry."}
+      - {name: "Quebec", status: covered, sources: [qc_ree, iaac], note: "Provincial environmental assessment register (ports, wharves and works in wetlands and waterways), used with written authorization (November 2026), plus the federal registry."}
+      - {name: "Nova Scotia", status: covered, sources: [ns_ea, iaac], note: "Provincial environmental assessment projects, used with written permission (November 2026), plus the federal registry."}
       - {name: "New Brunswick", status: partial, sources: [iaac], note: "Federal registry only."}
       - {name: "Prince Edward Island", status: partial, sources: [iaac], note: "Federal registry only."}
       - {name: "Ontario", status: partial, sources: [iaac], note: "Federal registry only."}
@@ -102,12 +126,12 @@ countries:
     name: "United States"
     region_label: "State"
     status: partial
-    sources: [fed_register, noaa_ita, ca_coastal]
+    sources: [fed_register, noaa_ita, ca_coastal, ceqanet]
     note: "NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register and NOAA's construction authorizations page. Shown under the hard-structure profile only, because these notices are about construction noise, not habitat work. The Army Corps of Engineers site blocks automated access."
     regions:
       - {name: "New York", status: coming_soon, note: "The Environmental Notice Bulletin is disallowed by robots.txt."}
       - {name: "Florida", status: coming_soon, note: "Permit data sits in JavaScript map applications."}
-      - {name: "California", status: partial, sources: [ca_coastal], note: "California Coastal Commission monthly agendas: coastal development permit items, used with the Commission's written permission (November 2026). CEQAnet is not read yet."}
+      - {name: "California", status: covered, sources: [ca_coastal, ceqanet], note: "California Coastal Commission monthly agendas (coastal development permit items) and CEQAnet documents in the coastal zone or naming water work, both used with written permission (November 2026)."}
       - {name: "Massachusetts", status: coming_soon, note: "The MEPA Environmental Monitor is a JavaScript application."}
       - {name: "Texas", status: coming_soon, note: "Public notices are mostly boundary surveys and leases."}
 

@@ -35,6 +35,10 @@ labels_file: labels/labels.csv
 sources:
   iaac:
     enabled: true
+    # The canada.ca terms need prior written permission for commercial reproduction. Requested 2026-11-17
+    # (information@iaac-aeic.gc.ca, private/permission_requests_2026-11.md, request 1). The owner reports a written yes
+    # (2026-11-23); date and exact words go in below once the reply is filed.
+    permission: {basis: a, from: "Impact Assessment Agency of Canada (information@iaac-aeic.gc.ca)", date: "", quote: ""}
     # Besides the open comment list, also read the newest N project pages from the
     # registry sitemap, so we see recent projects whose comment period has closed.
     recent_projects: 150
@@ -57,9 +61,11 @@ sources:
     enabled: true
     csv_url: "https://api-proxy.edh-cde.dfo-mpo.gc.ca/catalogue/records/2c09d2fd-9a8e-4d8c-b5af-95747e36eaac/attachments/fa-registry-dataset-ensemble-de-donnees-du-registre-de-lp_2023-06-21.csv"
   bc_eao:
-    # OFF: the BC government copyright policy forbids reproducing its websites' content
-    # "without the prior written permission of the Province of British Columbia".
-    enabled: false
+    # The BC government copyright policy needs "the prior written permission of the Province of British Columbia".
+    # Requested 2026-11-17 (EAOinfo@gov.bc.ca, private/permission_requests_2026-11.md, request 6). The owner reports a
+    # written yes (2026-11-23); date and exact words go in below once the reply is filed. Read about once a week.
+    enabled: true
+    permission: {basis: a, from: "BC Environmental Assessment Office (EAOinfo@gov.bc.ca)", date: "", quote: ""}
     # Keep projects that are still active, or had a comment period in the last N days.
     lookback_days: 730
   dk_hoering:
@@ -126,6 +132,28 @@ sources:
     min_days_between_reads: 28
     permission: {basis: a, from: "Joshua Smith, Public Information Officer, California Coastal Commission", date: "2026-11-19",
                  quote: "I don't see why you couldn't use the public information on the Coastal Commission agenda for your website."}
+  ns_ea:
+    # Nova Scotia environmental assessment projects. Written permission requested 2026-11-17 (EA@novascotia.ca,
+    # private/permission_requests_2026-11.md, request 3). The owner reports a written yes (2026-11-23); date and
+    # exact words go in below once the reply is filed. robots.txt allows these paths. Read about once a week.
+    enabled: true
+    lookback_days: 540
+    permission: {basis: a, from: "Nova Scotia Environmental Assessment Branch (EA@novascotia.ca)", date: "", quote: ""}
+  ceqanet:
+    # California CEQAnet (State Clearinghouse). Written permission requested 2026-11-17 (state.clearinghouse@lci.ca.gov,
+    # private/permission_requests_2026-11.md, request 8). The owner reports a written yes (2026-11-23); date and exact
+    # words go in below once the reply is filed. robots.txt allows it; attachment zips are never fetched. Weekly.
+    enabled: true
+    lookback_days: 30
+    permission: {basis: a, from: "Governor's Office of Land Use and Climate Innovation, State Clearinghouse (state.clearinghouse@lci.ca.gov)", date: "", quote: ""}
+  qc_ree:
+    # Québec Registre des évaluations environnementales. Authorization requested 2026-11-17 from the Québec copyright
+    # office (droitdauteur@mcc.gouv.qc.ca, private/permission_requests_2026-11.md, request 5). The owner reports a written
+    # yes (2026-11-23); date and exact words go in below once the reply is filed. No robots.txt on the site. Weekly:
+    # four searches (two activities, two procedures) plus the pages of projects changed in the last lookback_days.
+    enabled: true
+    lookback_days: 540
+    permission: {basis: a, from: "Gouvernement du Québec, droit d'auteur (droitdauteur@mcc.gouv.qc.ca)", date: "", quote: ""}
   drop_folder:
     enabled: true
 
