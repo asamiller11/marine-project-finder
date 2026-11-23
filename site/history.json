@@ -9,7 +9,8 @@
 "2026-11-14",
 "2026-11-17",
 "2026-11-19",
-"2026-11-20"
+"2026-11-20",
+"2026-11-22"
 ],
 "base": {
 "nl_ea:2434": {
@@ -59,12 +60,6 @@
 "stage_kind": "open",
 "tier": "possible",
 "title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection"
-},
-"fed_register:2026-21419": {
-"comment_deadline": "2026-11-19",
-"stage_kind": "open",
-"tier": "possible",
-"title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia"
 },
 "scot_marine:bowdun offshore wind farm east of aberdeenshire": {
 "comment_deadline": null,
@@ -185,6 +180,12 @@
 "stage_kind": "closed",
 "tier": "possible",
 "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska"
+},
+"fed_register:2026-21419": {
+"comment_deadline": "2026-11-19",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "U.S. Navy's TRF Wharf Interface Repairs Project at U.S. Naval Submarine Base Kings Bay, Georgia"
 },
 "fed_register:2026-17614": {
 "comment_deadline": "2026-09-28",
@@ -427,7 +428,7 @@
 "title": "Tradepoint TiL Terminal, LLC's Sparrows Point Container Terminal Project in Baltimore County, MD"
 }
 },
-"base_date": "2026-11-19",
+"base_date": "2026-11-20",
 "current": {
 "nl_ea:2434": {
 "comment_deadline": "2026-10-20",
