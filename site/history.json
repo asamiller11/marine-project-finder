@@ -473,6 +473,12 @@
 "tier": "possible",
 "title": "Port Colborne Bulk Biofuels Storage and Marine Refuelling Facility"
 },
+"ceqanet:2021110263-5": {
+"comment_deadline": "2027-01-04",
+"stage_kind": "open",
+"tier": "possible",
+"title": "Berths 148-151 (Phillips 66) Marine Oil Terminal and Wharf Improvements Project"
+},
 "iaac:90863": {
 "comment_deadline": "2026-11-28",
 "stage_kind": "open",
@@ -503,6 +509,12 @@
 "tier": "possible",
 "title": "Department of National Defence Canadian Patrol Submarine Project at CFB Halifax – Phase 2, Construction and Infrastructure"
 },
+"qc_ree:3211-04-070": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Projet de construction et d'exploitation d'un terminal portuaire à Sorel-Tracy"
+},
 "scot_marine:additional information public notice ardersier port expansion phase 2": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -521,6 +533,12 @@
 "tier": "possible",
 "title": "Breakwater Reconstruction at Port Morien Fisheries and Oceans Canada - Small Craft Harbour, Cape Breton County, Nova Scotia"
 },
+"bc_eao:5885119eaaecd9001b822f80": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Richmond Island Milltown Marina and Boatyard"
+},
 "scot_marine:00011402": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -532,6 +550,30 @@
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "Wharf Reconstruction at the Red Head Small Craft Harbour, Kings County, Prince Edward Island"
+},
+"ceqanet:2020090171-10": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Ocean Beach Climate Change Adaptation Project"
+},
+"bc_eao:5f7229183f4bc0002165e839": {
+"comment_deadline": "2023-03-31",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "GCT Deltaport Expansion - Berth Four"
+},
+"bc_eao:5885117caaecd9001b820cd6": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Vancouver Airport Fuel Delivery"
+},
+"bc_eao:588511e1aaecd9001b8272e7": {
+"comment_deadline": "2025-08-02",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "Woodfibre LNG"
 },
 "iaac:90797": {
 "comment_deadline": null,
@@ -551,11 +593,23 @@
 "tier": "possible",
 "title": "Wharf Reconstruction at Carmanville SCH, NL"
 },
+"bc_eao:58851225aaecd9001b82ba28": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "McMillan Island Erosion"
+},
 "iaac:90805": {
 "comment_deadline": null,
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL"
+},
+"bc_eao:5b61e3726952ca0024cf687c": {
+"comment_deadline": "2021-08-22",
+"stage_kind": "closed",
+"tier": "possible",
+"title": "Ridley Island Energy Export Facility (formerly known as Vopak Pacific Canada)"
 },
 "nl_ea:2410": {
 "comment_deadline": "2026-06-26",
@@ -581,6 +635,12 @@
 "tier": "possible",
 "title": "Breakwater Rehabilitation at Fortune SCH, NL"
 },
+"bc_eao:5885120eaaecd9001b82a11f": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "South Arm Jetty Tidal Marsh"
+},
 "ca_coastal:6-24-0663": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -592,6 +652,12 @@
 "stage_kind": "decided",
 "tier": "possible",
 "title": "Rock Armour Installation - Stromeferry"
+},
+"qc_ree:3211-02-235": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Programme décennal de protection des berges de la rivière aux Outardes et du fleuve Saint-Laurent"
 },
 "fed_register:2026-20789": {
 "comment_deadline": "2026-11-12",
@@ -635,6 +701,42 @@
 "tier": "weak",
 "title": "Lazy Head Marine Terminal Project"
 },
+"ceqanet:2026110429": {
+"comment_deadline": "2026-12-31",
+"stage_kind": "open",
+"tier": "weak",
+"title": "State Route 1 Rock Slope Protection Project"
+},
+"qc_ree:3211-04-054": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Agrandissement des installations portuaires en eau profonde de Salaberry-de-Valleyfield"
+},
+"bc_eao:63654a5d99a2870022a0621b": {
+"comment_deadline": "2023-02-22",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Bamberton Projects"
+},
+"ceqanet:2025040995-3": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Berkeley Water Transportation Pier Ferry"
+},
+"ceqanet:2026110728": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Morro Bay Marina Electrical Repairs"
+},
+"qc_ree:3211-04-069": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Projet d'agrandissement, de reconstruction et de dragage des installations portuaires de Matane"
+},
 "iaac:90624": {
 "comment_deadline": null,
 "stage_kind": "decided",
@@ -671,11 +773,65 @@
 "tier": "weak",
 "title": "Canadian Patrol Submarine Project – Phase 1: Deconstruction of Existing D-Jetty and Associated Infrastructure at CFB Esquimalt"
 },
+"ceqanet:2025080070-2": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Hayward Marsh Restoration Project: Construction Phase 1"
+},
 "iaac:90830": {
 "comment_deadline": null,
 "stage_kind": "assessment",
 "tier": "weak",
 "title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
+},
+"qc_ree:3211-02-316": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Programme décennal de dragage aux installations portuaires de Port-Cartier"
+},
+"qc_ree:3211-02-344": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Programme décennal de dragage aux installations portuaires de la minière Rio Tinto IOC à Sept-Îles (2027-2036)"
+},
+"qc_ree:3211-02-327": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Programme décennal de dragage des installations portuaires de Rimouski"
+},
+"qc_ree:3211-04-073": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Projet d'agrandissement du port de Bécancour sur le territoire de la ville de Bécancour"
+},
+"qc_ree:3211-04-074": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Projet de construction d’un terminal portuaire de traverse au port de Gros-Cacouna"
+},
+"qc_ree:3211-04-071": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Projet de réaménagement du terminal n°5 au port de Baie-Comeau"
+},
+"qc_ree:3211-04-075": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Prolongement des postes à quai B1-B2 au port de Bécancour"
+},
+"ceqanet:2018028143-2": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Villa Creek Estuary Restoration Project (Amendment No. 1 to Streambed Alteration Agreement No. EPIMS-SLO-58208-R4)"
 },
 "iaac:90307": {
 "comment_deadline": "2026-11-01",
@@ -688,6 +844,18 @@
 "stage_kind": "assessment",
 "tier": "weak",
 "title": "Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103"
+},
+"qc_ree:3211-02-323": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Programme décennal de dragage d'entretien au quai de Rivière-du-Loup"
+},
+"bc_eao:588511d0aaecd9001b826192": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "LNG Canada Export Terminal"
 },
 "scot_marine:00012343": {
 "comment_deadline": null,
@@ -718,6 +886,24 @@
 "stage_kind": "decided",
 "tier": "weak",
 "title": "Tahiti Marina Apartment and Docks LLC"
+},
+"bc_eao:5c82a7f3f7883500246b2f33": {
+"comment_deadline": "2020-03-16",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Delta Grinding Facility"
+},
+"bc_eao:60edc23bc69c5e0023a12539": {
+"comment_deadline": "2024-12-12",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Ksi Lisims LNG"
+},
+"bc_eao:588511e3aaecd9001b8274d4": {
+"comment_deadline": "2023-06-09",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Roberts Bank Terminal 2"
 },
 "iaac:90698": {
 "comment_deadline": null,
@@ -1444,6 +1630,223 @@
 "ca_coastal:3-26-0524": [
 {
 "date": "2026-11-19",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2021110263-5": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-070": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:5885119eaaecd9001b822f80": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2020090171-10": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:5f7229183f4bc0002165e839": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:5885117caaecd9001b820cd6": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:588511e1aaecd9001b8272e7": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:58851225aaecd9001b82ba28": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:5b61e3726952ca0024cf687c": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:5885120eaaecd9001b82a11f": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-02-235": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2026110429": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-054": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:63654a5d99a2870022a0621b": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2025040995-3": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2026110728": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-069": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2025080070-2": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-02-316": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-02-344": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-02-327": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-073": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-074": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-071": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-04-075": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2018028143-2": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"qc_ree:3211-02-323": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:588511d0aaecd9001b826192": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:5c82a7f3f7883500246b2f33": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:60edc23bc69c5e0023a12539": [
+{
+"date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"bc_eao:588511e3aaecd9001b8274d4": [
+{
+"date": "2026-11-23",
 "type": "new",
 "text": "First listed"
 }

@@ -180,6 +180,10 @@ background-repeat:no-repeat;background-position:right 18px center;background-siz
 .results-bar h2{margin:0 0 4px;font-size:clamp(1.4rem,2.3vw,1.75rem)}
 #result-count{margin:4px 0 0;color:var(--muted);font-size:.97rem}
 .result-actions{margin:0;display:flex;flex-wrap:wrap;gap:0 18px}
+.active-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:12px 0 0}
+.fchip{font:inherit;font-size:.92rem;font-weight:600;min-height:40px;padding:6px 14px;border-radius:999px;border:0;cursor:pointer;background:var(--chip-on-bg);color:var(--chip-on-text);display:inline-flex;align-items:center;gap:6px}
+.fchip span{font-size:1.15rem;line-height:1}
+.fchip:hover{filter:brightness(.96)}
 /* The buttons above the list sit in one light rounded track that hugs them; on a phone it scrolls sideways. */
 .toolbar{display:flex;flex-wrap:nowrap;gap:4px;align-items:center;width:max-content;max-width:100%;margin:28px 0 0;padding:6px;
 background:var(--track);border-radius:999px;box-shadow:var(--shadow);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -396,7 +400,7 @@ nav.toc a,footer nav a{min-height:48px;display:flex;align-items:center}
 .picker{--band-top:32px;padding-bottom:calc(var(--curve) + 28px)}.picker select{width:100%}
 .page-band{--band-top:28px;padding-bottom:calc(var(--curve) + 24px)}.page-head .wrap{padding-top:32px;padding-bottom:calc(var(--curve) + 28px)}
 section.soon li{grid-template-columns:minmax(0,1fr);padding:12px 16px}
-.toolbar .chip{min-height:48px}
+.toolbar .chip{min-height:48px}.fchip{min-height:48px}
 .sheet{top:auto;left:0;width:100%;max-height:88vh;border-radius:var(--r) var(--r) 0 0;transform:translateY(100%)}
 .sheet.on{transform:none}
 details.fold>summary{padding:14px 18px;font-size:1.15rem}details.fold>.fold-body{padding:0 18px 18px}

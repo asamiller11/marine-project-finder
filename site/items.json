@@ -1160,6 +1160,143 @@
   "first_listed": "2026-11-12"
  },
  {
+  "id": "ceqanet:2021110263-5",
+  "title": "Berths 148-151 (Phillips 66) Marine Oil Terminal and Wharf Improvements Project",
+  "url": "https://ceqanet.lci.ca.gov/2021110263/5",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "Port of Los Angeles",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Port of Los Angeles Main Channel",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Moorings"
+  ],
+  "stage": "public comment open until 2027-01-04",
+  "stage_kind": "open",
+  "comment_deadline": "2027-01-04",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 36,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "26 points for the kind of work, plus 10 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Port of Los Angeles in Port of Los Angeles Main Channel, California. The notice mentions port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [
+   "In addition, the Proposed Project includes consideration of up to 40 years of continued operation as a MOT at Berths 148-151, currently proposed via a new 20-year entitlement with two optional 10-year extensions.",
+   "The Proposed Project is located at 383 Pier A Place, Wilmington, CA 90744.",
+   "It would construct a new, Marine Oil Terminal Engineering and Maintenance Standards (MOTEMS)-compliant berthing facility at Berths 150-151."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2021110263-5.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2027-01-04",
+   "days_left": 42,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 36,
+    "because": "Wharf, pier or large dock; Pier (not at a dam, intake or bridge); Port or marine terminal",
+    "relevance": 26
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Port of Los Angeles",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 10,
+   "stage": "open",
+   "entry_point": "Comment period open until January 4, 2027: submit a comment or contact the proponent (Port of Los Angeles).",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: public comment period open (+10)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "iaac:90863",
   "title": "Cabot Trail - La Bloc Beach Coastal Erosion Protection",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90863?culture=en-CA",
@@ -1937,6 +2074,137 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "qc_ree:3211-04-070",
+  "title": "Projet de construction et d'exploitation d'un terminal portuaire à Sorel-Tracy",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-070",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "QSL International Ltée",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 56,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "40 points for the kind of work, plus 16 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by QSL International Ltée in Quebec. The notice mentions wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-070.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 48,
+    "because": "Wharf, pier or large dock; Habitat offsetting or compensation mentioned",
+    "relevance": 32
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 70,
+    "because": "Offsetting, compensation, credits or habitat banking; Habitat offsetting or compensation mentioned; Wharf, pier or large dock",
+    "relevance": 54
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "QSL International Ltée",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 40,
+  "win": {
+   "points": 16,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (QSL International Ltée); no engineering firm is named yet. Habitat offsetting is mentioned: offer a habitat-positive design.",
+   "reasons": [
+    "Habitat offsetting or compensation mentioned",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "scot_marine:additional information public notice ardersier port expansion phase 2",
   "title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2",
   "url": "https://marine.gov.scot/?q=node/28304",
@@ -2434,6 +2702,142 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "bc_eao:5885119eaaecd9001b822f80",
+  "title": "Richmond Island Milltown Marina and Boatyard",
+  "url": "https://projects.eao.gov.bc.ca/p/5885119eaaecd9001b822f80",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Musqueam Indian Band and Bastion Development Corporation",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging",
+   "Marina or small craft harbour"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": "2012-04-27",
+  "approved_on": null,
+  "score": 51,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "39 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Musqueam Indian Band and Bastion Development Corporation in British Columbia. The notice mentions dredging, small craft harbour and wharf or dock work and an area of about 650 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The Musqueam Indian Band and Bastion Development Corporation are proposing to develop a commercial marina for recreational vessels at Richmond Island."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/bc_eao-5885119eaaecd9001b822f80.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 50,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; size 9,000 linear feet",
+    "relevance": 38
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Musqueam Indian Band and Bastion Development Corporation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 39,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Musqueam Indian Band and Bastion Development Corporation); no engineering firm is named yet.",
+   "reasons": [
+    "Dredging",
+    "Early: still under review, design not final (+8)",
+    "Large project (9,000 linear feet) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "scot_marine:00011402",
   "title": "Marine Licence Variation Application– Pontoon Upgrades – Eyemouth Harbour Pontoons, Eyemouth",
   "url": "https://marine.gov.scot/?q=node/28291",
@@ -2738,6 +3142,545 @@
   ],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "ceqanet:2020090171-10",
+  "title": "Ocean Beach Climate Change Adaptation Project",
+  "url": "https://ceqanet.lci.ca.gov/2020090171/10",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "City and County of San Francisco",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Pacific Ocean, Lake Merced",
+  "types": [
+   "Dredging",
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 48,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "36 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by City and County of San Francisco in Pacific Ocean, Lake Merced, California. The notice mentions dredging and shoreline protection work and about 439,645 m3 of material.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proposed Ocean Beach Climate Change Adaptation Project would address shoreline erosion, severe coastal storm and wave hazards, and sea level rise which threaten city infrastructure, coastal access and recreational facilities, and public safety.",
+   "Under this “large placement” option a Corps dredge would pump up to 575,000 cubic yards of sand in a slurry form onto the beach, rather than disposing of it offshore.",
+   "The city is also coordinating with the U.S. Army Corps of Engineers (Corps) on the potential for beneficially using Corps dredged sand for the project’s beach nourishment program."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2020090171-10.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 52,
+    "because": "Shoreline protection, seawall or bulkhead; size 575,000 cubic yards",
+    "relevance": 40
+   },
+   "living-shoreline": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 63,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; Dredging; size 575,000 cubic yards",
+    "relevance": 51
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "City and County of San Francisco",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 36,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (City and County of San Francisco); no engineering firm is named yet.",
+   "reasons": [
+    "Dredging",
+    "Early: still under review, design not final (+8)",
+    "Large project (575,000 cubic yards) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:5f7229183f4bc0002165e839",
+  "title": "GCT Deltaport Expansion - Berth Four",
+  "url": "https://projects.eao.gov.bc.ca/p/5f7229183f4bc0002165e839",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "GCT Canada Limited Partnership",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Infill, reclamation or causeway"
+  ],
+  "stage": "comment closed 2023-03-31, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2023-03-31",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 47,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "43 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by GCT Canada Limited Partnership in British Columbia. The notice mentions infill or causeway and port or terminal work and an area of about 440,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "It would include a 44-hectare expansion of the terminal for container handling and storage, a 560 metres berth extension, a 12 hectare expansion of the existing intermodal rail yard, and a barge berth to accommodate future potential demand for short distance sea shipping capability.",
+   "It will include the expansion of the existing terminal container storage and handling area, the addition of a fourth berth on the southeast side of the Roberts Bank Causeway, and expansion of the existing intermodal rail yard."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-5f7229183f4bc0002165e839.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2023-03-31",
+   "days_left": -1333,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 45,
+    "because": "Port or marine terminal; Infill, reclamation or causeway; size 560 metres",
+    "relevance": 41
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "GCT Canada Limited Partnership",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 43,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (GCT Canada Limited Partnership); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:5885117caaecd9001b820cd6",
+  "title": "Vancouver Airport Fuel Delivery",
+  "url": "https://projects.eao.gov.bc.ca/p/5885117caaecd9001b820cd6",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Vancouver Airport Fuel Facilities Corporation",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Fraser River",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": "2013-12-11",
+  "approved_on": null,
+  "score": 43,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "35 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Vancouver Airport Fuel Facilities Corporation in Fraser River, British Columbia. The notice mentions port or terminal work and a length of about 15,000 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "The Vancouver Airport Fuel Facilities Corporation proposes a marine terminal on the south arm of the Fraser River, an adjacent fuel storage facility, and a 15 kilometre pipeline to YVR to meet future demand for fuel at the airport."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/bc_eao-5885117caaecd9001b820cd6.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 41,
+    "because": "Port or marine terminal; size 15 kilometre",
+    "relevance": 33
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Vancouver Airport Fuel Facilities Corporation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 35,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Vancouver Airport Fuel Facilities Corporation); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:588511e1aaecd9001b8272e7",
+  "title": "Woodfibre LNG",
+  "url": "https://projects.eao.gov.bc.ca/p/588511e1aaecd9001b8272e7",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Woodfibre LNG General Partner Inc.",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Howe Sound",
+  "types": [
+   "Breakwater, jetty or groyne"
+  ],
+  "stage": "comment closed 2025-08-02, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2025-08-02",
+  "decision_date": "2015-10-26",
+  "approved_on": null,
+  "score": 43,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "35 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Woodfibre LNG General Partner Inc. in Howe Sound, British Columbia. The notice mentions breakwater or jetty work and about 250,000 m3 of material.",
+  "summary_note": "auto",
+  "quotes": [
+   "It will also include land-based natural gas processing and liquefication facility, condensate storage, floating storage tanks to store up to 250,000 cubic metres, and offloading unit with an associated jetty, proposed floating accommodations for workers, and the construction of supporting buildings."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-588511e1aaecd9001b8272e7.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2025-08-02",
+   "days_left": -478,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 48,
+    "because": "Breakwater, jetty or groyne; size 250,000 cubic metres",
+    "relevance": 40
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Woodfibre LNG General Partner Inc.",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 35,
+  "win": {
+   "points": 8,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Woodfibre LNG General Partner Inc.); no engineering firm is named yet.",
+   "reasons": [
+    "Breakwater, jetty or groyne",
+    "Comment period closed, decision still pending (+4)",
+    "Large project (250,000 cubic metres) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
  },
  {
   "id": "iaac:90797",
@@ -3184,6 +4127,140 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "bc_eao:58851225aaecd9001b82ba28",
+  "title": "McMillan Island Erosion",
+  "url": "https://projects.eao.gov.bc.ca/p/58851225aaecd9001b82ba28",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Kwantlen First Nation",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Fraser River",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": "2016-10-28",
+  "approved_on": null,
+  "score": 39,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "27 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Kwantlen First Nation in Fraser River, British Columbia. The notice mentions shoreline protection work and a length of about 1,290 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "The Proponent intends to undertake shoreline erosion protection works along 1.29 kilometers of shoreline at the east extent of McMillan Island."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/bc_eao-58851225aaecd9001b82ba28.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 52,
+    "because": "Shoreline protection, seawall or bulkhead; size 1.29 kilometers",
+    "relevance": 40
+   },
+   "living-shoreline": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 60,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 1.29 kilometers",
+    "relevance": 48
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Kwantlen First Nation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 27,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Kwantlen First Nation); no engineering firm is named yet.",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Early: still under review, design not final (+8)",
+    "Large project (1.29 kilometers) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "iaac:90805",
   "title": "Reconstruction of Marginal Wharf and Launchway at Blue Beach SCH, NL",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90805?culture=en-CA",
@@ -3357,6 +4434,141 @@
   ],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "bc_eao:5b61e3726952ca0024cf687c",
+  "title": "Ridley Island Energy Export Facility (formerly known as Vopak Pacific Canada)",
+  "url": "https://projects.eao.gov.bc.ca/p/5b61e3726952ca0024cf687c",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Ridley Island Energy Export Facility GP Inc., on behalf of Ridley Island Energy Export Facility Limited Partnership",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Breakwater, jetty or groyne"
+  ],
+  "stage": "comment closed 2021-08-22, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2021-08-22",
+  "decision_date": "2022-04-20",
+  "approved_on": null,
+  "score": 39,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "35 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Ridley Island Energy Export Facility GP Inc., on behalf of Ridley Island Energy Export Facility Limited Partnership in British Columbia. The notice mentions breakwater or jetty work and about 578,000 m3 of material.",
+  "summary_note": "auto",
+  "quotes": [
+   "It includes the construction and operation of bulk liquids storage facility and a new jetty at Ridley Island.",
+   "Ridley Island Energy Export Facility GP Inc., on behalf of Ridley Island Energy Export Facility Limited Partnership, is building Ridley Island Energy Export Facility (REEF), an energy storage and marine export facility located approximately 10 kilometres south of Prince Rupert near Port Edward.",
+   "The project is anticipated to store up to a combined total of 578,000 cubic metres (m3) of liquid petroleum gas (propane, ethane, butane), light diesel, gasoline, and methanol."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-5b61e3726952ca0024cf687c.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2021-08-22",
+   "days_left": -1919,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 44,
+    "because": "Breakwater, jetty or groyne; size 578,000 cubic metres",
+    "relevance": 40
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Ridley Island Energy Export Facility GP Inc., on behalf of Ridley Island Energy Export Facility Limited Partnership",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 35,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Ridley Island Energy Export Facility GP Inc., on behalf of…); no engineering firm is named yet.",
+   "reasons": [
+    "Breakwater, jetty or groyne",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
  },
  {
   "id": "nl_ea:2410",
@@ -4015,6 +5227,139 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "bc_eao:5885120eaaecd9001b82a11f",
+  "title": "South Arm Jetty Tidal Marsh",
+  "url": "https://projects.eao.gov.bc.ca/p/5885120eaaecd9001b82a11f",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Vancouver Fraser Port Authority",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "South Arm",
+  "types": [
+   "Breakwater, jetty or groyne"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": "2016-09-19",
+  "approved_on": null,
+  "score": 36,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "28 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Vancouver Fraser Port Authority in South Arm, British Columbia. The notice mentions breakwater or jetty work.",
+  "summary_note": "auto",
+  "quotes": [
+   "Proposed creation of a habitat banking site on the jetty on the South Arm of the Fraser River."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/bc_eao-5885120eaaecd9001b82a11f.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 38,
+    "because": "Breakwater, jetty or groyne; Intertidal zone, salt marsh or tidal wetland",
+    "relevance": 30
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 34,
+    "because": "Intertidal zone, salt marsh or tidal wetland; Breakwater, jetty or groyne",
+    "relevance": 26
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 48,
+    "because": "Offsetting, compensation, credits or habitat banking; Breakwater, jetty or groyne; Intertidal zone, salt marsh or tidal wetland",
+    "relevance": 40
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Vancouver Fraser Port Authority",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 28,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Vancouver Fraser Port Authority); no engineering firm is named yet.",
+   "reasons": [
+    "Breakwater, jetty or groyne",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "ca_coastal:6-24-0663",
   "title": "St. Malo Association et al. Oceanside",
   "url": "https://www.coastal.ca.gov/meetings/agenda/#/2026/12/9",
@@ -4273,6 +5618,138 @@
   "first_listed": "2026-11-13"
  },
  {
+  "id": "qc_ree:3211-02-235",
+  "title": "Programme décennal de protection des berges de la rivière aux Outardes et du fleuve Saint-Laurent",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-02-235",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Municipalité de la paroisse de Ragueneau et le ministère des Transports",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 12,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Hard-structure eco-engineering",
+  "reviewed": false,
+  "summary": "Project by Municipalité de la paroisse de Ragueneau et le ministère des Transports in Quebec. The notice mentions shoreline protection work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-02-235.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 45,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units",
+    "relevance": 37
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Shoreline protection, seawall or bulkhead",
+    "relevance": 18
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Municipalité de la paroisse de Ragueneau et le ministère des Transports",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 12,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Municipalité de la paroisse de Ragueneau et le ministère de…); no engineering firm is named yet.",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "listed_via": "Hard-structure eco-engineering",
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "fed_register:2026-20789",
   "title": "City and Borough of Juneau's Seawalk Extension Project, Juneau, Alaska",
   "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20789/takes-of-marine-mammals-incidental-to-specified-activities-taking-marine-mammals-incidental-to-the",
@@ -4412,7 +5889,7 @@
    "Moorings",
    "Piles or pile-supported structure"
   ],
-  "stage": "public comment open until 2026-11-19",
+  "stage": "comment closed 2026-11-19, decision pending",
   "stage_kind": "closed",
   "comment_deadline": "2026-11-19",
   "decision_date": null,
@@ -5213,6 +6690,811 @@
   ],
   "changes": [],
   "first_listed": "2026-11-11"
+ },
+ {
+  "id": "ceqanet:2026110429",
+  "title": "State Route 1 Rock Slope Protection Project",
+  "url": "https://ceqanet.lci.ca.gov/2026110429",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "California Department of Transportation, District 7 (DOT)",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Coastal Zone",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "public comment open until 2026-12-31",
+  "stage_kind": "open",
+  "comment_deadline": "2026-12-31",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 30,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 10 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by California Department of Transportation, District 7 (DOT) in Coastal Zone, California. The notice mentions shoreline protection work and a length of about 61 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "Caltrans proposes to reconstruct a 200-foot long revetment with rock slope protection from Route 1, at post-mile (PM) 1.55 in Ventura County.",
+   "Coastal erosion, driven by sea level rise, wave action, and coastal flooding, has damaged the existing RSP within the project limits.",
+   "Without repair and stabilization measures, continued erosion and projected sea level rise could compromise the roadway embankment and underlying structural sections."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2026110429.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-12-31",
+   "days_left": 38,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 43,
+    "because": "Shoreline protection, seawall or bulkhead; size 200-foot",
+    "relevance": 33
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 51,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; size 200-foot",
+    "relevance": 41
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "California Department of Transportation, District 7 (DOT)",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 10,
+   "stage": "open",
+   "entry_point": "Comment period open until December 31, 2026: submit a comment or contact the proponent (California Department of Transportation, District 7).",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Early: public comment period open (+10)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-04-054",
+  "title": "Agrandissement des installations portuaires en eau profonde de Salaberry-de-Valleyfield",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-054",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société du Port de Valleyfield - SPV",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société du Port de Valleyfield - SPV in Quebec. The notice mentions dredging, port or terminal and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-054.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société du Port de Valleyfield - SPV",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société du Port de Valleyfield - SPV); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:63654a5d99a2870022a0621b",
+  "title": "Bamberton Projects",
+  "url": "https://projects.eao.gov.bc.ca/p/63654a5d99a2870022a0621b",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Malahat Investment Corporation",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "Saanich Inlet",
+  "types": [
+   "Wharf, pier or large dock"
+  ],
+  "stage": "comment closed 2023-02-22, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2023-02-22",
+  "decision_date": "2023-06-27",
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "30 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Malahat Investment Corporation in Saanich Inlet, British Columbia. The notice mentions wharf or dock work and an area of about 457,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "However the Saanich Inlet Protection Society made a formal application to the Environmental Assessment Office (EAO) in November 2022, to have the project and additional activities including barging, and storage and transportation of contaminated soils and fuel, designated as reviewable."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-63654a5d99a2870022a0621b.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2023-02-22",
+   "days_left": -1370,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 39,
+    "because": "Wharf, pier or large dock; size 45.7 ha",
+    "relevance": 35
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Malahat Investment Corporation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 30,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Malahat Investment Corporation); no engineering firm is named yet.",
+   "reasons": [
+    "Wharf, pier or large dock",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "ceqanet:2025040995-3",
+  "title": "Berkeley Water Transportation Pier Ferry",
+  "url": "https://ceqanet.lci.ca.gov/2025040995/3",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "City of Berkeley",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "San Francisco Bay, Strawberry Creek",
+  "types": [
+   "Wharf, pier or large dock",
+   "Breakwater, jetty or groyne",
+   "Dredging",
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by City of Berkeley in San Francisco Bay, Strawberry Creek, California. The notice mentions breakwater or jetty, dredging, shoreline protection and wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proposed project aims to revitalize the Berkeley Waterfront by developing new dual-purpose pier and ancillary uses that support both public recreation and zero-emission public ferry service.",
+   "Development: Recreational (New Recreational Pier, Bay Trail Extension), Transportation:Other (Ferry Facilities, Roadway/Parking Improvements)."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2025040995-3.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 39,
+    "because": "Breakwater, jetty or groyne; Shoreline protection, seawall or bulkhead; Pier (not at a dam, intake or bridge)",
+    "relevance": 31
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 32,
+    "because": "Shoreline protection, seawall or bulkhead; Breakwater, jetty or groyne; Dredging",
+    "relevance": 24
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "City of Berkeley",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (City of Berkeley); no engineering firm is named yet.",
+   "reasons": [
+    "Breakwater, jetty or groyne",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "ceqanet:2026110728",
+  "title": "Morro Bay Marina Electrical Repairs",
+  "url": "https://ceqanet.lci.ca.gov/2026110728",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "California Department of Parks and Recreation",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Morro Bay, Estero Bay, Pacific Ocean",
+  "types": [
+   "Wharf, pier or large dock",
+   "Marina or small craft harbour"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by California Department of Parks and Recreation in Morro Bay, Estero Bay, Pacific Ocean, California. The notice mentions small craft harbour and wharf or dock work and a length of about 96 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "Project will replace a faulty electrical line servicing the Morro Bay Marina at Morro Bay State Park to restore reliable, code compliant power to the marina."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2026110728.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 39,
+    "because": "Wharf, pier or large dock; Marina or small craft harbour; size 315 feet",
+    "relevance": 31
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "California Department of Parks and Recreation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (California Department of Parks and Recreation); no engineering firm is named yet.",
+   "reasons": [
+    "Wharf, pier or large dock",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-04-069",
+  "title": "Projet d'agrandissement, de reconstruction et de dragage des installations portuaires de Matane",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-069",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société portuaire du Bas-Saint-Laurent et de la Gaspésie",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société portuaire du Bas-Saint-Laurent et de la Gaspésie in Quebec. The notice mentions dredging, port or terminal and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-069.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société portuaire du Bas-Saint-Laurent et de la Gaspésie",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société portuaire du Bas-Saint-Laurent et de la Gaspésie); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
  },
  {
   "id": "iaac:90624",
@@ -6170,6 +8452,135 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "ceqanet:2025080070-2",
+  "title": "Hayward Marsh Restoration Project: Construction Phase 1",
+  "url": "https://ceqanet.lci.ca.gov/2025080070/2",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "San Francisco Bay Restoration Authority",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "East Bay",
+  "types": [],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by San Francisco Bay Restoration Authority in East Bay, California.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2025080070-2.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 63,
+    "because": "Living shoreline, oyster reef or marsh restoration; Intertidal zone, salt marsh or tidal wetland; New habitat, enhancement or nature-inclusive design",
+    "relevance": 55
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "San Francisco Bay Restoration Authority",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (San Francisco Bay Restoration Authority); no engineering firm is named yet.",
+   "reasons": [
+    "New habitat, enhancement or nature-inclusive design",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
   "id": "iaac:90830",
   "title": "Heidelberg Materials Barclay Point Barge Offloading Facility",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90830?culture=en-CA",
@@ -6314,6 +8725,1061 @@
   ],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "qc_ree:3211-02-316",
+  "title": "Programme décennal de dragage aux installations portuaires de Port-Cartier",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-02-316",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "ArcelorMittal Infrastructure Canada",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by ArcelorMittal Infrastructure Canada in Quebec. The notice mentions dredging and port or terminal work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-02-316.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "ArcelorMittal Infrastructure Canada",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (ArcelorMittal Infrastructure Canada); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-02-344",
+  "title": "Programme décennal de dragage aux installations portuaires de la minière Rio Tinto IOC à Sept-Îles (2027-2036)",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-02-344",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Minière Rio Tinto IOC",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Minière Rio Tinto IOC in Quebec. The notice mentions dredging and port or terminal work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-02-344.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Minière Rio Tinto IOC",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Minière Rio Tinto IOC); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-02-327",
+  "title": "Programme décennal de dragage des installations portuaires de Rimouski",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-02-327",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société portuaire du Bas-Saint-Laurent et de la Gaspésie",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société portuaire du Bas-Saint-Laurent et de la Gaspésie in Quebec. The notice mentions dredging and port or terminal work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-02-327.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société portuaire du Bas-Saint-Laurent et de la Gaspésie",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société portuaire du Bas-Saint-Laurent et de la Gaspésie); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-04-073",
+  "title": "Projet d'agrandissement du port de Bécancour sur le territoire de la ville de Bécancour",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-073",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société du parc industriel et portuaire de Bécancour (SPIPB)",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société du parc industriel et portuaire de Bécancour (SPIPB) in Quebec. The notice mentions port or terminal and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-073.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société du parc industriel et portuaire de Bécancour (SPIPB)",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société du parc industriel et portuaire de Bécancour); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-04-074",
+  "title": "Projet de construction d’un terminal portuaire de traverse au port de Gros-Cacouna",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-074",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société des traversiers du Québec",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société des traversiers du Québec in Quebec. The notice mentions port or terminal and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-074.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société des traversiers du Québec",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société des traversiers du Québec); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-04-071",
+  "title": "Projet de réaménagement du terminal n°5 au port de Baie-Comeau",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-071",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Corporation de gestion du port de Baie-Comeau (CGPBC)",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Corporation de gestion du port de Baie-Comeau (CGPBC) in Quebec. The notice mentions port or terminal and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-071.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Corporation de gestion du port de Baie-Comeau (CGPBC)",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Corporation de gestion du port de Baie-Comeau); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "qc_ree:3211-04-075",
+  "title": "Prolongement des postes à quai B1-B2 au port de Bécancour",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-04-075",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société du parc industriel et portuaire de Bécancour (SPIPB)",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société du parc industriel et portuaire de Bécancour (SPIPB) in Quebec. The notice mentions port or terminal and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-04-075.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Wharf, pier or large dock; Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société du parc industriel et portuaire de Bécancour (SPIPB)",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société du parc industriel et portuaire de Bécancour); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "ceqanet:2018028143-2",
+  "title": "Villa Creek Estuary Restoration Project (Amendment No. 1 to Streambed Alteration Agreement No. EPIMS-SLO-58208-R4)",
+  "url": "https://ceqanet.lci.ca.gov/2018028143/2",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "California Department of Parks and Recreation",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Villa Creek",
+  "types": [],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by California Department of Parks and Recreation in Villa Creek, California. The notice mentions an area of about 15,661 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The Project will impact approximately 3.87 acres of salt and freshwater marsh habitat and 0.96 acres of upland habitat."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2018028143-2.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 41,
+    "because": "Intertidal zone, salt marsh or tidal wetland; size 3.87 acres",
+    "relevance": 33
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "California Department of Parks and Recreation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (California Department of Parks and Recreation); no engineering firm is named yet.",
+   "reasons": [
+    "Intertidal zone, salt marsh or tidal wetland",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
  },
  {
   "id": "iaac:90307",
@@ -6578,6 +10044,272 @@
   ],
   "changes": [],
   "first_listed": "2026-11-12"
+ },
+ {
+  "id": "qc_ree:3211-02-323",
+  "title": "Programme décennal de dragage d'entretien au quai de Rivière-du-Loup",
+  "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-02-323",
+  "source": "qc_ree",
+  "source_name": "Registre des évaluations environnementales du Québec",
+  "proponent": "Société des traversiers du Québec",
+  "country": "CA",
+  "province": "Quebec",
+  "language": "fr",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 29,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "21 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Société des traversiers du Québec in Quebec. The notice mentions dredging and wharf or dock work.",
+  "summary_note": "keywords",
+  "quotes": [],
+  "attribution": "Utilisé avec l'autorisation écrite du gouvernement du Québec.",
+  "agency": "Gouvernement du Québec, ministère de l'Environnement",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/qc_ree-3211-02-323.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 28,
+    "because": "Wharf, pier or large dock",
+    "relevance": 20
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Société des traversiers du Québec",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 21,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Société des traversiers du Québec); no engineering firm is named yet.",
+   "reasons": [
+    "Dredging",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:588511d0aaecd9001b826192",
+  "title": "LNG Canada Export Terminal",
+  "url": "https://projects.eao.gov.bc.ca/p/588511d0aaecd9001b826192",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "LNG Canada Development Incorporated",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": "2015-06-17",
+  "approved_on": null,
+  "score": 28,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by LNG Canada Development Incorporated in British Columbia. The notice mentions port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The project includes the construction and operation of a liquefaction facility for exported LNG as well as a facility for LNG storage, power generation and a marine terminal for LNG-shipping by carriers.",
+   "LNG Canada is a liquefied natural gas (LNG) processing plant and marine export terminal located near Kitimat B.C. The project is a joint venture between Shell, Petronas, PetroChina, Mitsubishi Corporation and Kogas."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/bc_eao-588511d0aaecd9001b826192.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "LNG Canada Development Incorporated",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (LNG Canada Development Incorporated); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
  },
  {
   "id": "scot_marine:00012343",
@@ -7284,6 +11016,405 @@
   ],
   "changes": [],
   "first_listed": "2026-11-19"
+ },
+ {
+  "id": "bc_eao:5c82a7f3f7883500246b2f33",
+  "title": "Delta Grinding Facility",
+  "url": "https://projects.eao.gov.bc.ca/p/5c82a7f3f7883500246b2f33",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Heidelberg Materials Canada Limited",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "comment closed 2020-03-16, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2020-03-16",
+  "decision_date": "2026-09-10",
+  "approved_on": null,
+  "score": 24,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Heidelberg Materials Canada Limited in British Columbia. The notice mentions port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [
+   "It would include a facility for manufacturing SCM adjacent to its existing cement production facility, a new marine terminal, stockpile areas, mill system, truck loadout facility and related infrastructure.",
+   "Heidelberg Materials Canada Limited proposes to develop the Delta Grinding Facility, an industrial grinding facility with a marine terminal located approximately 5 kilometres north of Delta, B.C., on Tilbury Island."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-5c82a7f3f7883500246b2f33.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2020-03-16",
+   "days_left": -2443,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Heidelberg Materials Canada Limited",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Heidelberg Materials Canada Limited); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:60edc23bc69c5e0023a12539",
+  "title": "Ksi Lisims LNG",
+  "url": "https://projects.eao.gov.bc.ca/p/60edc23bc69c5e0023a12539",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Nisga'a Nation, Rockies LNG Limited Partnership and Western LNG LLC",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "comment closed 2024-12-12, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2024-12-12",
+  "decision_date": "2025-09-15",
+  "approved_on": null,
+  "score": 24,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Nisga'a Nation, Rockies LNG Limited Partnership and Western LNG LLC in British Columbia. The notice mentions port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-60edc23bc69c5e0023a12539.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2024-12-12",
+   "days_left": -711,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Nisga'a Nation, Rockies LNG Limited Partnership and Western LNG LLC",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Nisga'a Nation, Rockies LNG Limited Partnership and Western…); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
+ },
+ {
+  "id": "bc_eao:588511e3aaecd9001b8274d4",
+  "title": "Roberts Bank Terminal 2",
+  "url": "https://projects.eao.gov.bc.ca/p/588511e3aaecd9001b8274d4",
+  "source": "bc_eao",
+  "source_name": "BC Environmental Assessment Office project information (EPIC)",
+  "proponent": "Vancouver Fraser Port Authority",
+  "country": "CA",
+  "province": "British Columbia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "comment closed 2023-06-09, decision pending",
+  "stage_kind": "closed",
+  "comment_deadline": "2023-06-09",
+  "decision_date": "2023-09-28",
+  "approved_on": null,
+  "score": 24,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Vancouver Fraser Port Authority in British Columbia. The notice mentions port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proposed Project is a new three-berth marine container terminal that would provide additional capacity of 2.4 million Twenty-foot Equivalent Units (TEUs) of containers per year to meet anticipated demand until 2030.",
+   "This is a new container terminal proposed by Port Metro Vancouver at Roberts Bank in Delta, BC, approximately 35 kilometres south of Vancouver."
+  ],
+  "attribution": "Used with the Province's written permission.",
+  "agency": "Province of British Columbia, Environmental Assessment Office",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/bc_eao-588511e3aaecd9001b8274d4.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2023-06-09",
+   "days_left": -1263,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Vancouver Fraser Port Authority",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Vancouver Fraser Port Authority); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-23",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-23"
  },
  {
   "id": "iaac:90698",

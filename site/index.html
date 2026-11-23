@@ -181,6 +181,10 @@ background-repeat:no-repeat;background-position:right 18px center;background-siz
 .results-bar h2{margin:0 0 4px;font-size:clamp(1.4rem,2.3vw,1.75rem)}
 #result-count{margin:4px 0 0;color:var(--muted);font-size:.97rem}
 .result-actions{margin:0;display:flex;flex-wrap:wrap;gap:0 18px}
+.active-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:12px 0 0}
+.fchip{font:inherit;font-size:.92rem;font-weight:600;min-height:40px;padding:6px 14px;border-radius:999px;border:0;cursor:pointer;background:var(--chip-on-bg);color:var(--chip-on-text);display:inline-flex;align-items:center;gap:6px}
+.fchip span{font-size:1.15rem;line-height:1}
+.fchip:hover{filter:brightness(.96)}
 /* The buttons above the list sit in one light rounded track that hugs them; on a phone it scrolls sideways. */
 .toolbar{display:flex;flex-wrap:nowrap;gap:4px;align-items:center;width:max-content;max-width:100%;margin:28px 0 0;padding:6px;
 background:var(--track);border-radius:999px;box-shadow:var(--shadow);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -397,7 +401,7 @@ nav.toc a,footer nav a{min-height:48px;display:flex;align-items:center}
 .picker{--band-top:32px;padding-bottom:calc(var(--curve) + 28px)}.picker select{width:100%}
 .page-band{--band-top:28px;padding-bottom:calc(var(--curve) + 24px)}.page-head .wrap{padding-top:32px;padding-bottom:calc(var(--curve) + 28px)}
 section.soon li{grid-template-columns:minmax(0,1fr);padding:12px 16px}
-.toolbar .chip{min-height:48px}
+.toolbar .chip{min-height:48px}.fchip{min-height:48px}
 .sheet{top:auto;left:0;width:100%;max-height:88vh;border-radius:var(--r) var(--r) 0 0;transform:translateY(100%)}
 .sheet.on{transform:none}
 details.fold>summary{padding:14px 18px;font-size:1.15rem}details.fold>.fold-body{padding:0 18px 18px}
@@ -418,7 +422,7 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <p class="lede">For reef builders, living shoreline firms, mitigation banks and other companies that do marine mitigation work.</p>
 <p class="ctas"><a class="btn white" href="projects.html">See projects</a><a class="btn outline-white" href="#how">How it works</a></p>
 <ul class="stats">
-<li><a href="projects.html?profile=all#results"><span class="n">69</span><span class="l">Projects tracked</span></a></li>
+<li><a href="projects.html?profile=all#results"><span class="n">100</span><span class="l">Projects tracked</span></a></li>
 <li><a href="projects.html?profile=all#results"><span class="n">4</span><span class="l">Strong fits</span></a></li>
 <li><a href="projects.html?profile=all#soon"><span class="n">5</span><span class="l">Deadlines this fortnight</span></a></li>
 </ul>
@@ -472,7 +476,7 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <section class="band band-white curve-top" aria-labelledby="who-h"><div class="wrap">
 <h2 class="band-h" id="who-h">Who this is for</h2>
 <p class="band-sub">Pick your kind of work and the list re-sorts for it.</p>
-<ul class="who-for"><li><a href="projects.html?profile=hard-structure#results"><h3>Reef builders</h3><p>Breakwaters, seawalls and wharves where reef units or eco-engineered blocks could replace plain rock or concrete.</p><span class="go">See 59 projects</span></a></li><li><a href="projects.html?profile=living-shoreline#results"><h3>Living shoreline firms</h3><p>Eroding shores, salt marsh, oyster and mussel work where a living shoreline could do the job.</p><span class="go">See 16 projects</span></a></li><li><a href="projects.html?profile=banking#results"><h3>Mitigation banks</h3><p>Projects whose notices mention offsetting, compensation or habitat credits.</p><span class="go">See 1 project</span></a></li></ul>
+<ul class="who-for"><li><a href="projects.html?profile=hard-structure#results"><h3>Reef builders</h3><p>Breakwaters, seawalls and wharves where reef units or eco-engineered blocks could replace plain rock or concrete.</p><span class="go">See 81 projects</span></a></li><li><a href="projects.html?profile=living-shoreline#results"><h3>Living shoreline firms</h3><p>Eroding shores, salt marsh, oyster and mussel work where a living shoreline could do the job.</p><span class="go">See 23 projects</span></a></li><li><a href="projects.html?profile=banking#results"><h3>Mitigation banks</h3><p>Projects whose notices mention offsetting, compensation or habitat credits.</p><span class="go">See 3 projects</span></a></li></ul>
 </div></section>
 </main>
 <footer><div class="wrap foot-grid"><div><a class="brand" href="index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="projects.html#soon">Comment deadlines</a><a href="shortlist.html">Hard-structure shortlist</a><a href="about.html">About and method</a><a href="about.html#coverage">Coverage</a><a href="projects.csv">All listed projects (CSV)</a></nav></div></footer>
