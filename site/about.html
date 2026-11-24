@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>About - MitiMark</title>
-<meta name="description" content="Coastal projects, found early. Early alerts on marine construction projects that may need habitat work.">
+<meta name="description" content="Coastal projects, found early. Early alerts on marine construction projects for companies engaged in marine mitigation.">
 <meta property="og:title" content="About - MitiMark">
-<meta property="og:description" content="Coastal projects, found early. Early alerts on marine construction projects that may need habitat work.">
+<meta property="og:description" content="Coastal projects, found early. Early alerts on marine construction projects for companies engaged in marine mitigation.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:description" content="Coastal projects, found early. Early alerts on marine construction projects that may need habitat work.">
+<meta name="twitter:description" content="Coastal projects, found early. Early alerts on marine construction projects for companies engaged in marine mitigation.">
 <meta name="theme-color" content="#1B7F9E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2223%2027%20134%20134%22%3E%3Cpath%20d%3D%22M90%20160C90%20160%2050%20112%2050%2070A40%2040%200%200%201%20130%2070C130%20112%2090%20160%2090%20160Z%22%20fill%3D%22%231B7F9E%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2211%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M90%2096Q74%2090%2069%2066M90%2096V58M90%2096Q106%2090%20111%2066%22/%3E%3C/g%3E%3Cg%20fill%3D%22%23fff%22%3E%3Ccircle%20cx%3D%2269%22%20cy%3D%2264%22%20r%3D%227%22/%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%2256%22%20r%3D%227%22/%3E%3Ccircle%20cx%3D%22111%22%20cy%3D%2264%22%20r%3D%227%22/%3E%3C/g%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -25,11 +25,13 @@
 --strong-bg:#FCEBE6;--possible-bg:#E3F0F5;--possible-text:#0B3C5D;--weak-bg:#EEF2F4;--weak-text:#4B6573;
 --shadow:0 12px 32px rgba(11,60,93,.08);--r:22px;--r-sm:14px;--sec:96px;--curve:64px;
 --track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;--pale:#E8F4F8;
+--ct0:#DCEEF6;--ct1:#D7EFEC;--ct2:#DDF0E5;--cdiv:40px;
 --ease:cubic-bezier(.2,.7,.2,1);color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--navy:#082C44;--text:#E3EEF2;--coral-text:#F2A28E;--link:#8ACDE2;--muted:#A6BCC6;
 --card:#12303F;--band-white:#0D2533;--band-tint:#0A1C27;--soft:#102B39;--line:#1F4456;--line-strong:#2F5A6E;
 --strong-bg:#3D241D;--possible-bg:#153D4F;--possible-text:#D4ECF4;--weak-bg:#1B3644;--weak-text:#BCCDD5;
---shadow:0 12px 32px rgba(0,0,0,.35);--track:#12303F;--chip-on-bg:#24566B;--chip-on-text:#ffffff;--row:#163747}}
+--shadow:0 12px 32px rgba(0,0,0,.35);--track:#12303F;--chip-on-bg:#24566B;--chip-on-text:#ffffff;--row:#163747;
+--ct0:#0F2838;--ct1:#0D2B30;--ct2:#102D29}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after,::details-content{transition:none!important;animation:none!important}}
@@ -73,11 +75,11 @@ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 /* Header */
 .topbar{position:relative;z-index:20;background:var(--navy);color:#fff}
 body:has(.topbar+main>.blue:first-child:not([hidden])) .topbar,body:has(.topbar+.blue) .topbar{background:transparent}
-.topbar .wrap{display:flex;align-items:center;gap:28px;min-height:72px;flex-wrap:wrap}
+.topbar .wrap{display:flex;align-items:center;gap:24px;min-height:72px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem;color:#fff;text-decoration:none}
 .brand .mark{width:26px;height:41px;flex:none}
 nav.top{display:flex;gap:6px;flex-wrap:wrap}
-nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 16px;border-radius:999px;transition:background .2s,color .2s}
+nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 14px;border-radius:999px;transition:background .2s,color .2s}
 nav.top a:hover{background:rgba(255,255,255,.12)}
 nav.top a[aria-current=page]{background:rgba(255,255,255,.16);color:#fff}
 .topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
@@ -229,6 +231,31 @@ table.cov tr.region td:first-child{padding-left:28px;color:var(--muted)}
 .pill.partial{color:var(--coral-text)}
 section.country>h2,section.group>h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;font-size:1.3rem;margin:48px 0 0}
 section.country>p.country-note{color:var(--muted);margin:4px 0;font-size:.95rem;max-width:80ch}
+/* Projects by country: a sticky row of country chips, then one tinted section per country. Each section's header
+   sticks below the chips while you are inside it, and each section after the first opens with a soft curve. */
+.country-bar{position:sticky;top:0;z-index:15;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scrollbar-width:none;
+margin:28px -28px 0;padding:12px 28px;background:var(--band-tint);-webkit-overflow-scrolling:touch}
+.country-bar::-webkit-scrollbar{display:none}
+.cchip{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;background:var(--track);
+color:var(--text);font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow);transition:background .2s,color .2s}
+.cchip .n{color:var(--muted);font-weight:600}
+.cchip:hover{background:var(--soft)}
+.cchip.on{background:var(--chip-on-bg);color:var(--chip-on-text)}
+.cchip.on .n{color:var(--chip-on-text)}
+.csec{position:relative;margin:12px 0 0;padding:0 24px calc(var(--cdiv) + 32px);background:var(--c-bg);border-radius:var(--r) var(--r) 0 0;
+scroll-margin-top:var(--chips-h,68px)}
+.csec.tint-0{--c-bg:var(--ct0)}.csec.tint-1{--c-bg:var(--ct1)}.csec.tint-2{--c-bg:var(--ct2)}
+.csec:first-child{margin-top:0}
+.csec+.csec{margin-top:calc(-1 * var(--cdiv));padding-top:var(--cdiv);border-radius:50% 50% 0 0/var(--cdiv) var(--cdiv) 0 0}
+.csec:last-child{padding-bottom:32px;border-bottom-left-radius:var(--r);border-bottom-right-radius:var(--r)}
+.csec-head{position:sticky;top:var(--chips-h,68px);z-index:10;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;
+margin:0 -24px;padding:18px 24px 12px;background:var(--c-bg)}
+.csec:first-child .csec-head{border-radius:var(--r) var(--r) 0 0}
+.csec-head h2{margin:0;font-size:1.35rem}
+.csec-head h2:focus{outline:none}.csec-head h2:focus-visible{outline:3px solid var(--mid);outline-offset:4px;border-radius:6px}
+.csec-count{margin:0;color:var(--muted);font-size:.97rem}
+.csec>.country-note{color:var(--muted);margin:2px 0 0;font-size:.95rem;max-width:80ch}
+.csec-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin:24px 0 0}
 section.tier h3{display:flex;align-items:center;gap:10px;font-size:1.05rem;margin:28px 0 0}
 section.tier h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--line-strong);flex:none}
 section.tier[data-tier=strong] h3::before{background:var(--coral)}
@@ -394,7 +421,10 @@ footer nav a:hover{text-decoration:underline}
 .steps .icon{grid-row:1/3;width:52px;height:52px;margin:0}.steps h3{margin:4px 0 2px}article.project{grid-template-columns:minmax(0,1fr)}
 .about-layout{grid-template-columns:minmax(0,1fr);gap:16px}nav.toc{position:static;display:flex;flex-wrap:wrap;gap:4px}
 nav.toc .side-label{width:100%}}
-@media (max-width:640px){:root{--sec:56px;--curve:40px}body{font-size:16px}.wrap{padding:0 18px}.topbar .updated{display:none}
+@media (max-width:640px){:root{--sec:56px;--curve:40px;--cdiv:28px}
+.country-bar{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.cchip{min-height:48px}
+.csec{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.csec-head{margin:0 -18px;padding-left:18px;padding-right:18px}
+body{font-size:16px}.wrap{padding:0 18px}.topbar .updated{display:none}
 .topbar .wrap{gap:4px 10px;padding-top:10px;padding-bottom:6px;min-height:0}.brand .mark{width:22px;height:35px}
 nav.top{gap:2px;margin:0 -12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:calc(100% + 24px)}
 nav.top a{padding:12px 12px;min-height:48px;white-space:nowrap;font-size:.93rem}
@@ -425,7 +455,7 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <header class="topbar"><div class="wrap">
 <a class="brand" href="index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a>
 <p class="tagline top-tagline">Coastal projects, found early.</p>
-<nav class="top" aria-label="Main"><a href="projects.html">Projects</a><a href="projects.html#soon"><span class="hide-sm">Comment deadlines</span><span class="show-sm" hidden>Deadlines</span></a><a href="projects.html#coverage">Coverage</a><a href="about.html" aria-current="page">About</a></nav>
+<nav class="top" aria-label="Main"><a href="projects.html">Projects</a><a href="projects.html#soon"><span class="hide-sm">Public comment deadlines</span><span class="show-sm" hidden>Deadlines</span></a><a href="projects.html#coverage">Coverage</a><a href="about.html" aria-current="page">About</a></nav>
 <p class="updated">Updated <time>November 23, 2026</time></p>
 </div></header>
 <section class="blue page-head"><div class="wrap">
@@ -433,7 +463,7 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <p class="eyebrow">About and method</p>
 <h1>About MitiMark</h1>
 <p class="tagline about-tagline">Coastal projects, found early.</p>
-<p>Early alerts on marine construction projects that may need habitat work</p>
+<p>Early alerts on marine construction projects for companies engaged in marine mitigation</p>
 <p class="meta">Last successful update: <time>November 23, 2026</time></p>
 </div></section>
 <main class="wrap about-layout" id="main">
@@ -444,14 +474,14 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <h2 id="what-it-does">What it does</h2>
 <p>The tool reads public environmental assessment and permit notices for marine construction projects,
 such as ports, wharves, breakwaters, dredging and shoreline works. It flags projects that may need marine
-habitat work, for example avoidance and reduction measures, habitat enhancement, fish habitat offsetting, or
+mitigation, for example avoidance and reduction measures, habitat enhancement, fish habitat offsetting, or
 nature-inclusive design. Each listing links to the official notice.</p>
 
 <h2 id="what-the-score-and-tiers-mean">What the score and tiers mean</h2>
 <p>Each notice gets a score from 0 to 100 from simple, visible rules: the type of marine work, words about
 fish habitat, offsetting, eelgrass, shellfish or species at risk, and the size of the work. The score places
 each notice in a tier:</p>
-<ul><li><strong>Strong fit:</strong> Score 60 or more. Several signals of habitat work, such as offsetting, new habitat, or large in-water works.</li><li><strong>Possible fit:</strong> Score 35 to 59. Some signals. Worth a look.</li><li><strong>Weak fit:</strong> Score 20 to 34. Few signals. Often routine maintenance.</li></ul>
+<ul><li><strong>Strong fit:</strong> Score 60 or more. Several signals of marine mitigation, such as offsetting, new habitat or large in-water works.</li><li><strong>Possible fit:</strong> Score 35 to 59. Some signals. Worth reviewing.</li><li><strong>Weak fit:</strong> Score 20 to 34. Few signals. Often routine maintenance.</li></ul>
 <p>Notices scoring under 20, quarries and pits, and withdrawn projects are not
 listed at all. Only strong and possible fits are shown at first; weak fits can be switched on with
 the "Also show weak fits" box. A high score means the notice is worth a closer look. It does not mean
@@ -482,7 +512,7 @@ list.</p>
 <p>For Strong and Possible projects, names and facts are also taken from officially published web pages: the developer's
 project site, press releases, procurement notices and environmental reports. Each is linked to its source; facts found
 only through a web search, on sites that do not allow automated reading, say so. Procurement routes (supplier portals,
-tenders, meet-the-buyer events) appear first, under "How to get in". "Find contacts" opens a LinkedIn people search for
+tenders, meet-the-buyer events) appear first, under "Best way in". "Find contacts" opens a LinkedIn people search for
 the organisation (environmental manager, project manager, procurement); this site stores nothing from it. Projects
 marked "From the developer's website, not in a permit notice yet" come from a developer's own pages and are scored
 with the same rules.</p>
@@ -513,7 +543,7 @@ notice that invited comments, it is labelled "date of the notice". Where a regis
 of comments received, the number is shown with the date it was read and a link to the registry's own
 comments page. Comment text, the names of people who commented and other personal details are never copied
 to this site. Anything a source does not publish is shown as "Not published".</p>
-<p>While a comment period is open, the project carries an "Open for comment until" label with the closing date. The
+<p>While a comment period is open, the project carries an "Open for public comment until" label with the closing date. The
 label disappears once that date has passed. "Public comment deadlines coming up" at the top of the project
 list, the "Only projects open for public comment" filter and the RSS feeds all use the same dates.</p>
 <ul><li><strong>Canadian Impact Assessment Registry:</strong> The registry shows the number of comments received on some project pages (mostly larger assessments).</li><li><strong>Newfoundland and Labrador environmental assessment:</strong> The registry publishes the comment deadline but not the number of comments received.</li><li><strong>Høringsportalen, Denmark&#x27;s national consultation portal (Atom feeds):</strong> The portal&#x27;s feeds give the hearing deadline but not the number of responses.</li><li><strong>marine.gov.scot marine licence documentation:</strong> Representations are published as PDF documents, not as a count.</li><li><strong>Boletín Oficial del Estado (BOE) open data:</strong> BOE notices give the comment period in working days and publish no count.</li></ul>
@@ -524,11 +554,11 @@ list, the "Only projects open for public comment" filter and the RSS feeds all u
 decided. Each project page shows a timeline of those changes next to the official comment dates.</p>
 
 <h2 id="buyer-profiles">Buyer profiles</h2>
-<p>At the top of the project list you can choose the kind of habitat work you do ("I work on: ..."). The list
-then uses that profile's tiers and order, and each project says in plain words why it matches. "All habitat work" is
+<p>At the top of the project list you can choose your type of marine mitigation work ("I work on: ..."). The list
+then uses that profile's tiers and order, and each project says in plain words why it matches. "All marine mitigation work" is
 the general score described above and is the default.</p>
-<ul><li><strong>Hard-structure eco-engineering:</strong> Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock.</li><li><strong>Living shoreline and shellfish:</strong> Oysters, mussels, salt marsh, shoreline stabilization and erosion control.</li><li><strong>Seagrass and eelgrass:</strong> Eelgrass and seagrass beds: surveys, transplants, restoration and compensation.</li><li><strong>Kelp and other seaweed:</strong> Kelp forests, rockweed and other seaweed, and the rocky reefs they grow on.</li><li><strong>Coral:</strong> Warm- and cold-water coral, coralline habitat and sponge reefs. No current projects match. Today&#x27;s sources rarely describe this habitat.</li><li><strong>Mitigation banking and compensation:</strong> Offsetting, compensation, credits, habitat banking and compensation plans.</li></ul>
-<p>Profiles are rule-based guesses. Each one re-weights the same visible rules (keywords, project types and sizes)
+<ul><li><strong>Hard-structure eco-engineering:</strong> Seawalls, bulkheads, piers, wharves, breakwaters, armouring and riprap, where eco-engineered units could replace plain concrete or rock.</li><li><strong>Living shoreline and shellfish:</strong> Oysters, mussels, salt marsh, shoreline stabilization and erosion control.</li><li><strong>Seagrass and eelgrass:</strong> Eelgrass and seagrass beds: surveys, transplants, restoration and compensation.</li><li><strong>Kelp and other seaweed:</strong> Kelp forests, rockweed and other seaweed, and the rocky reefs they grow on.</li><li><strong>Coral:</strong> Warm- and cold-water coral, coralline habitat and sponge reefs. No current projects match. The current sources rarely describe this habitat.</li><li><strong>Mitigation banking and compensation:</strong> Offsetting, compensation, credits, habitat banking and compensation plans.</li></ul>
+<p>Profiles are rule-based estimates. Each one re-weights the same visible rules (keywords, project types and sizes)
 toward one kind of work, using the same Strong, Possible and Weak cut-offs. A project is listed for a profile only
 if the notice mentions at least one of that profile's core subjects. A project that the general list leaves out
 appears under a profile only if it reaches Possible (35 or more) there. A flag under any profile means the notice
@@ -538,7 +568,7 @@ measure is required.</p>
 clause negates it or makes it conditional ("does not propose changes to the wharf", "if required"), sizes taken
 from sentences about past works or distances ("within 250 m of the site") are not counted, and for the
 hard-structure profile, small routine repairs (under 100 m long, 2,000 m&sup2; and 5,000 m&sup3;) stay Weak unless the
-notice also mentions habitat work. Your profile choice is stored only in your browser. You can share a profile
+notice also mentions marine mitigation. Your profile choice is stored only in your browser. You can share a profile
 with a link such as <code>?profile=seagrass</code>.</p>
 
 <h2 id="stages-and-leads">Project stage and leads</h2>
@@ -565,7 +595,7 @@ your watch list is sent anywhere. Clearing your browser data clears the list.</p
 <h2 id="project-watch">Project pages we follow</h2>
 <p>Some sources list projects rather than notices. When such a source is used, its items appear in a
 separate "Project page we follow (not a notice)" section, with no comment deadline, no countdown, and never in
-the closing-soon list. No project watch source is in use at the moment.</p>
+the public comment deadline list. No project watch source is in use at the moment.</p>
 
 <h2 id="coverage">Coverage</h2>
 <p><strong>For now the site is mostly Canada: 55 of the 100 listed notices come from Canadian sources. Other countries have one source each or none yet, so their lists are short or empty.</strong></p>
@@ -585,7 +615,7 @@ read, and they are named. "Coming soon" means no source is read yet, and no list
 <tr class="region"><td>Nunavut</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
 <tr class="region"><td>Northwest Territories</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
 <tr class="region"><td>Yukon</td><td><span class="pill partial">Partial</span></td><td>Sources: Canadian Impact Assessment Registry. Federal registry only.</td></tr>
-<tr><td><strong>United States</strong></td><td><span class="pill partial">Partial</span></td><td>NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register and NOAA&#x27;s construction authorizations page. Shown under the hard-structure profile only, because these notices are about construction noise, not habitat work. The Army Corps of Engineers site blocks automated access. Sources: Federal Register (NOAA Fisheries incidental harassment notices), NOAA Fisheries incidental take authorizations for construction, California Coastal Commission meeting agendas, CEQAnet (California State Clearinghouse CEQA documents).</td></tr>
+<tr><td><strong>United States</strong></td><td><span class="pill partial">Partial</span></td><td>NOAA Fisheries permits for pile driving at docks, wharves, piers and terminals, from the Federal Register and NOAA&#x27;s construction authorizations page. Shown under the hard-structure profile only, because these notices are about construction noise, not marine mitigation. The Army Corps of Engineers site blocks automated access. Sources: Federal Register (NOAA Fisheries incidental harassment notices), NOAA Fisheries incidental take authorizations for construction, California Coastal Commission meeting agendas, CEQAnet (California State Clearinghouse CEQA documents).</td></tr>
 <tr class="region"><td>New York</td><td><span class="pill coming_soon">Coming soon</span></td><td>The Environmental Notice Bulletin is disallowed by robots.txt.</td></tr>
 <tr class="region"><td>Florida</td><td><span class="pill coming_soon">Coming soon</span></td><td>Permit data sits in JavaScript map applications.</td></tr>
 <tr class="region"><td>California</td><td><span class="pill covered">Covered</span></td><td>Sources: California Coastal Commission meeting agendas, CEQAnet (California State Clearinghouse CEQA documents). California Coastal Commission monthly agendas (coastal development permit items) and CEQAnet documents in the coastal zone or naming water work, both used with written permission (November 2026).</td></tr>
@@ -622,8 +652,8 @@ read, and they are named. "Coming soon" means no source is read yet, and no list
 in your browser, so they stay current between updates.</p>
 
 <h2 id="feeds">RSS feeds</h2>
-<p>Each feed lists the comment periods closing in the next 14 days, then the projects that are new since the last update, with a link to the official notice and the source. Add a feed address to any feed reader. There is no sign-up and no email: this site stores nothing about who reads the feeds.</p>
-<ul><li><a href="feeds/comment-periods.xml">Comment periods closing in the next 14 days (every profile)</a></li><li><a href="feeds/all.xml">All projects on the general list</a></li><li><a href="feeds/hard-structure.xml">Hard-structure eco-engineering</a></li><li><a href="feeds/living-shoreline.xml">Living shoreline and shellfish</a></li><li><a href="feeds/seagrass.xml">Seagrass and eelgrass</a></li><li><a href="feeds/kelp.xml">Kelp and other seaweed</a></li><li><a href="feeds/coral.xml">Coral</a></li><li><a href="feeds/banking.xml">Mitigation banking and compensation</a></li></ul>
+<p>Each feed lists the public comment deadlines in the next 14 days, then the projects that are new since the last update, with a link to the official notice and the source. Add a feed address to any feed reader. There is no sign-up and no email: this site stores nothing about who reads the feeds.</p>
+<ul><li><a href="feeds/comment-periods.xml">Public comment deadlines in the next 14 days (every profile)</a></li><li><a href="feeds/all.xml">All projects on the general list</a></li><li><a href="feeds/hard-structure.xml">Hard-structure eco-engineering</a></li><li><a href="feeds/living-shoreline.xml">Living shoreline and shellfish</a></li><li><a href="feeds/seagrass.xml">Seagrass and eelgrass</a></li><li><a href="feeds/kelp.xml">Kelp and other seaweed</a></li><li><a href="feeds/coral.xml">Coral</a></li><li><a href="feeds/banking.xml">Mitigation banking and compensation</a></li></ul>
 <h2 id="known-limits">Known limits</h2>
 <ul>
 <li>Public notices often appear after a project's design is done, so some listings will be too late to
@@ -642,7 +672,7 @@ or notice, and nothing comes from any company's internal information.</p>
 <p>Feedback links on the projects go to a Google Form. This site stores nothing about you.</p>
 </div>
 </main>
-<footer><div class="wrap foot-grid"><div><a class="brand" href="index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p class="tagline foot-tagline">Coastal projects, found early.</p><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="projects.html#soon">Comment deadlines</a><a href="shortlist.html">Hard-structure shortlist</a><a href="about.html">About and method</a><a href="about.html#coverage">Coverage</a><a href="projects.csv">All listed projects (CSV)</a></nav></div></footer>
+<footer><div class="wrap foot-grid"><div><a class="brand" href="index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p class="tagline foot-tagline">Coastal projects, found early.</p><p>MitiMark is a prototype. A flag means a project may need marine mitigation. It does not mean that mitigation is required. Always check the official notice. All listings come from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="projects.html#soon">Public comment deadlines</a><a href="shortlist.html">Hard-structure shortlist</a><a href="about.html">About and method</a><a href="about.html#coverage">Coverage</a><a href="projects.csv">All listed projects (CSV)</a></nav></div></footer>
 <script>(function(){if(!window.IntersectionObserver||!window.matchMedia||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});Array.prototype.forEach.call(document.querySelectorAll('.band:not(.blue)'),function(b){if(b.getBoundingClientRect().top>innerHeight){b.classList.add('pre');io.observe(b);}});})();</script>
 </body>
 </html>

@@ -25,11 +25,13 @@
 --strong-bg:#FCEBE6;--possible-bg:#E3F0F5;--possible-text:#0B3C5D;--weak-bg:#EEF2F4;--weak-text:#4B6573;
 --shadow:0 12px 32px rgba(11,60,93,.08);--r:22px;--r-sm:14px;--sec:96px;--curve:64px;
 --track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;--pale:#E8F4F8;
+--ct0:#DCEEF6;--ct1:#D7EFEC;--ct2:#DDF0E5;--cdiv:40px;
 --ease:cubic-bezier(.2,.7,.2,1);color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--navy:#082C44;--text:#E3EEF2;--coral-text:#F2A28E;--link:#8ACDE2;--muted:#A6BCC6;
 --card:#12303F;--band-white:#0D2533;--band-tint:#0A1C27;--soft:#102B39;--line:#1F4456;--line-strong:#2F5A6E;
 --strong-bg:#3D241D;--possible-bg:#153D4F;--possible-text:#D4ECF4;--weak-bg:#1B3644;--weak-text:#BCCDD5;
---shadow:0 12px 32px rgba(0,0,0,.35);--track:#12303F;--chip-on-bg:#24566B;--chip-on-text:#ffffff;--row:#163747}}
+--shadow:0 12px 32px rgba(0,0,0,.35);--track:#12303F;--chip-on-bg:#24566B;--chip-on-text:#ffffff;--row:#163747;
+--ct0:#0F2838;--ct1:#0D2B30;--ct2:#102D29}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after,::details-content{transition:none!important;animation:none!important}}
@@ -73,11 +75,11 @@ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 /* Header */
 .topbar{position:relative;z-index:20;background:var(--navy);color:#fff}
 body:has(.topbar+main>.blue:first-child:not([hidden])) .topbar,body:has(.topbar+.blue) .topbar{background:transparent}
-.topbar .wrap{display:flex;align-items:center;gap:28px;min-height:72px;flex-wrap:wrap}
+.topbar .wrap{display:flex;align-items:center;gap:24px;min-height:72px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem;color:#fff;text-decoration:none}
 .brand .mark{width:26px;height:41px;flex:none}
 nav.top{display:flex;gap:6px;flex-wrap:wrap}
-nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 16px;border-radius:999px;transition:background .2s,color .2s}
+nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 14px;border-radius:999px;transition:background .2s,color .2s}
 nav.top a:hover{background:rgba(255,255,255,.12)}
 nav.top a[aria-current=page]{background:rgba(255,255,255,.16);color:#fff}
 .topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
@@ -229,6 +231,31 @@ table.cov tr.region td:first-child{padding-left:28px;color:var(--muted)}
 .pill.partial{color:var(--coral-text)}
 section.country>h2,section.group>h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;font-size:1.3rem;margin:48px 0 0}
 section.country>p.country-note{color:var(--muted);margin:4px 0;font-size:.95rem;max-width:80ch}
+/* Projects by country: a sticky row of country chips, then one tinted section per country. Each section's header
+   sticks below the chips while you are inside it, and each section after the first opens with a soft curve. */
+.country-bar{position:sticky;top:0;z-index:15;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scrollbar-width:none;
+margin:28px -28px 0;padding:12px 28px;background:var(--band-tint);-webkit-overflow-scrolling:touch}
+.country-bar::-webkit-scrollbar{display:none}
+.cchip{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;background:var(--track);
+color:var(--text);font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow);transition:background .2s,color .2s}
+.cchip .n{color:var(--muted);font-weight:600}
+.cchip:hover{background:var(--soft)}
+.cchip.on{background:var(--chip-on-bg);color:var(--chip-on-text)}
+.cchip.on .n{color:var(--chip-on-text)}
+.csec{position:relative;margin:12px 0 0;padding:0 24px calc(var(--cdiv) + 32px);background:var(--c-bg);border-radius:var(--r) var(--r) 0 0;
+scroll-margin-top:var(--chips-h,68px)}
+.csec.tint-0{--c-bg:var(--ct0)}.csec.tint-1{--c-bg:var(--ct1)}.csec.tint-2{--c-bg:var(--ct2)}
+.csec:first-child{margin-top:0}
+.csec+.csec{margin-top:calc(-1 * var(--cdiv));padding-top:var(--cdiv);border-radius:50% 50% 0 0/var(--cdiv) var(--cdiv) 0 0}
+.csec:last-child{padding-bottom:32px;border-bottom-left-radius:var(--r);border-bottom-right-radius:var(--r)}
+.csec-head{position:sticky;top:var(--chips-h,68px);z-index:10;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;
+margin:0 -24px;padding:18px 24px 12px;background:var(--c-bg)}
+.csec:first-child .csec-head{border-radius:var(--r) var(--r) 0 0}
+.csec-head h2{margin:0;font-size:1.35rem}
+.csec-head h2:focus{outline:none}.csec-head h2:focus-visible{outline:3px solid var(--mid);outline-offset:4px;border-radius:6px}
+.csec-count{margin:0;color:var(--muted);font-size:.97rem}
+.csec>.country-note{color:var(--muted);margin:2px 0 0;font-size:.95rem;max-width:80ch}
+.csec-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin:24px 0 0}
 section.tier h3{display:flex;align-items:center;gap:10px;font-size:1.05rem;margin:28px 0 0}
 section.tier h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--line-strong);flex:none}
 section.tier[data-tier=strong] h3::before{background:var(--coral)}
@@ -394,7 +421,10 @@ footer nav a:hover{text-decoration:underline}
 .steps .icon{grid-row:1/3;width:52px;height:52px;margin:0}.steps h3{margin:4px 0 2px}article.project{grid-template-columns:minmax(0,1fr)}
 .about-layout{grid-template-columns:minmax(0,1fr);gap:16px}nav.toc{position:static;display:flex;flex-wrap:wrap;gap:4px}
 nav.toc .side-label{width:100%}}
-@media (max-width:640px){:root{--sec:56px;--curve:40px}body{font-size:16px}.wrap{padding:0 18px}.topbar .updated{display:none}
+@media (max-width:640px){:root{--sec:56px;--curve:40px;--cdiv:28px}
+.country-bar{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.cchip{min-height:48px}
+.csec{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.csec-head{margin:0 -18px;padding-left:18px;padding-right:18px}
+body{font-size:16px}.wrap{padding:0 18px}.topbar .updated{display:none}
 .topbar .wrap{gap:4px 10px;padding-top:10px;padding-bottom:6px;min-height:0}.brand .mark{width:22px;height:35px}
 nav.top{gap:2px;margin:0 -12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:calc(100% + 24px)}
 nav.top a{padding:12px 12px;min-height:48px;white-space:nowrap;font-size:.93rem}
@@ -425,7 +455,7 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <header class="topbar"><div class="wrap">
 <a class="brand" href="../index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a>
 <p class="tagline top-tagline">Coastal projects, found early.</p>
-<nav class="top" aria-label="Main"><a href="../projects.html">Projects</a><a href="../projects.html#soon"><span class="hide-sm">Comment deadlines</span><span class="show-sm" hidden>Deadlines</span></a><a href="../projects.html#coverage">Coverage</a><a href="../about.html">About</a></nav>
+<nav class="top" aria-label="Main"><a href="../projects.html">Projects</a><a href="../projects.html#soon"><span class="hide-sm">Public comment deadlines</span><span class="show-sm" hidden>Deadlines</span></a><a href="../projects.html#coverage">Coverage</a><a href="../about.html">About</a></nav>
 <p class="updated">Updated <time>November 23, 2026</time></p>
 </div></header>
 <main class="project" id="main" data-id="iaac:90784" data-tier="possible" data-stage="assessment" data-deadline="">
@@ -443,11 +473,11 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <details class="fold" open><summary>Why it matters</summary><div class="fold-body"><p class="summary">Project by Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) in Newfoundland and Labrador. The notice mentions dredging work.</p><p><strong>Stage:</strong> Under review.</p><div class="scorebox"><span class="big">37</span><span class="of">/ 100 &middot; Possible fit</span></div><div class="meter" style="--s:37"><span></span></div><p class="note">29 points for the kind of work, plus 8 for stage, timing and who is named</p><h3>Why it scored 37 out of 100</h3><ul class="why"><li>Wharf, pier or large dock</li><li>Early: still under review, design not final (+8)</li></ul><div class="profiles">
 <h3>Buyer profiles that list it</h3>
 <ul class="profile-list"><li><a href="../projects.html?profile=hard-structure#results">Hard-structure eco-engineering</a> <span class="badge tier-badge t-possible">Possible fit</span> <span class="note">score 36</span><p class="because">Matches because: Wharf, pier or large dock; Scour or cable protection</p></li></ul>
-<p class="note">Rule-based guesses, not a statement that mitigation is required.</p>
+<p class="note">Rule-based estimates. They do not mean that mitigation is required.</p>
 </div><h3>Words from the notice</h3><ul class="quotes"><li>&ldquo;This will be a like-for-like replacement, with the new wharf being constructed with similar dimensions of the existing wharf and constructed within the approximate footprint of the existing wharf.&rdquo;</li><li>&ldquo;The floating dock will be disconnected and set aside until the new wharf is constructed and then the floating dock can be floated into place and reconnected to the new wharf.&rdquo;</li><li>&ldquo;The new wharf will be constructed of treated timber crib wharf structures, complete with a new reinforced concrete deck.&rdquo;</li></ul><p class="note">Listed automatically; not yet checked by a person.</p></div></details>
 <details class="fold"><summary>Who to contact</summary><div class="fold-body"><ul class="who"><li><span class="role">Owner or proponent</span>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH) <a class="fc" href="https://www.linkedin.com/search/results/people/?keywords=%22Fisheries+and+Oceans+Canada+-+Small+Craft+Harbours%22+%22environmental+manager%22+OR+%22project+manager%22+OR+%22procurement%22" rel="noopener nofollow" target="_blank" title="LinkedIn people search: environmental manager, project manager, procurement">Find contacts</a><span class="how">Proponent named by the registry</span></li><li><span class="role">Engineering or environmental consultant</span><span class="not-named">Not named yet</span></li><li><span class="role">Contractor</span><span class="not-named">Not named yet</span></li><li><span class="role">Agency contact</span>Dion Upward (Regional Engineer, Fisheries and Oceans Canada)<span class="how">Contact listed on the registry page</span></li></ul>
 <p class="note">Only names an official source states, with where each came from. Contractors are usually named only when a project goes to bid. "Find contacts" opens a LinkedIn people search for that organisation; this site stores nothing from it.</p></div></details>
-<details class="fold"><summary>How to get in</summary><div class="fold-body"><p class="approach"><strong>Approach first:</strong> the owner, Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH).</p><p><strong>Suggested approach:</strong> Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.</p><div class="research"><div class="getin"><p class="getin-h">Supplier portals, tenders and events</p><ul><li>A CanadaBuys award notice covers &#x27;Wharf Construction - Harbour Breton, NL&#x27; (CAD 716,985); check whether it is this phase. <a href="https://canadabuys.canada.ca/en/tender-opportunities/award-notice/ea003-170290001pwd" rel="noopener">source</a> <span class="muted">(found by web search, confirm)</span></li><li>Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example &#x27;Wharf Construction - Harbour Breton, NL&#x27;). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors. <a href="https://canadabuys.canada.ca/en/tender-opportunities" rel="noopener">source</a> <span class="muted">(found by web search, confirm)</span></li></ul></div><p class="why-h">Published contact details</p><ul class="orgs"><li><strong>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</strong>: <a href="https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html" rel="noopener">website</a> <a href="https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html" rel="noopener">source</a></li></ul></div></div></details>
+<details class="fold"><summary>Best way in</summary><div class="fold-body"><p class="approach"><strong>Approach first:</strong> the owner, Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH).</p><p><strong>Suggested approach:</strong> Design stage: contact the proponent (Fisheries and Oceans Canada - Small Craft Harbours); no engineering firm is named yet.</p><div class="research"><div class="getin"><p class="getin-h">Supplier portals, tenders and events</p><ul><li>A CanadaBuys award notice covers &#x27;Wharf Construction - Harbour Breton, NL&#x27; (CAD 716,985); check whether it is this phase. <a href="https://canadabuys.canada.ca/en/tender-opportunities/award-notice/ea003-170290001pwd" rel="noopener">source</a> <span class="muted">(found by web search, confirm)</span></li><li>Small Craft Harbours wharf and breakwater works are tendered on CanadaBuys as invitations to tender (for example &#x27;Wharf Construction - Harbour Breton, NL&#x27;). Suppliers of armour units or eco-engineered elements usually reach these jobs through the bidding contractors. <a href="https://canadabuys.canada.ca/en/tender-opportunities" rel="noopener">source</a> <span class="muted">(found by web search, confirm)</span></li></ul></div><p class="why-h">Published contact details</p><ul class="orgs"><li><strong>Fisheries and Oceans Canada - Small Craft Harbours (DFO-SCH)</strong>: <a href="https://www.dfo-mpo.gc.ca/sch-ppb/index-eng.html" rel="noopener">website</a> <a href="https://www.canada.ca/en/fisheries-oceans/news/2024/07/newfoundland-and-labrador-small-craft-harbours-budget-2024.html" rel="noopener">source</a></li></ul></div></div></details>
 
 </div>
 <aside class="project-side">
@@ -479,7 +509,7 @@ at each update.</p>
 </article>
 </div></div>
 </main>
-<footer><div class="wrap foot-grid"><div><a class="brand" href="../index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p class="tagline foot-tagline">Coastal projects, found early.</p><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../projects.html#soon">Comment deadlines</a><a href="../shortlist.html">Hard-structure shortlist</a><a href="../about.html">About and method</a><a href="../about.html#coverage">Coverage</a><a href="../projects.csv">All listed projects (CSV)</a></nav></div></footer>
+<footer><div class="wrap foot-grid"><div><a class="brand" href="../index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p class="tagline foot-tagline">Coastal projects, found early.</p><p>MitiMark is a prototype. A flag means a project may need marine mitigation. It does not mean that mitigation is required. Always check the official notice. All listings come from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../projects.html#soon">Public comment deadlines</a><a href="../shortlist.html">Hard-structure shortlist</a><a href="../about.html">About and method</a><a href="../about.html#coverage">Coverage</a><a href="../projects.csv">All listed projects (CSV)</a></nav></div></footer>
 <script>(function(){if(!window.IntersectionObserver||!window.matchMedia||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});Array.prototype.forEach.call(document.querySelectorAll('.band:not(.blue)'),function(b){if(b.getBoundingClientRect().top>innerHeight){b.classList.add('pre');io.observe(b);}});})();</script>
 <script>
 var MPF = (function(){
