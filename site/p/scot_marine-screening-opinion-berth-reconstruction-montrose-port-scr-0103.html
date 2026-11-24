@@ -6,6 +6,10 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103 - MitiMark</title>
 <meta name="description" content="Project in Scotland.">
+<meta property="og:title" content="Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103 - MitiMark">
+<meta property="og:description" content="Project in Scotland.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Project in Scotland.">
 <meta name="theme-color" content="#1B7F9E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2223%2027%20134%20134%22%3E%3Cpath%20d%3D%22M90%20160C90%20160%2050%20112%2050%2070A40%2040%200%200%201%20130%2070C130%20112%2090%20160%2090%20160Z%22%20fill%3D%22%231B7F9E%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2211%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M90%2096Q74%2090%2069%2066M90%2096V58M90%2096Q106%2090%20111%2066%22/%3E%3C/g%3E%3Cg%20fill%3D%22%23fff%22%3E%3Ccircle%20cx%3D%2269%22%20cy%3D%2264%22%20r%3D%227%22/%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%2256%22%20r%3D%227%22/%3E%3Ccircle%20cx%3D%22111%22%20cy%3D%2264%22%20r%3D%227%22/%3E%3C/g%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
@@ -20,7 +24,7 @@
 --line:#D5E6ED;--line-strong:#B3CEDA;--on-blue:#ffffff;--on-blue-2:#ffffff;--pill-on-navy:#E8F4F8;
 --strong-bg:#FCEBE6;--possible-bg:#E3F0F5;--possible-text:#0B3C5D;--weak-bg:#EEF2F4;--weak-text:#4B6573;
 --shadow:0 12px 32px rgba(11,60,93,.08);--r:22px;--r-sm:14px;--sec:96px;--curve:64px;
---track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;
+--track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;--pale:#E8F4F8;
 --ease:cubic-bezier(.2,.7,.2,1);color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--navy:#082C44;--text:#E3EEF2;--coral-text:#F2A28E;--link:#8ACDE2;--muted:#A6BCC6;
 --card:#12303F;--band-white:#0D2533;--band-tint:#0A1C27;--soft:#102B39;--line:#1F4456;--line-strong:#2F5A6E;
@@ -77,6 +81,14 @@ nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;paddi
 nav.top a:hover{background:rgba(255,255,255,.12)}
 nav.top a[aria-current=page]{background:rgba(255,255,255,.16);color:#fff}
 .topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
+/* Tagline: the same pale blue as the pills on the blue bands, which are navy in both themes. In the header it shows
+   only where the whole bar fits on one line, so it never wraps. */
+.tagline{color:var(--pale)}
+.top-tagline{display:none;margin:0 0 0 -14px;font-size:13px;line-height:1.3;white-space:nowrap}
+@media (min-width:1180px){.top-tagline{display:block}}
+.hero p.hero-tagline{margin:0 0 16px;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.page-head p.about-tagline{margin:0 0 10px;color:var(--pale);font-size:1rem}
+footer p.foot-tagline{margin:-6px 0 14px}
 
 /* Home hero */
 .hero{--band-top:88px;padding-bottom:0}
@@ -412,6 +424,7 @@ ol.shortlist .card dl.facts{grid-template-columns:minmax(0,1fr)}}
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar"><div class="wrap">
 <a class="brand" href="../index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a>
+<p class="tagline top-tagline">Coastal projects, found early.</p>
 <nav class="top" aria-label="Main"><a href="../projects.html">Projects</a><a href="../projects.html#soon"><span class="hide-sm">Comment deadlines</span><span class="show-sm" hidden>Deadlines</span></a><a href="../projects.html#coverage">Coverage</a><a href="../about.html">About</a></nav>
 <p class="updated">Updated <time>November 23, 2026</time></p>
 </div></header>
@@ -466,7 +479,7 @@ at each update.</p>
 </article>
 </div></div>
 </main>
-<footer><div class="wrap foot-grid"><div><a class="brand" href="../index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../projects.html#soon">Comment deadlines</a><a href="../shortlist.html">Hard-structure shortlist</a><a href="../about.html">About and method</a><a href="../about.html#coverage">Coverage</a><a href="../projects.csv">All listed projects (CSV)</a></nav></div></footer>
+<footer><div class="wrap foot-grid"><div><a class="brand" href="../index.html"><svg class="mark" role="img" aria-hidden="true" focusable="false" viewBox="46 26 88 138"><path d="M90 160C90 160 50 112 50 70A40 40 0 0 1 130 70C130 112 90 160 90 160Z" fill="#1B7F9E"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M90 96Q85.1 86.7 78 79M90 96Q90.6 81 90 66M90 96Q94.9 86.7 102 79" stroke-width="8"/><path d="M78 79Q73.2 73.3 67 69M78 79Q77.7 69.9 75.5 61M90 66Q87.9 58.1 84 51M90 66Q92.1 58.1 96 51M102 79Q102.3 69.9 104.5 61M102 79Q106.8 73.3 113 69" stroke-width="6"/></g><g fill="#fff"><circle cx="67" cy="69" r="4.4"/><circle cx="75.5" cy="61" r="4.4"/><circle cx="84" cy="51" r="4.4"/><circle cx="96" cy="51" r="4.4"/><circle cx="104.5" cy="61" r="4.4"/><circle cx="113" cy="69" r="4.4"/></g></svg><span>MitiMark</span></a><p class="tagline foot-tagline">Coastal projects, found early.</p><p>MitiMark is a prototype. Flags show projects that may need marine habitat work. They do not state that mitigation is required. Always check the official notice. Compiled from public sources.</p><p>Contact: Asa Miller, <a href="mailto:asamiller11@gmail.com">asamiller11@gmail.com</a></p></div><nav aria-label="Footer"><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../projects.html#soon">Comment deadlines</a><a href="../shortlist.html">Hard-structure shortlist</a><a href="../about.html">About and method</a><a href="../about.html#coverage">Coverage</a><a href="../projects.csv">All listed projects (CSV)</a></nav></div></footer>
 <script>(function(){if(!window.IntersectionObserver||!window.matchMedia||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});Array.prototype.forEach.call(document.querySelectorAll('.band:not(.blue)'),function(b){if(b.getBoundingClientRect().top>innerHeight){b.classList.add('pre');io.observe(b);}});})();</script>
 <script>
 var MPF = (function(){
