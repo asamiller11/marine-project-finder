@@ -20,9 +20,9 @@ from mpf.tiers import TIER_LABELS, tier_for
 
 LANGS = ("en", "fr", "da", "no", "nl", "es")
 ALL = "all"
-ALL_LABEL = "All habitat work"
+ALL_LABEL = "All marine mitigation work"
 PROFILE_TIERS = ("strong", "possible", "weak")
-EMPTY_NOTE = "No current projects match. Today's sources rarely describe this habitat."
+EMPTY_NOTE = "No current projects match. The current sources rarely describe this habitat."
 
 
 def _group(conf: dict, points: int) -> dict:

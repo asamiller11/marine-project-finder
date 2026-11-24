@@ -47,7 +47,7 @@ def test_comment_deadlines_say_the_date_not_a_day_count(tmp_path):
     assert site.short_date("2027-01-08", date(2026, 11, 19)) == "Jan 8, 2027"
     site.write_site(tmp_path, _records(_items()), SETTINGS, TODAY)
     html = (tmp_path / "index.html").read_text(encoding="utf-8")
-    assert "Comments close <span class=\"countdown\">Nov 20</span>" in html
+    assert "Public comment deadline <span class=\"countdown\">Nov 20</span>" in html
     assert not re.search(r"days? left|closing in", html)
 
 

@@ -134,7 +134,7 @@ def _rec(i, deadline, kind="open", tier="possible", **kw):
 
 
 def test_open_for_comment_label_only_while_open():
-    assert "Open for comment until November 27, 2026" in site._open_until_badge(_rec(1, "2026-11-27"))
+    assert "Open for public comment until November 27, 2026" in site._open_until_badge(_rec(1, "2026-11-27"))
     assert site._open_until_badge(_rec(1, "2026-11-01", kind="closed")) == ""
     assert site._open_until_badge(_rec(1, None)) == ""
 
@@ -149,9 +149,9 @@ def test_feeds_list_closing_comment_periods_first(tmp_path):
     recs = [_rec(1, "2026-11-25", changes=["new"], first_listed="2026-11-19")]
     site.write_feeds(tmp_path, recs, [], {"title": "MitiMark", "url": "https://example.org/", "closing_soon_days": 14}, TODAY)
     xml = (tmp_path / "feeds" / "comment-periods.xml").read_text()
-    assert "Comments close November 25, 2026: Project 1" in xml and "iaac:1#comments-2026-11-25" in xml
+    assert "Public comment deadline November 25, 2026: Project 1" in xml and "iaac:1#comments-2026-11-25" in xml
     allxml = (tmp_path / "feeds" / "all.xml").read_text()
-    assert allxml.index("Comments close") < allxml.index("<title>Project 1</title>")
+    assert allxml.index("Public comment deadline") < allxml.index("<title>Project 1</title>")
 
 
 def test_csv_has_stakeholder_and_entry_point_columns():

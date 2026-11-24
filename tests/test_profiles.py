@@ -230,7 +230,7 @@ def test_banner_figures_follow_the_profile_and_are_labelled():
     assert 'class="stats"' not in html
     home = site.render_home(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
     stats = home.split('<ul class="stats">')[1].split("</ul>")[0]
-    assert stats.count("<li>") == 3 and "Strong fits" in stats and "Deadlines this fortnight" in stats
+    assert stats.count("<li>") == 3 and "Strong fits" in stats and "Public comment deadlines, next" in stats
     assert 'data-source="iaac"' in html                       # lets the banner count sources per profile
 
 
@@ -255,10 +255,10 @@ def test_picker_link_and_card_data():
     recs, _ = _records()
     html = site.render_index(list(recs.values()), SETTINGS["site"], TIERS, TODAY)
     assert '<label for="f-profile">I work on</label>' in html
-    assert '<option value="all">All habitat work</option>' in html
+    assert '<option value="all">All marine mitigation work</option>' in html
     assert '<option value="kelp">Kelp and other seaweed (no current matches)</option>' in html
     assert 'id="profile-link"' in html and "localStorage" in html and "profile=" in html
-    assert EMPTY_NOTE in html and "not a statement that mitigation is required" in html
+    assert EMPTY_NOTE in html and "It does not mean that mitigation is required" in html
     data = json.loads(html.split('id="profile-data">')[1].split("</script>")[0])
     assert [m["key"] for m in data["profiles"]] == PROFILES
     tier, score, because = data["cards"]["iaac:1"]["hard-structure"]
@@ -295,7 +295,7 @@ def test_about_explains_profiles(tmp_path):
     site.write_site(tmp_path, list(recs.values()), SETTINGS, TODAY)
     about = (tmp_path / "about.html").read_text(encoding="utf-8")
     assert '<h2 id="buyer-profiles">Buyer profiles</h2>' in about and 'href="#buyer-profiles"' in about
-    assert "rule-based guesses" in about
+    assert "rule-based estimates" in about
     assert "It is not a statement that mitigation, compensation or any particular\nmeasure is required" in about
     assert "—" not in about
 

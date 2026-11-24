@@ -113,7 +113,7 @@ def test_project_watch_has_no_countdown_and_is_not_closing_soon():
     html = site.render_index(records, {"title": "T", "description": "d"}, SETTINGS["tiers"], TODAY)
     assert "Project page we follow (not a notice)" in html
     assert 'data-deadline=""' in html
-    assert "0 deadlines in the next 14 days" in html
+    assert "0 public comment deadlines in the next 14 days" in html
 
 
 def test_non_english_summary_from_keywords_or_not_translated():

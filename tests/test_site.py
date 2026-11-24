@@ -66,12 +66,12 @@ def test_three_tiers_published_and_not_relevant_left_out(tmp_path):
     for label in ("Strong fit", "Possible fit", "Weak fit"):
         assert label in html
     assert "Project 3" not in html and "Harbour Quarry" not in html
-    assert 'id="t-weak"' in html and "Also show weak fits" in html
+    assert 'id="t-weak"' not in html and "Also show weak fits in " in html
     assert "t-notrel" not in html and "Show probably not relevant" not in html
     assert "are not listed" in html
     assert '<span class="big">75</span><span class="of">/ 100' in html
-    assert "It is not a statement that mitigation or\ncompensation is required" in html
-    assert "0 deadlines in the next 30 days.</p>" in html and "Public comment deadlines coming up" in html
+    assert "It does not mean that mitigation is required" in html
+    assert "0 public comment deadlines in the next 30 days.</p>" in html and "Public comment deadlines coming up" in html
     site.write_site(tmp_path, records, SETTINGS, TODAY)
     data = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
     assert {r["tier"] for r in data} == {"strong", "possible", "weak"}

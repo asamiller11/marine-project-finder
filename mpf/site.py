@@ -505,7 +505,7 @@ def build_public_records(conn: sqlite3.Connection, review_rows: dict, settings: 
     for key in [k for k, rec in records.items() if rec["tier"] == "notrel"]:
         fits = [p for p in records[key]["profiles"] if listed_in_profile(records[key], p, possible_min)]
         if fits:
-            # "All habitat work" is the full list: a project any profile lists is on it too, at its best profile tier.
+            # "All marine mitigation work" is the full list: a project any profile lists is on it too, at its best profile tier.
             rec = records[key]
             best = min((rec["profiles"][p]["tier"] for p in fits), key=TIER_ORDER.index)
             label = (scoring.get("profiles") or {}).get(fits[0], {}).get("label", fits[0])
@@ -555,11 +555,13 @@ CSS = r"""
 --strong-bg:#FCEBE6;--possible-bg:#E3F0F5;--possible-text:#0B3C5D;--weak-bg:#EEF2F4;--weak-text:#4B6573;
 --shadow:0 12px 32px rgba(11,60,93,.08);--r:22px;--r-sm:14px;--sec:96px;--curve:64px;
 --track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;--pale:#E8F4F8;
+--ct0:#DCEEF6;--ct1:#D7EFEC;--ct2:#DDF0E5;--cdiv:40px;
 --ease:cubic-bezier(.2,.7,.2,1);color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--navy:#082C44;--text:#E3EEF2;--coral-text:#F2A28E;--link:#8ACDE2;--muted:#A6BCC6;
 --card:#12303F;--band-white:#0D2533;--band-tint:#0A1C27;--soft:#102B39;--line:#1F4456;--line-strong:#2F5A6E;
 --strong-bg:#3D241D;--possible-bg:#153D4F;--possible-text:#D4ECF4;--weak-bg:#1B3644;--weak-text:#BCCDD5;
---shadow:0 12px 32px rgba(0,0,0,.35);--track:#12303F;--chip-on-bg:#24566B;--chip-on-text:#ffffff;--row:#163747}}
+--shadow:0 12px 32px rgba(0,0,0,.35);--track:#12303F;--chip-on-bg:#24566B;--chip-on-text:#ffffff;--row:#163747;
+--ct0:#0F2838;--ct1:#0D2B30;--ct2:#102D29}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after,::details-content{transition:none!important;animation:none!important}}
@@ -603,11 +605,11 @@ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 /* Header */
 .topbar{position:relative;z-index:20;background:var(--navy);color:#fff}
 body:has(.topbar+main>.blue:first-child:not([hidden])) .topbar,body:has(.topbar+.blue) .topbar{background:transparent}
-.topbar .wrap{display:flex;align-items:center;gap:28px;min-height:72px;flex-wrap:wrap}
+.topbar .wrap{display:flex;align-items:center;gap:24px;min-height:72px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem;color:#fff;text-decoration:none}
 .brand .mark{width:26px;height:41px;flex:none}
 nav.top{display:flex;gap:6px;flex-wrap:wrap}
-nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 16px;border-radius:999px;transition:background .2s,color .2s}
+nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 14px;border-radius:999px;transition:background .2s,color .2s}
 nav.top a:hover{background:rgba(255,255,255,.12)}
 nav.top a[aria-current=page]{background:rgba(255,255,255,.16);color:#fff}
 .topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
@@ -759,6 +761,31 @@ table.cov tr.region td:first-child{padding-left:28px;color:var(--muted)}
 .pill.partial{color:var(--coral-text)}
 section.country>h2,section.group>h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;font-size:1.3rem;margin:48px 0 0}
 section.country>p.country-note{color:var(--muted);margin:4px 0;font-size:.95rem;max-width:80ch}
+/* Projects by country: a sticky row of country chips, then one tinted section per country. Each section's header
+   sticks below the chips while you are inside it, and each section after the first opens with a soft curve. */
+.country-bar{position:sticky;top:0;z-index:15;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scrollbar-width:none;
+margin:28px -28px 0;padding:12px 28px;background:var(--band-tint);-webkit-overflow-scrolling:touch}
+.country-bar::-webkit-scrollbar{display:none}
+.cchip{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;background:var(--track);
+color:var(--text);font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow);transition:background .2s,color .2s}
+.cchip .n{color:var(--muted);font-weight:600}
+.cchip:hover{background:var(--soft)}
+.cchip.on{background:var(--chip-on-bg);color:var(--chip-on-text)}
+.cchip.on .n{color:var(--chip-on-text)}
+.csec{position:relative;margin:12px 0 0;padding:0 24px calc(var(--cdiv) + 32px);background:var(--c-bg);border-radius:var(--r) var(--r) 0 0;
+scroll-margin-top:var(--chips-h,68px)}
+.csec.tint-0{--c-bg:var(--ct0)}.csec.tint-1{--c-bg:var(--ct1)}.csec.tint-2{--c-bg:var(--ct2)}
+.csec:first-child{margin-top:0}
+.csec+.csec{margin-top:calc(-1 * var(--cdiv));padding-top:var(--cdiv);border-radius:50% 50% 0 0/var(--cdiv) var(--cdiv) 0 0}
+.csec:last-child{padding-bottom:32px;border-bottom-left-radius:var(--r);border-bottom-right-radius:var(--r)}
+.csec-head{position:sticky;top:var(--chips-h,68px);z-index:10;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;
+margin:0 -24px;padding:18px 24px 12px;background:var(--c-bg)}
+.csec:first-child .csec-head{border-radius:var(--r) var(--r) 0 0}
+.csec-head h2{margin:0;font-size:1.35rem}
+.csec-head h2:focus{outline:none}.csec-head h2:focus-visible{outline:3px solid var(--mid);outline-offset:4px;border-radius:6px}
+.csec-count{margin:0;color:var(--muted);font-size:.97rem}
+.csec>.country-note{color:var(--muted);margin:2px 0 0;font-size:.95rem;max-width:80ch}
+.csec-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin:24px 0 0}
 section.tier h3{display:flex;align-items:center;gap:10px;font-size:1.05rem;margin:28px 0 0}
 section.tier h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--line-strong);flex:none}
 section.tier[data-tier=strong] h3::before{background:var(--coral)}
@@ -924,7 +951,10 @@ footer nav a:hover{text-decoration:underline}
 .steps .icon{grid-row:1/3;width:52px;height:52px;margin:0}.steps h3{margin:4px 0 2px}article.project{grid-template-columns:minmax(0,1fr)}
 .about-layout{grid-template-columns:minmax(0,1fr);gap:16px}nav.toc{position:static;display:flex;flex-wrap:wrap;gap:4px}
 nav.toc .side-label{width:100%}}
-@media (max-width:640px){:root{--sec:56px;--curve:40px}body{font-size:16px}.wrap{padding:0 18px}.topbar .updated{display:none}
+@media (max-width:640px){:root{--sec:56px;--curve:40px;--cdiv:28px}
+.country-bar{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.cchip{min-height:48px}
+.csec{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.csec-head{margin:0 -18px;padding-left:18px;padding-right:18px}
+body{font-size:16px}.wrap{padding:0 18px}.topbar .updated{display:none}
 .topbar .wrap{gap:4px 10px;padding-top:10px;padding-bottom:6px;min-height:0}.brand .mark{width:22px;height:35px}
 nav.top{gap:2px;margin:0 -12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:calc(100% + 24px)}
 nav.top a{padding:12px 12px;min-height:48px;white-space:nowrap;font-size:.93rem}
@@ -1013,13 +1043,13 @@ var MPF = (function(){
 
 JS = r"""
 (function(){
-  // Cards that only a buyer profile lists sit in #profile-only; they never show under "All habitat work".
+  // Cards that only a buyer profile lists sit in #profile-only; they never show under "All marine mitigation work".
   var cards = Array.prototype.slice.call(document.querySelectorAll('#server-list .card, #profile-only .card'));
   var SOON = parseInt(document.body.getAttribute('data-soon') || '30', 10);
   cards.forEach(MPF.countdown);
   var $ = function(id){ return document.getElementById(id); };
   var fc = $('f-country'), fr = $('f-region'), frl = $('f-region-label'), frt = $('f-region-text'), ft = $('f-type'),
-      fs = $('f-stage'), fo = $('f-open'), fq = $('f-search'), fw = $('t-weak'), fsort = $('f-sort'), fgroup = $('f-group'),
+      fs = $('f-stage'), fo = $('f-open'), fq = $('f-search'), fsort = $('f-sort'), fgroup = $('f-group'),
       line = $('summary-line'), empty = $('no-match'), ul = $('soon-list'), none = $('soon-none'),
       view = $('view'), server = $('server-list'), holder = document.createElement('div');
   holder.hidden = true; document.body.appendChild(holder);
@@ -1039,7 +1069,12 @@ JS = r"""
     Object.keys(regs).sort().forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; fr.appendChild(o); });
   }
   function param(name){ return (location.search.match(new RegExp('[?&]' + name + '=([^&]*)')) || [])[1] || ''; }
-  if (param('show').indexOf('weak') >= 0) fw.checked = true;
+  // Weak fits are switched on per country (?weak=CA,US). The old ?show=weak switches them on everywhere.
+  var weakOn = {};
+  if (param('show').indexOf('weak') >= 0) cards.forEach(function(c){ weakOn[c.getAttribute('data-country')] = true; });
+  decodeURIComponent(param('weak')).split(',').forEach(function(k){ if (/^[A-Z]{2}$/.test(k)) weakOn[k] = true; });
+  function weakFor(c){ return !!weakOn[c.getAttribute('data-country')]; }
+  function weakList(){ return Object.keys(weakOn).filter(function(k){ return weakOn[k]; }); }
   if (param('open') === '1') fo.checked = true;
   if (/^[A-Za-z]{2}$/.test(param('country'))) fc.value = param('country').toUpperCase();
   var views = document.querySelectorAll('input[name="view"]');
@@ -1104,13 +1139,13 @@ JS = r"""
       c._days !== null && c._days >= 0 && c._days <= SOON; }).length);
     set('stat-countries', nc);
     set('stat-countries-l', (nc === 1 ? 'Country' : 'Countries') + ' with listings' + (ns ? ', ' + ns + (ns === 1 ? ' source' : ' sources') : ''));
-    set('stats-for-name', prof() === 'all' ? (PD.all ? PD.all.label : 'All habitat work')
+    set('stats-for-name', prof() === 'all' ? (PD.all ? PD.all.label : 'All marine mitigation work')
       : (PD.profiles.filter(function(m){ return m.key === prof(); })[0] || {label: prof()}).label);
   }
   function stored(){ try { return localStorage.getItem(PSTORE) || ''; } catch (e) { return ''; } }
   function store(k){ try { localStorage.setItem(PSTORE, k); } catch (e) {} }
   // The address always mirrors what is chosen now, so a filter switched off never comes back on reload.
-  var OWN = ['profile', 'open', 'country', 'show', 'view', 'sort', 'group'];
+  var OWN = ['profile', 'open', 'country', 'show', 'weak', 'view', 'sort', 'group'];
   function shareUrl(){
     var base = location.href.split('#')[0].split('?')[0];
     var qs = location.search.replace(/^\?/, '').split('&').filter(function(x){
@@ -1119,7 +1154,7 @@ JS = r"""
     if (typeof fc !== 'undefined') {
       if (fc.value) qs.push('country=' + fc.value);
       if (fo.checked) qs.push('open=1');
-      if (fw.checked) qs.push('show=weak');
+      if (weakList().length) qs.push('weak=' + weakList().join(','));
       var v = currentView(); if (v !== 'all') qs.push('view=' + v);
       if (fsort.value !== 'default') qs.push('sort=' + fsort.value);
       if (fgroup.value !== 'country') qs.push('group=' + fgroup.value);
@@ -1142,7 +1177,7 @@ JS = r"""
     if (!listed(t)) return false;      // not listed under the chosen profile
     if (!freshOk(c, withFresh)) return false;
     // Closing soon, changed and watch list views show every published tier.
-    var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && (fw.checked || withWeak));
+    var tierOk = v !== 'all' || t === 'strong' || t === 'possible' || t === 'watch' || (t === 'weak' && (weakFor(c) || withWeak));
     var viewOk = v === 'all' ||
       (v === 'soon' && t !== 'watch' && k === 'open' && c._days !== null && c._days <= SOON) ||
       (v === 'changed' && !!c.getAttribute('data-changes')) ||
@@ -1175,7 +1210,7 @@ JS = r"""
     if (g === 'stage') { var k = c.getAttribute('data-stage-now'); return {key: String(STAGE_ORDER.indexOf(k)), name: MPF.STAGE[k]}; }
     if (g === 'month') { var d = c.getAttribute('data-deadline');
                          if (!d || c.getAttribute('data-stage') === 'watch') return {key: '9999', name: 'No comment deadline published'};
-                         return {key: d.slice(0, 7), name: 'Comments close in ' + MONTHS[+d.slice(5, 7) - 1] + ' ' + d.slice(0, 4)}; }
+                         return {key: d.slice(0, 7), name: 'Public comment deadline in ' + MONTHS[+d.slice(5, 7) - 1] + ' ' + d.slice(0, 4)}; }
     return {key: '', name: ''};
   }
   function section(cls, title, n){
@@ -1185,11 +1220,78 @@ JS = r"""
     var d = document.createElement('div'); d.className = 'cards'; s.appendChild(d); return s;
   }
   var shownOrder = [], PAGE = 12, limit = PAGE;
+  // Grouped by country with the default order: one section per country, best fits first. Strong fits always show;
+  // the rest show FIRST at a time, then MORE per press of "Show more". exp[country] counts the presses.
+  var FIRST = 4, MORE = 8, exp = {}, cbar = $('country-bar'), NOTES = JSON.parse(($('country-notes') || {}).textContent || '{}');
+  var CNAME = {}; cards.forEach(function(c){ CNAME[c.getAttribute('data-country')] = c.getAttribute('data-country-name'); });
+  function cname(k){ return CNAME[k] || k; }
+  function countryMode(){ return groupMode() === 'country' && sortMode() === 'default'; }
+  function slug(name){ return 'country-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function mk(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls;
+                               if (text !== undefined) e.textContent = text; return e; }
+  function plural(n, one, many){ return n + ' ' + (n === 1 ? one : many); }
+  function reduced(){ return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); }
+  function renderCountries(v, watch){
+    // Every country with a match, weak fits included, so a country whose only matches are weak keeps its switch.
+    var pool = cards.filter(function(c){ return visible(c, v, watch, true); }).sort(cmp), groups = [], by = {};
+    pool.forEach(function(c){ var k = c.getAttribute('data-country');
+      if (!by[k]) { by[k] = {code: k, order: +c.getAttribute('data-country-order'), cards: []}; groups.push(by[k]); }
+      by[k].cards.push(c); });
+    groups.sort(function(a, b){ return a.order - b.order; });
+    while (cbar.firstChild) cbar.removeChild(cbar.firstChild);
+    var total = 0;
+    groups.forEach(function(g, gi){
+      var k = g.code, name = cname(k), id = slug(name);
+      var shownC = g.cards.filter(function(c){ return tierOf(c) !== 'weak' || v !== 'all' || weakOn[k]; });
+      var nWeak = v === 'all' && !weakOn[k] ? g.cards.length - shownC.length : 0;
+      var nStrong = shownC.filter(function(c){ return tierOf(c) === 'strong'; }).length;
+      total += shownC.length;
+      var sec = mk('section', 'csec tint-' + (gi % 3)); sec.id = id; sec.setAttribute('data-country', k);
+      sec.setAttribute('aria-labelledby', 'ch-' + k);
+      var head = mk('div', 'csec-head'), h = mk('h2', '', name); h.id = 'ch-' + k; h.tabIndex = -1; head.appendChild(h);
+      head.appendChild(mk('p', 'csec-count', shownC.length ? plural(shownC.length, 'project', 'projects') + ', ' +
+        plural(nStrong, 'strong fit', 'strong fits') : 'No strong or possible fits'));
+      sec.appendChild(head);
+      if (NOTES[k]) sec.appendChild(mk('p', 'country-note', NOTES[k]));
+      var rest = shownC.filter(function(c){ return tierOf(c) !== 'strong'; }), lim = FIRST + MORE * (exp[k] || 0);
+      shownC.forEach(function(c){ c.hidden = tierOf(c) !== 'strong' && rest.indexOf(c) >= lim; });
+      TIERS.forEach(function(t){
+        var cs = shownC.filter(function(c){ return tierOf(c) === t; });
+        if (!cs.length) return;
+        var ts = section('tier', TIER_NAMES[t], cs.length); ts.setAttribute('data-tier', t);
+        cs.forEach(function(c){ ts.lastChild.appendChild(c); shownOrder.push(c); });
+        ts.hidden = !ts.querySelector('.card:not([hidden])'); sec.appendChild(ts);
+      });
+      var acts = mk('div', 'csec-actions'), left = rest.length - lim;
+      if (left > 0) {
+        var onlyPossible = rest.slice(lim).every(function(c){ return tierOf(c) === 'possible'; });
+        var mb = mk('button', 'btn small', 'Show more ' + (onlyPossible ? 'possible fits' : 'fits') + ' in ' + name + ' (' + left + ')');
+        mb.type = 'button'; mb.id = 'more-' + k; mb.setAttribute('data-act', 'more'); mb.setAttribute('data-country', k);
+        mb.setAttribute('aria-expanded', exp[k] ? 'true' : 'false'); mb.setAttribute('aria-controls', id); acts.appendChild(mb);
+      }
+      if (exp[k] && rest.length > FIRST) {
+        var lb = mk('button', 'linklike', 'Show fewer'); lb.type = 'button'; lb.id = 'less-' + k;
+        lb.setAttribute('data-act', 'less'); lb.setAttribute('data-country', k); lb.setAttribute('aria-controls', id); acts.appendChild(lb);
+      }
+      if (nWeak || (weakOn[k] && v === 'all')) {
+        var wb = mk('button', 'linklike', weakOn[k] ? 'Hide weak fits in ' + name : 'Also show weak fits in ' + name + ' (' + nWeak + ')');
+        wb.type = 'button'; wb.id = 'weak-' + k; wb.setAttribute('data-act', 'weak'); wb.setAttribute('data-country', k);
+        wb.setAttribute('aria-pressed', weakOn[k] ? 'true' : 'false'); acts.appendChild(wb);
+      }
+      if (acts.firstChild) sec.appendChild(acts);
+      view.appendChild(sec);
+      var chip = mk('a', 'cchip', name + ' '); chip.href = '#' + id; chip.setAttribute('data-target', id);
+      chip.appendChild(mk('span', 'n', String(shownC.length || g.cards.length))); cbar.appendChild(chip);
+    });
+    cbar.hidden = groups.length === 0;
+    return {total: total, any: pool.length};
+  }
   // apply(true) keeps how many cards are shown ("Show more"); every other change starts again at 12.
   function apply(keep){
     if (keep !== true) limit = PAGE;
     var v = currentView(), watch = MPF.getWatch();
     cards.forEach(paint);
+    if (keep !== true) exp = {};
     var shown = cards.filter(function(c){ return visible(c, v, watch); }).sort(cmp);
     cards.forEach(function(c){ holder.appendChild(c); });
     while (view.firstChild) view.removeChild(view.firstChild);
@@ -1199,6 +1301,9 @@ JS = r"""
       byKey[g.key].cards.push(c); });
     groups.sort(function(a, b){ return a.key < b.key ? -1 : a.key > b.key ? 1 : 0; });
     shownOrder = [];
+    var cm = countryMode(), cres = null;
+    if (cm) { cres = renderCountries(v, watch); groups = []; }
+    else if (cbar) { cbar.hidden = true; }
     groups.forEach(function(g){
       var gs = section('group', g.name, g.cards.length);
       // Grouped by country with the default order: keep the tier headings inside each country.
@@ -1213,13 +1318,15 @@ JS = r"""
       } else { g.cards.forEach(function(c){ gs.lastChild.appendChild(c); shownOrder.push(c); }); }
       view.appendChild(gs);
     });
-    shownOrder.forEach(function(c, i){ c.hidden = i >= limit; });
-    Array.prototype.forEach.call(view.querySelectorAll('section.tier, section.group'), function(s){
-      s.hidden = !s.querySelector('.card:not([hidden])'); });
-    var more = $('show-more'), left = shownOrder.length - limit;
+    if (!cm) {
+      shownOrder.forEach(function(c, i){ c.hidden = i >= limit; });
+      Array.prototype.forEach.call(view.querySelectorAll('section.tier, section.group'), function(s){
+        s.hidden = !s.querySelector('.card:not([hidden])'); });
+    }
+    var more = $('show-more'), left = cm ? 0 : shownOrder.length - limit;
     if (more) { more.hidden = left <= 0; more.textContent = 'Show more (' + left + ' more)'; }
     server.hidden = true; view.hidden = false;
-    empty.hidden = shown.length > 0;
+    empty.hidden = cm ? cres.any > 0 : shown.length > 0;
     empty.textContent = v === 'watch' && !watch.length ? 'Your watch list is empty. Use "Add to watch list" on any project.'
       : prof() !== 'all' && !PCOUNT[prof()] ? PD.empty_note
       : (function(){ var o = fc.options[fc.selectedIndex], m = o && /\(only under (.+)\)$/.exec(o.text);
@@ -1251,30 +1358,31 @@ JS = r"""
     line.hidden = soon.length === 0;      // "No comment deadlines ..." says it once
     var rc = $('result-count');
     if (rc) {
-      var hw = v === 'all' && !fw.checked ? cards.filter(function(c){ return tierOf(c) === 'weak' && visible(c, v, watch, true); }).length : 0;
+      var hw = v === 'all' ? cards.filter(function(c){ return tierOf(c) === 'weak' && !weakFor(c) && visible(c, v, watch, true); }).length : 0;
       var hf = PFRESH[prof()] && !(tf && tf.checked) ? cards.filter(function(c){ return c.getAttribute('data-fresh') && visible(c, v, watch, false, true); }).length : 0;
-      rc.textContent = shown.length + (shown.length === 1 ? ' project shown' : ' projects shown') +
-        (hw ? '. ' + hw + ' Weak ' + (hw === 1 ? 'match is' : 'matches are') + ' hidden' : '') +
+      rc.textContent = shown.length + (shown.length === 1 ? ' project matches' : ' projects match') +
+        (hw ? '. ' + hw + ' weak ' + (hw === 1 ? 'fit is' : 'fits are') + ' hidden' : '') +
         (hf ? '. ' + hf + ' freshwater ' + (hf === 1 ? 'project is' : 'projects are') + ' hidden' : '') + (hw || hf ? '.' : '');
       var sw = $('show-weak'), sf = $('show-fresh');
-      if (sw) sw.hidden = !hw;
+      if (sw) sw.hidden = !hw || countryMode();
       if (sf) sf.hidden = !hf;
     }
     if (tfl) tfl.hidden = !PFRESH[prof()];
     paintStats();
     var nf = (fq.value ? 1 : 0) + (fc.value ? 1 : 0) + (fr.value ? 1 : 0) + (ft.value ? 1 : 0) + (fs.value ? 1 : 0) +
-             (fo.checked ? 1 : 0) + (fw.checked ? 1 : 0) + (tf && tf.checked ? 1 : 0) + (fsort.value !== 'default' ? 1 : 0) +
+             (fo.checked ? 1 : 0) + (weakList().length ? 1 : 0) + (tf && tf.checked ? 1 : 0) + (fsort.value !== 'default' ? 1 : 0) +
              (fgroup.value !== 'country' ? 1 : 0) + (v !== 'all' ? 1 : 0), fcnt = $('filter-count');
     if (fcnt) { fcnt.textContent = nf; fcnt.hidden = !nf; }
     var cs = $('chip-soon'); if (cs) cs.textContent = soon.length;
-    paintActive(shown.length, v, watch);
+    paintActive(cm ? cres.any : shown.length, v, watch);
+    measureBar(); spy();
     try { history.replaceState(null, '', shareUrl() + location.hash); } catch (e) {}
     paintBar();
   }
   // Every filter in use is shown as a chip with its own remove button, so nothing is ever hidden silently.
   function activeFilters(v){
     var a = [], txt = function(sel){ return sel.options[sel.selectedIndex].text; };
-    if (v !== 'all') a.push({label: {soon: 'Comment deadline soon', changed: 'Changed since last update', watch: 'My watch list'}[v],
+    if (v !== 'all') a.push({label: {soon: 'Public comment deadline soon', changed: 'Changed since last update', watch: 'My watch list'}[v],
                              off: function(){ $('v-all').checked = true; }});
     if (fo.checked) a.push({label: 'Open for public comment only', off: function(){ fo.checked = false; }});
     if (fc.value) a.push({label: txt(fc).replace(/ \(.*\)$/, ''), off: function(){ fc.value = ''; fillRegions(); }});
@@ -1282,7 +1390,7 @@ JS = r"""
     if (ft.value) a.push({label: ft.value, off: function(){ ft.value = ''; }});
     if (fs.value) a.push({label: txt(fs), off: function(){ fs.value = ''; }});
     if (fq.value) a.push({label: 'Search: ' + fq.value, off: function(){ fq.value = ''; }});
-    if (fw.checked) a.push({label: 'Weak fits shown', off: function(){ fw.checked = false; }});
+    if (weakList().length) a.push({label: 'Weak fits shown: ' + weakList().map(cname).join(', '), off: function(){ weakOn = {}; }});
     if (tf && tf.checked) a.push({label: 'Freshwater included', off: function(){ tf.checked = false; }});
     if (fsort.value !== 'default') a.push({label: 'Sorted: ' + txt(fsort), off: function(){ fsort.value = 'default'; }});
     if (fgroup.value !== 'country') a.push({label: 'Grouped: ' + txt(fgroup), off: function(){ fgroup.value = 'country'; }});
@@ -1333,11 +1441,11 @@ JS = r"""
   }
   if (tf) tf.addEventListener('change', apply);
   var swb = $('show-weak'), sfb = $('show-fresh');
-  if (swb) swb.addEventListener('click', function(){ fw.checked = true; apply(); });
+  if (swb) swb.addEventListener('click', function(){ cards.forEach(function(c){ weakOn[c.getAttribute('data-country')] = true; }); apply(); });
   if (sfb) sfb.addEventListener('click', function(){ if (tf) tf.checked = true; apply(); });
   var reset = $('reset-btn');
   if (reset) reset.addEventListener('click', function(){
-    fq.value = ''; fc.value = ''; fillRegions(); ft.value = ''; fs.value = ''; fo.checked = false; fw.checked = false;
+    fq.value = ''; fc.value = ''; fillRegions(); ft.value = ''; fs.value = ''; fo.checked = false; weakOn = {};
     fsort.value = 'default'; fgroup.value = 'country'; $('v-all').checked = true; if (tf) tf.checked = false; apply();
   });
   // CSV of the projects shown right now, in the order shown.
@@ -1353,7 +1461,7 @@ JS = r"""
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   });
   fc.addEventListener('change', function(){ fillRegions(); apply(); });
-  [fr, ft, fs, fo, fw, fsort, fgroup].forEach(function(el){ el.addEventListener('change', apply); });
+  [fr, ft, fs, fo, fsort, fgroup].forEach(function(el){ el.addEventListener('change', apply); });
   Array.prototype.forEach.call(views, function(el){ el.addEventListener('change', apply); });
   fq.addEventListener('input', apply);
   MPF.initWatch(function(){ if (currentView() === 'watch') apply(); });
@@ -1382,8 +1490,63 @@ JS = r"""
     if (chips.some(function(b){ return b.getAttribute('aria-controls') === id; }) && $(id).hidden) {
       showPanel(id); var bar = document.querySelector('.toolbar'); if (bar) bar.scrollIntoView(); } }
   window.addEventListener('hashchange', fromHash);
+  // Show more, Show fewer and the weak switch inside each country. Focus goes to the first newly shown project,
+  // or back to the button that was pressed, since the section is rebuilt.
+  view.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('button[data-act]') : null; if (!b) return;
+    var k = b.getAttribute('data-country'), act = b.getAttribute('data-act'), sec = b.closest('section.csec');
+    if (act === 'more') {
+      var nxt = sec.querySelector('.card[hidden]'), nid = nxt ? nxt.getAttribute('data-id') : '';
+      exp[k] = (exp[k] || 0) + 1; apply(true);
+      var c = nid && view.querySelector('.card[data-id="' + nid + '"] h4 a'); if (c) c.focus();
+    } else if (act === 'less') {
+      exp[k] = 0; apply(true);
+      var m = $('more-' + k) || $('ch-' + k); if (m) { m.focus({preventScroll: true}); m.scrollIntoView({block: 'center', behavior: reduced() ? 'auto' : 'smooth'}); }
+    } else if (act === 'weak') {
+      weakOn[k] = !weakOn[k]; apply(true); var w = $('weak-' + k) || $('ch-' + k); if (w) w.focus();
+    }
+  });
+  // The country chips stay at the top of the screen; the chip for the country in view is marked.
+  function measureBar(){ if (!cbar) return;
+    document.documentElement.style.setProperty('--chips-h', (cbar.hidden ? 0 : Math.ceil(cbar.getBoundingClientRect().height)) + 'px'); }
+  var current = '';
+  function mark(id){
+    if (id === current) return; current = id;
+    Array.prototype.forEach.call(cbar.querySelectorAll('.cchip'), function(a){
+      var on = a.getAttribute('data-target') === id;
+      a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      if (on) { var l = a.offsetLeft - 16, r = a.offsetLeft + a.offsetWidth + 16;
+                if (l < cbar.scrollLeft) cbar.scrollLeft = l; else if (r > cbar.scrollLeft + cbar.clientWidth) cbar.scrollLeft = r - cbar.clientWidth; }
+    });
+  }
+  function spy(){
+    if (!cbar || cbar.hidden) return;
+    var line = cbar.getBoundingClientRect().bottom + 48, id = '';
+    Array.prototype.forEach.call(view.querySelectorAll('section.csec'), function(s){
+      var r = s.getBoundingClientRect(); if (r.top <= line && r.bottom > line) id = s.id; });
+    mark(id);
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){ if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){ ticking = false; spy(); }); }, {passive: true});
+  window.addEventListener('resize', function(){ measureBar(); spy(); });
+  function goCountry(id, focus){
+    var s = $(id); if (!s || !s.classList.contains('csec')) return false;
+    s.scrollIntoView({behavior: reduced() ? 'auto' : 'smooth', block: 'start'});
+    try { history.replaceState(null, '', location.href.split('#')[0] + '#' + id); } catch (e) {}
+    if (focus) { var h = s.querySelector('h2'); if (h) h.focus({preventScroll: true}); }
+    mark(id); return true;
+  }
+  if (cbar) cbar.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a.cchip') : null; if (!a) return;
+    e.preventDefault(); goCountry(a.getAttribute('data-target'), true); });
+  window.addEventListener('hashchange', function(){ if (/^#country-/.test(location.hash)) goCountry(location.hash.slice(1), true); });
   apply();
   fromHash();
+  if (/^#country-/.test(location.hash)) {
+    var hid = location.hash.slice(1), go = function(){ var s = $(hid); if (s) { s.scrollIntoView({block: 'start'}); mark(hid); } };
+    go(); window.addEventListener('load', go);
+  }
 })();
 """
 
@@ -1445,7 +1608,7 @@ def _date(d: date) -> str:
 def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> str:
     """Sticky bar on every page. prefix is "../" on project pages."""
     title = escape(site.get("title", "MitiMark"))
-    links = [("projects", "projects.html", "Projects"), ("soon", "projects.html#soon", '<span class="hide-sm">Comment deadlines</span><span class="show-sm" hidden>Deadlines</span>'),
+    links = [("projects", "projects.html", "Projects"), ("soon", "projects.html#soon", '<span class="hide-sm">Public comment deadlines</span><span class="show-sm" hidden>Deadlines</span>'),
              ("coverage", "projects.html#coverage", "Coverage"), ("about", "about.html", "About")]
     current = ' aria-current="page"'
     nav = "".join(f'<a href="{prefix}{href}"{current if key == active else ""}>{label}</a>'
@@ -1474,11 +1637,11 @@ def _footer(site: dict, prefix: str = "") -> str:
         '<footer><div class="wrap foot-grid"><div>'
         f'<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>'
         f'<p class="tagline foot-tagline">{escape(_tagline(site))}</p>'
-        f"<p>{title} is a prototype. Flags show projects that may need marine habitat work. They do not state that "
-        "mitigation is required. Always check the official notice. Compiled from public sources.</p>"
+        f"<p>{title} is a prototype. A flag means a project may need marine mitigation. It does not mean that "
+        "mitigation is required. Always check the official notice. All listings come from public sources.</p>"
         f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p></div>'
         f'<nav aria-label="Footer"><a href="{prefix}index.html">Home</a><a href="{prefix}projects.html">Projects</a>'
-        f'<a href="{prefix}projects.html#soon">Comment deadlines</a>'
+        f'<a href="{prefix}projects.html#soon">Public comment deadlines</a>'
         f'<a href="{prefix}shortlist.html">Hard-structure shortlist</a><a href="{prefix}about.html">About and method</a><a href="{prefix}about.html#coverage">Coverage</a>'
         f'<a href="{prefix}projects.csv">All listed projects (CSV)</a></nav>'
         f"</div></footer>\n<script>{REVEAL_JS}</script>")
@@ -1591,7 +1754,7 @@ def _open_until_badge(rec: dict) -> str:
     d = rec.get("comment_deadline")
     if rec.get("stage_kind") != "open" or not d:
         return ""
-    return (f'<span class="badge open-until" data-until="{escape(d)}">Open for comment until '
+    return (f'<span class="badge open-until" data-until="{escape(d)}">Open for public comment until '
             f'{escape(winnability.long_date(d))}</span>\n')
 
 
@@ -1717,7 +1880,7 @@ def _source_lines(rec: dict, link: str) -> str:
             f'{also}'
             f'<p class="attr">Source: {escape(rec.get("agency") or rec["source_name"])}'
             f'{(". Hearing by " + escape(rec["issued_by"])) if rec.get("issued_by") else ""}'
-            f'{(". " + escape(rec["attribution"])) if rec.get("attribution") else ""}.</p>')
+            f'{(". " + escape(rec["attribution"].rstrip("."))) if rec.get("attribution") else ""}.</p>')
 
 
 def _watch_button(rec: dict) -> str:
@@ -1732,7 +1895,7 @@ def why_line(rec: dict) -> str:
     what = reasons[0] if reasons else ", ".join(rec.get("types") or [])
     extra = next((x for x in reasons[1:] if re.search(r"offsetting|compensation|Fisheries Act|Consultant named|Large project|"
                                                    r"Construction expected", x)), "")
-    extra = re.sub(r"\s*\((habitat work is likely needed|someone to approach)\)", "", extra)
+    extra = re.sub(r"\s*\((marine mitigation is likely needed|someone to approach)\)", "", extra)
     extra = re.sub(r":\s*(buying decisions soon|time to get in early)$", "", extra)
     line = what + (f"; {extra[0].lower() + extra[1:]}" if extra else "")
     return line[:1].upper() + line[1:] if line else ""
@@ -1764,7 +1927,7 @@ def _deadline_span(rec: dict) -> str:
     d = rec.get("comment_deadline")
     if rec.get("stage_kind") != "open" or not d:
         return ""
-    return f'<span class="deadline">Comments close <span class="countdown">{escape(short_date(d))}</span></span>'
+    return f'<span class="deadline">Public comment deadline <span class="countdown">{escape(short_date(d))}</span></span>'
 
 
 def _stage_text(rec: dict) -> str:
@@ -1873,7 +2036,7 @@ def profile_data(records: list[dict], meta: list[dict]) -> dict:
              for m in meta if listed_in_profile(r, m["key"])}
         if d:
             cards[r["id"]] = d
-    return {"all": {"key": ALL, "label": ALL_LABEL, "short": "Every kind of marine habitat work. The general score."},
+    return {"all": {"key": ALL, "label": ALL_LABEL, "short": "Every type of marine mitigation work. This is the general score."},
             "profiles": meta, "cards": cards, "empty_note": EMPTY_NOTE}
 
 
@@ -1905,12 +2068,12 @@ def _summary_html(rec: dict) -> str:
 def tier_descriptions(tiers: dict) -> dict:
     s, p, w = tiers.get("strong_min", 60), tiers.get("possible_min", 35), tiers.get("weak_min", 20)
     return {
-        "strong": f"Score {s} or more. Several signals of habitat work, such as offsetting, new habitat, "
+        "strong": f"Score {s} or more. Several signals of marine mitigation, such as offsetting, new habitat "
                   f"or large in-water works.",
-        "possible": f"Score {p} to {s - 1}. Some signals. Worth a look.",
+        "possible": f"Score {p} to {s - 1}. Some signals. Worth reviewing.",
         "weak": f"Score {w} to {p - 1}. Few signals. Often routine maintenance.",
         "watch": "Project pages, not notices. There are no comment deadlines here, so no countdown is shown "
-                 "and these projects never appear in the closing-soon list.",
+                 "and these projects never appear in the public comment deadline list.",
     }
 
 
@@ -1980,7 +2143,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     coverage = coverage if coverage is not None else load_coverage()
     all_records = records
     meta = profile_meta(all_records, scoring)
-    # The general list ("All habitat work") never shows projects that only a buyer profile lists.
+    # The general list ("All marine mitigation work") never shows projects that only a buyer profile lists.
     records = [r for r in all_records if not r.get("profile_only")]
     title = site.get("title", "MitiMark")
     desc = _share_desc(site)
@@ -2035,6 +2198,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
 <p id="profile-empty" class="profile-empty" hidden>{escape(EMPTY_NOTE)}</p></div>
 </div></section>""" if meta else ""
     tier_names = json.dumps({t: TIER_LABELS[t] for t in PUBLISHED_TIERS + ("watch",)})
+    country_notes = json.dumps({c["code"]: c["note"] for c in countries if c.get("note")}, ensure_ascii=False).replace("</", "<\\/")
 
     opts = ['<option value="">All countries</option>']
     with_data = {c["code"] for c in countries}
@@ -2053,7 +2217,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     n_sources = len({r.get("source") for r in records if r.get("source")})
     freq = escape(site.get("update_frequency", "every 2 weeks"))
     since_html = since_panel(records, history_dates or [])
-    panels = [("soon", "Comment deadlines", n_soon), ("changes", "What changed", None) if since_html else None,
+    panels = [("soon", "Public comment deadlines", n_soon), ("changes", "What changed", None) if since_html else None,
               ("coverage", "Coverage", None), ("how-to-read", "How to read the list", None),
               ("news", "News", None) if news_html else None]
     chips = "".join(f'<button type="button" class="chip" aria-expanded="false" aria-controls="{k}">{label}'
@@ -2084,9 +2248,9 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
 
 <section class="info-panel soon" id="soon" aria-labelledby="soon-h" hidden>
 <h3 id="soon-h">Public comment deadlines coming up</h3>
-<p class="note">Projects where the public can still send comments to the regulator. Companies can also use the
-deadline as a reason to get in touch.</p>
-<p class="summary-line" id="summary-line">{n_soon} deadlines in the next {soon_days} days.</p>
+<p class="note">Projects where the public can still comment to the regulator. A public comment deadline is also
+a good reason to contact the proponent.</p>
+<p class="summary-line" id="summary-line">{n_soon} public comment deadlines in the next {soon_days} days.</p>
 <ul id="soon-list">{soon_items}</ul>
 <p id="soon-none"{' hidden' if n_soon else ''}>No public comment deadlines in the next {soon_days} days.</p>
 <p><a href="?open=1#results">See every project open for public comment</a></p>
@@ -2107,18 +2271,18 @@ deadline as a reason to get in touch.</p>
 <ul>
 <li><strong>{TIER_LABELS['strong']}:</strong> {escape(td['strong'])}</li>
 <li><strong>{TIER_LABELS['possible']}:</strong> {escape(td['possible'])}</li>
-<li><strong>{TIER_LABELS['weak']}:</strong> {escape(td['weak'])} Hidden unless you tick "Also show weak fits" under Filters.</li>
+<li><strong>{TIER_LABELS['weak']}:</strong> {escape(td['weak'])} Hidden by default. Use "Also show weak fits" in each country section.</li>
 </ul>
 <p>Notices scoring under {int(tiers.get('weak_min', 20))}, quarries and pits, and withdrawn projects are not listed.</p>
-<p>A flag means a notice may involve marine habitat work. It is not a statement that mitigation or
-compensation is required. Profiles are rule-based guesses, not a statement that mitigation is required.
-Always read the official notice.
+<p>A flag means a notice may involve marine mitigation. It does not mean that mitigation is required.
+Profiles are rule-based estimates. Always read the official notice.
 <a href="about.html#buyer-profiles">How profiles work</a></p>
 </section>
 {f'<section class="info-panel news-panel" id="news" hidden>{news_html}</section>' if news_html else ''}
 <noscript><p class="note">Turn on JavaScript for filters, search and the profile picker. Without it, every listed project is shown below.</p></noscript>
 
 <p class="empty" id="no-match" hidden>No projects match these filters.</p>
+<nav class="country-bar" id="country-bar" aria-label="Jump to a country" hidden></nav>
 <div id="view" hidden></div>
 <div id="server-list">
 {body}
@@ -2136,7 +2300,7 @@ Always read the official notice.
 <div class="sheet-body">
 <fieldset class="views"><legend>Show</legend>
 <label class="check"><input type="radio" name="view" id="v-all" value="all" checked> All projects</label>
-<label class="check"><input type="radio" name="view" id="v-soon" value="soon"> Comment deadline soon</label>
+<label class="check"><input type="radio" name="view" id="v-soon" value="soon"> Public comment deadline soon</label>
 <label class="check"><input type="radio" name="view" id="v-changed" value="changed"> Changed since last update</label>
 <label class="check"><input type="radio" name="view" id="v-watch" value="watch"> My watch list</label>
 </fieldset>
@@ -2154,9 +2318,8 @@ Always read the official notice.
 <option value="newest">Newest listed first</option><option value="title">Name, A to Z</option></select></label>
 <label>Group by<select id="f-group"><option value="country">Country</option>
 <option value="type">Project type</option><option value="stage">Stage</option>
-<option value="month">Month of the comment deadline</option><option value="none">No grouping</option></select></label>
+<option value="month">Month of the public comment deadline</option><option value="none">No grouping</option></select></label>
 <label class="check"><input type="checkbox" id="f-open"> Only projects open for public comment</label>
-<label class="check"><input type="checkbox" id="t-weak"> Also show weak fits</label>
 <label class="check" id="t-fresh-label" hidden><input type="checkbox" id="t-fresh"> Include freshwater (lakes and rivers)</label>
 </form>
 <div class="share sep"><p class="side-label">Share this view</p>
@@ -2172,6 +2335,7 @@ Always read the official notice.
 {_footer(site)}
 <script type="application/json" id="csv-data">{csv_data}</script>
 <script type="application/json" id="tier-names">{tier_names}</script>
+<script type="application/json" id="country-notes">{country_notes}</script>
 <script type="application/json" id="profile-data">{prof_json}</script>
 <script>{JS_COMMON}{JS}</script>
 </body>
@@ -2202,7 +2366,7 @@ STEP_ICONS = {
 AUDIENCES = [("hard-structure", "Reef builders",
               "Breakwaters, seawalls and wharves where reef units or eco-engineered blocks could replace plain rock or concrete."),
              ("living-shoreline", "Living shoreline firms",
-              "Eroding shores, salt marsh, oyster and mussel work where a living shoreline could do the job."),
+              "Eroding shores, salt marsh, oyster and mussel work where a living shoreline could be used."),
              ("banking", "Mitigation banks",
               "Projects whose notices mention offsetting, compensation or habitat credits.")]
 
@@ -2226,7 +2390,7 @@ def render_home(records: list[dict], site: dict, tiers: dict, updated: date, cov
                   for k, name, line in AUDIENCES if k in meta)
     who_band = f"""<section class="band band-white curve-top" aria-labelledby="who-h"><div class="wrap">
 <h2 class="band-h" id="who-h">Who this is for</h2>
-<p class="band-sub">Pick your kind of work and the list re-sorts for it.</p>
+<p class="band-sub">Choose your type of work to reorder the list for it.</p>
 <ul class="who-for">{who}</ul>
 </div></section>""" if who else ""
     return f"""<!doctype html>
@@ -2241,12 +2405,12 @@ def render_home(records: list[dict], site: dict, tiers: dict, updated: date, cov
 <section class="blue hero"><div class="wrap">
 <p class="tagline hero-tagline">{escape(_tagline(site))}</p>
 <h1>Find coastal projects that need marine mitigation, before they&rsquo;re awarded.</h1>
-<p class="lede">For reef builders, living shoreline firms, mitigation banks and other companies that do marine mitigation work.</p>
+<p class="lede">For reef builders, living shoreline firms, mitigation banks and other companies engaged in marine mitigation work.</p>
 <p class="ctas"><a class="btn white" href="projects.html">See projects</a><a class="btn outline-white" href="#how">How it works</a></p>
 <ul class="stats">
 <li><a href="projects.html?profile=all#results"><span class="n">{len(general)}</span><span class="l">Projects tracked</span></a></li>
 <li><a href="projects.html?profile=all#results"><span class="n">{n_strong}</span><span class="l">Strong fits</span></a></li>
-<li><a href="projects.html?profile=all#soon"><span class="n">{n_soon}</span><span class="l">Deadlines this fortnight</span></a></li>
+<li><a href="projects.html?profile=all#soon"><span class="n">{n_soon}</span><span class="l">Public comment deadlines, next {soon_days} days</span></a></li>
 </ul>
 </div>{WAVE}</section>
 
@@ -2257,15 +2421,15 @@ def render_home(records: list[dict], site: dict, tiers: dict, updated: date, cov
 <li><span class="icon">{STEP_ICONS["scan"]}</span><h3>We scan public notices</h3>
 <p>Official permit and environmental assessment notices from {n_countries} countries, read every week.</p></li>
 <li><span class="icon">{STEP_ICONS["score"]}</span><h3>We score each project</h3>
-<p>Clear rules on the type of work, habitat words in the notice and its size give each project a fit.</p></li>
+<p>Clear rules on the type of work, its size and the habitat terms in the notice give each project a fit.</p></li>
 <li><span class="icon">{STEP_ICONS["list"]}</span><h3>You get a weekly list</h3>
-<p>Strong and possible fits, with who to contact, how to get in and the deadline to beat.</p></li>
+<p>Strong and possible fits, with contacts, the best way in and the public comment deadline.</p></li>
 </ol>
 </div></section>
 
 <section class="band band-tint" aria-labelledby="picks-h"><div class="wrap">
 <h2 class="band-h" id="picks-h">Top picks this week</h2>
-<p class="band-sub">The three best fits across all habitat work right now.</p>
+<p class="band-sub">The three best fits across all marine mitigation work.</p>
 <div class="cards">{cards}</div>
 <p class="center"><a class="btn primary" href="projects.html">See all projects</a></p>
 </div></section>
@@ -2441,7 +2605,7 @@ def _profiles_card(rec: dict, meta: list[dict] | None) -> str:
     body = (f'<ul class="profile-list">{"".join(items)}</ul>' if items
             else '<p class="note">No buyer profile matches this project.</p>')
     return (f'<section class="side-card">\n<h2 class="side-h">Buyer profiles</h2>\n{body}\n'
-            f'<p class="note">Rule-based guesses, not a statement that mitigation is required.</p>\n</section>')
+            f'<p class="note">Rule-based estimates. They do not mean that mitigation is required.</p>\n</section>')
 
 
 def approach_first(rec: dict) -> str:
@@ -2469,7 +2633,7 @@ def _comments_side(rec: dict, deadline_text: str) -> str:
     if c.get("opens"):
         rows += f"<dt>Opens</dt><dd>{_opens_text(rec)}</dd>"
     if rec.get("comment_deadline"):
-        rows += f'<dt>Closes</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
+        rows += f'<dt>Public comment deadline</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>'
     if c.get("count") is not None:
         rows += f"<dt>Comments received</dt><dd>{_comment_count_text(rec)}</dd>"
     note = f'<p class="note">{escape(c["count_note"])}</p>' if c.get("count_note") else ""
@@ -2512,7 +2676,7 @@ def render_project_page(rec: dict, site: dict, updated: date, country_name: str,
            + "".join(f'<p class="note">{n}</p>' for n in notes)
            + f'<p class="note">{review}{changed}</p>')
     who = approach_first(rec)
-    getin = ((f'<p class="approach"><strong>Approach first:</strong> {escape(who)}.</p>' if who else "")
+    getin = ((f'<p class="approach"><strong>Approach first:</strong> {escape(who.rstrip("."))}.</p>' if who else "")
              + (f'<p><strong>Suggested approach:</strong> {escape(w["entry_point"])}</p>' if w.get("entry_point") else "")
              + _research_html(rec, full=True))
     if not getin.strip():
@@ -2538,7 +2702,7 @@ def render_project_page(rec: dict, site: dict, updated: date, country_name: str,
 <div class="project-main">
 <details class="fold" open><summary>Why it matters</summary><div class="fold-body">{why}</div></details>
 <details class="fold"><summary>Who to contact</summary><div class="fold-body">{_who_html(rec)}</div></details>
-<details class="fold"><summary>How to get in</summary><div class="fold-body">{getin}</div></details>
+<details class="fold"><summary>Best way in</summary><div class="fold-body">{getin}</div></details>
 {_in_the_news_html(rec).replace('<h2>', '<section class="side-card"><h2>', 1) + '</section>' if _in_the_news_html(rec) else ''}
 </div>
 <aside class="project-side">
@@ -2584,11 +2748,11 @@ def _about_profiles(meta: list[dict] | None, tiers: dict) -> str:
                    f'{"" if m["count"] else " " + escape(EMPTY_NOTE)}</li>' for m in meta)
     pm = int(tiers.get("possible_min", 35))
     return f"""<h2 id="buyer-profiles">Buyer profiles</h2>
-<p>At the top of the project list you can choose the kind of habitat work you do ("I work on: ..."). The list
+<p>At the top of the project list you can choose your type of marine mitigation work ("I work on: ..."). The list
 then uses that profile's tiers and order, and each project says in plain words why it matches. "{ALL_LABEL}" is
 the general score described above and is the default.</p>
 <ul>{rows}</ul>
-<p>Profiles are rule-based guesses. Each one re-weights the same visible rules (keywords, project types and sizes)
+<p>Profiles are rule-based estimates. Each one re-weights the same visible rules (keywords, project types and sizes)
 toward one kind of work, using the same Strong, Possible and Weak cut-offs. A project is listed for a profile only
 if the notice mentions at least one of that profile's core subjects. A project that the general list leaves out
 appears under a profile only if it reaches Possible ({pm} or more) there. A flag under any profile means the notice
@@ -2598,7 +2762,7 @@ measure is required.</p>
 clause negates it or makes it conditional ("does not propose changes to the wharf", "if required"), sizes taken
 from sentences about past works or distances ("within 250 m of the site") are not counted, and for the
 hard-structure profile, small routine repairs (under 100 m long, 2,000 m&sup2; and 5,000 m&sup3;) stay Weak unless the
-notice also mentions habitat work. Your profile choice is stored only in your browser. You can share a profile
+notice also mentions marine mitigation. Your profile choice is stored only in your browser. You can share a profile
 with a link such as <code>?profile=seagrass</code>.</p>
 """
 
@@ -2653,7 +2817,7 @@ def _shortlist_item(rec: dict, rank: int, key: str, site: dict, country_name: st
 <dt>Location</dt><dd>{escape(_place(rec, country_name))}. Water body: {escape(rec['water_body'])}</dd>
 <dt>Project type</dt><dd>{escape(', '.join(types) if types else UNKNOWN)}</dd>{_licences_row(rec)}
 <dt>Stage</dt><dd>{_plain(escape(rec['stage']))}</dd>
-<dt>Comments close</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
+<dt>Public comment deadline</dt><dd><span class="countdown">{escape(deadline_text)}</span></dd>
 </dl>
 {_summary_html(rec)}
 {_evidence(rec, quotes)}
@@ -2690,12 +2854,12 @@ def render_shortlist(records: list[dict], site: dict, updated: date, meta: list[
 {_topbar(site, updated, "")}
 <section class="blue page-head"><div class="wrap">
 <p class="eyebrow">Shortlist &middot; {escape(m['label'])}</p>
-<h1>{len(picks)} projects to look at</h1>
+<h1>{len(picks)} projects to review</h1>
 <p>Projects that may suit eco-engineered marine products, chosen by the rules on the
 <a href="about.html#buyer-profiles">About page</a>. Strong fits come first, then possible, then weak. Within each
 group, approved projects come first: they have passed environmental review but construction has not been reported, so
 design and purchasing may still be ahead. Then projects still under assessment. Freshwater projects are left out.</p>
-<p class="meta">Updated <time>{_date(updated)}</time>. These are rule-based guesses, not a statement that mitigation
+<p class="meta">Updated <time>{_date(updated)}</time>. These are rule-based estimates. They do not mean that mitigation
 or any product is required. Always read the official notice.</p>
 </div></section>
 <main class="wrap shortlist-main" id="main">
@@ -2715,10 +2879,10 @@ Array.prototype.forEach.call(document.querySelectorAll('.shortlist .card'), MPF.
 
 
 def _feeds_section(meta: list[dict] | None) -> str:
-    links = [f'<li><a href="feeds/{COMMENT_FEED}.xml">Comment periods closing in the next 14 days (every profile)</a></li>',
+    links = [f'<li><a href="feeds/{COMMENT_FEED}.xml">Public comment deadlines in the next 14 days (every profile)</a></li>',
              '<li><a href="feeds/all.xml">All projects on the general list</a></li>']
     links += [f'<li><a href="feeds/{escape(m["key"])}.xml">{escape(m["label"])}</a></li>' for m in meta or []]
-    return ('<h2 id="feeds">RSS feeds</h2>\n<p>Each feed lists the comment periods closing in the next 14 days, '
+    return ('<h2 id="feeds">RSS feeds</h2>\n<p>Each feed lists the public comment deadlines in the next 14 days, '
             'then the projects that are new since the last update, with a link to the official notice and the source. Add a feed address to any feed reader. There is no '
             'sign-up and no email: this site stores nothing about who reads the feeds.</p>\n<ul>' + "".join(links) + "</ul>")
 
@@ -2762,7 +2926,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
 <h2 id="what-it-does">What it does</h2>
 <p>The tool reads public environmental assessment and permit notices for marine construction projects,
 such as ports, wharves, breakwaters, dredging and shoreline works. It flags projects that may need marine
-habitat work, for example avoidance and reduction measures, habitat enhancement, fish habitat offsetting, or
+mitigation, for example avoidance and reduction measures, habitat enhancement, fish habitat offsetting, or
 nature-inclusive design. Each listing links to the official notice.</p>
 
 <h2 id="what-the-score-and-tiers-mean">What the score and tiers mean</h2>
@@ -2800,7 +2964,7 @@ list.</p>
 <p>For Strong and Possible projects, names and facts are also taken from officially published web pages: the developer's
 project site, press releases, procurement notices and environmental reports. Each is linked to its source; facts found
 only through a web search, on sites that do not allow automated reading, say so. Procurement routes (supplier portals,
-tenders, meet-the-buyer events) appear first, under "How to get in". "Find contacts" opens a LinkedIn people search for
+tenders, meet-the-buyer events) appear first, under "Best way in". "Find contacts" opens a LinkedIn people search for
 the organisation (environmental manager, project manager, procurement); this site stores nothing from it. Projects
 marked "From the developer's website, not in a permit notice yet" come from a developer's own pages and are scored
 with the same rules.</p>
@@ -2831,7 +2995,7 @@ notice that invited comments, it is labelled "date of the notice". Where a regis
 of comments received, the number is shown with the date it was read and a link to the registry's own
 comments page. Comment text, the names of people who commented and other personal details are never copied
 to this site. Anything a source does not publish is shown as "Not published".</p>
-<p>While a comment period is open, the project carries an "Open for comment until" label with the closing date. The
+<p>While a comment period is open, the project carries an "Open for public comment until" label with the closing date. The
 label disappears once that date has passed. "Public comment deadlines coming up" at the top of the project
 list, the "Only projects open for public comment" filter and the RSS feeds all use the same dates.</p>
 <ul>{comment_sources}</ul>
@@ -2866,7 +3030,7 @@ your watch list is sent anywhere. Clearing your browser data clears the list.</p
 <h2 id="project-watch">Project pages we follow</h2>
 <p>Some sources list projects rather than notices. When such a source is used, its items appear in a
 separate "Project page we follow (not a notice)" section, with no comment deadline, no countdown, and never in
-the closing-soon list. No project watch source is in use at the moment.</p>
+the public comment deadline list. No project watch source is in use at the moment.</p>
 
 <h2 id="coverage">Coverage</h2>
 {f'<p><strong>{escape(bn)}</strong></p>' if bn else ''}
@@ -2992,7 +3156,7 @@ def source_line(rec: dict) -> str:
     if rec.get("issued_by"):
         out += f". Hearing by {rec['issued_by']}"
     if rec.get("attribution"):
-        out += f". {rec['attribution']}"
+        out += ". " + rec['attribution'].rstrip('.')
     return out + "."
 
 
@@ -3029,11 +3193,11 @@ def render_feed(items: list[dict], title: str, description: str, site_url: str, 
     for r in closing or []:
         link = r["url"] if re.match(r"https?://", r.get("url") or "") else ""
         when = winnability.long_date(r["comment_deadline"])
-        lines = [f"Open for comment until {when}.", f"{r.get('tier_label')}." if r.get("tier_label") else "",
+        lines = [f"Public comment deadline: {when}.", f"{r.get('tier_label')}." if r.get("tier_label") else "",
                  (r.get("win") or {}).get("entry_point", ""), f"Official notice: {link}" if link else "", source_line(r)]
         entries.append(
             "<item>"
-            f"<title>{x('Comments close ' + when + ': ' + r['title'])}</title>"
+            f"<title>{x('Public comment deadline ' + when + ': ' + r['title'])}</title>"
             f"<link>{x(base + r['page'])}</link>"
             f'<guid isPermaLink="false">{x(r["id"] + "#comments-" + r["comment_deadline"])}</guid>'
             f"<pubDate>{_rfc822(updated.isoformat())}</pubDate>"
@@ -3080,12 +3244,10 @@ def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict
     days = int(site.get("closing_soon_days", 14))
     tag = _tagline(site)
     written = []
-    feeds = [("all", None, f"{name}: new projects", "New projects on the general list since the last update, after the "
-              f"comment periods closing in the next {days} days.", False)]
+    feeds = [("all", None, f"{name}: new projects", f"Public comment deadlines in the next {days} days, then new projects on the general list since the last update.", False)]
     for m in meta:
         feeds.append((m["key"], m["key"], f"{name}: new projects, {m['label']}",
-                      f"New projects since the last update, for the profile: {m['label']}, after the comment periods "
-                      f"closing in the next {days} days.", m.get("exclude_freshwater")))
+                      f"Public comment deadlines in the next {days} days, then new projects since the last update, for the profile {m['label']}.", m.get("exclude_freshwater")))
     for slug, key, title, desc, fresh in feeds:
         path = f"feeds/{slug}.xml"
         (out_dir / path).write_text(render_feed(feed_items(records, key, bool(fresh)), title, f"{tag} {desc}", url, path, updated,
@@ -3102,8 +3264,8 @@ def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict
                 closing.append(r)
     closing.sort(key=lambda r: (r["comment_deadline"], r["title"]))
     path = f"feeds/{COMMENT_FEED}.xml"
-    (out_dir / path).write_text(render_feed([], f"{name}: comment periods closing in the next {days} days",
-                                            f"{tag} Projects whose public comment period closes in the next {days} days.",
+    (out_dir / path).write_text(render_feed([], f"{name}: public comment deadlines in the next {days} days",
+                                            f"{tag} Projects with a public comment deadline in the next {days} days.",
                                             url, path, updated, closing), encoding="utf-8")
     written.append(path)
     return written

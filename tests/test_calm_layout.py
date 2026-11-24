@@ -58,7 +58,7 @@ def test_project_page_has_a_blue_band_and_three_sections(tmp_path):
     _, _, page = _built(tmp_path)
     assert '<section class="blue page-band">' in page
     folds = re.findall(r'<details class="fold"( open)?><summary>([^<]+)</summary>', page)
-    assert [t for _, t in folds] == ["Why it matters", "Who to contact", "How to get in"]
+    assert [t for _, t in folds] == ["Why it matters", "Who to contact", "Best way in"]
     assert [bool(o) for o, _ in folds] == [True, False, False]
     assert "<strong>Approach first:</strong>" in page
     assert "transform:rotate" not in site.CSS                                   # arrows swap, never rotate
@@ -132,3 +132,21 @@ def test_tagline_in_header_hero_footer_meta_about_and_feeds(tmp_path):
     # Header tagline: never wraps, hidden on narrow screens; no dashes or emoji in the copy.
     assert ".top-tagline{display:none;" in site.CSS and "white-space:nowrap" in site.CSS
     assert "—" not in tag and "–" not in tag
+
+
+def test_projects_grouped_by_country_with_chips_paging_and_per_country_weak(tmp_path):
+    site.write_site(tmp_path, _records(_items()), SETTINGS, TODAY)
+    page = (tmp_path / "projects.html").read_text(encoding="utf-8")
+    assert '<nav class="country-bar" id="country-bar" aria-label="Jump to a country" hidden></nav>' in page
+    assert 'id="country-notes"' in page and 'id="t-weak"' not in page
+    assert "var FIRST = 4, MORE = 8" in page                        # top 4, then 8 more per press
+    assert "'Show more ' + (onlyPossible ? 'possible fits' : 'fits') + ' in ' + name" in page
+    assert "'Show fewer'" in page and "setAttribute('aria-expanded'" in page and "setAttribute('aria-pressed'" in page
+    assert "'Also show weak fits in ' + name" in page and "qs.push('weak=' + weakList().join(','))" in page
+    assert "'country-' + name.toLowerCase()" in page and "/^#country-/" in page    # #country-canada links
+    assert "reduced() ? 'auto' : 'smooth'" in page                  # no smooth scroll with reduced motion
+    css = site.CSS
+    assert ".country-bar{position:sticky;top:0" in css and ".csec-head{position:sticky;top:var(--chips-h" in css
+    for t in ("--ct0:", "--ct1:", "--ct2:"):
+        assert css.count(t) == 2                                    # light and dark tints
+    assert ".csec+.csec{margin-top:calc(-1 * var(--cdiv))" in css   # curved divider between countries

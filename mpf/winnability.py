@@ -184,7 +184,7 @@ def assess(row: dict, stage_kind: str, stakeholders: dict, rules: dict | None, t
     offsets = find_patterns(text, groups, language=row.get("language")) if groups else {}
     if offsets:
         label = next(iter(offsets.values()))["label"]
-        reasons.append((int(conf["habitat_offsetting"]), f"{label} (habitat work is likely needed)"))
+        reasons.append((int(conf["habitat_offsetting"]), f"{label} (marine mitigation is likely needed)"))
 
     firm = (stakeholders.get("consultant") or [])
     if firm:
