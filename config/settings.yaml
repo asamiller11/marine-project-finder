@@ -9,6 +9,8 @@ http:
   # Hosts that state a rate limit elsewhere (GDELT: "one every 5 seconds").
   host_delays:
     api.gdeltproject.org: 6
+    # EPBC portal pages are read in a browser (each page loads several files): go slowly.
+    epbcpublicportal.environment.gov.au: 6
   # List pages (which change) are re-fetched at most this often.
   # Detail pages (one project) are fetched once and never again.
   list_page_max_age_hours: 20
@@ -159,6 +161,18 @@ sources:
     lookback_days: 540
     permission: {basis: a, from: "Gouvernement du Québec, droit d'auteur (droitdauteur@mcc.gouv.qc.ca)", date: "", quote: "",
                  reported_by_owner: "2026-11-23"}
+  au_epbc:
+    # Australia, EPBC Act Public Portal (National Environmental Protection Agency). Permission requested 2026-11-17
+    # (private/permission_requests_2026-11.md, request 10); written reply 2026-11-24. robots.txt sets no rules.
+    # The portal's tables load by script, so this source uses the hidden browser (mpf/browser.py). Weekly: the
+    # open-for-comment list, the project list back to lookback_days, and each new or changed project's summary page.
+    enabled: true
+    lookback_days: 365
+    max_pages: 60
+    recheck_days: 60
+    permission: {basis: a, from: "Cormac Farrell, Director, EPBC Engagement and Referrals Gateway, National Environmental Protection Agency (cormac.farrell@nationalepa.gov.au)",
+                 date: "2026-11-24",
+                 quote: "as this information is publicly available, we don’t have any concerns with you including this in any reports you provide to your clients."}
   drop_folder:
     enabled: true
 

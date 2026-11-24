@@ -44,7 +44,10 @@ def compute(row: dict, today: date, closing_soon_days: int = 14, too_late_days: 
         stage, too_late = "withdrawn or rejected", True
     elif days_left is not None and days_left >= 0:
         stage, too_late = f"public comment open until {deadline}", False
-    elif _DONE.search(status) or (row.get("source") == "nl_ea" and _decision_already_made(row)):
+    elif (_DONE.search(status) and row.get("source") != "au_epbc") or (
+            row.get("source") in ("nl_ea", "au_epbc") and _decision_already_made(row)):
+        # EPBC "Referral Decision Made" is the early decision on whether a full assessment is needed, so for
+        # au_epbc only the source's own final-decision flag counts.
         stage, too_late = "decision made", True
     elif days_left is not None and days_left < 0:
         stage, too_late = f"comment closed {deadline}, decision pending", False
