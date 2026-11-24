@@ -554,7 +554,7 @@ CSS = r"""
 --line:#D5E6ED;--line-strong:#B3CEDA;--on-blue:#ffffff;--on-blue-2:#ffffff;--pill-on-navy:#E8F4F8;
 --strong-bg:#FCEBE6;--possible-bg:#E3F0F5;--possible-text:#0B3C5D;--weak-bg:#EEF2F4;--weak-text:#4B6573;
 --shadow:0 12px 32px rgba(11,60,93,.08);--r:22px;--r-sm:14px;--sec:96px;--curve:64px;
---track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;
+--track:#ffffff;--chip-on-bg:#D3EAF2;--chip-on-text:#0B3C5D;--row:#F3F9FB;--pale:#E8F4F8;
 --ease:cubic-bezier(.2,.7,.2,1);color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--navy:#082C44;--text:#E3EEF2;--coral-text:#F2A28E;--link:#8ACDE2;--muted:#A6BCC6;
 --card:#12303F;--band-white:#0D2533;--band-tint:#0A1C27;--soft:#102B39;--line:#1F4456;--line-strong:#2F5A6E;
@@ -611,6 +611,14 @@ nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;paddi
 nav.top a:hover{background:rgba(255,255,255,.12)}
 nav.top a[aria-current=page]{background:rgba(255,255,255,.16);color:#fff}
 .topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
+/* Tagline: the same pale blue as the pills on the blue bands, which are navy in both themes. In the header it shows
+   only where the whole bar fits on one line, so it never wraps. */
+.tagline{color:var(--pale)}
+.top-tagline{display:none;margin:0 0 0 -14px;font-size:13px;line-height:1.3;white-space:nowrap}
+@media (min-width:1180px){.top-tagline{display:block}}
+.hero p.hero-tagline{margin:0 0 16px;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.page-head p.about-tagline{margin:0 0 10px;color:var(--pale);font-size:1rem}
+footer p.foot-tagline{margin:-6px 0 14px}
 
 /* Home hero */
 .hero{--band-top:88px;padding-bottom:0}
@@ -1387,10 +1395,27 @@ JS_PAGE = r"""
 """
 
 
+TAGLINE = "Coastal projects, found early."
+
+
+def _tagline(site: dict) -> str:
+    return site.get("tagline", TAGLINE)
+
+
+def _share_desc(site: dict) -> str:
+    """Meta, Open Graph and Twitter description for the site pages: the tagline, then the site description."""
+    desc = site.get("description", "").strip().rstrip(".")
+    return f"{_tagline(site)} {desc}." if desc else _tagline(site)
+
+
 def _head(title: str, description: str, prefix: str = "") -> str:
+    d = escape(description)
     return (f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             f'<meta name="robots" content="noindex, nofollow">\n<title>{escape(title)}</title>\n'
-            f'<meta name="description" content="{escape(description)}">\n<meta name="theme-color" content="{LOGO_COLOUR}">\n'
+            f'<meta name="description" content="{d}">\n'
+            f'<meta property="og:title" content="{escape(title)}">\n<meta property="og:description" content="{d}">\n'
+            f'<meta name="twitter:card" content="summary">\n<meta name="twitter:description" content="{d}">\n'
+            f'<meta name="theme-color" content="{LOGO_COLOUR}">\n'
             f'{_favicon(prefix)}\n<style>{CSS}</style>')
 
 
@@ -1427,6 +1452,7 @@ def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> st
                   for key, href, label in links)
     return (f'<a class="skip" href="#main">Skip to content</a>\n'
             f'<header class="topbar"><div class="wrap">\n<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>\n'
+            f'<p class="tagline top-tagline">{escape(_tagline(site))}</p>\n'
             f'<nav class="top" aria-label="Main">{nav}</nav>\n'
             f'<p class="updated">Updated <time>{_date(updated)}</time></p>\n</div></header>')
 
@@ -1447,6 +1473,7 @@ def _footer(site: dict, prefix: str = "") -> str:
     return (
         '<footer><div class="wrap foot-grid"><div>'
         f'<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>'
+        f'<p class="tagline foot-tagline">{escape(_tagline(site))}</p>'
         f"<p>{title} is a prototype. Flags show projects that may need marine habitat work. They do not state that "
         "mitigation is required. Always check the official notice. Compiled from public sources.</p>"
         f'<p>Contact: {escape(site.get("contact_name", ""))}, <a href="mailto:{email}">{email}</a></p></div>'
@@ -1956,7 +1983,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
     # The general list ("All habitat work") never shows projects that only a buyer profile lists.
     records = [r for r in all_records if not r.get("profile_only")]
     title = site.get("title", "MitiMark")
-    desc = site.get("description", "")
+    desc = _share_desc(site)
     soon_days = int(site.get("closing_soon_days", 14))
     td = tier_descriptions(tiers)
     less_tested = coverage.get("less_tested_languages", [])
@@ -2206,12 +2233,13 @@ def render_home(records: list[dict], site: dict, tiers: dict, updated: date, cov
 <html lang="en">
 <head>
 {OLD_LIST_LINKS}
-{_head(title, site.get("description", ""))}
+{_head(title + ": " + _tagline(site).rstrip("."), _share_desc(site))}
 </head>
 <body data-soon="{soon_days}">
 {_topbar(site, updated, "home")}
 <main id="main">
 <section class="blue hero"><div class="wrap">
+<p class="tagline hero-tagline">{escape(_tagline(site))}</p>
 <h1>Find coastal projects that need marine mitigation, before they&rsquo;re awarded.</h1>
 <p class="lede">For reef builders, living shoreline firms, mitigation banks and other companies that do marine mitigation work.</p>
 <p class="ctas"><a class="btn white" href="projects.html">See projects</a><a class="btn outline-white" href="#how">How it works</a></p>
@@ -2700,7 +2728,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
     coverage = coverage if coverage is not None else load_coverage()
     records = records or []
     bn = balance_note(records)
-    title = "About: " + site.get("title", "MitiMark")
+    title = "About - " + site.get("title", "MitiMark")
     td = tier_descriptions(tiers)
     sources = "".join(f'<li><a href="{escape(s["url"])}" rel="noopener">{escape(s["name"])}</a></li>'
                       for s in coverage.get("sources", {}).values())
@@ -2714,7 +2742,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
     return f"""<!doctype html>
 <html lang="en">
 <head>
-{_head(title, site.get('description', ''))}
+{_head(title, _share_desc(site))}
 </head>
 <body>
 {_topbar(site, updated, "about")}
@@ -2722,6 +2750,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
 {LOGO}
 <p class="eyebrow">About and method</p>
 <h1>About {escape(site.get("title", "MitiMark"))}</h1>
+<p class="tagline about-tagline">{escape(_tagline(site))}</p>
 <p>{escape(site.get('description', ''))}</p>
 <p class="meta">Last successful update: <time>{_date(updated)}</time></p>
 </div></section>
@@ -3049,6 +3078,7 @@ def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict
     name = site.get("title", "MitiMark")
     url = site.get("url", "")
     days = int(site.get("closing_soon_days", 14))
+    tag = _tagline(site)
     written = []
     feeds = [("all", None, f"{name}: new projects", "New projects on the general list since the last update, after the "
               f"comment periods closing in the next {days} days.", False)]
@@ -3058,7 +3088,7 @@ def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict
                       f"closing in the next {days} days.", m.get("exclude_freshwater")))
     for slug, key, title, desc, fresh in feeds:
         path = f"feeds/{slug}.xml"
-        (out_dir / path).write_text(render_feed(feed_items(records, key, bool(fresh)), title, desc, url, path, updated,
+        (out_dir / path).write_text(render_feed(feed_items(records, key, bool(fresh)), title, f"{tag} {desc}", url, path, updated,
                                                 closing_soon(records, days, updated, key, bool(fresh))),
                                     encoding="utf-8")
         written.append(path)
@@ -3073,7 +3103,7 @@ def write_feeds(out_dir: Path, records: list[dict], meta: list[dict], site: dict
     closing.sort(key=lambda r: (r["comment_deadline"], r["title"]))
     path = f"feeds/{COMMENT_FEED}.xml"
     (out_dir / path).write_text(render_feed([], f"{name}: comment periods closing in the next {days} days",
-                                            f"Projects whose public comment period closes in the next {days} days.",
+                                            f"{tag} Projects whose public comment period closes in the next {days} days.",
                                             url, path, updated, closing), encoding="utf-8")
     written.append(path)
     return written

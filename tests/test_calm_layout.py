@@ -109,3 +109,26 @@ def test_filters_in_use_are_always_visible(tmp_path):
     assert "Remove filter: " in projects and "Clear all filters" in projects
     assert "No projects match these filters: " in projects and "OWN = ['profile', 'open', 'country'" in projects
     assert "fo.checked = false" in projects
+
+
+def test_tagline_in_header_hero_footer_meta_about_and_feeds(tmp_path):
+    site.write_site(tmp_path, _records(_items()), SETTINGS, TODAY)
+    out = tmp_path
+    tag = "Coastal projects, found early."
+    home = (out / "index.html").read_text()
+    assert "<title>" + SETTINGS["site"]["title"] + ": Coastal projects, found early</title>" in home
+    share = tag + " " + SETTINGS["site"]["description"].rstrip(".") + "."
+    for attr in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
+        assert f'<meta {attr} content="{share}">' in home
+    assert f'<p class="tagline top-tagline">{tag}</p>' in home
+    assert f'<p class="tagline hero-tagline">{tag}</p>\n<h1>' in home
+    assert f'<p class="tagline foot-tagline">{tag}</p>' in home
+    about = (out / "about.html").read_text()
+    assert "<title>About - " + SETTINGS["site"]["title"] + "</title>" in about
+    assert re.search(r"<h1>About [^<]+</h1>\n<p class=\"tagline about-tagline\">" + re.escape(tag), about)
+    assert "<title>Projects - " + SETTINGS["site"]["title"] + "</title>" in (out / "projects.html").read_text()
+    for feed in (out / "feeds").glob("*.xml"):
+        assert f"<description>{tag} " in feed.read_text()
+    # Header tagline: never wraps, hidden on narrow screens; no dashes or emoji in the copy.
+    assert ".top-tagline{display:none;" in site.CSS and "white-space:nowrap" in site.CSS
+    assert "—" not in tag and "–" not in tag
