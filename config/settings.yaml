@@ -143,12 +143,17 @@ sources:
     permission: {basis: a, from: "Nova Scotia Environmental Assessment Branch (EA@novascotia.ca)", date: "", quote: "",
                  reported_by_owner: "2026-11-23"}
   ceqanet:
-    # California CEQAnet (State Clearinghouse). Written permission requested 2026-11-17 (state.clearinghouse@lci.ca.gov,
-    # private/permission_requests_2026-11.md, request 8). The owner reports a written yes (2026-11-23) and asked for it to be used now; date and exact
-    # words go in below once the reply is filed. robots.txt allows it; attachment zips are never fetched. Weekly.
+    # California CEQAnet (State Clearinghouse). Permission requested 2026-11-17 (state.clearinghouse@lci.ca.gov,
+    # private/permission_requests_2026-11.md, request 8). Reply 2026-11-24 from Alicea Norsby (Policy Specialist, LCI):
+    # the data is public; see the Conditions of Use, Ownership section ("information presented on this web site,
+    # unless otherwise indicated, is considered in the public domain"). The reply also asks that resource-intensive or
+    # bulk activity happen after 6pm Pacific, so ceqanet reads only outside weekday 8am-6pm Pacific (ceqanet.py) and
+    # the automatic update waits for that window. A CSV of up to 10,000 documents exists via Advanced Search (not
+    # used). robots.txt allows the pages we read; attachment zips are never fetched. Weekly.
     enabled: true
     lookback_days: 30
-    permission: {basis: a, from: "Governor's Office of Land Use and Climate Innovation, State Clearinghouse (state.clearinghouse@lci.ca.gov)", date: "", quote: "",
+    permission: {basis: a, from: "Governor's Office of Land Use and Climate Innovation, State Clearinghouse (state.clearinghouse@lci.ca.gov)", date: "2026-11-24",
+                 quote: "The information on CEQAnet is a publicly available data. Please see the Conditions of Use on our website: Conditions of Use, particularly the Ownership section.",
                  reported_by_owner: "2026-11-23"}
   qc_ree:
     # Québec Registre des évaluations environnementales. Authorization requested 2026-11-17 from the Québec copyright

@@ -137,3 +137,16 @@ def test_plist_pins_absolute_tools_and_gh_login(tmp_path):
     assert plist["ProgramArguments"][0] == str(autoupdate.VENV_PYTHON)
     assert str(autoupdate.VENV_PYTHON).endswith("/.venv/bin/python")
     assert update.GIT.startswith("/") and update.GH.startswith("/")
+
+
+def test_auto_check_waits_for_pacific_evening_when_ceqanet_is_on(tmp_path):
+    from mpf.sources.ceqanet import PACIFIC
+    s = _settings(tmp_path)
+    s.setdefault("sources", {})["ceqanet"] = {"enabled": True}
+    update.write_state(s, {"last_success": "2026-10-01T08:00:00"})
+    run = FakeRun(0)
+    noon = datetime(2026, 11, 24, 12, 0, tzinfo=PACIFIC).astimezone().replace(tzinfo=None)   # local clock, as launchd sees it
+    assert autoupdate.auto_check(s, noon, run=run, online=lambda: True) == "waiting for Pacific evening"
+    assert run.calls == []
+    evening = datetime(2026, 11, 24, 19, 0, tzinfo=PACIFIC).astimezone().replace(tzinfo=None)
+    assert autoupdate.auto_check(s, evening, run=run, online=lambda: True) != "waiting for Pacific evening"

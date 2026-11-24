@@ -112,3 +112,20 @@ def test_health_accepts_owner_reported_permission_with_a_reminder(tmp_path):
     settings = load_settings()
     for name in ("iaac", "bc_eao", "ns_ea", "ceqanet", "qc_ree"):
         assert settings["sources"][name]["permission"]["reported_by_owner"] == "2026-11-23"
+
+
+def test_ceqanet_reads_only_outside_pacific_business_hours():
+    """The State Clearinghouse (reply 2026-11-24) asked for bulk reads after 6pm Pacific."""
+    from datetime import datetime
+    from mpf.sources.ceqanet import PACIFIC, in_business_hours
+    assert in_business_hours(datetime(2026, 11, 24, 10, 0, tzinfo=PACIFIC))        # Tuesday morning
+    assert in_business_hours(datetime(2026, 11, 24, 17, 59, tzinfo=PACIFIC))
+    assert not in_business_hours(datetime(2026, 11, 24, 18, 0, tzinfo=PACIFIC))    # after 6pm
+    assert not in_business_hours(datetime(2026, 11, 24, 7, 0, tzinfo=PACIFIC))
+    assert not in_business_hours(datetime(2026, 11, 28, 12, 0, tzinfo=PACIFIC))    # Saturday
+
+
+def test_ceqanet_permission_reply_is_filed():
+    from mpf.config import load_settings
+    perm = load_settings()["sources"]["ceqanet"]["permission"]
+    assert perm["date"] == "2026-11-24" and "publicly available" in perm["quote"]

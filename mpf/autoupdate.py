@@ -118,6 +118,11 @@ def auto_check(settings: dict, now: datetime | None = None, run=subprocess.run, 
     if not once.get("force") and not due_for_update(read_state(settings).get("last_success"), now, days):
         log(settings, "Check: not due yet.")
         return "not due"
+    if not once.get("force") and ((settings.get("sources") or {}).get("ceqanet") or {}).get("enabled"):
+        from mpf.sources.ceqanet import in_business_hours
+        if in_business_hours(now.astimezone() if now.tzinfo is None else now):
+            log(settings, "Update due, waiting until after 6pm Pacific (CEQAnet asks for reads outside business hours).")
+            return "waiting for Pacific evening"
     if not online():
         log(settings, "Update due, but offline. Will try again at the next check.")
         return "offline"

@@ -1,7 +1,9 @@
 """California CEQAnet (State Clearinghouse database of CEQA documents).
 
-Used with the State Clearinghouse's written permission (requested 2026-11-17, granted; see config/settings.yaml).
-robots.txt allows everything except the attachment zip downloads, which we never fetch.
+Used under the State Clearinghouse's reply of 2026-11-24 (see config/settings.yaml): CEQAnet information is public
+data under the site's Conditions of Use (Ownership section). The reply also asks that resource-intensive or bulk
+activity happen outside business hours (after 6pm Pacific), so this source only reads outside Monday to Friday,
+8am to 6pm Pacific time (in_business_hours below). robots.txt allows everything except the attachment zip downloads, which we never fetch.
 
 What we read, about once a week:
 - /Search?StartRange=...&EndRange=...&ProjectIssue=Coastal+Zone : documents received in the last lookback_days that
@@ -14,9 +16,10 @@ What we read, about once a week:
 from __future__ import annotations
 
 import re
-from datetime import timedelta
+from datetime import datetime, timedelta
 from typing import Iterator
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
@@ -26,6 +29,15 @@ from mpf.http import Blocked
 from mpf.models import UNKNOWN, Item
 from mpf.sources.base import Source
 from mpf.textutil import clean, parse_date, today
+
+PACIFIC = ZoneInfo("America/Los_Angeles")
+
+
+def in_business_hours(now: datetime | None = None) -> bool:
+    """True Monday to Friday, 8am to 6pm Pacific: the State Clearinghouse asked for reads after 6pm Pacific."""
+    t = (now or datetime.now(PACIFIC)).astimezone(PACIFIC)
+    return t.weekday() < 5 and 8 <= t.hour < 18
+
 
 BASE = "https://ceqanet.lci.ca.gov/"
 RECENT_URL = BASE + "Search/Recent"
@@ -84,6 +96,10 @@ class CEQAnetSource(Source):
     country = "US"
 
     def fetch(self) -> Iterator[Item]:
+        if in_business_hours():
+            self.log.append("Not read this time: CEQAnet is read only after 6pm Pacific on weekdays (or at weekends), "
+                            "as the State Clearinghouse asked. Earlier entries are kept.")
+            return
         end = today()
         start = end - timedelta(days=int(self.conf.get("lookback_days", 30)))
         chosen: dict[str, dict] = {}
