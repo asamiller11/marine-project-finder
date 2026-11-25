@@ -21,7 +21,7 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
-from datetime import date
+from datetime import date, datetime, timedelta
 from html import escape
 from pathlib import Path
 
@@ -1605,6 +1605,38 @@ def _date(d: date) -> str:
     return d.strftime("%B %-d, %Y")
 
 
+def next_update_time(base: datetime | date, settings: dict) -> datetime:
+    """When the automatic update is next due: update.days_between_updates after the last uploaded update (the
+    clock mpf/autoupdate.py uses). The hourly check starts it within the hour, if the computer is on."""
+    if not isinstance(base, datetime):
+        base = datetime(base.year, base.month, base.day)
+    if base.tzinfo is None:
+        base = base.astimezone()            # the computer's own time zone
+    return base + timedelta(days=int((settings.get("update") or {}).get("days_between_updates", 7)))
+
+
+def _next_update(site: dict) -> str:
+    """'Next update November 26, 2026 (in 1 day, 2 hours).' NEXT_JS fills in the countdown from the viewer's
+    clock and keeps it current each minute; without JavaScript only the date shows."""
+    if not site.get("next_update"):
+        return ""
+    t = datetime.fromisoformat(site["next_update"])
+    return (f'Next update <time datetime="{t.isoformat()}">{_date(t.date())}</time>'
+            f'<span class="next-in" data-next="{t.isoformat()}"></span>.')
+
+
+# Countdown to the next update: days and hours while more than a day away, then hours and minutes. Once the time
+# has passed (the computer that runs the update may be off), it says the update is due, never a negative number.
+NEXT_JS = ("(function(){var es=document.querySelectorAll('.next-in');if(!es.length)return;"
+           "function u(n,w){return n+' '+w+(n===1?'':'s');}"
+           "function f(){var now=Date.now();Array.prototype.forEach.call(es,function(e){"
+           "var m=Math.floor((Date.parse(e.getAttribute('data-next'))-now)/6e4);if(isNaN(m))return;"
+           "var d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60;"
+           "e.textContent=m<=0?' (due now, coming soon)':d>0?' (in '+u(d,'day')+(h?', '+u(h,'hour'):'')+')':"
+           "h>0?' (in '+u(h,'hour')+(mi?', '+u(mi,'minute'):'')+')':' (in '+u(Math.max(mi,1),'minute')+')';});}"
+           "f();setInterval(f,6e4);})();")
+
+
 def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> str:
     """Sticky bar on every page. prefix is "../" on project pages."""
     title = escape(site.get("title", "MitiMark"))
@@ -1644,7 +1676,7 @@ def _footer(site: dict, prefix: str = "") -> str:
         f'<a href="{prefix}projects.html#soon">Public comment deadlines</a>'
         f'<a href="{prefix}shortlist.html">Hard-structure shortlist</a><a href="{prefix}about.html">About and method</a><a href="{prefix}about.html#coverage">Coverage</a>'
         f'<a href="{prefix}projects.csv">All listed projects (CSV)</a></nav>'
-        f"</div></footer>\n<script>{REVEAL_JS}</script>")
+        f"</div></footer>\n<script>{REVEAL_JS}{NEXT_JS}</script>")
 
 
 def _pill(status: str) -> str:
@@ -2236,6 +2268,7 @@ def render_index(records: list[dict], site: dict, tiers: dict, updated: date, co
 <section class="band-tint results" id="results" aria-labelledby="results-h"><div class="wrap">
 <div class="results-bar">
 <div><p class="step js-only" hidden>Step 2</p><h2 id="results-h">Projects</h2><p id="result-count" aria-live="polite">{len(records)} projects listed.</p>
+<p class="meta next-line">Updated <time>{_date(updated)}</time>. {_next_update(site)}</p>
 <p class="result-actions"><button type="button" class="linklike" id="show-weak" hidden>Also show weak fits</button>
 <button type="button" class="linklike" id="show-fresh" hidden>Include freshwater</button></p>
 <div class="active-filters" id="active-filters" aria-label="Filters in use" hidden></div></div>
@@ -2416,7 +2449,7 @@ def render_home(records: list[dict], site: dict, tiers: dict, updated: date, cov
 
 <section class="band band-white curve-bottom" id="how" aria-labelledby="how-h"><div class="wrap">
 <h2 class="band-h" id="how-h">How it works</h2>
-<p class="band-sub">Updated {escape(site.get("update_frequency", "every week"))}. Last update <time>{_date(updated)}</time>.</p>
+<p class="band-sub">Updated {escape(site.get("update_frequency", "every week"))}. Last update <time>{_date(updated)}</time>. {_next_update(site)}</p>
 <ol class="steps">
 <li><span class="icon">{STEP_ICONS["scan"]}</span><h3>We scan public notices</h3>
 <p>Official permit and environmental assessment notices from {n_countries} countries, read every week.</p></li>
@@ -2916,7 +2949,7 @@ def render_about(site: dict, tiers: dict, updated: date, coverage: dict | None =
 <h1>About {escape(site.get("title", "MitiMark"))}</h1>
 <p class="tagline about-tagline">{escape(_tagline(site))}</p>
 <p>{escape(site.get('description', ''))}</p>
-<p class="meta">Last successful update: <time>{_date(updated)}</time></p>
+<p class="meta">Last successful update: <time>{_date(updated)}</time>. {_next_update(site)}</p>
 </div></section>
 <main class="wrap about-layout" id="main">
 <nav class="toc" aria-label="On this page"><p class="side-label">On this page</p>
@@ -3075,11 +3108,14 @@ or notice, and nothing comes from any company's internal information.</p>
 
 
 def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date,
-               coverage: dict | None = None, news_items: list[dict] | None = None) -> None:
-    """news_items: only passed when news.show_on_site is on (see mpf/news.py)."""
+               coverage: dict | None = None, news_items: list[dict] | None = None,
+               next_from: datetime | None = None) -> None:
+    """news_items: only passed when news.show_on_site is on (see mpf/news.py). next_from: when the update clock
+    last started (the last uploaded update); the next update is shown as days_between_updates after it."""
     from mpf import history as hist
     coverage = coverage if coverage is not None else load_coverage()
     site_conf, tiers = settings.get("site", {}), settings.get("tiers", {})
+    site_conf = dict(site_conf, next_update=next_update_time(next_from or updated, settings).isoformat(timespec="minutes"))
     out_dir.mkdir(parents=True, exist_ok=True)
     # Snapshot history: compare with the previous update, then add the timeline to each record.
     h = hist.record_snapshot(hist.load(out_dir / "history.json"), records, updated.isoformat())
@@ -3120,6 +3156,7 @@ def write_site(out_dir: Path, records: list[dict], settings: dict, updated: date
     hist.save(out_dir / "history.json", h)
     # Read by the health check (mpf/health.py): the live copy only changes when an update is uploaded.
     (out_dir / "status.json").write_text(json.dumps({"last_successful_update": updated.isoformat(),
+                                                    "next_update": site_conf["next_update"],
                                                     "items": len(records)}, indent=1), encoding="utf-8")
     for f in ASSETS.iterdir():          # logo.svg, favicon.svg/.ico, PNG icons
         if f.is_file() and not f.name.startswith("."):

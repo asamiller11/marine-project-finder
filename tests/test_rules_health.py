@@ -293,7 +293,8 @@ def test_built_site_has_feeds_status_and_last_successful_update(tmp_path):
                  language="en", water_body="", score=70, tier_reason="", reviewed=False, summary_note="",
                  licence_types=[], freshwater=False, too_late=False)]
     site.write_site(tmp_path, recs, s, date(2026, 11, 17), coverage={"countries": []})
-    assert json.loads((tmp_path / "status.json").read_text()) == {"last_successful_update": "2026-11-17", "items": 1}
+    st = json.loads((tmp_path / "status.json").read_text())
+    assert st["last_successful_update"] == "2026-11-17" and st["items"] == 1 and st["next_update"].startswith("2026-11-24T00:00")
     assert (tmp_path / "feeds" / "all.xml").exists()
     assert "Last update" in (tmp_path / "index.html").read_text()        # the home page says when
     assert 'href="feeds/all.xml"' in (tmp_path / "about.html").read_text()
@@ -323,3 +324,15 @@ def test_country_menu_says_coming_soon_only_for_countries_not_read():
     assert "Norway (coming soon)" in site.country_option(no, [], meta) and "disabled" in site.country_option(no, [], meta)
     dk = {"code": "DK", "name": "Denmark", "status": "partial"}
     assert "Denmark (nothing listed now)" in site.country_option(dk, [], meta)
+
+
+def test_pages_show_next_update_date_and_countdown():
+    """The next update is days_between_updates after the last uploaded one; NEXT_JS shows the countdown."""
+    from datetime import datetime
+    from mpf.site import NEXT_JS, _next_update, next_update_time
+    t = next_update_time(datetime(2026, 11, 19, 15, 48), {"update": {"days_between_updates": 7}})
+    assert (t.year, t.month, t.day, t.hour, t.minute) == (2026, 11, 26, 15, 48)
+    html = _next_update({"next_update": t.isoformat(timespec="minutes")})
+    assert "November 26, 2026" in html and 'data-next="2026-11-26T15:48' in html
+    assert _next_update({}) == ""
+    assert "due now" in NEXT_JS and "setInterval" in NEXT_JS

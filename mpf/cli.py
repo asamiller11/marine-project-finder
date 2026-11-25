@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import sys
 
 import requests
@@ -281,7 +282,16 @@ def cmd_publish(args, settings):
         from mpf.config import load_scoring
         news_items = news.build_news(conn, records, load_scoring(), settings["news"].get("max_age_days", 60),
                                      today().isoformat())
-    site.write_site(out, records, settings, today(), news_items=news_items)
+    # The update clock: a weekly update passes its own start time (MPF_UPDATE_STARTED, about to become
+    # last_success); a manual publish keeps counting from the last uploaded update.
+    from datetime import datetime as _dt
+    from mpf.update import read_state
+    started = os.environ.get("MPF_UPDATE_STARTED") or read_state(settings).get("last_success")
+    try:
+        next_from = _dt.fromisoformat(started) if started else None
+    except ValueError:
+        next_from = None
+    site.write_site(out, records, settings, today(), news_items=news_items, next_from=next_from)
     tiers = Counter(r["tier"] for r in records)
     print(f"Built {out / 'index.html'}: {site.listing_summary(records)}. General list: " +
           ", ".join(f"{TIER_LABELS[t]} {tiers.get(t, 0)}" for t in site.PUBLISHED_TIERS))

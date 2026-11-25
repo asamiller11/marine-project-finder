@@ -158,7 +158,9 @@ def run_update(settings: dict, upload: bool = True) -> int:
         _step(4, total, "Updating the review file (your yes/no decisions are kept)")
         _run([_python(), "-W", "ignore", "-m", "mpf", "review"], "Updating the review file")
         _step(5, total, "Building the website")
-        _run([_python(), "-W", "ignore", "-m", "mpf", "publish"], "Building the website")
+        started = datetime.now().isoformat(timespec="seconds")
+        env = dict(os.environ, MPF_UPDATE_STARTED=started) if upload else None
+        _run([_python(), "-W", "ignore", "-m", "mpf", "publish"], "Building the website", env=env)
         records = json.loads((ROOT / "site" / "items.json").read_text(encoding="utf-8"))
         counts = counts_by_country(records)
         # Research queue: new Strong/Possible projects to research, and changed developer pages of Strong projects
