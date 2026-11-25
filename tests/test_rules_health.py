@@ -294,7 +294,11 @@ def test_built_site_has_feeds_status_and_last_successful_update(tmp_path):
                  licence_types=[], freshwater=False, too_late=False)]
     site.write_site(tmp_path, recs, s, date(2026, 11, 17), coverage={"countries": []})
     st = json.loads((tmp_path / "status.json").read_text())
-    assert st["last_successful_update"] == "2026-11-17" and st["items"] == 1 and st["next_update"].startswith("2026-11-24T00:00")
+    assert st["last_successful_update"] == "2026-11-17" and st["items"] == 1
+    # A week after the build, perhaps moved to 6pm Pacific (CEQAnet); works in any time zone (GitHub runs in UTC).
+    from datetime import datetime, timedelta
+    built = datetime(2026, 11, 17).astimezone()
+    assert timedelta(days=7) <= datetime.fromisoformat(st["next_update"]) - built < timedelta(days=8)
     assert (tmp_path / "feeds" / "all.xml").exists()
     assert "Last update" in (tmp_path / "index.html").read_text()        # the home page says when
     assert 'href="feeds/all.xml"' in (tmp_path / "about.html").read_text()
