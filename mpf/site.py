@@ -612,7 +612,8 @@ nav.top{display:flex;gap:6px;flex-wrap:wrap}
 nav.top a{color:#fff;text-decoration:none;font-size:.97rem;font-weight:550;padding:10px 14px;border-radius:999px;transition:background .2s,color .2s}
 nav.top a:hover{background:rgba(255,255,255,.12)}
 nav.top a[aria-current=page]{background:rgba(255,255,255,.16);color:#fff}
-.topbar .updated{margin:0 0 0 auto;font-size:.88rem;color:var(--on-blue-2)}
+.topbar .updated{margin:0 0 0 auto;font-size:.88rem;line-height:1.4;text-align:right;color:var(--on-blue-2)}
+.topbar .next-up{display:block}
 /* Tagline: the same pale blue as the pills on the blue bands, which are navy in both themes. In the header it shows
    only where the whole bar fits on one line, so it never wraps. */
 .tagline{color:var(--pale)}
@@ -1632,15 +1633,15 @@ def _next_update(site: dict) -> str:
             f'<span class="next-in" data-next="{t.isoformat()}"></span>.')
 
 
-# Countdown to the next update: days and hours while more than a day away, then hours and minutes. Once the time
+# Countdown to the next update (short form "1d 16h" where data-short is set, in the top bar): days and hours while more than a day away, then hours and minutes. Once the time
 # has passed (the computer that runs the update may be off), it says the update is due, never a negative number.
 NEXT_JS = ("(function(){var es=document.querySelectorAll('.next-in');if(!es.length)return;"
-           "function u(n,w){return n+' '+w+(n===1?'':'s');}"
+           "function u(n,w,s){return s?n+w.charAt(0):n+' '+w+(n===1?'':'s');}"
            "function f(){var now=Date.now();Array.prototype.forEach.call(es,function(e){"
            "var m=Math.floor((Date.parse(e.getAttribute('data-next'))-now)/6e4);if(isNaN(m))return;"
-           "var d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60;"
-           "e.textContent=m<=0?' (due now, coming soon)':d>0?' (in '+u(d,'day')+(h?', '+u(h,'hour'):'')+')':"
-           "h>0?' (in '+u(h,'hour')+(mi?', '+u(mi,'minute'):'')+')':' (in '+u(Math.max(mi,1),'minute')+')';});}"
+           "var d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60,s=e.hasAttribute('data-short'),c=s?' ':', ';"
+           "e.textContent=m<=0?(s?' (due now)':' (due now, coming soon)'):d>0?' (in '+u(d,'day',s)+(h?c+u(h,'hour',s):'')+')':"
+           "h>0?' (in '+u(h,'hour',s)+(mi?c+u(mi,'minute',s):'')+')':' (in '+u(Math.max(mi,1),'minute',s)+')';});}"
            "f();setInterval(f,6e4);})();")
 
 
@@ -1656,7 +1657,17 @@ def _topbar(site: dict, updated: date, active: str = "", prefix: str = "") -> st
             f'<header class="topbar"><div class="wrap">\n<a class="brand" href="{prefix}index.html">{LOGO}<span>{title}</span></a>\n'
             f'<p class="tagline top-tagline">{escape(_tagline(site))}</p>\n'
             f'<nav class="top" aria-label="Main">{nav}</nav>\n'
-            f'<p class="updated">Updated <time>{_date(updated)}</time></p>\n</div></header>')
+            f'<p class="updated">Updated <time datetime="{updated.isoformat()}">{updated.strftime("%b %-d")}</time>'
+            f'{_next_top(site)}</p>\n</div></header>')
+
+
+def _next_top(site: dict) -> str:
+    """Second line under "Updated ..." in the top bar: next update date and the countdown (NEXT_JS)."""
+    if not site.get("next_update"):
+        return ""
+    t = datetime.fromisoformat(site["next_update"])
+    return (f'<span class="next-up">Next update <time datetime="{t.isoformat()}">{t.strftime("%b %-d")}</time>'
+            f'<span class="next-in" data-next="{t.isoformat()}" data-short="1"></span></span>')
 
 
 # Bands that start below the first screen fade in as they scroll into view. Nothing happens with reduced motion,
