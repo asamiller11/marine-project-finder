@@ -49,7 +49,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -34,
+   "days_left": -36,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -712,7 +712,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-13",
-   "days_left": 20,
+   "days_left": 18,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -882,7 +882,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 7,
+   "days_left": 5,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1041,7 +1041,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-11",
-   "days_left": 18,
+   "days_left": 16,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1202,7 +1202,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2027-01-04",
-   "days_left": 42,
+   "days_left": 40,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1291,9 +1291,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -1337,7 +1335,7 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 5,
+   "days_left": 3,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1791,7 +1789,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -311,
+   "days_left": -313,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -2199,9 +2197,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -2832,9 +2828,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -3275,9 +3269,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -3321,7 +3313,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2023-03-31",
-   "days_left": -1333,
+   "days_left": -1335,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3410,9 +3402,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -3543,9 +3533,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -3587,7 +3575,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-08-02",
-   "days_left": -478,
+   "days_left": -480,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3677,9 +3665,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -4255,9 +4241,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -4476,7 +4460,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2021-08-22",
-   "days_left": -1919,
+   "days_left": -1921,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4565,9 +4549,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -4613,7 +4595,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -150,
+   "days_left": -152,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -5354,9 +5336,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -5744,9 +5724,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -5794,7 +5772,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-12",
-   "days_left": -11,
+   "days_left": -13,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -5918,7 +5896,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-19",
-   "days_left": -4,
+   "days_left": -6,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6036,7 +6014,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-28",
-   "days_left": -56,
+   "days_left": -58,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6157,7 +6135,7 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 4,
+   "days_left": 2,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6315,7 +6293,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-12-15",
-   "days_left": 22,
+   "days_left": 20,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6415,283 +6393,6 @@
   "first_listed": "2026-11-12"
  },
  {
-  "id": "iaac:90491",
-  "title": "Hopkins Slipway Extension – Canadian Coast Guard Academy",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90491?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Canadian Coast Guard",
-  "country": "CA",
-  "province": "Nova Scotia",
-  "language": "en",
-  "water_body": "unknown",
-  "types": [
-   "Shoreline protection, seawall or bulkhead"
-  ],
-  "stage": "public comment open until 2026-11-24",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-24",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 30,
-  "tier": "weak",
-  "tier_label": "Weak fit",
-  "tier_reason": "20 points for the kind of work, plus 10 for stage, timing and who is named",
-  "reviewed": false,
-  "summary": "Project by Canadian Coast Guard in Nova Scotia. The notice mentions shoreline protection work and an area of about 1,500 m2.",
-  "summary_note": "auto",
-  "quotes": [
-   "Adjacent slopes will be protected using two layers of 200–500 kg riprap (approximately 1,100 mm overall armour thickness) over filter fabric and core stone, generally placed at a slope of about 1.5 H :1 V ."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90491.html",
-  "comments": {
-   "opens": "2026-11-05",
-   "opens_how": "notice date",
-   "closes": "2026-11-24",
-   "days_left": 1,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "possible",
-    "tier_label": "Possible fit",
-    "score": 55,
-    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 1,500 m 2",
-    "relevance": 45
-   },
-   "living-shoreline": {
-    "tier": "possible",
-    "tier_label": "Possible fit",
-    "score": 36,
-    "because": "Shoreline protection, seawall or bulkhead; size 1,500 m 2",
-    "relevance": 26
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "Canadian Coast Guard",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Director Environment and Sustainable Management",
-     "detail": "Assistant Deputy Minister (Infrastructure & Environment), Department of National Defence",
-     "how": "Contact office listed on the registry page",
-     "quote": ""
-    }
-   ]
-  },
-  "research": {
-   "facts": [],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 20,
-  "win": {
-   "points": 10,
-   "stage": "open",
-   "entry_point": "Comment period open until November 24, 2026: submit a comment or contact the proponent (Canadian Coast Guard).",
-   "reasons": [
-    "Shoreline protection, seawall or bulkhead",
-    "Early: public comment period open (+10)"
-   ],
-   "construction_start": ""
-  },
-  "timeline": [
-   {
-    "date": "2026-11-11",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-11"
- },
- {
-  "id": "iaac:90794",
-  "title": "Lazy Head Marine Terminal Project",
-  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90794?culture=en-CA",
-  "source": "iaac",
-  "source_name": "Canadian Impact Assessment Registry",
-  "proponent": "Carver Mineral Resources, Inc.",
-  "country": "CA",
-  "province": "Nova Scotia",
-  "language": "en",
-  "water_body": "Chedabucto Bay",
-  "types": [
-   "Port or marine terminal"
-  ],
-  "stage": "public comment open until 2026-11-23",
-  "stage_kind": "open",
-  "comment_deadline": "2026-11-23",
-  "decision_date": null,
-  "approved_on": null,
-  "score": 30,
-  "tier": "weak",
-  "tier_label": "Weak fit",
-  "tier_reason": "20 points for the kind of work, plus 10 for stage, timing and who is named",
-  "reviewed": false,
-  "summary": "Project by Carver Mineral Resources, Inc. in Chedabucto Bay, Nova Scotia. The notice mentions port or terminal work.",
-  "summary_note": "auto",
-  "quotes": [
-   "As proposed, the Lazy Head Marine Terminal Project would consist of a new marine terminal in Chedabucto Bay, designed to accommodate vessels of up to 48,000 deadweight tonnes and support the export of aggregate.",
-   "November 3, 2026 - The Impact Assessment Agency of Canada is inviting Indigenous Peoples and the public to review the summary of the Initial Project Description for the Lazy Head Marine Terminal Project and provide feedback by November 23, 2026."
-  ],
-  "attribution": "",
-  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
-  "issued_by": "",
-  "too_late": false,
-  "also_listed": [],
-  "page": "p/iaac-90794.html",
-  "comments": {
-   "opens": null,
-   "opens_how": "",
-   "closes": "2026-11-23",
-   "days_left": 0,
-   "count": null,
-   "count_as_of": null,
-   "comments_url": null,
-   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
-  },
-  "licence_types": [],
-  "profiles": {
-   "hard-structure": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 18,
-    "because": "Port or marine terminal",
-    "relevance": 18
-   },
-   "living-shoreline": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "seagrass": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "kelp": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "coral": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   },
-   "banking": {
-    "tier": "notrel",
-    "tier_label": "Not relevant",
-    "score": 0,
-    "because": "",
-    "relevance": 0
-   }
-  },
-  "freshwater": false,
-  "stakeholders": {
-   "owner": [
-    {
-     "name": "Carver Mineral Resources, Inc.",
-     "detail": "",
-     "how": "Proponent named by the registry",
-     "quote": ""
-    }
-   ],
-   "consultant": [],
-   "contractor": [],
-   "agency_contact": [
-    {
-     "name": "Impact Assessment Agency of Canada",
-     "detail": "Media Relations",
-     "how": "Contact office listed on the registry page",
-     "quote": ""
-    }
-   ]
-  },
-  "research": {
-   "facts": [],
-   "people": [],
-   "orgs": {},
-   "developer_only": false
-  },
-  "relevance_score": 20,
-  "win": {
-   "points": 10,
-   "stage": "open",
-   "entry_point": "Comment period open until November 23, 2026: submit a comment or contact the proponent (Carver Mineral Resources, Inc.).",
-   "reasons": [
-    "Port or marine terminal",
-    "Early: public comment period open (+10)"
-   ],
-   "construction_start": ""
-  },
-  "timeline": [
-   {
-    "date": "2026-11-11",
-    "type": "new",
-    "text": "First listed"
-   }
-  ],
-  "changes": [],
-  "first_listed": "2026-11-11"
- },
- {
   "id": "ceqanet:2026110429",
   "title": "State Route 1 Rock Slope Protection Project",
   "url": "https://ceqanet.lci.ca.gov/2026110429",
@@ -6732,7 +6433,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-31",
-   "days_left": 38,
+   "days_left": 36,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6821,9 +6522,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -6954,9 +6653,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -6998,7 +6695,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2023-02-22",
-   "days_left": -1370,
+   "days_left": -1372,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -7087,9 +6784,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -7224,9 +6919,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -7358,9 +7051,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -7491,9 +7182,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -8575,9 +8264,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -8853,9 +8540,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -8985,9 +8670,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9117,9 +8800,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9249,9 +8930,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9381,9 +9060,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9513,9 +9190,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9645,9 +9320,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9776,9 +9449,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -9822,7 +9493,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": -22,
+   "days_left": -24,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -10172,9 +9843,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -10306,9 +9975,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -10802,7 +10469,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -507,
+   "days_left": -509,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11057,7 +10724,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2020-03-16",
-   "days_left": -2443,
+   "days_left": -2445,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11146,10 +10813,146 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
+ },
+ {
+  "id": "iaac:90491",
+  "title": "Hopkins Slipway Extension – Canadian Coast Guard Academy",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90491?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Canadian Coast Guard",
+  "country": "CA",
+  "province": "Nova Scotia",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "public comment open until 2026-11-24",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-24",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 24,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Canadian Coast Guard in Nova Scotia. The notice mentions shoreline protection work and an area of about 1,500 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Adjacent slopes will be protected using two layers of 200–500 kg riprap (approximately 1,100 mm overall armour thickness) over filter fabric and core stone, generally placed at a slope of about 1.5 H :1 V ."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90491.html",
+  "comments": {
+   "opens": "2026-11-05",
+   "opens_how": "notice date",
+   "closes": "2026-11-24",
+   "days_left": -1,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 49,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 1,500 m 2",
+    "relevance": 45
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 30,
+    "because": "Shoreline protection, seawall or bulkhead; size 1,500 m 2",
+    "relevance": 26
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Canadian Coast Guard",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Director Environment and Sustainable Management",
+     "detail": "Assistant Deputy Minister (Infrastructure & Environment), Department of National Defence",
+     "how": "Contact office listed on the registry page",
+     "quote": ""
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Canadian Coast Guard); no engineering firm is named yet.",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-11"
  },
  {
   "id": "bc_eao:60edc23bc69c5e0023a12539",
@@ -11188,7 +10991,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2024-12-12",
-   "days_left": -711,
+   "days_left": -713,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11277,10 +11080,147 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
+ },
+ {
+  "id": "iaac:90794",
+  "title": "Lazy Head Marine Terminal Project",
+  "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90794?culture=en-CA",
+  "source": "iaac",
+  "source_name": "Canadian Impact Assessment Registry",
+  "proponent": "Carver Mineral Resources, Inc.",
+  "country": "CA",
+  "province": "Nova Scotia",
+  "language": "en",
+  "water_body": "Chedabucto Bay",
+  "types": [
+   "Port or marine terminal"
+  ],
+  "stage": "public comment open until 2026-11-23",
+  "stage_kind": "closed",
+  "comment_deadline": "2026-11-23",
+  "decision_date": null,
+  "approved_on": null,
+  "score": 24,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "20 points for the kind of work, plus 4 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Carver Mineral Resources, Inc. in Chedabucto Bay, Nova Scotia. The notice mentions port or terminal work.",
+  "summary_note": "auto",
+  "quotes": [
+   "As proposed, the Lazy Head Marine Terminal Project would consist of a new marine terminal in Chedabucto Bay, designed to accommodate vessels of up to 48,000 deadweight tonnes and support the export of aggregate.",
+   "November 3, 2026 - The Impact Assessment Agency of Canada is inviting Indigenous Peoples and the public to review the summary of the Initial Project Description for the Lazy Head Marine Terminal Project and provide feedback by November 23, 2026."
+  ],
+  "attribution": "",
+  "agency": "Impact Assessment Agency of Canada, Canadian Impact Assessment Registry",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/iaac-90794.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": "2026-11-23",
+   "days_left": -2,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "The registry shows the number of comments received on some project pages (mostly larger assessments). This project page shows none."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 18,
+    "because": "Port or marine terminal",
+    "relevance": 18
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Carver Mineral Resources, Inc.",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Impact Assessment Agency of Canada",
+     "detail": "Media Relations",
+     "how": "Contact office listed on the registry page",
+     "quote": ""
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 20,
+  "win": {
+   "points": 4,
+   "stage": "closed",
+   "entry_point": "Decision pending: contact the proponent (Carver Mineral Resources, Inc.); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Comment period closed, decision still pending (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-11",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [],
+  "first_listed": "2026-11-11"
  },
  {
   "id": "bc_eao:588511e3aaecd9001b8274d4",
@@ -11322,7 +11262,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2023-06-09",
-   "days_left": -1263,
+   "days_left": -1265,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11411,9 +11351,7 @@
     "text": "First listed"
    }
   ],
-  "changes": [
-   "new"
-  ],
+  "changes": [],
   "first_listed": "2026-11-23"
  },
  {
@@ -12198,7 +12136,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -73,
+   "days_left": -75,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -12504,7 +12442,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -227,
+   "days_left": -229,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -12639,7 +12577,7 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": -18,
+   "days_left": -20,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -13604,7 +13542,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-18",
-   "days_left": -66,
+   "days_left": -68,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -13721,7 +13659,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-13",
-   "days_left": -41,
+   "days_left": -43,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
