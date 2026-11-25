@@ -336,3 +336,14 @@ def test_pages_show_next_update_date_and_countdown():
     assert "November 26, 2026" in html and 'data-next="2026-11-26T15:48' in html
     assert _next_update({}) == ""
     assert "due now" in NEXT_JS and "setInterval" in NEXT_JS
+
+
+def test_next_update_waits_for_pacific_evening_when_ceqanet_is_on():
+    from datetime import datetime
+    from mpf.sources.ceqanet import PACIFIC
+    from mpf.site import next_update_time
+    settings = {"update": {"days_between_updates": 7}, "sources": {"ceqanet": {"enabled": True}}}
+    t = next_update_time(datetime(2026, 11, 19, 12, 48, tzinfo=PACIFIC), settings)    # due Thursday 12:48 Pacific
+    assert t.astimezone(PACIFIC).strftime("%Y-%m-%d %H:%M") == "2026-11-26 18:00"
+    t = next_update_time(datetime(2026, 11, 19, 20, 0, tzinfo=PACIFIC), settings)     # already in the evening
+    assert t.astimezone(PACIFIC).strftime("%Y-%m-%d %H:%M") == "2026-11-26 20:00"

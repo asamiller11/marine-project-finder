@@ -1612,7 +1612,14 @@ def next_update_time(base: datetime | date, settings: dict) -> datetime:
         base = datetime(base.year, base.month, base.day)
     if base.tzinfo is None:
         base = base.astimezone()            # the computer's own time zone
-    return base + timedelta(days=int((settings.get("update") or {}).get("days_between_updates", 7)))
+    due = base + timedelta(days=int((settings.get("update") or {}).get("days_between_updates", 7)))
+    if ((settings.get("sources") or {}).get("ceqanet") or {}).get("enabled"):
+        # The automatic update waits until after 6pm Pacific on weekdays (CEQAnet's request, mpf/autoupdate.py).
+        from mpf.sources.ceqanet import PACIFIC, in_business_hours
+        if in_business_hours(due):
+            pt = due.astimezone(PACIFIC)
+            due = pt.replace(hour=18, minute=0, second=0, microsecond=0).astimezone(due.tzinfo)
+    return due
 
 
 def _next_update(site: dict) -> str:
