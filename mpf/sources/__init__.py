@@ -1,4 +1,5 @@
 """All sources, by the name used in config/settings.yaml."""
+from mpf.sources.au_epbc import AUEPBCSource
 from mpf.sources.bc_eao import BCEAOSource
 from mpf.sources.ca_coastal import CACoastalSource
 from mpf.sources.ceqanet import CEQAnetSource
@@ -40,11 +41,13 @@ SOURCES = {
     "ns_ea": NSEASource,
     "ceqanet": CEQAnetSource,
     "qc_ree": QCREESource,
+    # Australia, EPBC Act Public Portal (written permission, 2026-11-24). Read with the hidden browser.
+    "au_epbc": AUEPBCSource,
 }
 
 # Live sources the scheduled GitHub run reads (the DFO test set and drop folder are local only).
 LIVE_SOURCES = ["iaac", "nl_ea", "bc_eao", "dk_hoering", "scot_marine", "es_boe", "fr_eolien", "fed_register",
-                "noaa_ita", "fed_register_broad", "fr_mce", "nl_sru", "ca_coastal", "ns_ea", "ceqanet", "qc_ree"]
+                "noaa_ita", "fed_register_broad", "fr_mce", "nl_sru", "ca_coastal", "ns_ea", "ceqanet", "qc_ree", "au_epbc"]
 
 # A page each source must be able to reach, for `python -m mpf check-access`.
 CHECK_URLS = {
@@ -59,4 +62,5 @@ CHECK_URLS = {
     "ns_ea": "https://novascotia.ca/nse/ea/projects.asp",
     "ceqanet": "https://ceqanet.lci.ca.gov/Search/Recent",
     "qc_ree": "https://www.ree.environnement.gouv.qc.ca/index.asp",
+    "au_epbc": "https://epbcpublicportal.environment.gov.au/all-referrals/",
 }

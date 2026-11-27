@@ -311,6 +311,22 @@ class PoliteClient:
         meta_path.write_text(json.dumps(meta, indent=1))
         return resp.status_code, body
 
+    def browser_visit(self, url: str) -> None:
+        """The polite checks before the hidden browser (mpf/browser.py) opens url or clicks to load more of it:
+        never_fetch, a host that refused us this run, robots.txt (no robots_exception for the browser), and the
+        per-host wait. Counts as one network request."""
+        self._check_never_fetch(url)
+        host = urlparse(url).netloc
+        if host in self.refused_hosts:
+            raise Blocked(f"{host} refused us earlier in this run ({self.refused_hosts[host]}). Not asking again.")
+        robots = self._robots_for(url)
+        p = urlparse(url)
+        if not robots.allowed((p.path + ("?" + p.query if p.query else "")) or "/"):
+            raise Blocked(f"robots.txt disallows {url}")
+        delay = max(self.default_delay, self.host_delays.get(host, 0), robots.crawl_delay or 0)
+        self._wait(host, delay)
+        self.network_requests += 1
+
     def get(self, url: str, list_page: bool = False, max_bytes: int | None = None,
             headers: dict | None = None) -> bytes:
         """Fetch a URL (or return the cached copy). Raises Blocked or requests errors.

@@ -59,6 +59,12 @@ sources:
     languages: [en]
     agency: "Government of Nova Scotia, Department of Environment and Climate Change"
     attribution: "Used with the Province's written permission."
+  au_epbc:
+    name: "EPBC Act Public Portal (referrals and notices open for public comment)"
+    url: "https://epbcpublicportal.environment.gov.au/"
+    languages: [en]
+    agency: "National Environmental Protection Agency, EPBC Act Public Portal"
+    attribution: "Used with the agency's written permission."
   ceqanet:
     name: "CEQAnet (California State Clearinghouse CEQA documents)"
     url: "https://ceqanet.lci.ca.gov/"
@@ -158,5 +164,10 @@ countries:
   - {code: "FI", name: Finland, status: coming_soon, sources: [], note: "lausuntopalvelu.fi blocks automated access (its robots.txt answers HTTP 403)."}
   - {code: "PL", name: Poland, status: coming_soon, sources: [], note: "No project registry found."}
   - {code: "GR", name: Greece, status: coming_soon, sources: [], note: "robots.txt disallows the registry's project pages."}
-  - {code: "AU", name: Australia, status: coming_soon, sources: [], note: "The EPBC portal's comment list needs JavaScript."}
+  - code: "AU"
+    name: Australia
+    region_label: "State or territory"
+    status: partial
+    sources: [au_epbc]
+    note: "Projects referred under the federal EPBC Act in the last year, with their public comment deadlines. State and territory assessments are not included yet."
   - {code: "NZ", name: "New Zealand", status: coming_soon, sources: [], note: "EPA New Zealand's robots.txt disallows automated access."}
