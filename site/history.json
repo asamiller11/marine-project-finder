@@ -643,6 +643,36 @@
 "tier": "strong",
 "title": "Capital Dredging and Sea Deposit- Port of Greenock"
 },
+"au_epbc:2026-10600": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "strong",
+"title": "High Sea Wind - Offshore wind farm Victorian component"
+},
+"au_epbc:2026-10601": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "strong",
+"title": "High Sea Wind - offshore wind farm Commonwealth component"
+},
+"au_epbc:2026-10573": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "strong",
+"title": "Star of the South Offshore Wind Farm Geophysical and Geotechnical Investigations"
+},
+"au_epbc:2026-10655": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "strong",
+"title": "In-situ cement additive trial"
+},
+"au_epbc:2026-10613": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "strong",
+"title": "Bunbury Offshore Wind Project"
+},
 "iaac:90890": {
 "comment_deadline": "2026-12-13",
 "stage_kind": "open",
@@ -709,6 +739,18 @@
 "tier": "possible",
 "title": "Additional Information Public Notice - Ardersier Port Expansion Phase 2"
 },
+"au_epbc:2026-10528": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Dungeness Breakwater and Dredging"
+},
+"au_epbc:2026-10673": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Gold Coast Oceanway Project"
+},
 "scot_marine:00012570": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -732,6 +774,12 @@
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "Marine Licence Variation Application– Pontoon Upgrades – Eyemouth Harbour Pontoons, Eyemouth"
+},
+"au_epbc:2026-10692": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Main Beach Parade Pedestrian Access to Foreshore."
 },
 "iaac:90777": {
 "comment_deadline": null,
@@ -811,6 +859,12 @@
 "tier": "possible",
 "title": "Ridley Island Energy Export Facility (formerly known as Vopak Pacific Canada)"
 },
+"au_epbc:2026-10684": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Tasman Ring Network Marine Route Survey for Submarine Telecommunication Cable"
+},
 "nl_ea:2410": {
 "comment_deadline": "2026-06-26",
 "stage_kind": "decided",
@@ -846,6 +900,12 @@
 "stage_kind": "assessment",
 "tier": "possible",
 "title": "St. Malo Association et al. Oceanside"
+},
+"au_epbc:2026-10627": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Aquaculture research in the Blue Economy Zone: stocking salmon and cultivating seaweed"
 },
 "scot_marine:00012432/00011450": {
 "comment_deadline": null,
@@ -2137,6 +2197,76 @@
 }
 ],
 "scot_marine:00012474": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10600": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10601": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10573": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10655": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10613": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10528": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10673": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10692": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10684": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"au_epbc:2026-10627": [
 {
 "date": "2026-11-27",
 "type": "new",

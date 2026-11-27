@@ -670,6 +670,688 @@
   "first_listed": "2026-11-13"
  },
  {
+  "id": "au_epbc:2026-10600",
+  "title": "High Sea Wind - Offshore wind farm Victorian component",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=d540dc9b-0d8a-f111-ab0f-7c1e522b7864",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "HIGH SEA WIND PTY LTD",
+  "country": "AU",
+  "province": "Victoria",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 74,
+  "tier": "strong",
+  "tier_label": "Strong fit",
+  "tier_reason": "62 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by HIGH SEA WIND PTY LTD in Victoria. The notice mentions offshore wind work and an area of about 150,000,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Shore crossing A trenchless (horizontal directional drilling (HDD) or direct pipe) shore crossing would be constructed to minimise disturbance to intertidal and coastal environments.",
+   "The onshore construction duration would be one year with shore crossing works estimated at six months and export cable installation in Victorian coastal waters around six months.",
+   "The proposed action within this referral includes the construction, operation, and decommissioning of the offshore transmission infrastructure within Victorian coastal waters and the onshore transmission area."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10600.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 93,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Fixed-bottom foundations (monopile, jacket or gravity base); Work below high water or footprint on the seabed; size 5 to 23 km",
+    "relevance": 81
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 54,
+    "because": "Intertidal zone, salt marsh or tidal wetland; Work below high water or footprint on the seabed; size 5 to 23 km",
+    "relevance": 42
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "HIGH SEA WIND PTY LTD",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 62,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (HIGH SEA WIND PTY LTD); no engineering firm is named yet.",
+   "reasons": [
+    "Offshore wind",
+    "Early: still under review, design not final (+8)",
+    "Large project (5 to 23 km) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
+  "id": "au_epbc:2026-10601",
+  "title": "High Sea Wind - offshore wind farm Commonwealth component",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=9ff607ae-0d8a-f111-ab0f-7ced8d32aaa3",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "HIGH SEA WIND PTY LTD",
+  "country": "AU",
+  "province": "Commonwealth Marine",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Port or marine terminal",
+   "Offshore wind",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 72,
+  "tier": "strong",
+  "tier_label": "Strong fit",
+  "tier_reason": "60 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by HIGH SEA WIND PTY LTD in Commonwealth Marine. The notice mentions offshore wind, pile and port or terminal work and an area of about 150,000,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Foundations would be assembled onshore at a nearby port facility, transported to the project site by construction vessels and installed using the required techniques such as hydraulic or vibratory hammers.",
+   "The project, High Sea Wind is proposed to deliver utility scale generation capacity to Victoria and is being developed by High Sea Wind Pty Ltd. The offshore wind farm area would be in the Gippsland Declared Area OEI0-01-2022, approximately 76.3 km from the coast (Figure 1 of Attachment 1).",
+   "Offshore transmission Installation of the offshore export cables would include bringing in cable‑lay and support vessels, preparing the seabed and sequential cable‑laying from the offshore substations to the shore‑crossing."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10601.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 100,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Port or marine terminal; Piles or pile-supported structure; size 30 kilometre",
+    "relevance": 91
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "HIGH SEA WIND PTY LTD",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 60,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (HIGH SEA WIND PTY LTD); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)",
+    "Large project (150 km2) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
+  "id": "au_epbc:2026-10573",
+  "title": "Star of the South Offshore Wind Farm Geophysical and Geotechnical Investigations",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=c9703197-7773-f111-ab0f-7c1e5262eacb",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "STAR OF THE SOUTH WIND FARM PTY LTD",
+  "country": "AU",
+  "province": "Commonwealth Marine",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 63,
+  "tier": "strong",
+  "tier_label": "Strong fit",
+  "tier_reason": "51 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by STAR OF THE SOUTH WIND FARM PTY LTD in Commonwealth Marine. The notice mentions offshore wind work and an area of about 2,342,210,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "Once operational, the Star of the South Offshore Wind Project would provide an installed capacity of up to 2.2 gigawatts, enough to power approximately 1.2 million homes across Victoria.",
+   "The Proposed Action - Geophysical and geotechnical investigations The proposed action is to undertake offshore geophysical and geotechnical investigations to evaluate the feasibility and support the development of the Star of the South Offshore Wind Project.",
+   "The activity area and maximum disturbance area The proposed action will be carried out over the area where offshore wind infrastructure for Star of the South Offshore Wind Project may be placed."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10573.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 71,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Work below high water or footprint on the seabed; Offshore wind; size 10-kilometre",
+    "relevance": 59
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "STAR OF THE SOUTH WIND FARM PTY LTD",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 51,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (STAR OF THE SOUTH WIND FARM PTY LTD); no engineering firm is named yet.",
+   "reasons": [
+    "Offshore wind",
+    "Early: still under review, design not final (+8)",
+    "Large project (10-kilometre) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
+  "id": "au_epbc:2026-10655",
+  "title": "In-situ cement additive trial",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=3bbbfb52-8eb2-f111-aaab-6045bdc26cca",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "Port of Hastings Corporation",
+  "country": "AU",
+  "province": "Victoria",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 61,
+  "tier": "strong",
+  "tier_label": "Strong fit",
+  "tier_reason": "49 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Port of Hastings Corporation in Victoria. The notice mentions dredging work and an area of about 15,700 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The trial would occur over a small and confined area of the intertidal marine sediments and seabed sediments mixed with cement to form stiff “panels”.",
+   "The Action would be undertaken at the Old Tyabb Reclamation Area (OTRA) and within the adjacent intertidal area.",
+   "Due to the transient nature and given most of the works is present in the upper intertidal zone and onshore, this is not likely to significantly impact any MNES."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10655.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 55,
+    "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Work below high water or footprint on the seabed; size 1.57 ha",
+    "relevance": 43
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Port of Hastings Corporation",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 49,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Port of Hastings Corporation); no engineering firm is named yet.",
+   "reasons": [
+    "Dredging",
+    "Early: still under review, design not final (+8)",
+    "Large project (1.57 ha) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
+  "id": "au_epbc:2026-10613",
+  "title": "Bunbury Offshore Wind Project",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=90d54400-5395-f111-8075-7ced8da2dc89",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "BUNBURY OFFSHORE WIND FARM PTY LTD",
+  "country": "AU",
+  "province": "Commonwealth Marine",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Offshore wind"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 60,
+  "tier": "strong",
+  "tier_label": "Strong fit",
+  "tier_reason": "48 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by BUNBURY OFFSHORE WIND FARM PTY LTD in Commonwealth Marine. The notice mentions offshore wind work and an area of about 2,174,000,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The site investigations, termed the Bunbury Offshore Wind early phase geophysical and geotechnical investigations (the proposed action), will inform the design, installation methods, and operations of the Project and any impact mitigation requirements.",
+   "The Proponent is proposing the development of the Bunbury Offshore Wind Project (the Project), located off the southwest coast of Western Australia (WA), near the town of Bunbury.",
+   "Campaign 2 – notionally proposed to commence Q4 2028, involving more detailed geotechnical investigations to inform project development, likely to take place over 22 – 32 weeks in water depths between 12 – 55 m within the FLAs and export cable corridor."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10613.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 68,
+    "because": "Offshore wind farm (foundations need scour and cable protection); Work below high water or footprint on the seabed; Offshore wind; size 5,000 – 7,000 km",
+    "relevance": 56
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "BUNBURY OFFSHORE WIND FARM PTY LTD",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 48,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (BUNBURY OFFSHORE WIND FARM PTY LTD); no engineering firm is named yet.",
+   "reasons": [
+    "Offshore wind",
+    "Early: still under review, design not final (+8)",
+    "Large project (1 km) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
   "id": "iaac:90890",
   "title": "Rehabilitation of wharves 3 and 4A at the Port of Trois-Rivières",
   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90890?culture=en-CA",
@@ -2362,6 +3044,280 @@
   "first_listed": "2026-11-13"
  },
  {
+  "id": "au_epbc:2026-10528",
+  "title": "Dungeness Breakwater and Dredging",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=59cf5c21-6155-f111-bec7-7c1e5262e9e4",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "HINCHINBROOK SHIRE COUNCIL",
+  "country": "AU",
+  "province": "Queensland",
+  "language": "en",
+  "water_body": "Enterprise Channel",
+  "types": [
+   "Port or marine terminal",
+   "Breakwater, jetty or groyne",
+   "Dredging",
+   "Marina or small craft harbour"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 54,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "46 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by HINCHINBROOK SHIRE COUNCIL in Enterprise Channel, Queensland. The notice mentions breakwater or jetty, dredging, small craft harbour and port or terminal work and an area of about 10,000 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proposed action involves the construction of a rock breakwater near the mouth of the Dungeness-Enterprise Channel, on waters adjacent to Lot 540 on SP291542 at Dungeness."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10528.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 39,
+    "because": "Breakwater, jetty or groyne; Port or marine terminal; Marina or small craft harbour (doubtful size reading not counted (1 ha))",
+    "relevance": 31
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "HINCHINBROOK SHIRE COUNCIL",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 46,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (HINCHINBROOK SHIRE COUNCIL); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
+  "id": "au_epbc:2026-10673",
+  "title": "Gold Coast Oceanway Project",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=e690f974-08be-f111-aaae-6045bde6885a",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "Gold Coast City Council",
+  "country": "AU",
+  "province": "Queensland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Shoreline protection, seawall or bulkhead",
+   "Infill, reclamation or causeway",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 53,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "41 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Gold Coast City Council in Queensland. The notice mentions infill or causeway, pile and shoreline protection work and an area of about 217,700 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proposed action includes combined investigations and pathway construction at Mermaid Beach North, and peel back investigations (Phase 1), and seawall repairs and path construction works (Phase 2) associated with the Mermaid Beach Central and Palm Beach South sections.",
+   "Seawall repair works will be completed concurrently with the construction of the path.",
+   "Boardwalk sections (Mermaid Beach Central/Palm Beach South sections) will be installed on reinforced concrete piles which are to be set into the ground 10 m from the seawall toe."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10673.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 63,
+    "because": "Shoreline protection, seawall or bulkhead; Infill, reclamation or causeway; Piles or pile-supported structure; size 400 m (doubtful size reading not counted (900 m))",
+    "relevance": 51
+   },
+   "living-shoreline": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 68,
+    "because": "Shoreline protection, seawall or bulkhead; Erosion control works or shoreline stabilization; Infill, reclamation or causeway; size 400 m (doubtful size reading not counted (900 m))",
+    "relevance": 56
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Gold Coast City Council",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 41,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Gold Coast City Council); no engineering firm is named yet.",
+   "reasons": [
+    "Infill, reclamation or causeway",
+    "Early: still under review, design not final (+8)",
+    "Large project (400 m) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
   "id": "scot_marine:00012570",
   "title": "Pentland Floating Offshore Wind Farm – Dounreay, Caithness – Micro-pile Anchor Trial",
   "url": "https://marine.gov.scot/?q=node/28310",
@@ -2970,6 +3926,137 @@
   ],
   "changes": [],
   "first_listed": "2026-11-13"
+ },
+ {
+  "id": "au_epbc:2026-10692",
+  "title": "Main Beach Parade Pedestrian Access to Foreshore.",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=5f391f07-6fce-f111-a05a-6045bde68964",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "CELESTINO MB PROJECTS PTY LIMITED",
+  "country": "AU",
+  "province": "Queensland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 49,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "33 points for the kind of work, plus 16 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by CELESTINO MB PROJECTS PTY LIMITED in Queensland. The notice mentions an area of about 2,500 m2.",
+  "summary_note": "auto",
+  "quotes": [
+   "The portion of land subject to the proposed action (the ‘ project area ’) is approximately 0.25 ha and is located in David Evans Reserve (within Macintosh Island Park)."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10692.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 44,
+    "because": "Habitat offsetting or compensation mentioned; size 0.25 ha",
+    "relevance": 28
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "CELESTINO MB PROJECTS PTY LIMITED",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 33,
+  "win": {
+   "points": 16,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (CELESTINO MB PROJECTS PTY LIMITED); no engineering firm is named yet. Habitat offsetting is mentioned: offer a habitat-positive design.",
+   "reasons": [
+    "Habitat offsetting or compensation mentioned",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
  },
  {
   "id": "iaac:90777",
@@ -4819,6 +5906,140 @@
   "first_listed": "2026-11-23"
  },
  {
+  "id": "au_epbc:2026-10684",
+  "title": "Tasman Ring Network Marine Route Survey for Submarine Telecommunication Cable",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=c5181616-8ac3-f111-aaaf-70a8a5568e95",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "Tasman Ring Network Australia Pty Ltd",
+  "country": "AU",
+  "province": "Commonwealth Marine",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 38,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "26 points for the kind of work, plus 12 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Tasman Ring Network Australia Pty Ltd in Commonwealth Marine. The notice mentions a length of about 10,000 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "The proposed action is in the marine environment from approximately 1.5 km off the coast of Torquay, to the Territorial Sea boundary..",
+   "These geotechnical investigations will consist of gravity or piston coring and Cone Penetrometer Tests (CPTs) at intervals of 10 km.",
+   "Deepwater surveys will have a survey corridor that is 3 x water depth (or 10 km, whichever is less) to inform route engineering."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10684.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Tasman Ring Network Australia Pty Ltd",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 12,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Tasman Ring Network Australia Pty Ltd); no engineering firm is named yet.",
+   "reasons": [
+    "Work below high water or footprint on the seabed",
+    "Early: still under review, design not final (+8)",
+    "Large project (500 m) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
   "id": "nl_ea:2410",
   "title": "Petty Harbour Breakwater",
   "url": "https://www.gov.nl.ca/eccc/projects/project-2410/",
@@ -5733,6 +6954,140 @@
   ],
   "changes": [],
   "first_listed": "2026-11-19"
+ },
+ {
+  "id": "au_epbc:2026-10627",
+  "title": "Aquaculture research in the Blue Economy Zone: stocking salmon and cultivating seaweed",
+  "url": "https://epbcpublicportal.environment.gov.au/all-referrals/project-referral-summary/?id=dfe1b67c-65a0-f111-b8dc-000d3a6a2e46",
+  "source": "au_epbc",
+  "source_name": "EPBC Act Public Portal (referrals and notices open for public comment)",
+  "proponent": "BLUE ECONOMY CRC-CO LTD",
+  "country": "AU",
+  "province": "Commonwealth Marine",
+  "language": "en",
+  "water_body": "Bass Strait",
+  "types": [],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 19,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "On the list because it fits the profile: Kelp and other seaweed",
+  "reviewed": false,
+  "summary": "Project by BLUE ECONOMY CRC-CO LTD in Bass Strait, Commonwealth Marine. The notice mentions a length of about 57 m.",
+  "summary_note": "auto",
+  "quotes": [
+   "Location The action will be undertaken within the existing footprint of the Blue Economy Zone Research Trial site, at 40.9382°S, 145.9348°E, approximately 12.5 km offshore from Burnie, in water depths of approximately 55-57m.",
+   "The fish will be pumped into the sea pen at the trial site between 150 and 600g bodyweight.",
+   "Seaweed seed stock will be collected under authorisation under the Living Marine Resources Management Act 1995 or from an alternative source population agreed with the Tasmanian Department of Natural Resources and Environment (Tas NRE)."
+  ],
+  "attribution": "Used with the agency's written permission.",
+  "agency": "National Environmental Protection Agency, EPBC Act Public Portal",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/au_epbc-2026-10627.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 50,
+    "because": "Kelp or seaweed; Species at risk; size 55-57m",
+    "relevance": 42
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "BLUE ECONOMY CRC-CO LTD",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 19,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (BLUE ECONOMY CRC-CO LTD); no engineering firm is named yet.",
+   "reasons": [
+    "Species at risk",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "listed_via": "Kelp and other seaweed",
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
  },
  {
   "id": "scot_marine:00012432/00011450",
