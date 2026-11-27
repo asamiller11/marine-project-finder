@@ -12,7 +12,8 @@
 "2026-11-20",
 "2026-11-22",
 "2026-11-23",
-"2026-11-25"
+"2026-11-25",
+"2026-11-27"
 ],
 "base": {
 "nl_ea:2434": {
@@ -273,18 +274,6 @@
 "tier": "weak",
 "title": "Reconstruction of Wharf 402 - Mont-Louis Harbour, Gaspésie"
 },
-"iaac:90491": {
-"comment_deadline": "2026-11-24",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Hopkins Slipway Extension – Canadian Coast Guard Academy"
-},
-"iaac:90794": {
-"comment_deadline": "2026-11-23",
-"stage_kind": "open",
-"tier": "weak",
-"title": "Lazy Head Marine Terminal Project"
-},
 "ceqanet:2026110429": {
 "comment_deadline": "2026-12-31",
 "stage_kind": "open",
@@ -477,11 +466,23 @@
 "tier": "weak",
 "title": "Delta Grinding Facility"
 },
+"iaac:90491": {
+"comment_deadline": "2026-11-24",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Hopkins Slipway Extension – Canadian Coast Guard Academy"
+},
 "bc_eao:60edc23bc69c5e0023a12539": {
 "comment_deadline": "2024-12-12",
 "stage_kind": "closed",
 "tier": "weak",
 "title": "Ksi Lisims LNG"
+},
+"iaac:90794": {
+"comment_deadline": "2026-11-23",
+"stage_kind": "closed",
+"tier": "weak",
+"title": "Lazy Head Marine Terminal Project"
 },
 "bc_eao:588511e3aaecd9001b8274d4": {
 "comment_deadline": "2023-06-09",
@@ -616,7 +617,7 @@
 "title": "Tradepoint TiL Terminal, LLC's Sparrows Point Container Terminal Project in Baltimore County, MD"
 }
 },
-"base_date": "2026-11-23",
+"base_date": "2026-11-25",
 "current": {
 "nl_ea:2434": {
 "comment_deadline": "2026-10-20",
@@ -768,11 +769,23 @@
 "tier": "possible",
 "title": "Suncor Dredging - West Dock Berth"
 },
+"scot_marine:00012531": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "Berwick Bank Wind Farm– Piling Trial"
+},
 "ca_coastal:5-21-0866": {
 "comment_deadline": null,
 "stage_kind": "decided",
 "tier": "possible",
 "title": "OCTA & SCRRA, San Clemente"
+},
+"ceqanet:2026110748": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "possible",
+"title": "WWTP Reservoir Pond Levee Rehabilitation (DR-4699)"
 },
 "iaac:90783": {
 "comment_deadline": null,
@@ -900,6 +913,18 @@
 "tier": "weak",
 "title": "Berkeley Water Transportation Pier Ferry"
 },
+"scot_marine:00012528": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Bridge Maintenance - Kingston Bridge, River Clyde, Glasgow"
+},
+"scot_marine:monopile and additional ecc variation application section 36 and marine licence ": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Monopile and Additional ECC Variation Application – Section 36 and Marine Licence – EIAR Non-Technical Summary"
+},
 "ceqanet:2026110728": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -960,6 +985,12 @@
 "tier": "weak",
 "title": "Heidelberg Materials Barclay Point Barge Offloading Facility"
 },
+"scot_marine:00012440": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Moorings and Pontoon - Kenmore, Loch Torrindon"
+},
 "qc_ree:3211-02-316": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -1002,6 +1033,12 @@
 "tier": "weak",
 "title": "Prolongement des postes à quai B1-B2 au port de Bécancour"
 },
+"ceqanet:2025061097-2": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Sediment and Geotechnical Sampling – First Amendment to Harbor Development Permit No. 23-040(1)"
+},
 "ceqanet:2018028143-2": {
 "comment_deadline": null,
 "stage_kind": "assessment",
@@ -1019,6 +1056,12 @@
 "stage_kind": "assessment",
 "tier": "weak",
 "title": "Screening Opinion- Berth Reconstruction- Montrose Port- SCR-0103"
+},
+"ceqanet:2026110864": {
+"comment_deadline": null,
+"stage_kind": "assessment",
+"tier": "weak",
+"title": "Memorandum of Understanding for Pier J Turning Basin Dredging and Peninsula Beach Sand Placement"
 },
 "qc_ree:3211-02-323": {
 "comment_deadline": null,
@@ -1103,6 +1146,12 @@
 "stage_kind": "decided",
 "tier": "weak",
 "title": "Seagrass Planting - SE of Isle of Berneray, Sound of Harris, Western Isles"
+},
+"scot_marine:00012474": {
+"comment_deadline": null,
+"stage_kind": "decided",
+"tier": "weak",
+"title": "Fortum Energy Limited UK (per Orcades Marine Management Consultants Ltd)- Decommissioning of Penguin 1- Billia Croo (EMEC), Orkney"
 },
 "scot_marine:00010232/00011498 & 00010230/00011497 & 00010231": {
 "comment_deadline": null,
@@ -2034,6 +2083,62 @@
 "bc_eao:588511e3aaecd9001b8274d4": [
 {
 "date": "2026-11-23",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00012531": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2026110748": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00012528": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:monopile and additional ecc variation application section 36 and marine licence ": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00012440": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2025061097-2": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"ceqanet:2026110864": [
+{
+"date": "2026-11-27",
+"type": "new",
+"text": "First listed"
+}
+],
+"scot_marine:00012474": [
+{
+"date": "2026-11-27",
 "type": "new",
 "text": "First listed"
 }

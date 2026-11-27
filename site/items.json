@@ -49,7 +49,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-20",
-   "days_left": -36,
+   "days_left": -38,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -712,7 +712,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-13",
-   "days_left": 18,
+   "days_left": 16,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -882,7 +882,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-30",
-   "days_left": 5,
+   "days_left": 3,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1041,7 +1041,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-11",
-   "days_left": 16,
+   "days_left": 14,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1202,7 +1202,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2027-01-04",
-   "days_left": 40,
+   "days_left": 38,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1335,7 +1335,7 @@
    "opens": "2026-10-29",
    "opens_how": "notice date",
    "closes": "2026-11-28",
-   "days_left": 3,
+   "days_left": 1,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -1789,7 +1789,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-01-16",
-   "days_left": -313,
+   "days_left": -315,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3313,7 +3313,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2023-03-31",
-   "days_left": -1335,
+   "days_left": -1337,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3575,7 +3575,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-08-02",
-   "days_left": -480,
+   "days_left": -482,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -3815,6 +3815,139 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "scot_marine:00012531",
+  "title": "Berwick Bank Wind Farm– Piling Trial",
+  "url": "https://marine.gov.scot/?q=node/28316",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Dredging",
+   "Infill, reclamation or causeway",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 40,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "32 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging, infill or causeway and pile work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00012531.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 30,
+    "because": "Infill, reclamation or causeway; Piles or pile-supported structure; Shellfish, oyster or mussel beds",
+    "relevance": 22
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
+     "detail": "Scottish Government",
+     "how": "Licensing team named in the notice",
+     "quote": "…tal Access Act 2009 Marine Directorate – Licensing Operations Team …"
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 32,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "reasons": [
+    "Dredging",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
   "id": "ca_coastal:5-21-0866",
   "title": "OCTA & SCRRA, San Clemente",
   "url": "https://www.coastal.ca.gov/meetings/agenda/#/2026/11/5",
@@ -3945,6 +4078,139 @@
   ],
   "changes": [],
   "first_listed": "2026-11-19"
+ },
+ {
+  "id": "ceqanet:2026110748",
+  "title": "WWTP Reservoir Pond Levee Rehabilitation (DR-4699)",
+  "url": "https://ceqanet.lci.ca.gov/2026110748",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "City of Orange Cove",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Orange Cove",
+  "types": [
+   "Shoreline protection, seawall or bulkhead"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 40,
+  "tier": "possible",
+  "tier_label": "Possible fit",
+  "tier_reason": "32 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by City of Orange Cove in Orange Cove, California. The notice mentions shoreline protection work and about 12,616 m3 of material.",
+  "summary_note": "auto",
+  "quotes": [
+   "The scope of the project is the repair and reconstruction of approximately 16,500 cubic yards of fill over approximately 9,900 linear feet of ponds 4, 6, 8, and 10 levee and crown that were damaged by the severe storm of March 9, 2023."
+  ],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2026110748.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "strong",
+    "tier_label": "Strong fit",
+    "score": 65,
+    "because": "Shoreline protection, seawall or bulkhead; Rock armour, riprap or armour units; size 9,900 linear feet",
+    "relevance": 57
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 46,
+    "because": "Shoreline protection, seawall or bulkhead; size 9,900 linear feet",
+    "relevance": 38
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "City of Orange Cove",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 32,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (City of Orange Cove); no engineering firm is named yet.",
+   "reasons": [
+    "Shoreline protection, seawall or bulkhead",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
  },
  {
   "id": "iaac:90783",
@@ -4460,7 +4726,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2021-08-22",
-   "days_left": -1921,
+   "days_left": -1923,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -4595,7 +4861,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-06-26",
-   "days_left": -152,
+   "days_left": -154,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -5772,7 +6038,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-12",
-   "days_left": -13,
+   "days_left": -15,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -5896,7 +6162,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-19",
-   "days_left": -6,
+   "days_left": -8,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6014,7 +6280,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-28",
-   "days_left": -58,
+   "days_left": -60,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6135,7 +6401,7 @@
    "opens": "2026-10-27",
    "opens_how": "stated",
    "closes": "2026-11-27",
-   "days_left": 2,
+   "days_left": 0,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6293,7 +6559,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-12-15",
-   "days_left": 20,
+   "days_left": 18,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6433,7 +6699,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-12-31",
-   "days_left": 36,
+   "days_left": 34,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6695,7 +6961,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2023-02-22",
-   "days_left": -1372,
+   "days_left": -1374,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -6921,6 +7187,264 @@
   ],
   "changes": [],
   "first_listed": "2026-11-23"
+ },
+ {
+  "id": "scot_marine:00012528",
+  "title": "Bridge Maintenance - Kingston Bridge, River Clyde, Glasgow",
+  "url": "https://marine.gov.scot/?q=node/28353",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "26 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions wharf or dock work and a length of about 144 m.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00012528.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 26,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "reasons": [
+    "Wharf, pier or large dock",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
+  "id": "scot_marine:monopile and additional ecc variation application section 36 and marine licence ",
+  "title": "Monopile and Additional ECC Variation Application – Section 36 and Marine Licence – EIAR Non-Technical Summary",
+  "url": "https://marine.gov.scot/?q=node/28344",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Dredging",
+   "Offshore wind",
+   "Piles or pile-supported structure"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 34,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "79 points for the kind of work, minus 11 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions dredging, offshore wind and pile work and a length of about 50,000 m.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-monopile-and-additional-ecc-variation-application-section-36-and-marine-licence-.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 34,
+    "because": "Floating offshore wind (anchors and moorings, less rock protection); Piles or pile-supported structure; Fixed-bottom foundations (monopile, jacket or gravity base); size 50 km",
+    "relevance": 78
+   },
+   "living-shoreline": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 34,
+    "because": "Intertidal zone, salt marsh or tidal wetland; Dredging; Shellfish, oyster or mussel beds; size 50 km",
+    "relevance": 52
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
+     "detail": "Scottish Government",
+     "how": "Licensing team named in the notice",
+     "quote": "…Scottish Government Marine Directorate – Licensing Operations Team (MD-LOT)…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 79,
+  "win": {
+   "points": -11,
+   "stage": "under_construction",
+   "entry_point": "Under construction: late; watch for later phases or repairs.",
+   "reasons": [
+    "Offshore wind",
+    "Under construction or works window started: late to get in (-15)",
+    "Large project (1000 m) (+4)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
  },
  {
   "id": "ceqanet:2026110728",
@@ -8414,6 +8938,137 @@
   "first_listed": "2026-10-29"
  },
  {
+  "id": "scot_marine:00012440",
+  "title": "Moorings and Pontoon - Kenmore, Loch Torrindon",
+  "url": "https://marine.gov.scot/?q=node/28339",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "unknown",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock"
+  ],
+  "stage": "under assessment",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project in Scotland. The notice mentions wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/scot_marine-00012440.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 32,
+    "because": "Wharf, pier or large dock; Shellfish, oyster or mussel beds",
+    "relevance": 24
+   },
+   "living-shoreline": {
+    "tier": "possible",
+    "tier_label": "Possible fit",
+    "score": 36,
+    "because": "Shellfish work (reef, relocation, restoration or seeding); Wharf, pier or large dock; Shellfish, oyster or mussel beds",
+    "relevance": 28
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": [
+    {
+     "name": "Marine Directorate Licensing Operations Team (MD-LOT)",
+     "detail": "Scottish Government",
+     "how": "Licensing team named in the notice",
+     "quote": "…t 2009   Marine Directorate – Licensing Operations Team Scottish…"
+    }
+   ]
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent; no engineering firm is named yet.",
+   "reasons": [
+    "Wharf, pier or large dock",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
   "id": "qc_ree:3211-02-316",
   "title": "Programme décennal de dragage aux installations portuaires de Port-Cartier",
   "url": "https://www.ree.environnement.gouv.qc.ca/projet.asp?no_dossier=3211-02-316",
@@ -9324,6 +9979,138 @@
   "first_listed": "2026-11-23"
  },
  {
+  "id": "ceqanet:2025061097-2",
+  "title": "Sediment and Geotechnical Sampling – First Amendment to Harbor Development Permit No. 23-040(1)",
+  "url": "https://ceqanet.lci.ca.gov/2025061097/2",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "Port of Long Beach",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "West Basin",
+  "types": [
+   "Port or marine terminal",
+   "Wharf, pier or large dock"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 31,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Port of Long Beach in West Basin, California. The notice mentions port or terminal and wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2025061097-2.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 31,
+    "because": "Pier (not at a dam, intake or bridge); Port or marine terminal",
+    "relevance": 23
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Port of Long Beach",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Port of Long Beach); no engineering firm is named yet.",
+   "reasons": [
+    "Port or marine terminal",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
+ },
+ {
   "id": "ceqanet:2018028143-2",
   "title": "Villa Creek Estuary Restoration Project (Amendment No. 1 to Streambed Alteration Agreement No. EPIMS-SLO-58208-R4)",
   "url": "https://ceqanet.lci.ca.gov/2018028143/2",
@@ -9493,7 +10280,7 @@
    "opens": "2026-09-22",
    "opens_how": "notice date",
    "closes": "2026-11-01",
-   "days_left": -24,
+   "days_left": -26,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -9715,6 +10502,138 @@
   ],
   "changes": [],
   "first_listed": "2026-11-12"
+ },
+ {
+  "id": "ceqanet:2026110864",
+  "title": "Memorandum of Understanding for Pier J Turning Basin Dredging and Peninsula Beach Sand Placement",
+  "url": "https://ceqanet.lci.ca.gov/2026110864",
+  "source": "ceqanet",
+  "source_name": "CEQAnet (California State Clearinghouse CEQA documents)",
+  "proponent": "Port of Long Beach",
+  "country": "US",
+  "province": "California",
+  "language": "en",
+  "water_body": "Pier J Turning Basin",
+  "types": [
+   "Wharf, pier or large dock",
+   "Dredging"
+  ],
+  "stage": "registered",
+  "stage_kind": "assessment",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 29,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "21 points for the kind of work, plus 8 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Port of Long Beach in Pier J Turning Basin, California. The notice mentions dredging and wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "Used with the State Clearinghouse's written permission.",
+  "agency": "Governor's Office of Land Use and Climate Innovation, State Clearinghouse",
+  "issued_by": "",
+  "too_late": false,
+  "also_listed": [],
+  "page": "p/ceqanet-2026110864.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "This source publishes no comment data."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 28,
+    "because": "Pier (not at a dam, intake or bridge)",
+    "relevance": 20
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Port of Long Beach",
+     "detail": "",
+     "how": "Proponent named by the registry",
+     "quote": ""
+    }
+   ],
+   "consultant": [],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 21,
+  "win": {
+   "points": 8,
+   "stage": "assessment",
+   "entry_point": "Design stage: contact the proponent (Port of Long Beach); no engineering firm is named yet.",
+   "reasons": [
+    "Dredging",
+    "Early: still under review, design not final (+8)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
  },
  {
   "id": "qc_ree:3211-02-323",
@@ -10469,7 +11388,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2025-07-04",
-   "days_left": -509,
+   "days_left": -511,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -10724,7 +11643,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2020-03-16",
-   "days_left": -2445,
+   "days_left": -2447,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -10830,7 +11749,7 @@
   "types": [
    "Shoreline protection, seawall or bulkhead"
   ],
-  "stage": "public comment open until 2026-11-24",
+  "stage": "comment closed 2026-11-24, decision pending",
   "stage_kind": "closed",
   "comment_deadline": "2026-11-24",
   "decision_date": null,
@@ -10855,7 +11774,7 @@
    "opens": "2026-11-05",
    "opens_how": "notice date",
    "closes": "2026-11-24",
-   "days_left": -1,
+   "days_left": -3,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -10991,7 +11910,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2024-12-12",
-   "days_left": -713,
+   "days_left": -715,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11097,7 +12016,7 @@
   "types": [
    "Port or marine terminal"
   ],
-  "stage": "public comment open until 2026-11-23",
+  "stage": "comment closed 2026-11-23, decision pending",
   "stage_kind": "closed",
   "comment_deadline": "2026-11-23",
   "decision_date": null,
@@ -11123,7 +12042,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-11-23",
-   "days_left": -2,
+   "days_left": -4,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11262,7 +12181,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2023-06-09",
-   "days_left": -1265,
+   "days_left": -1267,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -11650,6 +12569,145 @@
   "timeline": [],
   "changes": [],
   "first_listed": "2026-10-29"
+ },
+ {
+  "id": "scot_marine:00012474",
+  "title": "Fortum Energy Limited UK (per Orcades Marine Management Consultants Ltd)- Decommissioning of Penguin 1- Billia Croo (EMEC), Orkney",
+  "url": "https://marine.gov.scot/?q=node/28325",
+  "source": "scot_marine",
+  "source_name": "marine.gov.scot marine licence documentation",
+  "proponent": "Fortum Energy Limited UK",
+  "country": "GB",
+  "province": "Scotland",
+  "language": "en",
+  "water_body": "unknown",
+  "types": [
+   "Wharf, pier or large dock"
+  ],
+  "stage": "decision made",
+  "stage_kind": "decided",
+  "comment_deadline": null,
+  "decision_date": null,
+  "approved_on": null,
+  "score": 21,
+  "tier": "weak",
+  "tier_label": "Weak fit",
+  "tier_reason": "23 points for the kind of work, minus 2 for stage, timing and who is named",
+  "reviewed": false,
+  "summary": "Project by Fortum Energy Limited UK in Scotland. The notice mentions wharf or dock work.",
+  "summary_note": "auto",
+  "quotes": [],
+  "attribution": "© Crown Copyright",
+  "agency": "Scottish Government, marine.gov.scot",
+  "issued_by": "",
+  "too_late": true,
+  "also_listed": [],
+  "page": "p/scot_marine-00012474.html",
+  "comments": {
+   "opens": null,
+   "opens_how": "",
+   "closes": null,
+   "days_left": null,
+   "count": null,
+   "count_as_of": null,
+   "comments_url": null,
+   "count_note": "Representations are published as PDF documents, not as a count."
+  },
+  "licence_types": [],
+  "profiles": {
+   "hard-structure": {
+    "tier": "weak",
+    "tier_label": "Weak fit",
+    "score": 26,
+    "because": "Pier (not at a dam, intake or bridge); Work below high water or footprint on the seabed",
+    "relevance": 28
+   },
+   "living-shoreline": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "seagrass": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "kelp": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "coral": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   },
+   "banking": {
+    "tier": "notrel",
+    "tier_label": "Not relevant",
+    "score": 0,
+    "because": "",
+    "relevance": 0
+   }
+  },
+  "freshwater": false,
+  "stakeholders": {
+   "owner": [
+    {
+     "name": "Fortum Energy Limited UK",
+     "detail": "",
+     "how": "Licence holder named on the marine licence",
+     "quote": ""
+    }
+   ],
+   "consultant": [
+    {
+     "name": "Orcades Marine Management Consultants Ltd Innovation Centre",
+     "detail": "",
+     "how": "Agent on the licence",
+     "quote": "…ART 2 – PARTICULARS 2.1 Agent Orcades Marine Management Consultants Ltd Innovation Centre - Orkney…"
+    }
+   ],
+   "contractor": [],
+   "agency_contact": []
+  },
+  "research": {
+   "facts": [],
+   "people": [],
+   "orgs": {},
+   "developer_only": false
+  },
+  "relevance_score": 23,
+  "win": {
+   "points": -2,
+   "stage": "decided",
+   "entry_point": "Approved: contact the engineering firm (Orcades Marine Management Consultants Ltd Innovation Centre) before tender.",
+   "reasons": [
+    "Wharf, pier or large dock",
+    "Already approved: the design is mostly set (-8)",
+    "Consultant named: Orcades Marine Management Consultants Ltd Innovation Centre (someone to approach) (+6)"
+   ],
+   "construction_start": ""
+  },
+  "timeline": [
+   {
+    "date": "2026-11-27",
+    "type": "new",
+    "text": "First listed"
+   }
+  ],
+  "changes": [
+   "new"
+  ],
+  "first_listed": "2026-11-27"
  },
  {
   "id": "scot_marine:00010232/00011498 & 00010230/00011497 & 00010231",
@@ -12136,7 +13194,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-11",
-   "days_left": -75,
+   "days_left": -77,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -12442,7 +13500,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-04-10",
-   "days_left": -229,
+   "days_left": -231,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -12577,7 +13635,7 @@
    "opens": "2026-10-05",
    "opens_how": "notice date",
    "closes": "2026-11-05",
-   "days_left": -20,
+   "days_left": -22,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -13542,7 +14600,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-09-18",
-   "days_left": -68,
+   "days_left": -70,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
@@ -13659,7 +14717,7 @@
    "opens": null,
    "opens_how": "",
    "closes": "2026-10-13",
-   "days_left": -43,
+   "days_left": -45,
    "count": null,
    "count_as_of": null,
    "comments_url": null,
